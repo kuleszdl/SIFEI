@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="SIF.Visualization.Excel.CellErrorInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewmodel="clr-namespace:SIF.Visualization.Excel.ViewModel"
+             SnapsToDevicePixels="True" Background="Transparent"
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <viewmodel:SeverityToColorConverter x:Key="SeverityToColorConverter" />
+        <viewmodel:SelectionToOpacityConverter x:Key="SelectionToOpacityConverter" />
+    </UserControl.Resources>
+
+    <Border BorderBrush="Black" BorderThickness="1" Background="White" MouseLeftButtonUp="Border_MouseLeftButtonUp">
+        <Grid x:Name="LayoutRoot" IsHitTestVisible="True" Background="White">
+
+            <Rectangle x:Name="SelectionRect" IsHitTestVisible="False" Fill="#00ADEF" 
+                       Opacity="{Binding IsSelected, Converter={StaticResource SelectionToOpacityConverter}}" />
+
+            <Ellipse IsHitTestVisible="False" Stroke="Black" StrokeThickness="0" Margin="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Ellipse.Fill>
+                    <SolidColorBrush Color="{Binding Finding.Severity, Converter={StaticResource SeverityToColorConverter}}" />
+                </Ellipse.Fill>
+            </Ellipse>
+            <Viewbox IsHitTestVisible="False" Margin="2">
+                <TextBlock FontFamily="Arial" Foreground="White" Text="!" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 0" />
+            </Viewbox>
+
+            <Grid.ContextMenu>
+                <ContextMenu x:Name="PopupMenu" HasDropShadow="False" Width="280">
+                    <ContextMenu.Template>
+                        <ControlTemplate TargetType="ContextMenu">
+                            <Border SnapsToDevicePixels="True" Background="White" BorderBrush="Black" BorderThickness="1">
+                                <Grid Background="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition MinHeight="22" Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="#EEEEEE" />
+
+                                    <TextBlock Grid.Column="1" Margin="5" Text="{Binding CausingElement}" FontWeight="Bold" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
+                                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5 0 5 8" Text="{Binding Description}" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
+                                    <Rectangle Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Stroke="Gray" StrokeDashArray="1 3" StrokeThickness="1" VerticalAlignment="Bottom" />
+                                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="5 5 5 2" Text="Possible Solution" FontWeight="SemiBold" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
+                                    <TextBlock Grid.Column="1" Grid.Row="3" Margin="5 0 5 8" Text="{Binding Finding.PossibleSolution}" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
+                                    <Rectangle Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Stroke="Gray" StrokeDashArray="1 3" StrokeThickness="1" VerticalAlignment="Bottom" />
+                                    <TextBlock Grid.Column="1" Grid.Row="4" Margin="5 5 5 2" Text="Background" FontWeight="SemiBold" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
+                                    <TextBlock Grid.Column="1" Grid.Row="5" Margin="5 0 5 8" Text="{Binding Finding.Background}" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
+                                    <Rectangle Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Stroke="Gray" StrokeDashArray="1 3" StrokeThickness="1" VerticalAlignment="Bottom" />
+
+                                    <Rectangle HorizontalAlignment="Stretch" Grid.RowSpan="10">
+                                        <Rectangle.Fill>
+                                            <SolidColorBrush Color="{Binding Finding.Severity, Converter={StaticResource SeverityToColorConverter}}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+
+                                    <!--Commands-->
+                                    <TextBlock Margin="5 -1 5 1" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center">
+                                        <Hyperlink Click="Hyperlink_Click">False Positive</Hyperlink>
+                                    </TextBlock>
+
+                                    <!--<Rectangle Fill="White" Grid.Column="2" Height="{TemplateBinding Tag}" Margin="0 0 -1 0"
+                                               HorizontalAlignment="Right" Width="1" Grid.RowSpan="10" 
+                                               VerticalAlignment="Top" Visibility="Visible" />-->
+
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </ContextMenu.Template>
+                </ContextMenu>
+            </Grid.ContextMenu>
+            <Grid.ToolTip>
+                <ToolTip x:Name="PopupToolTip">
+                    Right click to get more information about this finding.
+                </ToolTip>
+            </Grid.ToolTip>
+        </Grid>
+    </Border>
+
+</UserControl>

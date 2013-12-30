@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SIF.Visualization.Excel.Core.BindableBase">
+    <Position X="11" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAoAAAAAAAgAEAAIAAAAAAAAAAAiA=</HashCode>
+      <FileName>Core\BindableBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SIF.Visualization.Excel.Core.Cell">
+    <Position X="0.5" Y="4" Width="1.75" />
+    <Members>
+      <Field Name="content" Hidden="true" />
+      <Field Name="id" Hidden="true" />
+      <Field Name="location" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIACAAAAAgAAAAAAgAIAAAACAAAAAIAAAAAAAAAAAiA=</HashCode>
+      <FileName>Core\Cell.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SIF.Visualization.Excel.Core.Finding">
+    <Position X="18.25" Y="4" Width="2.25" />
+    <Members>
+      <Field Name="author" Hidden="true" />
+      <Field Name="background" Hidden="true" />
+      <Field Name="description" Hidden="true" />
+      <Field Name="isSettingVisibility" Hidden="true" />
+      <Field Name="isVisible" Hidden="true" />
+      <Field Name="name" Hidden="true" />
+      <Field Name="possibleSolution" Hidden="true" />
+      <Field Name="severity" Hidden="true" />
+      <Field Name="violations" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAEAACABQAgkgAAoBAAAIQAACAEAIEAAIAgAASAIiA=</HashCode>
+      <FileName>Core\Finding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SIF.Visualization.Excel.Core.GroupViolation">
+    <Position X="11.75" Y="10.25" Width="2.5" />
+    <Members>
+      <Field Name="severity" Hidden="true" />
+      <Field Name="violations" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAAACAIAgAggAEgAIAAAACACAAAIAAAAAAAAQIAiA=</HashCode>
+      <FileName>Core\GroupViolation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SIF.Visualization.Excel.Core.WorkbookModel">
+    <Position X="3" Y="4" Width="2" />
+    <Members>
+      <Field Name="findings" Hidden="true" />
+      <Field Name="inputCells" Hidden="true" />
+      <Field Name="intermediateCells" Hidden="true" />
+      <Field Name="outputCells" Hidden="true" />
+      <Field Name="policy" Hidden="true" />
+      <Field Name="policyPath" Hidden="true" />
+      <Field Name="spreadsheet" Hidden="true" />
+      <Field Name="title" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="SIF.Visualization.Excel.Core.WorkbookModel.CellDefineOption" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Core\WorkbookModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Delegate Name="SIF.Visualization.Excel.Core.WorkbookModel.CellDefinitionChangeHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Core\WorkbookModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIACgAAAwBAICFAAiEIAAABCSiAAUJgIABAECgAABiM=</HashCode>
+      <FileName>Core\WorkbookModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SIF.Visualization.Excel.Core.Policy">
+    <Position X="21.25" Y="4" Width="2" />
+    <Members>
+      <Field Name="author" Hidden="true" />
+      <Field Name="description" Hidden="true" />
+      <Field Name="name" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAoAAAAIQAAAAEAIAAAAAAAAAAAiA=</HashCode>
+      <FileName>Core\Policy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SIF.Visualization.Excel.Core.SingleViolation">
+    <Position X="15" Y="10.25" Width="2.5" />
+    <Members>
+      <Field Name="severity" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAUAAAAFAQAgAAEAAACACAAQIAAAEAACAQAAig=</HashCode>
+      <FileName>Core\SingleViolation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SIF.Visualization.Excel.Core.Violation">
+    <Position X="13.5" Y="4" Width="2.25" />
+    <Members>
+      <Field Name="causingElement" Hidden="true" />
+      <Field Name="description" Hidden="true" />
+      <Field Name="id" Hidden="true" />
+      <Field Name="isVisible" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAgEEAAoBFEAAABBCAAAIAAAAAAAgQgAiI=</HashCode>
+      <FileName>Core\Violation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SIF.Visualization.Excel.Core.DataModel">
+    <Position X="5.75" Y="4" Width="3" />
+    <Members>
+      <Field Name="instance" Hidden="true" />
+      <Field Name="syncRoot" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAAACAAAAAAAQAAQgAAAAAAAAABAAIAAQAAACIAAAig=</HashCode>
+      <FileName>Core\DataModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SIF.Visualization.Excel.Core.InspectionJob">
+    <Position X="9.5" Y="4" Width="1.5" />
+    <Members>
+      <Field Name="workbook" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAABAAAAAQAAgIAIAAAACAAAAiA=</HashCode>
+      <FileName>Core\InspectionJob.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

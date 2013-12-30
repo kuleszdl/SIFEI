@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SIF.Visualization.Excel.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FrameworkPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Spreadsheet Inspection Framework</Value>
+    </Setting>
+    <Setting Name="DefaultPort" Type="System.UInt16" Scope="Application">
+      <Value Profile="(Default)">8080</Value>
+    </Setting>
+    <Setting Name="DescriptionShortLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">80</Value>
+    </Setting>
+    <Setting Name="NumberOfScenarioDetailPanes" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="CellNameTag" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SIF.Visualisation.</Value>
+    </Setting>
+    <Setting Name="StaticScenarioName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">StaticScenario</Value>
+    </Setting>
+    <Setting Name="StaticScenarioDescriptionBase" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">This special scenario defines the static scan properties.</Value>
+    </Setting>
+    <Setting Name="FalsePositivePrefix" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FalsePositive.</Value>
+    </Setting>
+    <Setting Name="StandartDifference" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
