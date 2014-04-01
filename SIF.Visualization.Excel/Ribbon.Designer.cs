@@ -36,20 +36,20 @@
         {
             this.inspectionTab = this.Factory.CreateRibbonTab();
             this.testGroup = this.Factory.CreateRibbonGroup();
-            this.scenarioGroup = this.Factory.CreateRibbonGroup();
-            this.defineGroup = this.Factory.CreateRibbonGroup();
-            this.viewGroup = this.Factory.CreateRibbonGroup();
             this.testButton = this.Factory.CreateRibbonButton();
             this.staticTestButton = this.Factory.CreateRibbonButton();
             this.dynamicTestButton = this.Factory.CreateRibbonButton();
+            this.scenarioGroup = this.Factory.CreateRibbonGroup();
             this.scenarioButton = this.Factory.CreateRibbonButton();
             this.newScenarioButton = this.Factory.CreateRibbonButton();
             this.submitScenarioButton = this.Factory.CreateRibbonButton();
             this.cancelScenarioButton = this.Factory.CreateRibbonButton();
+            this.defineGroup = this.Factory.CreateRibbonGroup();
             this.cellDefinitionPane = this.Factory.CreateRibbonButton();
             this.inputCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.intermediateCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.resultCellToggleButton = this.Factory.CreateRibbonToggleButton();
+            this.viewGroup = this.Factory.CreateRibbonGroup();
             this.findingsButton = this.Factory.CreateRibbonButton();
             this.clearButton = this.Factory.CreateRibbonButton();
             this.inspectionTab.SuspendLayout();
@@ -75,31 +75,6 @@
             this.testGroup.Items.Add(this.dynamicTestButton);
             this.testGroup.Label = "Test";
             this.testGroup.Name = "testGroup";
-            // 
-            // scenarioGroup
-            // 
-            this.scenarioGroup.Items.Add(this.scenarioButton);
-            this.scenarioGroup.Items.Add(this.newScenarioButton);
-            this.scenarioGroup.Items.Add(this.submitScenarioButton);
-            this.scenarioGroup.Items.Add(this.cancelScenarioButton);
-            this.scenarioGroup.Label = "Scenario";
-            this.scenarioGroup.Name = "scenarioGroup";
-            // 
-            // defineGroup
-            // 
-            this.defineGroup.Items.Add(this.cellDefinitionPane);
-            this.defineGroup.Items.Add(this.inputCellToggleButton);
-            this.defineGroup.Items.Add(this.intermediateCellToggleButton);
-            this.defineGroup.Items.Add(this.resultCellToggleButton);
-            this.defineGroup.Label = "Define Scenario Cells";
-            this.defineGroup.Name = "defineGroup";
-            // 
-            // viewGroup
-            // 
-            this.viewGroup.Items.Add(this.findingsButton);
-            this.viewGroup.Items.Add(this.clearButton);
-            this.viewGroup.Label = "View";
-            this.viewGroup.Name = "viewGroup";
             // 
             // testButton
             // 
@@ -132,6 +107,15 @@
             this.dynamicTestButton.ShowImage = true;
             this.dynamicTestButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.DynamicScan_Click);
             // 
+            // scenarioGroup
+            // 
+            this.scenarioGroup.Items.Add(this.scenarioButton);
+            this.scenarioGroup.Items.Add(this.newScenarioButton);
+            this.scenarioGroup.Items.Add(this.submitScenarioButton);
+            this.scenarioGroup.Items.Add(this.cancelScenarioButton);
+            this.scenarioGroup.Label = "Scenario";
+            this.scenarioGroup.Name = "scenarioGroup";
+            // 
             // scenarioButton
             // 
             this.scenarioButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -156,7 +140,7 @@
             // submitScenarioButton
             // 
             this.submitScenarioButton.Description = "Submits scenario cration.";
-            this.submitScenarioButton.Label = "Submit";
+            this.submitScenarioButton.Label = "Save";
             this.submitScenarioButton.Name = "submitScenarioButton";
             this.submitScenarioButton.OfficeImageId = "OutlookTaskToday";
             this.submitScenarioButton.ScreenTip = "New Scenario";
@@ -174,6 +158,15 @@
             this.cancelScenarioButton.ShowImage = true;
             this.cancelScenarioButton.Visible = false;
             this.cancelScenarioButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.cancelScenarioButton_Click);
+            // 
+            // defineGroup
+            // 
+            this.defineGroup.Items.Add(this.cellDefinitionPane);
+            this.defineGroup.Items.Add(this.inputCellToggleButton);
+            this.defineGroup.Items.Add(this.intermediateCellToggleButton);
+            this.defineGroup.Items.Add(this.resultCellToggleButton);
+            this.defineGroup.Label = "Define Scenario Cells";
+            this.defineGroup.Name = "defineGroup";
             // 
             // cellDefinitionPane
             // 
@@ -215,6 +208,13 @@
             this.resultCellToggleButton.ScreenTip = "Defines a Result Cell.";
             this.resultCellToggleButton.ShowImage = true;
             this.resultCellToggleButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.DefineResultCell_Click);
+            // 
+            // viewGroup
+            // 
+            this.viewGroup.Items.Add(this.findingsButton);
+            this.viewGroup.Items.Add(this.clearButton);
+            this.viewGroup.Label = "View";
+            this.viewGroup.Name = "viewGroup";
             // 
             // findingsButton
             // 
