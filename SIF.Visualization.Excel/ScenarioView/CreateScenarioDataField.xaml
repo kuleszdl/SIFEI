@@ -33,6 +33,7 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <!--Icon will be changed in the data context changed handler!-->
                 <Image x:Name="DataIcon"
                        Source="{StaticResource OutputCellIcon}" 
                        Grid.Column="0"
@@ -132,7 +133,8 @@
                 </Image>
             <TextBox x:Name="DataTextBox" 
                      Background="Transparent"
-                     Grid.Column="1"/>
+                     Grid.Column="1"
+                     KeyDown="OnKeyDownHandler"/>
         </Grid>
         </Border>
 </UserControl>

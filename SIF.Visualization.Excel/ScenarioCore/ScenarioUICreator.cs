@@ -69,7 +69,63 @@ namespace SIF.Visualization.Excel.ScenarioCore
             }
             this.workbook = wb.Workbook;
 
-            var workingList = wb.InputCells.Union(wb.IntermediateCells).Union(wb.OutputCells);
+            var workingList = wb.InputCells.Union(wb.IntermediateCells).Union(wb.OutputCells).ToList();
+
+            //sort working list column first
+            #region sort
+
+            workingList.Sort(delegate(Core.Cell x, Core.Cell y)
+            {
+                //sort by worksheet
+                var xSheet = workbook.Sheets[Cells.CellManager.Instance.ParseWorksheetName(x.Location)] as Worksheet;
+                var ySheet = workbook.Sheets[Cells.CellManager.Instance.ParseWorksheetName(x.Location)] as Worksheet;
+
+                if (xSheet.Index < ySheet.Index)
+                {
+                    return -1;
+                }
+                else if (xSheet.Index > ySheet.Index)
+                {
+                    return 1;
+                }
+                else
+                {
+                    //sort by column
+                    var xRange = xSheet.Range[Cells.CellManager.Instance.ParseCellLocation(x.Location)];
+                    var yRange = ySheet.Range[Cells.CellManager.Instance.ParseCellLocation(y.Location)];
+
+                    if (xRange.Column < yRange.Column)
+                    {
+                        return -1;
+                    }
+                    else if (xRange.Column > yRange.Column)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        //sort by row
+                        if (xRange.Row < yRange.Row)
+                        {
+                            return -1;
+                        }
+                        else if (xRange.Row > yRange.Row)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+                }
+                
+            });
+
+            #endregion
+
+            CreateScenarioDataFieldContainer containerFirst = null;
+            CreateScenarioDataFieldContainer containerBefore = null;
             foreach (var c in workingList)
             {
                 //create cell data
@@ -122,13 +178,29 @@ namespace SIF.Visualization.Excel.ScenarioCore
                 container.createScenarioDataField.DataContext = cellData;
                 containers.Add(container);
 
+                //register for focus handling
+                if (c == workingList.First())
+                {
+                    containerFirst = container;
+                }
+                else if (containerBefore != null)
+                {
+                    containerBefore.createScenarioDataField.RegisterNextFocusField(container.createScenarioDataField);
+                }
+                containerBefore = container;
+
                 //create control
                 var control = vsto.Controls.AddControl(
                     container,
                     currentWorksheet.Range[Cells.CellManager.Instance.ParseCellLocation(c.Location)],
                     Guid.NewGuid().ToString());
                 control.Placement = Microsoft.Office.Interop.Excel.XlPlacement.xlMove;
+            }
 
+            //set focus to first control
+            if (containerFirst != null)
+            {
+                containerFirst.createScenarioDataField.SetFocus();
             }
 
         }
@@ -225,6 +297,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
             return value;
         }
 
+
         #endregion
     }
+
 }
