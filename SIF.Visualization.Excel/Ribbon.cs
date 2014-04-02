@@ -232,10 +232,10 @@ namespace SIF.Visualization.Excel
 
         private void NewScenarioButton_Click(object sender, RibbonControlEventArgs e)
         {
-            // set button styles
-            this.submitScenarioButton.Visible = true;
-            this.cancelScenarioButton.Visible = true;
-            this.newScenarioButton.Enabled = false;
+            // set scenario buttons styles
+            SetScenarioCreationButtonStyles(true);
+
+            // set 
 
             // start scenario creation
             ScenarioCore.ScenarioUICreator.Instance.Start(DataModel.Instance.CurrentWorkbook);
@@ -264,9 +264,7 @@ namespace SIF.Visualization.Excel
             }
 
             // set button styles
-            this.submitScenarioButton.Visible = false;
-            this.cancelScenarioButton.Visible = false;
-            this.newScenarioButton.Enabled = true;
+            SetScenarioCreationButtonStyles(false);
         }
 
         private void cancelScenarioButton_Click(object sender, RibbonControlEventArgs e)
@@ -275,11 +273,25 @@ namespace SIF.Visualization.Excel
             ScenarioCore.ScenarioUICreator.Instance.End();
 
             // set button styles
-            this.submitScenarioButton.Visible = false;
-            this.cancelScenarioButton.Visible = false;
-            this.newScenarioButton.Enabled = true;
+            SetScenarioCreationButtonStyles(false);
         }
 
-        
+        /// <summary>
+        /// Disables or aktivates ribbon buttons, if the scenario creating process is started or completed
+        /// </summary>
+        /// <param name="create">true, if the scenario creating process is started now, else false</param>
+        private void SetScenarioCreationButtonStyles(bool create)
+        {
+            // set scenario buttons styles
+            this.submitScenarioButton.Visible = create;
+            this.cancelScenarioButton.Visible = create;
+            this.newScenarioButton.Enabled = !create;
+
+            // set define cells buttons styles
+            this.inputCellToggleButton.Enabled = !create;
+            this.intermediateCellToggleButton.Enabled = !create;
+            this.resultCellToggleButton.Enabled = !create;
+        }
+
     }
 }
