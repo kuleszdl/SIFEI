@@ -210,7 +210,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
         }
 
         /// <summary>
-        /// Calculates the number of empty controls of a cell type while the szenario creation process
+        /// Calculates the number of empty controls of a cell type while the scenario creation process.
         /// </summary>
         /// <param name="cellType">Class type of Cells.InputCell, Cells.IntermediateCell or Cells.OutputCell</param>
         /// <returns>Number of empty controls</returns>
@@ -242,6 +242,45 @@ namespace SIF.Visualization.Excel.ScenarioCore
             else
             {
                 return 0;
+            }
+        }
+
+        /// <summary>
+        /// Checks if a filed of a result cell is filled while the scenario creation process.
+        /// </summary>
+        /// <param name="cellType">Class type of Cells.InputCell, Cells.IntermediateCell or Cells.OutputCell</param>
+        /// <returns>True, if one field of a result cell is filled. Else false.</returns>
+        public bool NoValue(Type cellType)
+        {
+            if (newScenario == null) return true;
+
+            if (cellType == typeof(Cells.InputCell))
+            {
+                var noFilledInputs = (from q in newScenario.Inputs
+                                       where q.Content != null
+                                       select q).ToList().Count <= 0;
+
+                return noFilledInputs;
+            }
+            else if (cellType == typeof(Cells.IntermediateCell))
+            {
+                var noFilledIntermediates = (from q in newScenario.Intermediates
+                                             where q.Content != null
+                                             select q).ToList().Count <= 0;
+
+                return noFilledIntermediates;
+            }
+            else if (cellType == typeof(Cells.OutputCell))
+            {
+                var noFilledResults = (from q in newScenario.Results
+                                       where q.Content != null
+                                       select q).ToList().Count <= 0;
+
+                return noFilledResults;
+            }
+            else
+            {
+                return true;
             }
         }
 

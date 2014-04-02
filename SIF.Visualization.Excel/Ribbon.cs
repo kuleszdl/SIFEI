@@ -251,8 +251,26 @@ namespace SIF.Visualization.Excel
             var emptyIntermediates = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.IntermediateCell));
             var emptyResults = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.OutputCell));
 
-            if (emptyInputs > 0 | emptyIntermediates > 0 | emptyResults > 0)
+            if (ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.InputCell)))
             {
+                //message for no result cell values
+                MessageBox.Show("A scenario needs at least one input cell value.", "error", MessageBoxButtons.OK);
+
+                //back to the scenario editor
+                return;
+            }
+            else if (ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.IntermediateCell)) 
+                     && ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.OutputCell)))
+            {
+                //message for no input cell values
+                MessageBox.Show("A scenario needs at least one result cell value or one intermediate cell value.", "error", MessageBoxButtons.OK);
+
+                //back to the scenario editor
+                return;
+            }
+            else if (emptyInputs > 0 | emptyIntermediates > 0 | emptyResults > 0)
+            {
+                // message for some empty fields
                 #region create message
                 var messageList = new List<Tuple<string, int>>();
                 if (emptyInputs > 0) messageList.Add(new Tuple<string, int>("input cells", emptyInputs));
@@ -279,10 +297,11 @@ namespace SIF.Visualization.Excel
                 #endregion
 
                 var result = MessageBox.Show(
-                    message.ToString(), 
-                    "warning", 
+                    message.ToString(),
+                    "warning",
                     MessageBoxButtons.OKCancel);
-                
+
+                //back to the scenario editor
                 if (result == DialogResult.Cancel) return;
             }
             #endregion
