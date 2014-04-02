@@ -245,6 +245,48 @@ namespace SIF.Visualization.Excel
 
         private void SubmitScenarioButton_Click(object sender, RibbonControlEventArgs e)
         {
+            // validate and show warnings
+            #region validate
+            var emptyInputs = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.InputCell));
+            var emptyIntermediates = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.IntermediateCell));
+            var emptyResults = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.OutputCell));
+
+            if (emptyInputs > 0 | emptyIntermediates > 0 | emptyResults > 0)
+            {
+                #region create message
+                var messageList = new List<Tuple<string, int>>();
+                if (emptyInputs > 0) messageList.Add(new Tuple<string, int>("input cells", emptyInputs));
+                if (emptyIntermediates > 0) messageList.Add(new Tuple<string, int>("intermediate cells", emptyIntermediates));
+                if (emptyResults > 0) messageList.Add(new Tuple<string, int>("result cells", emptyResults));
+
+                var message = new StringBuilder();
+                message.Append("Maybe your scenario isn't complete. ");
+                message.Append("The scenario has ");
+                foreach (var p in messageList)
+                {
+                    message.Append(p.Item2 + " empty fields for " + p.Item1);
+                    if (messageList.IndexOf(p) < messageList.Count - 2)
+                    {
+                        message.Append(", ");
+                    }
+                    else if (messageList.IndexOf(p) == messageList.Count - 2)
+                    {
+                        message.Append(" and ");
+                    }
+                }
+                message.Append(".");
+
+                #endregion
+
+                var result = MessageBox.Show(
+                    message.ToString(), 
+                    "warning", 
+                    MessageBoxButtons.OKCancel);
+                
+                if (result == DialogResult.Cancel) return;
+            }
+            #endregion
+
             // end scenario creation
             var newScenario = ScenarioCore.ScenarioUICreator.Instance.End();
 
@@ -256,11 +298,6 @@ namespace SIF.Visualization.Excel
                 // Find the correct task pane for the currently active workbook
                 var pane = Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenarios")];
                 pane.Visible = true;
-            }
-            else
-            {
-                MessageBox.Show("You can't create a empty scenario.", "Error");
-
             }
 
             // set button styles

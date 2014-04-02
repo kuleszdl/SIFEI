@@ -179,6 +179,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
                 containers.Add(container);
 
                 //register for focus handling
+                #region focus handling
+
                 if (c == workingList.First())
                 {
                     containerFirst = container;
@@ -188,6 +190,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
                     containerBefore.createScenarioDataField.RegisterNextFocusField(container.createScenarioDataField);
                 }
                 containerBefore = container;
+
+                #endregion
 
                 //create control
                 var control = vsto.Controls.AddControl(
@@ -203,6 +207,42 @@ namespace SIF.Visualization.Excel.ScenarioCore
                 containerFirst.createScenarioDataField.SetFocus();
             }
 
+        }
+
+        /// <summary>
+        /// Calculates the number of empty controls of a cell type while the szenario creation process
+        /// </summary>
+        /// <param name="cellType">Class type of Cells.InputCell, Cells.IntermediateCell or Cells.OutputCell</param>
+        /// <returns>Number of empty controls</returns>
+        public int GetEmptyEntrysCount(Type cellType)
+        {
+            if (newScenario == null) return 0;
+
+            if (cellType == typeof(Cells.InputCell))
+            {
+                var emptyInputs = (from q in newScenario.Inputs
+                                   where q.Content == null
+                                   select q).ToList().Count;
+                return emptyInputs;
+            }
+            else if (cellType == typeof(Cells.IntermediateCell))
+            {
+                var emptyIntermediates = (from q in newScenario.Intermediates
+                                          where q.Content == null
+                                          select q).ToList().Count;
+                return emptyIntermediates;
+            }
+            else if (cellType == typeof(Cells.OutputCell))
+            {
+                var emptyResults = (from q in newScenario.Results
+                                    where q.Content == null
+                                    select q).ToList().Count;
+                return emptyResults;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public Scenario End()
