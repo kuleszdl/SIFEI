@@ -262,6 +262,7 @@
     <Compile Include="ViewModel\BooleanNORConverter.cs" />
     <Compile Include="ViewModel\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModel\CellDataClassToVisibilityConverter.cs" />
+    <Compile Include="ViewModel\StringIsNotEmptyToBoolConverter.cs" />
     <Compile Include="ViewModel\InputCellTypeToVisibilityConverter.cs" />
     <Compile Include="ViewModel\DescriptionToShortDescriptionConverter.cs" />
     <Compile Include="ViewModel\IntToVisibilityConverter.cs" />
