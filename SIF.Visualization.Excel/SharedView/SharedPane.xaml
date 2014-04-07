@@ -1,0 +1,264 @@
+﻿<UserControl x:Class="SIF.Visualization.Excel.SharedView.SharedPane"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:scenarioView="clr-namespace:SIF.Visualization.Excel.ScenarioView"
+             xmlns:viewModel="clr-namespace:SIF.Visualization.Excel.ViewModel"
+             xmlns:sif="clr-namespace:SIF.Visualization.Excel"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="SharedResoursces.xaml"/>
+                <ResourceDictionary>
+
+                    <!--Border colors-->
+                    <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
+                    <Color x:Key="BorderMediumColor">#FF888888</Color>
+                    <Color x:Key="BorderDarkColor">#FF444444</Color>
+
+                    <Color x:Key="PressedBorderLightColor">#FF888888</Color>
+                    <Color x:Key="PressedBorderDarkColor">#FF444444</Color>
+
+                    <Color x:Key="DisabledBorderLightColor">#FFAAAAAA</Color>
+                    <Color x:Key="DisabledBorderDarkColor">#FF888888</Color>
+
+                    <!--Control colors.-->
+                    <Color x:Key="WindowColor">#FFE8EDF9</Color>
+                    <Color x:Key="ContentAreaColorLight">#FFC5CBF9</Color>
+                    <Color x:Key="ContentAreaColorDark">#FF7381F9</Color>
+
+                    <Color x:Key="DisabledControlLightColor">#FFE8EDF9</Color>
+                    <Color x:Key="DisabledControlDarkColor">#FFC5CBF9</Color>
+                    <Color x:Key="DisabledForegroundColor">#FF888888</Color>
+
+                    <Color x:Key="SelectedBackgroundColor">#FFC5CBF9</Color>
+                    <Color x:Key="SelectedUnfocusedColor">#FFDDDDDD</Color>
+
+                    <Color x:Key="ControlLightColor">White</Color>
+                    <Color x:Key="ControlMediumColor">#FF7381F9</Color>
+                    <Color x:Key="ControlDarkColor">#FF211AA9</Color>
+
+                    <Color x:Key="ControlMouseOverColor">#FF3843C4</Color>
+                    <Color x:Key="ControlPressedColor">#FF211AA9</Color>
+
+
+                    <Color x:Key="GlyphColor">#FF444444</Color>
+                    <Color x:Key="GlyphMouseOver">sc#1, 0.004391443, 0.002428215, 0.242281124</Color>
+
+                    <!--Control-specific resources.-->
+                    <Color x:Key="HeaderTopColor">#FFC5CBF9</Color>
+                    <Color x:Key="DatagridCurrentCellBorderColor">Black</Color>
+                    <Color x:Key="SliderTrackDarkColor">#FFC5CBF9</Color>
+
+                    <Color x:Key="NavButtonFrameColor">#FF3843C4</Color>
+
+                    <LinearGradientBrush x:Key="MenuPopupBrush"
+                                 EndPoint="0.5,1"
+                                 StartPoint="0.5,0">
+                        <GradientStop Color="{DynamicResource ControlLightColor}"
+                            Offset="0" />
+                        <GradientStop Color="{DynamicResource ControlMediumColor}"
+                            Offset="0.5" />
+                        <GradientStop Color="{DynamicResource ControlLightColor}"
+                            Offset="1" />
+                    </LinearGradientBrush>
+
+                    <LinearGradientBrush x:Key="ProgressBarIndicatorAnimatedFill"
+                                 StartPoint="0,0"
+                                 EndPoint="1,0">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#000000FF"
+                                Offset="0" />
+                                <GradientStop Color="#600000FF"
+                                Offset="0.4" />
+                                <GradientStop Color="#600000FF"
+                                Offset="0.6" />
+                                <GradientStop Color="#000000FF"
+                                Offset="1" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+
+                    <!--tabcontrol style-->
+                    <Style x:Key="sharedPaneTabStyle" TargetType="{x:Type TabControl}">
+                        <Setter Property="OverridesDefaultStyle"
+                                Value="True" />
+                        <Setter Property="SnapsToDevicePixels"
+                                Value="True" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TabControl}">
+                                    <Grid KeyboardNavigation.TabNavigation="Local">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Disabled">
+                                                    <Storyboard>
+                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                                      Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
+                                                            <EasingColorKeyFrame KeyTime="0" Value="#FFAAAAAA" />
+                                                        </ColorAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <TabPanel x:Name="HeaderPanel"
+                                                  Grid.Row="0"
+                                                  HorizontalAlignment="Left"
+                                                  Panel.ZIndex="1"
+                                                  Margin="0,0,4,-1"
+                                                  IsItemsHost="True"
+                                                  KeyboardNavigation.TabIndex="1"
+                                                  Background="Transparent" />
+                                        <!--<Polygon x:Name="triangle" 
+                                                 Grid.Row="1"
+                                                 StrokeThickness="1"
+                                                 Margin="10 20 0 0" 
+                                                 Fill="Transparent" 
+                                                 Points="0 0, 0 10, 10 0">
+                                            <Polygon.Stroke>
+                                                <SolidColorBrush Color="{DynamicResource BorderMediumColor}"/>
+                                            </Polygon.Stroke>
+                                            <Polygon.RenderTransform>
+                                                <RotateTransform Angle="45"/>
+                                            </Polygon.RenderTransform>
+                                        </Polygon>-->
+                                        <Border x:Name="Border"
+                                                Grid.Row="2"
+                                                Margin="0 20 0 0"
+                                                BorderThickness="0 1 0 0"
+                                                KeyboardNavigation.TabNavigation="Local"
+                                                KeyboardNavigation.DirectionalNavigation="Contained"
+                                                KeyboardNavigation.TabIndex="2"
+                                                Background="Transparent">
+                                            <Border.BorderBrush>
+                                                <SolidColorBrush Color="{StaticResource BorderMediumColor}"/>
+                                            </Border.BorderBrush>
+                                            <ContentPresenter x:Name="PART_SelectedContentHost"
+                                                                Margin="4 4 4 4"
+                                                                ContentSource="SelectedContent" />
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <!--tabitem style-->
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TabItem}">
+                                    <Grid x:Name="Root">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="SelectionStates">
+                                                <VisualState x:Name="Unselected" />
+                                                <VisualState x:Name="Selected">
+                                                    <Storyboard>
+                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                                      Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource excelGreen}" />
+                                                        </ColorAnimationUsingKeyFrames>
+                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                                      Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
+                                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource excelGreen}"/>
+                                                        </ColorAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Normal" />
+                                                <VisualState x:Name="MouseOver"/>
+                                                <VisualState x:Name="Disabled">
+                                                    <Storyboard>
+                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                                      Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="Transparent" />
+                                                        </ColorAnimationUsingKeyFrames>
+                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                                      Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
+                                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="Transparent"/>
+                                                        </ColorAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Border x:Name="Border"
+                                                Margin="0,0,10,0"
+                                                BorderThickness="1">
+                                            <Border.BorderBrush>
+                                                <SolidColorBrush Color="{DynamicResource BorderMediumColor}" 
+                                                                 Opacity="0.5"/>
+                                            </Border.BorderBrush>
+                                            <Border.Background>
+                                                <SolidColorBrush Color="Transparent" 
+                                                                 Opacity="0.2"/>
+                                            </Border.Background>
+                                            <ContentPresenter x:Name="ContentSite"
+                                                              VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center"
+                                                              ContentSource="Header"
+                                                              Margin="3"
+                                                              RecognizesAccessKey="True" />
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Panel.ZIndex" Value="100" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <TabControl x:Name="tabcontrol"
+                    Background="Transparent"
+                    Margin="0 20 0 0"
+                    Style="{StaticResource sharedPaneTabStyle}">
+            <TabItem x:Name="cellDefinition">
+                <TabItem.Header>
+                    <Image x:Name="cellDefinitionIcon"
+                           Source="{StaticResource InputCellIcon}"
+                           ToolTip="cell definitions"
+                           Height="20"
+                           Width="20"/>
+                </TabItem.Header>
+                <scenarioView:DefineCellsPane/>
+            </TabItem>
+            <TabItem x:Name="scenarios">
+                <TabItem.Header>
+                    <Image x:Name="scenariosicon"
+                           Source="{StaticResource scenarios}"
+                           ToolTip="scenario overview"
+                           Height="20"
+                           Width="20"/>
+                </TabItem.Header>
+                <scenarioView:ScenarioPane/>
+            </TabItem>
+            <TabItem x:Name="findings">
+                <TabItem.Header>
+                    <Image x:Name="findingsicon"
+                           Source="{StaticResource findingsIcon}"
+                           ToolTip="findings"
+                           Height="20"
+                           Width="20"/>
+                </TabItem.Header>
+                <sif:FindingsPane/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

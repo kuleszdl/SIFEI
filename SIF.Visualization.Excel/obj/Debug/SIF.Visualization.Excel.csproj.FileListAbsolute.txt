@@ -25,12 +25,15 @@ C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\Scen
 C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.g.resources
 C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.CellErrorInfoContainer.resources
 C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.ScenarioView.CreateScenarioDataFieldContainer.resources
-C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.ScenarioView.DefineCellsPaneContainer.resources
 C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.FindingsPaneContainer.resources
 C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.Properties.Resources.resources
 C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.Ribbon.resources
 C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.ScenarioView.ScenarioDetailPaneContainer.resources
-C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.ScenarioView.ScenarioPaneContainer.resources
 C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.csproj.GenerateResource.Cache
 C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.dll
 C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.pdb
+C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SharedView\SharedPane.g.cs
+C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SharedView\SharedPane.baml
+C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SIF.Visualization.Excel.SharedView.SharedPaneContainer.resources
+C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SharedView\SharedResoursces.g.cs
+C:\Users\jonas_000\Documents\GitHub\SIFEI\SIF.Visualization.Excel\obj\Debug\SharedView\SharedResoursces.baml

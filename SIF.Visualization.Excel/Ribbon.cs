@@ -25,58 +25,26 @@ namespace SIF.Visualization.Excel
         {
             // Inspect the current workbook
             DataModel.Instance.CurrentWorkbook.Inspect();
-
-            // close the scenario creation panes
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Define Cells")].Visible = false;
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenarios")].Visible = false;
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenario Details")].Visible = false;
-
-            // Open the findings pane
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Findings")].Visible = true;
         }
 
         private void StaticScan_Click(object sender, RibbonControlEventArgs e)
         {
             // Inspect the current workbook
             DataModel.Instance.CurrentWorkbook.Inspect(WorkbookModel.InspectionMode.Static);
-
-            // close the scenario creation panes
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Define Cells")].Visible = false;
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenarios")].Visible = false;
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenario Details")].Visible = false;
-
-            // Open the findings pane
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Findings")].Visible = true;
         }
 
         private void DynamicScan_Click(object sender, RibbonControlEventArgs e)
         {
             // Inspect the current workbook
             DataModel.Instance.CurrentWorkbook.Inspect(WorkbookModel.InspectionMode.Dynamic);
-
-            // close the scenario creation panes
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Define Cells")].Visible = false;
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenarios")].Visible = false;
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenario Details")].Visible = false;
-
-            // Open the findings pane
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Findings")].Visible = true;
         }
 
-
-        private void findingsPaneButton_Click(object sender, RibbonControlEventArgs e)
+        private void sharedPaneButton_Click(object sender, RibbonControlEventArgs e)
         {
             // Find the correct task pane for the currently active workbook
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Findings")].Visible = true;
-        }
-
-        private void scenarioButton_Click(object sender, RibbonControlEventArgs e)
-        {
-            // Find the correct task pane for the currently active workbook
-            var pane = Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenarios")];
+            var pane = Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "shared Pane")];
 
             pane.Visible = !pane.Visible;
-
         }
 
         private void clearButton_Click(object sender, RibbonControlEventArgs e)
@@ -223,13 +191,6 @@ namespace SIF.Visualization.Excel
 
         }
 
-        private void DefineCells_Click(object sender, RibbonControlEventArgs e)
-        {
-            var pane = Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Define Cells")];
-
-            pane.Visible = !pane.Visible;
-        }
-
         private void NewScenarioButton_Click(object sender, RibbonControlEventArgs e)
         {
             // set scenario buttons styles
@@ -312,11 +273,6 @@ namespace SIF.Visualization.Excel
             if (newScenario != null)
             {
                 DataModel.Instance.CurrentWorkbook.Scenarios.Add(newScenario);
-
-                // Open scenario pane
-                // Find the correct task pane for the currently active workbook
-                var pane = Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenarios")];
-                pane.Visible = true;
             }
 
             // set button styles
@@ -341,13 +297,15 @@ namespace SIF.Visualization.Excel
             // set scenario buttons styles
             this.submitScenarioButton.Visible = create;
             this.cancelScenarioButton.Visible = create;
-            this.newScenarioButton.Enabled = !create;
+            this.CreateNewScenarioButton.Enabled = !create;
 
             // set define cells buttons styles
             this.inputCellToggleButton.Enabled = !create;
             this.intermediateCellToggleButton.Enabled = !create;
             this.resultCellToggleButton.Enabled = !create;
         }
+
+        
 
     }
 }
