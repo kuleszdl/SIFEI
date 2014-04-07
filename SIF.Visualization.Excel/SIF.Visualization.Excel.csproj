@@ -196,12 +196,6 @@
     <Compile Include="ScenarioView\DefineCellsPane.xaml.cs">
       <DependentUpon>DefineCellsPane.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ScenarioView\DefineCellsPaneContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ScenarioView\DefineCellsPaneContainer.Designer.cs">
-      <DependentUpon>DefineCellsPaneContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FindingsPane.xaml.cs">
       <DependentUpon>FindingsPane.xaml</DependentUpon>
     </Compile>
@@ -238,6 +232,15 @@
     <Compile Include="ScenarioCore\TestInputType.cs" />
     <Compile Include="ScenarioCore\Visitor\XMLToCellDefinitionVisitor.cs" />
     <Compile Include="ScenarioCore\Visitor\XMLToScenarioVisitor.cs" />
+    <Compile Include="SharedView\SharedPane.xaml.cs">
+      <DependentUpon>SharedPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SharedView\SharedPaneContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SharedView\SharedPaneContainer.Designer.cs">
+      <DependentUpon>SharedPaneContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\DifferenceTextBoxMultiConverter.cs" />
     <Compile Include="ScenarioView\ScenarioDetailPane.xaml.cs">
       <DependentUpon>ScenarioDetailPane.xaml</DependentUpon>
@@ -251,17 +254,14 @@
     <Compile Include="ScenarioView\ScenarioPane.xaml.cs">
       <DependentUpon>ScenarioPane.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ScenarioView\ScenarioPaneContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ScenarioView\ScenarioPaneContainer.Designer.cs">
-      <DependentUpon>ScenarioPaneContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\BackgroundToForegroundConverter.cs" />
     <Compile Include="ViewModel\BooleanNORConverter.cs" />
     <Compile Include="ViewModel\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModel\CellDataClassToVisibilityConverter.cs" />
+    <Compile Include="ViewModel\IntToVisibilityMultiValueConverter.cs" />
+    <Compile Include="ViewModel\InverseIntToVisibilityMultiValueConverter.cs" />
+    <Compile Include="ViewModel\StringIsNotEmptyToBoolConverter.cs" />
     <Compile Include="ViewModel\InputCellTypeToVisibilityConverter.cs" />
     <Compile Include="ViewModel\DescriptionToShortDescriptionConverter.cs" />
     <Compile Include="ViewModel\IntToVisibilityConverter.cs" />
@@ -278,9 +278,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ScenarioView\CreateScenarioDataFieldContainer.resx">
       <DependentUpon>CreateScenarioDataFieldContainer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ScenarioView\DefineCellsPaneContainer.resx">
-      <DependentUpon>DefineCellsPaneContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FindingsPaneContainer.resx">
       <DependentUpon>FindingsPaneContainer.cs</DependentUpon>
@@ -301,8 +298,8 @@
     <EmbeddedResource Include="ScenarioView\ScenarioDetailPaneContainer.resx">
       <DependentUpon>ScenarioDetailPaneContainer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScenarioView\ScenarioPaneContainer.resx">
-      <DependentUpon>ScenarioPaneContainer.cs</DependentUpon>
+    <EmbeddedResource Include="SharedView\SharedPaneContainer.resx">
+      <DependentUpon>SharedPaneContainer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
@@ -364,6 +361,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SharedView\SharedPane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SharedView\SharedResoursces.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\input_clear.png" />
@@ -382,6 +387,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\magnifier_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\findings_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\scenario-details.png" />
+    <Resource Include="icons\scenarios.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\inspectionpane.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

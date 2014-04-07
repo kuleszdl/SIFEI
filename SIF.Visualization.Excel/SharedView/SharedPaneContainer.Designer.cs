@@ -1,6 +1,6 @@
-﻿namespace SIF.Visualization.Excel.ScenarioView
+﻿namespace SIF.Visualization.Excel.SharedView
 {
-    partial class DefineCellsPaneContainer
+    partial class SharedPaneContainer
     {
         /// <summary> 
         /// Erforderliche Designervariable.
@@ -28,36 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DefineCellsPaneHost = new System.Windows.Forms.Integration.ElementHost();
-            this.defineCellsPane1 = new SIF.Visualization.Excel.ScenarioView.DefineCellsPane();
+            this.sharedPaneHost = new System.Windows.Forms.Integration.ElementHost();
+            this.sharedPane1 = new SIF.Visualization.Excel.SharedView.SharedPane();
             this.SuspendLayout();
             // 
-            // DefineCellsPaneHost
+            // sharedPaneHost
             // 
-            this.DefineCellsPaneHost.AutoSize = true;
-            this.DefineCellsPaneHost.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DefineCellsPaneHost.Location = new System.Drawing.Point(0, 0);
-            this.DefineCellsPaneHost.Name = "DefineCellsPaneHost";
-            this.DefineCellsPaneHost.Size = new System.Drawing.Size(150, 150);
-            this.DefineCellsPaneHost.TabIndex = 0;
-            this.DefineCellsPaneHost.Text = "elementHost1";
-            this.DefineCellsPaneHost.Child = this.defineCellsPane1;
+            this.sharedPaneHost.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sharedPaneHost.Location = new System.Drawing.Point(0, 0);
+            this.sharedPaneHost.Name = "sharedPaneHost";
+            this.sharedPaneHost.Size = new System.Drawing.Size(150, 150);
+            this.sharedPaneHost.TabIndex = 0;
+            this.sharedPaneHost.Text = "elementHost1";
+            this.sharedPaneHost.Child = this.sharedPane1;
             // 
-            // DefineCellsPaneContainer
+            // SharedPaneContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.DefineCellsPaneHost);
-            this.Name = "DefineCellsPaneContainer";
+            this.Controls.Add(this.sharedPaneHost);
+            this.Name = "SharedPaneContainer";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Integration.ElementHost DefineCellsPaneHost;
-        private DefineCellsPane defineCellsPane1;
+        private System.Windows.Forms.Integration.ElementHost sharedPaneHost;
+        private SharedPane sharedPane1;
 
     }
 }

@@ -9,6 +9,7 @@ using SIF.Visualization.Excel.ScenarioCore;
 using Microsoft.Office.Interop.Excel;
 using SIF.Visualization.Excel.ScenarioView;
 using SIF.Visualization.Excel.Properties;
+using SIF.Visualization.Excel.SharedView;
 
 namespace SIF.Visualization.Excel
 {
@@ -54,6 +55,14 @@ namespace SIF.Visualization.Excel
 
                 DataModel.Instance.CurrentWorkbook = workbook;
 
+                /// create shared pane
+                var sharedPaneContainer = new SharedPaneContainer();
+                var sharedPane = this.CustomTaskPanes.Add(sharedPaneContainer, "Inspection");
+                sharedPaneContainer.VisibleChanged += SharedPaneContainer_VisibleChanged;
+
+                sharedPaneContainer.SharedPane.DataContext = workbook;
+                this.TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "shared Pane"), sharedPane);
+
                 // create findings pane
                 var findingsPaneContainer = new FindingsPaneContainer();
                 var taskPane = this.CustomTaskPanes.Add(findingsPaneContainer, "Findings");
@@ -61,22 +70,6 @@ namespace SIF.Visualization.Excel
 
                 findingsPaneContainer.FindingsPane.DataContext = workbook;
                 this.TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "Findings"), taskPane);
-
-                //create define cells pane
-                var defineCellsPaneContainer = new DefineCellsPaneContainer();
-                var defineCellsPane = this.CustomTaskPanes.Add(defineCellsPaneContainer, "Cell Definitions");
-                defineCellsPaneContainer.VisibleChanged += DefineCellsPaneContainer_VisibleChanged;
-
-                defineCellsPaneContainer.DefineCellsPane.DataContext = workbook;
-                this.TaskPanes.Add(new Tuple<WorkbookModel,string>(workbook, "Define Cells"), defineCellsPane);
-
-                //create scenario pane
-                var scenarioPaneContainer = new ScenarioPaneContainer();
-                var scenarioPane = this.CustomTaskPanes.Add(scenarioPaneContainer, "Scenarios");
-                scenarioPaneContainer.VisibleChanged += ScenarioPaneContainer_VisibleChanged;
-
-                scenarioPaneContainer.ScenarioPane.DataContext = workbook;
-                this.TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "Scenarios"), scenarioPane);
 
                 //create scenario detail pane
                 var scenarioDetailPainContainer = new ScenarioDetailPaneContainer();
@@ -93,6 +86,11 @@ namespace SIF.Visualization.Excel
             }
 
             DataModel.Instance.CurrentWorkbook = workbook;
+        }
+
+        private void SharedPaneContainer_VisibleChanged(object sender, System.EventArgs e)
+        {
+            //throw new System.NotImplementedException();
         }
 
         private void FindingsPaneContainer_VisibleChanged(object sender, System.EventArgs e)

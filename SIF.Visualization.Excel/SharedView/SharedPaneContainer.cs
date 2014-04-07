@@ -8,17 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SIF.Visualization.Excel.ScenarioView
+namespace SIF.Visualization.Excel.SharedView
 {
-    public partial class DefineCellsPaneContainer : UserControl
+    public partial class SharedPaneContainer : UserControl
     {
-        public DefineCellsPane DefineCellsPane
+        public SharedPane SharedPane
         {
             get
             {
-                if (this.DefineCellsPaneHost != null && this.DefineCellsPaneHost.Child != null)
+                if (this.sharedPaneHost != null && this.sharedPaneHost.Child != null)
                 {
-                    return this.DefineCellsPaneHost.Child as DefineCellsPane;
+                    return this.sharedPaneHost.Child as SharedPane;
                 }
                 else
                 {
@@ -27,7 +27,7 @@ namespace SIF.Visualization.Excel.ScenarioView
             }
         }
 
-        public DefineCellsPaneContainer()
+        public SharedPaneContainer()
         {
             InitializeComponent();
         }

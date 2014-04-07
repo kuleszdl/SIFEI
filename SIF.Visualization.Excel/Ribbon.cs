@@ -25,58 +25,26 @@ namespace SIF.Visualization.Excel
         {
             // Inspect the current workbook
             DataModel.Instance.CurrentWorkbook.Inspect();
-
-            // close the scenario creation panes
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Define Cells")].Visible = false;
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenarios")].Visible = false;
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenario Details")].Visible = false;
-
-            // Open the findings pane
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Findings")].Visible = true;
         }
 
         private void StaticScan_Click(object sender, RibbonControlEventArgs e)
         {
             // Inspect the current workbook
             DataModel.Instance.CurrentWorkbook.Inspect(WorkbookModel.InspectionMode.Static);
-
-            // close the scenario creation panes
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Define Cells")].Visible = false;
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenarios")].Visible = false;
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenario Details")].Visible = false;
-
-            // Open the findings pane
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Findings")].Visible = true;
         }
 
         private void DynamicScan_Click(object sender, RibbonControlEventArgs e)
         {
             // Inspect the current workbook
             DataModel.Instance.CurrentWorkbook.Inspect(WorkbookModel.InspectionMode.Dynamic);
-
-            // close the scenario creation panes
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Define Cells")].Visible = false;
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenarios")].Visible = false;
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenario Details")].Visible = false;
-
-            // Open the findings pane
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Findings")].Visible = true;
         }
 
-
-        private void findingsPaneButton_Click(object sender, RibbonControlEventArgs e)
+        private void sharedPaneButton_Click(object sender, RibbonControlEventArgs e)
         {
             // Find the correct task pane for the currently active workbook
-            Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Findings")].Visible = true;
-        }
-
-        private void scenarioButton_Click(object sender, RibbonControlEventArgs e)
-        {
-            // Find the correct task pane for the currently active workbook
-            var pane = Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenarios")];
+            var pane = Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "shared Pane")];
 
             pane.Visible = !pane.Visible;
-
         }
 
         private void clearButton_Click(object sender, RibbonControlEventArgs e)
@@ -223,19 +191,12 @@ namespace SIF.Visualization.Excel
 
         }
 
-        private void DefineCells_Click(object sender, RibbonControlEventArgs e)
-        {
-            var pane = Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Define Cells")];
-
-            pane.Visible = !pane.Visible;
-        }
-
         private void NewScenarioButton_Click(object sender, RibbonControlEventArgs e)
         {
-            // set button styles
-            this.submitScenarioButton.Visible = true;
-            this.cancelScenarioButton.Visible = true;
-            this.newScenarioButton.Enabled = false;
+            // set scenario buttons styles
+            SetScenarioCreationButtonStyles(true);
+
+            // set 
 
             // start scenario creation
             ScenarioCore.ScenarioUICreator.Instance.Start(DataModel.Instance.CurrentWorkbook);
@@ -245,28 +206,77 @@ namespace SIF.Visualization.Excel
 
         private void SubmitScenarioButton_Click(object sender, RibbonControlEventArgs e)
         {
+            // validate and show warnings
+            #region validate
+            var emptyInputs = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.InputCell));
+            var emptyIntermediates = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.IntermediateCell));
+            var emptyResults = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.OutputCell));
+
+            if (ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.InputCell)))
+            {
+                //message for no result cell values
+                MessageBox.Show("A scenario needs at least one input cell value.", "error", MessageBoxButtons.OK);
+
+                //back to the scenario editor
+                return;
+            }
+            else if (ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.IntermediateCell)) 
+                     && ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.OutputCell)))
+            {
+                //message for no input cell values
+                MessageBox.Show("A scenario needs at least one result cell value or one intermediate cell value.", "error", MessageBoxButtons.OK);
+
+                //back to the scenario editor
+                return;
+            }
+            else if (emptyInputs > 0 | emptyIntermediates > 0 | emptyResults > 0)
+            {
+                // message for some empty fields
+                #region create message
+                var messageList = new List<Tuple<string, int>>();
+                if (emptyInputs > 0) messageList.Add(new Tuple<string, int>("input cells", emptyInputs));
+                if (emptyIntermediates > 0) messageList.Add(new Tuple<string, int>("intermediate cells", emptyIntermediates));
+                if (emptyResults > 0) messageList.Add(new Tuple<string, int>("result cells", emptyResults));
+
+                var message = new StringBuilder();
+                message.Append("Maybe your scenario isn't complete. ");
+                message.Append("The scenario has ");
+                foreach (var p in messageList)
+                {
+                    message.Append(p.Item2 + " empty fields for " + p.Item1);
+                    if (messageList.IndexOf(p) < messageList.Count - 2)
+                    {
+                        message.Append(", ");
+                    }
+                    else if (messageList.IndexOf(p) == messageList.Count - 2)
+                    {
+                        message.Append(" and ");
+                    }
+                }
+                message.Append(".");
+
+                #endregion
+
+                var result = MessageBox.Show(
+                    message.ToString(),
+                    "warning",
+                    MessageBoxButtons.OKCancel);
+
+                //back to the scenario editor
+                if (result == DialogResult.Cancel) return;
+            }
+            #endregion
+
             // end scenario creation
             var newScenario = ScenarioCore.ScenarioUICreator.Instance.End();
 
             if (newScenario != null)
             {
                 DataModel.Instance.CurrentWorkbook.Scenarios.Add(newScenario);
-
-                // Open scenario pane
-                // Find the correct task pane for the currently active workbook
-                var pane = Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Scenarios")];
-                pane.Visible = true;
-            }
-            else
-            {
-                MessageBox.Show("You can't create a empty scenario.", "Error");
-
             }
 
             // set button styles
-            this.submitScenarioButton.Visible = false;
-            this.cancelScenarioButton.Visible = false;
-            this.newScenarioButton.Enabled = true;
+            SetScenarioCreationButtonStyles(false);
         }
 
         private void cancelScenarioButton_Click(object sender, RibbonControlEventArgs e)
@@ -275,11 +285,27 @@ namespace SIF.Visualization.Excel
             ScenarioCore.ScenarioUICreator.Instance.End();
 
             // set button styles
-            this.submitScenarioButton.Visible = false;
-            this.cancelScenarioButton.Visible = false;
-            this.newScenarioButton.Enabled = true;
+            SetScenarioCreationButtonStyles(false);
+        }
+
+        /// <summary>
+        /// Disables or aktivates ribbon buttons, if the scenario creating process is started or completed
+        /// </summary>
+        /// <param name="create">true, if the scenario creating process is started now, else false</param>
+        private void SetScenarioCreationButtonStyles(bool create)
+        {
+            // set scenario buttons styles
+            this.submitScenarioButton.Visible = create;
+            this.cancelScenarioButton.Visible = create;
+            this.CreateNewScenarioButton.Enabled = !create;
+
+            // set define cells buttons styles
+            this.inputCellToggleButton.Enabled = !create;
+            this.intermediateCellToggleButton.Enabled = !create;
+            this.resultCellToggleButton.Enabled = !create;
         }
 
         
+
     }
 }

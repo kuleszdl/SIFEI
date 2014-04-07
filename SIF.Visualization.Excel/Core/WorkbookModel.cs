@@ -394,15 +394,15 @@ namespace SIF.Visualization.Excel.Core
 
                 // Input cells
                 var inputCells = cells.Element(XName.Get("input"));
-                this.ParseCells(inputCells, this.InputCells, typeof(InputCell));
+                //this.ParseCells(inputCells, this.InputCells, typeof(InputCell)); /*functionality dosn't right, we need a inteligent mergeing*/
 
                 // Intermediate cells
                 var intermediateCells = cells.Element(XName.Get("intermediate"));
-                this.ParseCells(intermediateCells, this.IntermediateCells, typeof(IntermediateCell));
+                //this.ParseCells(intermediateCells, this.IntermediateCells, typeof(IntermediateCell));
 
                 // Output cells
                 var outputCells = cells.Element(XName.Get("output"));
-                this.ParseCells(outputCells, this.OutputCells, typeof(OutputCell));
+                //this.ParseCells(outputCells, this.OutputCells, typeof(OutputCell));
             }
             else
             {
@@ -455,6 +455,12 @@ namespace SIF.Visualization.Excel.Core
             }
         }
 
+        /// <summary>
+        /// Adds automatic cells to the cell definitions list.
+        /// </summary>
+        /// <param name="root">XML List of cells</param>
+        /// <param name="targetCollection">Target collection e.g. input cells, intermediate cells, or result cells</param>
+        /// <param name="cellType">Class of the cell type</param>
         private void ParseCells(XElement root, ObservableCollection<Cell> targetCollection, Type cellType)
         {
             /*(from p in root.Elements(XName.Get("cell"))

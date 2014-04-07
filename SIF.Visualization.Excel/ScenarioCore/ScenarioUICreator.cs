@@ -69,7 +69,63 @@ namespace SIF.Visualization.Excel.ScenarioCore
             }
             this.workbook = wb.Workbook;
 
-            var workingList = wb.InputCells.Union(wb.IntermediateCells).Union(wb.OutputCells);
+            var workingList = wb.InputCells.Union(wb.IntermediateCells).Union(wb.OutputCells).ToList();
+
+            //sort working list column first
+            #region sort
+
+            workingList.Sort(delegate(Core.Cell x, Core.Cell y)
+            {
+                //sort by worksheet
+                var xSheet = workbook.Sheets[Cells.CellManager.Instance.ParseWorksheetName(x.Location)] as Worksheet;
+                var ySheet = workbook.Sheets[Cells.CellManager.Instance.ParseWorksheetName(x.Location)] as Worksheet;
+
+                if (xSheet.Index < ySheet.Index)
+                {
+                    return -1;
+                }
+                else if (xSheet.Index > ySheet.Index)
+                {
+                    return 1;
+                }
+                else
+                {
+                    //sort by column
+                    var xRange = xSheet.Range[Cells.CellManager.Instance.ParseCellLocation(x.Location)];
+                    var yRange = ySheet.Range[Cells.CellManager.Instance.ParseCellLocation(y.Location)];
+
+                    if (xRange.Column < yRange.Column)
+                    {
+                        return -1;
+                    }
+                    else if (xRange.Column > yRange.Column)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        //sort by row
+                        if (xRange.Row < yRange.Row)
+                        {
+                            return -1;
+                        }
+                        else if (xRange.Row > yRange.Row)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+                }
+                
+            });
+
+            #endregion
+
+            CreateScenarioDataFieldContainer containerFirst = null;
+            CreateScenarioDataFieldContainer containerBefore = null;
             foreach (var c in workingList)
             {
                 //create cell data
@@ -122,15 +178,110 @@ namespace SIF.Visualization.Excel.ScenarioCore
                 container.createScenarioDataField.DataContext = cellData;
                 containers.Add(container);
 
+                //register for focus handling
+                #region focus handling
+
+                if (c == workingList.First())
+                {
+                    containerFirst = container;
+                }
+                else if (containerBefore != null)
+                {
+                    containerBefore.createScenarioDataField.RegisterNextFocusField(container.createScenarioDataField);
+                }
+                containerBefore = container;
+
+                #endregion
+
                 //create control
                 var control = vsto.Controls.AddControl(
                     container,
                     currentWorksheet.Range[Cells.CellManager.Instance.ParseCellLocation(c.Location)],
                     Guid.NewGuid().ToString());
                 control.Placement = Microsoft.Office.Interop.Excel.XlPlacement.xlMove;
-
             }
 
+            //set focus to first control
+            if (containerFirst != null)
+            {
+                containerFirst.createScenarioDataField.SetFocus();
+            }
+
+        }
+
+        /// <summary>
+        /// Calculates the number of empty controls of a cell type while the scenario creation process.
+        /// </summary>
+        /// <param name="cellType">Class type of Cells.InputCell, Cells.IntermediateCell or Cells.OutputCell</param>
+        /// <returns>Number of empty controls</returns>
+        public int GetEmptyEntrysCount(Type cellType)
+        {
+            if (newScenario == null) return 0;
+
+            if (cellType == typeof(Cells.InputCell))
+            {
+                var emptyInputs = (from q in newScenario.Inputs
+                                   where q.Content == null
+                                   select q).ToList().Count;
+                return emptyInputs;
+            }
+            else if (cellType == typeof(Cells.IntermediateCell))
+            {
+                var emptyIntermediates = (from q in newScenario.Intermediates
+                                          where q.Content == null
+                                          select q).ToList().Count;
+                return emptyIntermediates;
+            }
+            else if (cellType == typeof(Cells.OutputCell))
+            {
+                var emptyResults = (from q in newScenario.Results
+                                    where q.Content == null
+                                    select q).ToList().Count;
+                return emptyResults;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Checks if a filed of a result cell is filled while the scenario creation process.
+        /// </summary>
+        /// <param name="cellType">Class type of Cells.InputCell, Cells.IntermediateCell or Cells.OutputCell</param>
+        /// <returns>True, if one field of a result cell is filled. Else false.</returns>
+        public bool NoValue(Type cellType)
+        {
+            if (newScenario == null) return true;
+
+            if (cellType == typeof(Cells.InputCell))
+            {
+                var noFilledInputs = (from q in newScenario.Inputs
+                                       where q.Content != null
+                                       select q).ToList().Count <= 0;
+
+                return noFilledInputs;
+            }
+            else if (cellType == typeof(Cells.IntermediateCell))
+            {
+                var noFilledIntermediates = (from q in newScenario.Intermediates
+                                             where q.Content != null
+                                             select q).ToList().Count <= 0;
+
+                return noFilledIntermediates;
+            }
+            else if (cellType == typeof(Cells.OutputCell))
+            {
+                var noFilledResults = (from q in newScenario.Results
+                                       where q.Content != null
+                                       select q).ToList().Count <= 0;
+
+                return noFilledResults;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public Scenario End()
@@ -225,6 +376,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
             return value;
         }
 
+
         #endregion
     }
+
 }

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:viewModel="clr-namespace:SIF.Visualization.Excel.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -18,8 +19,8 @@
                     <viewModel:InverseBoolConverter x:Key="InverseBoolConverter"/>
                     <viewModel:StringsNotEqualsToBoolConverter x:Key="StringsNotEqualsToBoolConverter"/>
                     <viewModel:DifferenceTextBoxMultiConverter x:Key="DifferenceTextBoxMultiConverter"/>
-
-                    
+                    <viewModel:StringIsNotEmptyToBoolConverter x:Key="StringIsNotEmptyToBoolConverter"/>
+                                      
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -33,6 +34,7 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <!--Icon will be changed in the data context changed handler!-->
                 <Image x:Name="DataIcon"
                        Source="{StaticResource OutputCellIcon}" 
                        Grid.Column="0"
@@ -47,9 +49,10 @@
                             <ContextMenu.Template>
                                 <ControlTemplate TargetType="ContextMenu">
                                     <Border SnapsToDevicePixels="True" Background="White" BorderBrush="DarkGray" BorderThickness="1"
-                                            Visibility="{Binding Converter={StaticResource CellDataClassToVisibilityConverter}}">
-                                        <Grid Background="White">
-                                            <Grid.RowDefinitions>
+                                            Visibility="{Binding Converter={StaticResource CellDataClassToVisibilityConverter}}"
+                                            IsEnabled="{Binding Content, Converter={StaticResource StringIsNotEmptyToBoolConverter}, Mode=OneWay}">
+                                    <Grid Background="White">
+                                        <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"/>
                                                 <RowDefinition Height="auto"/>
                                             </Grid.RowDefinitions>
@@ -82,7 +85,7 @@
                                             </TextBox>
                                         </Grid>
                                         
-                                            <Expander x:Name="GeneralExpander" Header="General"
+                                            <Expander x:Name="GeneralExpander" Header="Up / Down"
                                                       IsExpanded="false"
                                                       Style="{StaticResource FlatExpanderStyle}"
                                                       Grid.Row="1">
@@ -132,7 +135,8 @@
                 </Image>
             <TextBox x:Name="DataTextBox" 
                      Background="Transparent"
-                     Grid.Column="1"/>
+                     Grid.Column="1"
+                     KeyDown="OnKeyDownHandler"/>
         </Grid>
         </Border>
 </UserControl>

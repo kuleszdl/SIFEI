@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace SIF.Visualization.Excel.ViewModel
@@ -28,7 +29,8 @@ namespace SIF.Visualization.Excel.ViewModel
                 values[2] is Boolean &&
                 values[3] is Boolean))
             {
-                throw new ArgumentException();
+                //throw new ArgumentException();
+                return DependencyProperty.UnsetValue;
             }
 
             var differenceUp = (double) values[0];

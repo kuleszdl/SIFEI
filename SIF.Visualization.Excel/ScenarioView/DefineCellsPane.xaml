@@ -11,6 +11,8 @@
         <!--Converters-->
         <viewmodel:OutputCellTypeToVisibilityConverter x:Key="OutputCellConverter"/>
         <viewmodel:InputCellTypeToVisibilityConverter x:Key="InputCellConverter"/>
+        <viewmodel:InverseIntToVisibilityMultiValueConverter x:Key="InverseIntToVisibilityMultiValueConverter"/>
+        <viewmodel:IntToVisibilityMultiValueConverter x:Key="IntToVisibilityMultiValueConverter"/>
         
         <!--Icons-->
         <BitmapImage x:Key="DeleteImageSource" UriSource="../icons/Delete_black_32x32.png"/>
@@ -68,7 +70,6 @@
         </DataTemplate>
 
     </UserControl.Resources>
-    
     <Grid Margin="0 0 0 10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -78,19 +79,21 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <ListBox x:Name="CellDefinitionsList"
-                 Grid.Column="0" Grid.Row="0"
-                 SelectionMode="Extended"
-                 BorderThickness="1 1 1 0"
-                 SelectionChanged="CellDefinitionsList_SelectionChanged"/>
+                Grid.Column="0" Grid.Row="0"
+                SelectionMode="Extended"
+                BorderThickness="1 1 1 0"
+                SelectionChanged="CellDefinitionsList_SelectionChanged">
+        </ListBox>
         <Border BorderThickness="1 0 1 1" Background="White" BorderBrush="#FFABADB3"
-                Grid.Column="0" Grid.Row="1"  >
+            Grid.Column="0" Grid.Row="1"  >
             <StackPanel Orientation="Horizontal" Margin="0 5 10 5" HorizontalAlignment="Right">
                 <Button x:Name="DeleteDataButton" 
-                        BorderThickness="0" Background="Transparent"
-                        Click="DeleteDataButton_Click">
+                    BorderThickness="0" Background="Transparent"
+                    Click="DeleteDataButton_Click">
                     <Image Source="{StaticResource DeleteImageSource}" Width="15" Height="15"/>
                 </Button>
             </StackPanel>
         </Border>
     </Grid>
+    
 </UserControl>
