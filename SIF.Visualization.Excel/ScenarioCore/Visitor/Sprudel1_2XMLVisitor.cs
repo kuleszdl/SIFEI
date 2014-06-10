@@ -44,6 +44,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             //output cells
             dynamicPolicy.Add(CreateOutputCells(n));
 
+            dynamicPolicy.Add(CreateSanityRules(n));
             //read schma policy
             //var sprudel = XMLPartManager.Instance.ReadXMLSchemaFromFile("E:\Studium\Bachelorthesis_sharedsvn\Entwicklung\SIF.Visualization.Excel\SIF.Visualization.Excel\XML\SpRuDeL1_2.xsd");
 
@@ -54,6 +55,23 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         }
 
         #region private workbook model visitor methods
+
+        private XElement CreateSanityRules(Core.WorkbookModel n)
+        {
+            var root = new XElement("sanityRules");
+
+            root.Add(CreateSanityValueCells(n));
+
+            root.Add(CreateSanityConstraintCells(n));
+
+            root.Add(CreateSanityExplanationCells(n));
+
+            root.Add(CreateSanityCheckingCells(n));
+
+            root.Add(new XElement("sanityWarnings", n.SanityWarnings));
+            return root;
+        }
+
         private XElement CreateInputCells(Core.WorkbookModel n)
         {
             var root = new XElement("inputCells");
@@ -66,6 +84,55 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 
             return root;
         }
+
+        private XElement CreateSanityValueCells(Core.WorkbookModel n)
+        {
+            var root = new XElement("sanityValueCells");
+
+            foreach (var cell in n.SanityValueCells)
+            {
+                root.Add(new XElement("location", NullCheck(new CellLocation(DataModel.Instance.CurrentWorkbook.Workbook, cell.Location).Location)));
+            }
+
+            return root;
+        }
+
+        private XElement CreateSanityConstraintCells(Core.WorkbookModel n)
+        {
+            var root = new XElement("sanityConstraintCells");
+
+            foreach (var cell in n.SanityConstraintCells)
+            {
+                root.Add(new XElement("location", NullCheck(new CellLocation(DataModel.Instance.CurrentWorkbook.Workbook, cell.Location).Location)));
+            }
+
+            return root;
+        }
+
+        private XElement CreateSanityExplanationCells(Core.WorkbookModel n)
+        {
+            var root = new XElement("sanityExplanationCells");
+
+            foreach (var cell in n.SanityExplanationCells)
+            {
+                root.Add(new XElement("location", NullCheck(new CellLocation(DataModel.Instance.CurrentWorkbook.Workbook, cell.Location).Location)));
+            }
+
+            return root;
+        }
+
+        private XElement CreateSanityCheckingCells(Core.WorkbookModel n)
+        {
+            var root = new XElement("sanityCheckingCells");
+
+            foreach (var cell in n.SanityCheckingCells)
+            {
+                root.Add(new XElement("location", NullCheck(new CellLocation(DataModel.Instance.CurrentWorkbook.Workbook, cell.Location).Location)));
+            }
+
+            return root;
+        }
+
 
         private XElement CreateOutputCells(Core.WorkbookModel n)
         {
@@ -262,6 +329,25 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             throw new NotImplementedException();
         }
 
+        public object Visit(SanityConstraintCellData n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Visit(SanityValueCellData n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Visit(SanityExplanationCellData n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Visit(SanityCheckingCellData n)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region private class methods

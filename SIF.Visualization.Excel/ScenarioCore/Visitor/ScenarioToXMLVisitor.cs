@@ -45,6 +45,18 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             var resultElements = this.SaveResults(n);
             if (resultElements != null) root.Add(resultElements);
 
+            var sanityValueElements = this.SaveSanityValueCells(n);
+            if (sanityValueElements != null) root.Add(sanityValueElements);
+
+            var sanityConstraintElements = this.SaveSanityConstraintCells(n);
+            if (sanityConstraintElements != null) root.Add(sanityConstraintElements);
+
+            var sanityExplanationElements = this.SaveSanityExplanationCells(n);
+            if (sanityExplanationElements != null) root.Add(sanityExplanationElements);
+
+            var sanityCheckingElements = this.SaveSanityCheckingCells(n);
+            if (sanityCheckingElements != null) root.Add(sanityCheckingElements);
+
             return root;
         }
 
@@ -58,6 +70,43 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             return root;
         }
 
+        public object Visit(SanityConstraintCellData n)
+        {
+            var root = new XElement("SanityConstraintCellData");
+            if (n.Location != null) root.Add(new XElement("Location", n.Location));
+            if (n.Content != null) root.Add(new XElement("Content", n.Content));
+            if (n.CellType != null) root.Add(new XElement("CellType", n.CellType));
+
+            return root;
+        }
+
+        public object Visit(SanityExplanationCellData n)
+        {
+            var root = new XElement("SanityExplanationCellData");
+            if (n.Location != null) root.Add(new XElement("Location", n.Location));
+            if (n.Content != null) root.Add(new XElement("Content", n.Content));
+            if (n.CellType != null) root.Add(new XElement("CellType", n.CellType));
+
+            return root;
+        }
+        public object Visit(SanityValueCellData n)
+        {
+            var root = new XElement("SanityValueCellData");
+            if (n.Location != null) root.Add(new XElement("Location", n.Location));
+            if (n.Content != null) root.Add(new XElement("Content", n.Content));
+            if (n.CellType != null) root.Add(new XElement("CellType", n.CellType));
+
+            return root;
+        }
+        public object Visit(SanityCheckingCellData n)
+        {
+            var root = new XElement("SanityCheckingCellData");
+            if (n.Location != null) root.Add(new XElement("Location", n.Location));
+            if (n.Content != null) root.Add(new XElement("Content", n.Content));
+            if (n.CellType != null) root.Add(new XElement("CellType", n.CellType));
+
+            return root;
+        }
         public object Visit(IntermediateCellData n)
         {
             var root = new XElement("IntermediateCellData");
@@ -130,6 +179,53 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             return root;
         }
 
+        private XElement SaveSanityValueCells(Scenario n)
+        {
+            var root = new XElement("sanityValueCells");
+
+            foreach (var result in n.SanityValueCells)
+            {
+                root.Add(result.Accept(this) as XElement);
+            }
+
+            return root;
+        }
+
+        private XElement SaveSanityConstraintCells(Scenario n)
+        {
+            var root = new XElement("sanityConstraintCells");
+
+            foreach (var result in n.SanityConstraintCells)
+            {
+                root.Add(result.Accept(this) as XElement);
+            }
+
+            return root;
+        }
+
+        private XElement SaveSanityExplanationCells(Scenario n)
+        {
+            var root = new XElement("SanityExplanationCells");
+
+            foreach (var result in n.SanityExplanationCells)
+            {
+                root.Add(result.Accept(this) as XElement);
+            }
+
+            return root;
+        }
+
+        private XElement SaveSanityCheckingCells(Scenario n)
+        {
+            var root = new XElement("SanityCheckingCells");
+
+            foreach (var result in n.SanityCheckingCells)
+            {
+                root.Add(result.Accept(this) as XElement);
+            }
+
+            return root;
+        }
         #endregion
 
         private string NullCheck(string content)

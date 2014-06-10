@@ -10,6 +10,10 @@ namespace SIF.Visualization.Excel.ScenarioCore
     {
         Input,
         Intermediate,
-        Output
+        Output,
+        SanityValue,
+        SanityConstraint,
+        SanityExplanation,
+        SanityChecking
     }
 }

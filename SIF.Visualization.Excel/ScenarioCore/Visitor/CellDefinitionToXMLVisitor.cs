@@ -38,6 +38,36 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             }
             root.Add(resultElement);
 
+            var sanityValueElement = new XElement("sanityValueCells");
+            foreach (var c in n.SanityValueCells)
+            {
+                sanityValueElement.Add(c.Accept(this));
+            }
+            root.Add(sanityValueElement);
+
+            var sanityConstraintElement = new XElement("sanityConstraintCells");
+            foreach (var c in n.SanityConstraintCells)
+            {
+                sanityConstraintElement.Add(c.Accept(this));
+            }
+            root.Add(sanityConstraintElement);
+
+            var sanityExplanationElement = new XElement("sanityExplanationCells");
+            foreach (var c in n.SanityExplanationCells)
+            {
+                sanityExplanationElement.Add(c.Accept(this));
+            }
+            root.Add(sanityExplanationElement);
+
+            var sanityCheckingElement = new XElement("sanityCheckingCells");
+            foreach (var c in n.SanityCheckingCells)
+            {
+                sanityCheckingElement.Add(c.Accept(this));
+            }
+            root.Add(sanityCheckingElement);
+
+            
+            root.Add(resultElement);
             return root;
         }
 
@@ -77,7 +107,25 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             throw new NotImplementedException();
         }
 
+        public object Visit(SanityConstraintCellData n)
+        {
+            throw new NotImplementedException();
+        }
 
+        public object Visit(SanityValueCellData n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Visit(SanityExplanationCellData n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Visit(SanityCheckingCellData n)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

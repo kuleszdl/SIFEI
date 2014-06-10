@@ -152,6 +152,54 @@ namespace SIF.Visualization.Excel.Core
             return cell;
         }
 
+        public Cells.SanityValueCell ToSanityValueCell()
+        {
+            var cell = new Cells.SanityValueCell()
+            {
+                Id = this.Id,
+                Content = this.Content,
+                Location = this.Location,
+                SifLocation = this.SifLocation
+            };
+            return cell;
+        }
+
+        public Cells.SanityCheckingCell ToSanityCheckingCell()
+        {
+            var cell = new Cells.SanityCheckingCell()
+            {
+                Id = this.Id,
+                Content = this.Content,
+                Location = this.Location,
+                SifLocation = this.SifLocation
+            };
+            return cell;
+        }
+
+        public Cells.SanityConstraintCell ToSanityConstraintCell()
+        {
+            var cell = new Cells.SanityConstraintCell()
+            {
+                Id = this.Id,
+                Content = this.Content,
+                Location = this.Location,
+                SifLocation = this.SifLocation
+            };
+            return cell;
+        }
+
+        public Cells.SanityExplanationCell ToSanityExplanationCell()
+        {
+            var cell = new Cells.SanityExplanationCell()
+            {
+                Id = this.Id,
+                Content = this.Content,
+                Location = this.Location,
+                SifLocation = this.SifLocation
+            };
+            return cell;
+        }
+
         public Cells.OutputCell ToOutputCell()
         {
             var cell = new Cells.OutputCell()

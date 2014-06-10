@@ -171,6 +171,7 @@
     <Compile Include="Cells\InputCell.cs" />
     <Compile Include="Cells\IntermediateCell.cs" />
     <Compile Include="Cells\OutputCell.cs" />
+    <Compile Include="Cells\SanityCells.cs" />
     <Compile Include="Core\BindableBase.cs" />
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\CellLocation.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Core\SingleViolation.cs" />
     <Compile Include="Core\Violation.cs" />
     <Compile Include="Core\DataModel.cs" />
+    <Compile Include="ScenarioCore\SanityCellData.cs" />
     <Compile Include="ScenarioCore\ScenarioUICreator.cs" />
     <Compile Include="ScenarioView\CreateScenarioDataField.xaml.cs">
       <DependentUpon>CreateScenarioDataField.xaml</DependentUpon>

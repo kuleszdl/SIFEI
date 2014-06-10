@@ -27,6 +27,11 @@ namespace SIF.Visualization.Excel
             DataModel.Instance.CurrentWorkbook.Inspect();
         }
 
+        private void warnings_Click(object sender, RibbonControlEventArgs e)
+        {
+            DataModel.Instance.CurrentWorkbook.SanityWarnings = sanityWarnCheckbox.Checked;
+        }
+
         private void StaticScan_Click(object sender, RibbonControlEventArgs e)
         {
             // Inspect the current workbook
@@ -115,6 +120,98 @@ namespace SIF.Visualization.Excel
         }
 
         /// <summary>
+        /// Define a SanityValue cell. Toggle betwen defined and undefined
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DefineSanityValueCell_Click(object sender, RibbonControlEventArgs e)
+        {
+            WorkbookModel.CellDefinitionOption option;
+            var currentWorkbook = DataModel.Instance.CurrentWorkbook;
+            var selectedCells = CellManager.Instance.GetSelectedCells(currentWorkbook);
+
+            if (!currentWorkbook.SanityValueCells.Contains(selectedCells.First()))
+            {
+                option = WorkbookModel.CellDefinitionOption.Define;
+            }
+            else
+            {
+                option = WorkbookModel.CellDefinitionOption.Undefine;
+            }
+
+            currentWorkbook.DefineSanityValueCell(selectedCells, option);
+        }
+
+        /// <summary>
+        /// Define a SanityChecking cell. Toggle betwen defined and undefined
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DefineSanityCheckingCell_Click(object sender, RibbonControlEventArgs e)
+        {
+            WorkbookModel.CellDefinitionOption option;
+            var currentWorkbook = DataModel.Instance.CurrentWorkbook;
+            var selectedCells = CellManager.Instance.GetSelectedCells(currentWorkbook);
+
+            if (!currentWorkbook.SanityCheckingCells.Contains(selectedCells.First()))
+            {
+                option = WorkbookModel.CellDefinitionOption.Define;
+            }
+            else
+            {
+                option = WorkbookModel.CellDefinitionOption.Undefine;
+            }
+
+            currentWorkbook.DefineSanityCheckingCell(selectedCells, option);
+        }
+
+        /// <summary>
+        /// Define a SanityExplanation cell. Toggle betwen defined and undefined
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DefineSanityExplanationCell_Click(object sender, RibbonControlEventArgs e)
+        {
+            WorkbookModel.CellDefinitionOption option;
+            var currentWorkbook = DataModel.Instance.CurrentWorkbook;
+            var selectedCells = CellManager.Instance.GetSelectedCells(currentWorkbook);
+
+            if (!currentWorkbook.SanityExplanationCells.Contains(selectedCells.First()))
+            {
+                option = WorkbookModel.CellDefinitionOption.Define;
+            }
+            else
+            {
+                option = WorkbookModel.CellDefinitionOption.Undefine;
+            }
+
+            currentWorkbook.DefineSanityExplanationCell(selectedCells, option);
+        }
+
+        /// <summary>
+        /// Define a SanityValue cell. Toggle betwen defined and undefined
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DefineSanityConstraintCell_Click(object sender, RibbonControlEventArgs e)
+        {
+            WorkbookModel.CellDefinitionOption option;
+            var currentWorkbook = DataModel.Instance.CurrentWorkbook;
+            var selectedCells = CellManager.Instance.GetSelectedCells(currentWorkbook);
+
+            if (!currentWorkbook.SanityConstraintCells.Contains(selectedCells.First()))
+            {
+                option = WorkbookModel.CellDefinitionOption.Define;
+            }
+            else
+            {
+                option = WorkbookModel.CellDefinitionOption.Undefine;
+            }
+
+            currentWorkbook.DefineSanityConstraintCell(selectedCells, option);
+        }
+
+        /// <summary>
         /// Define a result cell. Toggle betwen defined and undefined
         /// </summary>
         /// <param name="sender"></param>
@@ -179,7 +276,7 @@ namespace SIF.Visualization.Excel
                 this.intermediateCellToggleButton.Checked = false;
             }
 
-            //set intermediate cell toggle button
+            //set output cell toggle button
             if (firstSelectedCell != null && DataModel.Instance.CurrentWorkbook.OutputCells.Contains(firstSelectedCell))
             {
                 this.resultCellToggleButton.Checked = true;
@@ -189,6 +286,45 @@ namespace SIF.Visualization.Excel
                 this.resultCellToggleButton.Checked = false;
             }
 
+            //set SanityValue cell toggle button
+            if (firstSelectedCell != null && DataModel.Instance.CurrentWorkbook.SanityValueCells.Contains(firstSelectedCell))
+            {
+                this.sanityValueCellToggleButton.Checked = true;
+            }
+            else
+            {
+                this.sanityValueCellToggleButton.Checked = false;
+            }
+
+            //set sanityConstraint cell toggle button
+            if (firstSelectedCell != null && DataModel.Instance.CurrentWorkbook.SanityConstraintCells.Contains(firstSelectedCell))
+            {
+                this.sanityConstraintCellToggleButton.Checked = true;
+            }
+            else
+            {
+                this.sanityConstraintCellToggleButton.Checked = false;
+            }
+
+            //set sanityExplanation cell toggle button
+            if (firstSelectedCell != null && DataModel.Instance.CurrentWorkbook.SanityExplanationCells.Contains(firstSelectedCell))
+            {
+                this.sanityExplanationCellToggleButton.Checked = true;
+            }
+            else
+            {
+                this.sanityExplanationCellToggleButton.Checked = false;
+            }
+
+            //set sanityChecking cell toggle button
+            if (firstSelectedCell != null && DataModel.Instance.CurrentWorkbook.SanityCheckingCells.Contains(firstSelectedCell))
+            {
+                this.sanityCheckingCellToggleButton.Checked = true;
+            }
+            else
+            {
+                this.sanityCheckingCellToggleButton.Checked = false;
+            }
         }
 
         private void NewScenarioButton_Click(object sender, RibbonControlEventArgs e)

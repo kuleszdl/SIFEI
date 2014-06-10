@@ -60,11 +60,16 @@ namespace SIF.Visualization.Excel.Core
         private string policyPath;
         private Policy policy;
         private ObservableCollection<Cell> inputCells;
+        private ObservableCollection<Cell> sanityValueCells;
+        private ObservableCollection<Cell> sanityConstraintCells;
+        private ObservableCollection<Cell> sanityExplanationCells;
+        private ObservableCollection<Cell> sanityCheckingCells;
         private ObservableCollection<Cell> intermediateCells;
         private ObservableCollection<Cell> outputCells;
         private ObservableCollection<Finding> findings;
         private ObservableCollection<FalsePositive> falsePositives;
         private ObservableCollection<SIF.Visualization.Excel.ScenarioCore.Scenario> scenarios;
+        private Boolean sanityWarnings = true;
 
         private Workbook workbook;
 
@@ -132,6 +137,71 @@ namespace SIF.Visualization.Excel.Core
                 return this.intermediateCells;
             }
             set { this.SetProperty(ref this.intermediateCells, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the intermediate cells of the current document.
+        /// </summary>
+        public ObservableCollection<Cell> SanityValueCells
+        {
+            get
+            {
+                if (this.sanityValueCells == null) this.sanityValueCells = new ObservableCollection<Cell>();
+                return this.sanityValueCells;
+            }
+            set { this.SetProperty(ref this.sanityValueCells, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the intermediate cells of the current document.
+        /// </summary>
+        public ObservableCollection<Cell> SanityConstraintCells
+        {
+            get
+            {
+                if (this.sanityConstraintCells == null) this.sanityConstraintCells = new ObservableCollection<Cell>();
+                return this.sanityConstraintCells;
+            }
+            set { this.SetProperty(ref this.sanityConstraintCells, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the intermediate cells of the current document.
+        /// </summary>
+        public ObservableCollection<Cell> SanityExplanationCells
+        {
+            get
+            {
+                if (this.sanityExplanationCells == null) this.sanityExplanationCells = new ObservableCollection<Cell>();
+                return this.sanityExplanationCells;
+            }
+            set { this.SetProperty(ref this.sanityExplanationCells, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the intermediate cells of the current document.
+        /// </summary>
+        public ObservableCollection<Cell> SanityCheckingCells
+        {
+            get
+            {
+                if (this.sanityCheckingCells == null) this.sanityCheckingCells = new ObservableCollection<Cell>();
+                return this.sanityCheckingCells;
+            }
+            set { this.SetProperty(ref this.sanityCheckingCells, value); }
+        }
+
+        public Boolean SanityWarnings
+        {
+            get
+            {
+                return this.sanityWarnings;
+            }
+            set
+            {
+                this.sanityWarnings = value;
+            }
+
         }
 
         /// <summary>
@@ -578,6 +648,173 @@ namespace SIF.Visualization.Excel.Core
             OnCellDefinitionChanged(new EventArgs());
         }
 
+        /// <summary>
+        /// Defines or undefines a sanity value cell.
+        /// </summary>
+        /// <param name="inputs">List of cells</param>
+        /// <param name="define">Optíon to set wheter the cells will add, or remove from the intermediate cell list</param>
+        public void DefineSanityValueCell(List<Cell> sanityValues, CellDefinitionOption define)
+        {
+            if (define == CellDefinitionOption.Define)
+            {
+                foreach (var c in sanityValues)
+                {
+                    // create sif cell name
+                    if (c.SifLocation == null)
+                    {
+                        c.SifLocation = CellManager.Instance.CreateSIFCellName(this, CellManager.Instance.GetA1Adress(this, c.Location));
+                    }
+
+                    //remove from the other lists
+                    this.InputCells.Remove(c);
+                    this.OutputCells.Remove(c);
+                    this.IntermediateCells.Remove(c);
+                    this.sanityCheckingCells.Remove(c);
+                    this.sanityExplanationCells.Remove(c);
+                    this.sanityConstraintCells.Remove(c);
+                    //add to sanityValue list
+                    if (!this.sanityValueCells.Contains(c))
+                    {
+                        this.sanityValueCells.Add(c.ToSanityValueCell());
+                    }
+                }
+            }
+            else if (define == CellDefinitionOption.Undefine)
+            {
+                //remove from intermediate list
+                foreach (var c in sanityValues)
+                {
+                    this.sanityValueCells.Remove(c);
+                }
+            }
+            OnCellDefinitionChanged(new EventArgs());
+        }
+
+        /// <summary>
+        /// Defines or undefines a sanity value cell.
+        /// </summary>
+        /// <param name="inputs">List of cells</param>
+        /// <param name="define">Optíon to set wheter the cells will add, or remove from the intermediate cell list</param>
+        public void DefineSanityConstraintCell(List<Cell> sanityConstraints, CellDefinitionOption define)
+        {
+            if (define == CellDefinitionOption.Define)
+            {
+                foreach (var c in sanityConstraints)
+                {
+                    // create sif cell name
+                    if (c.SifLocation == null)
+                    {
+                        c.SifLocation = CellManager.Instance.CreateSIFCellName(this, CellManager.Instance.GetA1Adress(this, c.Location));
+                    }
+
+                    //remove from the other lists
+                    this.InputCells.Remove(c);
+                    this.OutputCells.Remove(c);
+                    this.IntermediateCells.Remove(c);
+                    this.sanityCheckingCells.Remove(c);
+                    this.sanityExplanationCells.Remove(c);
+                    this.sanityValueCells.Remove(c);
+                    //add to sanityValue list
+                    if (!this.sanityConstraintCells.Contains(c))
+                    {
+                        this.sanityConstraintCells.Add(c.ToSanityConstraintCell());
+                    }
+                }
+            }
+            else if (define == CellDefinitionOption.Undefine)
+            {
+                //remove from intermediate list
+                foreach (var c in sanityConstraints)
+                {
+                    this.sanityConstraintCells.Remove(c);
+                }
+            }
+            OnCellDefinitionChanged(new EventArgs());
+        }
+
+        /// <summary>
+        /// Defines or undefines a sanity value cell.
+        /// </summary>
+        /// <param name="inputs">List of cells</param>
+        /// <param name="define">Optíon to set wheter the cells will add, or remove from the intermediate cell list</param>
+        public void DefineSanityExplanationCell(List<Cell> sanityExplanations, CellDefinitionOption define)
+        {
+            if (define == CellDefinitionOption.Define)
+            {
+                foreach (var c in sanityExplanations)
+                {
+                    // create sif cell name
+                    if (c.SifLocation == null)
+                    {
+                        c.SifLocation = CellManager.Instance.CreateSIFCellName(this, CellManager.Instance.GetA1Adress(this, c.Location));
+                    }
+
+                    //remove from the other lists
+                    this.InputCells.Remove(c);
+                    this.OutputCells.Remove(c);
+                    this.IntermediateCells.Remove(c);
+                    this.sanityCheckingCells.Remove(c);
+                    this.sanityValueCells.Remove(c);
+                    this.sanityConstraintCells.Remove(c);
+                    //add to sanityExplanation list
+                    if (!this.sanityExplanationCells.Contains(c))
+                    {
+                        this.sanityExplanationCells.Add(c.ToSanityExplanationCell());
+                    }
+                }
+            }
+            else if (define == CellDefinitionOption.Undefine)
+            {
+                //remove from intermediate list
+                foreach (var c in sanityExplanations)
+                {
+                    this.sanityExplanationCells.Remove(c);
+                }
+            }
+            OnCellDefinitionChanged(new EventArgs());
+        }
+
+        /// <summary>
+        /// Defines or undefines a sanity Checking cell.
+        /// </summary>
+        /// <param name="inputs">List of cells</param>
+        /// <param name="define">Optíon to set wheter the cells will add, or remove from the intermediate cell list</param>
+        public void DefineSanityCheckingCell(List<Cell> sanityCheckings, CellDefinitionOption define)
+        {
+            if (define == CellDefinitionOption.Define)
+            {
+                foreach (var c in sanityCheckings)
+                {
+                    // create sif cell name
+                    if (c.SifLocation == null)
+                    {
+                        c.SifLocation = CellManager.Instance.CreateSIFCellName(this, CellManager.Instance.GetA1Adress(this, c.Location));
+                    }
+
+                    //remove from the other lists
+                    this.InputCells.Remove(c);
+                    this.OutputCells.Remove(c);
+                    this.IntermediateCells.Remove(c);
+                    this.sanityValueCells.Remove(c);
+                    this.sanityExplanationCells.Remove(c);
+                    this.sanityConstraintCells.Remove(c);
+                    //add to sanityChecking list
+                    if (!this.sanityCheckingCells.Contains(c))
+                    {
+                        this.sanityCheckingCells.Add(c.ToSanityCheckingCell());
+                    }
+                }
+            }
+            else if (define == CellDefinitionOption.Undefine)
+            {
+                //remove from intermediate list
+                foreach (var c in sanityCheckings)
+                {
+                    this.sanityCheckingCells.Remove(c);
+                }
+            }
+            OnCellDefinitionChanged(new EventArgs());
+        }
         /// <summary>
         /// Defines or undefines a output cell.
         /// </summary>
