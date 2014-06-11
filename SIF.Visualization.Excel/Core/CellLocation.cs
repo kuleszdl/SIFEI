@@ -191,6 +191,7 @@ namespace SIF.Visualization.Excel.Core
 
             // Parse letter and number
             this.Letter = Regex.Match(cell, "[A-Z]*").Value.ToUpper();
+            if (cell.Contains(":")) cell = cell.Substring(letter.Length, cell.IndexOf(":") - 1);
             this.Number = int.Parse(cell.Replace(this.Letter, ""));
         }
 

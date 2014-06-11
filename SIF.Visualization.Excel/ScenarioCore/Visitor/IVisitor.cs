@@ -25,5 +25,13 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 
         object Visit(Cell n);
 
+        object Visit(SanityConstraintCellData n);
+
+        object Visit(SanityValueCellData n);
+
+        object Visit(SanityExplanationCellData n);
+
+        object Visit(SanityCheckingCellData n);
+
     }
 }

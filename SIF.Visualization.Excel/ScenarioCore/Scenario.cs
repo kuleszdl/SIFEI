@@ -23,6 +23,10 @@ namespace SIF.Visualization.Excel.ScenarioCore
         private ObservableCollection<InputCellData> inputs;
         private ObservableCollection<IntermediateCellData> intermediates;
         private ObservableCollection<ResultCellData> results;
+        private ObservableCollection<SanityValueCellData> sanityValues;
+        private ObservableCollection<SanityConstraintCellData> sanityConstraints;
+        private ObservableCollection<SanityExplanationCellData> sanityExplanations;
+        private ObservableCollection<SanityCheckingCellData> sanityCheckings;
         #endregion
 
         #region Properties
@@ -110,6 +114,59 @@ namespace SIF.Visualization.Excel.ScenarioCore
             }
             set { this.SetProperty(ref this.results, value); }
         }
+
+        /// <summary>
+        /// Gets or sets the intermediate cells of the current document.
+        /// </summary>
+        public ObservableCollection<SanityValueCellData> SanityValueCells
+        {
+            get
+            {
+                if (this.sanityValues == null) this.sanityValues = new ObservableCollection<SanityValueCellData>();
+                return this.sanityValues;
+            }
+            set { this.SetProperty(ref this.sanityValues, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the intermediate cells of the current document.
+        /// </summary>
+        public ObservableCollection<SanityConstraintCellData> SanityConstraintCells
+        {
+            get
+            {
+                if (this.sanityConstraints == null) this.sanityConstraints = new ObservableCollection<SanityConstraintCellData>();
+                return this.sanityConstraints;
+            }
+            set { this.SetProperty(ref this.sanityConstraints, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the intermediate cells of the current document.
+        /// </summary>
+        public ObservableCollection<SanityExplanationCellData> SanityExplanationCells
+        {
+            get
+            {
+                if (this.sanityExplanations == null) this.sanityExplanations = new ObservableCollection<SanityExplanationCellData>();
+                return this.sanityExplanations;
+            }
+            set { this.SetProperty(ref this.sanityExplanations, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the intermediate cells of the current document.
+        /// </summary>
+        public ObservableCollection<SanityCheckingCellData> SanityCheckingCells
+        {
+            get
+            {
+                if (this.sanityCheckings == null) this.sanityCheckings = new ObservableCollection<SanityCheckingCellData>();
+                return this.sanityCheckings;
+            }
+            set { this.SetProperty(ref this.sanityCheckings, value); }
+        }
+
 
         #endregion
 

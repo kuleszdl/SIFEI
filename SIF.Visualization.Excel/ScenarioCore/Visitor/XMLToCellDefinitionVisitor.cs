@@ -65,6 +65,51 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
                 }
             }
 
+            //get sanity value cells
+            var sanityValueCellsElement = root.Element(XName.Get("sanityValueCells"));
+            if (sanityValueCellsElement != null)
+            {
+                foreach (var c in sanityValueCellsElement.Elements())
+                {
+                    var sanityValueCell = new Core.Cell();
+                    sanityValueCell.Accept(new XMLToCellDefinitionVisitor(c, n));
+                    n.SanityValueCells.Add(sanityValueCell.ToSanityValueCell());
+                }
+            }
+            //get sanity value cells
+            var sanityConstraintCellsElement = root.Element(XName.Get("sanityConstraintCells"));
+            if (sanityConstraintCellsElement != null)
+            {
+                foreach (var c in sanityConstraintCellsElement.Elements())
+                {
+                    var sanityConstraintCell = new Core.Cell();
+                    sanityConstraintCell.Accept(new XMLToCellDefinitionVisitor(c, n));
+                    n.SanityConstraintCells.Add(sanityConstraintCell.ToSanityConstraintCell());
+                }
+            }
+            //get sanity Explanation cells
+            var sanityExplanationCellsElement = root.Element(XName.Get("sanityExplanationCells"));
+            if (sanityExplanationCellsElement != null)
+            {
+                foreach (var c in sanityExplanationCellsElement.Elements())
+                {
+                    var sanityExplanationCell = new Core.Cell();
+                    sanityExplanationCell.Accept(new XMLToCellDefinitionVisitor(c, n));
+                    n.SanityExplanationCells.Add(sanityExplanationCell.ToSanityExplanationCell());
+                }
+            }
+            //get sanity Checking cells
+            var sanityCheckingCellsElement = root.Element(XName.Get("sanityCheckingCells"));
+            if (sanityCheckingCellsElement != null)
+            {
+                foreach (var c in sanityCheckingCellsElement.Elements())
+                {
+                    var sanityCheckingCell = new Core.Cell();
+                    sanityCheckingCell.Accept(new XMLToCellDefinitionVisitor(c, n));
+                    n.SanityCheckingCells.Add(sanityCheckingCell.ToSanityCheckingCell());
+                }
+            }
+
             return true;
         }
 
@@ -111,6 +156,26 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         }
 
         public object Visit(ResultCellData n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Visit(SanityConstraintCellData n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Visit(SanityValueCellData n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Visit(SanityExplanationCellData n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Visit(SanityCheckingCellData n)
         {
             throw new NotImplementedException();
         }

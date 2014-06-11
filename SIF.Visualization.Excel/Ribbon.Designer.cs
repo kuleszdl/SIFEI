@@ -50,11 +50,18 @@
             this.resultCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.sharedPaneButton = this.Factory.CreateRibbonButton();
             this.clearButton = this.Factory.CreateRibbonButton();
+            this.sanityGroup = this.Factory.CreateRibbonGroup();
+            this.sanityValueCellToggleButton = this.Factory.CreateRibbonToggleButton();
+            this.sanityConstraintCellToggleButton = this.Factory.CreateRibbonToggleButton();
+            this.sanityExplanationCellToggleButton = this.Factory.CreateRibbonToggleButton();
+            this.sanityCheckingCellToggleButton = this.Factory.CreateRibbonToggleButton();
+            this.sanityWarnCheckbox = this.Factory.CreateRibbonCheckBox();
             this.inspectionTab.SuspendLayout();
             this.testGroup.SuspendLayout();
             this.scenarioGroup.SuspendLayout();
             this.defineGroup.SuspendLayout();
             this.viewGroup.SuspendLayout();
+            this.sanityGroup.SuspendLayout();
             // 
             // inspectionTab
             // 
@@ -63,6 +70,7 @@
             this.inspectionTab.Groups.Add(this.scenarioGroup);
             this.inspectionTab.Groups.Add(this.defineGroup);
             this.inspectionTab.Groups.Add(this.viewGroup);
+            this.inspectionTab.Groups.Add(this.sanityGroup);
             this.inspectionTab.Label = "INSPECTION";
             this.inspectionTab.Name = "inspectionTab";
             // 
@@ -212,6 +220,47 @@
             this.clearButton.ShowImage = true;
             this.clearButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.clearButton_Click);
             // 
+            // sanityGroup
+            // 
+            this.sanityGroup.Items.Add(this.sanityValueCellToggleButton);
+            this.sanityGroup.Items.Add(this.sanityConstraintCellToggleButton);
+            this.sanityGroup.Items.Add(this.sanityExplanationCellToggleButton);
+            this.sanityGroup.Items.Add(this.sanityCheckingCellToggleButton);
+            this.sanityGroup.Items.Add(this.sanityWarnCheckbox);
+            this.sanityGroup.Label = "Headers for the plausibility";
+            this.sanityGroup.Name = "sanityGroup";
+            // 
+            // sanityValueCellToggleButton
+            // 
+            this.sanityValueCellToggleButton.Label = "Values";
+            this.sanityValueCellToggleButton.Name = "sanityValueCellToggleButton";
+            this.sanityValueCellToggleButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.DefineSanityValueCell_Click);
+            // 
+            // sanityConstraintCellToggleButton
+            // 
+            this.sanityConstraintCellToggleButton.Label = "Restriction";
+            this.sanityConstraintCellToggleButton.Name = "sanityConstraintCellToggleButton";
+            this.sanityConstraintCellToggleButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.DefineSanityConstraintCell_Click);
+            // 
+            // sanityExplanationCellToggleButton
+            // 
+            this.sanityExplanationCellToggleButton.Label = "Explanation";
+            this.sanityExplanationCellToggleButton.Name = "sanityExplanationCellToggleButton";
+            this.sanityExplanationCellToggleButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.DefineSanityExplanationCell_Click);
+            // 
+            // sanityCheckingCellToggleButton
+            // 
+            this.sanityCheckingCellToggleButton.Label = "To be checked";
+            this.sanityCheckingCellToggleButton.Name = "sanityCheckingCellToggleButton";
+            this.sanityCheckingCellToggleButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.DefineSanityCheckingCell_Click);
+            // 
+            // sanityWarnCheckbox
+            // 
+            this.sanityWarnCheckbox.Checked = true;
+            this.sanityWarnCheckbox.Label = "Warnings";
+            this.sanityWarnCheckbox.Name = "sanityWarnCheckbox";
+            this.sanityWarnCheckbox.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.warnings_Click);
+            // 
             // Ribbon
             // 
             this.Name = "Ribbon";
@@ -228,6 +277,8 @@
             this.defineGroup.PerformLayout();
             this.viewGroup.ResumeLayout(false);
             this.viewGroup.PerformLayout();
+            this.sanityGroup.ResumeLayout(false);
+            this.sanityGroup.PerformLayout();
 
         }
 
@@ -249,6 +300,12 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton cancelScenarioButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton sharedPaneButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton CreateNewScenarioButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup sanityGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton sanityValueCellToggleButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton sanityConstraintCellToggleButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton sanityExplanationCellToggleButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox sanityWarnCheckbox;
+        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton sanityCheckingCellToggleButton;
     }
 
     partial class ThisRibbonCollection

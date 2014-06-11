@@ -88,6 +88,54 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
                 }
             }
 
+
+            var sanityRules = root.Element(XName.Get("sanityRules"));
+            if (sanityRules != null)
+            {
+                foreach (var sanityElement in sanityRules.Elements())
+                {
+                    var newSanityValue = new SanityValueCellData();
+                    newSanityValue.Accept(new XMLToScenarioVisitor(sanityElement));
+                    n.SanityValueCells.Add(newSanityValue);
+                }
+            }
+            /*
+            // sanity constraints
+            var sanityConstraintElements = root.Element(XName.Get("sanityConstraints"));
+            if (sanityConstraintElements != null)
+            {
+                foreach (var resultElement in resultElements.Elements())
+                {
+                    var newResult = new SanityConstraintCellData();
+                    newResult.Accept(new XMLToScenarioVisitor(resultElement));
+                    n.SanityConstraintCells.Add(newResult);
+                }
+            }
+
+            // sanity explanations
+            var sanityExplanationElements = root.Element(XName.Get("sanityExplanations"));
+            if (sanityExplanationElements != null)
+            {
+                foreach (var resultElement in resultElements.Elements())
+                {
+                    var newResult = new SanityExplanationCellData();
+                    newResult.Accept(new XMLToScenarioVisitor(resultElement));
+                    n.SanityExplanationCells.Add(newResult);
+                }
+            }
+
+            // sanity checking
+            var sanityCheckingElements = root.Element(XName.Get("sanityChecking"));
+            if (sanityCheckingElements != null)
+            {
+                foreach (var resultElement in resultElements.Elements())
+                {
+                    var newResult = new SanityCheckingCellData();
+                    newResult.Accept(new XMLToScenarioVisitor(resultElement));
+                    n.SanityCheckingCells.Add(newResult);
+                }
+            }
+            */
             return true;
         }
 
@@ -105,6 +153,82 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             if (cellTypeElement != null)
             {
                 n.CellType = (TestInputType) Enum.Parse(typeof(TestInputType), cellTypeElement.Value.ToUpper());
+            }
+
+            return true;
+        }
+
+        public object Visit(SanityConstraintCellData n)
+        {
+            if (this.root == null) return false;
+
+            var locationElement = root.Element(XName.Get("Location"));
+            n.Location = (locationElement != null) ? locationElement.Value : String.Empty;
+
+            var contentElement = root.Element(XName.Get("Content"));
+            n.Content = (contentElement != null) ? contentElement.Value : String.Empty;
+
+            var cellTypeElement = root.Element(XName.Get("CellType"));
+            if (cellTypeElement != null)
+            {
+                n.CellType = (TestInputType)Enum.Parse(typeof(TestInputType), cellTypeElement.Value.ToUpper());
+            }
+
+            return true;
+        }
+
+        public object Visit(SanityValueCellData n)
+        {
+            if (this.root == null) return false;
+
+            var locationElement = root.Element(XName.Get("Location"));
+            n.Location = (locationElement != null) ? locationElement.Value : String.Empty;
+
+            var contentElement = root.Element(XName.Get("Content"));
+            n.Content = (contentElement != null) ? contentElement.Value : String.Empty;
+
+            var cellTypeElement = root.Element(XName.Get("CellType"));
+            if (cellTypeElement != null)
+            {
+                n.CellType = (TestInputType)Enum.Parse(typeof(TestInputType), cellTypeElement.Value.ToUpper());
+            }
+
+            return true;
+        }
+
+        public object Visit(SanityExplanationCellData n)
+        {
+            if (this.root == null) return false;
+
+            var locationElement = root.Element(XName.Get("Location"));
+            n.Location = (locationElement != null) ? locationElement.Value : String.Empty;
+
+            var contentElement = root.Element(XName.Get("Content"));
+            n.Content = (contentElement != null) ? contentElement.Value : String.Empty;
+
+            var cellTypeElement = root.Element(XName.Get("CellType"));
+            if (cellTypeElement != null)
+            {
+                n.CellType = (TestInputType)Enum.Parse(typeof(TestInputType), cellTypeElement.Value.ToUpper());
+            }
+
+            return true;
+        }
+
+        public object Visit(SanityCheckingCellData n)
+        {
+            if (this.root == null) return false;
+
+            var locationElement = root.Element(XName.Get("Location"));
+            n.Location = (locationElement != null) ? locationElement.Value : String.Empty;
+
+            var contentElement = root.Element(XName.Get("Content"));
+            n.Content = (contentElement != null) ? contentElement.Value : String.Empty;
+
+            var cellTypeElement = root.Element(XName.Get("CellType"));
+            if (cellTypeElement != null)
+            {
+                n.CellType = (TestInputType)Enum.Parse(typeof(TestInputType), cellTypeElement.Value.ToUpper());
             }
 
             return true;
