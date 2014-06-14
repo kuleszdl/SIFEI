@@ -13,7 +13,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
 {
     public class Scenario : BindableBase, IAcceptVisitor
     {
-        #region Filds
+        #region Fields
         private Guid id;
         private string title;
         private string description;
@@ -41,7 +41,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
         }
 
         /// <summary>
-        /// Gets or sets the title of the current scenario.
+        /// Gets or sets the description of the current scenario.
         /// </summary>
         public string Description
         {
@@ -68,7 +68,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
         }
 
         /// <summary>
-        /// Gets or sets the rating of the current scenario.
+        /// Gets or sets the severity rating of the current scenario.
         /// </summary>
         public double Rating
         {
@@ -116,7 +116,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
         }
 
         /// <summary>
-        /// Gets or sets the intermediate cells of the current document.
+        /// Gets or sets the sanity value cells of the current document.
         /// </summary>
         public ObservableCollection<SanityValueCellData> SanityValueCells
         {
@@ -129,7 +129,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
         }
 
         /// <summary>
-        /// Gets or sets the intermediate cells of the current document.
+        /// Gets or sets the sanity constraint cells of the current document.
         /// </summary>
         public ObservableCollection<SanityConstraintCellData> SanityConstraintCells
         {
@@ -142,7 +142,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
         }
 
         /// <summary>
-        /// Gets or sets the intermediate cells of the current document.
+        /// Gets or sets the sanity explanation cells of the current document.
         /// </summary>
         public ObservableCollection<SanityExplanationCellData> SanityExplanationCells
         {
@@ -155,7 +155,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
         }
 
         /// <summary>
-        /// Gets or sets the intermediate cells of the current document.
+        /// Gets or sets the sanity checking cells of the current document.
         /// </summary>
         public ObservableCollection<SanityCheckingCellData> SanityCheckingCells
         {

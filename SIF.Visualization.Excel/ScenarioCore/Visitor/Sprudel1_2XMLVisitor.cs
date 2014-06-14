@@ -21,6 +21,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         /// <returns>complete sprudel xml as XElement</returns>
         public object Visit(Core.WorkbookModel n)
         {
+            var root = new XElement("policyList");
             var dynamicPolicy = new XElement("dynamicPolicy");
             //attributes
             dynamicPolicy.Add(new XAttribute("name", NullCheck(n.Title) + " Inspection"));
@@ -43,15 +44,20 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 
             //output cells
             dynamicPolicy.Add(CreateOutputCells(n));
-
-            dynamicPolicy.Add(CreateSanityRules(n));
-            //read schma policy
+            // TODO: don't add when no scenario is present
+            root.Add(dynamicPolicy);
+            XElement sanityRules = CreateSanityRules(n);
+            if (sanityRules != null)
+            {
+                root.Add(sanityRules);
+            }
+            //read schema policy
             //var sprudel = XMLPartManager.Instance.ReadXMLSchemaFromFile("E:\Studium\Bachelorthesis_sharedsvn\Entwicklung\SIF.Visualization.Excel\SIF.Visualization.Excel\XML\SpRuDeL1_2.xsd");
 
             //validate policy
             //todo
 
-            return dynamicPolicy;
+            return root;
         }
 
         #region private workbook model visitor methods
@@ -60,13 +66,17 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         {
             var root = new XElement("sanityRules");
 
+            XElement checking = CreateSanityCheckingCells(n);
+            if (!checking.HasElements) return null;
+
+            root.Add(checking);
             root.Add(CreateSanityValueCells(n));
 
             root.Add(CreateSanityConstraintCells(n));
 
             root.Add(CreateSanityExplanationCells(n));
 
-            root.Add(CreateSanityCheckingCells(n));
+
 
             root.Add(new XElement("sanityWarnings", n.SanityWarnings));
             return root;

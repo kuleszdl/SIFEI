@@ -20,9 +20,9 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         public object Visit(Core.WorkbookModel n)
         {
             if (this.root == null) return false;
-
-            foreach (var scenarioElement in this.root.Elements())
+            foreach (var scenarioElement in root.Elements())
             {
+                if (scenarioElement.Name != "Scenario") continue;
                 var newScenario = new Scenario();
                 newScenario.Accept(new XMLToScenarioVisitor(scenarioElement));
 
@@ -88,54 +88,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
                 }
             }
 
-
-            var sanityRules = root.Element(XName.Get("sanityRules"));
-            if (sanityRules != null)
-            {
-                foreach (var sanityElement in sanityRules.Elements())
-                {
-                    var newSanityValue = new SanityValueCellData();
-                    newSanityValue.Accept(new XMLToScenarioVisitor(sanityElement));
-                    n.SanityValueCells.Add(newSanityValue);
-                }
-            }
-            /*
-            // sanity constraints
-            var sanityConstraintElements = root.Element(XName.Get("sanityConstraints"));
-            if (sanityConstraintElements != null)
-            {
-                foreach (var resultElement in resultElements.Elements())
-                {
-                    var newResult = new SanityConstraintCellData();
-                    newResult.Accept(new XMLToScenarioVisitor(resultElement));
-                    n.SanityConstraintCells.Add(newResult);
-                }
-            }
-
-            // sanity explanations
-            var sanityExplanationElements = root.Element(XName.Get("sanityExplanations"));
-            if (sanityExplanationElements != null)
-            {
-                foreach (var resultElement in resultElements.Elements())
-                {
-                    var newResult = new SanityExplanationCellData();
-                    newResult.Accept(new XMLToScenarioVisitor(resultElement));
-                    n.SanityExplanationCells.Add(newResult);
-                }
-            }
-
-            // sanity checking
-            var sanityCheckingElements = root.Element(XName.Get("sanityChecking"));
-            if (sanityCheckingElements != null)
-            {
-                foreach (var resultElement in resultElements.Elements())
-                {
-                    var newResult = new SanityCheckingCellData();
-                    newResult.Accept(new XMLToScenarioVisitor(resultElement));
-                    n.SanityCheckingCells.Add(newResult);
-                }
-            }
-            */
+           
             return true;
         }
 

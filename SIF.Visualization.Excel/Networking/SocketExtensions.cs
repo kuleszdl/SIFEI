@@ -32,7 +32,7 @@ namespace SIF.Visualization.Excel.Networking
             buffer = new byte[stringLength];
             socket.Receive(buffer, 0, stringLength, SocketFlags.None);
 
-            return UTF8Encoding.UTF8.GetString(buffer);
+            return UTF8Encoding.UTF8.GetString(buffer).Trim();
         }
     }
 }
