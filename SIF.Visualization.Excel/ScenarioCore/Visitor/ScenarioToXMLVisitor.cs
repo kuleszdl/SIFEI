@@ -18,7 +18,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             root.Add(new XAttribute("Spreadsheet", NullCheck(n.Spreadsheet)));
             root.Add(new XAttribute("PolicyPath", NullCheck(n.PolicyPath)));
             
-            //safe scenarios
+            //save scenarios
             foreach (var scen in n.Scenarios)
             {
                 if (scen != null) root.Add(scen.Accept(this) as XElement);
@@ -45,17 +45,6 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             var resultElements = this.SaveResults(n);
             if (resultElements != null) root.Add(resultElements);
 
-            var sanityValueElements = this.SaveSanityValueCells(n);
-            if (sanityValueElements != null) root.Add(sanityValueElements);
-
-            var sanityConstraintElements = this.SaveSanityConstraintCells(n);
-            if (sanityConstraintElements != null) root.Add(sanityConstraintElements);
-
-            var sanityExplanationElements = this.SaveSanityExplanationCells(n);
-            if (sanityExplanationElements != null) root.Add(sanityExplanationElements);
-
-            var sanityCheckingElements = this.SaveSanityCheckingCells(n);
-            if (sanityCheckingElements != null) root.Add(sanityCheckingElements);
 
             return root;
         }
