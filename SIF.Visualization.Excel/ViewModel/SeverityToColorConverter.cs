@@ -16,6 +16,7 @@ namespace SIF.Visualization.Excel.ViewModel
             decimal number = (decimal)value;
 
             var maximumSeverity = DataModel.Instance.CurrentWorkbook.Findings.Max(p => p.Severity);
+
             var max = Math.Max(maximumSeverity, 1);
             number = number / max;
 
