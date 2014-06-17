@@ -10,6 +10,7 @@ using Microsoft.Office.Interop.Excel;
 using SIF.Visualization.Excel.ScenarioView;
 using SIF.Visualization.Excel.Properties;
 using SIF.Visualization.Excel.SharedView;
+using SIF.Visualization.Excel.ViolationsView;
 
 namespace SIF.Visualization.Excel
 {
@@ -32,13 +33,14 @@ namespace SIF.Visualization.Excel
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             InspectionEngine.Instance.Start();
-            
+
             Globals.ThisAddIn.Application.WorkbookActivate += Application_WorkbookActivate;
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
             InspectionEngine.Instance.Stop();
+            Properties.Settings.Default.Save();
         }
 
         #region Multiple Worksheet Management
@@ -61,15 +63,16 @@ namespace SIF.Visualization.Excel
                 sharedPaneContainer.VisibleChanged += SharedPaneContainer_VisibleChanged;
 
                 sharedPaneContainer.SharedPane.DataContext = workbook;
+                sharedPane.Width = 340;
                 this.TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "shared Pane"), sharedPane);
 
                 // create findings pane
-                var findingsPaneContainer = new FindingsPaneContainer();
-                var taskPane = this.CustomTaskPanes.Add(findingsPaneContainer, "Findings");
-                findingsPaneContainer.VisibleChanged += FindingsPaneContainer_VisibleChanged;
+                var violationViewContainer = new ViolationsViewContainer();
+                var taskPane = this.CustomTaskPanes.Add(violationViewContainer, "Violations");
+                violationViewContainer.VisibleChanged += FindingsPaneContainer_VisibleChanged;
 
-                findingsPaneContainer.FindingsPane.DataContext = workbook;
-                this.TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "Findings"), taskPane);
+                violationViewContainer.ViolationsView.DataContext = workbook;
+                this.TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "Violations"), taskPane);
 
                 //create scenario detail pane
                 var scenarioDetailPainContainer = new ScenarioDetailPaneContainer();
@@ -77,7 +80,7 @@ namespace SIF.Visualization.Excel
                 scenarioDetailPane.Width = 260;
                 scenarioDetailPainContainer.VisibleChanged += ScenarioDetailPaneContainer_VisibleChanged;
 
-                this.TaskPanes.Add(new Tuple<WorkbookModel,string>(workbook, "Scenario Details"), scenarioDetailPane);
+                this.TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "Scenario Details"), scenarioDetailPane);
 
                 //add selection changed event handler for ribbon
                 Wb.Application.SheetSelectionChange += DataModel.Instance.WorkbookSelectionChangedEventHandler;

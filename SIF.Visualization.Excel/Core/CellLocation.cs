@@ -308,7 +308,7 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public void Select()
         {
-            this.Worksheet.Activate();
+            ((_Worksheet)this.Worksheet).Activate();
             this.Worksheet.Range[this.ShortLocation].Select();
         }
 
@@ -317,7 +317,7 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public void ScrollIntoView()
         {
-            this.Worksheet.Activate();
+            ((_Worksheet)this.Worksheet).Activate();
             this.Worksheet.Range[this.ShortLocation].Show();
         }
 

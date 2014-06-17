@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SIF.Visualization.Excel.ViolationsView;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -66,12 +67,12 @@ namespace SIF.Visualization.Excel.Core
 
                         DataModel.Instance.CurrentWorkbook = workbook;
 
-                        var findingsPaneContainer = new FindingsPaneContainer();
-                        var taskPane = Globals.ThisAddIn.CustomTaskPanes.Add(findingsPaneContainer, "Findings");
+                        var violationsViewContainer = new ViolationsViewContainer();
+                        var taskPane = Globals.ThisAddIn.CustomTaskPanes.Add(violationsViewContainer, "Violations");
 
-                        findingsPaneContainer.FindingsPane.DataContext = workbook;
+                        violationsViewContainer.ViolationsView.DataContext = workbook;
 
-                        Globals.ThisAddIn.TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "Findings"), taskPane);
+                        Globals.ThisAddIn.TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "Violations"), taskPane);
                     }
 
                     this.currentWorkbook = workbook;

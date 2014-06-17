@@ -17,7 +17,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             root.Add(new XAttribute("Title", NullCheck(n.Title)));
             root.Add(new XAttribute("Spreadsheet", NullCheck(n.Spreadsheet)));
             root.Add(new XAttribute("PolicyPath", NullCheck(n.PolicyPath)));
-            
+
             //save scenarios
             foreach (var scen in n.Scenarios)
             {
@@ -40,7 +40,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             if (inputElements != null) root.Add(inputElements);
 
             var intermediateElements = this.SaveIntermediates(n);
-            if(intermediateElements != null) root.Add(intermediateElements);
+            if (intermediateElements != null) root.Add(intermediateElements);
 
             var resultElements = this.SaveResults(n);
             if (resultElements != null) root.Add(resultElements);
@@ -54,7 +54,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             var root = new XElement("InputCellData");
             if (n.Location != null) root.Add(new XElement("Location", n.Location));
             if (n.Content != null) root.Add(new XElement("Content", n.Content));
-            if (n.CellType != null) root.Add(new XElement("CellType", n.CellType));
+            root.Add(new XElement("CellType", n.CellType));
 
             return root;
         }
@@ -64,7 +64,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             var root = new XElement("SanityConstraintCellData");
             if (n.Location != null) root.Add(new XElement("Location", n.Location));
             if (n.Content != null) root.Add(new XElement("Content", n.Content));
-            if (n.CellType != null) root.Add(new XElement("CellType", n.CellType));
+            root.Add(new XElement("CellType", n.CellType));
 
             return root;
         }
@@ -74,7 +74,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             var root = new XElement("SanityExplanationCellData");
             if (n.Location != null) root.Add(new XElement("Location", n.Location));
             if (n.Content != null) root.Add(new XElement("Content", n.Content));
-            if (n.CellType != null) root.Add(new XElement("CellType", n.CellType));
+            root.Add(new XElement("CellType", n.CellType));
 
             return root;
         }
@@ -83,7 +83,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             var root = new XElement("SanityValueCellData");
             if (n.Location != null) root.Add(new XElement("Location", n.Location));
             if (n.Content != null) root.Add(new XElement("Content", n.Content));
-            if (n.CellType != null) root.Add(new XElement("CellType", n.CellType));
+            root.Add(new XElement("CellType", n.CellType));
 
             return root;
         }
@@ -92,7 +92,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             var root = new XElement("SanityCheckingCellData");
             if (n.Location != null) root.Add(new XElement("Location", n.Location));
             if (n.Content != null) root.Add(new XElement("Content", n.Content));
-            if (n.CellType != null) root.Add(new XElement("CellType", n.CellType));
+            root.Add(new XElement("CellType", n.CellType));
 
             return root;
         }
@@ -101,7 +101,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             var root = new XElement("IntermediateCellData");
             if (n.Location != null) root.Add(new XElement("Location", n.Location));
             if (n.Content != null) root.Add(new XElement("Content", n.Content));
-            if (n.CellType != null) root.Add(new XElement("CellType", n.CellType));
+            root.Add(new XElement("CellType", n.CellType));
             root.Add(new XElement("differenceUp", n.DifferenceUp));
             root.Add(new XElement("differenceDown", n.DifferenceDown));
 
@@ -113,7 +113,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             var root = new XElement("resultCellData");
             if (n.Location != null) root.Add(new XElement("Location", n.Location));
             if (n.Content != null) root.Add(new XElement("Content", n.Content));
-            if (n.CellType != null) root.Add(new XElement("CellType", n.CellType));
+            root.Add(new XElement("CellType", n.CellType));
             root.Add(new XElement("differenceUp", n.DifferenceUp));
             root.Add(new XElement("differenceDown", n.DifferenceDown));
 

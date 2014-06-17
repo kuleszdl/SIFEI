@@ -119,7 +119,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
                         }
                     }
                 }
-                
+
             });
 
             #endregion
@@ -257,8 +257,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
             if (cellType == typeof(Cells.InputCell))
             {
                 var noFilledInputs = (from q in newScenario.Inputs
-                                       where q.Content != null
-                                       select q).ToList().Count <= 0;
+                                      where q.Content != null
+                                      select q).ToList().Count <= 0;
 
                 return noFilledInputs;
             }
@@ -371,6 +371,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
             catch (Exception e)
             {
                 value = String.Empty;
+                Console.WriteLine(e.Message);
             }
 
             return value;

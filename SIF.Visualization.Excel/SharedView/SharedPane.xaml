@@ -4,56 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:scenarioView="clr-namespace:SIF.Visualization.Excel.ScenarioView"
-             xmlns:viewModel="clr-namespace:SIF.Visualization.Excel.ViewModel"
-             xmlns:sif="clr-namespace:SIF.Visualization.Excel"
+             xmlns:viewmodel="clr-namespace:SIF.Visualization.Excel.ViewModel"
+             xmlns:violationsView="clr-namespace:SIF.Visualization.Excel.ViolationsView"
+             xmlns:falsePositiveView="clr-namespace:SIF.Visualization.Excel.FalsePositiveView"
+             xmlns:laterView="clr-namespace:SIF.Visualization.Excel.LaterView"
+             xmlns:solvedView="clr-namespace:SIF.Visualization.Excel.SolvedView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="SharedResoursces.xaml"/>
+                <ResourceDictionary Source="SharedResources.xaml"/>
                 <ResourceDictionary>
 
-                    <!--Border colors-->
-                    <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
-                    <Color x:Key="BorderMediumColor">#FF888888</Color>
-                    <Color x:Key="BorderDarkColor">#FF444444</Color>
-
-                    <Color x:Key="PressedBorderLightColor">#FF888888</Color>
-                    <Color x:Key="PressedBorderDarkColor">#FF444444</Color>
-
-                    <Color x:Key="DisabledBorderLightColor">#FFAAAAAA</Color>
-                    <Color x:Key="DisabledBorderDarkColor">#FF888888</Color>
-
-                    <!--Control colors.-->
-                    <Color x:Key="WindowColor">#FFE8EDF9</Color>
-                    <Color x:Key="ContentAreaColorLight">#FFC5CBF9</Color>
-                    <Color x:Key="ContentAreaColorDark">#FF7381F9</Color>
-
-                    <Color x:Key="DisabledControlLightColor">#FFE8EDF9</Color>
-                    <Color x:Key="DisabledControlDarkColor">#FFC5CBF9</Color>
-                    <Color x:Key="DisabledForegroundColor">#FF888888</Color>
-
-                    <Color x:Key="SelectedBackgroundColor">#FFC5CBF9</Color>
-                    <Color x:Key="SelectedUnfocusedColor">#FFDDDDDD</Color>
-
-                    <Color x:Key="ControlLightColor">White</Color>
-                    <Color x:Key="ControlMediumColor">#FF7381F9</Color>
-                    <Color x:Key="ControlDarkColor">#FF211AA9</Color>
-
-                    <Color x:Key="ControlMouseOverColor">#FF3843C4</Color>
-                    <Color x:Key="ControlPressedColor">#FF211AA9</Color>
-
-
-                    <Color x:Key="GlyphColor">#FF444444</Color>
-                    <Color x:Key="GlyphMouseOver">sc#1, 0.004391443, 0.002428215, 0.242281124</Color>
-
-                    <!--Control-specific resources.-->
-                    <Color x:Key="HeaderTopColor">#FFC5CBF9</Color>
-                    <Color x:Key="DatagridCurrentCellBorderColor">Black</Color>
-                    <Color x:Key="SliderTrackDarkColor">#FFC5CBF9</Color>
-
-                    <Color x:Key="NavButtonFrameColor">#FF3843C4</Color>
+                    <!--Converter-->
+                    <viewmodel:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
 
                     <LinearGradientBrush x:Key="MenuPopupBrush"
                                  EndPoint="0.5,1"
@@ -118,19 +83,6 @@
                                                   IsItemsHost="True"
                                                   KeyboardNavigation.TabIndex="1"
                                                   Background="Transparent" />
-                                        <!--<Polygon x:Name="triangle" 
-                                                 Grid.Row="1"
-                                                 StrokeThickness="1"
-                                                 Margin="10 20 0 0" 
-                                                 Fill="Transparent" 
-                                                 Points="0 0, 0 10, 10 0">
-                                            <Polygon.Stroke>
-                                                <SolidColorBrush Color="{DynamicResource BorderMediumColor}"/>
-                                            </Polygon.Stroke>
-                                            <Polygon.RenderTransform>
-                                                <RotateTransform Angle="45"/>
-                                            </Polygon.RenderTransform>
-                                        </Polygon>-->
                                         <Border x:Name="Border"
                                                 Grid.Row="2"
                                                 Margin="0 20 0 0"
@@ -219,7 +171,19 @@
                             </Setter.Value>
                         </Setter>
                     </Style>
-                    
+                    <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+                        <Border Background="{TemplateBinding Background}" 
+                x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="13">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -228,36 +192,95 @@
         <TabControl x:Name="tabcontrol"
                     Background="Transparent"
                     Margin="0 20 0 0"
-                    Style="{StaticResource sharedPaneTabStyle}">
+                    Style="{StaticResource sharedPaneTabStyle}" >
+            <TabItem x:Name="findings">
+                <TabItem.Header>
+                    <Grid Width="30" Height="30">
+                        <Image x:Name="findingsicon"
+                           Source="{StaticResource violationsIcon}"
+                           ToolTip="Violations"
+                           Height="25"
+                           Width="25"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding UnreadViolationCount}" Background="Red" Foreground="White" Template="{StaticResource TextBoxBaseControlTemplate}" 
+                                    Visibility="{Binding UnreadViolationCount, Converter={StaticResource IntToVisibilityConverter}}" HorizontalAlignment="Right" 
+                                    VerticalAlignment="Top" BorderBrush="Red" Margin="0 -10 -4 0"/>
+                    </Grid>
+                </TabItem.Header>
+                <violationsView:ViolationsView/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Grid Width="30" Height="30">
+                        <Image x:Name="falsepositiveicon"
+                           Source="{StaticResource falsepositiveIcon}"
+                           ToolTip="False Positives"
+                           Height="25"
+                           Width="25"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </TabItem.Header>
+                <falsePositiveView:FalsePositiveView />
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Grid Width="30" Height="30">
+                        <Image x:Name="laterView"
+                           Source="{StaticResource laterIcon}"
+                           ToolTip="Later"
+                           Height="25"
+                           Width="25"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </TabItem.Header>
+                <laterView:LaterView/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Grid Width="30" Height="30">
+                        <Image x:Name="solvedView"
+                           Source="{StaticResource solvedIcon}"
+                           ToolTip="Solved"
+                           Height="25"
+                           Width="25"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding UnreadSolvedCount}" Background="Green" Foreground="White" Template="{StaticResource TextBoxBaseControlTemplate}" 
+                                    Visibility="{Binding UnreadSolvedCount, Converter={StaticResource IntToVisibilityConverter}}" HorizontalAlignment="Right" 
+                                    VerticalAlignment="Top" BorderBrush="Green" Margin="0 -10 -4 0"/>
+                    </Grid>
+                </TabItem.Header>
+                <solvedView:SolvedView/>
+            </TabItem>
+            <TabItem IsEnabled="False">
+                <TabItem.Header>
+                    <Rectangle  Fill="Gray" Width="1" Height="30"/>
+                </TabItem.Header>
+            </TabItem>
             <TabItem x:Name="cellDefinition">
                 <TabItem.Header>
-                    <Image x:Name="cellDefinitionIcon"
+                    <Grid Width="30" Height="30">
+                        <Image x:Name="cellDefinitionIcon"
                            Source="{StaticResource InputCellIcon}"
-                           ToolTip="cell definitions"
-                           Height="20"
-                           Width="20"/>
+                           ToolTip="Cell Definitions"
+                           Height="25"
+                           Width="25"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
                 </TabItem.Header>
                 <scenarioView:DefineCellsPane/>
             </TabItem>
             <TabItem x:Name="scenarios">
                 <TabItem.Header>
-                    <Image x:Name="scenariosicon"
+                    <Grid Width="30" Height="30">
+                        <Image x:Name="scenariosicon"
                            Source="{StaticResource scenarios}"
-                           ToolTip="scenario overview"
-                           Height="20"
-                           Width="20"/>
+                           ToolTip="Scenario Overview"
+                           Height="25"
+                           Width="25"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
                 </TabItem.Header>
                 <scenarioView:ScenarioPane/>
-            </TabItem>
-            <TabItem x:Name="findings">
-                <TabItem.Header>
-                    <Image x:Name="findingsicon"
-                           Source="{StaticResource findingsIcon}"
-                           ToolTip="findings"
-                           Height="20"
-                           Width="20"/>
-                </TabItem.Header>
-                <sif:FindingsPane/>
             </TabItem>
         </TabControl>
     </Grid>

@@ -87,8 +87,6 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
                     n.Results.Add(newResult);
                 }
             }
-
-           
             return true;
         }
 

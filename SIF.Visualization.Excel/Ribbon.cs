@@ -10,6 +10,8 @@ using SIF.Visualization.Excel.Properties;
 using System.Diagnostics;
 using SIF.Visualization.Excel.Cells;
 using System.Windows.Controls.Primitives;
+using System.Xml;
+using System.IO;
 
 namespace SIF.Visualization.Excel
 {
@@ -67,7 +69,11 @@ namespace SIF.Visualization.Excel
                 }
             }
 
-            DataModel.Instance.CurrentWorkbook.Findings.Clear();
+            DataModel.Instance.CurrentWorkbook.Violations.Clear();
+            DataModel.Instance.CurrentWorkbook.FalsePositives.Clear();
+            DataModel.Instance.CurrentWorkbook.SolvedViolations.Clear();
+            DataModel.Instance.CurrentWorkbook.LaterViolations.Clear();
+
             //DataModel.Instance.CurrentWorkbook.InputCells.Clear();
             //DataModel.Instance.CurrentWorkbook.IntermediateCells.Clear();
             //DataModel.Instance.CurrentWorkbook.OutputCells.Clear();
@@ -356,7 +362,7 @@ namespace SIF.Visualization.Excel
                 //back to the scenario editor
                 return;
             }
-            else if (ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.IntermediateCell)) 
+            else if (ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.IntermediateCell))
                      && ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.OutputCell)))
             {
                 //message for no input cell values
@@ -441,7 +447,9 @@ namespace SIF.Visualization.Excel
             this.resultCellToggleButton.Enabled = !create;
         }
 
-        
-
+        private void automaticScanCheckBox_Click(object sender, RibbonControlEventArgs e)
+        {
+            Settings.Default.AutomaticScans = this.automaticScanCheckBox.Checked;
+        }
     }
 }

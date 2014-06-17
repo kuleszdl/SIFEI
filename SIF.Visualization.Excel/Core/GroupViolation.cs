@@ -1,4 +1,5 @@
 ﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
@@ -11,9 +12,7 @@ namespace SIF.Visualization.Excel.Core
         #region Fields
 
         private decimal severity;
-        private string location;
         private ObservableCollection<SingleViolation> violations;
-        private SingleViolation selectedViolation;
 
         #endregion
 
@@ -29,24 +28,6 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
-        /// Gets or sets the location of this group violation.
-        /// </summary>
-        public string Location
-        {
-            get { return this.location; }
-            set { this.SetProperty(ref this.location, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the selected single violation of this group violation.
-        /// </summary>
-        public SingleViolation SelectedViolation
-        {
-            get { return this.selectedViolation; }
-            set { this.SetProperty(ref this.selectedViolation, value); }
-        }
-
-        /// <summary>
         /// Gets the single violations belonging to this group violation.
         /// </summary>
         public ObservableCollection<SingleViolation> Violations
@@ -59,6 +40,40 @@ namespace SIF.Visualization.Excel.Core
                     this.violations.CollectionChanged += Violations_CollectionChanged;
                 }
                 return this.violations;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that shows whether this violation has been selected or not
+        /// </summary>
+        public override bool IsSelected
+        {
+            get { return this.isSelected; }
+            set
+            {
+                if (this.SetProperty(ref this.isSelected, value))
+                {
+                    violations.ToList().ForEach(v => v.IsSelected = value);
+                    if (value)
+                    {
+                        this.IsRead = true;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that indicates whether this violation is visible in the spreadsheet.
+        /// </summary>
+        public override bool IsVisible
+        {
+            get { return this.isVisible; }
+            set
+            {
+                if (this.SetProperty(ref this.isVisible, value))
+                {
+                    this.violations.ToList().ForEach(vi => vi.IsVisible = value);
+                }
             }
         }
 
@@ -78,9 +93,7 @@ namespace SIF.Visualization.Excel.Core
 
             return base.Equals(other) &&
                    this.Severity == other.Severity &&
-                   this.Location == other.Location &&
-                   this.Violations.SequenceEqual(other.Violations) &&
-                   this.SelectedViolation == other.SelectedViolation;
+                   this.Violations.SequenceEqual(other.Violations);
         }
 
         /// <summary>
@@ -121,30 +134,64 @@ namespace SIF.Visualization.Excel.Core
 
         #region Methods
 
+        /// <summary>
+        /// Empty constructor
+        /// </summary>
         public GroupViolation()
         {
         }
 
-        public GroupViolation(XElement root, Workbook workbook, Finding finding)
-            : base(root, workbook, finding)
+        /// <summary>
+        /// Constructor for the xml file from SIF
+        /// </summary>
+        /// <param name="root">The root XElement</param>
+        /// <param name="workbook">The current workbook</param>
+        /// <param name="scanTime">The time of the scan</param>
+        /// <param name="rule">The rule of this violation</param>
+        public GroupViolation(XElement root, Workbook workbook, DateTime scanTime, Rule rule)
+            : base(root, workbook, scanTime, rule)
         {
             (from p in root.Elements(XName.Get("singleviolation"))
-             select new SingleViolation(p, workbook, finding)).ToList().ForEach(p => this.Violations.Add(p));
-
-            this.VisibilityChanged += GroupViolation_VisibilityChanged;
+             select new SingleViolation(p, workbook, scanTime, rule, true)).ToList().ForEach(p => this.Violations.Add(p));
         }
 
+        /// <summary>
+        /// Constructor for the xml file, that is stored in the .xls file
+        /// </summary>
+        /// <param name="element">The root XElement of the xml</param>
+        /// <param name="workbook">The current workbook</param>
+        public GroupViolation(XElement element, Workbook workbook)
+            : base(element, workbook)
+        {
+            (from p in element.Elements(XName.Get("groupedviolation"))
+             select new SingleViolation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
+            this.load = false;
+        }
+
+        /// <summary>
+        /// Recalculates the serverity of this violation when the violations list changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Violations_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            this.Severity = this.Violations.Max(p => p.Severity);
+        }
+
+        /// <summary>
+        /// Handles the changes of the visibility property
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GroupViolation_VisibilityChanged(object sender, System.EventArgs e)
         {
             foreach (var violation in this.Violations)
                 violation.IsVisible = this.IsVisible;
         }
 
-        private void Violations_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            this.Severity = this.Violations.Sum(p => p.Severity);
-        }
-
+        /// <summary>
+        /// Renders the controls in the spreadsheet
+        /// </summary>
         public override void CreateControls()
         {
             foreach (var violation in this.Violations)
@@ -153,9 +200,17 @@ namespace SIF.Visualization.Excel.Core
             }
         }
 
-        public override string ToString()
+        /// <summary>
+        /// Writes this violation to a XElement obejct
+        /// </summary>
+        /// <param name="name">the name of the node in the xml</param>
+        /// <returns>the object with the data of this violation</returns>
+        public override XElement ToXElement(String name)
         {
-            return this.Description + ", " + this.CausingElement;
+            var element = this.SuperClassToXElement(new XElement(XName.Get(name + "group")));
+
+            element.Add(XName.Get("groupedviolations"), XName.Get("groupedviolation"), from p in this.violations select p.ToXElement("groupedviolation"));
+            return element;
         }
 
         #endregion

@@ -165,14 +165,15 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         /// <returns></returns>
         private string GetDocumentProperty(Core.WorkbookModel n, string propertyName)
         {
-            var properties = (Microsoft.Office.Core.DocumentProperties) n.Workbook.BuiltinDocumentProperties;
+            var properties = (Microsoft.Office.Core.DocumentProperties)n.Workbook.BuiltinDocumentProperties;
             string value;
             try
             {
-                value = (properties[propertyName].Value != null)? properties[propertyName].Value.ToString() : String.Empty;
+                value = (properties[propertyName].Value != null) ? properties[propertyName].Value.ToString() : String.Empty;
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 value = String.Empty;
             }
 

@@ -10,7 +10,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
     {
         Boolean mustBeLeftToRightReadable;
         Boolean mustBeTopToDownReadable;
-        
+
         //Future work: ignored cells
 
         #region Properties
@@ -20,11 +20,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         /// </summary>
         public Boolean MustBeLeftToRightReadable
         {
-            get 
-            {
-                if (mustBeLeftToRightReadable == null) this.mustBeLeftToRightReadable = false;
-                return this.mustBeLeftToRightReadable; 
-            }
+            get { return this.mustBeLeftToRightReadable; }
             set { this.SetProperty(ref this.mustBeLeftToRightReadable, value); }
         }
 
@@ -33,11 +29,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         /// </summary>
         public Boolean MustBeTopToDownReadable
         {
-            get
-            {
-                if (mustBeTopToDownReadable == null) this.mustBeTopToDownReadable = false;
-                return this.mustBeTopToDownReadable;
-            }
+            get { return this.mustBeTopToDownReadable; }
             set { this.SetProperty(ref this.mustBeTopToDownReadable, value); }
         }
 

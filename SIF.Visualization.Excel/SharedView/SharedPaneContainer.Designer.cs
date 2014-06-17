@@ -37,7 +37,7 @@
             this.sharedPaneHost.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sharedPaneHost.Location = new System.Drawing.Point(0, 0);
             this.sharedPaneHost.Name = "sharedPaneHost";
-            this.sharedPaneHost.Size = new System.Drawing.Size(150, 150);
+            this.sharedPaneHost.Size = new System.Drawing.Size(300, 150);
             this.sharedPaneHost.TabIndex = 0;
             this.sharedPaneHost.Text = "elementHost1";
             this.sharedPaneHost.Child = this.sharedPane1;
@@ -48,6 +48,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.sharedPaneHost);
             this.Name = "SharedPaneContainer";
+            this.Size = new System.Drawing.Size(300, 150);
             this.ResumeLayout(false);
 
         }
