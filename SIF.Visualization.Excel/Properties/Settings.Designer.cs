@@ -115,5 +115,17 @@ namespace SIF.Visualization.Excel.Properties {
                 this["AutomaticScans"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnforceStaticRules {
+            get {
+                return ((bool)(this["EnforceStaticRules"]));
+            }
+            set {
+                this["EnforceStaticRules"] = value;
+            }
+        }
     }
 }
