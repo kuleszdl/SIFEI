@@ -9,6 +9,7 @@ using SIF.Visualization.Excel.ScenarioCore.Visitor;
 using System.Xml.Schema;
 using SIF.Visualization.Excel.Networking;
 using SIF.Visualization.Excel.Core;
+using SIF.Visualization.Excel.Properties;
 
 namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 {
@@ -46,10 +47,19 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             dynamicPolicy.Add(CreateOutputCells(n));
             // TODO: don't add when no scenario is present
             root.Add(dynamicPolicy);
-            XElement sanityRules = CreateSanityRules(n);
-            if (sanityRules != null)
+            if (Settings.Default.EnforceStaticRules)
             {
-                root.Add(sanityRules);
+                XElement sanityRules = CreateSanityRules(n);
+                if (sanityRules != null)
+                {
+                    root.Add(sanityRules);
+                }
+                XElement readingDirection = createReadingDirection();
+                root.Add(readingDirection);
+                XElement constants = createNoConstants();
+                root.Add(constants);
+                XElement formulaComplexity = createFormulaComplexity();
+                root.Add(formulaComplexity);
             }
             //read schema policy
             //var sprudel = XMLPartManager.Instance.ReadXMLSchemaFromFile("E:\Studium\Bachelorthesis_sharedsvn\Entwicklung\SIF.Visualization.Excel\SIF.Visualization.Excel\XML\SpRuDeL1_2.xsd");
@@ -58,6 +68,40 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             //todo
 
             return root;
+        }
+
+        private XElement createReadingDirection()
+        {
+            XElement reading = new XElement("readingDirectionPolicyRule");
+            XElement left = new XElement("leftToRight");
+            left.Value = "true";
+            XElement top = new XElement("topToBottom");
+            top.Value = "true";
+
+            reading.Add(left);
+            reading.Add(top);
+            return reading;
+        }
+
+        private XElement createNoConstants()
+        {
+            XElement noConstant = new XElement("noConstantsPolicyRule");
+            //XElement ignoredConstants = new XElement("ignoredConstants");
+            //XElement ignoreOne = new XElement("ignoredConstant");
+            //ignoreOne.Value = "1";
+            //ignoredConstants.Add(ignoreOne);
+            //noConstant.Add(ignoredConstants);
+            return noConstant;
+        }
+
+        private XElement createFormulaComplexity()
+        {
+            XElement formulaRule = new XElement("formulaComplexityPolicyRule");
+            XElement maxNesting = new XElement("formulaComplexityMaxNesting");
+            maxNesting.Value = "3";
+            formulaRule.Add(maxNesting);
+
+            return formulaRule;
         }
 
         #region private workbook model visitor methods
@@ -165,14 +209,15 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         /// <returns></returns>
         private string GetDocumentProperty(Core.WorkbookModel n, string propertyName)
         {
-            var properties = (Microsoft.Office.Core.DocumentProperties) n.Workbook.BuiltinDocumentProperties;
+            var properties = (Microsoft.Office.Core.DocumentProperties)n.Workbook.BuiltinDocumentProperties;
             string value;
             try
             {
-                value = (properties[propertyName].Value != null)? properties[propertyName].Value.ToString() : String.Empty;
+                value = (properties[propertyName].Value != null) ? properties[propertyName].Value.ToString() : String.Empty;
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 value = String.Empty;
             }
 

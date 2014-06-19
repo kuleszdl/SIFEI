@@ -11,14 +11,11 @@ namespace SIF.Visualization.Excel.Core
     public class SingleViolation : Violation
     {
         #region Fields
-
-        private bool isSelected;
-        private bool isFalsePositive;
         private decimal severity;
-
         private string controlName;
         private CellErrorInfo cellErrorInfo;
         private Microsoft.Office.Tools.Excel.ControlSite control;
+        private bool groupedViolation;
 
         #endregion
 
@@ -27,48 +24,20 @@ namespace SIF.Visualization.Excel.Core
         /// <summary>
         /// Gets or sets a value that indicates whether this violation is selected in the user interface.
         /// </summary>
-        public bool IsSelected
+        public override bool IsSelected
         {
             get { return this.isSelected; }
             set
             {
-                if (this.SetProperty(ref this.isSelected, value) && this.IsVisible == true)
+                if (this.SetProperty(ref this.isSelected, value))
                 {
                     // Make control topmost
-                    if (this.Control != null) this.Control.BringToFront();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value that indicates whether this is a false positive.
-        /// </summary>
-        public bool IsFalsePositive
-        {
-            get { return this.isFalsePositive; }
-            set
-            {
-                if (this.SetProperty(ref this.isFalsePositive, value))
-                {
-                    this.Control.Visible = !this.IsFalsePositive;
-                    if (this.IsFalsePositive)
+                    if (this.Control != null && value)
                     {
-                        // Save the information about this false positive
-                        var name = this.Cell.AddName(Settings.Default["FalsePositivePrefix"] as string, true);
-                        DataModel.Instance.CurrentWorkbook.FalsePositives.Add(new FalsePositive() { Name = name.Name, ViolationName = this.CausingElement + this.Description, Content = this.Cell.Worksheet.Range[this.Cell.ShortLocation].Formula as string });
-                    }
-                    else
-                    {
-                        // Remove the information about this false positive
-                        foreach (var name in this.Cell.FalsePositiveNames)
+                        this.Control.BringToFront();
+                        if (!this.groupedViolation)
                         {
-                            var falsePositive = DataModel.Instance.CurrentWorkbook.FalsePositives.Where(p => p.Name == name.Name).FirstOrDefault();
-                            if (falsePositive != null && falsePositive.ViolationName == this.CausingElement + this.Description)
-                            {
-                                DataModel.Instance.CurrentWorkbook.FalsePositives.Remove(falsePositive);
-                            }
-
-                            this.Cell.DeleteName(name.Name);
+                            this.IsRead = true;
                         }
                     }
                 }
@@ -111,6 +80,62 @@ namespace SIF.Visualization.Excel.Core
             set { this.SetProperty(ref this.control, value); }
         }
 
+        /// <summary>
+        /// Gets or sets a value that indicates whether this violation is visible in the spreadsheet.
+        /// </summary>
+        public override bool IsVisible
+        {
+            get { return this.isVisible; }
+            set
+            {
+                if (this.SetProperty(ref this.isVisible, value))
+                {
+                    if (this.Control != null)
+                    {
+                        this.Control.Visible = this.IsVisible;
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Empty constructor
+        /// </summary>
+        public SingleViolation()
+        {
+        }
+
+        /// <summary>
+        /// Constructor for the xml file from SIF
+        /// </summary>
+        /// <param name="root">The root XElement</param>
+        /// <param name="workbook">The current workbook</param>
+        /// <param name="scanTime">The time of the scan</param>
+        /// <param name="rule">The rule of this violation</param>
+        public SingleViolation(XElement root, Workbook workbook, DateTime scanTime, Rule rule, bool groupedViolation)
+            : base(root, workbook, scanTime, rule)
+        {
+            this.Severity = decimal.Parse(root.Attribute(XName.Get("severity")).Value.Replace(".0", ""));
+            this.groupedViolation = groupedViolation;
+        }
+
+        /// <summary>
+        /// Constructor for the xml file, that is stored in the .xls file
+        /// </summary>
+        /// <param name="element">The root XElement of the xml</param>
+        /// <param name="workbook">The current workbook</param>
+        public SingleViolation(XElement element, Workbook workbook)
+            : base(element, workbook)
+        {
+            this.severity = Decimal.Parse(element.Attribute(XName.Get("severity")).Value);
+            this.controlName = element.Attribute(XName.Get("controlname")).Value;
+            this.groupedViolation = Convert.ToBoolean(element.Attribute(XName.Get("groupedviolation")).Value);
+        }
+
         #endregion
 
         #region Operators
@@ -126,7 +151,6 @@ namespace SIF.Visualization.Excel.Core
             if ((object)other == null) return false;
 
             return base.Equals(other) &&
-                   this.IsFalsePositive == other.IsFalsePositive &&
                    this.IsSelected == other.IsSelected &&
                    this.Severity == other.Severity;
         }
@@ -169,28 +193,9 @@ namespace SIF.Visualization.Excel.Core
 
         #region Methods
 
-        public SingleViolation()
-        {
-        }
-
-        public SingleViolation(XElement root, Workbook workbook, Finding finding)
-            : base(root, workbook, finding)
-        {
-            this.Severity = decimal.Parse(root.Attribute(XName.Get("severity")).Value.Replace(".0", ""));
-            this.VisibilityChanged += SingleViolation_VisibilityChanged;
-        }
-
-        public void SetFalsePositiveSilently(bool falsePositive)
-        {
-            this.isFalsePositive = falsePositive;
-        }
-
-        private void SingleViolation_VisibilityChanged(object sender, EventArgs e)
-        {
-            if (this.Control != null)
-                this.Control.Visible = this.IsVisible ?? false;
-        }
-
+        /// <summary>
+        /// Renders the controls in the spreadsheet
+        /// </summary>
         public override void CreateControls()
         {
             var container = new CellErrorInfoContainer();
@@ -212,8 +217,22 @@ namespace SIF.Visualization.Excel.Core
             this.Control = vsto.Controls.AddControl(container, this.Cell.Worksheet.Range[this.Cell.ShortLocation], this.ControlName);
             this.Control.Width = this.Control.Height;
             this.Control.Placement = Microsoft.Office.Interop.Excel.XlPlacement.xlMove;
+        }
 
-            this.Control.Visible = !this.IsFalsePositive;
+        /// <summary>
+        /// Writes this violation to a XElement obejct
+        /// </summary>
+        /// <param name="name">the name of the node in the xml</param>
+        /// <returns>the object with the data of this violation</returns>
+        public override XElement ToXElement(String name)
+        {
+            var element = this.SuperClassToXElement(new XElement(XName.Get(name)));
+
+            // own fields
+            element.SetAttributeValue(XName.Get("severity"), this.severity);
+            element.SetAttributeValue(XName.Get("controlname"), this.controlName);
+            element.SetAttributeValue(XName.Get("groupedviolation"), this.groupedViolation);
+            return element;
         }
 
         #endregion

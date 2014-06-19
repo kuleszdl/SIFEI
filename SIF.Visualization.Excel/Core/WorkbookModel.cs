@@ -7,6 +7,7 @@ using SIF.Visualization.Excel.ScenarioCore.Visitor;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -66,8 +67,12 @@ namespace SIF.Visualization.Excel.Core
         private ObservableCollection<Cell> sanityCheckingCells;
         private ObservableCollection<Cell> intermediateCells;
         private ObservableCollection<Cell> outputCells;
-        private ObservableCollection<Finding> findings;
-        private ObservableCollection<FalsePositive> falsePositives;
+        private ObservableCollection<Violation> violations;
+        private ObservableCollection<Violation> falsePositives;
+        private ObservableCollection<Violation> laterViolations;
+        private ObservableCollection<Violation> solvedViolations;
+        private int unreadViolationCount;
+        private int unreadSolvedCount;
         private ObservableCollection<SIF.Visualization.Excel.ScenarioCore.Scenario> scenarios;
         private Boolean sanityWarnings = true;
 
@@ -218,29 +223,68 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
-        /// Gets or sets the findings of the current document.
+        /// Gets or sets the violations of the current document
         /// </summary>
-        public ObservableCollection<Finding> Findings
+        public ObservableCollection<Violation> Violations
         {
             get
             {
-                if (this.findings == null) this.findings = new ObservableCollection<Finding>();
-                return this.findings;
+                if (this.violations == null)
+                {
+                    this.violations = new ObservableCollection<Violation>();
+                    this.violations.CollectionChanged += violations_CollectionChanged;
+                }
+
+                return this.violations;
             }
-            set { this.SetProperty(ref this.findings, value); }
+            set
+            {
+                this.SetProperty(ref this.violations, value);
+            }
+        }
+
+
+        /// <summary>
+        /// Gets or sets the false positives of the current document.
+        /// </summary>
+        public ObservableCollection<Violation> FalsePositives
+        {
+            get
+            {
+                if (this.falsePositives == null) this.falsePositives = new ObservableCollection<Violation>();
+                return this.falsePositives;
+            }
+            set { this.SetProperty(ref this.falsePositives, value); }
         }
 
         /// <summary>
         /// Gets or sets the false positives of the current document.
         /// </summary>
-        public ObservableCollection<FalsePositive> FalsePositives
+        public ObservableCollection<Violation> LaterViolations
         {
             get
             {
-                if (this.falsePositives == null) this.falsePositives = new ObservableCollection<FalsePositive>();
-                return this.falsePositives;
+                if (this.laterViolations == null) this.laterViolations = new ObservableCollection<Violation>();
+                return this.laterViolations;
             }
-            set { this.SetProperty(ref this.falsePositives, value); }
+            set { this.SetProperty(ref this.laterViolations, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the false positives of the current document.
+        /// </summary>
+        public ObservableCollection<Violation> SolvedViolations
+        {
+            get
+            {
+                if (this.solvedViolations == null)
+                {
+                    this.solvedViolations = new ObservableCollection<Violation>();
+                    this.solvedViolations.CollectionChanged += solvedViolations_CollectionChanged;
+                }
+                return this.solvedViolations;
+            }
+            set { this.SetProperty(ref this.solvedViolations, value); }
         }
 
         /// <summary>
@@ -254,6 +298,24 @@ namespace SIF.Visualization.Excel.Core
                 return this.scenarios;
             }
             set { this.SetProperty(ref this.scenarios, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the count of the unread violations
+        /// </summary>
+        public int UnreadViolationCount
+        {
+            get { return this.unreadViolationCount; }
+            set { this.SetProperty(ref this.unreadViolationCount, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the count of the unread solved violations
+        /// </summary>
+        public int UnreadSolvedCount
+        {
+            get { return this.unreadSolvedCount; }
+            set { this.SetProperty(ref this.unreadSolvedCount, value); }
         }
 
         /// <summary>
@@ -286,7 +348,6 @@ namespace SIF.Visualization.Excel.Core
                    this.InputCells.SequenceEqual(other.InputCells) &&
                    this.IntermediateCells.SequenceEqual(other.IntermediateCells) &&
                    this.OutputCells.SequenceEqual(other.OutputCells) &&
-                   this.Findings.SequenceEqual(other.Findings) &&
                    this.FalsePositives.SequenceEqual(other.FalsePositives) &&
                    this.Scenarios.SequenceEqual(other.Scenarios) &&
                    Object.ReferenceEquals(this.Workbook, other.Workbook);
@@ -340,14 +401,9 @@ namespace SIF.Visualization.Excel.Core
         {
             this.Workbook = workbook;
 
-            // Load the false positives
-            var falsePositivesXml = XMLPartManager.Instance.LoadXMLPart(this, "FalsePositives");
-            if (falsePositivesXml != null)
-            {
-                // Add them to the FalsePositives collection
-                (from p in falsePositivesXml.Elements(XName.Get("falsepositive"))
-                 select new FalsePositive(p)).ToList().ForEach(p => this.FalsePositives.Add(p));
-            }
+            this.Workbook.BeforeSave += Workbook_BeforeSave;
+            this.Workbook.BeforeClose += Workbook_BeforeClose;
+            this.Workbook.AfterSave += Workbook_AfterSave;
 
             // Load cell definitions
             this.Accept(new XMLToCellDefinitionVisitor(XMLPartManager.Instance.LoadXMLPart(this, "CellDefinitions")));
@@ -355,8 +411,82 @@ namespace SIF.Visualization.Excel.Core
             // Load the scenarios
             this.Accept(new XMLToScenarioVisitor(XMLPartManager.Instance.LoadXMLPart(this, "Scenario")));
 
-            this.Workbook.BeforeSave += Workbook_BeforeSave;
-            this.Workbook.BeforeClose += Workbook_BeforeClose;
+            // Load the violations
+            var violationsXml = XMLPartManager.Instance.LoadXMLPart(this, "Violations");
+            if (violationsXml != null)
+            {
+                // Add them to the violations collection
+                (from p in violationsXml.Elements(XName.Get("violation"))
+                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
+                (from p in violationsXml.Elements(XName.Get("violationgroup"))
+                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
+
+                // refresh UI
+                foreach (var violation in this.Violations)
+                {
+                    violation.CreateControls();
+                }
+            }
+
+            // Load the false positives
+            var falsePositivesXml = XMLPartManager.Instance.LoadXMLPart(this, "FalsePositives");
+            if (falsePositivesXml != null)
+            {
+                // Add them to the FalsePositives collection
+                (from p in falsePositivesXml.Elements(XName.Get("falsepositive"))
+                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.FalsePositives.Add(p));
+                (from p in falsePositivesXml.Elements(XName.Get("falsepositivegroup"))
+                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.FalsePositives.Add(p));
+
+                // refresh UI
+                foreach (var falsePositive in this.FalsePositives)
+                {
+                    falsePositive.CreateControls();
+                }
+            }
+
+            // Load the later violations
+            var laterXml = XMLPartManager.Instance.LoadXMLPart(this, "LaterViolations");
+            if (laterXml != null)
+            {
+                // Add them to the FalsePositives collection
+                (from p in laterXml.Elements(XName.Get("laterviolation"))
+                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.LaterViolations.Add(p));
+                (from p in laterXml.Elements(XName.Get("laterviolationgroup"))
+                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.LaterViolations.Add(p));
+
+                // refresh UI
+                foreach (var later in this.LaterViolations)
+                {
+                    later.CreateControls();
+                }
+            }
+
+            // Load the solved violations
+            var solvedXml = XMLPartManager.Instance.LoadXMLPart(this, "SolvedViolations");
+            if (solvedXml != null)
+            {
+                // Add them to the FalsePositives collection
+                (from p in solvedXml.Elements(XName.Get("solvedviolation"))
+                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
+                (from p in solvedXml.Elements(XName.Get("solvedviolationgroup"))
+                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
+
+                // refresh UI
+                foreach (var solved in this.SolvedViolations)
+                {
+                    solved.CreateControls();
+                }
+            }
+        }
+
+        private void Workbook_AfterSave(bool Success)
+        {
+            // Run a scan if necessary
+            if (Settings.Default.AutomaticScans)
+            {
+                this.Inspect();
+            }
         }
 
         /// <summary>
@@ -364,9 +494,17 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         private void Workbook_BeforeSave(bool SaveAsUI, ref bool Cancel)
         {
-            // Save the false positives
-            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("falsepositives"), from p in this.FalsePositives
-                                                                                                select p.ToXElement()), "FalsePositives");
+            //Save the violations
+            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("violations"), from p in this.Violations select p.ToXElement("violation")), "Violations");
+
+            //Save the false positives
+            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("falsepositives"), from p in this.FalsePositives select p.ToXElement("falsepositive")), "FalsePositives");
+
+            // Save the later violations
+            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("laterviolations"), from p in this.LaterViolations select p.ToXElement("laterviolation")), "LaterViolations");
+
+            // Save the solved violations
+            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("solvedviolations"), from p in this.SolvedViolations select p.ToXElement("solvedviolation")), "SolvedViolations");
 
             // Save the scenarios
             XMLPartManager.Instance.SaveXMLPart(this, this.Accept(new ScenarioToXMLVisitor()) as XElement, "Scenario");
@@ -374,6 +512,7 @@ namespace SIF.Visualization.Excel.Core
             // Save the cell definitions
             XMLPartManager.Instance.SaveXMLPart(this, this.Accept(new CellDefinitionToXMLVisitor()) as XElement, "CellDefinitions");
         }
+
 
         /// <summary>
         /// Handle the scenario controls in the cells before close.
@@ -434,96 +573,123 @@ namespace SIF.Visualization.Excel.Core
             /*
              * Load the data
              */
-            //this.InputCells.Clear();
-            //this.IntermediateCells.Clear();
-            //this.OutputCells.Clear();
-
-            this.Findings.Clear();
-
-            XElement rootElement = XElement.Parse(xml);
-
-            // General attributes
-            var titleAttribute = rootElement.Attribute(XName.Get("title"));
-            if (titleAttribute != null) this.Title = titleAttribute.Value;
-            else this.Title = null;
-
-            var spreadsheetAttribute = rootElement.Attribute(XName.Get("file"));
-            if (spreadsheet != null) this.Spreadsheet = spreadsheetAttribute.Value;
-            else this.Spreadsheet = null;
-
-            // Policy
-            var policyElement = rootElement.Element(XName.Get("policy"));
-            if (policyElement != null) this.Policy = new Policy(policyElement);
-            else this.Policy = null;
-
-            // Cells
-            var cellsElement = rootElement.Element(XName.Get("cells"));
-            if (cellsElement != null)
+            if (xml != null && xml.Length > 0)
             {
-                var cells = cellsElement;
+                XElement rootElement = XElement.Parse(xml);
 
-                // Input cells
-                var inputCells = cells.Element(XName.Get("input"));
-                //this.ParseCells(inputCells, this.InputCells, typeof(InputCell)); /*functionality dosn't right, we need a inteligent mergeing*/
+                // General attributes
+                var titleAttribute = rootElement.Attribute(XName.Get("title"));
+                if (titleAttribute != null) this.Title = titleAttribute.Value;
+                else this.Title = null;
 
-                // Intermediate cells
-                var intermediateCells = cells.Element(XName.Get("intermediate"));
-                //this.ParseCells(intermediateCells, this.IntermediateCells, typeof(IntermediateCell));
+                var spreadsheetAttribute = rootElement.Attribute(XName.Get("file"));
+                if (spreadsheet != null) this.Spreadsheet = spreadsheetAttribute.Value;
+                else this.Spreadsheet = null;
 
-                // Output cells
-                var outputCells = cells.Element(XName.Get("output"));
-                //this.ParseCells(outputCells, this.OutputCells, typeof(OutputCell));
-            }
-            else
-            {
-                this.InputCells.Clear();
-                this.IntermediateCells.Clear();
-                this.OutputCells.Clear();
-            }
+                // Policy
+                var policyElement = rootElement.Element(XName.Get("policy"));
+                if (policyElement != null) this.Policy = new Policy(policyElement);
+                else this.Policy = null;
 
-            // Findings
-            var findings = rootElement.Element(XName.Get("findings"));
-            this.Findings.Clear();
-            if (findings != null)
-            {
-                var tempCollection = (from p in findings.Elements(XName.Get("rule"))
-                                      select new Finding(p, this.Workbook)).ToList();
-
-                // Check for false positives
-                foreach (var singleViolation in from p in tempCollection
-                                                from q in p.Violations
-                                                where q is SingleViolation
-                                                select q as SingleViolation)
+                // Cells
+                var cellsElement = rootElement.Element(XName.Get("cells"));
+                if (cellsElement != null)
                 {
-                    // Check, whether there is a false positive for this violation
-                    foreach (var name in singleViolation.Cell.FalsePositiveNames)
-                    {
-                        // Check, whether this false positive still applies
-                        var falsePositive = (from p in this.FalsePositives
-                                             where p.Name == name.Name
-                                             select p).FirstOrDefault();
-                        if (falsePositive != null)
-                        {
-                            if (falsePositive.Content == singleViolation.Cell.Content && falsePositive.ViolationName == singleViolation.CausingElement + singleViolation.Description)
-                            {
-                                // This false positive is still valid
-                                singleViolation.SetFalsePositiveSilently(true);
-                            }
-                        }
-                    }
+                    var cells = cellsElement;
+
+                    // Input cells
+                    var inputCells = cells.Element(XName.Get("input"));
+                    //this.ParseCells(inputCells, this.InputCells, typeof(InputCell)); /*functionality dosn't right, we need a inteligent mergeing*/
+
+                    // Intermediate cells
+                    var intermediateCells = cells.Element(XName.Get("intermediate"));
+                    //this.ParseCells(intermediateCells, this.IntermediateCells, typeof(IntermediateCell));
+
+                    // Output cells
+                    var outputCells = cells.Element(XName.Get("output"));
+                    //this.ParseCells(outputCells, this.OutputCells, typeof(OutputCell));
                 }
-
-                tempCollection.ForEach(p => this.Findings.Add(p));
-            }
-
-            /*
-             * Refresh the UI
-             */
-            foreach (var finding in this.Findings)
-            {
-                finding.CreateControls();
+                else
+                {
+                    this.InputCells.Clear();
+                    this.IntermediateCells.Clear();
+                    this.OutputCells.Clear();
+                }
+                this.LoadViolations(rootElement);
             }
         }
+        /// <summary>
+        /// This method loads the violations of the xml report
+        /// </summary>
+        private void LoadViolations(XElement rootElement)
+        {
+            DateTime scanTime = DateTime.Now;
+            var findings = rootElement.Element(XName.Get("findings"));
+            var violations = new List<Violation>();
+            foreach (var ruleXML in findings.Elements(XName.Get("rule")))
+            {
+                Rule rule = new Rule(ruleXML);
+
+                // Parse violations
+                (from p in ruleXML.Elements(XName.Get("singleviolation"))
+                 select new SingleViolation(p, workbook, scanTime, rule, false)).ToList().ForEach(p => violations.Add(p));
+                (from p in ruleXML.Elements(XName.Get("violationgroup"))
+                 select new GroupViolation(p, workbook, scanTime, rule)).ToList().ForEach(p => violations.Add(p));
+            }
+
+            // Add only new violations
+            foreach (Violation violation in violations)
+            {
+                if (this.Violations.Contains(violation))
+                {
+                    this.Violations.ElementAt(this.Violations.IndexOf(violation)).FoundAgain = true;
+                }
+                else if (this.FalsePositives.Contains(violation) || this.SolvedViolations.Contains(violation))
+                {
+                    // nothing to do here
+                }
+                else if (this.LaterViolations.Contains(violation))
+                {
+                    this.LaterViolations.ElementAt(this.LaterViolations.IndexOf(violation)).FoundAgain = true;
+                }
+                else
+                {
+                    this.Violations.Add(violation);
+                }
+            }
+
+            // mark all solved violations
+            for (int i = this.Violations.Count - 1; i >= 0; i--)
+            {
+                if (this.Violations.ElementAt(i).FoundAgain == true)
+                {
+                    this.Violations.ElementAt(i).FoundAgain = false;
+                }
+                else
+                {
+                    this.Violations.ElementAt(i).SolvedTime = scanTime;
+                    this.Violations.ElementAt(i).ViolationState = Violation.ViolationType.SOLVED;
+                }
+            }
+            for (int i = this.LaterViolations.Count - 1; i >= 0; i--)
+            {
+                if (this.LaterViolations.ElementAt(i).FoundAgain == true)
+                {
+                    this.LaterViolations.ElementAt(i).FoundAgain = false;
+                }
+                else
+                {
+                    this.LaterViolations.ElementAt(i).SolvedTime = scanTime;
+                    this.LaterViolations.ElementAt(i).ViolationState = Violation.ViolationType.SOLVED;
+                }
+            }
+            // refresh UI
+            foreach (var violation in this.Violations)
+            {
+                violation.CreateControls();
+            }
+        }
+
 
         /// <summary>
         /// Adds automatic cells to the cell definitions list.
@@ -603,7 +769,7 @@ namespace SIF.Visualization.Excel.Core
                         this.InputCells.Remove(c);
                     }
                     catch (Exception)
-                    {}
+                    { }
                 }
             }
             OnCellDefinitionChanged(new EventArgs());
@@ -878,6 +1044,25 @@ namespace SIF.Visualization.Excel.Core
             }
         }
 
+        /// <summary>
+        /// Sets the unread violations count when the violations collection changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void violations_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            this.UnreadViolationCount = (from vi in violations where vi.IsRead == false select vi).Count();
+        }
+
+        /// <summary>
+        /// Sets the unread solved violations count when the solved violations collection changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void solvedViolations_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            this.UnreadSolvedCount = (from vi in solvedViolations where vi.IsRead == false select vi).Count();
+        }
         #endregion
 
     }

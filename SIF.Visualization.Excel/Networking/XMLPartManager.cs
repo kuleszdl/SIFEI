@@ -97,7 +97,7 @@ namespace SIF.Visualization.Excel.Networking
                     }
                 }
                 catch (Exception e)
-                { }
+                { Console.WriteLine(e.Message); }
             }
 
             return resultPart;
@@ -105,23 +105,23 @@ namespace SIF.Visualization.Excel.Networking
 
         public XmlSchema ReadXMLSchemaFromFile(string filename)
         {
-            try 
-	        {	        
-		        XmlTextReader reader = new XmlTextReader(filename);
+            try
+            {
+                XmlTextReader reader = new XmlTextReader(filename);
                 XmlSchema myschema = XmlSchema.Read(reader, ValidationCallback);
 
                 return myschema;
-	        }
-	        catch (Exception)
-	        {
-		          return null;
-	        }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
 
         }
 
         public void ValidationCallback(object sender, ValidationEventArgs e)
         {
- 	        if (e.Severity == XmlSeverityType.Warning)  
+            if (e.Severity == XmlSeverityType.Warning)
             {
                 Debug.Write("WARNING ValidationCallback: ");
             }

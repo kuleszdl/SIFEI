@@ -14,61 +14,60 @@
                 <ResourceDictionary>
 
                     <!--Converters-->
-                    <viewModel:BooleanNORConverter x:Key="BooleanNORToBooleanConverter"/>
                     <viewModel:CellDataClassToVisibilityConverter x:Key="CellDataClassToVisibilityConverter"/>
                     <viewModel:InverseBoolConverter x:Key="InverseBoolConverter"/>
                     <viewModel:StringsNotEqualsToBoolConverter x:Key="StringsNotEqualsToBoolConverter"/>
                     <viewModel:DifferenceTextBoxMultiConverter x:Key="DifferenceTextBoxMultiConverter"/>
                     <viewModel:StringIsNotEmptyToBoolConverter x:Key="StringIsNotEmptyToBoolConverter"/>
-                                      
+
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        
 
-    </UserControl.Resources> 
-        <Border BorderBrush="DarkGray" BorderThickness="1" 
+
+    </UserControl.Resources>
+    <Border BorderBrush="DarkGray" BorderThickness="1" 
                 Background="WhiteSmoke">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <!--Icon will be changed in the data context changed handler!-->
-                <Image x:Name="DataIcon"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--Icon will be changed in the data context changed handler!-->
+            <Image x:Name="DataIcon"
                        Source="{StaticResource OutputCellIcon}" 
                        Grid.Column="0"
                        Margin="0 1 5 1"
                        ContextMenuService.VerticalOffset="9"
                        ContextMenuService.HorizontalOffset="-90">
-                    <Image.ContextMenu>
-                        <ContextMenu x:Name="CreateScenarioContextMenu" 
+                <Image.ContextMenu>
+                    <ContextMenu x:Name="CreateScenarioContextMenu" 
                                      Width="130"
                                      PlacementTarget="{Binding ElementName=DataIcon}"
                                      Placement="Bottom">
-                            <ContextMenu.Template>
-                                <ControlTemplate TargetType="ContextMenu">
-                                    <Border SnapsToDevicePixels="True" Background="White" BorderBrush="DarkGray" BorderThickness="1"
+                        <ContextMenu.Template>
+                            <ControlTemplate TargetType="ContextMenu">
+                                <Border SnapsToDevicePixels="True" Background="White" BorderBrush="DarkGray" BorderThickness="1"
                                             Visibility="{Binding Converter={StaticResource CellDataClassToVisibilityConverter}}"
                                             IsEnabled="{Binding Content, Converter={StaticResource StringIsNotEmptyToBoolConverter}, Mode=OneWay}">
                                     <Grid Background="White">
                                         <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                            </Grid.RowDefinitions>
-                                        
-                                            <Grid  Grid.Row="0">
-                                                <Grid.IsEnabled>
-                                                    <MultiBinding Converter="{StaticResource BooleanNORToBooleanConverter}">
-                                                        <Binding ElementName="DifferenceUpCheckBox" Path="IsChecked"/>
-                                                        <Binding ElementName="DifferenceDownCheckBox" Path="IsChecked"/>
-                                                    </MultiBinding>
-                                                </Grid.IsEnabled>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="auto"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Text="Difference"
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid  Grid.Row="0">
+                                            <Grid.IsEnabled>
+                                                <MultiBinding Converter="{StaticResource BooleanNORToBooleanConverter}">
+                                                    <Binding ElementName="DifferenceUpCheckBox" Path="IsChecked"/>
+                                                    <Binding ElementName="DifferenceDownCheckBox" Path="IsChecked"/>
+                                                </MultiBinding>
+                                            </Grid.IsEnabled>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="Difference"
                                                           Margin="5 5 5 5"
                                                           Grid.Column="0"/>
                                             <TextBox x:Name="DifferenceTextBox"
@@ -84,20 +83,20 @@
                                                 </TextBox.Text>
                                             </TextBox>
                                         </Grid>
-                                        
-                                            <Expander x:Name="GeneralExpander" Header="Up / Down"
+
+                                        <Expander x:Name="GeneralExpander" Header="Up / Down"
                                                       IsExpanded="false"
                                                       Style="{StaticResource FlatExpanderStyle}"
                                                       Grid.Row="1">
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="auto"/>
-                                                        <RowDefinition Height="auto"/>
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="auto"/>
-                                                        <ColumnDefinition Width="auto"/>
-                                                        <ColumnDefinition Width="*"/>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                    <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
                                                 <CheckBox x:Name="DifferenceUpCheckBox"
                                                             Margin="5 5 5 5"
@@ -111,7 +110,7 @@
                                                          IsEnabled="{Binding ElementName=DifferenceUpCheckBox, Path=IsChecked}"
                                                          Margin="5 5 5 5"
                                                          Grid.Column="2" Grid.Row="0"/>
-                                                
+
                                                 <CheckBox x:Name="DifferenceDownCheckBox" 
                                                           Margin="5 5 5 5"
                                                           IsChecked="false"
@@ -124,19 +123,19 @@
                                                          IsEnabled="{Binding ElementName=DifferenceDownCheckBox, Path=IsChecked}"
                                                          Margin="5 5 5 5"
                                                          Grid.Column="2" Grid.Row="1"/>
-                                                </Grid>
-                                            </Expander>
-                                        </Grid>
-                                    </Border>
-                                </ControlTemplate>
-                            </ContextMenu.Template>
-                        </ContextMenu>
-                    </Image.ContextMenu>
-                </Image>
+                                            </Grid>
+                                        </Expander>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </ContextMenu.Template>
+                    </ContextMenu>
+                </Image.ContextMenu>
+            </Image>
             <TextBox x:Name="DataTextBox" 
                      Background="Transparent"
                      Grid.Column="1"
                      KeyDown="OnKeyDownHandler"/>
         </Grid>
-        </Border>
+    </Border>
 </UserControl>

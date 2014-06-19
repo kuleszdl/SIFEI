@@ -16,28 +16,10 @@
       <Field Name="location" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AIACAAAAAgAAAAAAgAIAAAACAAAAAIAAAAAAAAAAAiA=</HashCode>
+      <HashCode>AIADAAAAAhAAAIAAhEIAAAACIEAAAIYAAQACAAAAAiA=</HashCode>
       <FileName>Core\Cell.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="SIF.Visualization.Excel.Core.Finding">
-    <Position X="18.25" Y="4" Width="2.25" />
-    <Members>
-      <Field Name="author" Hidden="true" />
-      <Field Name="background" Hidden="true" />
-      <Field Name="description" Hidden="true" />
-      <Field Name="isSettingVisibility" Hidden="true" />
-      <Field Name="isVisible" Hidden="true" />
-      <Field Name="name" Hidden="true" />
-      <Field Name="possibleSolution" Hidden="true" />
-      <Field Name="severity" Hidden="true" />
-      <Field Name="violations" Hidden="true" />
-    </Members>
-    <TypeIdentifier>
-      <HashCode>BAAEAACABQAgkgAAoBAAAIQAACAEAIEAAIAgAASAIiA=</HashCode>
-      <FileName>Core\Finding.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="SIF.Visualization.Excel.Core.GroupViolation">
     <Position X="11.75" Y="10.25" Width="2.5" />
@@ -46,14 +28,13 @@
       <Field Name="violations" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>BAAAAACAIAgAggAEgAIAAAACACAAAIAAAAAAAAQIAiA=</HashCode>
+      <HashCode>BAAAAACAIAAAggAEgAIAAAACACAAAIAAAAAAABQIAiA=</HashCode>
       <FileName>Core\GroupViolation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SIF.Visualization.Excel.Core.WorkbookModel">
     <Position X="3" Y="4" Width="2" />
     <Members>
-      <Field Name="findings" Hidden="true" />
       <Field Name="inputCells" Hidden="true" />
       <Field Name="intermediateCells" Hidden="true" />
       <Field Name="outputCells" Hidden="true" />
@@ -63,7 +44,12 @@
       <Field Name="title" Hidden="true" />
     </Members>
     <NestedTypes>
-      <Enum Name="SIF.Visualization.Excel.Core.WorkbookModel.CellDefineOption" Collapsed="true">
+      <Enum Name="SIF.Visualization.Excel.Core.WorkbookModel.CellDefinitionOption" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Core\WorkbookModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="SIF.Visualization.Excel.Core.WorkbookModel.InspectionMode" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Core\WorkbookModel.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -75,13 +61,13 @@
       </Delegate>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AIACgAAAwBAICFAAiEIAAABCSiAAUJgIABAECgAABiM=</HashCode>
+      <HashCode>hIUCgECGwBBIgFBBikZAgQBCCgECU5gIAhIACwAAgjM=</HashCode>
       <FileName>Core\WorkbookModel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="SIF.Visualization.Excel.Core.Policy">
-    <Position X="21.25" Y="4" Width="2" />
+    <Position X="15.75" Y="4" Width="2" />
     <Members>
       <Field Name="author" Hidden="true" />
       <Field Name="description" Hidden="true" />
@@ -98,20 +84,27 @@
       <Field Name="severity" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>BAAAAAAUAAAAFAQAgAAEAAACACAAQIAAAEAACAQAAig=</HashCode>
+      <HashCode>BAAAAAAUAAAAFAQAgAAEAAAAACAAQIAAAEAAABQAAiA=</HashCode>
       <FileName>Core\SingleViolation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SIF.Visualization.Excel.Core.Violation">
-    <Position X="13.5" Y="4" Width="2.25" />
+    <Position X="11.75" Y="4" Width="2.25" />
     <Members>
       <Field Name="causingElement" Hidden="true" />
       <Field Name="description" Hidden="true" />
       <Field Name="id" Hidden="true" />
       <Field Name="isVisible" Hidden="true" />
     </Members>
+    <NestedTypes>
+      <Enum Name="SIF.Visualization.Excel.Core.Violation.ViolationType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Core\Violation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAgAgEEAAoBFEAAABBCAAAIAAAAAAAgQgAiI=</HashCode>
+      <HashCode>AAACwAAAAkAgEEAAoBBEEAAABTAAgIEAAIAAABQgAqA=</HashCode>
       <FileName>Core\Violation.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -132,7 +125,7 @@
       <Field Name="workbook" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAgAABAAAAAQAAgIAIAAAACAAAAiA=</HashCode>
+      <HashCode>AAAAAQAAAAAAAAAAgAABAQAAAQAAgIAIAAAACAAAAiA=</HashCode>
       <FileName>Core\InspectionJob.cs</FileName>
     </TypeIdentifier>
   </Class>

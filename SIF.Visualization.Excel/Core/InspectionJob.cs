@@ -1,5 +1,6 @@
 ﻿using SIF.Visualization.Excel.Networking;
 using SIF.Visualization.Excel.Properties;
+using SIF.Visualization.Excel.ViolationsView;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -120,7 +121,7 @@ namespace SIF.Visualization.Excel.Core
             File.Delete(this.SpreadsheetPath);
 
             // Execute on the right dispatcher
-            (Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(this.Workbook, "Findings")].Control as FindingsPaneContainer).FindingsPane.Dispatcher.Invoke(() =>
+            (Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(this.Workbook, "Violations")].Control as ViolationsViewContainer).ViolationsView.Dispatcher.Invoke(() =>
             {
                 this.Workbook.Load(report);
             });

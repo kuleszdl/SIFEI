@@ -15,10 +15,9 @@ namespace SIF.Visualization.Excel.ViewModel
         {
             decimal number = (decimal)value;
 
-            var maximumSeverity = DataModel.Instance.CurrentWorkbook.Findings.Max(p => p.Severity);
+            var maximumSeverity = DataModel.Instance.CurrentWorkbook.Violations.Max(p => p.Severity);
 
-            var max = Math.Max(maximumSeverity, 1);
-            number = number / max;
+            number = number / maximumSeverity;
 
             decimal startR = 255;
             decimal startG = 215;
