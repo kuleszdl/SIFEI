@@ -15,7 +15,7 @@
         <viewmodel:SeverityFalsePositiveToColorConverter x:Key="SeverityFalsePositiveToColorConverter"/>
         <viewmodel:BoolToFontWeightConverter x:Key="BooleanToVisibilityConverter"/>
         <viewmodel:TypeConverter x:Key="TypeConverter"/>
-        <viewmodel:TypeToImageConverter x:Key="TypeToImageConverter"/>
+        <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
         <viewmodel:VisibleToTextConverter x:Key="VisibleToTextConverter"/>
 
         <!-- Style for the listBox Items -->
@@ -25,17 +25,17 @@
             <Setter Property="Padding" Value="0"/>
             <Setter Property="BorderBrush" Value="Gray"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Margin"  Value="0 2 0 2"/>
+            <Setter Property="Margin"  Value="0 2 5 2"/>
         </Style>
 
-        <!-- Style for the listBox Items -->
+        <!-- Style for the grouped listBox Items -->
         <Style TargetType="ListBoxItem" x:Key="groupedListBoxItemStyle">
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
             <Setter Property="Padding" Value="0"/>
             <Setter Property="BorderBrush" Value="Gray"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Margin" Value="0 0 0 0"/>
+            <Setter Property="Margin" Value="0 2 5 2"/>
         </Style>
 
         <!--Style for the expander for the grouped violations-->
@@ -154,11 +154,6 @@
                 SelectedIndex="-1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" 
                  SelectionMode="Single" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged" Background="Transparent"
                  BorderThickness="0" HorizontalAlignment="Stretch" ItemContainerStyle="{StaticResource listBoxItemStyle}">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Vertical" HorizontalAlignment="Stretch" />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type model:SingleViolation}">
                     <Grid HorizontalAlignment="Stretch" x:Name="LayoutRoot" Background="Transparent" >
@@ -198,8 +193,17 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image x:Name="typeimage" Source="{Binding Rule.Type, Converter={StaticResource TypeToImageConverter}}" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
-                                 Width="25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Image x:Name="typeimage" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
+                                 Width="25" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image.Source>
+                                    <MultiBinding Converter="{StaticResource TypeReadToImageConverter}">
+                                        <MultiBinding.Bindings>
+                                            <Binding Path="Rule.Type" />
+                                            <Binding Path="IsRead" />
+                                        </MultiBinding.Bindings>
+                                    </MultiBinding>
+                                </Image.Source>
+                            </Image>
                             <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="1" Grid.Row="0"  Margin="10 0 5 5" FontSize="16" TextWrapping="Wrap"/>
                         </Grid>
                         <TextBlock Text="{Binding Severity}" Grid.Column="1" FontWeight="Bold" FontSize="16" Grid.Row="0" HorizontalAlignment="Right" Margin="10 0 0 5" Padding="4 0 2 2">
@@ -339,8 +343,17 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image x:Name="typeimage" Source="{Binding Rule.Type, Converter={StaticResource TypeToImageConverter}}" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
-                                 Width="25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Image x:Name="typeimage" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
+                                 Width="25" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image.Source>
+                                    <MultiBinding Converter="{StaticResource TypeReadToImageConverter}">
+                                        <MultiBinding.Bindings>
+                                            <Binding Path="Rule.Type" />
+                                            <Binding Path="IsRead" />
+                                        </MultiBinding.Bindings>
+                                    </MultiBinding>
+                                </Image.Source>
+                            </Image>
                             <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="1" Grid.Row="0"  Margin="10 0 5 5" FontSize="16" TextWrapping="Wrap"/>
                         </Grid>
                         <TextBlock Text="{Binding Severity}" Grid.Column="1" FontWeight="Bold" FontSize="16" Grid.Row="0" HorizontalAlignment="Right" Margin="10 0 0 5" Padding="4 0 2 2">
