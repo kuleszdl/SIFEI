@@ -174,7 +174,7 @@ namespace SIF.Visualization.Excel.Core
             return base.Equals(other) &&
                    this.Id == other.Id &&
                    this.CausingElement == other.CausingElement &&
-                   this.Description.Length == other.Description.Length &&
+                   this.Description == other.Description &&
                    this.Cell == other.Cell &&
                    this.Rule == other.Rule;
         }
