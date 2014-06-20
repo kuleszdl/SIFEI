@@ -25,17 +25,17 @@
             <Setter Property="Padding" Value="0"/>
             <Setter Property="BorderBrush" Value="Gray"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Margin"  Value="0 2 0 2"/>
+            <Setter Property="Margin"  Value="0 2 5 2"/>
         </Style>
 
-        <!-- Style for the listBox Items -->
+        <!-- Style for the grouped listBox Items -->
         <Style TargetType="ListBoxItem" x:Key="groupedListBoxItemStyle">
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
             <Setter Property="Padding" Value="0"/>
             <Setter Property="BorderBrush" Value="Gray"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Margin" Value="0 0 0 0"/>
+            <Setter Property="Margin" Value="0 2 5 2"/>
         </Style>
 
         <!--Style for the expander for the grouped violations-->
@@ -154,11 +154,6 @@
               SelectedIndex="-1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" 
                  SelectionMode="Single" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged" Background="Transparent"
                  BorderThickness="0" HorizontalAlignment="Stretch" ItemContainerStyle="{StaticResource listBoxItemStyle}">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Vertical" HorizontalAlignment="Stretch" />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type model:SingleViolation}">
                     <Grid HorizontalAlignment="Stretch" x:Name="LayoutRoot" Background="Transparent" >
