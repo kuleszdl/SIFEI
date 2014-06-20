@@ -16,7 +16,7 @@
         <viewmodel:SeverityFalsePositiveToColorConverter x:Key="SeverityFalsePositiveToColorConverter"/>
         <viewmodel:BoolToFontWeightConverter x:Key="BooleanToVisibilityConverter"/>
         <viewmodel:TypeConverter x:Key="TypeConverter"/>
-        <viewmodel:TypeToImageConverter x:Key="TypeToImageConverter"/>
+        <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
         <viewmodel:VisibleToTextConverter x:Key="VisibleToTextConverter"/>
 
         <!-- Style for the listBox Items -->
@@ -149,7 +149,7 @@
         <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="14" TextWrapping="WrapWithOverflow"
                    Visibility="{Binding Violations.Count, Converter={StaticResource InverseIntToVisibilityConverter}}"
                    Text="No findings data. Please trigger a scan from the Ribbon menu." Foreground="#333333" Margin="0 20" />
-        
+
         <!--The listbox-->
         <ListBox x:Name="ViolationList" FontFamily="Segoe UI" FontSize="12" Visibility="{Binding Violations.Count, Converter={StaticResource IntToVisibilityConverter}}"
                  SelectedIndex="-1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" 
@@ -216,14 +216,23 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image x:Name="typeimage" Source="{Binding Rule.Type, Converter={StaticResource TypeToImageConverter}}" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
-                                 Width="25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Image x:Name="typeimage" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
+                                 Width="25" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image.Source>
+                                    <MultiBinding Converter="{StaticResource TypeReadToImageConverter}">
+                                        <MultiBinding.Bindings>
+                                            <Binding Path="Rule.Type" />
+                                            <Binding Path="IsRead" />
+                                        </MultiBinding.Bindings>
+                                    </MultiBinding>
+                                </Image.Source>
+                            </Image>
                             <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="1" Grid.Row="0"  Margin="10 0 5 5" FontSize="16" TextWrapping="Wrap"/>
                         </Grid>
 
                         <TextBlock Text="{Binding CausingElement}" Grid.Column="0" Grid.Row="1"
                                            FontSize="14" Margin="10 5 5 5" VerticalAlignment="Top" TextWrapping="Wrap" />
-                        
+
                         <!--More details expander-->
                         <Expander Name="detailExpander" Background="Transparent" HorizontalAlignment="Left" 
                                   Margin="10 5 5 5" BorderThickness="3" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0">
@@ -283,7 +292,7 @@
                                 </TextBlock>
                             </Grid>
                         </Expander>
-                        
+
                         <!--Hyperlink bar at the end of the item-->
                         <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
                             <Grid.RowDefinitions>
@@ -311,10 +320,10 @@
                                 </Hyperlink>
                             </TextBlock>
                         </Grid>
-                        
+
                     </Grid>
                 </DataTemplate>
-                
+
                 <!--Template for GroupViolations-->
                 <DataTemplate DataType="{x:Type model:GroupViolation}">
                     <Grid HorizontalAlignment="Stretch" x:Name="LayoutRoot" Background="Transparent" >
@@ -371,8 +380,17 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image x:Name="typeimage" Source="{Binding Rule.Type, Converter={StaticResource TypeToImageConverter}}" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
-                                 Width="25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Image x:Name="typeimage" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
+                                 Width="25" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image.Source>
+                                    <MultiBinding Converter="{StaticResource TypeReadToImageConverter}">
+                                        <MultiBinding.Bindings>
+                                            <Binding Path="Rule.Type" />
+                                            <Binding Path="IsRead" />
+                                        </MultiBinding.Bindings>
+                                    </MultiBinding>
+                                </Image.Source>
+                            </Image>
                             <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="1" Grid.Row="0"  Margin="10 0 5 5" FontSize="16" TextWrapping="Wrap"/>
                         </Grid>
                         <TextBlock Text="{Binding CausingElement}" Grid.Column="0" Grid.Row="1"
@@ -449,7 +467,7 @@
                                     <TextBlock Text=")" FontWeight="Bold" />
                                 </StackPanel>
                             </Expander.Header>
-   
+
                             <!--The listbox for the grouped violations-->
                             <ListBox x:Name="GroupedViolationList" FontFamily="Segoe UI" FontSize="12"
                                 SelectedIndex="-1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" 
@@ -537,7 +555,7 @@
                                 </Hyperlink>
                             </TextBlock>
                         </Grid>
-                        
+
                     </Grid>
                 </DataTemplate>
             </ListBox.Resources>

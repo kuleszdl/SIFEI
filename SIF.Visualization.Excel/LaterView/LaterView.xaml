@@ -15,7 +15,7 @@
         <viewmodel:SeverityFalsePositiveToColorConverter x:Key="SeverityFalsePositiveToColorConverter"/>
         <viewmodel:BoolToFontWeightConverter x:Key="BooleanToVisibilityConverter"/>
         <viewmodel:TypeConverter x:Key="TypeConverter"/>
-        <viewmodel:TypeToImageConverter x:Key="TypeToImageConverter"/>
+        <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
         <viewmodel:VisibleToTextConverter x:Key="VisibleToTextConverter"/>
 
         <!-- Style for the listBox Items -->
@@ -198,8 +198,17 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image x:Name="typeimage" Source="{Binding Rule.Type, Converter={StaticResource TypeToImageConverter}}" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
-                                 Width="25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Image x:Name="typeimage" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
+                                 Width="25" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image.Source>
+                                    <MultiBinding Converter="{StaticResource TypeReadToImageConverter}">
+                                        <MultiBinding.Bindings>
+                                            <Binding Path="Rule.Type" />
+                                            <Binding Path="IsRead" />
+                                        </MultiBinding.Bindings>
+                                    </MultiBinding>
+                                </Image.Source>
+                            </Image>
                             <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="1" Grid.Row="0"  Margin="10 0 5 5" FontSize="16" TextWrapping="Wrap"/>
                         </Grid>
                         <TextBlock Text="{Binding Severity}" Grid.Column="1" FontWeight="Bold" FontSize="16" Grid.Row="0" HorizontalAlignment="Right" Margin="10 0 0 5" Padding="4 0 2 2">
@@ -339,8 +348,17 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image x:Name="typeimage" Source="{Binding Rule.Type, Converter={StaticResource TypeToImageConverter}}" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
-                                 Width="25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Image x:Name="typeimage" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
+                                 Width="25" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image.Source>
+                                    <MultiBinding Converter="{StaticResource TypeReadToImageConverter}">
+                                        <MultiBinding.Bindings>
+                                            <Binding Path="Rule.Type" />
+                                            <Binding Path="IsRead" />
+                                        </MultiBinding.Bindings>
+                                    </MultiBinding>
+                                </Image.Source>
+                            </Image>
                             <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="1" Grid.Row="0"  Margin="10 0 5 5" FontSize="16" TextWrapping="Wrap"/>
                         </Grid>
                         <TextBlock Text="{Binding Severity}" Grid.Column="1" FontWeight="Bold" FontSize="16" Grid.Row="0" HorizontalAlignment="Right" Margin="10 0 0 5" Padding="4 0 2 2">

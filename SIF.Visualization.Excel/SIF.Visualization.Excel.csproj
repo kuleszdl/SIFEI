@@ -318,7 +318,7 @@
     <Compile Include="ViewModel\SingleViolationToVisibilityConverter.cs" />
     <Compile Include="ViewModel\StringEqualsToBoolConverter.cs" />
     <Compile Include="ViewModel\TypeConverter.cs" />
-    <Compile Include="ViewModel\TypeToImageConverter.cs" />
+    <Compile Include="ViewModel\TypeReadToImageConverter.cs" />
     <Compile Include="ViewModel\VisibleToTextConverter.cs" />
     <Compile Include="ViolationsView\ViolationsView.xaml.cs">
       <DependentUpon>ViolationsView.xaml</DependentUpon>
@@ -464,10 +464,18 @@
     <Resource Include="icons\falsepositive.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\static.png" />
+    <Resource Include="icons\violations\static.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\sanity.png" />
+    <Resource Include="icons\violations\sanity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\violations\dynamic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\violations\dynamic_unread.png" />
+    <Resource Include="icons\violations\sanity_unread.png" />
+    <Resource Include="icons\violations\static_unread.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
