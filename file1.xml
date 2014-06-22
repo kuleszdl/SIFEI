@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test title="sif3612822761533915252xls" file="C:\Users\Fabian\AppData\Local\Temp\sif3612822761533915252xls">
+	<policy author="" description="" name=" Inspection" />
+	<cells>
+		<input>
+			<cell number="0" location="[sif3612822761533915252xls]Rechner!B4" content="Blank-Cell [Constant]: BLANK" />
+			<cell number="1" location="[sif3612822761533915252xls]Rechner!B6" content="Blank-Cell [Constant]: BLANK" />
+			<cell number="2" location="[sif3612822761533915252xls]Rechner!B8" content="Numeric-Cell [Constant]: 105" />
+			<cell number="3" location="[sif3612822761533915252xls]Rechner!B13" content="Blank-Cell [Constant]: BLANK" />
+			<cell number="4" location="[sif3612822761533915252xls]Rechner!B15" content="Blank-Cell [Constant]: BLANK" />
+			<cell number="5" location="[sif3612822761533915252xls]Rechner!B20" content="Blank-Cell [Constant]: BLANK" />
+			<cell number="6" location="[sif3612822761533915252xls]Rechner!B22" content="Blank-Cell [Constant]: BLANK" />
+			<cell number="7" location="[sif3612822761533915252xls]Rechner!B31" content="Blank-Cell [Constant]: BLANK" />
+		</input>
+		<intermediate>
+			<cell number="0" location="[sif3612822761533915252xls]Rechner!B9" content="Numeric-Cell [Formula]: 6" />
+			<cell number="1" location="[sif3612822761533915252xls]Rechner!B26" content="Numeric-Cell [Formula]: 0" />
+			<cell number="2" location="[sif3612822761533915252xls]Rechner!B28" content="Numeric-Cell [Formula]: 0" />
+			<cell number="3" location="[sif3612822761533915252xls]Rechner!B30" content="Numeric-Cell [Formula]: 0" />
+		</intermediate>
+		<output>
+			<cell number="0" location="[sif3612822761533915252xls]Rechner!B32" content="Numeric-Cell [Formula]: 0" />
+		</output>
+	</cells>
+	<findings>
+		<rule name="Average degree student        " author="Jonas Scheurich" description="&quot;Executes&quot; the spreadsheet and checks for several possible conditions." background="A testscenario which is built by userdefined conditions. While the process of checking the spreadsheet is executed, that is formulae of the spreadsheet are evaluated." severity="8.0" solution="Check the formulae in the causing cell or region." type="DYNAMIC">
+			<singleviolation number="1" causingelement="Numeric-Cell [Formula]: 5547" location="[sif3612822761533915252xls]Rechner!B32" description="The found value was not in the interval ]4475.0;4525.0[" severity="480.0" />
+		</rule>
+		<rule name="Formula Complexity" author="Sebastian Zitzelsberger" description="Checks whether formula complexity goes beyond a certain nesting level or contains more than a certain number of operations" background="N.A." severity="1.0" solution="N.A." type="STATIC">
+			<singleviolation number="1" causingelement="Formula[=IF(B8=105,6,IF(B8=61.36,4,IF(B8=25.56,2,IF(B8=40.9,2,-1))))]" location="[sif3612822761533915252xls]Rechner!B9" description="Number of operations  [12] exceeds maximum allowed number of operations [5] and nesting level [4] exceeds maximum allowed nesting level [2]" severity="60.0" />
+			<singleviolation number="2" causingelement="Formula[=IF(B26+B28&amp;gt;10000,10000,B26+B28)]" location="[sif3612822761533915252xls]Rechner!B30" description="Nesting level [3] exceeds maximum allowed nesting level [2]" severity="20.0" />
+			<singleviolation number="3" causingelement="Formula[=((100-(B31*0.00285))*(1/100)*B30)-(0*B9)]" location="[sif3612822761533915252xls]Rechner!B32" description="Number of operations  [7] exceeds maximum allowed number of operations [5] and nesting level [5] exceeds maximum allowed nesting level [2]" severity="40.0" />
+		</rule>
+		<rule name="No Constants In Formulas" author="Sebastian Zitzelsberger" description="Checks whether formulas contain constant values." background="Constant values are not alyways as constant as they seem in the beginning. In case their values change, its hard to adjust the constants consistently in the spreadsheet if they are not located in individual cells." severity="1.0" solution="Extract the constants into to separate cells and reference these cells" type="STATIC">
+			<singleviolation number="1" causingelement="Formula[=IF(B8=105,6,IF(B8=61.36,4,IF(B8=25.56,2,IF(B8=40.9,2,-1))))]" location="[sif3612822761533915252xls]Rechner!B9" description="The following constants were found: Numeric, Numeric, Integer (2x), Numeric, Integer, Integer, Integer, Numeric" severity="100.0" />
+			<singleviolation number="2" causingelement="Formula[=(B4-B13)*(1-B20)]" location="[sif3612822761533915252xls]Rechner!B26" description="The following constants were found: Integer" severity="20.0" />
+			<singleviolation number="3" causingelement="Formula[=(B6-B15)*(1-B22)]" location="[sif3612822761533915252xls]Rechner!B28" description="The following constants were found: Integer" severity="20.0" />
+			<singleviolation number="4" causingelement="Formula[=IF(B26+B28&amp;gt;10000,10000,B26+B28)]" location="[sif3612822761533915252xls]Rechner!B30" description="The following constants were found: Integer (2x)" severity="40.0" />
+			<singleviolation number="5" causingelement="Formula[=((100-(B31*0.00285))*(1/100)*B30)-(0*B9)]" location="[sif3612822761533915252xls]Rechner!B32" description="The following constants were found: Integer, Integer (2x), Numeric, Integer" severity="100.0" />
+		</rule>
+		<rule name="Plausibility checks" author="N.A." description="Checks whether the to be checked values are conform with the given plausible combinations are." background="N.A." severity="1.0" solution="Correcting obvious typing mistakes, consult the explanation or additional research is required." type="SANITY">
+		</rule>
+		<rule name="Reading direction - References" author="Sebastian Zitzelsberger" description="Checks whether the spreadsheet can be read in configurable directions." background="N.A." severity="1.0" solution="N.A." type="STATIC">
+		</rule>
+		<rule name="Well degree student               " author="Jonas Scheurich" description="&quot;Executes&quot; the spreadsheet and checks for several possible conditions." background="A testscenario which is built by userdefined conditions. While the process of checking the spreadsheet is executed, that is formulae of the spreadsheet are evaluated." severity="1.0" solution="Check the formulae in the causing cell or region." type="SANITY">
+			<singleviolation number="1" causingelement="Numeric-Cell [Formula]: 5757" location="[sif3612822761533915252xls]Rechner!B32" description="The found value was not in the interval ]4800.0;4820.0[" severity="60.0" />
+		</rule>
+	</findings>
+</test>

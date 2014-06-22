@@ -118,7 +118,7 @@ namespace SIF.Visualization.Excel.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool EnforceStaticRules {
             get {
                 return ((bool)(this["EnforceStaticRules"]));

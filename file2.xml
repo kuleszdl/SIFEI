@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test title="sif3612822761533915252xls" file="C:\Users\Fabian\AppData\Local\Temp\sif3612822761533915252xls">
+	<policy author="" description="" name=" Inspection" />
+	<cells>
+		<input>
+			<cell number="0" location="[sif3612822761533915252xls]Rechner!B4" content="Blank-Cell [Constant]: BLANK" />
+			<cell number="1" location="[sif3612822761533915252xls]Rechner!B6" content="Blank-Cell [Constant]: BLANK" />
+			<cell number="2" location="[sif3612822761533915252xls]Rechner!B8" content="Numeric-Cell [Constant]: 105" />
+			<cell number="3" location="[sif3612822761533915252xls]Rechner!B13" content="Blank-Cell [Constant]: BLANK" />
+			<cell number="4" location="[sif3612822761533915252xls]Rechner!B15" content="Blank-Cell [Constant]: BLANK" />
+			<cell number="5" location="[sif3612822761533915252xls]Rechner!B20" content="Blank-Cell [Constant]: BLANK" />
+			<cell number="6" location="[sif3612822761533915252xls]Rechner!B22" content="Blank-Cell [Constant]: BLANK" />
+			<cell number="7" location="[sif3612822761533915252xls]Rechner!B31" content="Blank-Cell [Constant]: BLANK" />
+		</input>
+		<intermediate>
+			<cell number="0" location="[sif3612822761533915252xls]Rechner!B9" content="Numeric-Cell [Formula]: 6" />
+			<cell number="1" location="[sif3612822761533915252xls]Rechner!B26" content="Numeric-Cell [Formula]: 0" />
+			<cell number="2" location="[sif3612822761533915252xls]Rechner!B28" content="Numeric-Cell [Formula]: 0" />
+			<cell number="3" location="[sif3612822761533915252xls]Rechner!B30" content="Numeric-Cell [Formula]: 0" />
+		</intermediate>
+		<output>
+			<cell number="0" location="[sif3612822761533915252xls]Rechner!B32" content="Numeric-Cell [Formula]: 0" />
+		</output>
+	</cells>
+	<findings>
+		<rule name="No Constants In Formulas" author="Sebastian Zitzelsberger" description="Checks whether formulas contain constant values." background="Constant values are not always as constant as they seem in the beginning. In case their values change, its hard to adjust the constants consistently in the spreadsheet if they are not located in individual cells." severity="1.0" solution="Extract the constants into to separate cells and reference these cells" type="STATIC">
+			<violationgroup id="1" causingelement="Formula[=IF(B8=105,6,IF(B8=61.36,4,IF(B8=25.56,2,IF(B8=40.9,2,-1))))]" description="The following constants were found: Numeric, Integer (2x), Numeric, Integer, Integer, Numeric, Integer, Numeric" location="[sif1410369677746368426.xls]Rechner!B26">
+				<singleviolation number="1" causingelement="Formula[=(B4-B13)*(1-B20)]" location="[sif1410369677746368426.xls]Rechner!B26" description="The following constants were found: Integer" severity="20.0" />
+				<singleviolation number="2" causingelement="Formula[=(B6-B15)*(1-B22)]" location="[sif1410369677746368426.xls]Rechner!B28" description="The following constants were found: Integer" severity="20.0" />
+			</violationgroup>
+		</rule>
+	</findings>
+</test>
