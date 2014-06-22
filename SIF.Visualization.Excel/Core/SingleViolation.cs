@@ -35,10 +35,7 @@ namespace SIF.Visualization.Excel.Core
                     if (this.Control != null && value)
                     {
                         this.Control.BringToFront();
-                        if (!this.groupedViolation)
-                        {
-                            this.IsRead = true;
-                        }
+                        this.IsRead = true;
                     }
                 }
             }
@@ -233,6 +230,31 @@ namespace SIF.Visualization.Excel.Core
             element.SetAttributeValue(XName.Get("controlname"), this.controlName);
             element.SetAttributeValue(XName.Get("groupedviolation"), this.groupedViolation);
             return element;
+        }
+
+        protected override void HandleNewState(Violation.ViolationType type)
+        {
+            if (!load && !groupedViolation)
+            {
+                switch (type)
+                {
+                    case ViolationType.NEW:
+                        DataModel.Instance.CurrentWorkbook.Violations.Add(this);
+                        break;
+                    case ViolationType.FALSEPOSITIVE:
+                        this.IsRead = true;
+                        DataModel.Instance.CurrentWorkbook.FalsePositives.Add(this);
+                        break;
+                    case ViolationType.LATER:
+                        this.IsRead = true;
+                        DataModel.Instance.CurrentWorkbook.LaterViolations.Add(this);
+                        break;
+                    case ViolationType.SOLVED:
+                        this.IsRead = false;
+                        DataModel.Instance.CurrentWorkbook.SolvedViolations.Add(this);
+                        break;
+                }
+            }
         }
 
         #endregion

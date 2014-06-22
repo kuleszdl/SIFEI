@@ -316,30 +316,7 @@ namespace SIF.Visualization.Excel.Core
         /// Handles the action when a new ViolationState is set
         /// </summary>
         /// <param name="type">the type of the new violation State</param>
-        private void HandleNewState(ViolationType type)
-        {
-            if (!load)
-            {
-                switch (type)
-                {
-                    case ViolationType.NEW:
-                        DataModel.Instance.CurrentWorkbook.Violations.Add(this);
-                        break;
-                    case ViolationType.FALSEPOSITIVE:
-                        DataModel.Instance.CurrentWorkbook.FalsePositives.Add(this);
-                        this.IsRead = true;
-                        break;
-                    case ViolationType.LATER:
-                        DataModel.Instance.CurrentWorkbook.LaterViolations.Add(this);
-                        this.IsRead = true;
-                        break;
-                    case ViolationType.SOLVED:
-                        DataModel.Instance.CurrentWorkbook.SolvedViolations.Add(this);
-                        this.IsRead = false;
-                        break;
-                }
-            }
-        }
+        protected abstract void HandleNewState(ViolationType type);
 
         /// <summary>
         /// Handles the action when a ol ViolationState is removed

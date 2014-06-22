@@ -35,7 +35,7 @@
             <Setter Property="Padding" Value="0"/>
             <Setter Property="BorderBrush" Value="Gray"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Margin" Value="0 2 5 2"/>
+            <Setter Property="Margin" Value="0 0 0 0"/>
         </Style>
 
         <!--Style for the expander for the grouped violations-->
@@ -474,8 +474,17 @@
                                                     <ColumnDefinition Width="Auto"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Image x:Name="typeimage" Source="{Binding Rule.Type, Converter={StaticResource TypeToImageConverter}}" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
-                                                    Width="25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                                <Image x:Name="typeimage" Grid.Column="0" Grid.Row="0" Margin="0 0 5 5" Height="25"
+                                                    Width="25" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                                    <Image.Source>
+                                                        <MultiBinding Converter="{StaticResource TypeReadToImageConverter}">
+                                                            <MultiBinding.Bindings>
+                                                                <Binding Path="Rule.Type" />
+                                                                <Binding Path="IsRead" />
+                                                            </MultiBinding.Bindings>
+                                                        </MultiBinding>
+                                                    </Image.Source>
+                                                </Image>
                                                 <TextBlock Text="{Binding Rule.Name}" Grid.Column="1" Grid.Row="0"  Margin="10 0 5 5" FontSize="16" TextWrapping="Wrap"/>
                                             </Grid>
                                             <TextBlock Text="{Binding Severity}" Grid.Column="1" FontWeight="Bold" FontSize="16" Grid.Row="0" HorizontalAlignment="Right" Margin="10 1 0 5" Padding="4 0 2 2">
