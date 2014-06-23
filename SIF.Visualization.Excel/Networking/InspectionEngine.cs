@@ -191,7 +191,8 @@ namespace SIF.Visualization.Excel.Networking
                     }
 
                     // Launch a new instance of the Spreadsheet Inspection Framework
-                    var startInfo = new ProcessStartInfo("java", "-jar \"" + Settings.Default.FrameworkPath + Path.DirectorySeparatorChar + "sif.jar\" " + InspectionEngine.Instance.Port);
+                    var startInfo = new ProcessStartInfo("java", "-jar \"" + Settings.Default.FrameworkPath + Path.DirectorySeparatorChar + "sif.jar\" " 
+                        + Settings.Default.SifOptions + " " + InspectionEngine.Instance.Port);
                     startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     var process = Process.Start(startInfo);
 
