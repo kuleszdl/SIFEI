@@ -11,32 +11,27 @@
         <viewmodel:SeverityToColorConverter x:Key="SeverityToColorConverter" />
         <viewmodel:SelectionToOpacityConverter x:Key="SelectionToOpacityConverter" />
         <viewmodel:SeverityFalsePositiveToColorConverter x:Key="SeverityFalsePositiveToColorConverter"/>
+        <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
     </UserControl.Resources>
 
-    <Border BorderBrush="Black" BorderThickness="1" Background="White" MouseLeftButtonUp="Border_MouseLeftButtonUp">
-        <Grid x:Name="LayoutRoot" IsHitTestVisible="True" Background="White">
+    <Border BorderBrush="Black" BorderThickness="1" Background="White">
+        <Grid x:Name="LayoutRoot" IsHitTestVisible="True">
 
-            <Rectangle x:Name="SelectionRect" IsHitTestVisible="False" Fill="#00ADEF" 
-                       Opacity="{Binding IsSelected, Converter={StaticResource SelectionToOpacityConverter}}" />
+            <!--Background color for the grid-->
+            <Grid.Background>
+                <SolidColorBrush>
+                    <SolidColorBrush.Color>
+                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                            <MultiBinding.Bindings>
+                                <Binding Path="Severity" />
+                                <Binding Path="ViolationState" />
+                            </MultiBinding.Bindings>
+                        </MultiBinding>
+                    </SolidColorBrush.Color>
+                </SolidColorBrush>
+            </Grid.Background>
 
-            <Ellipse IsHitTestVisible="False" Stroke="Black" StrokeThickness="0" Margin="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Ellipse.Fill>
-                    <SolidColorBrush>
-                        <SolidColorBrush.Color>
-                            <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
-                                <MultiBinding.Bindings>
-                                    <Binding Path="Severity" />
-                                    <Binding Path="ViolationState" />
-                                </MultiBinding.Bindings>
-                            </MultiBinding>
-                        </SolidColorBrush.Color>
-                    </SolidColorBrush>
-                </Ellipse.Fill>
-            </Ellipse>
-            <Viewbox IsHitTestVisible="False" Margin="2">
-                <TextBlock FontFamily="Arial" Foreground="White" Text="!" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 0" />
-            </Viewbox>
-
+            <!--Context menu for the grid-->
             <Grid.ContextMenu>
                 <ContextMenu x:Name="PopupMenu" HasDropShadow="False" Width="280">
                     <ContextMenu.Template>
@@ -95,11 +90,25 @@
                     </ContextMenu.Template>
                 </ContextMenu>
             </Grid.ContextMenu>
+
+            <!--Tooltip for the grid-->
             <Grid.ToolTip>
                 <ToolTip x:Name="PopupToolTip">
                     Right click to get more information about this violation.
                 </ToolTip>
             </Grid.ToolTip>
+
+            <!--Content of the grid-->
+            <Image x:Name="typeimage" Height="15" Width="15" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image.Source>
+                    <MultiBinding Converter="{StaticResource TypeReadToImageConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding Path="Rule.Type" />
+                            <Binding Path="IsRead" />
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
+                </Image.Source>
+            </Image>
         </Grid>
     </Border>
 
