@@ -213,6 +213,32 @@ namespace SIF.Visualization.Excel.Core
             return element;
         }
 
+        protected override void HandleNewState(Violation.ViolationType type)
+        {
+            if (!load)
+            {
+                switch (type)
+                {
+                    case ViolationType.NEW:
+                        DataModel.Instance.CurrentWorkbook.Violations.Add(this);
+                        break;
+                    case ViolationType.FALSEPOSITIVE:
+                        this.IsRead = true;
+                        DataModel.Instance.CurrentWorkbook.FalsePositives.Add(this);
+                        break;
+                    case ViolationType.LATER:
+                        this.IsRead = true;
+                        DataModel.Instance.CurrentWorkbook.LaterViolations.Add(this);
+                        break;
+                    case ViolationType.SOLVED:
+                        this.IsRead = false;
+                        DataModel.Instance.CurrentWorkbook.SolvedViolations.Add(this);
+                        break;
+                }
+                this.Violations.ToList().ForEach(vi => vi.ViolationState = type);
+            }
+        }
+
         #endregion
     }
 }
