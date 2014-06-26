@@ -65,12 +65,5 @@ namespace SIF.Visualization.Excel.LaterView
             Violation violation = (grid.DataContext as Violation);
             violation.ViolationState = Violation.ViolationType.NEW;
         }
-
-        private void Visible_Click(object sender, RoutedEventArgs e)
-        {
-            Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
-            Violation violation = (grid.DataContext as Violation);
-            violation.IsVisible = !violation.IsVisible;
-        }
     }
 }

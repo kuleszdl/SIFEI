@@ -313,7 +313,6 @@
     <Compile Include="ViewModel\InverseIntToVisibilityConverter.cs" />
     <Compile Include="ViewModel\OutputCellTypeToVisibilityConverter.cs" />
     <Compile Include="ViewModel\SelectionToOpacityConverter.cs" />
-    <Compile Include="ViewModel\SeverityToColorConverter.cs" />
     <Compile Include="ViewModel\SingleViolationToInverseVisibilityConverter.cs" />
     <Compile Include="ViewModel\SingleViolationToVisibilityConverter.cs" />
     <Compile Include="ViewModel\StringEqualsToBoolConverter.cs" />

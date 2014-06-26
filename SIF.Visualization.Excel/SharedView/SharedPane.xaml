@@ -212,19 +212,6 @@
             <TabItem>
                 <TabItem.Header>
                     <Grid Width="30" Height="30">
-                        <Image x:Name="falsepositiveicon"
-                           Source="{StaticResource falsepositiveIcon}"
-                           ToolTip="False Positives"
-                           Height="25"
-                           Width="25"
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </TabItem.Header>
-                <falsePositiveView:FalsePositiveView />
-            </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <Grid Width="30" Height="30">
                         <Image x:Name="laterView"
                            Source="{StaticResource laterIcon}"
                            ToolTip="Later"
@@ -234,6 +221,19 @@
                     </Grid>
                 </TabItem.Header>
                 <laterView:LaterView/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Grid Width="30" Height="30">
+                        <Image x:Name="falsepositiveicon"
+                           Source="{StaticResource falsepositiveIcon}"
+                           ToolTip="False Positives"
+                           Height="25"
+                           Width="25"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </TabItem.Header>
+                <falsePositiveView:FalsePositiveView />
             </TabItem>
             <TabItem>
                 <TabItem.Header>

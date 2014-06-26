@@ -1,4 +1,5 @@
-﻿using SIF.Visualization.Excel.Core;
+﻿using SIF.Visualization.Excel.Cells;
+using SIF.Visualization.Excel.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,7 +54,13 @@ namespace SIF.Visualization.Excel.ViolationsView
         {
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
-                this.ViolationList.ScrollIntoView(e.AddedItems[0]);
+                var selectedItem = (sender as ListBox).SelectedItem as Violation;
+
+                if (selectedItem != null)
+                {
+                    //synchronize selection
+                    CellManager.Instance.SelectCell(Core.DataModel.Instance.CurrentWorkbook, selectedItem.Cell.Location);
+                }
                 DataModel.Instance.CurrentWorkbook.UnreadViolationCount = (from vi in DataModel.Instance.CurrentWorkbook.Violations where vi.IsRead == false select vi).Count();
             }
         }
@@ -70,13 +77,6 @@ namespace SIF.Visualization.Excel.ViolationsView
             Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
             Violation violation = (grid.DataContext as Violation);
             violation.ViolationState = Violation.ViolationType.LATER;
-        }
-
-        private void Visible_Click(object sender, RoutedEventArgs e)
-        {
-            Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
-            Violation violation = (grid.DataContext as Violation);
-            violation.IsVisible = !violation.IsVisible;
         }
     }
 

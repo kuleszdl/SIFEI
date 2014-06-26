@@ -21,9 +21,9 @@ namespace SIF.Visualization.Excel.ViewModel
             switch (violationType)
             {
                 case Violation.ViolationType.FALSEPOSITIVE:
-                    return Colors.Gray;
+                    return Colors.LightGray;
                 case Violation.ViolationType.SOLVED:
-                    return Colors.Green;
+                    return Color.FromRgb(20, 210, 0);
             }
 
             // Color for others
@@ -35,9 +35,9 @@ namespace SIF.Visualization.Excel.ViewModel
             decimal startG = 215;
             decimal startB = 0;
 
-            decimal endR = 192;
-            decimal endG = 0;
-            decimal endB = 0;
+            decimal endR = 255;
+            decimal endG = 50;
+            decimal endB = 50;
 
             decimal diffR = endR - startR;
             decimal diffG = endG - startG;
