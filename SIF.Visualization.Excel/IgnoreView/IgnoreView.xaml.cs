@@ -15,24 +15,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SIF.Visualization.Excel.FalsePositiveView
+namespace SIF.Visualization.Excel.IgnoreView
 {
     /// <summary>
     /// Interaktionslogik für UserControl1.xaml
     /// </summary>
-    public partial class FalsePositiveView : UserControl
+    public partial class IgnoreView : UserControl
     {
-        internal ListCollectionView FalsePositivePane
+        internal ListCollectionView IgnorePane
         {
             get;
             private set;
         }
 
-        public FalsePositiveView()
+        public IgnoreView()
         {
             InitializeComponent();
             this.DataContextChanged += FalsePositiveView_DataContextChanged;
-            this.FalsePositiveList.SelectionChanged += this.ListBox_SelectionChanged;
+            this.IgnoreList.SelectionChanged += this.ListBox_SelectionChanged;
         }
 
 
@@ -41,11 +41,11 @@ namespace SIF.Visualization.Excel.FalsePositiveView
 
             if (this.DataContext == null) return;
 
-            this.FalsePositivePane = new ListCollectionView((this.DataContext as WorkbookModel).FalsePositives);
-            this.FalsePositivePane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
-            this.FalsePositivePane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
+            this.IgnorePane = new ListCollectionView((this.DataContext as WorkbookModel).IgnoredViolations);
+            this.IgnorePane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
+            this.IgnorePane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
 
-            this.FalsePositiveList.ItemsSource = this.FalsePositivePane;
+            this.IgnoreList.ItemsSource = this.IgnorePane;
         }
 
 
@@ -53,11 +53,11 @@ namespace SIF.Visualization.Excel.FalsePositiveView
         {
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
-                this.FalsePositiveList.ScrollIntoView(e.AddedItems[0]);
+                this.IgnoreList.ScrollIntoView(e.AddedItems[0]);
             }
         }
 
-        private void FalsePositive_Click(object sender, RoutedEventArgs e)
+        private void Ignore_Click(object sender, RoutedEventArgs e)
         {
             Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
             Violation violation = (grid.DataContext as Violation);

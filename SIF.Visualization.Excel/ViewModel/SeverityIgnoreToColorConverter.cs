@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace SIF.Visualization.Excel.ViewModel
 {
-    class SeverityFalsePositiveToColorConverter : IMultiValueConverter
+    class SeverityIgnoreToColorConverter : IMultiValueConverter
     {
 
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -20,7 +20,7 @@ namespace SIF.Visualization.Excel.ViewModel
             // Fixed colors
             switch (violationType)
             {
-                case Violation.ViolationType.FALSEPOSITIVE:
+                case Violation.ViolationType.IGNORE:
                     return Colors.LightGray;
                 case Violation.ViolationType.SOLVED:
                     return Color.FromRgb(20, 210, 0);

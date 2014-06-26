@@ -13,7 +13,7 @@
     <UserControl.Resources>
         <viewmodel:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
         <viewmodel:InverseIntToVisibilityConverter x:Key="InverseIntToVisibilityConverter" />
-        <viewmodel:SeverityFalsePositiveToColorConverter x:Key="SeverityFalsePositiveToColorConverter"/>
+        <viewmodel:SeverityIgnoreToColorConverter x:Key="SeverityFalsePositiveToColorConverter"/>
         <viewmodel:BoolToFontWeightConverter x:Key="BooleanToVisibilityConverter"/>
         <viewmodel:TypeConverter x:Key="TypeConverter"/>
         <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>

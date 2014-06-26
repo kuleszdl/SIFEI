@@ -222,9 +222,9 @@ namespace SIF.Visualization.Excel.Core
                     case ViolationType.NEW:
                         DataModel.Instance.CurrentWorkbook.Violations.Add(this);
                         break;
-                    case ViolationType.FALSEPOSITIVE:
+                    case ViolationType.IGNORE:
                         this.IsRead = true;
-                        DataModel.Instance.CurrentWorkbook.FalsePositives.Add(this);
+                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.Add(this);
                         break;
                     case ViolationType.LATER:
                         this.IsRead = true;

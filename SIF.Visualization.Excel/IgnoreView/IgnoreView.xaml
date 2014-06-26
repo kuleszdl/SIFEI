@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SIF.Visualization.Excel.FalsePositiveView.FalsePositiveView"
+﻿<UserControl x:Class="SIF.Visualization.Excel.IgnoreView.IgnoreView"
            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,7 +12,7 @@
     <UserControl.Resources>
         <viewmodel:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
         <viewmodel:InverseIntToVisibilityConverter x:Key="InverseIntToVisibilityConverter" />
-        <viewmodel:SeverityFalsePositiveToColorConverter x:Key="SeverityFalsePositiveToColorConverter"/>
+        <viewmodel:SeverityIgnoreToColorConverter x:Key="SeverityIgnoreToColorConverter"/>
         <viewmodel:BoolToFontWeightConverter x:Key="BooleanToVisibilityConverter"/>
         <viewmodel:TypeConverter x:Key="TypeConverter"/>
         <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
@@ -150,7 +150,7 @@
                    Visibility="{Binding FalsePositives.Count, Converter={StaticResource InverseIntToVisibilityConverter}}"
                    Text="No false positives. Please set violations to false psoitive if this is necessary." Foreground="#333333" Margin="0 20" />
 
-        <ListBox x:Name="FalsePositiveList" FontFamily="Segoe UI" FontSize="12" Visibility="{Binding FalsePositives.Count, Converter={StaticResource IntToVisibilityConverter}}"
+        <ListBox x:Name="IgnoreList" FontFamily="Segoe UI" FontSize="12" Visibility="{Binding FalsePositives.Count, Converter={StaticResource IntToVisibilityConverter}}"
                 SelectedIndex="-1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" 
                  SelectionMode="Single" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged" Background="Transparent"
                  BorderThickness="0" HorizontalAlignment="Stretch" ItemContainerStyle="{StaticResource listBoxItemStyle}">
@@ -293,7 +293,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 5 5 5">
-                                <Hyperlink Click="FalsePositive_Click">
+                                <Hyperlink Click="Ignore_Click">
                                    Not a False Positive
                                 </Hyperlink>
                             </TextBlock>
@@ -517,8 +517,8 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 5 5 5">
-                                <Hyperlink Click="FalsePositive_Click">
-                                   Not a False Positive
+                                <Hyperlink Click="Ignore_Click">
+                                   Do not ignore
                                 </Hyperlink>
                             </TextBlock>
                         </Grid>

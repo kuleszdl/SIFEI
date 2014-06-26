@@ -208,14 +208,14 @@
     <Compile Include="Core\SingleViolation.cs" />
     <Compile Include="Core\Violation.cs" />
     <Compile Include="Core\DataModel.cs" />
-    <Compile Include="FalsePositiveView\FalsePositiveView.xaml.cs">
-      <DependentUpon>FalsePositiveView.xaml</DependentUpon>
+    <Compile Include="IgnoreView\IgnoreView.xaml.cs">
+      <DependentUpon>IgnoreView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FalsePositiveView\FalsePositiveViewContainer.cs">
+    <Compile Include="IgnoreView\IgnoreViewContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FalsePositiveView\FalsePositiveViewContainer.Designer.cs">
-      <DependentUpon>FalsePositiveViewContainer.cs</DependentUpon>
+    <Compile Include="IgnoreView\IgnoreViewContainer.Designer.cs">
+      <DependentUpon>IgnoreViewContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="LaterView\LaterView.xaml.cs">
       <DependentUpon>LaterView.xaml</DependentUpon>
@@ -304,7 +304,7 @@
     <Compile Include="ViewModel\CellDataClassToVisibilityConverter.cs" />
     <Compile Include="ViewModel\IntToVisibilityMultiValueConverter.cs" />
     <Compile Include="ViewModel\InverseIntToVisibilityMultiValueConverter.cs" />
-    <Compile Include="ViewModel\SeverityFalsePositiveToColorConverter.cs" />
+    <Compile Include="ViewModel\SeverityIgnoreToColorConverter.cs" />
     <Compile Include="ViewModel\StringIsNotEmptyToBoolConverter.cs" />
     <Compile Include="ViewModel\InputCellTypeToVisibilityConverter.cs" />
     <Compile Include="ViewModel\DescriptionToShortDescriptionConverter.cs" />
@@ -389,7 +389,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FalsePositiveView\FalsePositiveView.xaml">
+    <Page Include="IgnoreView\IgnoreView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -69,7 +69,7 @@ namespace SIF.Visualization.Excel.ViolationsView
         {
             Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
             Violation violation = (grid.DataContext as Violation);
-            violation.ViolationState = Violation.ViolationType.FALSEPOSITIVE;
+            violation.ViolationState = Violation.ViolationType.IGNORE;
         }
 
         private void Later_Click(object sender, RoutedEventArgs e)

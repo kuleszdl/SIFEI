@@ -10,7 +10,7 @@ namespace SIF.Visualization.Excel.Core
         /// <summary>
         /// Enum for the Violation Type
         /// </summary>
-        public enum ViolationType { NEW, FALSEPOSITIVE, LATER, SOLVED };
+        public enum ViolationType { NEW, IGNORE, LATER, SOLVED };
 
         #region Fields
 
@@ -330,8 +330,8 @@ namespace SIF.Visualization.Excel.Core
                     case ViolationType.NEW:
                         DataModel.Instance.CurrentWorkbook.Violations.Remove(this);
                         break;
-                    case ViolationType.FALSEPOSITIVE:
-                        DataModel.Instance.CurrentWorkbook.FalsePositives.Remove(this);
+                    case ViolationType.IGNORE:
+                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.Remove(this);
                         break;
                     case ViolationType.LATER:
                         DataModel.Instance.CurrentWorkbook.LaterViolations.Remove(this);

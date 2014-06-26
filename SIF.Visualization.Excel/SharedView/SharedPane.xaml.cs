@@ -66,7 +66,7 @@ namespace SIF.Visualization.Excel.SharedView
             if (e.Source is TabControl)
             {
                 DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsSelected = false);
-                DataModel.Instance.CurrentWorkbook.FalsePositives.ToList().ForEach(vi => vi.IsSelected = false);
+                DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.IsSelected = false);
                 DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsSelected = false);
                 DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsSelected = false);
 
@@ -74,31 +74,31 @@ namespace SIF.Visualization.Excel.SharedView
                 {
                     case SharedPaneTabIndex.Violations:
                         DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsVisible = true);
-                        DataModel.Instance.CurrentWorkbook.FalsePositives.ToList().ForEach(vi => vi.IsVisible = false);
+                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         break;
                     case SharedPaneTabIndex.FalsePositive:
                         DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.FalsePositives.ToList().ForEach(vi => vi.IsVisible = true);
+                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = true);
                         DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         break;
                     case SharedPaneTabIndex.Later:
                         DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.FalsePositives.ToList().ForEach(vi => vi.IsVisible = false);
+                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsVisible = true);
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         break;
                     case SharedPaneTabIndex.Solved:
                         DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.FalsePositives.ToList().ForEach(vi => vi.IsVisible = false);
+                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = true);
                         break;
                     default:
                         DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.FalsePositives.ToList().ForEach(vi => vi.IsVisible = false);
+                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         break;

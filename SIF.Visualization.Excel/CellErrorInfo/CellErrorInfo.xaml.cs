@@ -24,7 +24,7 @@ namespace SIF.Visualization.Excel
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             this.PopupMenu.IsOpen = false;
-            (this.DataContext as SingleViolation).ViolationState = Violation.ViolationType.FALSEPOSITIVE;
+            (this.DataContext as SingleViolation).ViolationState = Violation.ViolationType.IGNORE;
         }
     }
 }

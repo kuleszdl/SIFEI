@@ -6,7 +6,7 @@
              xmlns:scenarioView="clr-namespace:SIF.Visualization.Excel.ScenarioView"
              xmlns:viewmodel="clr-namespace:SIF.Visualization.Excel.ViewModel"
              xmlns:violationsView="clr-namespace:SIF.Visualization.Excel.ViolationsView"
-             xmlns:falsePositiveView="clr-namespace:SIF.Visualization.Excel.FalsePositiveView"
+             xmlns:falsePositiveView="clr-namespace:SIF.Visualization.Excel.IgnoreView"
              xmlns:laterView="clr-namespace:SIF.Visualization.Excel.LaterView"
              xmlns:solvedView="clr-namespace:SIF.Visualization.Excel.SolvedView"
              mc:Ignorable="d" 
@@ -233,7 +233,7 @@
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Grid>
                 </TabItem.Header>
-                <falsePositiveView:FalsePositiveView />
+                <falsePositiveView:IgnoreView />
             </TabItem>
             <TabItem>
                 <TabItem.Header>

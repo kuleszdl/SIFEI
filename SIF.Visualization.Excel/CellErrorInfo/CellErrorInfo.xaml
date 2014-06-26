@@ -9,7 +9,7 @@
 
     <UserControl.Resources>
         <viewmodel:SelectionToOpacityConverter x:Key="SelectionToOpacityConverter" />
-        <viewmodel:SeverityFalsePositiveToColorConverter x:Key="SeverityFalsePositiveToColorConverter"/>
+        <viewmodel:SeverityIgnoreToColorConverter x:Key="SeverityIgnoreToColorConverter"/>
         <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
     </UserControl.Resources>
 
@@ -20,7 +20,7 @@
             <Grid.Background>
                 <SolidColorBrush>
                     <SolidColorBrush.Color>
-                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                             <MultiBinding.Bindings>
                                 <Binding Path="Severity" />
                                 <Binding Path="ViolationState" />
@@ -68,7 +68,7 @@
                                         <Rectangle.Fill>
                                             <SolidColorBrush>
                                                 <SolidColorBrush.Color>
-                                                    <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                                    <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                                         <MultiBinding.Bindings>
                                                             <Binding Path="Severity" />
                                                             <Binding Path="ViolationState" />

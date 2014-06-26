@@ -68,7 +68,7 @@ namespace SIF.Visualization.Excel.Core
         private ObservableCollection<Cell> intermediateCells;
         private ObservableCollection<Cell> outputCells;
         private ObservableCollection<Violation> violations;
-        private ObservableCollection<Violation> falsePositives;
+        private ObservableCollection<Violation> ignoredViolations;
         private ObservableCollection<Violation> laterViolations;
         private ObservableCollection<Violation> solvedViolations;
         private int unreadViolationCount;
@@ -247,14 +247,14 @@ namespace SIF.Visualization.Excel.Core
         /// <summary>
         /// Gets or sets the false positives of the current document.
         /// </summary>
-        public ObservableCollection<Violation> FalsePositives
+        public ObservableCollection<Violation> IgnoredViolations
         {
             get
             {
-                if (this.falsePositives == null) this.falsePositives = new ObservableCollection<Violation>();
-                return this.falsePositives;
+                if (this.ignoredViolations == null) this.ignoredViolations = new ObservableCollection<Violation>();
+                return this.ignoredViolations;
             }
-            set { this.SetProperty(ref this.falsePositives, value); }
+            set { this.SetProperty(ref this.ignoredViolations, value); }
         }
 
         /// <summary>
@@ -348,7 +348,7 @@ namespace SIF.Visualization.Excel.Core
                    this.InputCells.SequenceEqual(other.InputCells) &&
                    this.IntermediateCells.SequenceEqual(other.IntermediateCells) &&
                    this.OutputCells.SequenceEqual(other.OutputCells) &&
-                   this.FalsePositives.SequenceEqual(other.FalsePositives) &&
+                   this.IgnoredViolations.SequenceEqual(other.IgnoredViolations) &&
                    this.Scenarios.SequenceEqual(other.Scenarios) &&
                    Object.ReferenceEquals(this.Workbook, other.Workbook);
         }
@@ -434,12 +434,12 @@ namespace SIF.Visualization.Excel.Core
             {
                 // Add them to the FalsePositives collection
                 (from p in falsePositivesXml.Elements(XName.Get("falsepositive"))
-                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.FalsePositives.Add(p));
+                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.IgnoredViolations.Add(p));
                 (from p in falsePositivesXml.Elements(XName.Get("falsepositivegroup"))
-                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.FalsePositives.Add(p));
+                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.IgnoredViolations.Add(p));
 
                 // refresh UI
-                foreach (var falsePositive in this.FalsePositives)
+                foreach (var falsePositive in this.IgnoredViolations)
                 {
                     falsePositive.CreateControls();
                 }
@@ -498,7 +498,7 @@ namespace SIF.Visualization.Excel.Core
             XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("violations"), from p in this.Violations select p.ToXElement("violation")), "Violations");
 
             //Save the false positives
-            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("falsepositives"), from p in this.FalsePositives select p.ToXElement("falsepositive")), "FalsePositives");
+            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("falsepositives"), from p in this.IgnoredViolations select p.ToXElement("falsepositive")), "FalsePositives");
 
             // Save the later violations
             XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("laterviolations"), from p in this.LaterViolations select p.ToXElement("laterviolation")), "LaterViolations");
@@ -644,7 +644,7 @@ namespace SIF.Visualization.Excel.Core
                 {
                     this.Violations.ElementAt(this.Violations.IndexOf(violation)).FoundAgain = true;
                 }
-                else if (this.FalsePositives.Contains(violation) || this.SolvedViolations.Contains(violation))
+                else if (this.IgnoredViolations.Contains(violation) || this.SolvedViolations.Contains(violation))
                 {
                     // nothing to do here
                 }

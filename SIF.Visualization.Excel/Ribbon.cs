@@ -70,7 +70,7 @@ namespace SIF.Visualization.Excel
             }
 
             DataModel.Instance.CurrentWorkbook.Violations.Clear();
-            DataModel.Instance.CurrentWorkbook.FalsePositives.Clear();
+            DataModel.Instance.CurrentWorkbook.IgnoredViolations.Clear();
             DataModel.Instance.CurrentWorkbook.SolvedViolations.Clear();
             DataModel.Instance.CurrentWorkbook.LaterViolations.Clear();
 
