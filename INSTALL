@@ -1,4 +1,6 @@
-This document covers the installation of SIF and SIFEI. After installation, an end-user should be able to run SIFEI. This guide assumes that you have binary builds of SIF and SIFEI available. Currently, we do not offer such binary builds so you have to build the projects yourself.. See the document BUILD for information on how to do this.
+This document covers the installation of SIF and SIFEI. After installation, an end-user should be able to run SIFEI. This guide assumes that you
+have binary builds of SIF and SIFEI available. Currently, we do not offer such binary builds so you have to build the projects yourself. See the
+document BUILD for information on how to do this.
 
 System requirements:
 
