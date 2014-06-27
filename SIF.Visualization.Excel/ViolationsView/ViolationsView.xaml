@@ -13,7 +13,7 @@
     <UserControl.Resources>
         <viewmodel:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
         <viewmodel:InverseIntToVisibilityConverter x:Key="InverseIntToVisibilityConverter" />
-        <viewmodel:SeverityIgnoreToColorConverter x:Key="SeverityFalsePositiveToColorConverter"/>
+        <viewmodel:SeverityIgnoreToColorConverter x:Key="SeverityIgnoreToColorConverter"/>
         <viewmodel:BoolToFontWeightConverter x:Key="BooleanToVisibilityConverter"/>
         <viewmodel:TypeConverter x:Key="TypeConverter"/>
         <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
@@ -177,7 +177,7 @@
                             <Rectangle.Fill>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                             <MultiBinding.Bindings>
                                                 <Binding Path="Severity" />
                                                 <Binding Path="ViolationState" />
@@ -192,7 +192,7 @@
                             <TextBlock.Background>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                             <MultiBinding.Bindings>
                                                 <Binding Path="Severity" />
                                                 <Binding Path="ViolationState" />
@@ -302,7 +302,7 @@
 
                             <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 5 5 5">
                                 <Hyperlink Click="FalsePositive_Click">
-                                    False Positive
+                                    Ignore
                                 </Hyperlink>
                             </TextBlock>
                             <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5 5 5 5">
@@ -337,7 +337,7 @@
                             <Rectangle.Fill>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                             <MultiBinding.Bindings>
                                                 <Binding Path="Severity" />
                                                 <Binding Path="ViolationState" />
@@ -351,7 +351,7 @@
                             <TextBlock.Background>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                             <MultiBinding.Bindings>
                                                 <Binding Path="Severity" />
                                                 <Binding Path="ViolationState" />
@@ -508,7 +508,7 @@
                                                 <TextBlock.Background>
                                                     <SolidColorBrush>
                                                         <SolidColorBrush.Color>
-                                                            <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                                            <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                                                 <MultiBinding.Bindings>
                                                                     <Binding Path="Severity" />
                                                                     <Binding Path="ViolationState" />
@@ -541,7 +541,7 @@
 
                             <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 5 5 5">
                                 <Hyperlink Click="FalsePositive_Click">
-                                    False Positive
+                                    Ignore
                                 </Hyperlink>
                             </TextBlock>
                             <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5 5 5 5">

@@ -12,7 +12,7 @@
     <UserControl.Resources>
         <viewmodel:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
         <viewmodel:InverseIntToVisibilityConverter x:Key="InverseIntToVisibilityConverter" />
-        <viewmodel:SeverityIgnoreToColorConverter x:Key="SeverityFalsePositiveToColorConverter"/>
+        <viewmodel:SeverityIgnoreToColorConverter x:Key="SeverityIgnoreToColorConverter"/>
         <viewmodel:BoolToFontWeightConverter x:Key="BooleanToVisibilityConverter"/>
         <viewmodel:TypeConverter x:Key="TypeConverter"/>
         <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
@@ -174,7 +174,7 @@
                             <Rectangle.Fill>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                             <MultiBinding.Bindings>
                                                 <Binding Path="Severity" />
                                                 <Binding Path="ViolationState" />
@@ -211,7 +211,7 @@
                             <TextBlock.Background>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                             <MultiBinding.Bindings>
                                                 <Binding Path="Severity" />
                                                 <Binding Path="ViolationState" />
@@ -320,7 +320,7 @@
                             <Rectangle.Fill>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                             <MultiBinding.Bindings>
                                                 <Binding Path="Severity" />
                                                 <Binding Path="ViolationState" />
@@ -356,7 +356,7 @@
                             <TextBlock.Background>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                             <MultiBinding.Bindings>
                                                 <Binding Path="Severity" />
                                                 <Binding Path="ViolationState" />
@@ -487,7 +487,7 @@
                                                 <TextBlock.Background>
                                                     <SolidColorBrush>
                                                         <SolidColorBrush.Color>
-                                                            <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                                            <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                                                 <MultiBinding.Bindings>
                                                                     <Binding Path="Severity" />
                                                                     <Binding Path="ViolationState" />

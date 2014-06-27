@@ -147,10 +147,10 @@
 
         <!--Message if nothing is showable-->
         <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="14" TextWrapping="WrapWithOverflow"
-                   Visibility="{Binding FalsePositives.Count, Converter={StaticResource InverseIntToVisibilityConverter}}"
-                   Text="No false positives. Please set violations to false psoitive if this is necessary." Foreground="#333333" Margin="0 20" />
+                   Visibility="{Binding IgnoredViolations.Count, Converter={StaticResource InverseIntToVisibilityConverter}}"
+                   Text="No ignroed violations. Please ignore violations if this is necessary." Foreground="#333333" Margin="0 20" />
 
-        <ListBox x:Name="IgnoreList" FontFamily="Segoe UI" FontSize="12" Visibility="{Binding FalsePositives.Count, Converter={StaticResource IntToVisibilityConverter}}"
+        <ListBox x:Name="IgnoreList" FontFamily="Segoe UI" FontSize="12" Visibility="{Binding IgnoredViolations.Count, Converter={StaticResource IntToVisibilityConverter}}"
                 SelectedIndex="-1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" 
                  SelectionMode="Single" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged" Background="Transparent"
                  BorderThickness="0" HorizontalAlignment="Stretch" ItemContainerStyle="{StaticResource listBoxItemStyle}">
@@ -174,7 +174,7 @@
                             <Rectangle.Fill>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                             <MultiBinding.Bindings>
                                                 <Binding Path="Severity" />
                                                 <Binding Path="ViolationState" />
@@ -211,7 +211,7 @@
                             <TextBlock.Background>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                             <MultiBinding.Bindings>
                                                 <Binding Path="Severity" />
                                                 <Binding Path="ViolationState" />
@@ -294,7 +294,7 @@
 
                             <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 5 5 5">
                                 <Hyperlink Click="Ignore_Click">
-                                   Not a False Positive
+                                   Unignore
                                 </Hyperlink>
                             </TextBlock>
                         </Grid>
@@ -320,7 +320,7 @@
                             <Rectangle.Fill>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                             <MultiBinding.Bindings>
                                                 <Binding Path="Severity" />
                                                 <Binding Path="ViolationState" />
@@ -356,7 +356,7 @@
                             <TextBlock.Background>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                             <MultiBinding.Bindings>
                                                 <Binding Path="Severity" />
                                                 <Binding Path="ViolationState" />
@@ -487,7 +487,7 @@
                                                 <TextBlock.Background>
                                                     <SolidColorBrush>
                                                         <SolidColorBrush.Color>
-                                                            <MultiBinding Converter="{StaticResource SeverityFalsePositiveToColorConverter}">
+                                                            <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                                                                 <MultiBinding.Bindings>
                                                                     <Binding Path="Severity" />
                                                                     <Binding Path="ViolationState" />
@@ -518,7 +518,7 @@
 
                             <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 5 5 5">
                                 <Hyperlink Click="Ignore_Click">
-                                   Do not ignore
+                                   Unignore
                                 </Hyperlink>
                             </TextBlock>
                         </Grid>
