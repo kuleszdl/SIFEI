@@ -170,6 +170,22 @@
                             <ColumnDefinition Width="7" />
                         </Grid.ColumnDefinitions>
 
+
+                        <Border Grid.Row="0" Grid.ColumnSpan="3">
+                            <Border.Background>
+                                <SolidColorBrush >
+                                    <SolidColorBrush.Color>
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                            <MultiBinding.Bindings>
+                                                <Binding Path="Severity" />
+                                                <Binding Path="ViolationState" />
+                                            </MultiBinding.Bindings>
+                                        </MultiBinding>
+                                    </SolidColorBrush.Color>
+                                </SolidColorBrush>
+                            </Border.Background>
+                        </Border>
+
                         <Rectangle Grid.RowSpan="5" Grid.Column="2" Grid.Row="0">
                             <Rectangle.Fill>
                                 <SolidColorBrush>
@@ -207,20 +223,8 @@
                             <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="1" Grid.Row="0"  Margin="10 0 5 5" FontSize="16" TextWrapping="Wrap"/>
                         </Grid>
                         <TextBlock Text="{Binding Severity}" Grid.Column="1" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                   Grid.Row="0" HorizontalAlignment="Right" Margin="10 0 0 5" Padding="4 0 2 2" FontSize="16">
-                            <TextBlock.Background>
-                                <SolidColorBrush>
-                                    <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                                            <MultiBinding.Bindings>
-                                                <Binding Path="Severity" />
-                                                <Binding Path="ViolationState" />
-                                            </MultiBinding.Bindings>
-                                        </MultiBinding>
-                                    </SolidColorBrush.Color>
-                                </SolidColorBrush>
-                            </TextBlock.Background>
-                        </TextBlock>
+                                   Grid.Row="0" HorizontalAlignment="Right" Margin="10 0 0 5" Padding="4 0 2 2" FontSize="16"/>
+
                         <TextBlock Text="{Binding CausingElement}" Grid.Column="0" Grid.Row="1"
                                            FontSize="14" Margin="10 5 5 5" VerticalAlignment="Top" TextWrapping="Wrap" />
 
@@ -316,6 +320,22 @@
                             <ColumnDefinition Width="7" />
                         </Grid.ColumnDefinitions>
 
+
+                        <Border Grid.Row="0" Grid.ColumnSpan="3">
+                            <Border.Background>
+                                <SolidColorBrush >
+                                    <SolidColorBrush.Color>
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                            <MultiBinding.Bindings>
+                                                <Binding Path="Severity" />
+                                                <Binding Path="ViolationState" />
+                                            </MultiBinding.Bindings>
+                                        </MultiBinding>
+                                    </SolidColorBrush.Color>
+                                </SolidColorBrush>
+                            </Border.Background>
+                        </Border>
+
                         <Rectangle Grid.RowSpan="6" Grid.Column="2" Grid.Row="0">
                             <Rectangle.Fill>
                                 <SolidColorBrush>
@@ -352,20 +372,8 @@
                             </Image>
                             <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="1" Grid.Row="0"  Margin="10 0 5 5" FontSize="16" TextWrapping="Wrap"/>
                         </Grid>
-                        <TextBlock Text="{Binding Severity}" Grid.Column="1" FontWeight="Bold" FontSize="16" Grid.Row="0" HorizontalAlignment="Right" Margin="10 0 0 5" Padding="4 0 2 2">
-                            <TextBlock.Background>
-                                <SolidColorBrush>
-                                    <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                                            <MultiBinding.Bindings>
-                                                <Binding Path="Severity" />
-                                                <Binding Path="ViolationState" />
-                                            </MultiBinding.Bindings>
-                                        </MultiBinding>
-                                    </SolidColorBrush.Color>
-                                </SolidColorBrush>
-                            </TextBlock.Background>
-                        </TextBlock>
+                        <TextBlock Text="{Binding Severity}" Grid.Column="1" FontWeight="Bold" FontSize="16" Grid.Row="0" HorizontalAlignment="Right" Margin="10 0 0 5" Padding="4 0 2 2"/>
+
                         <TextBlock Text="{Binding CausingElement}" Grid.Column="0" Grid.Row="1"
                                            FontSize="14" Margin="10 5 5 5" VerticalAlignment="Top" TextWrapping="Wrap" />
 
