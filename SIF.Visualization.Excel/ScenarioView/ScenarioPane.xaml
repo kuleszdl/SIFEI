@@ -15,9 +15,9 @@
 
         <!--Icons-->
         <BitmapImage x:Key="AddImageSource" UriSource="../icons/112_Plus_Grey_32x32_72.png"/>
-        <BitmapImage x:Key="DeleteImageSource" UriSource="../icons/Delete_black_32x32.png"/>
+        <BitmapImage x:Key="DeleteImageSource" UriSource="../icons/Delete_black.png"/>
         <BitmapImage x:Key="Search" UriSource="../icons/magnifier_16xLG.png"/>
-        
+
     </UserControl.Resources>
 
     <Grid>
