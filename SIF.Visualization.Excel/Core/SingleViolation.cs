@@ -36,6 +36,7 @@ namespace SIF.Visualization.Excel.Core
                     {
                         this.Control.BringToFront();
                         this.IsRead = true;
+                        this.cell.Select();
                     }
                 }
             }

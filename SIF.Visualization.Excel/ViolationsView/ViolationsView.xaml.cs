@@ -54,13 +54,6 @@ namespace SIF.Visualization.Excel.ViolationsView
         {
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
-                var selectedItem = (sender as ListBox).SelectedItem as Violation;
-
-                if (selectedItem != null)
-                {
-                    //synchronize selection
-                    CellManager.Instance.SelectCell(Core.DataModel.Instance.CurrentWorkbook, selectedItem.Cell.Location);
-                }
                 DataModel.Instance.CurrentWorkbook.UnreadViolationCount = (from vi in DataModel.Instance.CurrentWorkbook.Violations where vi.IsRead == false select vi).Count();
             }
         }

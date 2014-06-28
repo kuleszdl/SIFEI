@@ -17,7 +17,7 @@ namespace SIF.Visualization.Excel.Core
         private int id;
         private string causingElement;
         private string description;
-        private CellLocation cell;
+        protected CellLocation cell;
         private DateTime firstOccurrence;
         private DateTime solvedTime;
         private bool foundAgain;

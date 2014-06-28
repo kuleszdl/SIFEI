@@ -148,7 +148,7 @@
         <!--Message if nothing is showable-->
         <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="14" TextWrapping="WrapWithOverflow"
                    Visibility="{Binding IgnoredViolations.Count, Converter={StaticResource InverseIntToVisibilityConverter}}"
-                   Text="No ignroed violations. Please ignore violations if this is necessary." Foreground="#333333" Margin="0 20" />
+                   Text="No ignored violations. Please ignore violations if this is necessary." Foreground="#333333" Margin="0 20" />
 
         <ListBox x:Name="IgnoreList" FontFamily="Segoe UI" FontSize="12" Visibility="{Binding IgnoredViolations.Count, Converter={StaticResource IntToVisibilityConverter}}"
                 SelectedIndex="-1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" 

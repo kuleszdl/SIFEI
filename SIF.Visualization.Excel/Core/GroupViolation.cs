@@ -1,4 +1,5 @@
 ﻿using Microsoft.Office.Interop.Excel;
+using SIF.Visualization.Excel.Cells;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -53,7 +54,6 @@ namespace SIF.Visualization.Excel.Core
             {
                 if (this.SetProperty(ref this.isSelected, value))
                 {
-                    violations.ToList().ForEach(v => v.IsSelected = value);
                     if (value)
                     {
                         this.IsRead = true;
