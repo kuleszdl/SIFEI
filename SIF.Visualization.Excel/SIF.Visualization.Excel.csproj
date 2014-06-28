@@ -477,6 +477,9 @@
     <Resource Include="icons\violations\sanity_unread.png" />
     <Resource Include="icons\violations\static_unread.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\Delete_black.png" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
