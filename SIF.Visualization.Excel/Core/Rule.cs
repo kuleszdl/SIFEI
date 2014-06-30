@@ -94,7 +94,7 @@ namespace SIF.Visualization.Excel.Core
             this.Background = root.Attribute(XName.Get("background")).Value;
             this.Description = root.Attribute(XName.Get("description")).Value;
             this.Name = root.Attribute(XName.Get("name")).Value;
-            this.PossibleSolution = root.Attribute(XName.Get("solution")).Value;
+            this.PossibleSolution = root.Attribute(XName.Get("possibleSolution")).Value;
             this.Type = (RuleType)Enum.Parse(typeof(RuleType), root.Attribute(XName.Get("type")).Value);
         }
 
