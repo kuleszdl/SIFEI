@@ -90,12 +90,12 @@ namespace SIF.Visualization.Excel.Core
         /// <param name="root">the root node of the xml for this rule</param>
         public Rule(XElement root)
         {
-            this.Author = root.Attribute(XName.Get("author")).Value;
-            this.Background = root.Attribute(XName.Get("background")).Value;
-            this.Description = root.Attribute(XName.Get("description")).Value;
+            this.Author = root.Element(XName.Get("author")).Value;
+            this.Background = root.Element(XName.Get("background")).Value;
+            this.Description = root.Element(XName.Get("description")).Value;
             this.Name = root.Attribute(XName.Get("name")).Value;
-            this.PossibleSolution = root.Attribute(XName.Get("solution")).Value;
-            this.Type = (RuleType)Enum.Parse(typeof(RuleType), root.Attribute(XName.Get("type")).Value);
+            this.PossibleSolution = root.Element(XName.Get("possibleSolution")).Value;
+            this.Type = (RuleType)Enum.Parse(typeof(RuleType), root.Element(XName.Get("type")).Value);
         }
 
         #endregion

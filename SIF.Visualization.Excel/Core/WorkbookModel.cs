@@ -624,17 +624,27 @@ namespace SIF.Visualization.Excel.Core
         private void LoadViolations(XElement rootElement)
         {
             DateTime scanTime = DateTime.Now;
+            XNamespace ns = "http://www.w3.org/2001/XMLSchema-instance";
             var findings = rootElement.Element(XName.Get("findings"));
             var violations = new List<Violation>();
-            foreach (var ruleXML in findings.Elements(XName.Get("rule")))
+            foreach (var ruleXML in findings.Elements(XName.Get("testedRule")))
             {
-                Rule rule = new Rule(ruleXML);
+                Rule rule = new Rule(ruleXML.Element(XName.Get("testedPolicy")));
 
                 // Parse violations
-                (from p in ruleXML.Elements(XName.Get("singleviolation"))
-                 select new SingleViolation(p, workbook, scanTime, rule, false)).ToList().ForEach(p => violations.Add(p));
-                (from p in ruleXML.Elements(XName.Get("violationgroup"))
-                 select new GroupViolation(p, workbook, scanTime, rule)).ToList().ForEach(p => violations.Add(p));
+                var xmlVio = ruleXML.Elements(XName.Get("violations"));
+                foreach (XElement vio in xmlVio){
+                    var x = vio.Attribute(ns + "type");
+                    if (x.Value.Equals("singleviolation"))
+                    {
+                        violations.Add(new SingleViolation(vio, workbook, scanTime, rule, false));
+                    }
+                    else if (x.Value.Equals("violationgroup"))
+                    {
+                        violations.Add(new GroupViolation(vio, workbook, scanTime, rule));
+                    }
+                }
+
             }
 
             // Add only new violations
