@@ -1,4 +1,6 @@
-This document covers the installation of SIF and SIFEI. After installation, an end-user should be able to run SIFEI.
+This document covers the installation of SIF and SIFEI. After installation, an end-user should be able to run SIFEI. This guide assumes that you
+have binary builds of SIF and SIFEI available. Currently, we do not offer such binary builds so you have to build the projects yourself. See the
+document BUILD for information on how to do this.
 
 System requirements:
 
@@ -7,20 +9,21 @@ System requirements:
 - Microsoft Excel 2013
 - Oracle Java Runtime Environment 1.6 or higher
 - Microsoft .NET Framework 4.5
-- Visual Studio Redistributable 2010
+- Visual Studio 2010 Tools for Office Runtime (vstor_redist.exe, available at http://www.microsoft.com/en-US/download/details.aspx?id=42513 )
 
 Other environments *might* work but have not been tested. Below are the steps for a sample installation:
 
 First, we install the environment:
 
-1.) Install Windows 8.1 (tested with enterprise 64bits)
-2.) Install Java Runtime Environment (tested with 1.7u60)
+1.) Install Windows 8.1 (tested with enterprise 64 and 32bits)
+2.) Install Java Runtime Environment (tested with 1.7u60 and 1.8u5)
 3.) Install Microsoft Office 2013 Professional Plus
-4.) Install Visual Studio Redistributable 2010 (or higher)
+4.) Install Visual Studio 2010 Tools for Office Runtime
+
+We skipped the following, because Windows 8.1 already includes them and Java path configuration is done by the installer
+(the .NET 4.5 runtime is required for Windows 7 though, also some Java installers fail with setting the paths):
+
 5.) Add java to your PATH environment variable
-
-We skipped the following, because Windows 8.1 already includes them (you need it if you run Windows 7 though):
-
 6.) Install .NET Framework 4.5
 
 Now we can install the SIF and SIFEI distribution (this assumes the artifacts have been built already):
