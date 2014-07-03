@@ -1,6 +1,9 @@
 This document covers the installation of SIF and SIFEI. After installation, an end-user should be able to run SIFEI. This guide assumes that you
-have binary builds of SIF and SIFEI available. Currently, we do not offer such binary builds so you have to build the projects yourself. See the
-document BUILD for information on how to do this.
+have binary builds of SIF and SIFEI available. You can get binaries of the demo which we showcased at EuSpRIG 2014 from our FTP site:
+
+ftp://ftp.informatik.uni-stuttgart.de/pub/se/sifei_eusprig2014.zip
+
+If you want to build SIF and SIFEI yourself see the document BUILD
 
 System requirements:
 
