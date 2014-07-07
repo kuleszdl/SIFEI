@@ -1,5 +1,6 @@
-This document covers the installation of SIF and SIFEI. After installation, an end-user should be able to run SIFEI. This guide assumes that you
-have binary builds of SIF and SIFEI available. You can get binaries of the demo which we showcased at EuSpRIG 2014 from our FTP site:
+This document covers the installation of SIF and SIFEI. After installation, an end-user should be able to
+run SIFEI. This guide assumes that you have binary builds of SIF and SIFEI available. You can get binaries
+of the demo which we showcased at EuSpRIG 2014 from our FTP site:
 
 ftp://ftp.informatik.uni-stuttgart.de/pub/se/sifei_eusprig2014.zip
 
@@ -12,7 +13,8 @@ System requirements:
 - Microsoft Excel 2013
 - Oracle Java Runtime Environment 1.6 or higher
 - Microsoft .NET Framework 4.5
-- Visual Studio 2010 Tools for Office Runtime (vstor_redist.exe, available at http://www.microsoft.com/en-US/download/details.aspx?id=42513 )
+- Visual Studio 2010 Tools for Office Runtime (vstor_redist.exe, available at 
+  http://www.microsoft.com/en-US/download/details.aspx?id=42513 )
 
 Other environments *might* work but have not been tested. Below are the steps for a sample installation:
 
@@ -23,13 +25,15 @@ First, we install the environment:
 3.) Install Microsoft Office 2013 Professional Plus
 4.) Install Visual Studio 2010 Tools for Office Runtime
 
-We skipped the following, because Windows 8.1 already includes them and Java path configuration is done by the installer
-(the .NET 4.5 runtime is required for Windows 7 though, also some Java installers fail with setting the paths):
+We skipped the following, because Windows 8.1 already includes them and Java path configuration is done by the
+installer (the .NET 4.5 runtime is required for Windows 7 though, also some Java installers fail with setting 
+the paths):
 
 5.) Add java to your PATH environment variable
 6.) Install .NET Framework 4.5
 
 Now we can install the SIF and SIFEI distribution (this assumes the artifacts have been built already):
 
-1.) Copy Folder "Spreadsheet Inspection Framework" to C:\ (blanks are required and the path is hardcoded currently, sorry!)
+1.) Copy Folder "Spreadsheet Inspection Framework" to C:\ 
+   (blanks are required and the path is hardcoded currently, sorry!)
 2.) Run setup.exe in SIFEI-Installer folder
