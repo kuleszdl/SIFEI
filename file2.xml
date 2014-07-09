@@ -1,33 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
-<test title="sif3612822761533915252xls" file="C:\Users\Fabian\AppData\Local\Temp\sif3612822761533915252xls">
-	<policy author="" description="" name=" Inspection" />
-	<cells>
-		<input>
-			<cell number="0" location="[sif3612822761533915252xls]Rechner!B4" content="Blank-Cell [Constant]: BLANK" />
-			<cell number="1" location="[sif3612822761533915252xls]Rechner!B6" content="Blank-Cell [Constant]: BLANK" />
-			<cell number="2" location="[sif3612822761533915252xls]Rechner!B8" content="Numeric-Cell [Constant]: 105" />
-			<cell number="3" location="[sif3612822761533915252xls]Rechner!B13" content="Blank-Cell [Constant]: BLANK" />
-			<cell number="4" location="[sif3612822761533915252xls]Rechner!B15" content="Blank-Cell [Constant]: BLANK" />
-			<cell number="5" location="[sif3612822761533915252xls]Rechner!B20" content="Blank-Cell [Constant]: BLANK" />
-			<cell number="6" location="[sif3612822761533915252xls]Rechner!B22" content="Blank-Cell [Constant]: BLANK" />
-			<cell number="7" location="[sif3612822761533915252xls]Rechner!B31" content="Blank-Cell [Constant]: BLANK" />
-		</input>
-		<intermediate>
-			<cell number="0" location="[sif3612822761533915252xls]Rechner!B9" content="Numeric-Cell [Formula]: 6" />
-			<cell number="1" location="[sif3612822761533915252xls]Rechner!B26" content="Numeric-Cell [Formula]: 0" />
-			<cell number="2" location="[sif3612822761533915252xls]Rechner!B28" content="Numeric-Cell [Formula]: 0" />
-			<cell number="3" location="[sif3612822761533915252xls]Rechner!B30" content="Numeric-Cell [Formula]: 0" />
-		</intermediate>
-		<output>
-			<cell number="0" location="[sif3612822761533915252xls]Rechner!B32" content="Numeric-Cell [Formula]: 0" />
-		</output>
-	</cells>
-	<findings>
-		<rule name="No Constants In Formulas" author="Sebastian Zitzelsberger" description="Checks whether formulas contain constant values." background="Constant values are not always as constant as they seem in the beginning. In case their values change, its hard to adjust the constants consistently in the spreadsheet if they are not located in individual cells." severity="1.0" solution="Extract the constants into to separate cells and reference these cells" type="STATIC">
-			<violationgroup id="1" causingelement="Formula[=IF(B8=105,6,IF(B8=61.36,4,IF(B8=25.56,2,IF(B8=40.9,2,-1))))]" description="The following constants were found: Numeric, Integer (2x), Numeric, Integer, Integer, Numeric, Integer, Numeric" location="[sif1410369677746368426.xls]Rechner!B26">
-				<singleviolation number="1" causingelement="Formula[=(B4-B13)*(1-B20)]" location="[sif1410369677746368426.xls]Rechner!B26" description="The following constants were found: Integer" severity="20.0" />
-				<singleviolation number="2" causingelement="Formula[=(B6-B15)*(1-B22)]" location="[sif1410369677746368426.xls]Rechner!B28" description="The following constants were found: Integer" severity="20.0" />
-			</violationgroup>
-		</rule>
-	</findings>
+<test title="sif5284148680586672389.xls" file="C:\Users\Fabian\AppData\Local\Temp\sif5284148680586672389.xls">
+  <cells>
+    <input>
+      <cell location="[sif5284148680586672389.xls]Rechner!B4" content="Blank-Cell [Constant]: BLANK" />
+      <cell location="[sif5284148680586672389.xls]Rechner!B6" content="Blank-Cell [Constant]: BLANK" />
+      <cell location="[sif5284148680586672389.xls]Rechner!B8" content="Numeric-Cell [Constant]: 105" />
+      <cell location="[sif5284148680586672389.xls]Rechner!B13" content="Blank-Cell [Constant]: BLANK" />
+      <cell location="[sif5284148680586672389.xls]Rechner!B15" content="Blank-Cell [Constant]: BLANK" />
+      <cell location="[sif5284148680586672389.xls]Rechner!B20" content="Blank-Cell [Constant]: BLANK" />
+      <cell location="[sif5284148680586672389.xls]Rechner!B22" content="Blank-Cell [Constant]: BLANK" />
+      <cell location="[sif5284148680586672389.xls]Rechner!B31" content="Blank-Cell [Constant]: BLANK" />
+    </input>
+    <intermediate>
+      <cell location="[sif5284148680586672389.xls]Rechner!B9" content="Numeric-Cell [Formula]: 6" />
+      <cell location="[sif5284148680586672389.xls]Rechner!B26" content="Numeric-Cell [Formula]: 0" />
+      <cell location="[sif5284148680586672389.xls]Rechner!B28" content="Numeric-Cell [Formula]: 0" />
+      <cell location="[sif5284148680586672389.xls]Rechner!B30" content="Numeric-Cell [Formula]: 0" />
+    </intermediate>
+    <output>
+      <cell location="[sif5284148680586672389.xls]Rechner!B32" content="Numeric-Cell [Formula]: 0" />
+    </output>
+  </cells>
+  <findings>
+    <testedRule>
+      <violations xsi:type="singleviolation" causingelement="Formula[=IF(B8=105,6,IF(B8=61.36,4,IF(B8=25.56,2,IF(B8=40.9,2,-1))))]" location="[sif5284148680586672389.xls]Rechner!B9" description="The following constants were found: Integer : 105, Integer : 2 (2x), Integer : 4, Integer : 6, Numeric : -1.0, Numeric : 25.56, Numeric : 40.9, Numeric : 61.36" severity="20.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=(B4-B13)*(1-B20)]" location="[sif5284148680586672389.xls]Rechner!B26" description="The following constants were found: Integer : 1" severity="40.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=(B6-B15)*(1-B22)]" location="[sif5284148680586672389.xls]Rechner!B28" description="The following constants were found: Integer : 1" severity="60.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=IF(B26+B28>10000,10000,B26+B28)]" location="[sif5284148680586672389.xls]Rechner!B30" description="The following constants were found: Integer : 10000 (2x)" severity="80.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=((100-(B31*0.00285))*(1/100)*B30)-(0*B9)]" location="[sif5284148680586672389.xls]Rechner!B32" description="The following constants were found: Integer : 0, Integer : 1, Integer : 100 (2x), Numeric : 0.00285" severity="100.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+	  <violations xsi:type="singleviolation" causingelement="Formula[=IF(B8=105,6,IF(B8=61.36,4,IF(B8=25.56,2,IF(B8=40.9,2,-1))))]" location="[sif5284148680586672389.xls]Rechner!B9" description="The following constants were found: Integer : 105, Integer : 2 (2x), Integer : 4, Integer : 6, Numeric : -1.0, Numeric : 25.56, Numeric : 40.9, Numeric : 61.36" severity="120.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=(B4-B13)*(1-B20)]" location="[sif5284148680586672389.xls]Rechner!B26" description="The following constants were found: Integer : 1" severity="140.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=(B6-B15)*(1-B22)]" location="[sif5284148680586672389.xls]Rechner!B28" description="The following constants were found: Integer : 1" severity="160.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=IF(B26+B28>10000,10000,B26+B28)]" location="[sif5284148680586672389.xls]Rechner!B30" description="The following constants were found: Integer : 10000 (2x)" severity="180.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=((100-(B31*0.00285))*(1/100)*B30)-(0*B9)]" location="[sif5284148680586672389.xls]Rechner!B32" description="The following constants were found: Integer : 0, Integer : 1, Integer : 200 (2x), Numeric : 0.00285" severity="200.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+	  <violations xsi:type="singleviolation" causingelement="Formula[=IF(B8=105,6,IF(B8=61.36,4,IF(B8=25.56,2,IF(B8=40.9,2,-1))))]" location="[sif5284148680586672389.xls]Rechner!B9" description="The following constants were found: Integer : 105, Integer : 2 (2x), Integer : 4, Integer : 6, Numeric : -1.0, Numeric : 25.56, Numeric : 40.9, Numeric : 61.36" severity="220.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=(B4-B13)*(1-B20)]" location="[sif5284148680586672389.xls]Rechner!B26" description="The following constants were found: Integer : 1" severity="240.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=(B6-B15)*(1-B22)]" location="[sif5284148680586672389.xls]Rechner!B28" description="The following constants were found: Integer : 1" severity="260.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=IF(B26+B28>10000,10000,B26+B28)]" location="[sif5284148680586672389.xls]Rechner!B30" description="The following constants were found: Integer : 10000 (2x)" severity="280.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=((100-(B31*0.00285))*(1/100)*B30)-(0*B9)]" location="[sif5284148680586672389.xls]Rechner!B32" description="The following constants were found: Integer : 0, Integer : 1, Integer : 100 (2x), Numeric : 0.00285" severity="300.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+	  <violations xsi:type="singleviolation" causingelement="Formula[=IF(B8=105,6,IF(B8=61.36,4,IF(B8=25.56,2,IF(B8=40.9,2,-1))))]" location="[sif5284148680586672389.xls]Rechner!B9" description="The following constants were found: Integer : 105, Integer : 2 (2x), Integer : 4, Integer : 6, Numeric : -1.0, Numeric : 25.56, Numeric : 40.9, Numeric : 61.36" severity="320.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=(B4-B13)*(1-B20)]" location="[sif5284148680586672389.xls]Rechner!B26" description="The following constants were found: Integer : 1" severity="340.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=(B6-B15)*(1-B22)]" location="[sif5284148680586672389.xls]Rechner!B28" description="The following constants were found: Integer : 1" severity="360.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=IF(B26+B28>10000,10000,B26+B28)]" location="[sif5284148680586672389.xls]Rechner!B30" description="The following constants were found: Integer : 10000 (2x)" severity="380.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=((100-(B31*0.00285))*(1/100)*B30)-(0*B9)]" location="[sif5284148680586672389.xls]Rechner!B32" description="The following constants were found: Integer : 0, Integer : 1, Integer : 300 (2x), Numeric : 0.00285" severity="400.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+	  <violations xsi:type="singleviolation" causingelement="Formula[=IF(B8=105,6,IF(B8=61.36,4,IF(B8=25.56,2,IF(B8=40.9,2,-1))))]" location="[sif5284148680586672389.xls]Rechner!B9" description="The following constants were found: Integer : 105, Integer : 2 (2x), Integer : 4, Integer : 6, Numeric : -1.0, Numeric : 25.56, Numeric : 40.9, Numeric : 61.36" severity="420.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=(B4-B13)*(1-B20)]" location="[sif5284148680586672389.xls]Rechner!B26" description="The following constants were found: Integer : 1" severity="440.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=(B6-B15)*(1-B22)]" location="[sif5284148680586672389.xls]Rechner!B28" description="The following constants were found: Integer : 1" severity="460.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=IF(B26+B28>10000,10000,B26+B28)]" location="[sif5284148680586672389.xls]Rechner!B30" description="The following constants were found: Integer : 10000 (2x)" severity="480.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <violations xsi:type="singleviolation" causingelement="Formula[=((100-(B31*0.00285))*(1/100)*B30)-(0*B9)]" location="[sif5284148680586672389.xls]Rechner!B32" description="The following constants were found: Integer : 0, Integer : 1, Integer :100 (2x), Numeric : 0.00285" severity="500.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+      <testedPolicy xsi:type="noConstantsPolicyRule" name="No Constants In Formulas" description="Checks whether formulas contain constant values." background="Constant values are not alyways as constant as they seem in the beginning. In case their values change, its hard to adjust the constants consistently in the spreadsheet if they are not located in individual cells." author="Sebastian Zitzelsberger" possibleSolution="Extract the constants into to separate cells and reference these cells" type="STATIC" severityWeight="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <ignoredConstants />
+        <ignoredFunctions />
+        <ignoredCells />
+      </testedPolicy>
+    </testedRule>
+  </findings>
 </test>
