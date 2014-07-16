@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using System.Windows;
+using System.IO;
 
 namespace SIF.Visualization.Excel.Networking
 {
@@ -17,6 +19,7 @@ namespace SIF.Visualization.Excel.Networking
 
         private static volatile XMLPartManager instance;
         private static object syncRoot = new Object();
+        private XmlSchemaSet report, request;
 
         private XMLPartManager()
         {
@@ -119,6 +122,39 @@ namespace SIF.Visualization.Excel.Networking
 
         }
 
+        /// <summary>
+        /// Creates and returns the XML Schema definition for the SpRuDeL requests
+        /// with a ValidationCallback which reports errors to the UI.
+        /// </summary>
+        /// <returns>The corresponding XmlSchemaSet</returns>
+        public XmlSchemaSet GetRequestSchema()
+        {
+            if (request == null)
+            {
+                var sprudel = XmlReader.Create(new StringReader(SchemaStrings.getRequestXSD()));
+                request = new XmlSchemaSet();
+                request.Add("", sprudel);
+                request.ValidationEventHandler += ValidationCallback;
+            }
+            return request;
+        }
+
+        /// <summary>
+        /// Creates and returns the XML Schema definition for the SpRuDeL reports
+        /// with a ValidationCallback which reports errors to the UI.
+        /// </summary>
+        /// <returns>The corresponding XmlSchemaSet</returns>
+        public XmlSchemaSet getReportSchema(){
+            if (report == null)
+            {
+                var sprudel = XmlReader.Create(new StringReader(SchemaStrings.getReportXSD()));
+                report = new XmlSchemaSet();
+                report.Add("", sprudel);
+                report.ValidationEventHandler += ValidationCallback;
+            }
+            return report;
+        } 
+
         public void ValidationCallback(object sender, ValidationEventArgs e)
         {
             if (e.Severity == XmlSeverityType.Warning)
@@ -128,6 +164,7 @@ namespace SIF.Visualization.Excel.Networking
             else if (e.Severity == XmlSeverityType.Error)
             {
                 Debug.Write("ERROR ValidationCallback: ");
+                MessageBox.Show("The validation caused an error!\n" + e.Message, "Error");
             }
 
             Debug.WriteLine(e.Message);
