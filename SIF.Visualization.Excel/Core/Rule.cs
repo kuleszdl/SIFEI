@@ -162,7 +162,7 @@ namespace SIF.Visualization.Excel.Core
             element.SetAttributeValue("background", this.background);
             element.SetAttributeValue("description", this.description);
             element.SetAttributeValue("name", this.name);
-            element.SetAttributeValue("solution", this.possibleSolution);
+            element.SetAttributeValue("possibleSolution", this.possibleSolution);
             element.SetAttributeValue("type", this.type);
             return element;
         }
