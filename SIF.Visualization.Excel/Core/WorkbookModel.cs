@@ -18,6 +18,7 @@ using System.Windows;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Xml.Linq;
+using System.Xml.Schema;
 
 namespace SIF.Visualization.Excel.Core
 {
@@ -547,19 +548,20 @@ namespace SIF.Visualization.Excel.Core
             switch (inspectionMode)
             {
                 case InspectionMode.All:
-                    xmlDoc.Add(this.Accept(new Sprudel1_2XMLVisitor()) as XElement);
+                    xmlDoc.Add(this.Accept(new Sprudel1_3XMLVisitor()) as XElement);
                     //TODO add static
                     break;
                 case InspectionMode.Dynamic:
-                    xmlDoc.Add(this.Accept(new Sprudel1_2XMLVisitor()) as XElement);
+                    xmlDoc.Add(this.Accept(new Sprudel1_3XMLVisitor()) as XElement);
                     break;
                 case InspectionMode.Static:
                     //TODO change to static
-                    xmlDoc.Add(this.Accept(new Sprudel1_2XMLVisitor()) as XElement);
+                    xmlDoc.Add(this.Accept(new Sprudel1_3XMLVisitor()) as XElement);
                     break;
             };
 
             Debug.WriteLine(xmlDoc.ToString());
+            xmlDoc.Validate(XMLPartManager.Instance.GetRequestSchema(), null);
 
             // Enqueue this inspectio
             InspectionEngine.Instance.InspectionQueue.Add(new InspectionJob(this, workbookFile, xmlDoc));
@@ -575,7 +577,10 @@ namespace SIF.Visualization.Excel.Core
              */
             if (xml != null && xml.Length > 0)
             {
+
                 XElement rootElement = XElement.Parse(xml);
+                XDocument d = new XDocument(rootElement);
+                d.Validate(XMLPartManager.Instance.getReportSchema(), null);
 
                 // General attributes
                 var titleAttribute = rootElement.Attribute(XName.Get("title"));

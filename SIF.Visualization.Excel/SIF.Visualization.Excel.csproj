@@ -226,6 +226,7 @@
     <Compile Include="LaterView\LaterViewContainer.Designer.cs">
       <DependentUpon>LaterViewContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Networking\SchemaStrings.cs" />
     <Compile Include="ScenarioCore\SanityCellData.cs" />
     <Compile Include="ScenarioCore\ScenarioUICreator.cs" />
     <Compile Include="ScenarioView\CreateScenarioDataField.xaml.cs">
@@ -262,7 +263,7 @@
     <Compile Include="ScenarioCore\Scenario.cs" />
     <Compile Include="ScenarioCore\Visitor\ScenarioToXMLVisitor.cs" />
     <Compile Include="ScenarioCore\StaticScenarios\SpecializedCollection.cs" />
-    <Compile Include="ScenarioCore\Visitor\Sprudel1_2XMLVisitor.cs" />
+    <Compile Include="ScenarioCore\Visitor\Sprudel1_3XMLVisitor.cs" />
     <Compile Include="ScenarioCore\StaticScenarios\StaticScenario.cs" />
     <Compile Include="ScenarioCore\TestInputType.cs" />
     <Compile Include="ScenarioCore\Visitor\XMLToCellDefinitionVisitor.cs" />

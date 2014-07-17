@@ -13,7 +13,7 @@ using SIF.Visualization.Excel.Properties;
 
 namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 {
-    class Sprudel1_2XMLVisitor : IVisitor
+    class Sprudel1_3XMLVisitor : IVisitor
     {
         /// <summary>
         /// Create the sprudel xml document
@@ -47,13 +47,13 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             dynamicPolicy.Add(CreateOutputCells(n));
             // TODO: don't add when no scenario is present
             root.Add(dynamicPolicy);
+            XElement sanityRules = CreateSanityRules(n);
+            if (sanityRules != null)
+            {
+                root.Add(sanityRules);
+            }
             if (Settings.Default.EnforceStaticRules)
             {
-                XElement sanityRules = CreateSanityRules(n);
-                if (sanityRules != null)
-                {
-                    root.Add(sanityRules);
-                }
                 XElement readingDirection = createReadingDirection();
                 root.Add(readingDirection);
                 XElement constants = createNoConstants();
@@ -61,11 +61,6 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
                 XElement formulaComplexity = createFormulaComplexity();
                 root.Add(formulaComplexity);
             }
-            //read schema policy
-            //var sprudel = XMLPartManager.Instance.ReadXMLSchemaFromFile("E:\Studium\Bachelorthesis_sharedsvn\Entwicklung\SIF.Visualization.Excel\SIF.Visualization.Excel\XML\SpRuDeL1_2.xsd");
-
-            //validate policy
-            //todo
 
             return root;
         }
