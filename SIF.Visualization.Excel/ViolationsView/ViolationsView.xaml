@@ -172,9 +172,32 @@
                             <ColumnDefinition Width="7" />
                         </Grid.ColumnDefinitions>
 
+                        <Border Grid.Row="0" Grid.ColumnSpan="3">
+                            <Border.Background>
+                                <SolidColorBrush >
+                                    <SolidColorBrush.Color>
+                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                            <MultiBinding.Bindings>
+                                                <Binding Path="Severity" />
+                                                <Binding Path="ViolationState" />
+                                            </MultiBinding.Bindings>
+                                        </MultiBinding>
+                                    </SolidColorBrush.Color>
+                                </SolidColorBrush>
+<<<<<<< HEAD
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="{Binding Severity}" Grid.Column="1" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                   Grid.Row="0" HorizontalAlignment="Right" Margin="10 0 0 5" Padding="4 0 2 2" FontSize="14">
+                            <TextBlock.Background>
+=======
+                            </Border.Background>
+                        </Border>
+
                         <!--Severity on the right-->
                         <Rectangle Grid.RowSpan="5" Grid.Column="2" Grid.Row="0">
                             <Rectangle.Fill>
+>>>>>>> origin/protViColor
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
                                         <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
@@ -188,20 +211,7 @@
                             </Rectangle.Fill>
                         </Rectangle>
                         <TextBlock Text="{Binding Severity}" Grid.Column="1" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                   Grid.Row="0" HorizontalAlignment="Right" Margin="10 0 0 5" Padding="4 0 2 2" FontSize="14">
-                            <TextBlock.Background>
-                                <SolidColorBrush>
-                                    <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                                            <MultiBinding.Bindings>
-                                                <Binding Path="Severity" />
-                                                <Binding Path="ViolationState" />
-                                            </MultiBinding.Bindings>
-                                        </MultiBinding>
-                                    </SolidColorBrush.Color>
-                                </SolidColorBrush>
-                            </TextBlock.Background>
-                        </TextBlock>
+                                   Grid.Row="0" HorizontalAlignment="Right" Margin="10 0 0 5" Padding="4 0 2 2" FontSize="16"/>
 
                         <!--other data-->
                         <Grid Grid.Column="0" Grid.Row="0">
@@ -223,7 +233,8 @@
                                     </MultiBinding>
                                 </Image.Source>
                             </Image>
-                            <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="1" Grid.Row="0"  Margin="10 0 5 5" FontSize="16" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="1" Grid.Row="0"  Margin="10 0 5 5" FontSize="16" TextWrapping="Wrap">
+                            </TextBlock>
                         </Grid>
 
                         <TextBlock Text="{Binding CausingElement}" Grid.Column="0" Grid.Row="1"
