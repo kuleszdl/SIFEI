@@ -486,7 +486,7 @@ namespace SIF.Visualization.Excel.Core
             // Run a scan if necessary
             if (Settings.Default.AutomaticScans)
             {
-                this.Inspect();
+                this.Inspect(InspectionType.LIVE);
             }
         }
 
@@ -529,15 +529,15 @@ namespace SIF.Visualization.Excel.Core
         /// <summary>
         /// Launches an inspection job for this workbook with all available tests.
         /// </summary>
-        public void Inspect()
+        public void Inspect(InspectionType inspectionType)
         {
-            this.Inspect(InspectionMode.All);
+            this.Inspect(InspectionMode.All, inspectionType);
         }
 
         /// <summary>
         /// Launches an inspection job for this workbook.
         /// </summary>
-        public void Inspect(InspectionMode inspectionMode)
+        public void Inspect(InspectionMode inspectionMode, InspectionType inspectionType)
         {
             // Save a copy of this workbook temporarily
             var workbookFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar + Guid.NewGuid().ToString() + ".xls";
@@ -638,7 +638,8 @@ namespace SIF.Visualization.Excel.Core
 
                 // Parse violations
                 var xmlVio = ruleXML.Elements(XName.Get("violations"));
-                foreach (XElement vio in xmlVio){
+                foreach (XElement vio in xmlVio)
+                {
                     var x = vio.Attribute(ns + "type");
                     if (x.Value.Equals("singleviolation"))
                     {
