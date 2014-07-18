@@ -202,6 +202,7 @@
     <Compile Include="Core\CellLocation.cs" />
     <Compile Include="Core\GroupViolation.cs" />
     <Compile Include="Core\InspectionJob.cs" />
+    <Compile Include="Core\InspectionType.cs" />
     <Compile Include="Core\Rule.cs" />
     <Compile Include="Core\WorkbookModel.cs" />
     <Compile Include="Core\Policy.cs" />
