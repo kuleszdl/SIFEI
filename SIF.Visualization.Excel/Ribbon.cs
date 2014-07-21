@@ -26,24 +26,12 @@ namespace SIF.Visualization.Excel
         private void testButton_Click(object sender, RibbonControlEventArgs e)
         {
             // Inspect the current workbook
-            DataModel.Instance.CurrentWorkbook.Inspect();
+            DataModel.Instance.CurrentWorkbook.Inspect(InspectionType.MANUAL);
         }
 
         private void warnings_Click(object sender, RibbonControlEventArgs e)
         {
             DataModel.Instance.CurrentWorkbook.SanityWarnings = sanityWarnCheckbox.Checked;
-        }
-
-        private void StaticScan_Click(object sender, RibbonControlEventArgs e)
-        {
-            // Inspect the current workbook
-            DataModel.Instance.CurrentWorkbook.Inspect(WorkbookModel.InspectionMode.Static);
-        }
-
-        private void DynamicScan_Click(object sender, RibbonControlEventArgs e)
-        {
-            // Inspect the current workbook
-            DataModel.Instance.CurrentWorkbook.Inspect(WorkbookModel.InspectionMode.Dynamic);
         }
 
         private void sharedPaneButton_Click(object sender, RibbonControlEventArgs e)
