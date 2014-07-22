@@ -439,5 +439,10 @@ namespace SIF.Visualization.Excel
         {
             Settings.Default.AutomaticScans = this.automaticScanCheckBox.Checked;
         }
+
+        private void button1_Click(object sender, RibbonControlEventArgs e)
+        {
+            PolicyConfigurationDialog settingsDialog = new PolicyConfigurationDialog();
+        }
     }
 }
