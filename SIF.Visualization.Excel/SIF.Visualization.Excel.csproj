@@ -287,6 +287,12 @@
     <Compile Include="SolvedView\SolvedViewContainer.Designer.cs">
       <DependentUpon>SolvedViewContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewCommon\GroupViolationTemplate.xaml.cs">
+      <DependentUpon>GroupViolationTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCommon\ViolationTemplate.xaml.cs">
+      <DependentUpon>ViolationTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BoolToFontWeightConverter.cs" />
     <Compile Include="ViewModel\DifferenceTextBoxMultiConverter.cs" />
     <Compile Include="ScenarioView\ScenarioDetailPane.xaml.cs">
@@ -428,6 +434,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SolvedView\SolvedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewCommon\GroupViolationTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewCommon\ViolationTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewCommon\ViolationViewResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
