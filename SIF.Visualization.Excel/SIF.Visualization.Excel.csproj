@@ -228,6 +228,10 @@
       <DependentUpon>LaterViewContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="Networking\SchemaStrings.cs" />
+    <Compile Include="PolicyConfigurationDialog.cs" />
+    <Compile Include="PolicyConfigurationDialog.Designer.cs">
+      <DependentUpon>PolicyConfigurationDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="ScenarioCore\SanityCellData.cs" />
     <Compile Include="ScenarioCore\ScenarioUICreator.cs" />
     <Compile Include="ScenarioView\CreateScenarioDataField.xaml.cs">
@@ -333,6 +337,9 @@
     </Compile>
     <EmbeddedResource Include="CellErrorInfo\CellErrorInfoContainer.resx">
       <DependentUpon>CellErrorInfoContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PolicyConfigurationDialog.resx">
+      <DependentUpon>PolicyConfigurationDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScenarioView\CreateScenarioDataFieldContainer.resx">
       <DependentUpon>CreateScenarioDataFieldContainer.cs</DependentUpon>
