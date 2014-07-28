@@ -58,7 +58,7 @@ namespace SIF.Visualization.Excel
             }
 
             DataModel.Instance.CurrentWorkbook.Violations.Clear();
-            DataModel.Instance.CurrentWorkbook.IgnoredViolations.Clear();
+            DataModel.Instance.CurrentWorkbook.FalsePositives.Clear();
             DataModel.Instance.CurrentWorkbook.SolvedViolations.Clear();
             DataModel.Instance.CurrentWorkbook.LaterViolations.Clear();
 
@@ -442,16 +442,7 @@ namespace SIF.Visualization.Excel
 
         private void button1_Click(object sender, RibbonControlEventArgs e)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Settings.Default.FrameworkPath + Path.DirectorySeparatorChar + "file1.xml");
-            DataModel.Instance.CurrentWorkbook.Load(doc.InnerXml);
-        }
-
-        private void button2_Click(object sender, RibbonControlEventArgs e)
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Settings.Default.FrameworkPath + Path.DirectorySeparatorChar + "file2.xml");
-            DataModel.Instance.CurrentWorkbook.Load(doc.InnerXml);
+            PolicyConfigurationDialog settingsDialog = new PolicyConfigurationDialog();
         }
     }
 }
