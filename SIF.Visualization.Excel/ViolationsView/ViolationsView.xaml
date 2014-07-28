@@ -71,13 +71,13 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 0 5 5">
-                                <Hyperlink Click="FalsePositive_Click">
-                                    Ignore
+                                <Hyperlink Click="Later_Click">
+                                    Later
                                 </Hyperlink>
                             </TextBlock>
                             <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5 0 5 5">
-                                <Hyperlink Click="Later_Click">
-                                    Later
+                                <Hyperlink Click="Ignore_Click">
+                                    Ignore
                                 </Hyperlink>
                             </TextBlock>
                         </Grid>
@@ -125,14 +125,15 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
+
                             <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 0 5 5">
-                                <Hyperlink Click="FalsePositive_Click">
-                                    Ignore
+                                <Hyperlink Click="Later_Click">
+                                    Later
                                 </Hyperlink>
                             </TextBlock>
                             <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5 0 5 5">
-                                <Hyperlink Click="Later_Click">
-                                    Later
+                                <Hyperlink Click="Ignore_Click">
+                                    Ignore
                                 </Hyperlink>
                             </TextBlock>
                         </Grid>

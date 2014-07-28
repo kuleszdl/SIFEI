@@ -34,7 +34,7 @@
                     <SolidColorBrush.Color>
                         <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
                             <MultiBinding.Bindings>
-                                <Binding Path="Severity" />
+                                <Binding Path="Severity"/>
                                 <Binding Path="ViolationState" />
                             </MultiBinding.Bindings>
                         </MultiBinding>
@@ -57,16 +57,18 @@
 
         <Border Grid.Row="0" Grid.Column="1" BorderThickness="2">
             <Border.BorderBrush>
-                <SolidColorBrush >
-                    <SolidColorBrush.Color>
-                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                            <MultiBinding.Bindings>
-                                <Binding Path="Severity" />
-                                <Binding Path="ViolationState" />
-                            </MultiBinding.Bindings>
-                        </MultiBinding>
-                    </SolidColorBrush.Color>
-                </SolidColorBrush>
+                <RadialGradientBrush>
+                    <GradientStop>
+                        <GradientStop.Color>
+                            <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                <MultiBinding.Bindings>
+                                    <Binding Path="Severity"/>
+                                    <Binding Path="ViolationState" />
+                                </MultiBinding.Bindings>
+                            </MultiBinding>
+                        </GradientStop.Color>
+                    </GradientStop>
+                </RadialGradientBrush>
             </Border.BorderBrush>
             <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" 
                                        FontSize="16" Margin="5 0 0 0"/>

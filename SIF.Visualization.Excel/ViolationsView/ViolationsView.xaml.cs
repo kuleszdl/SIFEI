@@ -58,7 +58,7 @@ namespace SIF.Visualization.Excel.ViolationsView
             }
         }
 
-        private void FalsePositive_Click(object sender, RoutedEventArgs e)
+        private void Ignore_Click(object sender, RoutedEventArgs e)
         {
             Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
             Violation violation = (grid.DataContext as Violation);
