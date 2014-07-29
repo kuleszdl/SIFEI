@@ -12,6 +12,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public enum ViolationType { NEW, IGNORE, LATER, SOLVED };
 
+        public enum ViolationKind { GROUP, SINGLE };
+
         #region Fields
 
         private int id;
@@ -156,6 +158,14 @@ namespace SIF.Visualization.Excel.Core
                 this.HandleNewState(value);
             }
         }
+        /// <summary>
+        /// Gets or sets a value that indicates whether this violation is visible in the spreadsheet.
+        /// </summary>
+        public abstract ViolationKind Kind
+        {
+            get;
+        }
+
 
         #endregion
 

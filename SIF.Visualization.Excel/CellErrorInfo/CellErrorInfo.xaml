@@ -11,6 +11,8 @@
         <viewmodel:SelectionToOpacityConverter x:Key="SelectionToOpacityConverter" />
         <viewmodel:SeverityIgnoreToColorConverter x:Key="SeverityIgnoreToColorConverter"/>
         <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
+        <viewmodel:CellLocationToBrushConverter x:Key="CellLocationToBrushConverter"/>
+        <viewmodel:CellLocationToImageConverter x:Key="CellLocationToImageConverter"/>
     </UserControl.Resources>
 
     <Border BorderBrush="Black" BorderThickness="1" Background="White">
@@ -18,16 +20,14 @@
 
             <!--Background color for the grid-->
             <Grid.Background>
-                <SolidColorBrush>
-                    <SolidColorBrush.Color>
-                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                            <MultiBinding.Bindings>
-                                <Binding Path="Severity" />
-                                <Binding Path="ViolationState" />
-                            </MultiBinding.Bindings>
-                        </MultiBinding>
-                    </SolidColorBrush.Color>
-                </SolidColorBrush>
+                <MultiBinding Converter="{StaticResource CellLocationToBrushConverter}">
+                    <MultiBinding.Bindings>
+                        <Binding Path="Cell" />
+                        <Binding Path="ViolationState" />
+                        <Binding Path="Severity" />
+                        <Binding Path="ViolationState" />
+                    </MultiBinding.Bindings>
+                </MultiBinding>
             </Grid.Background>
 
             <!--Context menu for the grid-->
@@ -100,10 +100,12 @@
             <!--Content of the grid-->
             <Image x:Name="typeimage" Height="15" Width="15" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Image.Source>
-                    <MultiBinding Converter="{StaticResource TypeReadToImageConverter}">
+                    <MultiBinding Converter="{StaticResource CellLocationToImageConverter}">
                         <MultiBinding.Bindings>
-                            <Binding Path="Rule.Type" />
-                            <Binding Path="IsRead" />
+                            <Binding Path="Cell" />
+                            <Binding Path="ViolationState" />
+                            <Binding Path="Rule.Type"/>
+                            <Binding Path="IsRead"/>
                         </MultiBinding.Bindings>
                     </MultiBinding>
                 </Image.Source>

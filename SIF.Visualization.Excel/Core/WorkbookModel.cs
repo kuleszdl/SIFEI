@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -715,8 +716,6 @@ namespace SIF.Visualization.Excel.Core
         /// <param name="cellType">Class of the cell type</param>
         private void ParseCells(XElement root, ObservableCollection<Cell> targetCollection, Type cellType)
         {
-            /*(from p in root.Elements(XName.Get("cell"))
-             select new Cell(p, this.Workbook).ToCellType(cellType)).ToList().ForEach(p => { if (!targetCollection.Contains(p)) targetCollection.Add(p); });*/
 
             var cellElements = root.Elements(XName.Get("cell"));
             if (cellElements != null)
@@ -1079,6 +1078,8 @@ namespace SIF.Visualization.Excel.Core
         {
             this.UnreadSolvedCount = (from vi in solvedViolations where vi.IsRead == false select vi).Count();
         }
+
+
         #endregion
 
     }

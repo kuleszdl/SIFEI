@@ -96,6 +96,11 @@ namespace SIF.Visualization.Excel.Core
             }
         }
 
+        public override Violation.ViolationKind Kind
+        {
+            get { return ViolationKind.SINGLE; }
+        }
+
         #endregion
 
         #region Constructors
@@ -255,6 +260,7 @@ namespace SIF.Visualization.Excel.Core
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.Add(this);
                         break;
                 }
+                this.IsVisible = false;
             }
         }
 

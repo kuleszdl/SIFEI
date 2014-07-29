@@ -77,6 +77,11 @@ namespace SIF.Visualization.Excel.Core
             }
         }
 
+        public override Violation.ViolationKind Kind
+        {
+            get { return ViolationKind.GROUP; }
+        }
+
         #endregion
 
         #region Operators
@@ -236,6 +241,7 @@ namespace SIF.Visualization.Excel.Core
                         break;
                 }
                 this.Violations.ToList().ForEach(vi => vi.ViolationState = type);
+                this.IsVisible = false;
             }
         }
 

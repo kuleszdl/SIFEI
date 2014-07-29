@@ -38,6 +38,7 @@
             this.testGroup = this.Factory.CreateRibbonGroup();
             this.testButton = this.Factory.CreateRibbonButton();
             this.automaticScanCheckBox = this.Factory.CreateRibbonCheckBox();
+            this.policyConfigurationDialog = this.Factory.CreateRibbonButton();
             this.btnLoadFile1 = this.Factory.CreateRibbonButton();
             this.btnLoadFile2 = this.Factory.CreateRibbonButton();
             this.scenarioGroup = this.Factory.CreateRibbonGroup();
@@ -57,7 +58,8 @@
             this.sanityExplanationCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.sanityCheckingCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.sanityWarnCheckbox = this.Factory.CreateRibbonCheckBox();
-            this.policyConfigurationDialog = this.Factory.CreateRibbonButton();
+            this.button1 = this.Factory.CreateRibbonButton();
+            this.button2 = this.Factory.CreateRibbonButton();
             this.inspectionTab.SuspendLayout();
             this.testGroup.SuspendLayout();
             this.scenarioGroup.SuspendLayout();
@@ -81,6 +83,8 @@
             this.testGroup.Items.Add(this.testButton);
             this.testGroup.Items.Add(this.automaticScanCheckBox);
             this.testGroup.Items.Add(this.policyConfigurationDialog);
+            this.testGroup.Items.Add(this.button1);
+            this.testGroup.Items.Add(this.button2);
             this.testGroup.Items.Add(this.btnLoadFile1);
             this.testGroup.Items.Add(this.btnLoadFile2);
             this.testGroup.Label = "Test";
@@ -102,6 +106,13 @@
             this.automaticScanCheckBox.Label = "Automatic scans";
             this.automaticScanCheckBox.Name = "automaticScanCheckBox";
             this.automaticScanCheckBox.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.automaticScanCheckBox_Click);
+            // 
+            // policyConfigurationDialog
+            // 
+            this.policyConfigurationDialog.Label = "Policy Configuration";
+            this.policyConfigurationDialog.Name = "policyConfigurationDialog";
+            this.policyConfigurationDialog.ShowImage = true;
+            this.policyConfigurationDialog.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
             // 
             // btnLoadFile1
             // 
@@ -261,12 +272,17 @@
             this.sanityWarnCheckbox.Name = "sanityWarnCheckbox";
             this.sanityWarnCheckbox.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.warnings_Click);
             // 
-            // policyConfigurationDialog
+            // button1
             // 
-            this.policyConfigurationDialog.Label = "Policy Configuration";
-            this.policyConfigurationDialog.Name = "policyConfigurationDialog";
-            this.policyConfigurationDialog.ShowImage = true;
-            this.policyConfigurationDialog.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
+            this.button1.Label = "button1";
+            this.button1.Name = "button1";
+            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click_1);
+            // 
+            // button2
+            // 
+            this.button2.Label = "button2";
+            this.button2.Name = "button2";
+            this.button2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button2_Click);
             // 
             // Ribbon
             // 
@@ -315,6 +331,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnLoadFile1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnLoadFile2;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton policyConfigurationDialog;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button2;
     }
 
     partial class ThisRibbonCollection
