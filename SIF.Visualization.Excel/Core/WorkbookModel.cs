@@ -498,19 +498,22 @@ namespace SIF.Visualization.Excel.Core
                 int column = Target.Cells.Column;
                 string location = "=" + Target.Worksheet.Name + "!" + getExcelColumnName(column) + row;
                 CellLocation cell = new CellLocation(this.workbook, location);
-                this.Violations.ToList().ForEach(vi => vi.IsCellSelected = false);
                 switch (SelectedTab)
                 {
                     case SharedTabs.Violations:
+                        this.Violations.ToList().ForEach(vi => vi.IsCellSelected = false);
                         (from vi in Violations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
                     case SharedTabs.Later:
+                        this.LaterViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
                         (from vi in LaterViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
                     case SharedTabs.Ignore:
+                        this.IgnoredViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
                         (from vi in IgnoredViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
                     case SharedTabs.Solved:
+                        this.SolvedViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
                         (from vi in SolvedViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
                 }

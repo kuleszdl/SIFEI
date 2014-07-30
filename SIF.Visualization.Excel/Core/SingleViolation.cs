@@ -260,7 +260,6 @@ namespace SIF.Visualization.Excel.Core
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.Add(this);
                         break;
                 }
-                this.IsVisible = false;
             }
         }
 

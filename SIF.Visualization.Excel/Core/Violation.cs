@@ -364,6 +364,8 @@ namespace SIF.Visualization.Excel.Core
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.Remove(this);
                         break;
                 }
+                this.IsCellSelected = false;
+                this.IsVisible = false;
             }
         }
         #endregion

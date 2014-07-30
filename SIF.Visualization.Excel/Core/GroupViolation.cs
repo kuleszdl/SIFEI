@@ -241,7 +241,6 @@ namespace SIF.Visualization.Excel.Core
                         break;
                 }
                 this.Violations.ToList().ForEach(vi => vi.ViolationState = type);
-                this.IsVisible = false;
             }
         }
 
