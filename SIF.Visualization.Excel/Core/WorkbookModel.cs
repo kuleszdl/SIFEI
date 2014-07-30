@@ -77,6 +77,7 @@ namespace SIF.Visualization.Excel.Core
         private int unreadSolvedCount;
         private ObservableCollection<SIF.Visualization.Excel.ScenarioCore.Scenario> scenarios;
         private Boolean sanityWarnings = true;
+        private SharedTabs selectedTab;
 
         private Workbook workbook;
 
@@ -329,6 +330,12 @@ namespace SIF.Visualization.Excel.Core
             set { this.SetProperty(ref this.workbook, value); }
         }
 
+        public SharedTabs SelectedTab
+        {
+            get { return this.selectedTab; }
+            set { this.SetProperty(ref this.selectedTab, value); }
+        }
+
         #endregion
 
         #region Operators
@@ -406,6 +413,7 @@ namespace SIF.Visualization.Excel.Core
             this.Workbook.BeforeSave += Workbook_BeforeSave;
             this.Workbook.BeforeClose += Workbook_BeforeClose;
             this.Workbook.AfterSave += Workbook_AfterSave;
+            this.Workbook.SheetSelectionChange += Sheet_SelectionChange;
 
             // Load cell definitions
             this.Accept(new XMLToCellDefinitionVisitor(XMLPartManager.Instance.LoadXMLPart(this, "CellDefinitions")));
@@ -480,6 +488,49 @@ namespace SIF.Visualization.Excel.Core
                     solved.CreateControls();
                 }
             }
+        }
+
+        private void Sheet_SelectionChange(object Sh, Range Target)
+        {
+            if (Target.Cells.Count == 1)
+            {
+                int row = Target.Cells.Row;
+                int column = Target.Cells.Column;
+                string location = "=" + Target.Worksheet.Name + "!" + getExcelColumnName(column) + row;
+                CellLocation cell = new CellLocation(this.workbook, location);
+                this.Violations.ToList().ForEach(vi => vi.IsCellSelected = false);
+                switch (SelectedTab)
+                {
+                    case SharedTabs.Violations:
+                        (from vi in Violations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        break;
+                    case SharedTabs.Later:
+                        (from vi in LaterViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        break;
+                    case SharedTabs.Ignore:
+                        (from vi in IgnoredViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        break;
+                    case SharedTabs.Solved:
+                        (from vi in SolvedViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        break;
+                }
+            }
+        }
+
+        private string getExcelColumnName(int columnNumber)
+        {
+            int dividend = columnNumber;
+            string columnName = String.Empty;
+            int modulo;
+
+            while (dividend > 0)
+            {
+                modulo = (dividend - 1) % 26;
+                columnName = Convert.ToChar(65 + modulo).ToString() + columnName;
+                dividend = (int)((dividend - modulo) / 26);
+            }
+
+            return columnName;
         }
 
         private void Workbook_AfterSave(bool Success)

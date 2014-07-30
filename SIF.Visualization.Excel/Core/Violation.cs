@@ -26,6 +26,7 @@ namespace SIF.Visualization.Excel.Core
         private Rule rule;
         protected bool isVisible;
         protected bool isRead;
+        protected bool cellSelected;
         protected bool isSelected;
         protected bool load;
         protected ViolationType violationState;
@@ -125,6 +126,15 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
+        /// Gets or sets a value that shows whether this violation has been read or not
+        /// </summary>
+        public bool IsCellSelected
+        {
+            get { return this.cellSelected; }
+            set { this.SetProperty(ref this.cellSelected, value); }
+        }
+
+        /// <summary>
         /// Gets or sets a value that shows whether this violation has been selected or not
         /// </summary>
         public abstract bool IsSelected
@@ -158,6 +168,7 @@ namespace SIF.Visualization.Excel.Core
                 this.HandleNewState(value);
             }
         }
+
         /// <summary>
         /// Gets or sets a value that indicates whether this violation is visible in the spreadsheet.
         /// </summary>
@@ -165,6 +176,7 @@ namespace SIF.Visualization.Excel.Core
         {
             get;
         }
+
 
 
         #endregion
@@ -283,6 +295,7 @@ namespace SIF.Visualization.Excel.Core
             this.isSelected = Convert.ToBoolean(element.Attribute(XName.Get("isselected")).Value);
             this.Rule = new Rule(element.Element(XName.Get("rule")));
             this.load = false;
+            this.IsCellSelected = false;
         }
 
         #endregion
@@ -307,6 +320,7 @@ namespace SIF.Visualization.Excel.Core
             element.SetAttributeValue(XName.Get("isread"), this.IsRead);
             element.SetAttributeValue(XName.Get("isselected"), this.isSelected);
             element.Add(this.Rule.ToXElement());
+            this.IsCellSelected = false;
             return element;
         }
 

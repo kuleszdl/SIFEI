@@ -14,6 +14,7 @@
     <viewmodel:TypeConverter x:Key="TypeConverter"/>
     <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
     <viewmodel:VisibleToTextConverter x:Key="VisibleToTextConverter"/>
+    <viewmodel:BooleanToBorderThicknessConverter x:Key="BooleanToBorderThicknessConverter"/>
 
     <!-- Style for the listBox Items -->
     <Style TargetType="ListBoxItem" x:Key="listBoxItemStyle">

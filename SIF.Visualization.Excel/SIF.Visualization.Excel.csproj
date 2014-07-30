@@ -204,6 +204,7 @@
     <Compile Include="Core\InspectionJob.cs" />
     <Compile Include="Core\InspectionType.cs" />
     <Compile Include="Core\Rule.cs" />
+    <Compile Include="Core\SharedTabs.cs" />
     <Compile Include="Core\WorkbookModel.cs" />
     <Compile Include="Core\Policy.cs" />
     <Compile Include="Core\SingleViolation.cs" />
@@ -299,6 +300,7 @@
     <Compile Include="ViewCommon\ViolationTemplate.xaml.cs">
       <DependentUpon>ViolationTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BooleanToBorderThicknessConverter.cs" />
     <Compile Include="ViewModel\BoolToFontWeightConverter.cs" />
     <Compile Include="ViewModel\CellLocationToBrushConverter.cs" />
     <Compile Include="ViewModel\CellLocationToImageConverter.cs" />

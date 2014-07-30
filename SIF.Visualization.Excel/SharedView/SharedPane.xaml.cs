@@ -21,33 +21,6 @@ namespace SIF.Visualization.Excel.SharedView
     /// </summary>
     public partial class SharedPane : UserControl
     {
-        public enum SharedPaneTabIndex
-        {
-            /// <summary>
-            /// Register Violations
-            /// </summary>
-            Violations,
-            /// <summary>
-            /// Register Later
-            /// </summary>
-            Later,
-            /// <summary>
-            /// Register FalsePositive
-            /// </summary>
-            FalsePositive,
-            /// <summary>
-            /// Register Solved
-            /// </summary>
-            Solved,
-            /// <summary>
-            /// Register Cells
-            /// </summary>
-            Cells,
-            /// <summary>
-            /// Register Scenarios
-            /// </summary>
-            Scenarios,
-        }
 
         public SharedPane()
         {
@@ -55,56 +28,53 @@ namespace SIF.Visualization.Excel.SharedView
             tabcontrol.SelectionChanged += TabControl_SelectionChanged;
         }
 
-        public void changeTabTo(SharedPaneTabIndex tabIndex)
-        {
-            tabcontrol.SelectedIndex = (int)tabIndex;
-        }
-
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.Source is TabControl)
             {
-                DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsSelected = false);
-                DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.IsSelected = false);
-                DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsSelected = false);
-                DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsSelected = false);
+                var datamodel = DataModel.Instance.CurrentWorkbook;
+                datamodel.SelectedTab = (SharedTabs)tabcontrol.SelectedIndex;
+                datamodel.Violations.ToList().ForEach(vi => vi.IsSelected = false);
+                datamodel.IgnoredViolations.ToList().ForEach(vi => vi.IsSelected = false);
+                datamodel.LaterViolations.ToList().ForEach(vi => vi.IsSelected = false);
+                datamodel.SolvedViolations.ToList().ForEach(vi => vi.IsSelected = false);
 
-                switch ((SharedPaneTabIndex)tabcontrol.SelectedIndex)
+                switch ((SharedTabs)tabcontrol.SelectedIndex)
                 {
-                    case SharedPaneTabIndex.Violations:
-                        DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsVisible = true);
-                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.CreateControls());
+                    case SharedTabs.Violations:
+                        datamodel.Violations.ToList().ForEach(vi => vi.IsVisible = true);
+                        datamodel.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.Violations.ToList().ForEach(vi => vi.CreateControls());
                         break;
-                    case SharedPaneTabIndex.FalsePositive:
-                        DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = true);
-                        DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.CreateControls());
+                    case SharedTabs.Ignore:
+                        datamodel.Violations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = true);
+                        datamodel.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.IgnoredViolations.ToList().ForEach(vi => vi.CreateControls());
                         break;
-                    case SharedPaneTabIndex.Later:
-                        DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsVisible = true);
-                        DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.CreateControls());
+                    case SharedTabs.Later:
+                        datamodel.Violations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.LaterViolations.ToList().ForEach(vi => vi.IsVisible = true);
+                        datamodel.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.LaterViolations.ToList().ForEach(vi => vi.CreateControls());
                         break;
-                    case SharedPaneTabIndex.Solved:
-                        DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = true);
-                        DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.CreateControls());
+                    case SharedTabs.Solved:
+                        datamodel.Violations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = true);
+                        datamodel.SolvedViolations.ToList().ForEach(vi => vi.CreateControls());
                         break;
                     default:
-                        DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
-                        DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.Violations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
+                        datamodel.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         break;
                 }
             }

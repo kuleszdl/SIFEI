@@ -30,102 +30,108 @@
             <ListBox.Resources>
                 <!--Template for the Single Violations-->
                 <DataTemplate DataType="{x:Type model:SingleViolation}">
-                    <Grid HorizontalAlignment="Stretch" Background="Transparent">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="7" />
-                        </Grid.ColumnDefinitions>
-
-                        <Controls:ViolationTemplate HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0"/>
-
-                        <!--Severity on the right-->
-                        <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
-                            <Border.Background>
-                                <SolidColorBrush >
-                                    <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                                            <MultiBinding.Bindings>
-                                                <Binding Path="Severity" />
-                                                <Binding Path="ViolationState" />
-                                            </MultiBinding.Bindings>
-                                        </MultiBinding>
-                                    </SolidColorBrush.Color>
-                                </SolidColorBrush>
-                            </Border.Background>
-                        </Border>
-
-                        <!--Hyperlink bar at the end of the item-->
-                        <Grid Grid.Column="0" Grid.Row="4"  HorizontalAlignment="Stretch">
+                    <Border BorderThickness="{Binding IsCellSelected, Converter={StaticResource BooleanToBorderThicknessConverter}}" 
+                            BorderBrush="#217346">
+                        <Grid HorizontalAlignment="Stretch" Background="Transparent">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="7" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 0 5 5">
+                            <Controls:ViolationTemplate HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0"/>
+
+                            <!--Severity on the right-->
+                            <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+                                <Border.Background>
+                                    <SolidColorBrush >
+                                        <SolidColorBrush.Color>
+                                            <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding Path="Severity" />
+                                                    <Binding Path="ViolationState" />
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </SolidColorBrush.Color>
+                                    </SolidColorBrush>
+                                </Border.Background>
+                            </Border>
+
+                            <!--Hyperlink bar at the end of the item-->
+                            <Grid Grid.Column="0" Grid.Row="4"  HorizontalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 0 5 5">
                                 <Hyperlink Click="Now_Click">
                                     Now
                                 </Hyperlink>
-                            </TextBlock>
+                                </TextBlock>
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    </Border>
                 </DataTemplate>
 
                 <!--Template for GroupViolations-->
                 <DataTemplate DataType="{x:Type model:GroupViolation}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="7" />
-                        </Grid.ColumnDefinitions>
-
-                        <Controls:GroupViolationTemplate Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch"/>
-
-                        <!--Severity on the right-->
-                        <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
-                            <Border.Background>
-                                <SolidColorBrush >
-                                    <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                                            <MultiBinding.Bindings>
-                                                <Binding Path="Severity" />
-                                                <Binding Path="ViolationState" />
-                                            </MultiBinding.Bindings>
-                                        </MultiBinding>
-                                    </SolidColorBrush.Color>
-                                </SolidColorBrush>
-                            </Border.Background>
-                        </Border>
-
-                        <!--Hyperlink bar at the end of the item-->
-                        <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch">
+                    <Border BorderThickness="{Binding IsCellSelected, Converter={StaticResource BooleanToBorderThicknessConverter}}" 
+                            BorderBrush="#217346">
+                        <Grid HorizontalAlignment="Stretch" Background="Transparent">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 0 5 5">
+                            <Controls:GroupViolationTemplate Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch"/>
+
+                            <!--Severity on the right-->
+                            <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+                                <Border.Background>
+                                    <SolidColorBrush >
+                                        <SolidColorBrush.Color>
+                                            <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding Path="Severity" />
+                                                    <Binding Path="ViolationState" />
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </SolidColorBrush.Color>
+                                    </SolidColorBrush>
+                                </Border.Background>
+                            </Border>
+
+                            <!--Hyperlink bar at the end of the item-->
+                            <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 0 5 5">
                                 <Hyperlink Click="Now_Click">
                                     Now
                                 </Hyperlink>
-                            </TextBlock>
+                                </TextBlock>
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    </Border>
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>
