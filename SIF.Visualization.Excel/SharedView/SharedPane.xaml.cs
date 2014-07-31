@@ -42,7 +42,7 @@ namespace SIF.Visualization.Excel.SharedView
 
                 switch ((SharedTabs)tabcontrol.SelectedIndex)
                 {
-                    case SharedTabs.Violations:
+                    case SharedTabs.Open:
                         datamodel.Violations.ToList().ForEach(vi => vi.IsVisible = true);
                         datamodel.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         datamodel.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);
@@ -63,7 +63,7 @@ namespace SIF.Visualization.Excel.SharedView
                         datamodel.SolvedViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         datamodel.LaterViolations.ToList().ForEach(vi => vi.CreateControls());
                         break;
-                    case SharedTabs.Solved:
+                    case SharedTabs.Archive:
                         datamodel.Violations.ToList().ForEach(vi => vi.IsVisible = false);
                         datamodel.IgnoredViolations.ToList().ForEach(vi => vi.IsVisible = false);
                         datamodel.LaterViolations.ToList().ForEach(vi => vi.IsVisible = false);

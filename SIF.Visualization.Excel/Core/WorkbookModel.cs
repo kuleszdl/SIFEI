@@ -283,7 +283,6 @@ namespace SIF.Visualization.Excel.Core
                 if (this.solvedViolations == null)
                 {
                     this.solvedViolations = new ObservableCollection<Violation>();
-                    this.solvedViolations.CollectionChanged += solvedViolations_CollectionChanged;
                 }
                 return this.solvedViolations;
             }
@@ -310,15 +309,6 @@ namespace SIF.Visualization.Excel.Core
         {
             get { return this.unreadViolationCount; }
             set { this.SetProperty(ref this.unreadViolationCount, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the count of the unread solved violations
-        /// </summary>
-        public int UnreadSolvedCount
-        {
-            get { return this.unreadSolvedCount; }
-            set { this.SetProperty(ref this.unreadSolvedCount, value); }
         }
 
         /// <summary>
@@ -501,7 +491,7 @@ namespace SIF.Visualization.Excel.Core
                 CellLocation cell = new CellLocation(this.workbook, location);
                 switch (SelectedTab)
                 {
-                    case SharedTabs.Violations:
+                    case SharedTabs.Open:
                         this.Violations.ToList().ForEach(vi => vi.IsCellSelected = false);
                         (from vi in Violations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
@@ -513,7 +503,7 @@ namespace SIF.Visualization.Excel.Core
                         this.IgnoredViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
                         (from vi in IgnoredViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
-                    case SharedTabs.Solved:
+                    case SharedTabs.Archive:
                         this.SolvedViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
                         (from vi in SolvedViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
@@ -1132,16 +1122,6 @@ namespace SIF.Visualization.Excel.Core
         private void violations_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             this.UnreadViolationCount = (from vi in violations where vi.IsRead == false select vi).Count();
-        }
-
-        /// <summary>
-        /// Sets the unread solved violations count when the solved violations collection changes
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void solvedViolations_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            this.UnreadSolvedCount = (from vi in solvedViolations where vi.IsRead == false select vi).Count();
         }
 
 

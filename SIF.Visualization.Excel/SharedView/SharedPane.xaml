@@ -198,7 +198,7 @@
                     <Grid Width="30" Height="30">
                         <Image x:Name="findingsicon"
                            Source="{StaticResource violationsIcon}"
-                           ToolTip="Violations"
+                           ToolTip="Open"
                            Height="25"
                            Width="25"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -227,7 +227,7 @@
                     <Grid Width="30" Height="30">
                         <Image x:Name="falsepositiveicon"
                            Source="{StaticResource falsepositiveIcon}"
-                           ToolTip="False Positives"
+                           ToolTip="Ignored"
                            Height="25"
                            Width="25"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -240,13 +240,10 @@
                     <Grid Width="30" Height="30">
                         <Image x:Name="solvedView"
                            Source="{StaticResource solvedIcon}"
-                           ToolTip="Solved"
+                           ToolTip="Archive"
                            Height="25"
                            Width="25"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding UnreadSolvedCount}" Background="Green" Foreground="White" Template="{StaticResource TextBoxBaseControlTemplate}" 
-                                    Visibility="{Binding UnreadSolvedCount, Converter={StaticResource IntToVisibilityConverter}}" HorizontalAlignment="Right" 
-                                    VerticalAlignment="Top" BorderBrush="Green" Margin="0 -10 -4 0"/>
                     </Grid>
                 </TabItem.Header>
                 <solvedView:SolvedView/>

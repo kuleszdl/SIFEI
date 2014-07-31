@@ -52,7 +52,6 @@ namespace SIF.Visualization.Excel.SolvedView
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
                 this.SolvedList.ScrollIntoView(e.AddedItems[0]);
-                DataModel.Instance.CurrentWorkbook.UnreadSolvedCount = (from vi in DataModel.Instance.CurrentWorkbook.SolvedViolations where vi.IsRead == false select vi).Count();
             }
             e.Handled = true;
         }

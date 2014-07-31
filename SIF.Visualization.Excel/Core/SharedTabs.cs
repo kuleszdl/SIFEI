@@ -9,21 +9,21 @@ namespace SIF.Visualization.Excel.Core
     public enum SharedTabs
     {
         /// <summary>
-        /// Register Violations
+        /// Register Open
         /// </summary>
-        Violations,
+        Open,
         /// <summary>
         /// Register Later
         /// </summary>
         Later,
         /// <summary>
-        /// Register FalsePositive
+        /// Register Ignored
         /// </summary>
         Ignore,
         /// <summary>
         /// Register Solved
         /// </summary>
-        Solved,
+        Archive,
         /// <summary>
         /// Register Cells
         /// </summary>

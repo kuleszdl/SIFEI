@@ -256,7 +256,7 @@ namespace SIF.Visualization.Excel.Core
                         DataModel.Instance.CurrentWorkbook.LaterViolations.Add(this);
                         break;
                     case ViolationType.SOLVED:
-                        this.IsRead = false;
+                        this.IsRead = true;
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.Add(this);
                         break;
                 }
