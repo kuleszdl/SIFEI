@@ -52,16 +52,22 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             {
                 root.Add(sanityRules);
             }
-            if (Settings.Default.EnforceStaticRules)
+            if (Settings.Default.ReadingDirection)
             {
                 XElement readingDirection = createReadingDirection();
                 root.Add(readingDirection);
+            }
+            if (Settings.Default.Constraints)
+            {
                 XElement constants = createNoConstants();
                 root.Add(constants);
+            }
+            if (Settings.Default.FormulaComplexity)
+            {
                 XElement formulaComplexity = createFormulaComplexity();
                 root.Add(formulaComplexity);
             }
-
+                
             return root;
         }
 

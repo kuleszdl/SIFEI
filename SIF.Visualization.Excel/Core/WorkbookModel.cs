@@ -484,7 +484,7 @@ namespace SIF.Visualization.Excel.Core
         private void Workbook_AfterSave(bool Success)
         {
             // Run a scan if necessary
-            if (Settings.Default.AutomaticScans)
+            if (Settings.Default.ConstraintsFrequency || Settings.Default.FormulaComplexityFrequency || Settings.Default.ReadingDirectionFrequency)
             {
                 this.Inspect(InspectionType.LIVE);
             }

@@ -228,7 +228,9 @@
       <DependentUpon>LaterViewContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="Networking\SchemaStrings.cs" />
-    <Compile Include="PolicyConfigurationDialog.cs" />
+    <Compile Include="PolicyConfigurationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PolicyConfigurationDialog.Designer.cs">
       <DependentUpon>PolicyConfigurationDialog.cs</DependentUpon>
     </Compile>
