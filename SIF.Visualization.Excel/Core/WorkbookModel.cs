@@ -414,6 +414,7 @@ namespace SIF.Visualization.Excel.Core
             this.Workbook.BeforeClose += Workbook_BeforeClose;
             this.Workbook.AfterSave += Workbook_AfterSave;
             this.Workbook.SheetSelectionChange += Sheet_SelectionChange;
+            this.workbook.SheetCalculate += Workbook_SheetCalculate;
 
             // Load cell definitions
             this.Accept(new XMLToCellDefinitionVisitor(XMLPartManager.Instance.LoadXMLPart(this, "CellDefinitions")));
@@ -539,11 +540,21 @@ namespace SIF.Visualization.Excel.Core
         private void Workbook_AfterSave(bool Success)
         {
             // Run a scan if necessary
+            if (Settings.Default.AutomaticScans && Success)
+            {
+                this.Inspect(InspectionType.LIVE);
+            }
+        }
+
+        private void Workbook_SheetCalculate(object Sh)
+        {
+            // Run a scan if necessary
             if (Settings.Default.AutomaticScans)
             {
                 this.Inspect(InspectionType.LIVE);
             }
         }
+
 
         /// <summary>
         /// Saves the custom XML parts that are used to persist the cells, scenarios and false positives.
