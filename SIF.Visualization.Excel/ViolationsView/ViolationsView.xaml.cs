@@ -56,8 +56,8 @@ namespace SIF.Visualization.Excel.ViolationsView
             {
                 this.ViolationList.ScrollIntoView(e.AddedItems[0]);
                 DataModel.Instance.CurrentWorkbook.UnreadViolationCount = (from vi in DataModel.Instance.CurrentWorkbook.Violations where vi.IsRead == false select vi).Count();
-                e.Handled = true;
             }
+            e.Handled = true;
         }
 
         private void Ignore_Click(object sender, RoutedEventArgs e)
