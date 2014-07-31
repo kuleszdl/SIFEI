@@ -54,6 +54,7 @@ namespace SIF.Visualization.Excel.IgnoreView
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
                 this.IgnoreList.ScrollIntoView(e.AddedItems[0]);
+                e.Handled = true;
             }
         }
 

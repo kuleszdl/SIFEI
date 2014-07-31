@@ -54,7 +54,9 @@ namespace SIF.Visualization.Excel.ViolationsView
         {
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
+                this.ViolationList.ScrollIntoView(e.AddedItems[0]);
                 DataModel.Instance.CurrentWorkbook.UnreadViolationCount = (from vi in DataModel.Instance.CurrentWorkbook.Violations where vi.IsRead == false select vi).Count();
+                e.Handled = true;
             }
         }
 

@@ -56,6 +56,7 @@ namespace SIF.Visualization.Excel.LaterView
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
                 this.LaterList.ScrollIntoView(e.AddedItems[0]);
+                e.Handled = true;
             }
         }
 

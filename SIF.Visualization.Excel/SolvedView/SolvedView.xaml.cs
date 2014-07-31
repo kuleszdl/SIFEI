@@ -53,6 +53,7 @@ namespace SIF.Visualization.Excel.SolvedView
             {
                 this.SolvedList.ScrollIntoView(e.AddedItems[0]);
                 DataModel.Instance.CurrentWorkbook.UnreadSolvedCount = (from vi in DataModel.Instance.CurrentWorkbook.SolvedViolations where vi.IsRead == false select vi).Count();
+                e.Handled = true;
             }
         }
     }
