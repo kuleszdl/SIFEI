@@ -692,11 +692,11 @@ namespace SIF.Visualization.Excel.Core
                     {
                         violations.Add(new Violation(vio, workbook, scanTime, rule));
                     }
-                    //TODO: FIX loading of group violations
-                    //else if (x.Value.Equals("violationgroup"))
-                    //{
-                    //    violations.Add(new GroupViolation(vio, workbook, scanTime, rule));
-                    //}
+                    else if (x.Value.Equals("violationgroup"))
+                    {
+                        (from p in vio.Elements(XName.Get("singleviolation"))
+                         select new Violation(p, workbook, scanTime, rule)).ToList().ForEach(p => this.Violations.Add(p));
+                    }
                 }
 
             }
