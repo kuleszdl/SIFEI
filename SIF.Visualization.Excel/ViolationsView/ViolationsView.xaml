@@ -26,7 +26,7 @@
         <!--The listbox-->
         <ListBox x:Name="ViolationList" FontFamily="Segoe UI" FontSize="12" Visibility="{Binding Violations.Count, Converter={StaticResource IntToVisibilityConverter}}"
                  SelectedIndex="-1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                 SelectionMode="Single" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged" Background="Transparent"
+                 SelectionMode="Single" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged" Background="Transparent" ScrollViewer.CanContentScroll="False"
                  BorderThickness="0" HorizontalAlignment="Stretch" ItemContainerStyle="{StaticResource listBoxItemStyle}" HorizontalContentAlignment="Stretch">
             <ListBox.Resources>
                 <!--Template for the Single Violations-->
