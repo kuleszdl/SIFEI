@@ -35,19 +35,8 @@ namespace SIF.Visualization.Excel.ViewModel
                     break;
             }
             List<Violation> sameCells = (from violation in list
-                                         where violation.ViolationState.Equals(violationState) && violation.Cell.Equals(cell) && violation.Kind.Equals(Violation.ViolationKind.SINGLE)
+                                         where violation.ViolationState.Equals(violationState) && violation.Cell.Equals(cell)
                                          select violation).ToList();
-            List<Violation> groupViolations = (from violation in list where violation.Kind.Equals(Violation.ViolationKind.GROUP) select violation).ToList();
-            foreach (GroupViolation groupViolation in groupViolations)
-            {
-                foreach (Violation violation in groupViolation.Violations)
-                {
-                    if (violation.Cell.Equals(cell))
-                    {
-                        sameCells.Add(violation);
-                    }
-                }
-            }
             if (sameCells.Count <= 1)
             {
                 object[] objs = new object[2];

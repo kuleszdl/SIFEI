@@ -200,14 +200,12 @@
     <Compile Include="Core\BindableBase.cs" />
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\CellLocation.cs" />
-    <Compile Include="Core\GroupViolation.cs" />
     <Compile Include="Core\InspectionJob.cs" />
     <Compile Include="Core\InspectionType.cs" />
     <Compile Include="Core\Rule.cs" />
     <Compile Include="Core\SharedTabs.cs" />
     <Compile Include="Core\WorkbookModel.cs" />
     <Compile Include="Core\Policy.cs" />
-    <Compile Include="Core\SingleViolation.cs" />
     <Compile Include="Core\Violation.cs" />
     <Compile Include="Core\DataModel.cs" />
     <Compile Include="IgnoreView\IgnoreView.xaml.cs">
@@ -293,9 +291,6 @@
     </Compile>
     <Compile Include="SolvedView\SolvedViewContainer.Designer.cs">
       <DependentUpon>SolvedViewContainer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewCommon\GroupViolationTemplate.xaml.cs">
-      <DependentUpon>GroupViolationTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewCommon\ViolationTemplate.xaml.cs">
       <DependentUpon>ViolationTemplate.xaml</DependentUpon>
@@ -447,10 +442,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SolvedView\SolvedView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ViewCommon\GroupViolationTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

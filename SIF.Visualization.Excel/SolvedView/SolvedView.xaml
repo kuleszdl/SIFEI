@@ -29,7 +29,7 @@
                  BorderThickness="0" HorizontalAlignment="Stretch" ItemContainerStyle="{StaticResource listBoxItemStyle}" HorizontalContentAlignment="Stretch">
             <ListBox.Resources>
                 <!--Template for the Single Violations-->
-                <DataTemplate DataType="{x:Type model:SingleViolation}">
+                <DataTemplate DataType="{x:Type model:Violation}">
                     <Border BorderThickness="{Binding IsCellSelected, Converter={StaticResource BooleanToBorderThicknessConverter}}" 
                             BorderBrush="#217346">
                         <Grid HorizontalAlignment="Stretch" Background="Transparent">
@@ -43,41 +43,6 @@
                             </Grid.ColumnDefinitions>
 
                             <Controls:ViolationTemplate HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0"/>
-
-                            <!--Severity on the right-->
-                            <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
-                                <Border.Background>
-                                    <SolidColorBrush >
-                                        <SolidColorBrush.Color>
-                                            <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                                                <MultiBinding.Bindings>
-                                                    <Binding Path="Severity" />
-                                                    <Binding Path="ViolationState" />
-                                                </MultiBinding.Bindings>
-                                            </MultiBinding>
-                                        </SolidColorBrush.Color>
-                                    </SolidColorBrush>
-                                </Border.Background>
-                            </Border>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-
-                <!--Template for GroupViolations-->
-                <DataTemplate DataType="{x:Type model:GroupViolation}">
-                    <Border BorderThickness="{Binding IsCellSelected, Converter={StaticResource BooleanToBorderThicknessConverter}}" 
-                            BorderBrush="#217346">
-                        <Grid HorizontalAlignment="Stretch" Background="Transparent">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="7" />
-                            </Grid.ColumnDefinitions>
-
-                            <Controls:GroupViolationTemplate Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch"/>
 
                             <!--Severity on the right-->
                             <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">

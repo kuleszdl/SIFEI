@@ -5,31 +5,33 @@ using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.Core
 {
-    public abstract class Violation : BindableBase
+    public class Violation : BindableBase
     {
         /// <summary>
         /// Enum for the Violation Type
         /// </summary>
         public enum ViolationType { NEW, IGNORE, LATER, SOLVED };
 
-        public enum ViolationKind { GROUP, SINGLE };
-
         #region Fields
 
         private int id;
         private string causingElement;
         private string description;
-        protected CellLocation cell;
+        private CellLocation cell;
         private DateTime firstOccurrence;
         private DateTime solvedTime;
         private bool foundAgain;
         private Rule rule;
-        protected bool isVisible;
-        protected bool isRead;
-        protected bool cellSelected;
-        protected bool isSelected;
-        protected bool load;
-        protected ViolationType violationState;
+        private bool isVisible;
+        private bool isRead;
+        private bool cellSelected;
+        private bool isSelected;
+        private bool load;
+        private ViolationType violationState;
+        private decimal severity;
+        private string controlName;
+        private CellErrorInfo cellErrorInfo;
+        private Microsoft.Office.Tools.Excel.ControlSite control;
 
         #endregion
 
@@ -74,10 +76,10 @@ namespace SIF.Visualization.Excel.Core
         /// <summary>
         /// Gets or sets the severity of this violation.
         /// </summary>
-        public abstract decimal Severity
+        public decimal Severity
         {
-            get;
-            set;
+            get { return this.severity; }
+            set { this.SetProperty(ref this.severity, value); }
         }
 
         /// <summary>
@@ -110,10 +112,19 @@ namespace SIF.Visualization.Excel.Core
         /// <summary>
         /// Gets or sets a value that indicates whether this violation is visible in the spreadsheet.
         /// </summary>
-        public abstract bool IsVisible
+        public bool IsVisible
         {
-            get;
-            set;
+            get { return this.isVisible; }
+            set
+            {
+                if (this.SetProperty(ref this.isVisible, value))
+                {
+                    if (this.Control != null)
+                    {
+                        this.Control.Visible = this.IsVisible;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -135,12 +146,24 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
-        /// Gets or sets a value that shows whether this violation has been selected or not
+        /// Gets or sets a value that indicates whether this violation is selected in the user interface.
         /// </summary>
-        public abstract bool IsSelected
+        public bool IsSelected
         {
-            get;
-            set;
+            get { return this.isSelected; }
+            set
+            {
+                if (this.SetProperty(ref this.isSelected, value))
+                {
+                    // Make control topmost
+                    if (this.Control != null && value)
+                    {
+                        this.Control.BringToFront();
+                        this.IsRead = true;
+                        this.cell.Select();
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -170,14 +193,31 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates whether this violation is visible in the spreadsheet.
+        /// Gets or sets the name of the cell error info control.
         /// </summary>
-        public abstract ViolationKind Kind
+        public string ControlName
         {
-            get;
+            get { return this.controlName; }
+            set { this.SetProperty(ref this.controlName, value); }
         }
 
+        /// <summary>
+        /// Gets or sets the cell error info control.
+        /// </summary>
+        public CellErrorInfo CellErrorInfo
+        {
+            get { return this.cellErrorInfo; }
+            set { this.SetProperty(ref this.cellErrorInfo, value); }
+        }
 
+        /// <summary>
+        /// Gets or sets the control site of this control.
+        /// </summary>
+        public Microsoft.Office.Tools.Excel.ControlSite Control
+        {
+            get { return this.control; }
+            set { this.SetProperty(ref this.control, value); }
+        }
 
         #endregion
 
@@ -198,7 +238,9 @@ namespace SIF.Visualization.Excel.Core
                    this.CausingElement == other.CausingElement &&
                    this.Description == other.Description &&
                    this.Cell == other.Cell &&
-                   this.Rule == other.Rule;
+                   this.Rule == other.Rule &&
+                   this.IsSelected == other.IsSelected &&
+                   this.Severity == other.Severity;
         }
 
         /// <summary>
@@ -240,13 +282,6 @@ namespace SIF.Visualization.Excel.Core
         #region Constructors
 
         /// <summary>
-        /// Empty constructor
-        /// </summary>
-        public Violation()
-        {
-        }
-
-        /// <summary>
         /// Constructor of a violation
         /// </summary>
         /// <param name="root">the root XML element</param>
@@ -258,6 +293,7 @@ namespace SIF.Visualization.Excel.Core
             //this.Id = Convert.ToInt32(root.Attribute(XName.Get("number")).Value);
             this.CausingElement = root.Attribute(XName.Get("causingelement")).Value;
             this.Description = root.Attribute(XName.Get("description")).Value;
+            this.Severity = decimal.Parse(root.Attribute(XName.Get("severity")).Value.Replace(".0", ""));
 
             var location = root.Attribute(XName.Get("location")).Value;
             if (!string.IsNullOrWhiteSpace(location))
@@ -280,7 +316,7 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         /// <param name="element">The root XElement of the xml</param>
         /// <param name="workbook">The current workbook</param>
-        protected Violation(XElement element, Workbook workbook)
+        public Violation(XElement element, Workbook workbook)
         {
             this.load = true;
             this.Id = Int32.Parse(element.Attribute(XName.Get("id")).Value);
@@ -293,6 +329,8 @@ namespace SIF.Visualization.Excel.Core
             this.isVisible = Convert.ToBoolean(element.Attribute(XName.Get("isvisible")).Value);
             this.isRead = Convert.ToBoolean(element.Attribute(XName.Get("isread")).Value);
             this.isSelected = Convert.ToBoolean(element.Attribute(XName.Get("isselected")).Value);
+            this.severity = Decimal.Parse(element.Attribute(XName.Get("severity")).Value);
+            this.controlName = element.Attribute(XName.Get("controlname")).Value;
             this.Rule = new Rule(element.Element(XName.Get("rule")));
             this.load = false;
             this.IsCellSelected = false;
@@ -307,8 +345,9 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         /// <param name="element">the xml element</param>
         /// <returns>the element with the added attributes</returns>
-        protected XElement SuperClassToXElement(XElement element)
+        public XElement ToXElement(String name)
         {
+            var element = new XElement(XName.Get(name));
             element.SetAttributeValue(XName.Get("id"), this.Id);
             element.SetAttributeValue(XName.Get("causingelement"), this.CausingElement);
             element.SetAttributeValue(XName.Get("description"), this.Description);
@@ -319,28 +358,63 @@ namespace SIF.Visualization.Excel.Core
             element.SetAttributeValue(XName.Get("isvisible"), this.isVisible);
             element.SetAttributeValue(XName.Get("isread"), this.IsRead);
             element.SetAttributeValue(XName.Get("isselected"), this.isSelected);
+            element.SetAttributeValue(XName.Get("severity"), this.severity);
+            element.SetAttributeValue(XName.Get("controlname"), this.controlName);
             element.Add(this.Rule.ToXElement());
             this.IsCellSelected = false;
             return element;
         }
 
         /// <summary>
-        /// Writes this violation to a XElement obejct
-        /// </summary>
-        /// <param name="name">the name of the node in the xml</param>
-        /// <returns>the object with the data of this violation</returns>
-        public abstract XElement ToXElement(String name);
-
-        /// <summary>
         /// Renders the controls in the spreadsheet
         /// </summary>
-        public abstract void CreateControls();
+        public void CreateControls()
+        {
+            var container = new CellErrorInfoContainer();
 
-        /// <summary>
-        /// Handles the action when a new ViolationState is set
-        /// </summary>
-        /// <param name="type">the type of the new violation State</param>
-        protected abstract void HandleNewState(ViolationType type);
+            this.CellErrorInfo = new CellErrorInfo() { DataContext = this };
+            container.ElementHost.Child = this.CellErrorInfo;
+
+            var vsto = Globals.Factory.GetVstoObject(this.Cell.Worksheet);
+
+            // Remove the old control
+            if (!string.IsNullOrWhiteSpace(this.ControlName))
+            {
+                vsto.Controls.Remove(this.ControlName);
+                this.ControlName = null;
+            }
+
+            this.ControlName = Guid.NewGuid().ToString();
+
+            this.Control = vsto.Controls.AddControl(container, this.Cell.Worksheet.Range[this.Cell.ShortLocation], this.ControlName);
+            this.Control.Width = this.Control.Height;
+            this.Control.Placement = Microsoft.Office.Interop.Excel.XlPlacement.xlMove;
+        }
+
+        private void HandleNewState(Violation.ViolationType type)
+        {
+            if (!load)
+            {
+                switch (type)
+                {
+                    case ViolationType.NEW:
+                        DataModel.Instance.CurrentWorkbook.Violations.Add(this);
+                        break;
+                    case ViolationType.IGNORE:
+                        this.IsRead = true;
+                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.Add(this);
+                        break;
+                    case ViolationType.LATER:
+                        this.IsRead = true;
+                        DataModel.Instance.CurrentWorkbook.LaterViolations.Add(this);
+                        break;
+                    case ViolationType.SOLVED:
+                        this.IsRead = true;
+                        DataModel.Instance.CurrentWorkbook.SolvedViolations.Add(this);
+                        break;
+                }
+            }
+        }
 
         /// <summary>
         /// Handles the action when a ol ViolationState is removed

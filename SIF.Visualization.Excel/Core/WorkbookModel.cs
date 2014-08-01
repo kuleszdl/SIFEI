@@ -74,7 +74,6 @@ namespace SIF.Visualization.Excel.Core
         private ObservableCollection<Violation> laterViolations;
         private ObservableCollection<Violation> solvedViolations;
         private int unreadViolationCount;
-        private int unreadSolvedCount;
         private ObservableCollection<SIF.Visualization.Excel.ScenarioCore.Scenario> scenarios;
         private Boolean sanityWarnings = true;
         private SharedTabs selectedTab;
@@ -418,9 +417,7 @@ namespace SIF.Visualization.Excel.Core
             {
                 // Add them to the violations collection
                 (from p in violationsXml.Elements(XName.Get("violation"))
-                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
-                (from p in violationsXml.Elements(XName.Get("violationgroup"))
-                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
+                 select new Violation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
 
                 // refresh UI
                 foreach (var violation in this.Violations)
@@ -435,9 +432,7 @@ namespace SIF.Visualization.Excel.Core
             {
                 // Add them to the FalsePositives collection
                 (from p in falsePositivesXml.Elements(XName.Get("falsepositive"))
-                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.IgnoredViolations.Add(p));
-                (from p in falsePositivesXml.Elements(XName.Get("falsepositivegroup"))
-                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.IgnoredViolations.Add(p));
+                 select new Violation(p, workbook)).ToList().ForEach(p => this.IgnoredViolations.Add(p));
 
                 // refresh UI
                 foreach (var falsePositive in this.IgnoredViolations)
@@ -452,9 +447,7 @@ namespace SIF.Visualization.Excel.Core
             {
                 // Add them to the FalsePositives collection
                 (from p in laterXml.Elements(XName.Get("laterviolation"))
-                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.LaterViolations.Add(p));
-                (from p in laterXml.Elements(XName.Get("laterviolationgroup"))
-                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.LaterViolations.Add(p));
+                 select new Violation(p, workbook)).ToList().ForEach(p => this.LaterViolations.Add(p));
 
                 // refresh UI
                 foreach (var later in this.LaterViolations)
@@ -469,9 +462,7 @@ namespace SIF.Visualization.Excel.Core
             {
                 // Add them to the FalsePositives collection
                 (from p in solvedXml.Elements(XName.Get("solvedviolation"))
-                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
-                (from p in solvedXml.Elements(XName.Get("solvedviolationgroup"))
-                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
+                 select new Violation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
 
                 // refresh UI
                 foreach (var solved in this.SolvedViolations)
@@ -699,12 +690,13 @@ namespace SIF.Visualization.Excel.Core
                     var x = vio.Attribute(ns + "type");
                     if (x.Value.Equals("singleviolation"))
                     {
-                        violations.Add(new SingleViolation(vio, workbook, scanTime, rule, false));
+                        violations.Add(new Violation(vio, workbook, scanTime, rule));
                     }
-                    else if (x.Value.Equals("violationgroup"))
-                    {
-                        violations.Add(new GroupViolation(vio, workbook, scanTime, rule));
-                    }
+                    //TODO: FIX loading of group violations
+                    //else if (x.Value.Equals("violationgroup"))
+                    //{
+                    //    violations.Add(new GroupViolation(vio, workbook, scanTime, rule));
+                    //}
                 }
 
             }
