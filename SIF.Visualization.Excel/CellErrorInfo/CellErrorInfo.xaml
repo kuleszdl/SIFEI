@@ -8,6 +8,8 @@
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
+        <viewmodel:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <viewmodel:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
         <viewmodel:SelectionToOpacityConverter x:Key="SelectionToOpacityConverter" />
         <viewmodel:SeverityIgnoreToColorConverter x:Key="SeverityIgnoreToColorConverter"/>
         <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
@@ -17,20 +19,86 @@
 
     <Border BorderBrush="Black" BorderThickness="1" Background="White">
         <Grid x:Name="LayoutRoot" IsHitTestVisible="True">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <!--Background color for the grid-->
-            <Grid.Background>
-                <MultiBinding Converter="{StaticResource CellLocationToBrushConverter}">
-                    <MultiBinding.Bindings>
-                        <Binding Path="Cell" />
-                        <Binding Path="ViolationState" />
-                        <Binding Path="Severity" />
-                        <Binding Path="ViolationState" />
-                    </MultiBinding.Bindings>
-                </MultiBinding>
-            </Grid.Background>
+            <Border Grid.Column="0" Grid.Row="0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0, 1" EndPoint="0, 0">
+                        <GradientStop Offset="0">
+                            <GradientStop.Color>
+                                <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding Path="MinSeverity" />
+                                        <Binding Path="Type" />
+                                    </MultiBinding.Bindings>
+                                </MultiBinding>
+                            </GradientStop.Color>
+                        </GradientStop>
+                        <GradientStop Offset="1">
+                            <GradientStop.Color>
+                                <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding Path="MaxSeverity" />
+                                        <Binding Path="Type" />
+                                    </MultiBinding.Bindings>
+                                </MultiBinding>
+                            </GradientStop.Color>
+                        </GradientStop>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="0" Visibility="{Binding ItemSelected, Converter={StaticResource InverseBooleanToVisibilityConverter}}" >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0, 1" EndPoint="0, 0">
+                        <GradientStop Offset="0">
+                            <GradientStop.Color>
+                                <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding Path="MinSeverity" />
+                                        <Binding Path="Type" />
+                                    </MultiBinding.Bindings>
+                                </MultiBinding>
+                            </GradientStop.Color>
+                        </GradientStop>
+                        <GradientStop Offset="1">
+                            <GradientStop.Color>
+                                <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding Path="MaxSeverity" />
+                                        <Binding Path="Type" />
+                                    </MultiBinding.Bindings>
+                                </MultiBinding>
+                            </GradientStop.Color>
+                        </GradientStop>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="0" Visibility="{Binding ItemSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Border.Background>
+                    <SolidColorBrush>
+                        <SolidColorBrush.Color>
+                            <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                <MultiBinding.Bindings>
+                                    <Binding Path="SelectedItem.Severity" />
+                                    <Binding Path="SelectedItem.ViolationState" />
+                                </MultiBinding.Bindings>
+                            </MultiBinding>
+                        </SolidColorBrush.Color>
+                    </SolidColorBrush>
+                </Border.Background>
+            </Border>
+
 
             <!--Context menu for the grid-->
+            <!--
             <Grid.ContextMenu>
                 <ContextMenu x:Name="PopupMenu" HasDropShadow="False" Width="280">
                     <ContextMenu.Template>
@@ -79,7 +147,9 @@
                                         </Rectangle.Fill>
                                     </Rectangle>
 
-                                    <!--Commands-->
+                                    -->
+            <!--Commands-->
+            <!--
                                     <TextBlock Margin="5 -1 5 1" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center">
                                         <Hyperlink Click="Hyperlink_Click">False Positive</Hyperlink>
                                     </TextBlock>
@@ -90,14 +160,18 @@
                 </ContextMenu>
             </Grid.ContextMenu>
 
+            -->
             <!--Tooltip for the grid-->
+            <!--
             <Grid.ToolTip>
                 <ToolTip x:Name="PopupToolTip">
                     Right click to get more information about this violation.
                 </ToolTip>
             </Grid.ToolTip>
 
+            -->
             <!--Content of the grid-->
+            <!--
             <Image x:Name="typeimage" Height="15" Width="15" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Image.Source>
                     <MultiBinding Converter="{StaticResource CellLocationToImageConverter}">
@@ -109,7 +183,7 @@
                         </MultiBinding.Bindings>
                     </MultiBinding>
                 </Image.Source>
-            </Image>
+            </Image>-->
         </Grid>
     </Border>
 

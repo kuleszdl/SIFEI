@@ -64,14 +64,14 @@ namespace SIF.Visualization.Excel.ViolationsView
         {
             Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
             Violation violation = (grid.DataContext as Violation);
-            violation.ViolationState = Violation.ViolationType.IGNORE;
+            violation.ViolationState = ViolationType.IGNORE;
         }
 
         private void Later_Click(object sender, RoutedEventArgs e)
         {
             Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
             Violation violation = (grid.DataContext as Violation);
-            violation.ViolationState = Violation.ViolationType.LATER;
+            violation.ViolationState = ViolationType.LATER;
         }
     }
 

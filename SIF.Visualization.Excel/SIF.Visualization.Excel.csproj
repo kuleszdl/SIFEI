@@ -192,6 +192,8 @@
     <Compile Include="CellErrorInfo\CellErrorInfoContainer.Designer.cs">
       <DependentUpon>CellErrorInfoContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="CellErrorInfo\CellErrorInfoHandler.cs" />
+    <Compile Include="CellErrorInfo\CellErrorInfoModel.cs" />
     <Compile Include="Cells\CellManager.cs" />
     <Compile Include="Cells\InputCell.cs" />
     <Compile Include="Cells\IntermediateCell.cs" />
@@ -204,6 +206,7 @@
     <Compile Include="Core\InspectionType.cs" />
     <Compile Include="Core\Rule.cs" />
     <Compile Include="Core\SharedTabs.cs" />
+    <Compile Include="Core\ViolationType.cs" />
     <Compile Include="Core\WorkbookModel.cs" />
     <Compile Include="Core\Policy.cs" />
     <Compile Include="Core\Violation.cs" />
@@ -233,8 +236,8 @@
     <Compile Include="PolicyConfigurationDialog.Designer.cs">
       <DependentUpon>PolicyConfigurationDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="ScenarioCore\SanityCellData.cs" />
-    <Compile Include="ScenarioCore\ScenarioUICreator.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\SanityCellData.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\ScenarioUICreator.cs" />
     <Compile Include="ScenarioView\CreateScenarioDataField.xaml.cs">
       <DependentUpon>CreateScenarioDataField.xaml</DependentUpon>
     </Compile>
@@ -254,26 +257,26 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ScenarioCore\CellDefinitionType.cs" />
-    <Compile Include="ScenarioCore\IAcceptVisitor.cs" />
-    <Compile Include="ScenarioCore\CellData.cs" />
-    <Compile Include="ScenarioCore\InputCellData.cs" />
-    <Compile Include="ScenarioCore\IntermediateCellData.cs" />
-    <Compile Include="ScenarioCore\StaticScenarios\FormulaCompexity.cs" />
-    <Compile Include="ScenarioCore\StaticScenarios\NoConstantsInFormula.cs" />
-    <Compile Include="ScenarioCore\StaticScenarios\ReadingDirection.cs" />
-    <Compile Include="ScenarioCore\StaticScenarios\StaticScenarioRule.cs" />
-    <Compile Include="ScenarioCore\Visitor\CellDefinitionToXMLVisitor.cs" />
-    <Compile Include="ScenarioCore\Visitor\IVisitor.cs" />
-    <Compile Include="ScenarioCore\ResultCellData.cs" />
-    <Compile Include="ScenarioCore\Scenario.cs" />
-    <Compile Include="ScenarioCore\Visitor\ScenarioToXMLVisitor.cs" />
-    <Compile Include="ScenarioCore\StaticScenarios\SpecializedCollection.cs" />
-    <Compile Include="ScenarioCore\Visitor\Sprudel1_3XMLVisitor.cs" />
-    <Compile Include="ScenarioCore\StaticScenarios\StaticScenario.cs" />
-    <Compile Include="ScenarioCore\TestInputType.cs" />
-    <Compile Include="ScenarioCore\Visitor\XMLToCellDefinitionVisitor.cs" />
-    <Compile Include="ScenarioCore\Visitor\XMLToScenarioVisitor.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\CellDefinitionType.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\IAcceptVisitor.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\CellData.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\InputCellData.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\IntermediateCellData.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\FormulaCompexity.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\NoConstantsInFormula.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\ReadingDirection.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\StaticScenarioRule.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\Visitor\CellDefinitionToXMLVisitor.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\Visitor\IVisitor.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\ResultCellData.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\Scenario.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\Visitor\ScenarioToXMLVisitor.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\SpecializedCollection.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\Visitor\Sprudel1_3XMLVisitor.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\StaticScenario.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\TestInputType.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\Visitor\XMLToCellDefinitionVisitor.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\Visitor\XMLToScenarioVisitor.cs" />
     <Compile Include="SharedView\SharedPane.xaml.cs">
       <DependentUpon>SharedPane.xaml</DependentUpon>
     </Compile>
@@ -296,6 +299,7 @@
       <DependentUpon>ViolationTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BooleanToBorderThicknessConverter.cs" />
+    <Compile Include="ViewModel\InverseBooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModel\BoolToFontWeightConverter.cs" />
     <Compile Include="ViewModel\CellLocationToBrushConverter.cs" />
     <Compile Include="ViewModel\CellLocationToImageConverter.cs" />
@@ -390,7 +394,7 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="ScenarioCore\SIF-Frontend_classes.cd" />
+    <None Include="ScenarioView\ScenarioCore\SIF-Frontend_classes.cd" />
     <None Include="SIF.Visualization.Excel_TemporaryKey.pfx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>

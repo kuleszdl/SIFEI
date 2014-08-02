@@ -16,7 +16,7 @@ namespace SIF.Visualization.Excel.ViewModel
         {
             SeverityIgnoreToColorConverter conv = new SeverityIgnoreToColorConverter();
             CellLocation cell = (CellLocation)values[0];
-            Violation.ViolationType violationState = (Violation.ViolationType)values[1];
+            ViolationType violationState = (ViolationType)values[1];
 
             List<Violation> list = null;
             switch (violationState)
@@ -24,13 +24,13 @@ namespace SIF.Visualization.Excel.ViewModel
                 default:
                     list = DataModel.Instance.CurrentWorkbook.Violations.ToList();
                     break;
-                case Violation.ViolationType.LATER:
+                case ViolationType.LATER:
                     list = DataModel.Instance.CurrentWorkbook.LaterViolations.ToList();
                     break;
-                case Violation.ViolationType.IGNORE:
+                case ViolationType.IGNORE:
                     list = DataModel.Instance.CurrentWorkbook.IgnoredViolations.ToList();
                     break;
-                case Violation.ViolationType.SOLVED:
+                case ViolationType.SOLVED:
                     list = DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList();
                     break;
             }

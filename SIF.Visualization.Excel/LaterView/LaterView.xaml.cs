@@ -64,7 +64,7 @@ namespace SIF.Visualization.Excel.LaterView
         {
             Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
             Violation violation = (grid.DataContext as Violation);
-            violation.ViolationState = Violation.ViolationType.NEW;
+            violation.ViolationState = ViolationType.OPEN;
         }
     }
 }

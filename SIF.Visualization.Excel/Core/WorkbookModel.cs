@@ -418,12 +418,6 @@ namespace SIF.Visualization.Excel.Core
                 // Add them to the violations collection
                 (from p in violationsXml.Elements(XName.Get("violation"))
                  select new Violation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
-
-                // refresh UI
-                foreach (var violation in this.Violations)
-                {
-                    violation.CreateControls();
-                }
             }
 
             // Load the false positives
@@ -433,12 +427,6 @@ namespace SIF.Visualization.Excel.Core
                 // Add them to the FalsePositives collection
                 (from p in falsePositivesXml.Elements(XName.Get("falsepositive"))
                  select new Violation(p, workbook)).ToList().ForEach(p => this.IgnoredViolations.Add(p));
-
-                // refresh UI
-                foreach (var falsePositive in this.IgnoredViolations)
-                {
-                    falsePositive.CreateControls();
-                }
             }
 
             // Load the later violations
@@ -448,12 +436,6 @@ namespace SIF.Visualization.Excel.Core
                 // Add them to the FalsePositives collection
                 (from p in laterXml.Elements(XName.Get("laterviolation"))
                  select new Violation(p, workbook)).ToList().ForEach(p => this.LaterViolations.Add(p));
-
-                // refresh UI
-                foreach (var later in this.LaterViolations)
-                {
-                    later.CreateControls();
-                }
             }
 
             // Load the solved violations
@@ -463,12 +445,6 @@ namespace SIF.Visualization.Excel.Core
                 // Add them to the FalsePositives collection
                 (from p in solvedXml.Elements(XName.Get("solvedviolation"))
                  select new Violation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
-
-                // refresh UI
-                foreach (var solved in this.SolvedViolations)
-                {
-                    solved.CreateControls();
-                }
             }
         }
 
@@ -732,7 +708,7 @@ namespace SIF.Visualization.Excel.Core
                 else
                 {
                     this.Violations.ElementAt(i).SolvedTime = scanTime;
-                    this.Violations.ElementAt(i).ViolationState = Violation.ViolationType.SOLVED;
+                    this.Violations.ElementAt(i).ViolationState = ViolationType.SOLVED;
                 }
             }
             for (int i = this.LaterViolations.Count - 1; i >= 0; i--)
@@ -744,13 +720,8 @@ namespace SIF.Visualization.Excel.Core
                 else
                 {
                     this.LaterViolations.ElementAt(i).SolvedTime = scanTime;
-                    this.LaterViolations.ElementAt(i).ViolationState = Violation.ViolationType.SOLVED;
+                    this.LaterViolations.ElementAt(i).ViolationState = ViolationType.SOLVED;
                 }
-            }
-            // refresh UI
-            foreach (var violation in this.Violations)
-            {
-                violation.CreateControls();
             }
         }
 

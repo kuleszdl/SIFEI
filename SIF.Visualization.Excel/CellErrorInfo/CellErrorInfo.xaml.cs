@@ -20,11 +20,5 @@ namespace SIF.Visualization.Excel
         {
             InitializeComponent();
         }
-
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            this.PopupMenu.IsOpen = false;
-            (this.DataContext as Violation).ViolationState = Violation.ViolationType.IGNORE;
-        }
     }
 }

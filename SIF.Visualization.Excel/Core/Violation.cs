@@ -1,17 +1,11 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using System;
-using System.Linq;
 using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.Core
 {
     public class Violation : BindableBase
     {
-        /// <summary>
-        /// Enum for the Violation Type
-        /// </summary>
-        public enum ViolationType { NEW, IGNORE, LATER, SOLVED };
-
         #region Fields
 
         private int id;
@@ -22,16 +16,12 @@ namespace SIF.Visualization.Excel.Core
         private DateTime solvedTime;
         private bool foundAgain;
         private Rule rule;
-        private bool isVisible;
         private bool isRead;
         private bool cellSelected;
         private bool isSelected;
         private bool load;
         private ViolationType violationState;
         private decimal severity;
-        private string controlName;
-        private CellErrorInfo cellErrorInfo;
-        private Microsoft.Office.Tools.Excel.ControlSite control;
 
         #endregion
 
@@ -110,24 +100,6 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates whether this violation is visible in the spreadsheet.
-        /// </summary>
-        public bool IsVisible
-        {
-            get { return this.isVisible; }
-            set
-            {
-                if (this.SetProperty(ref this.isVisible, value))
-                {
-                    if (this.Control != null)
-                    {
-                        this.Control.Visible = this.IsVisible;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets or sets a value that shows whether this violation has been read or not
         /// </summary>
         public bool IsRead
@@ -155,13 +127,8 @@ namespace SIF.Visualization.Excel.Core
             {
                 if (this.SetProperty(ref this.isSelected, value))
                 {
-                    // Make control topmost
-                    if (this.Control != null && value)
-                    {
-                        this.Control.BringToFront();
-                        this.IsRead = true;
-                        this.cell.Select();
-                    }
+                    this.IsRead = true;
+                    this.cell.Select();
                 }
             }
         }
@@ -178,7 +145,7 @@ namespace SIF.Visualization.Excel.Core
         /// <summary>
         /// Gets or sets the state of this violation.
         /// </summary>
-        public Violation.ViolationType ViolationState
+        public ViolationType ViolationState
         {
             get { return this.violationState; }
             set
@@ -190,33 +157,6 @@ namespace SIF.Visualization.Excel.Core
                 // Add to new list
                 this.HandleNewState(value);
             }
-        }
-
-        /// <summary>
-        /// Gets or sets the name of the cell error info control.
-        /// </summary>
-        public string ControlName
-        {
-            get { return this.controlName; }
-            set { this.SetProperty(ref this.controlName, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the cell error info control.
-        /// </summary>
-        public CellErrorInfo CellErrorInfo
-        {
-            get { return this.cellErrorInfo; }
-            set { this.SetProperty(ref this.cellErrorInfo, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the control site of this control.
-        /// </summary>
-        public Microsoft.Office.Tools.Excel.ControlSite Control
-        {
-            get { return this.control; }
-            set { this.SetProperty(ref this.control, value); }
         }
 
         #endregion
@@ -307,8 +247,8 @@ namespace SIF.Visualization.Excel.Core
             this.firstOccurrence = scanTime;
             this.rule = rule;
             this.foundAgain = true;
-            this.violationState = ViolationType.NEW;
-            this.isVisible = true;
+            this.violationState = ViolationType.OPEN;
+            CellErrorInfoHandler.Instance.AddIcon(this);
         }
 
         /// <summary>
@@ -326,11 +266,9 @@ namespace SIF.Visualization.Excel.Core
             this.FirstOccurrence = DateTime.Parse(element.Attribute(XName.Get("firstoccurrence")).Value);
             this.ViolationState = (ViolationType)Enum.Parse(typeof(ViolationType), element.Attribute(XName.Get("violationstate")).Value);
             this.SolvedTime = DateTime.Parse(element.Attribute(XName.Get("solvedtime")).Value);
-            this.isVisible = Convert.ToBoolean(element.Attribute(XName.Get("isvisible")).Value);
             this.isRead = Convert.ToBoolean(element.Attribute(XName.Get("isread")).Value);
             this.isSelected = Convert.ToBoolean(element.Attribute(XName.Get("isselected")).Value);
             this.severity = Decimal.Parse(element.Attribute(XName.Get("severity")).Value);
-            this.controlName = element.Attribute(XName.Get("controlname")).Value;
             this.Rule = new Rule(element.Element(XName.Get("rule")));
             this.load = false;
             this.IsCellSelected = false;
@@ -355,49 +293,21 @@ namespace SIF.Visualization.Excel.Core
             element.SetAttributeValue(XName.Get("firstoccurrence"), this.FirstOccurrence);
             element.SetAttributeValue(XName.Get("violationstate"), this.ViolationState);
             element.SetAttributeValue(XName.Get("solvedtime"), this.SolvedTime);
-            element.SetAttributeValue(XName.Get("isvisible"), this.isVisible);
             element.SetAttributeValue(XName.Get("isread"), this.IsRead);
             element.SetAttributeValue(XName.Get("isselected"), this.isSelected);
             element.SetAttributeValue(XName.Get("severity"), this.severity);
-            element.SetAttributeValue(XName.Get("controlname"), this.controlName);
             element.Add(this.Rule.ToXElement());
             this.IsCellSelected = false;
             return element;
         }
 
-        /// <summary>
-        /// Renders the controls in the spreadsheet
-        /// </summary>
-        public void CreateControls()
-        {
-            var container = new CellErrorInfoContainer();
-
-            this.CellErrorInfo = new CellErrorInfo() { DataContext = this };
-            container.ElementHost.Child = this.CellErrorInfo;
-
-            var vsto = Globals.Factory.GetVstoObject(this.Cell.Worksheet);
-
-            // Remove the old control
-            if (!string.IsNullOrWhiteSpace(this.ControlName))
-            {
-                vsto.Controls.Remove(this.ControlName);
-                this.ControlName = null;
-            }
-
-            this.ControlName = Guid.NewGuid().ToString();
-
-            this.Control = vsto.Controls.AddControl(container, this.Cell.Worksheet.Range[this.Cell.ShortLocation], this.ControlName);
-            this.Control.Width = this.Control.Height;
-            this.Control.Placement = Microsoft.Office.Interop.Excel.XlPlacement.xlMove;
-        }
-
-        private void HandleNewState(Violation.ViolationType type)
+        private void HandleNewState(ViolationType type)
         {
             if (!load)
             {
                 switch (type)
                 {
-                    case ViolationType.NEW:
+                    case ViolationType.OPEN:
                         DataModel.Instance.CurrentWorkbook.Violations.Add(this);
                         break;
                     case ViolationType.IGNORE:
@@ -425,7 +335,7 @@ namespace SIF.Visualization.Excel.Core
             {
                 switch (this.violationState)
                 {
-                    case ViolationType.NEW:
+                    case ViolationType.OPEN:
                         DataModel.Instance.CurrentWorkbook.Violations.Remove(this);
                         break;
                     case ViolationType.IGNORE:
@@ -439,7 +349,6 @@ namespace SIF.Visualization.Excel.Core
                         break;
                 }
                 this.IsCellSelected = false;
-                this.IsVisible = false;
             }
         }
         #endregion

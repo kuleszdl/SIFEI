@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
@@ -14,15 +15,19 @@ namespace SIF.Visualization.Excel.ViewModel
 
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if (values[0] == DependencyProperty.UnsetValue || values[1] == DependencyProperty.UnsetValue)
+            {
+                return null;
+            }
             decimal severity = (decimal)values[0];
-            Violation.ViolationType violationType = (Violation.ViolationType)values[1];
+            ViolationType violationType = (ViolationType)values[1];
 
             // Fixed colors
             switch (violationType)
             {
-                case Violation.ViolationType.IGNORE:
+                case ViolationType.IGNORE:
                     return Colors.LightGray;
-                case Violation.ViolationType.SOLVED:
+                case ViolationType.SOLVED:
                     return Color.FromRgb(20, 210, 0);
             }
 
