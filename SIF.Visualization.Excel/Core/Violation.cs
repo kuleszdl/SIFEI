@@ -22,6 +22,7 @@ namespace SIF.Visualization.Excel.Core
         private bool load;
         private ViolationType violationState;
         private decimal severity;
+        private Workbook workbook;
 
         #endregion
 
@@ -235,20 +236,13 @@ namespace SIF.Visualization.Excel.Core
             this.Description = root.Attribute(XName.Get("description")).Value;
             this.Severity = decimal.Parse(root.Attribute(XName.Get("severity")).Value.Replace(".0", ""));
 
-            var location = root.Attribute(XName.Get("location")).Value;
-            if (!string.IsNullOrWhiteSpace(location))
-            {
-                // Split the location string into its components
-                // Input might be: [example.xlsx]Sheet1!B12
-                location = location.Substring(location.IndexOf(']') + 1);
-                this.Cell = new CellLocation(workbook, location);
-            }
+            this.workbook = workbook;
+            FindCellLocation(root.Attribute(XName.Get("location")).Value, workbook);
 
             this.firstOccurrence = scanTime;
             this.rule = rule;
             this.foundAgain = true;
             this.violationState = ViolationType.OPEN;
-            CellErrorInfoHandler.Instance.AddIcon(this);
         }
 
         /// <summary>
@@ -259,6 +253,7 @@ namespace SIF.Visualization.Excel.Core
         public Violation(XElement element, Workbook workbook)
         {
             this.load = true;
+            this.workbook = workbook;
             this.Id = Int32.Parse(element.Attribute(XName.Get("id")).Value);
             this.CausingElement = element.Attribute(XName.Get("causingelement")).Value;
             this.Description = element.Attribute(XName.Get("description")).Value;
@@ -323,6 +318,7 @@ namespace SIF.Visualization.Excel.Core
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.Add(this);
                         break;
                 }
+                FindCellLocation(this.Cell.Location, this.workbook);
             }
         }
 
@@ -349,6 +345,41 @@ namespace SIF.Visualization.Excel.Core
                         break;
                 }
                 this.IsCellSelected = false;
+                this.Cell.Violations.Remove(this);
+            }
+        }
+
+        private void FindCellLocation(String location, Workbook workbook)
+        {
+            if (!string.IsNullOrWhiteSpace(location))
+            {
+                // Split the location string into its components
+                // Input might be: [example.xlsx]Sheet1!B12
+                location = "=" + location.Substring(location.IndexOf(']') + 1);
+                foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
+                {
+                    if (cell.ViolationType.Equals(this.violationState) && cell.Location.Replace("$", "").Equals(location))
+                    {
+                        this.Cell = cell;
+                        cell.Violations.Add(this);
+                        return;
+                    }
+                }
+                CellLocation newCell = new CellLocation(workbook, location);
+                newCell.Violations.Add(this);
+                newCell.ViolationType = this.violationState;
+                this.Cell = newCell;
+                DataModel.Instance.CurrentWorkbook.ViolatedCells.Add(newCell);
+            }
+        }
+
+        private void RemovefromCellLocation()
+        {
+            this.Cell.Violations.Remove(this);
+            if (this.Cell.Violations.Count == 0)
+            {
+                this.Cell.RemoveIcon();
+                DataModel.Instance.CurrentWorkbook.ViolatedCells.Remove(this.Cell);
             }
         }
         #endregion

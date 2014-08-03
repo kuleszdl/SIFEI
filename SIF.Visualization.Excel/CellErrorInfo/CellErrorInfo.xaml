@@ -29,70 +29,23 @@
 
             <Border Grid.Column="0" Grid.Row="0">
                 <Border.Background>
-                    <LinearGradientBrush StartPoint="0, 1" EndPoint="0, 0">
-                        <GradientStop Offset="0">
-                            <GradientStop.Color>
-                                <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                                    <MultiBinding.Bindings>
-                                        <Binding Path="MinSeverity" />
-                                        <Binding Path="Type" />
-                                    </MultiBinding.Bindings>
-                                </MultiBinding>
-                            </GradientStop.Color>
-                        </GradientStop>
-                        <GradientStop Offset="1">
-                            <GradientStop.Color>
-                                <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                                    <MultiBinding.Bindings>
-                                        <Binding Path="MaxSeverity" />
-                                        <Binding Path="Type" />
-                                    </MultiBinding.Bindings>
-                                </MultiBinding>
-                            </GradientStop.Color>
-                        </GradientStop>
-                    </LinearGradientBrush>
+                    <MultiBinding Converter="{StaticResource CellLocationToBrushConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding Path="ViolationType" />
+                            <Binding Path="Violations" />
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
                 </Border.Background>
             </Border>
 
             <Border Grid.Column="1" Grid.Row="0" Visibility="{Binding ItemSelected, Converter={StaticResource InverseBooleanToVisibilityConverter}}" >
                 <Border.Background>
-                    <LinearGradientBrush StartPoint="0, 1" EndPoint="0, 0">
-                        <GradientStop Offset="0">
-                            <GradientStop.Color>
-                                <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                                    <MultiBinding.Bindings>
-                                        <Binding Path="MinSeverity" />
-                                        <Binding Path="Type" />
-                                    </MultiBinding.Bindings>
-                                </MultiBinding>
-                            </GradientStop.Color>
-                        </GradientStop>
-                        <GradientStop Offset="1">
-                            <GradientStop.Color>
-                                <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                                    <MultiBinding.Bindings>
-                                        <Binding Path="MaxSeverity" />
-                                        <Binding Path="Type" />
-                                    </MultiBinding.Bindings>
-                                </MultiBinding>
-                            </GradientStop.Color>
-                        </GradientStop>
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
-
-            <Border Grid.Column="1" Grid.Row="0" Visibility="{Binding ItemSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Border.Background>
-                    <SolidColorBrush>
-                        <SolidColorBrush.Color>
-                            <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                                <MultiBinding.Bindings>
-                                    <Binding Path="SelectedItem.Severity" />
-                                    <Binding Path="SelectedItem.ViolationState" />
-                                </MultiBinding.Bindings>
-                            </MultiBinding>
-                        </SolidColorBrush.Color>
-                    </SolidColorBrush>
+                    <MultiBinding Converter="{StaticResource CellLocationToBrushConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding Path="ViolationType" />
+                            <Binding Path="Violations" />
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
                 </Border.Background>
             </Border>
 

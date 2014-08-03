@@ -2,6 +2,7 @@
 using SIF.Visualization.Excel.Properties;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -17,6 +18,10 @@ namespace SIF.Visualization.Excel.Core
         private string letter;
         private int number;
         private Worksheet worksheet;
+        private ObservableCollection<Violation> violations;
+        private string controlName;
+        private ViolationType violationType;
+        private Microsoft.Office.Tools.Excel.ControlSite control;
 
         #endregion
 
@@ -50,6 +55,29 @@ namespace SIF.Visualization.Excel.Core
             set { this.SetProperty(ref this.worksheet, value); }
         }
 
+        public ObservableCollection<Violation> Violations
+        {
+            get
+            {
+                if (this.violations == null)
+                {
+                    this.violations = new ObservableCollection<Violation>();
+                }
+                return this.violations;
+            }
+            set { this.SetProperty(ref this.violations, value); }
+        }
+
+        public ViolationType ViolationType
+        {
+            get { return this.violationType; }
+            set { this.SetProperty(ref this.violationType, value); }
+        }
+
+        public CellLocation Cell
+        {
+            get { return this; }
+        }
         #endregion
 
         #region Operators
@@ -193,6 +221,16 @@ namespace SIF.Visualization.Excel.Core
             this.Letter = Regex.Match(cell, "[A-Z]*").Value.ToUpper();
             if (cell.Contains(":")) cell = cell.Substring(letter.Length, cell.IndexOf(":") - 1);
             this.Number = int.Parse(cell.Replace(this.Letter, ""));
+            this.Violations.CollectionChanged += Violations_CollectionChanged;
+        }
+
+        void Violations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (this.violations.Count > 0)
+            {
+                this.RemoveIcon();
+                this.DrawIcon();
+            }
         }
 
         /// <summary>
@@ -319,6 +357,33 @@ namespace SIF.Visualization.Excel.Core
         {
             ((_Worksheet)this.Worksheet).Activate();
             this.Worksheet.Range[this.ShortLocation].Show();
+        }
+
+        private void DrawIcon()
+        {
+            if (this.Violations.Count > 0)
+            {
+                var container = new CellErrorInfoContainer();
+                container.ElementHost.Child = new CellErrorInfo() { DataContext = this };
+
+                var vsto = Globals.Factory.GetVstoObject(this.Worksheet);
+
+                this.controlName = Guid.NewGuid().ToString();
+
+                this.control = vsto.Controls.AddControl(container, this.Worksheet.Range[this.ShortLocation], this.controlName);
+                this.control.Width = this.control.Height + 4;
+                this.control.Placement = Microsoft.Office.Interop.Excel.XlPlacement.xlMove;
+            }
+        }
+
+        public void RemoveIcon()
+        {
+            if (!string.IsNullOrWhiteSpace(this.controlName))
+            {
+                var vsto = Globals.Factory.GetVstoObject(this.Worksheet);
+                vsto.Controls.Remove(this.controlName);
+                this.controlName = null;
+            }
         }
 
         #endregion

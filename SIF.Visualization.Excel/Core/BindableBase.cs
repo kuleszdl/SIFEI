@@ -42,7 +42,6 @@ namespace SIF.Visualization.Excel.Core
             }
 
             this.OnPropertyChanged(propertyName);
-            RaisePropertyChanged("ServerStatus");
             return true;
         }
 

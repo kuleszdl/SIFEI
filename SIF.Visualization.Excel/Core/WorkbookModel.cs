@@ -73,6 +73,7 @@ namespace SIF.Visualization.Excel.Core
         private ObservableCollection<Violation> ignoredViolations;
         private ObservableCollection<Violation> laterViolations;
         private ObservableCollection<Violation> solvedViolations;
+        private ObservableCollection<CellLocation> violatedCells;
         private int unreadViolationCount;
         private ObservableCollection<SIF.Visualization.Excel.ScenarioCore.Scenario> scenarios;
         private Boolean sanityWarnings = true;
@@ -196,6 +197,16 @@ namespace SIF.Visualization.Excel.Core
                 return this.sanityCheckingCells;
             }
             set { this.SetProperty(ref this.sanityCheckingCells, value); }
+        }
+
+        public ObservableCollection<CellLocation> ViolatedCells
+        {
+            get
+            {
+                if (this.violatedCells == null) this.violatedCells = new ObservableCollection<CellLocation>();
+                return this.violatedCells;
+            }
+            set { this.SetProperty(ref this.violatedCells, value); }
         }
 
         public Boolean SanityWarnings

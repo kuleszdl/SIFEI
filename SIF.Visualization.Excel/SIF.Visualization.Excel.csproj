@@ -192,8 +192,6 @@
     <Compile Include="CellErrorInfo\CellErrorInfoContainer.Designer.cs">
       <DependentUpon>CellErrorInfoContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="CellErrorInfo\CellErrorInfoHandler.cs" />
-    <Compile Include="CellErrorInfo\CellErrorInfoModel.cs" />
     <Compile Include="Cells\CellManager.cs" />
     <Compile Include="Cells\InputCell.cs" />
     <Compile Include="Cells\IntermediateCell.cs" />
