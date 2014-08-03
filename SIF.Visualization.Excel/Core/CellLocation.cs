@@ -3,8 +3,10 @@ using SIF.Visualization.Excel.Properties;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Data;
 
 namespace SIF.Visualization.Excel.Core
 {
@@ -24,6 +26,7 @@ namespace SIF.Visualization.Excel.Core
         private Microsoft.Office.Tools.Excel.ControlSite control;
         private bool violationSelected;
         private Violation selectedViolation;
+        private ListCollectionView violationsPane;
 
         #endregion
 
@@ -92,6 +95,13 @@ namespace SIF.Visualization.Excel.Core
         {
             get { return this; }
         }
+
+        public ListCollectionView ViolationsPane
+        {
+            get { return this.violationsPane; }
+            set { this.SetProperty(ref this.violationsPane, value); }
+        }
+
         #endregion
 
         #region Operators
@@ -245,12 +255,15 @@ namespace SIF.Visualization.Excel.Core
                 if (this.violations.Count == 1)
                 {
                     this.selectedViolation = violations.ElementAt(0);
-                    this.violationSelected = true;
+                    this.ViolationSelected = true;
                 }
                 else
                 {
-                    this.violationSelected = false;
+                    this.ViolationSelected = false;
                 }
+                this.violationsPane = new ListCollectionView(Violations);
+                this.violationsPane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
+                this.ViolationsPane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
                 this.RemoveIcon();
                 this.DrawIcon();
                 this.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
@@ -383,7 +396,10 @@ namespace SIF.Visualization.Excel.Core
 
         public void Unselect()
         {
-            this.ViolationSelected = false;
+            if (this.Violations.Count > 1)
+            {
+                this.ViolationSelected = false;
+            }
         }
 
         /// <summary>
