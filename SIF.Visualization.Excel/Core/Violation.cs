@@ -128,8 +128,15 @@ namespace SIF.Visualization.Excel.Core
             {
                 if (this.SetProperty(ref this.isSelected, value))
                 {
-                    this.IsRead = true;
-                    this.cell.Select();
+                    if (value)
+                    {
+                        this.IsRead = true;
+                        this.cell.Select(this);
+                    }
+                    else
+                    {
+                        this.cell.Unselect();
+                    }
                 }
             }
         }
@@ -345,7 +352,7 @@ namespace SIF.Visualization.Excel.Core
                         break;
                 }
                 this.IsCellSelected = false;
-                this.Cell.Violations.Remove(this);
+                RemovefromCellLocation();
             }
         }
 
@@ -353,8 +360,6 @@ namespace SIF.Visualization.Excel.Core
         {
             if (!string.IsNullOrWhiteSpace(location))
             {
-                // Split the location string into its components
-                // Input might be: [example.xlsx]Sheet1!B12
                 location = "=" + location.Substring(location.IndexOf(']') + 1);
                 foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
                 {
@@ -366,8 +371,8 @@ namespace SIF.Visualization.Excel.Core
                     }
                 }
                 CellLocation newCell = new CellLocation(workbook, location);
-                newCell.Violations.Add(this);
                 newCell.ViolationType = this.violationState;
+                newCell.Violations.Add(this);
                 this.Cell = newCell;
                 DataModel.Instance.CurrentWorkbook.ViolatedCells.Add(newCell);
             }

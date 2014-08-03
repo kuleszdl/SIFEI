@@ -22,6 +22,8 @@ namespace SIF.Visualization.Excel.Core
         private string controlName;
         private ViolationType violationType;
         private Microsoft.Office.Tools.Excel.ControlSite control;
+        private bool violationSelected;
+        private Violation selectedViolation;
 
         #endregion
 
@@ -72,6 +74,18 @@ namespace SIF.Visualization.Excel.Core
         {
             get { return this.violationType; }
             set { this.SetProperty(ref this.violationType, value); }
+        }
+
+        public bool ViolationSelected
+        {
+            get { return this.violationSelected; }
+            set { this.SetProperty(ref this.violationSelected, value); }
+        }
+
+        public Violation SelectedViolation
+        {
+            get { return this.selectedViolation; }
+            set { this.SetProperty(ref this.selectedViolation, value); }
         }
 
         public CellLocation Cell
@@ -230,6 +244,7 @@ namespace SIF.Visualization.Excel.Core
             {
                 this.RemoveIcon();
                 this.DrawIcon();
+                this.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
             }
         }
 
@@ -350,6 +365,18 @@ namespace SIF.Visualization.Excel.Core
             this.Worksheet.Range[this.ShortLocation].Select();
         }
 
+        public void Select(Violation violation)
+        {
+            this.Select();
+            this.SelectedViolation = violation;
+            this.ViolationSelected = true;
+        }
+
+        public void Unselect()
+        {
+            this.ViolationSelected = false;
+        }
+
         /// <summary>
         /// Scrolls this cell into view.
         /// </summary>
@@ -383,6 +410,30 @@ namespace SIF.Visualization.Excel.Core
                 var vsto = Globals.Factory.GetVstoObject(this.Worksheet);
                 vsto.Controls.Remove(this.controlName);
                 this.controlName = null;
+            }
+        }
+
+        public void SetVisibility(SharedTabs tab)
+        {
+            if (this.violationType.Equals(ViolationType.OPEN) && tab.Equals(SharedTabs.Open))
+            {
+                this.control.Visible = true;
+            }
+            else if (this.violationType.Equals(ViolationType.LATER) && tab.Equals(SharedTabs.Later))
+            {
+                this.control.Visible = true;
+            }
+            else if (this.violationType.Equals(ViolationType.IGNORE) && tab.Equals(SharedTabs.Ignore))
+            {
+                this.control.Visible = true;
+            }
+            else if (this.violationType.Equals(ViolationType.SOLVED) && tab.Equals(SharedTabs.Archive))
+            {
+                this.control.Visible = true;
+            }
+            else
+            {
+                this.control.Visible = false;
             }
         }
 

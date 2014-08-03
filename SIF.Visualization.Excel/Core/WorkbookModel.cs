@@ -333,7 +333,11 @@ namespace SIF.Visualization.Excel.Core
         public SharedTabs SelectedTab
         {
             get { return this.selectedTab; }
-            set { this.SetProperty(ref this.selectedTab, value); }
+            set
+            {
+                this.SetProperty(ref this.selectedTab, value);
+                this.ViolatedCells.ToList().ForEach(vc => vc.SetVisibility(value));
+            }
         }
 
         #endregion

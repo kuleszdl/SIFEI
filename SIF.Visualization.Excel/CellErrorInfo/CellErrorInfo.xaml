@@ -38,7 +38,7 @@
                 </Border.Background>
             </Border>
 
-            <Border Grid.Column="1" Grid.Row="0" Visibility="{Binding ItemSelected, Converter={StaticResource InverseBooleanToVisibilityConverter}}" >
+            <Border Grid.Column="1" Grid.Row="0" Visibility="{Binding ViolationSelected, Converter={StaticResource InverseBooleanToVisibilityConverter}}" >
                 <Border.Background>
                     <MultiBinding Converter="{StaticResource CellLocationToBrushConverter}">
                         <MultiBinding.Bindings>
@@ -46,6 +46,21 @@
                             <Binding Path="Violations" />
                         </MultiBinding.Bindings>
                     </MultiBinding>
+                </Border.Background>
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="0" Visibility="{Binding ViolationSelected, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                <Border.Background>
+                    <SolidColorBrush >
+                        <SolidColorBrush.Color>
+                            <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                <MultiBinding.Bindings>
+                                    <Binding Path="SelectedViolation.Severity" />
+                                    <Binding Path="SelectedViolation.ViolationState" />
+                                </MultiBinding.Bindings>
+                            </MultiBinding>
+                        </SolidColorBrush.Color>
+                    </SolidColorBrush>
                 </Border.Background>
             </Border>
 
