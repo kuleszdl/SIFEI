@@ -242,6 +242,15 @@ namespace SIF.Visualization.Excel.Core
         {
             if (this.violations.Count > 0)
             {
+                if (this.violations.Count == 1)
+                {
+                    this.selectedViolation = violations.ElementAt(0);
+                    this.violationSelected = true;
+                }
+                else
+                {
+                    this.violationSelected = false;
+                }
                 this.RemoveIcon();
                 this.DrawIcon();
                 this.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);

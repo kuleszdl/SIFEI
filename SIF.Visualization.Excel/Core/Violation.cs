@@ -244,11 +244,11 @@ namespace SIF.Visualization.Excel.Core
             this.Severity = decimal.Parse(root.Attribute(XName.Get("severity")).Value.Replace(".0", ""));
 
             this.workbook = workbook;
-            FindCellLocation(root.Attribute(XName.Get("location")).Value, workbook);
 
             this.firstOccurrence = scanTime;
             this.rule = rule;
             this.foundAgain = true;
+            FindCellLocation(root.Attribute(XName.Get("location")).Value, workbook);
             this.violationState = ViolationType.OPEN;
         }
 
@@ -264,7 +264,6 @@ namespace SIF.Visualization.Excel.Core
             this.Id = Int32.Parse(element.Attribute(XName.Get("id")).Value);
             this.CausingElement = element.Attribute(XName.Get("causingelement")).Value;
             this.Description = element.Attribute(XName.Get("description")).Value;
-            this.Cell = new CellLocation(workbook, element.Attribute(XName.Get("cell")).Value);
             this.FirstOccurrence = DateTime.Parse(element.Attribute(XName.Get("firstoccurrence")).Value);
             this.ViolationState = (ViolationType)Enum.Parse(typeof(ViolationType), element.Attribute(XName.Get("violationstate")).Value);
             this.SolvedTime = DateTime.Parse(element.Attribute(XName.Get("solvedtime")).Value);
@@ -272,6 +271,7 @@ namespace SIF.Visualization.Excel.Core
             this.isSelected = Convert.ToBoolean(element.Attribute(XName.Get("isselected")).Value);
             this.severity = Decimal.Parse(element.Attribute(XName.Get("severity")).Value);
             this.Rule = new Rule(element.Element(XName.Get("rule")));
+            FindCellLocation(element.Attribute(XName.Get("cell")).Value, workbook);
             this.load = false;
             this.IsCellSelected = false;
         }

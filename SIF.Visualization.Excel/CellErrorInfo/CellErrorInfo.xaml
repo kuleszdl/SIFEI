@@ -49,8 +49,8 @@
                 </Border.Background>
             </Border>
 
-            <Border Grid.Column="1" Grid.Row="0" Visibility="{Binding ViolationSelected, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                <Border.Background>
+            <Grid Grid.Column="1" Grid.Row="0" Visibility="{Binding ViolationSelected, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                <Grid.Background>
                     <SolidColorBrush >
                         <SolidColorBrush.Color>
                             <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
@@ -61,8 +61,19 @@
                             </MultiBinding>
                         </SolidColorBrush.Color>
                     </SolidColorBrush>
-                </Border.Background>
-            </Border>
+                </Grid.Background>
+
+                <Image x:Name="typeimage" Height="15" Width="15" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Image.Source>
+                        <MultiBinding Converter="{StaticResource TypeReadToImageConverter}">
+                            <MultiBinding.Bindings>
+                                <Binding Path="SelectedViolation.Rule.Type" />
+                                <Binding Path="SelectedViolation.IsRead" />
+                            </MultiBinding.Bindings>
+                        </MultiBinding>
+                    </Image.Source>
+                </Image>
+            </Grid>
 
 
             <!--Context menu for the grid-->
