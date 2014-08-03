@@ -73,96 +73,68 @@
                         </MultiBinding>
                     </Image.Source>
                 </Image>
+
+                <Grid.ContextMenu>
+                    <ContextMenu x:Name="PopupMenu" HasDropShadow="False" Width="280">
+                        <ContextMenu.Template>
+                            <ControlTemplate TargetType="ContextMenu">
+                                <Border SnapsToDevicePixels="True" Background="White" BorderBrush="Black" BorderThickness="1">
+                                    <Grid Background="White">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition MinHeight="22" Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="#EEEEEE" />
+
+                                        <TextBlock Grid.Column="1" Margin="5" Text="{Binding SelectedViolation.CausingElement}" FontWeight="Bold" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
+                                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="5 0 5 8" Text="{Binding SelectedViolation.Description}" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
+                                        <Rectangle Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Stroke="Gray" StrokeDashArray="1 3" StrokeThickness="1" VerticalAlignment="Bottom" />
+                                        <TextBlock Grid.Column="1" Grid.Row="2" Margin="5 5 5 2" Text="Possible Solution" FontWeight="SemiBold" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
+                                        <TextBlock Grid.Column="1" Grid.Row="3" Margin="5 0 5 8" Text="{Binding SelectedViolation.Rule.PossibleSolution}" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
+                                        <Rectangle Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Stroke="Gray" StrokeDashArray="1 3" StrokeThickness="1" VerticalAlignment="Bottom" />
+                                        <TextBlock Grid.Column="1" Grid.Row="4" Margin="5 5 5 2" Text="Background" FontWeight="SemiBold" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
+                                        <TextBlock Grid.Column="1" Grid.Row="5" Margin="5 0 5 8" Text="{Binding SelectedViolation.Rule.Background}" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
+                                        <Rectangle Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Stroke="Gray" StrokeDashArray="1 3" StrokeThickness="1" VerticalAlignment="Bottom" />
+
+                                        <Rectangle HorizontalAlignment="Stretch" Grid.RowSpan="10">
+                                            <Rectangle.Fill>
+                                                <SolidColorBrush>
+                                                    <SolidColorBrush.Color>
+                                                        <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
+                                                            <MultiBinding.Bindings>
+                                                                <Binding Path="SelectedViolation.Severity" />
+                                                                <Binding Path="SelectedViolation.ViolationState" />
+                                                            </MultiBinding.Bindings>
+                                                        </MultiBinding>
+                                                    </SolidColorBrush.Color>
+                                                </SolidColorBrush>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </ContextMenu.Template>
+                    </ContextMenu>
+                </Grid.ContextMenu>
+
+                <!--Tooltip for the grid-->
+                <Grid.ToolTip>
+                    <ToolTip x:Name="PopupToolTip">
+                        Right click to get more information about this violation.
+                    </ToolTip>
+                </Grid.ToolTip>
             </Grid>
-
-
-            <!--Context menu for the grid-->
-            <!--
-            <Grid.ContextMenu>
-                <ContextMenu x:Name="PopupMenu" HasDropShadow="False" Width="280">
-                    <ContextMenu.Template>
-                        <ControlTemplate TargetType="ContextMenu">
-                            <Border SnapsToDevicePixels="True" Background="White" BorderBrush="Black" BorderThickness="1">
-                                <Grid Background="White">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="3" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition MinHeight="22" Height="Auto" />
-                                    </Grid.RowDefinitions>
-
-                                    <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="#EEEEEE" />
-
-                                    <TextBlock Grid.Column="1" Margin="5" Text="{Binding CausingElement}" FontWeight="Bold" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
-                                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5 0 5 8" Text="{Binding Description}" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
-                                    <Rectangle Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Stroke="Gray" StrokeDashArray="1 3" StrokeThickness="1" VerticalAlignment="Bottom" />
-                                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="5 5 5 2" Text="Possible Solution" FontWeight="SemiBold" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
-                                    <TextBlock Grid.Column="1" Grid.Row="3" Margin="5 0 5 8" Text="{Binding Rule.PossibleSolution}" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
-                                    <Rectangle Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Stroke="Gray" StrokeDashArray="1 3" StrokeThickness="1" VerticalAlignment="Bottom" />
-                                    <TextBlock Grid.Column="1" Grid.Row="4" Margin="5 5 5 2" Text="Background" FontWeight="SemiBold" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
-                                    <TextBlock Grid.Column="1" Grid.Row="5" Margin="5 0 5 8" Text="{Binding Rule.Background}" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" />
-                                    <Rectangle Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Stroke="Gray" StrokeDashArray="1 3" StrokeThickness="1" VerticalAlignment="Bottom" />
-
-                                    <Rectangle HorizontalAlignment="Stretch" Grid.RowSpan="10">
-                                        <Rectangle.Fill>
-                                            <SolidColorBrush>
-                                                <SolidColorBrush.Color>
-                                                    <MultiBinding Converter="{StaticResource SeverityIgnoreToColorConverter}">
-                                                        <MultiBinding.Bindings>
-                                                            <Binding Path="Severity" />
-                                                            <Binding Path="ViolationState" />
-                                                        </MultiBinding.Bindings>
-                                                    </MultiBinding>
-                                                </SolidColorBrush.Color>
-                                            </SolidColorBrush>
-                                        </Rectangle.Fill>
-                                    </Rectangle>
-
-                                    -->
-            <!--Commands-->
-            <!--
-                                    <TextBlock Margin="5 -1 5 1" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center">
-                                        <Hyperlink Click="Hyperlink_Click">False Positive</Hyperlink>
-                                    </TextBlock>
-                                </Grid>
-                            </Border>
-                        </ControlTemplate>
-                    </ContextMenu.Template>
-                </ContextMenu>
-            </Grid.ContextMenu>
-
-            -->
-            <!--Tooltip for the grid-->
-            <!--
-            <Grid.ToolTip>
-                <ToolTip x:Name="PopupToolTip">
-                    Right click to get more information about this violation.
-                </ToolTip>
-            </Grid.ToolTip>
-
-            -->
-            <!--Content of the grid-->
-            <!--
-            <Image x:Name="typeimage" Height="15" Width="15" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Image.Source>
-                    <MultiBinding Converter="{StaticResource CellLocationToImageConverter}">
-                        <MultiBinding.Bindings>
-                            <Binding Path="Cell" />
-                            <Binding Path="ViolationState" />
-                            <Binding Path="Rule.Type"/>
-                            <Binding Path="IsRead"/>
-                        </MultiBinding.Bindings>
-                    </MultiBinding>
-                </Image.Source>
-            </Image>-->
         </Grid>
     </Border>
 
