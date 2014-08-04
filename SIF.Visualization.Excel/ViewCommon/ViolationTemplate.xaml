@@ -70,7 +70,7 @@
                     </GradientStop>
                 </RadialGradientBrush>
             </Border.BorderBrush>
-            <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" 
+            <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BoolToFontWeightConverter}}" 
                                        FontSize="16" Margin="5 0 0 0"/>
         </Border>
 
@@ -87,7 +87,7 @@
                     </SolidColorBrush.Color>
                 </SolidColorBrush>
             </Border.Background>
-            <TextBlock Text="{Binding Severity}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}"
+            <TextBlock Text="{Binding Severity}" FontWeight="{Binding IsRead, Converter={StaticResource BoolToFontWeightConverter}}"
                                     HorizontalAlignment="Right" Margin="2 0 0 0" FontSize="16" VerticalAlignment="Center"/>
         </Border>
 

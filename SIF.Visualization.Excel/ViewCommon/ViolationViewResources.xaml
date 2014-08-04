@@ -10,7 +10,7 @@
     <viewmodel:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
     <viewmodel:InverseIntToVisibilityConverter x:Key="InverseIntToVisibilityConverter" />
     <viewmodel:SeverityIgnoreToColorConverter x:Key="SeverityIgnoreToColorConverter"/>
-    <viewmodel:BoolToFontWeightConverter x:Key="BooleanToVisibilityConverter"/>
+    <viewmodel:BoolToFontWeightConverter x:Key="BoolToFontWeightConverter"/>
     <viewmodel:TypeConverter x:Key="TypeConverter"/>
     <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
     <viewmodel:VisibleToTextConverter x:Key="VisibleToTextConverter"/>

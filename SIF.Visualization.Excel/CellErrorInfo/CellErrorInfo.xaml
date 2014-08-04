@@ -9,23 +9,20 @@
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
-        <viewmodel:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <viewmodel:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
-        <viewmodel:SelectionToOpacityConverter x:Key="SelectionToOpacityConverter" />
-        <viewmodel:SeverityIgnoreToColorConverter x:Key="SeverityIgnoreToColorConverter"/>
-        <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
-        <viewmodel:CellLocationToBrushConverter x:Key="CellLocationToBrushConverter"/>
-        <viewmodel:CellLocationToImageConverter x:Key="CellLocationToImageConverter"/>
-
-        <!-- Style for the listBox Items -->
-        <Style TargetType="ListBoxItem" x:Key="listBoxItemStyle">
-            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-            <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="BorderBrush" Value="Gray"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Margin"  Value="0 2 5 2"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ViewCommon/ViolationViewResources.xaml"/>
+                <ResourceDictionary>
+                    <viewmodel:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+                    <viewmodel:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+                    <viewmodel:SelectionToOpacityConverter x:Key="SelectionToOpacityConverter" />
+                    <viewmodel:SeverityIgnoreToColorConverter x:Key="SeverityIgnoreToColorConverter"/>
+                    <viewmodel:TypeReadToImageConverter x:Key="TypeReadToImageConverter"/>
+                    <viewmodel:CellLocationToBrushConverter x:Key="CellLocationToBrushConverter"/>
+                    <viewmodel:CellLocationToImageConverter x:Key="CellLocationToImageConverter"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Border BorderBrush="Black" BorderThickness="1" Background="White">
@@ -39,7 +36,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid.ContextMenu>
-                <ContextMenu HasDropShadow="False" Width="280" x:Name="ContextMenuMulti">
+                <ContextMenu HasDropShadow="False" Width="280" x:Name="ContextMenuMulti" MaxHeight="300">
                     <ContextMenu.Template>
                         <ControlTemplate TargetType="ContextMenu" x:Name="ListboxTemplate">
                             <Border SnapsToDevicePixels="True" Background="White" BorderBrush="Black" BorderThickness="1">
@@ -105,7 +102,7 @@
                                                             </GradientStop>
                                                         </RadialGradientBrush>
                                                     </Border.BorderBrush>
-                                                    <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                                                    <TextBlock Text="{Binding Rule.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BoolToFontWeightConverter}}" 
                                        FontSize="16" Margin="5 0 0 0"/>
                                                 </Border>
 
@@ -122,7 +119,7 @@
                                                             </SolidColorBrush.Color>
                                                         </SolidColorBrush>
                                                     </Border.Background>
-                                                    <TextBlock Text="{Binding Severity}" FontWeight="{Binding IsRead, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                    <TextBlock Text="{Binding Severity}" FontWeight="{Binding IsRead, Converter={StaticResource BoolToFontWeightConverter}}"
                                     HorizontalAlignment="Right" Margin="2 0 0 0" FontSize="16" VerticalAlignment="Center"/>
                                                 </Border>
 
