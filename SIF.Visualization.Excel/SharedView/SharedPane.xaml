@@ -20,34 +20,6 @@
                     <!--Converter-->
                     <viewmodel:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
 
-                    <LinearGradientBrush x:Key="MenuPopupBrush"
-                                 EndPoint="0.5,1"
-                                 StartPoint="0.5,0">
-                        <GradientStop Color="{DynamicResource ControlLightColor}"
-                            Offset="0" />
-                        <GradientStop Color="{DynamicResource ControlMediumColor}"
-                            Offset="0.5" />
-                        <GradientStop Color="{DynamicResource ControlLightColor}"
-                            Offset="1" />
-                    </LinearGradientBrush>
-
-                    <LinearGradientBrush x:Key="ProgressBarIndicatorAnimatedFill"
-                                 StartPoint="0,0"
-                                 EndPoint="1,0">
-                        <LinearGradientBrush.GradientStops>
-                            <GradientStopCollection>
-                                <GradientStop Color="#000000FF"
-                                Offset="0" />
-                                <GradientStop Color="#600000FF"
-                                Offset="0.4" />
-                                <GradientStop Color="#600000FF"
-                                Offset="0.6" />
-                                <GradientStop Color="#000000FF"
-                                Offset="1" />
-                            </GradientStopCollection>
-                        </LinearGradientBrush.GradientStops>
-                    </LinearGradientBrush>
-
                     <!--tabcontrol style-->
                     <Style x:Key="sharedPaneTabStyle" TargetType="{x:Type TabControl}">
                         <Setter Property="OverridesDefaultStyle"
@@ -83,6 +55,7 @@
                                                   IsItemsHost="True"
                                                   KeyboardNavigation.TabIndex="1"
                                                   Background="Transparent" />
+                                        <TextBlock Text="{Binding SelectedTab}" Grid.Row="2" Margin="0 2 0 0" FontSize="16" FontWeight="Bold"/>
                                         <Border x:Name="Border"
                                                 Grid.Row="2"
                                                 Margin="0 20 0 0"
@@ -192,7 +165,7 @@
         <TabControl x:Name="tabcontrol"
                     Background="Transparent"
                     Margin="0 20 0 0"
-                    Style="{StaticResource sharedPaneTabStyle}" >
+                    Style="{StaticResource sharedPaneTabStyle}">
             <TabItem x:Name="findings">
                 <TabItem.Header>
                     <Grid Width="30" Height="30">
@@ -207,7 +180,7 @@
                                     VerticalAlignment="Top" BorderBrush="Red" Margin="0 -10 -4 0"/>
                     </Grid>
                 </TabItem.Header>
-                <violationsView:ViolationsView/>
+                <violationsView:ViolationsView Grid.Row="1"/>
             </TabItem>
             <TabItem>
                 <TabItem.Header>

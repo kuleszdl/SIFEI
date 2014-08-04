@@ -25,6 +25,10 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         Archive,
         /// <summary>
+        /// Register Solved
+        /// </summary>
+        Splitter,
+        /// <summary>
         /// Register Cells
         /// </summary>
         Cells,
