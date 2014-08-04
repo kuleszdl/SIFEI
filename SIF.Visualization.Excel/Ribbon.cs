@@ -440,21 +440,5 @@ namespace SIF.Visualization.Excel
         {
             PolicyConfigurationDialog settingsDialog = new PolicyConfigurationDialog();
         }
-
-        private void button1_Click_1(object sender, RibbonControlEventArgs e)
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Settings.Default.FrameworkPath + Path.DirectorySeparatorChar + "file1.xml");
-            DataModel.Instance.CurrentWorkbook.Load(doc.InnerXml);
-
-        }
-
-        private void button2_Click(object sender, RibbonControlEventArgs e)
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Settings.Default.FrameworkPath + Path.DirectorySeparatorChar + "file2.xml");
-            DataModel.Instance.CurrentWorkbook.Load(doc.InnerXml);
-
-        }
     }
 }
