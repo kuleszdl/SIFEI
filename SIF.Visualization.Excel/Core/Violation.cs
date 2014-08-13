@@ -8,7 +8,6 @@ namespace SIF.Visualization.Excel.Core
     {
         #region Fields
 
-        private int id;
         private string causingElement;
         private string description;
         private CellLocation cell;
@@ -27,15 +26,6 @@ namespace SIF.Visualization.Excel.Core
         #endregion
 
         #region Properties
-
-        /// <summary>
-        /// Gets or sets the number of this violation.
-        /// </summary>
-        public int Id
-        {
-            get { return this.id; }
-            set { this.SetProperty(ref this.id, value); }
-        }
 
         /// <summary>
         /// Gets or sets the element causing this violation.
@@ -182,12 +172,10 @@ namespace SIF.Visualization.Excel.Core
             if ((object)other == null) return false;
 
             return base.Equals(other) &&
-                   this.Id == other.Id &&
                    this.CausingElement == other.CausingElement &&
                    this.Description == other.Description &&
                    this.Cell == other.Cell &&
                    this.Rule == other.Rule &&
-                   this.IsSelected == other.IsSelected &&
                    this.Severity == other.Severity;
         }
 
@@ -261,7 +249,6 @@ namespace SIF.Visualization.Excel.Core
         {
             this.load = true;
             this.workbook = workbook;
-            this.Id = Int32.Parse(element.Attribute(XName.Get("id")).Value);
             this.CausingElement = element.Attribute(XName.Get("causingelement")).Value;
             this.Description = element.Attribute(XName.Get("description")).Value;
             this.FirstOccurrence = DateTime.Parse(element.Attribute(XName.Get("firstoccurrence")).Value);
@@ -288,7 +275,6 @@ namespace SIF.Visualization.Excel.Core
         public XElement ToXElement(String name)
         {
             var element = new XElement(XName.Get(name));
-            element.SetAttributeValue(XName.Get("id"), this.Id);
             element.SetAttributeValue(XName.Get("causingelement"), this.CausingElement);
             element.SetAttributeValue(XName.Get("description"), this.Description);
             element.SetAttributeValue(XName.Get("cell"), this.Cell.ToString());

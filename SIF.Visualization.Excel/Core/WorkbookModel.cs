@@ -686,7 +686,7 @@ namespace SIF.Visualization.Excel.Core
                     else if (x.Value.Equals("violationgroup"))
                     {
                         (from p in vio.Elements(XName.Get("singleviolation"))
-                         select new Violation(p, workbook, scanTime, rule)).ToList().ForEach(p => this.Violations.Add(p));
+                         select new Violation(p, workbook, scanTime, rule)).ToList().ForEach(p => violations.Add(p));
                     }
                 }
 
