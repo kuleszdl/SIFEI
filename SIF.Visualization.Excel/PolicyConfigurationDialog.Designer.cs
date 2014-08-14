@@ -34,14 +34,14 @@
             this.RD_M = new System.Windows.Forms.RadioButton();
             this.FC_M = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Constraints_A = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.RD_A = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.FC_A = new System.Windows.Forms.RadioButton();
             this.CB_FormulaComplexity = new System.Windows.Forms.CheckBox();
             this.CB_ReadingDirection = new System.Windows.Forms.CheckBox();
             this.CB_Constraints = new System.Windows.Forms.CheckBox();
+            this.RD_A = new System.Windows.Forms.RadioButton();
+            this.Constraints_A = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -109,20 +109,6 @@
             this.panel1.Size = new System.Drawing.Size(161, 26);
             this.panel1.TabIndex = 17;
             // 
-            // Constraints_A
-            // 
-            this.Constraints_A.AutoSize = true;
-            this.Constraints_A.Checked = global::SIF.Visualization.Excel.Properties.Settings.Default.ConstraintsFrequency;
-            this.Constraints_A.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::SIF.Visualization.Excel.Properties.Settings.Default, "ConstraintsFrequency", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Constraints_A.Enabled = false;
-            this.Constraints_A.Location = new System.Drawing.Point(1, 3);
-            this.Constraints_A.Name = "Constraints_A";
-            this.Constraints_A.Size = new System.Drawing.Size(58, 17);
-            this.Constraints_A.TabIndex = 11;
-            this.Constraints_A.TabStop = true;
-            this.Constraints_A.Text = "Always";
-            this.Constraints_A.UseVisualStyleBackColor = true;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.RD_A);
@@ -131,20 +117,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(161, 22);
             this.panel2.TabIndex = 18;
-            // 
-            // RD_A
-            // 
-            this.RD_A.AutoSize = true;
-            this.RD_A.Checked = global::SIF.Visualization.Excel.Properties.Settings.Default.ReadingDirectionFrequency;
-            this.RD_A.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::SIF.Visualization.Excel.Properties.Settings.Default, "ReadingDirectionFrequency", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.RD_A.Enabled = false;
-            this.RD_A.Location = new System.Drawing.Point(1, 3);
-            this.RD_A.Name = "RD_A";
-            this.RD_A.Size = new System.Drawing.Size(58, 17);
-            this.RD_A.TabIndex = 13;
-            this.RD_A.TabStop = true;
-            this.RD_A.Text = "Always";
-            this.RD_A.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
@@ -201,6 +173,32 @@
             this.CB_Constraints.UseVisualStyleBackColor = true;
             this.CB_Constraints.CheckedChanged += new System.EventHandler(this.CB_Constraints_CheckedChanged);
             // 
+            // RD_A
+            // 
+            this.RD_A.AutoSize = true;
+            this.RD_A.Checked = true;
+            this.RD_A.Enabled = false;
+            this.RD_A.Location = new System.Drawing.Point(1, 3);
+            this.RD_A.Name = "RD_A";
+            this.RD_A.Size = new System.Drawing.Size(58, 17);
+            this.RD_A.TabIndex = 13;
+            this.RD_A.TabStop = true;
+            this.RD_A.Text = "Always";
+            this.RD_A.UseVisualStyleBackColor = true;
+            // 
+            // Constraints_A
+            // 
+            this.Constraints_A.AutoSize = true;
+            this.Constraints_A.Checked = true;
+            this.Constraints_A.Enabled = false;
+            this.Constraints_A.Location = new System.Drawing.Point(1, 3);
+            this.Constraints_A.Name = "Constraints_A";
+            this.Constraints_A.Size = new System.Drawing.Size(58, 17);
+            this.Constraints_A.TabIndex = 11;
+            this.Constraints_A.TabStop = true;
+            this.Constraints_A.Text = "Always";
+            this.Constraints_A.UseVisualStyleBackColor = true;
+            // 
             // PolicyConfigurationDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,7 +226,7 @@
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-            
+
         }
 
         #endregion

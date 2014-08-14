@@ -79,15 +79,48 @@ namespace SIF.Visualization.Excel
             //MessageBoxIcon icon = MessageBoxIcon.Warning;
             //DialogResult result = MessageBox.Show(message, caption, button, icon);
 
-            // When OK is clicked, store the selections as per the checkboxes and radio buttons into the settings
+            // If the new selections are different from the previous settings, change them in the Settings and
+            // regenerate the XMLs accordingly
 
-            Settings.Default.Constraints = CB_Constraints.Checked;                  
-            Settings.Default.ReadingDirection = CB_ReadingDirection.Checked;
-            Settings.Default.FormulaComplexity = CB_FormulaComplexity.Checked;
-            Settings.Default.ConstraintsFrequency = Constraints_A.Checked;
-            Settings.Default.ReadingDirectionFrequency = RD_A.Checked;
-            Settings.Default.FormulaComplexityFrequency = FC_A.Checked;
-         
+            bool XMLNeedsChange = false;
+
+            // note: if Frequency setting has True value, then it is set to Always. if it is False, then it is set to Manual
+
+            if (Settings.Default.Constraints != CB_Constraints.Checked)
+            {
+                Settings.Default.Constraints = CB_Constraints.Checked;
+                XMLNeedsChange = true;
+            }
+            if (Settings.Default.ReadingDirection != CB_ReadingDirection.Checked)
+            { 
+                Settings.Default.ReadingDirection = CB_ReadingDirection.Checked;
+                XMLNeedsChange = true;
+            }
+            if (Settings.Default.FormulaComplexity != CB_FormulaComplexity.Checked)
+            {
+                Settings.Default.FormulaComplexity = CB_FormulaComplexity.Checked;
+                XMLNeedsChange = true;
+            }  
+            if (Settings.Default.ConstraintsFrequency != Constraints_A.Checked)
+            {
+                Settings.Default.ConstraintsFrequency = Constraints_A.Checked;
+                XMLNeedsChange = true;
+            }
+            if (Settings.Default.ReadingDirectionFrequency != RD_A.Checked)
+            {
+                Settings.Default.ReadingDirectionFrequency = RD_A.Checked;
+                XMLNeedsChange = true;
+            }
+            if (Settings.Default.FormulaComplexityFrequency != FC_A.Checked)
+            {
+                Settings.Default.FormulaComplexityFrequency = FC_A.Checked;
+                XMLNeedsChange = true;
+            }  
+            if (XMLNeedsChange)
+            {
+                // generate new XMLs
+            }
+                     
             this.Close();
         }
 

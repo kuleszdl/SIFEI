@@ -118,18 +118,6 @@ namespace SIF.Visualization.Excel.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool EnforceStaticRules {
-            get {
-                return ((bool)(this["EnforceStaticRules"]));
-            }
-            set {
-                this["EnforceStaticRules"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("socket")]
         public string SifOptions {
             get {
