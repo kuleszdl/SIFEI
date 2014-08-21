@@ -34,7 +34,23 @@ namespace SIF.Visualization.Excel.SharedView
             if (e.Source is TabControl)
             {
                 var datamodel = DataModel.Instance.CurrentWorkbook;
+                switch (datamodel.SelectedTab)
+                {
+                    case SharedTabs.Open:
+                        datamodel.Violations.ToList().ForEach(vi => vi.IsSelected = false);
+                        break;
+                    case SharedTabs.Later:
+                        datamodel.LaterViolations.ToList().ForEach(vi => vi.IsSelected = false);
+                        break;
+                    case SharedTabs.Ignore:
+                        datamodel.IgnoredViolations.ToList().ForEach(vi => vi.IsSelected = false);
+                        break;
+                    case SharedTabs.Archive:
+                        datamodel.SolvedViolations.ToList().ForEach(vi => vi.IsSelected = false);
+                        break;
+                }
                 datamodel.SelectedTab = (SharedTabs)tabcontrol.SelectedIndex;
+                datamodel.ViolatedCells.ToList().ForEach(vc => vc.SetVisibility(datamodel.SelectedTab));
             }
         }
     }
