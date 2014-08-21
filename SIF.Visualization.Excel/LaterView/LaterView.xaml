@@ -18,6 +18,10 @@
     </UserControl.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <!--Message if nothing is showable-->
         <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="14" TextWrapping="WrapWithOverflow"
                    Visibility="{Binding LaterViolations.Count, Converter={StaticResource InverseIntToVisibilityConverter}}"
@@ -82,5 +86,9 @@
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>
+        <StatusBar Background="LightGray" Grid.Row="1">
+            <TextBlock Text="{Binding LaterViolations.Count}" FontWeight="Bold"/>
+            <TextBlock Text="violation(s) in list"/>
+        </StatusBar>
     </Grid>
 </UserControl>
