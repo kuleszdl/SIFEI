@@ -15,6 +15,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 {
     class Sprudel1_3XMLVisitor : IVisitor
     {
+        private static bool ForcePatterns = false;
         /// <summary>
         /// Create the sprudel xml document
         /// </summary>
@@ -52,17 +53,77 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             {
                 root.Add(sanityRules);
             }
-            if (Settings.Default.EnforceStaticRules)
+            if (Settings.Default.ReadingDirection)
             {
                 XElement readingDirection = createReadingDirection();
                 root.Add(readingDirection);
+            }
+            if (Settings.Default.Constraints)
+            {
                 XElement constants = createNoConstants();
                 root.Add(constants);
+            }
+            if (Settings.Default.FormulaComplexity)
+            {
                 XElement formulaComplexity = createFormulaComplexity();
                 root.Add(formulaComplexity);
             }
 
+            if (ForcePatterns)
+            {
+                XElement nonConsidered = createNonConsideredValues();
+                root.Add(nonConsidered);
+                XElement oneAmongOthers = createOneAmongOthers();
+                root.Add(oneAmongOthers);
+                XElement refToNull = createRefToNull();
+                root.Add(refToNull);
+                XElement stringDistance = createStringDistance();
+                root.Add(stringDistance);
+            }
+                
             return root;
+        }
+
+        private XElement createStringDistance()
+        {
+            XElement stringDst = new XElement("stringDistancePolicyRule");
+            XElement dist = new XElement("stringDistanceDifference");
+            dist.Value = "1";
+            stringDst.Add(dist);
+
+            return stringDst;
+        }
+
+        private XElement createRefToNull()
+        {
+            XElement refToNull = new XElement("refToNullPolicyRule");
+            return refToNull;
+        }
+
+        private XElement createOneAmongOthers()
+        {
+            XElement oneAmong = new XElement("oneAmongOthersPolicyRule");
+            // 1 = horizontal, 2 = vertical, 3 = cross
+            XElement style = new XElement("oneAmongOthersStyle");
+            style.Value = "3";
+            XElement length = new XElement("oneAmongOthersLength");
+            length.Value = "2";
+            oneAmong.Add(style);
+            oneAmong.Add(length);
+
+            return oneAmong;
+        }
+
+        private XElement createNonConsideredValues()
+        {
+            XElement nonConsidered = new XElement("nonConsideredValuesPolicyRule");
+            XElement ignoredWs = new XElement("ignoredWorksheets");
+            XElement erlass = new XElement("ignoredWorksheetName");
+            erlass.Value = "Erlass_Anlage"; // for the usual testcase of the bafoeg calculator, until it can be set properly
+            ignoredWs.Add(erlass);
+            nonConsidered.Add(ignoredWs);
+
+            return nonConsidered;
         }
 
         private XElement createReadingDirection()

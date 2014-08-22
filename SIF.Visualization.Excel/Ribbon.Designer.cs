@@ -58,8 +58,6 @@
             this.sanityExplanationCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.sanityCheckingCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.sanityWarnCheckbox = this.Factory.CreateRibbonCheckBox();
-            this.button1 = this.Factory.CreateRibbonButton();
-            this.button2 = this.Factory.CreateRibbonButton();
             this.inspectionTab.SuspendLayout();
             this.testGroup.SuspendLayout();
             this.scenarioGroup.SuspendLayout();
@@ -83,8 +81,6 @@
             this.testGroup.Items.Add(this.testButton);
             this.testGroup.Items.Add(this.automaticScanCheckBox);
             this.testGroup.Items.Add(this.policyConfigurationDialog);
-            this.testGroup.Items.Add(this.button1);
-            this.testGroup.Items.Add(this.button2);
             this.testGroup.Items.Add(this.btnLoadFile1);
             this.testGroup.Items.Add(this.btnLoadFile2);
             this.testGroup.Label = "Test";
@@ -109,6 +105,7 @@
             // 
             // policyConfigurationDialog
             // 
+            this.policyConfigurationDialog.Image = global::SIF.Visualization.Excel.Properties.Resources.input_clear;
             this.policyConfigurationDialog.Label = "Policy Configuration";
             this.policyConfigurationDialog.Name = "policyConfigurationDialog";
             this.policyConfigurationDialog.ShowImage = true;
@@ -319,8 +316,6 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnLoadFile1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnLoadFile2;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton policyConfigurationDialog;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button2;
     }
 
     partial class ThisRibbonCollection
