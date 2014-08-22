@@ -311,6 +311,96 @@ namespace SIF.Visualization.Excel.Networking
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name=""stringDistancePolicyRule"">
+    <xs:complexContent>
+      <xs:extension base=""monolithicPolicyRule"">
+        <xs:sequence>
+          <xs:element name=""stringDistanceDifference"" type=""xs:int""/>
+          <xs:element name=""ignoredCells"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""location"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name=""multipleSameRefPolicyRule"">
+    <xs:complexContent>
+      <xs:extension base=""monolithicPolicyRule"">
+        <xs:sequence>
+          <xs:element name=""ignoredCells"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""location"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name=""nonConsideredValuesPolicyRule"">
+    <xs:complexContent>
+      <xs:extension base=""monolithicPolicyRule"">
+        <xs:sequence>
+          <xs:element name=""ignoredCells"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""location"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name=""ignoredWorksheets"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""ignoredWorksheetName"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name=""oneAmongOthersPolicyRule"">
+    <xs:complexContent>
+      <xs:extension base=""monolithicPolicyRule"">
+        <xs:sequence>
+          <xs:element name=""ignoredCells"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""location"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name=""oneAmongOthersStyle"" type=""xs:int"" minOccurs=""0""/>
+          <xs:element name=""oneAmongOthersLength"" type=""xs:int"" minOccurs=""0""/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name=""refToNullPolicyRule"">
+    <xs:complexContent>
+      <xs:extension base=""monolithicPolicyRule"">
+        <xs:sequence>
+          <xs:element name=""ignoredCells"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""location"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
   <xs:complexType name=""dynamicPolicy"">
     <xs:complexContent>
       <xs:extension base=""policy"">
@@ -391,6 +481,10 @@ namespace SIF.Visualization.Excel.Networking
       <xs:element name=""readingDirectionPolicyRule"" type=""readingDirectionPolicyRule"" minOccurs=""0""/>
       <xs:element name=""noConstantsPolicyRule"" type=""noConstantsPolicyRule"" minOccurs=""0""/>
       <xs:element name=""formulaComplexityPolicyRule"" type=""formulaComplexityPolicyRule"" minOccurs=""0""/>
+      <xs:element name=""nonConsideredValuesPolicyRule"" type=""nonConsideredValuesPolicyRule"" minOccurs=""0""/>
+      <xs:element name=""oneAmongOthersPolicyRule"" type=""oneAmongOthersPolicyRule"" minOccurs=""0""/>
+      <xs:element name=""refToNullPolicyRule"" type=""refToNullPolicyRule"" minOccurs=""0""/>
+      <xs:element name=""stringDistancePolicyRule"" type=""stringDistancePolicyRule"" minOccurs=""0""/>
     </xs:sequence>
   </xs:complexType>
 
@@ -628,6 +722,96 @@ namespace SIF.Visualization.Excel.Networking
         <xs:sequence>
           <xs:element name=""leftToRight"" type=""xs:boolean"" minOccurs=""0""/>
           <xs:element name=""topToBottom"" type=""xs:boolean"" minOccurs=""0""/>
+          <xs:element name=""ignoredCells"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""location"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name=""stringDistancePolicyRule"">
+    <xs:complexContent>
+      <xs:extension base=""monolithicPolicyRule"">
+        <xs:sequence>
+          <xs:element name=""stringDistanceDifference"" type=""xs:int""/>
+          <xs:element name=""ignoredCells"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""location"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name=""multipleSameRefPolicyRule"">
+    <xs:complexContent>
+      <xs:extension base=""monolithicPolicyRule"">
+        <xs:sequence>
+          <xs:element name=""ignoredCells"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""location"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name=""nonConsideredValuesPolicyRule"">
+    <xs:complexContent>
+      <xs:extension base=""monolithicPolicyRule"">
+        <xs:sequence>
+          <xs:element name=""ignoredCells"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""location"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name=""ignoredWorksheets"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""ignoredWorksheetName"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name=""oneAmongOthersPolicyRule"">
+    <xs:complexContent>
+      <xs:extension base=""monolithicPolicyRule"">
+        <xs:sequence>
+          <xs:element name=""ignoredCells"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""location"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name=""oneAmongOthersStyle"" type=""xs:int"" minOccurs=""0""/>
+          <xs:element name=""oneAmongOthersLength"" type=""xs:int"" minOccurs=""0""/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name=""refToNullPolicyRule"">
+    <xs:complexContent>
+      <xs:extension base=""monolithicPolicyRule"">
+        <xs:sequence>
           <xs:element name=""ignoredCells"" minOccurs=""0"">
             <xs:complexType>
               <xs:sequence>
