@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,7 @@ using System.Xml.Schema;
 
 namespace SIF.Visualization.Excel.Core
 {
+
     /// <summary>
     /// This is the model class for one worksheet.
     /// </summary>
@@ -69,13 +71,14 @@ namespace SIF.Visualization.Excel.Core
         private ObservableCollection<Cell> intermediateCells;
         private ObservableCollection<Cell> outputCells;
         private ObservableCollection<Violation> violations;
-        private ObservableCollection<Violation> falsePositives;
+        private ObservableCollection<Violation> ignoredViolations;
         private ObservableCollection<Violation> laterViolations;
         private ObservableCollection<Violation> solvedViolations;
+        private ObservableCollection<CellLocation> violatedCells;
         private int unreadViolationCount;
-        private int unreadSolvedCount;
         private ObservableCollection<SIF.Visualization.Excel.ScenarioCore.Scenario> scenarios;
         private Boolean sanityWarnings = true;
+        private SharedTabs selectedTab;
 
         private Workbook workbook;
 
@@ -197,6 +200,16 @@ namespace SIF.Visualization.Excel.Core
             set { this.SetProperty(ref this.sanityCheckingCells, value); }
         }
 
+        public ObservableCollection<CellLocation> ViolatedCells
+        {
+            get
+            {
+                if (this.violatedCells == null) this.violatedCells = new ObservableCollection<CellLocation>();
+                return this.violatedCells;
+            }
+            set { this.SetProperty(ref this.violatedCells, value); }
+        }
+
         public Boolean SanityWarnings
         {
             get
@@ -248,14 +261,14 @@ namespace SIF.Visualization.Excel.Core
         /// <summary>
         /// Gets or sets the false positives of the current document.
         /// </summary>
-        public ObservableCollection<Violation> FalsePositives
+        public ObservableCollection<Violation> IgnoredViolations
         {
             get
             {
-                if (this.falsePositives == null) this.falsePositives = new ObservableCollection<Violation>();
-                return this.falsePositives;
+                if (this.ignoredViolations == null) this.ignoredViolations = new ObservableCollection<Violation>();
+                return this.ignoredViolations;
             }
-            set { this.SetProperty(ref this.falsePositives, value); }
+            set { this.SetProperty(ref this.ignoredViolations, value); }
         }
 
         /// <summary>
@@ -281,7 +294,6 @@ namespace SIF.Visualization.Excel.Core
                 if (this.solvedViolations == null)
                 {
                     this.solvedViolations = new ObservableCollection<Violation>();
-                    this.solvedViolations.CollectionChanged += solvedViolations_CollectionChanged;
                 }
                 return this.solvedViolations;
             }
@@ -311,21 +323,22 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
-        /// Gets or sets the count of the unread solved violations
-        /// </summary>
-        public int UnreadSolvedCount
-        {
-            get { return this.unreadSolvedCount; }
-            set { this.SetProperty(ref this.unreadSolvedCount, value); }
-        }
-
-        /// <summary>
         /// Gets or sets the Excel workbook of this model.
         /// </summary>
         public Microsoft.Office.Interop.Excel.Workbook Workbook
         {
             get { return this.workbook; }
             set { this.SetProperty(ref this.workbook, value); }
+        }
+
+        public SharedTabs SelectedTab
+        {
+            get { return this.selectedTab; }
+            set
+            {
+                this.SetProperty(ref this.selectedTab, value);
+                this.ViolatedCells.ToList().ForEach(vc => vc.SetVisibility(value));
+            }
         }
 
         #endregion
@@ -349,7 +362,7 @@ namespace SIF.Visualization.Excel.Core
                    this.InputCells.SequenceEqual(other.InputCells) &&
                    this.IntermediateCells.SequenceEqual(other.IntermediateCells) &&
                    this.OutputCells.SequenceEqual(other.OutputCells) &&
-                   this.FalsePositives.SequenceEqual(other.FalsePositives) &&
+                   this.IgnoredViolations.SequenceEqual(other.IgnoredViolations) &&
                    this.Scenarios.SequenceEqual(other.Scenarios) &&
                    Object.ReferenceEquals(this.Workbook, other.Workbook);
         }
@@ -405,6 +418,8 @@ namespace SIF.Visualization.Excel.Core
             this.Workbook.BeforeSave += Workbook_BeforeSave;
             this.Workbook.BeforeClose += Workbook_BeforeClose;
             this.Workbook.AfterSave += Workbook_AfterSave;
+            this.Workbook.SheetSelectionChange += Sheet_SelectionChange;
+            this.workbook.SheetCalculate += Workbook_SheetCalculate;
 
             // Load cell definitions
             this.Accept(new XMLToCellDefinitionVisitor(XMLPartManager.Instance.LoadXMLPart(this, "CellDefinitions")));
@@ -418,15 +433,7 @@ namespace SIF.Visualization.Excel.Core
             {
                 // Add them to the violations collection
                 (from p in violationsXml.Elements(XName.Get("violation"))
-                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
-                (from p in violationsXml.Elements(XName.Get("violationgroup"))
-                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
-
-                // refresh UI
-                foreach (var violation in this.Violations)
-                {
-                    violation.CreateControls();
-                }
+                 select new Violation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
             }
 
             // Load the false positives
@@ -435,15 +442,7 @@ namespace SIF.Visualization.Excel.Core
             {
                 // Add them to the FalsePositives collection
                 (from p in falsePositivesXml.Elements(XName.Get("falsepositive"))
-                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.FalsePositives.Add(p));
-                (from p in falsePositivesXml.Elements(XName.Get("falsepositivegroup"))
-                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.FalsePositives.Add(p));
-
-                // refresh UI
-                foreach (var falsePositive in this.FalsePositives)
-                {
-                    falsePositive.CreateControls();
-                }
+                 select new Violation(p, workbook)).ToList().ForEach(p => this.IgnoredViolations.Add(p));
             }
 
             // Load the later violations
@@ -452,15 +451,7 @@ namespace SIF.Visualization.Excel.Core
             {
                 // Add them to the FalsePositives collection
                 (from p in laterXml.Elements(XName.Get("laterviolation"))
-                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.LaterViolations.Add(p));
-                (from p in laterXml.Elements(XName.Get("laterviolationgroup"))
-                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.LaterViolations.Add(p));
-
-                // refresh UI
-                foreach (var later in this.LaterViolations)
-                {
-                    later.CreateControls();
-                }
+                 select new Violation(p, workbook)).ToList().ForEach(p => this.LaterViolations.Add(p));
             }
 
             // Load the solved violations
@@ -469,16 +460,54 @@ namespace SIF.Visualization.Excel.Core
             {
                 // Add them to the FalsePositives collection
                 (from p in solvedXml.Elements(XName.Get("solvedviolation"))
-                 select new SingleViolation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
-                (from p in solvedXml.Elements(XName.Get("solvedviolationgroup"))
-                 select new GroupViolation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
+                 select new Violation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
+            }
+        }
 
-                // refresh UI
-                foreach (var solved in this.SolvedViolations)
+        private void Sheet_SelectionChange(object Sh, Range Target)
+        {
+            if (Target.Cells.Count == 1)
+            {
+                int row = Target.Cells.Row;
+                int column = Target.Cells.Column;
+                string location = "=" + Target.Worksheet.Name + "!" + getExcelColumnName(column) + row;
+                CellLocation cell = new CellLocation(this.workbook, location);
+                switch (SelectedTab)
                 {
-                    solved.CreateControls();
+                    case SharedTabs.Open:
+                        this.Violations.ToList().ForEach(vi => vi.IsCellSelected = false);
+                        (from vi in Violations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        break;
+                    case SharedTabs.Later:
+                        this.LaterViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
+                        (from vi in LaterViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        break;
+                    case SharedTabs.Ignore:
+                        this.IgnoredViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
+                        (from vi in IgnoredViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        break;
+                    case SharedTabs.Archive:
+                        this.SolvedViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
+                        (from vi in SolvedViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        break;
                 }
             }
+        }
+
+        private string getExcelColumnName(int columnNumber)
+        {
+            int dividend = columnNumber;
+            string columnName = String.Empty;
+            int modulo;
+
+            while (dividend > 0)
+            {
+                modulo = (dividend - 1) % 26;
+                columnName = Convert.ToChar(65 + modulo).ToString() + columnName;
+                dividend = (int)((dividend - modulo) / 26);
+            }
+
+            return columnName;
         }
 
         private void Workbook_AfterSave(bool Success)
@@ -490,6 +519,16 @@ namespace SIF.Visualization.Excel.Core
             }
         }
 
+        private void Workbook_SheetCalculate(object Sh)
+        {
+            // Run a scan if necessary
+            if (Settings.Default.AutomaticScans)
+            {
+                this.Inspect(InspectionType.LIVE);
+            }
+        }
+
+
         /// <summary>
         /// Saves the custom XML parts that are used to persist the cells, scenarios and false positives.
         /// </summary>
@@ -499,7 +538,7 @@ namespace SIF.Visualization.Excel.Core
             XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("violations"), from p in this.Violations select p.ToXElement("violation")), "Violations");
 
             //Save the false positives
-            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("falsepositives"), from p in this.FalsePositives select p.ToXElement("falsepositive")), "FalsePositives");
+            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("falsepositives"), from p in this.IgnoredViolations select p.ToXElement("falsepositive")), "FalsePositives");
 
             // Save the later violations
             XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("laterviolations"), from p in this.LaterViolations select p.ToXElement("laterviolation")), "LaterViolations");
@@ -643,11 +682,12 @@ namespace SIF.Visualization.Excel.Core
                     var x = vio.Attribute(ns + "type");
                     if (x.Value.Equals("singleviolation"))
                     {
-                        violations.Add(new SingleViolation(vio, workbook, scanTime, rule, false));
+                        violations.Add(new Violation(vio, workbook, scanTime, rule));
                     }
                     else if (x.Value.Equals("violationgroup"))
                     {
-                        violations.Add(new GroupViolation(vio, workbook, scanTime, rule));
+                        (from p in vio.Elements(XName.Get("singleviolation"))
+                         select new Violation(p, workbook, scanTime, rule)).ToList().ForEach(p => violations.Add(p));
                     }
                 }
 
@@ -660,7 +700,7 @@ namespace SIF.Visualization.Excel.Core
                 {
                     this.Violations.ElementAt(this.Violations.IndexOf(violation)).FoundAgain = true;
                 }
-                else if (this.FalsePositives.Contains(violation) || this.SolvedViolations.Contains(violation))
+                else if (this.IgnoredViolations.Contains(violation) || this.SolvedViolations.Contains(violation))
                 {
                     // nothing to do here
                 }
@@ -684,7 +724,7 @@ namespace SIF.Visualization.Excel.Core
                 else
                 {
                     this.Violations.ElementAt(i).SolvedTime = scanTime;
-                    this.Violations.ElementAt(i).ViolationState = Violation.ViolationType.SOLVED;
+                    this.Violations.ElementAt(i).ViolationState = ViolationType.SOLVED;
                 }
             }
             for (int i = this.LaterViolations.Count - 1; i >= 0; i--)
@@ -696,13 +736,8 @@ namespace SIF.Visualization.Excel.Core
                 else
                 {
                     this.LaterViolations.ElementAt(i).SolvedTime = scanTime;
-                    this.LaterViolations.ElementAt(i).ViolationState = Violation.ViolationType.SOLVED;
+                    this.LaterViolations.ElementAt(i).ViolationState = ViolationType.SOLVED;
                 }
-            }
-            // refresh UI
-            foreach (var violation in this.Violations)
-            {
-                violation.CreateControls();
             }
         }
 
@@ -715,8 +750,6 @@ namespace SIF.Visualization.Excel.Core
         /// <param name="cellType">Class of the cell type</param>
         private void ParseCells(XElement root, ObservableCollection<Cell> targetCollection, Type cellType)
         {
-            /*(from p in root.Elements(XName.Get("cell"))
-             select new Cell(p, this.Workbook).ToCellType(cellType)).ToList().ForEach(p => { if (!targetCollection.Contains(p)) targetCollection.Add(p); });*/
 
             var cellElements = root.Elements(XName.Get("cell"));
             if (cellElements != null)
@@ -1070,15 +1103,7 @@ namespace SIF.Visualization.Excel.Core
             this.UnreadViolationCount = (from vi in violations where vi.IsRead == false select vi).Count();
         }
 
-        /// <summary>
-        /// Sets the unread solved violations count when the solved violations collection changes
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void solvedViolations_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            this.UnreadSolvedCount = (from vi in solvedViolations where vi.IsRead == false select vi).Count();
-        }
+
         #endregion
 
     }

@@ -346,10 +346,14 @@ namespace SIF.Visualization.Excel.Core
         {
             if (!string.IsNullOrWhiteSpace(location))
             {
-                location = "=" + location.Substring(location.IndexOf(']') + 1);
+                if (!location.StartsWith("="))
+                {
+                    location = "=" + location;
+                }
+                location = location.Substring(location.IndexOf(']') + 1);
                 foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
                 {
-                    if (cell.ViolationType.Equals(this.violationState) && cell.Location.Replace("$", "").Equals(location))
+                    if (cell.ViolationType.Equals(this.violationState) && cell.Location.Replace("$", "").Equals(location.Replace("$", "")))
                     {
                         this.Cell = cell;
                         cell.Violations.Add(this);
