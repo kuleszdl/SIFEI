@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using System;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.Core
@@ -346,14 +347,11 @@ namespace SIF.Visualization.Excel.Core
         {
             if (!string.IsNullOrWhiteSpace(location))
             {
-                if (!location.StartsWith("="))
-                {
-                    location = "=" + location;
-                }
                 location = location.Substring(location.IndexOf(']') + 1);
                 foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
                 {
-                    if (cell.ViolationType.Equals(this.violationState) && cell.Location.Replace("$", "").Equals(location.Replace("$", "")))
+                    Regex rgx = new Regex(@"\$|=");
+                    if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
                     {
                         this.Cell = cell;
                         cell.Violations.Add(this);

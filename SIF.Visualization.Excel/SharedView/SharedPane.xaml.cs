@@ -50,7 +50,6 @@ namespace SIF.Visualization.Excel.SharedView
                         break;
                 }
                 datamodel.SelectedTab = (SharedTabs)tabcontrol.SelectedIndex;
-                datamodel.ViolatedCells.ToList().ForEach(vc => vc.SetVisibility(datamodel.SelectedTab));
             }
         }
     }

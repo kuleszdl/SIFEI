@@ -264,7 +264,6 @@ namespace SIF.Visualization.Excel.Core
                 this.violationsPane = new ListCollectionView(Violations);
                 this.violationsPane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
                 this.ViolationsPane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
-                this.RemoveIcon();
                 this.DrawIcon();
                 this.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
             }
@@ -413,7 +412,7 @@ namespace SIF.Visualization.Excel.Core
 
         private void DrawIcon()
         {
-            if (this.Violations.Count > 0)
+            if (this.Violations.Count == 1)
             {
                 var container = new CellErrorInfoContainer();
                 container.ElementHost.Child = new CellErrorInfo() { DataContext = this };
