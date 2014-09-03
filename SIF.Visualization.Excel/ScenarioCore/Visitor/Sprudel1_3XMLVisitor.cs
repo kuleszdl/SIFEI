@@ -15,7 +15,12 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 {
     class Sprudel1_3XMLVisitor : IVisitor
     {
-        private static bool ForcePatterns = false;
+        private InspectionType type;
+
+        public Sprudel1_3XMLVisitor(InspectionType scanningType)
+        {
+            type = scanningType;
+        }
         /// <summary>
         /// Create the sprudel xml document
         /// </summary>
@@ -23,6 +28,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         /// <returns>complete sprudel xml as XElement</returns>
         public object Visit(Core.WorkbookModel n)
         {
+            PolicyConfigurationModel settings = n.PolicySettings;
             var root = new XElement("policyList");
             var dynamicPolicy = new XElement("dynamicPolicy");
             //attributes
@@ -53,42 +59,70 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             {
                 root.Add(sanityRules);
             }
-            if (Settings.Default.ReadingDirection)
+            if ((settings.ReadingDirection && type == InspectionType.MANUAL) || 
+                (settings.ReadingDirection && settings.ReadingDirectionAutomatic))
             {
                 XElement readingDirection = createReadingDirection();
                 root.Add(readingDirection);
             }
-            if (Settings.Default.Constraints)
+            if ((settings.NoConstantsInFormulas && type == InspectionType.MANUAL) ||
+                (settings.NoConstantsInFormulas && settings.NoConstantsInFormulasAutomatic))
             {
                 XElement constants = createNoConstants();
                 root.Add(constants);
             }
-            if (Settings.Default.FormulaComplexity)
+            if ((settings.FormulaComplexity && type == InspectionType.MANUAL) ||
+                (settings.FormulaComplexity && settings.FormulaComplexityAutomatic))
             {
                 XElement formulaComplexity = createFormulaComplexity();
                 root.Add(formulaComplexity);
             }
 
-            if (ForcePatterns)
+            if ((settings.NonConsideredConstants && type == InspectionType.MANUAL) ||
+                (settings.NonConsideredConstants && settings.NonConsideredConstantsAutomatic))
             {
                 XElement nonConsidered = createNonConsideredValues();
                 root.Add(nonConsidered);
+            }
+            if ((settings.OneAmongOthers && type == InspectionType.MANUAL) ||
+                (settings.OneAmongOthers && settings.OneAmongOthersAutomatic))
+            {
                 XElement oneAmongOthers = createOneAmongOthers();
                 root.Add(oneAmongOthers);
+            }
+            if ((settings.RefToNull && type == InspectionType.MANUAL) ||
+                (settings.RefToNull && settings.RefToNullAutomatic))
+            {
                 XElement refToNull = createRefToNull();
                 root.Add(refToNull);
-                XElement stringDistance = createStringDistance();
+            }
+            if ((settings.StringDistance && type == InspectionType.MANUAL) ||
+                (settings.StringDistance && settings.StringDistanceAutomatic))
+            {
+                XElement stringDistance = createStringDistance(settings);
                 root.Add(stringDistance);
+            }
+            if ((settings.MultipleSameRef && type == InspectionType.MANUAL) ||
+                (settings.MultipleSameRef && settings.MultipleSameRefAutomatic))
+            {
+                XElement msr = createMultipleSameRef();
+                root.Add(msr);
             }
                 
             return root;
         }
 
-        private XElement createStringDistance()
+        private XElement createMultipleSameRef()
+        {
+            XElement msr = new XElement("multipleSameRefPolicyRule");
+            return msr;
+        }
+
+        private XElement createStringDistance(PolicyConfigurationModel settings)
         {
             XElement stringDst = new XElement("stringDistancePolicyRule");
             XElement dist = new XElement("stringDistanceDifference");
-            dist.Value = "1";
+            dist.Value = settings.StringDistanceMaxDist.ToString();
             stringDst.Add(dist);
 
             return stringDst;

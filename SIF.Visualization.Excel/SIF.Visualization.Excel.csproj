@@ -204,6 +204,7 @@
     <Compile Include="Core\InspectionJob.cs" />
     <Compile Include="Core\InspectionType.cs" />
     <Compile Include="Core\Rule.cs" />
+    <Compile Include="Core\PolicyConfigurationModel.cs" />
     <Compile Include="Core\WorkbookModel.cs" />
     <Compile Include="Core\Policy.cs" />
     <Compile Include="Core\SingleViolation.cs" />
