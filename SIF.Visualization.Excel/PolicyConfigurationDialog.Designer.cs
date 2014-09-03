@@ -30,26 +30,53 @@
         {
             this.Button_OK = new System.Windows.Forms.Button();
             this.Button_Cancel = new System.Windows.Forms.Button();
-            this.Constraints_M = new System.Windows.Forms.RadioButton();
+            this.NCIF_M = new System.Windows.Forms.RadioButton();
             this.RD_M = new System.Windows.Forms.RadioButton();
             this.FC_M = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.NCIF_A = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.RD_A = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.FC_A = new System.Windows.Forms.RadioButton();
             this.CB_FormulaComplexity = new System.Windows.Forms.CheckBox();
             this.CB_ReadingDirection = new System.Windows.Forms.CheckBox();
-            this.CB_Constraints = new System.Windows.Forms.CheckBox();
-            this.RD_A = new System.Windows.Forms.RadioButton();
-            this.Constraints_A = new System.Windows.Forms.RadioButton();
+            this.CB_NoConstantsInFormulas = new System.Windows.Forms.CheckBox();
+            this.CB_MultipleSameRef = new System.Windows.Forms.CheckBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.MSR_A = new System.Windows.Forms.RadioButton();
+            this.MSR_M = new System.Windows.Forms.RadioButton();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.NCC_A = new System.Windows.Forms.RadioButton();
+            this.NCC_M = new System.Windows.Forms.RadioButton();
+            this.CB_NonConsideredConstants = new System.Windows.Forms.CheckBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.RTN_A = new System.Windows.Forms.RadioButton();
+            this.RTN_M = new System.Windows.Forms.RadioButton();
+            this.CB_RefToNull = new System.Windows.Forms.CheckBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.OAO_A = new System.Windows.Forms.RadioButton();
+            this.OAO_M = new System.Windows.Forms.RadioButton();
+            this.CB_OneAmongOthers = new System.Windows.Forms.CheckBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.SD_A = new System.Windows.Forms.RadioButton();
+            this.SD_M = new System.Windows.Forms.RadioButton();
+            this.CB_StringDistance = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SD_Amount = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // Button_OK
             // 
-            this.Button_OK.Location = new System.Drawing.Point(73, 159);
+            this.Button_OK.Location = new System.Drawing.Point(78, 463);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 23);
             this.Button_OK.TabIndex = 9;
@@ -59,7 +86,7 @@
             // 
             // Button_Cancel
             // 
-            this.Button_Cancel.Location = new System.Drawing.Point(165, 159);
+            this.Button_Cancel.Location = new System.Drawing.Point(162, 463);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.Button_Cancel.TabIndex = 10;
@@ -67,16 +94,16 @@
             this.Button_Cancel.UseVisualStyleBackColor = true;
             this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
-            // Constraints_M
+            // NCIF_M
             // 
-            this.Constraints_M.AutoSize = true;
-            this.Constraints_M.Enabled = false;
-            this.Constraints_M.Location = new System.Drawing.Point(94, 3);
-            this.Constraints_M.Name = "Constraints_M";
-            this.Constraints_M.Size = new System.Drawing.Size(60, 17);
-            this.Constraints_M.TabIndex = 12;
-            this.Constraints_M.Text = "Manual";
-            this.Constraints_M.UseVisualStyleBackColor = true;
+            this.NCIF_M.AutoSize = true;
+            this.NCIF_M.Enabled = false;
+            this.NCIF_M.Location = new System.Drawing.Point(94, 3);
+            this.NCIF_M.Name = "NCIF_M";
+            this.NCIF_M.Size = new System.Drawing.Size(60, 17);
+            this.NCIF_M.TabIndex = 12;
+            this.NCIF_M.Text = "Manual";
+            this.NCIF_M.UseVisualStyleBackColor = true;
             // 
             // RD_M
             // 
@@ -102,12 +129,25 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.Constraints_A);
-            this.panel1.Controls.Add(this.Constraints_M);
+            this.panel1.Controls.Add(this.NCIF_A);
+            this.panel1.Controls.Add(this.NCIF_M);
             this.panel1.Location = new System.Drawing.Point(31, 29);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(161, 26);
             this.panel1.TabIndex = 17;
+            // 
+            // NCIF_A
+            // 
+            this.NCIF_A.AutoSize = true;
+            this.NCIF_A.Checked = true;
+            this.NCIF_A.Enabled = false;
+            this.NCIF_A.Location = new System.Drawing.Point(1, 3);
+            this.NCIF_A.Name = "NCIF_A";
+            this.NCIF_A.Size = new System.Drawing.Size(58, 17);
+            this.NCIF_A.TabIndex = 11;
+            this.NCIF_A.TabStop = true;
+            this.NCIF_A.Text = "Always";
+            this.NCIF_A.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
@@ -117,6 +157,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(161, 22);
             this.panel2.TabIndex = 18;
+            // 
+            // RD_A
+            // 
+            this.RD_A.AutoSize = true;
+            this.RD_A.Checked = true;
+            this.RD_A.Enabled = false;
+            this.RD_A.Location = new System.Drawing.Point(1, 3);
+            this.RD_A.Name = "RD_A";
+            this.RD_A.Size = new System.Drawing.Size(58, 17);
+            this.RD_A.TabIndex = 13;
+            this.RD_A.TabStop = true;
+            this.RD_A.Text = "Always";
+            this.RD_A.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
@@ -162,49 +215,272 @@
             this.CB_ReadingDirection.UseVisualStyleBackColor = true;
             this.CB_ReadingDirection.CheckedChanged += new System.EventHandler(this.CB_ReadingDirection_CheckedChanged);
             // 
-            // CB_Constraints
+            // CB_NoConstantsInFormulas
             // 
-            this.CB_Constraints.AutoSize = true;
-            this.CB_Constraints.Location = new System.Drawing.Point(12, 12);
-            this.CB_Constraints.Name = "CB_Constraints";
-            this.CB_Constraints.Size = new System.Drawing.Size(78, 17);
-            this.CB_Constraints.TabIndex = 0;
-            this.CB_Constraints.Text = "Constraints";
-            this.CB_Constraints.UseVisualStyleBackColor = true;
-            this.CB_Constraints.CheckedChanged += new System.EventHandler(this.CB_Constraints_CheckedChanged);
+            this.CB_NoConstantsInFormulas.AutoSize = true;
+            this.CB_NoConstantsInFormulas.Location = new System.Drawing.Point(12, 12);
+            this.CB_NoConstantsInFormulas.Name = "CB_NoConstantsInFormulas";
+            this.CB_NoConstantsInFormulas.Size = new System.Drawing.Size(146, 17);
+            this.CB_NoConstantsInFormulas.TabIndex = 0;
+            this.CB_NoConstantsInFormulas.Text = "No Constants in Formulas";
+            this.CB_NoConstantsInFormulas.UseVisualStyleBackColor = true;
+            this.CB_NoConstantsInFormulas.CheckedChanged += new System.EventHandler(this.CB_Constraints_CheckedChanged);
             // 
-            // RD_A
+            // CB_MultipleSameRef
             // 
-            this.RD_A.AutoSize = true;
-            this.RD_A.Checked = true;
-            this.RD_A.Enabled = false;
-            this.RD_A.Location = new System.Drawing.Point(1, 3);
-            this.RD_A.Name = "RD_A";
-            this.RD_A.Size = new System.Drawing.Size(58, 17);
-            this.RD_A.TabIndex = 13;
-            this.RD_A.TabStop = true;
-            this.RD_A.Text = "Always";
-            this.RD_A.UseVisualStyleBackColor = true;
+            this.CB_MultipleSameRef.AllowDrop = true;
+            this.CB_MultipleSameRef.AutoSize = true;
+            this.CB_MultipleSameRef.Location = new System.Drawing.Point(10, 156);
+            this.CB_MultipleSameRef.Name = "CB_MultipleSameRef";
+            this.CB_MultipleSameRef.Size = new System.Drawing.Size(166, 17);
+            this.CB_MultipleSameRef.TabIndex = 20;
+            this.CB_MultipleSameRef.Text = "Same reference multiple times";
+            this.CB_MultipleSameRef.UseVisualStyleBackColor = true;
+            this.CB_MultipleSameRef.CheckedChanged += new System.EventHandler(this.CB_MultipleSameRef_CheckedChanged);
             // 
-            // Constraints_A
+            // panel4
             // 
-            this.Constraints_A.AutoSize = true;
-            this.Constraints_A.Checked = true;
-            this.Constraints_A.Enabled = false;
-            this.Constraints_A.Location = new System.Drawing.Point(1, 3);
-            this.Constraints_A.Name = "Constraints_A";
-            this.Constraints_A.Size = new System.Drawing.Size(58, 17);
-            this.Constraints_A.TabIndex = 11;
-            this.Constraints_A.TabStop = true;
-            this.Constraints_A.Text = "Always";
-            this.Constraints_A.UseVisualStyleBackColor = true;
+            this.panel4.Controls.Add(this.MSR_A);
+            this.panel4.Controls.Add(this.MSR_M);
+            this.panel4.Location = new System.Drawing.Point(32, 179);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(160, 23);
+            this.panel4.TabIndex = 21;
+            // 
+            // MSR_A
+            // 
+            this.MSR_A.AutoSize = true;
+            this.MSR_A.Checked = true;
+            this.MSR_A.Enabled = false;
+            this.MSR_A.Location = new System.Drawing.Point(0, 3);
+            this.MSR_A.Name = "MSR_A";
+            this.MSR_A.Size = new System.Drawing.Size(58, 17);
+            this.MSR_A.TabIndex = 15;
+            this.MSR_A.TabStop = true;
+            this.MSR_A.Text = "Always";
+            this.MSR_A.UseVisualStyleBackColor = true;
+            // 
+            // MSR_M
+            // 
+            this.MSR_M.AutoSize = true;
+            this.MSR_M.Enabled = false;
+            this.MSR_M.Location = new System.Drawing.Point(93, 3);
+            this.MSR_M.Name = "MSR_M";
+            this.MSR_M.Size = new System.Drawing.Size(60, 17);
+            this.MSR_M.TabIndex = 16;
+            this.MSR_M.Text = "Manual";
+            this.MSR_M.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.NCC_A);
+            this.panel5.Controls.Add(this.NCC_M);
+            this.panel5.Location = new System.Drawing.Point(32, 231);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(160, 23);
+            this.panel5.TabIndex = 23;
+            // 
+            // NCC_A
+            // 
+            this.NCC_A.AutoSize = true;
+            this.NCC_A.Checked = true;
+            this.NCC_A.Enabled = false;
+            this.NCC_A.Location = new System.Drawing.Point(0, 3);
+            this.NCC_A.Name = "NCC_A";
+            this.NCC_A.Size = new System.Drawing.Size(58, 17);
+            this.NCC_A.TabIndex = 15;
+            this.NCC_A.TabStop = true;
+            this.NCC_A.Text = "Always";
+            this.NCC_A.UseVisualStyleBackColor = true;
+            // 
+            // NCC_M
+            // 
+            this.NCC_M.AutoSize = true;
+            this.NCC_M.Enabled = false;
+            this.NCC_M.Location = new System.Drawing.Point(93, 3);
+            this.NCC_M.Name = "NCC_M";
+            this.NCC_M.Size = new System.Drawing.Size(60, 17);
+            this.NCC_M.TabIndex = 16;
+            this.NCC_M.Text = "Manual";
+            this.NCC_M.UseVisualStyleBackColor = true;
+            // 
+            // CB_NonConsideredConstants
+            // 
+            this.CB_NonConsideredConstants.AutoSize = true;
+            this.CB_NonConsideredConstants.Location = new System.Drawing.Point(12, 208);
+            this.CB_NonConsideredConstants.Name = "CB_NonConsideredConstants";
+            this.CB_NonConsideredConstants.Size = new System.Drawing.Size(150, 17);
+            this.CB_NonConsideredConstants.TabIndex = 22;
+            this.CB_NonConsideredConstants.Text = "Non considered constants";
+            this.CB_NonConsideredConstants.UseVisualStyleBackColor = true;
+            this.CB_NonConsideredConstants.CheckedChanged += new System.EventHandler(this.CB_NonConsideredConstants_CheckedChanged);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.RTN_A);
+            this.panel6.Controls.Add(this.RTN_M);
+            this.panel6.Location = new System.Drawing.Point(32, 283);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(160, 23);
+            this.panel6.TabIndex = 25;
+            // 
+            // RTN_A
+            // 
+            this.RTN_A.AutoSize = true;
+            this.RTN_A.Checked = true;
+            this.RTN_A.Enabled = false;
+            this.RTN_A.Location = new System.Drawing.Point(0, 3);
+            this.RTN_A.Name = "RTN_A";
+            this.RTN_A.Size = new System.Drawing.Size(58, 17);
+            this.RTN_A.TabIndex = 15;
+            this.RTN_A.TabStop = true;
+            this.RTN_A.Text = "Always";
+            this.RTN_A.UseVisualStyleBackColor = true;
+            // 
+            // RTN_M
+            // 
+            this.RTN_M.AutoSize = true;
+            this.RTN_M.Enabled = false;
+            this.RTN_M.Location = new System.Drawing.Point(93, 3);
+            this.RTN_M.Name = "RTN_M";
+            this.RTN_M.Size = new System.Drawing.Size(60, 17);
+            this.RTN_M.TabIndex = 16;
+            this.RTN_M.Text = "Manual";
+            this.RTN_M.UseVisualStyleBackColor = true;
+            // 
+            // CB_RefToNull
+            // 
+            this.CB_RefToNull.AutoSize = true;
+            this.CB_RefToNull.Location = new System.Drawing.Point(12, 260);
+            this.CB_RefToNull.Name = "CB_RefToNull";
+            this.CB_RefToNull.Size = new System.Drawing.Size(146, 17);
+            this.CB_RefToNull.TabIndex = 24;
+            this.CB_RefToNull.Text = "References to blank cells";
+            this.CB_RefToNull.UseVisualStyleBackColor = true;
+            this.CB_RefToNull.CheckedChanged += new System.EventHandler(this.CB_RefToNull_CheckedChanged);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.OAO_A);
+            this.panel7.Controls.Add(this.OAO_M);
+            this.panel7.Location = new System.Drawing.Point(32, 335);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(160, 23);
+            this.panel7.TabIndex = 27;
+            // 
+            // OAO_A
+            // 
+            this.OAO_A.AutoSize = true;
+            this.OAO_A.Checked = true;
+            this.OAO_A.Enabled = false;
+            this.OAO_A.Location = new System.Drawing.Point(0, 3);
+            this.OAO_A.Name = "OAO_A";
+            this.OAO_A.Size = new System.Drawing.Size(58, 17);
+            this.OAO_A.TabIndex = 15;
+            this.OAO_A.TabStop = true;
+            this.OAO_A.Text = "Always";
+            this.OAO_A.UseVisualStyleBackColor = true;
+            // 
+            // OAO_M
+            // 
+            this.OAO_M.AutoSize = true;
+            this.OAO_M.Enabled = false;
+            this.OAO_M.Location = new System.Drawing.Point(93, 3);
+            this.OAO_M.Name = "OAO_M";
+            this.OAO_M.Size = new System.Drawing.Size(60, 17);
+            this.OAO_M.TabIndex = 16;
+            this.OAO_M.Text = "Manual";
+            this.OAO_M.UseVisualStyleBackColor = true;
+            // 
+            // CB_OneAmongOthers
+            // 
+            this.CB_OneAmongOthers.AutoSize = true;
+            this.CB_OneAmongOthers.Location = new System.Drawing.Point(12, 312);
+            this.CB_OneAmongOthers.Name = "CB_OneAmongOthers";
+            this.CB_OneAmongOthers.Size = new System.Drawing.Size(113, 17);
+            this.CB_OneAmongOthers.TabIndex = 26;
+            this.CB_OneAmongOthers.Text = "One among others";
+            this.CB_OneAmongOthers.UseVisualStyleBackColor = true;
+            this.CB_OneAmongOthers.CheckedChanged += new System.EventHandler(this.CB_OneAmongOthers_CheckedChanged);
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.SD_A);
+            this.panel8.Controls.Add(this.SD_M);
+            this.panel8.Location = new System.Drawing.Point(30, 387);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(160, 23);
+            this.panel8.TabIndex = 29;
+            // 
+            // SD_A
+            // 
+            this.SD_A.AutoSize = true;
+            this.SD_A.Checked = true;
+            this.SD_A.Enabled = false;
+            this.SD_A.Location = new System.Drawing.Point(0, 3);
+            this.SD_A.Name = "SD_A";
+            this.SD_A.Size = new System.Drawing.Size(58, 17);
+            this.SD_A.TabIndex = 15;
+            this.SD_A.TabStop = true;
+            this.SD_A.Text = "Always";
+            this.SD_A.UseVisualStyleBackColor = true;
+            // 
+            // SD_M
+            // 
+            this.SD_M.AutoSize = true;
+            this.SD_M.Enabled = false;
+            this.SD_M.Location = new System.Drawing.Point(93, 3);
+            this.SD_M.Name = "SD_M";
+            this.SD_M.Size = new System.Drawing.Size(60, 17);
+            this.SD_M.TabIndex = 16;
+            this.SD_M.Text = "Manual";
+            this.SD_M.UseVisualStyleBackColor = true;
+            // 
+            // CB_StringDistance
+            // 
+            this.CB_StringDistance.AutoSize = true;
+            this.CB_StringDistance.Location = new System.Drawing.Point(10, 364);
+            this.CB_StringDistance.Name = "CB_StringDistance";
+            this.CB_StringDistance.Size = new System.Drawing.Size(98, 17);
+            this.CB_StringDistance.TabIndex = 28;
+            this.CB_StringDistance.Text = "String Distance";
+            this.CB_StringDistance.UseVisualStyleBackColor = true;
+            this.CB_StringDistance.CheckedChanged += new System.EventHandler(this.CB_StringDistance_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(115, 365);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Max distance:";
+            // 
+            // SD_Amount
+            // 
+            this.SD_Amount.Location = new System.Drawing.Point(192, 362);
+            this.SD_Amount.Name = "SD_Amount";
+            this.SD_Amount.Size = new System.Drawing.Size(45, 20);
+            this.SD_Amount.TabIndex = 31;
             // 
             // PolicyConfigurationDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(249, 190);
+            this.ClientSize = new System.Drawing.Size(249, 498);
+            this.Controls.Add(this.SD_Amount);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel8);
+            this.Controls.Add(this.CB_StringDistance);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.CB_OneAmongOthers);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.CB_RefToNull);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.CB_NonConsideredConstants);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.CB_MultipleSameRef);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -212,7 +488,7 @@
             this.Controls.Add(this.Button_OK);
             this.Controls.Add(this.CB_FormulaComplexity);
             this.Controls.Add(this.CB_ReadingDirection);
-            this.Controls.Add(this.CB_Constraints);
+            this.Controls.Add(this.CB_NoConstantsInFormulas);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PolicyConfigurationDialog";
@@ -224,6 +500,16 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,13 +517,13 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckBox CB_Constraints;
+        private System.Windows.Forms.CheckBox CB_NoConstantsInFormulas;
         private System.Windows.Forms.CheckBox CB_ReadingDirection;
         private System.Windows.Forms.CheckBox CB_FormulaComplexity;
         private System.Windows.Forms.Button Button_OK;
         private System.Windows.Forms.Button Button_Cancel;
-        private System.Windows.Forms.RadioButton Constraints_A;
-        private System.Windows.Forms.RadioButton Constraints_M;
+        private System.Windows.Forms.RadioButton NCIF_A;
+        private System.Windows.Forms.RadioButton NCIF_M;
         private System.Windows.Forms.RadioButton RD_A;
         private System.Windows.Forms.RadioButton RD_M;
         private System.Windows.Forms.RadioButton FC_A;
@@ -245,5 +531,27 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.CheckBox CB_MultipleSameRef;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.RadioButton MSR_A;
+        private System.Windows.Forms.RadioButton MSR_M;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.RadioButton NCC_A;
+        private System.Windows.Forms.RadioButton NCC_M;
+        private System.Windows.Forms.CheckBox CB_NonConsideredConstants;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.RadioButton RTN_A;
+        private System.Windows.Forms.RadioButton RTN_M;
+        private System.Windows.Forms.CheckBox CB_RefToNull;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.RadioButton OAO_A;
+        private System.Windows.Forms.RadioButton OAO_M;
+        private System.Windows.Forms.CheckBox CB_OneAmongOthers;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.RadioButton SD_A;
+        private System.Windows.Forms.RadioButton SD_M;
+        private System.Windows.Forms.CheckBox CB_StringDistance;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox SD_Amount;
     }
 }

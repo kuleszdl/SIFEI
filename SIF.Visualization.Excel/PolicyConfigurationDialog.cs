@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SIF.Visualization.Excel.Core;
 
 namespace SIF.Visualization.Excel
 {
@@ -18,30 +19,31 @@ namespace SIF.Visualization.Excel
             InitializeComponent();
 
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            
-            if (Settings.Default.Constraints)                                   // if the Constraints box was previously selected and is stored in the settings
-            {   
-                CB_Constraints.Checked = true;                                  // display the Constraints box as checked
-                Constraints_A.Enabled = true;                                   // and enable the Always and Manual radio buttons
-                Constraints_M.Enabled = true;
+            PolicyConfigurationModel settings = DataModel.Instance.CurrentWorkbook.PolicySettings;
 
-                if (!Settings.Default.ConstraintsFrequency)                     // The frequency is set to Always by default. If it is changed to false (aka Manual)
+            if (settings.NoConstantsInFormulas)                                   // if the Constraints box was previously selected and is stored in the settings
+            {
+                CB_NoConstantsInFormulas.Checked = true;                                  // display the Constraints box as checked
+                NCIF_A.Enabled = true;                                   // and enable the Always and Manual radio buttons
+                NCIF_M.Enabled = true;
+
+                if (settings.NoConstantsInFormulasAutomatic)                     // The frequency is set to Always by default. If it is changed to false (aka Manual)
                 {
-                    Constraints_M.Checked = true;                               // display the frequency as Manual 
+                    NCIF_A.Checked = true;                               // display the frequency as Manual 
                 }
                 else
                 {
-                    Constraints_A.Checked = true;                               // otherwise, keep the defaul setting of Always
+                    NCIF_M.Checked = true;                               // otherwise, keep the defaul setting of Always
                 }
             }
 
-            if (Settings.Default.ReadingDirection)
+            if (settings.ReadingDirection)
             {
                 CB_ReadingDirection.Checked = true;
                 RD_A.Enabled = true;
                 RD_M.Enabled = true;
 
-                if (!Settings.Default.ReadingDirectionFrequency)
+                if (!settings.ReadingDirectionAutomatic)
                 {
                     RD_M.Checked = true;
                 }
@@ -51,13 +53,13 @@ namespace SIF.Visualization.Excel
                 }
             }
 
-            if (Settings.Default.FormulaComplexity)
+            if (settings.FormulaComplexity)
             {
                 CB_FormulaComplexity.Checked = true;
                 FC_A.Enabled = true;
                 FC_M.Enabled = true;
 
-                if (!Settings.Default.FormulaComplexityFrequency)
+                if (!settings.FormulaComplexityAutomatic)
                 {
                     FC_M.Checked = true;
                 }
@@ -67,61 +69,157 @@ namespace SIF.Visualization.Excel
                 }
             }
 
-                                          
+            if (settings.MultipleSameRef)
+            {
+                CB_MultipleSameRef.Checked = true;
+                MSR_A.Enabled = true;
+                MSR_M.Enabled = true;
+
+                if (!settings.MultipleSameRefAutomatic)
+                {
+                    MSR_M.Checked = true;
+                }
+                else
+                {
+                    MSR_A.Checked = true;
+                }
+            }
+
+            if (settings.NonConsideredConstants)
+            {
+                CB_NonConsideredConstants.Checked = true;
+                NCC_A.Enabled = true;
+                NCC_M.Enabled = true;
+
+                if (!settings.NonConsideredConstantsAutomatic)
+                {
+                    NCC_M.Checked = true;
+                }
+                else
+                {
+                    NCC_A.Checked = true;
+                }
+            }
+
+            if (settings.RefToNull)
+            {
+                CB_RefToNull.Checked = true;
+                RTN_A.Enabled = true;
+                RTN_M.Enabled = true;
+
+                if (!settings.RefToNullAutomatic)
+                {
+                    RTN_M.Checked = true;
+                }
+                else
+                {
+                    RTN_A.Checked = true;
+                }
+            }
+
+            if (settings.OneAmongOthers)
+            {
+                CB_OneAmongOthers.Checked = true;
+                OAO_A.Enabled = true;
+                OAO_M.Enabled = true;
+
+                if (!settings.OneAmongOthersAutomatic)
+                {
+                    OAO_M.Checked = true;
+                }
+                else
+                {
+                    OAO_A.Checked = true;
+                }
+            }
+
+            if (settings.StringDistance)
+            {
+                CB_StringDistance.Checked = true;
+                SD_A.Enabled = true;
+                SD_M.Enabled = true;
+
+                if (!settings.StringDistanceAutomatic)
+                {
+                    SD_M.Checked = true;
+                }
+                else
+                {
+                    SD_A.Checked = true;
+                }
+                SD_Amount.Text = settings.StringDistanceMaxDist.ToString();
+            }
+            else
+            {
+                SD_Amount.Enabled = false;
+            }
+
+
             this.ShowDialog();
         }
 
         private void Button_OK_Click(object sender, EventArgs e)
         {
-            //string message = "Please restart the program in order to apply the new settings.";
-            //string caption = "Warning";
-            //MessageBoxButtons button = MessageBoxButtons.OK;
-            //MessageBoxIcon icon = MessageBoxIcon.Warning;
-            //DialogResult result = MessageBox.Show(message, caption, button, icon);
+            bool error = false;
+            PolicyConfigurationModel settings = DataModel.Instance.CurrentWorkbook.PolicySettings;
 
-            // If the new selections are different from the previous settings, change them in the Settings and
-            // regenerate the XMLs accordingly
+            #region Parsing w/ possible errors
+            if (SD_Amount.Enabled)
+            {
+                int stringDstMax = 0;
+                try
+                {
+                    stringDstMax = Convert.ToInt32(SD_Amount.Text);
+                    if (stringDstMax < 1)
+                    {
+                        error = true;
+                    }
+                }
+                catch (FormatException)
+                {
+                    error = true;
+                }
+                if (error)
+                {
+                    SD_Amount.BackColor = Color.LightPink;
+                }
+                else
+                {
+                    settings.StringDistanceMaxDist = stringDstMax;
+                }
+            }
+            #endregion
 
-            bool XMLNeedsChange = false;
+            if (error) // abort the closing and further parsing of members
+                return;
 
-            // note: if Frequency setting has True value, then it is set to Always. if it is False, then it is set to Manual
+            settings.NoConstantsInFormulas = CB_NoConstantsInFormulas.Checked;
+            settings.NoConstantsInFormulasAutomatic = NCIF_A.Checked;
 
-            if (Settings.Default.Constraints != CB_Constraints.Checked)
-            {
-                Settings.Default.Constraints = CB_Constraints.Checked;
-                XMLNeedsChange = true;
-            }
-            if (Settings.Default.ReadingDirection != CB_ReadingDirection.Checked)
-            { 
-                Settings.Default.ReadingDirection = CB_ReadingDirection.Checked;
-                XMLNeedsChange = true;
-            }
-            if (Settings.Default.FormulaComplexity != CB_FormulaComplexity.Checked)
-            {
-                Settings.Default.FormulaComplexity = CB_FormulaComplexity.Checked;
-                XMLNeedsChange = true;
-            }  
-            if (Settings.Default.ConstraintsFrequency != Constraints_A.Checked)
-            {
-                Settings.Default.ConstraintsFrequency = Constraints_A.Checked;
-                XMLNeedsChange = true;
-            }
-            if (Settings.Default.ReadingDirectionFrequency != RD_A.Checked)
-            {
-                Settings.Default.ReadingDirectionFrequency = RD_A.Checked;
-                XMLNeedsChange = true;
-            }
-            if (Settings.Default.FormulaComplexityFrequency != FC_A.Checked)
-            {
-                Settings.Default.FormulaComplexityFrequency = FC_A.Checked;
-                XMLNeedsChange = true;
-            }  
-            if (XMLNeedsChange)
-            {
-                // generate new XMLs
-            }
-                     
+            settings.ReadingDirection = CB_ReadingDirection.Checked;
+            settings.ReadingDirectionAutomatic = RD_A.Checked;
+
+            settings.FormulaComplexity = CB_FormulaComplexity.Checked;
+            settings.FormulaComplexityAutomatic = FC_A.Checked;
+
+            settings.MultipleSameRef = CB_MultipleSameRef.Checked;
+            settings.MultipleSameRefAutomatic = MSR_A.Checked;
+
+            settings.NonConsideredConstants = CB_NonConsideredConstants.Checked;
+            settings.NonConsideredConstantsAutomatic = NCC_A.Checked;
+
+            settings.RefToNull = CB_RefToNull.Checked;
+            settings.RefToNullAutomatic = RTN_A.Checked;
+
+            settings.OneAmongOthers = CB_OneAmongOthers.Checked;
+            settings.OneAmongOthersAutomatic = OAO_A.Checked;
+
+            settings.StringDistance = CB_StringDistance.Checked;
+            settings.StringDistanceAutomatic = SD_A.Checked;
+
+            DataModel.Instance.CurrentWorkbook.PolicySettings = settings;
             this.Close();
+
         }
 
         private void Button_Cancel_Click(object sender, EventArgs e)
@@ -131,21 +229,15 @@ namespace SIF.Visualization.Excel
 
         private void CB_Constraints_CheckedChanged(object sender, EventArgs e)
         {
-            if (CB_Constraints.Checked)                                         // If the Constraints box is checked
+            if (CB_NoConstantsInFormulas.Checked)                                         // If the Constraints box is checked
             {
-                Constraints_A.Enabled = true;                                   // enable the frequency radio buttons
-                Constraints_M.Enabled = true;
-                Constraints_A.Checked = true;                                   // and check the Always frquency button by default
-                Constraints_M.Checked = false;
-                
+                NCIF_A.Enabled = true;                                   // enable the frequency radio buttons
+                NCIF_M.Enabled = true;
             }
             else                                                                // If the Constraints box is unchecked
             {
-                Constraints_A.Enabled = false;                                  // disable the frequency radio buttons                              
-                Constraints_M.Enabled = false;                                  
-                Constraints_A.Checked = true;                                   // and check the Always frequency button by default
-                Constraints_M.Checked = false;      
-              
+                NCIF_A.Enabled = false;                                  // disable the frequency radio buttons                              
+                NCIF_M.Enabled = false;
             }
         }
 
@@ -155,15 +247,11 @@ namespace SIF.Visualization.Excel
             {
                 RD_A.Enabled = true;
                 RD_M.Enabled = true;
-                RD_A.Checked = true;
-                RD_M.Checked = false;
             }
             else
             {
                 RD_A.Enabled = false;
                 RD_M.Enabled = false;
-                RD_A.Checked = true;
-                RD_M.Checked = false;
             }
         }
 
@@ -173,16 +261,86 @@ namespace SIF.Visualization.Excel
             {
                 FC_A.Enabled = true;
                 FC_M.Enabled = true;
-                FC_A.Checked = true;
-                FC_M.Checked = false;
 
             }
             else
             {
                 FC_A.Enabled = false;
                 FC_M.Enabled = false;
-                FC_A.Checked = true;
-                FC_M.Checked = false;
+            }
+        }
+
+        private void CB_MultipleSameRef_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CB_MultipleSameRef.Checked)
+            {
+                MSR_A.Enabled = true;
+                MSR_M.Enabled = true;
+            }
+            else
+            {
+                MSR_A.Enabled = false;
+                MSR_M.Enabled = false;
+            }
+        }
+
+        private void CB_NonConsideredConstants_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CB_NonConsideredConstants.Checked)
+            {
+                NCC_A.Enabled = true;
+                NCC_M.Enabled = true;
+            }
+            else
+            {
+                NCC_A.Enabled = false;
+                NCC_M.Enabled = false;
+            }
+        }
+
+        private void CB_RefToNull_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CB_RefToNull.Checked)
+            {
+                RTN_A.Enabled = true;
+                RTN_M.Enabled = true;
+            }
+            else
+            {
+                RTN_A.Enabled = false;
+                RTN_M.Enabled = false;
+            }
+        }
+
+        private void CB_OneAmongOthers_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CB_OneAmongOthers.Checked)
+            {
+                OAO_A.Enabled = true;
+                OAO_M.Enabled = true;
+            }
+            else
+            {
+                OAO_A.Enabled = false;
+                OAO_M.Enabled = false;
+            }
+        }
+
+        private void CB_StringDistance_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CB_StringDistance.Checked)
+            {
+                SD_A.Enabled = true;
+                SD_M.Enabled = true;
+                SD_Amount.Enabled = true;
+                SD_Amount.Text = DataModel.Instance.CurrentWorkbook.PolicySettings.StringDistanceMaxDist.ToString();
+
+            }
+            else
+            {
+                SD_A.Enabled = false;
+                SD_M.Enabled = false;
+                SD_Amount.Enabled = false;
             }
         }
     }

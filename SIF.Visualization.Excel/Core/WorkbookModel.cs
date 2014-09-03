@@ -76,12 +76,26 @@ namespace SIF.Visualization.Excel.Core
         private int unreadSolvedCount;
         private ObservableCollection<SIF.Visualization.Excel.ScenarioCore.Scenario> scenarios;
         private Boolean sanityWarnings = true;
-
         private Workbook workbook;
+        private PolicyConfigurationModel policySettings;
+
 
         #endregion
 
         #region Properties
+
+        public PolicyConfigurationModel PolicySettings
+        {
+            get 
+            {
+                if (policySettings == null)
+                {
+                    policySettings = new PolicyConfigurationModel();
+                }
+                return policySettings;
+            }
+            set { policySettings = value; }
+        }
 
         /// <summary>
         /// Gets or sets the title of the current inspection.
@@ -328,6 +342,8 @@ namespace SIF.Visualization.Excel.Core
             set { this.SetProperty(ref this.workbook, value); }
         }
 
+
+
         #endregion
 
         #region Operators
@@ -479,12 +495,26 @@ namespace SIF.Visualization.Excel.Core
                     solved.CreateControls();
                 }
             }
+
+            XElement polSettings = XMLPartManager.Instance.LoadXMLPart(this, "policySettings");
+            PolicyConfigurationModel polModel = new PolicyConfigurationModel();
+            try
+            {
+                polModel.loadXML(polSettings);
+            }
+            catch (Exception e)
+            {
+                // no settings existed, use the default config
+                polModel = new PolicyConfigurationModel();
+            }
+            policySettings = polModel;
+
         }
 
         private void Workbook_AfterSave(bool Success)
         {
             // Run a scan if necessary
-            if (Settings.Default.ConstraintsFrequency || Settings.Default.FormulaComplexityFrequency || Settings.Default.ReadingDirectionFrequency)
+            if (PolicySettings.hasAutomaticScans() && Settings.Default.AutomaticScans)
             {
                 this.Inspect(InspectionType.LIVE);
             }
@@ -512,6 +542,11 @@ namespace SIF.Visualization.Excel.Core
 
             // Save the cell definitions
             XMLPartManager.Instance.SaveXMLPart(this, this.Accept(new CellDefinitionToXMLVisitor()) as XElement, "CellDefinitions");
+
+            // Save the policy configuration
+            XElement polSettings = new XElement("policySettings");
+            policySettings.saveXML(polSettings);
+            XMLPartManager.Instance.SaveXMLPart(this, polSettings, "policySettings");
         }
 
 
@@ -540,7 +575,7 @@ namespace SIF.Visualization.Excel.Core
         public void Inspect(InspectionMode inspectionMode, InspectionType inspectionType)
         {
             // Save a copy of this workbook temporarily
-            var workbookFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar + Guid.NewGuid().ToString() + ".xls";
+            string workbookFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar + Guid.NewGuid().ToString() + ".xls";
             this.Workbook.SaveCopyAs(workbookFile);
 
             // Create the rules
@@ -548,19 +583,24 @@ namespace SIF.Visualization.Excel.Core
             switch (inspectionMode)
             {
                 case InspectionMode.All:
-                    xmlDoc.Add(this.Accept(new Sprudel1_3XMLVisitor()) as XElement);
+                    xmlDoc.Add(this.Accept(new Sprudel1_3XMLVisitor(inspectionType)) as XElement);
                     //TODO add static
                     break;
                 case InspectionMode.Dynamic:
-                    xmlDoc.Add(this.Accept(new Sprudel1_3XMLVisitor()) as XElement);
+                    xmlDoc.Add(this.Accept(new Sprudel1_3XMLVisitor(inspectionType)) as XElement);
                     break;
                 case InspectionMode.Static:
                     //TODO change to static
-                    xmlDoc.Add(this.Accept(new Sprudel1_3XMLVisitor()) as XElement);
+                    xmlDoc.Add(this.Accept(new Sprudel1_3XMLVisitor(inspectionType)) as XElement);
                     break;
             };
 
             Debug.WriteLine(xmlDoc.ToString());
+            var x = xmlDoc.Element(XName.Get("policyList"));
+            var a = x.Element(XName.Get("dynamicPolicy"));
+            var b = a.Element(XName.Get("spreadsheetFilePath"));
+            b.Value = workbookFile;
+
             xmlDoc.Validate(XMLPartManager.Instance.GetRequestSchema(), null);
 
             // Enqueue this inspectio
