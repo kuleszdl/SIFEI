@@ -485,6 +485,7 @@ namespace SIF.Visualization.Excel.Networking
       <xs:element name=""oneAmongOthersPolicyRule"" type=""oneAmongOthersPolicyRule"" minOccurs=""0""/>
       <xs:element name=""refToNullPolicyRule"" type=""refToNullPolicyRule"" minOccurs=""0""/>
       <xs:element name=""stringDistancePolicyRule"" type=""stringDistancePolicyRule"" minOccurs=""0""/>
+      <xs:element name=""multipleSameRefPolicyRule"" type=""multipleSameRefPolicyRule"" minOccurs=""0""/>
     </xs:sequence>
   </xs:complexType>
 
