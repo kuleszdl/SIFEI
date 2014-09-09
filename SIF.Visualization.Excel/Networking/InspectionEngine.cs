@@ -215,8 +215,8 @@ namespace SIF.Visualization.Excel.Networking
 
                             // Then, send the spreadsheet
                             // reading the whole file beforehand reduces the possibility of a corrupt file on the receiving end
-//                            byte[] toSend = File.ReadAllBytes(currentJob.SpreadsheetPath);
-//                            clientSocket.SendBytes(toSend);
+                            byte[] toSend = File.ReadAllBytes(currentJob.SpreadsheetPath);
+                            clientSocket.SendBytes(toSend);
 
                             // Read the report from the socket connection
                             var report = clientSocket.ReadString();
