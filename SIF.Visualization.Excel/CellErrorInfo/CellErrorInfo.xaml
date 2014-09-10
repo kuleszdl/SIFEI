@@ -26,7 +26,7 @@
     </UserControl.Resources>
 
     <Border BorderBrush="Black" BorderThickness="1" Background="White">
-        <Grid IsHitTestVisible="True">
+        <Grid IsHitTestVisible="True" x:Name="Layout">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>

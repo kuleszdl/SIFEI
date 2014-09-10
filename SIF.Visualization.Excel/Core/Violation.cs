@@ -369,11 +369,6 @@ namespace SIF.Visualization.Excel.Core
         private void RemovefromCellLocation()
         {
             this.Cell.Violations.Remove(this);
-            if (this.Cell.Violations.Count == 0)
-            {
-                this.Cell.RemoveIcon();
-                DataModel.Instance.CurrentWorkbook.ViolatedCells.Remove(this.Cell);
-            }
         }
         #endregion
     }

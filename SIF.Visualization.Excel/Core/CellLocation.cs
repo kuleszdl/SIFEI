@@ -252,10 +252,11 @@ namespace SIF.Visualization.Excel.Core
         {
             if (this.violations.Count > 0)
             {
-                if (this.violations.Count == 1)
+                if (this.violations.Count == 1 && this.control == null)
                 {
                     this.selectedViolation = violations.ElementAt(0);
                     this.ViolationSelected = true;
+                    this.DrawIcon();
                 }
                 else
                 {
@@ -264,8 +265,13 @@ namespace SIF.Visualization.Excel.Core
                 this.violationsPane = new ListCollectionView(Violations);
                 this.violationsPane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
                 this.ViolationsPane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
-                this.DrawIcon();
                 this.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
+                this.OnPropertyChanged("Violations");
+            }
+            else
+            {
+                this.RemoveIcon();
+                DataModel.Instance.CurrentWorkbook.ViolatedCells.Remove(this);
             }
         }
 
@@ -412,23 +418,23 @@ namespace SIF.Visualization.Excel.Core
 
         private void DrawIcon()
         {
-            if (this.control != null)
-            {
-                this.RemoveIcon();
-            }
-                var container = new CellErrorInfoContainer();
-                container.ElementHost.Child = new CellErrorInfo() { DataContext = this };
+            var container = new CellErrorInfoContainer();
+            container.ElementHost.Child = new CellErrorInfo() 
+            { 
+                DataContext = this 
+            };
 
-                var vsto = Globals.Factory.GetVstoObject(this.Worksheet);
+            var vsto = Globals.Factory.GetVstoObject(this.Worksheet);
 
-                this.controlName = Guid.NewGuid().ToString();
+            this.controlName = Guid.NewGuid().ToString();
 
-                this.control = vsto.Controls.AddControl(container, this.Worksheet.Range[this.ShortLocation], this.controlName);
-                this.control.Width = this.control.Height + 4;
-                this.control.Placement = Microsoft.Office.Interop.Excel.XlPlacement.xlMove;
+            this.control = vsto.Controls.AddControl(container, this.Worksheet.Range[this.ShortLocation], this.controlName);
+            this.control.Width = this.control.Height + 4;
+            this.control.Placement = Microsoft.Office.Interop.Excel.XlPlacement.xlMove;
+            this.control.AutoLoad = true;
         }
 
-        public void RemoveIcon()
+        private void RemoveIcon()
         {
             if (!string.IsNullOrWhiteSpace(this.controlName))
             {
