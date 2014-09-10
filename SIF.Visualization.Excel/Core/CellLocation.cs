@@ -412,8 +412,10 @@ namespace SIF.Visualization.Excel.Core
 
         private void DrawIcon()
         {
-            if (this.Violations.Count == 1)
+            if (this.control != null)
             {
+                this.RemoveIcon();
+            }
                 var container = new CellErrorInfoContainer();
                 container.ElementHost.Child = new CellErrorInfo() { DataContext = this };
 
@@ -424,7 +426,6 @@ namespace SIF.Visualization.Excel.Core
                 this.control = vsto.Controls.AddControl(container, this.Worksheet.Range[this.ShortLocation], this.controlName);
                 this.control.Width = this.control.Height + 4;
                 this.control.Placement = Microsoft.Office.Interop.Excel.XlPlacement.xlMove;
-            }
         }
 
         public void RemoveIcon()
