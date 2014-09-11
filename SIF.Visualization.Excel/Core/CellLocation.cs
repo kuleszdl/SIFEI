@@ -118,6 +118,7 @@ namespace SIF.Visualization.Excel.Core
 
             return this.Letter == other.Letter &&
                    this.Number == other.Number &&
+                   this.ViolationType == other.ViolationType &&
                    Object.ReferenceEquals(this.Worksheet, other.Worksheet);
         }
 
@@ -248,7 +249,7 @@ namespace SIF.Visualization.Excel.Core
             this.Violations.CollectionChanged += Violations_CollectionChanged;
         }
 
-        void Violations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        public void Violations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (this.violations.Count > 0)
             {
@@ -262,10 +263,10 @@ namespace SIF.Visualization.Excel.Core
                 {
                     this.ViolationSelected = false;
                 }
+                this.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
                 this.violationsPane = new ListCollectionView(Violations);
                 this.violationsPane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
                 this.ViolationsPane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
-                this.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
                 this.OnPropertyChanged("Violations");
             }
             else
@@ -446,25 +447,33 @@ namespace SIF.Visualization.Excel.Core
 
         public void SetVisibility(SharedTabs tab)
         {
-            if (this.violationType.Equals(ViolationType.OPEN) && tab.Equals(SharedTabs.Open))
+            if (this.control != null)
             {
-                this.control.Visible = true;
-            }
-            else if (this.violationType.Equals(ViolationType.LATER) && tab.Equals(SharedTabs.Later))
-            {
-                this.control.Visible = true;
-            }
-            else if (this.violationType.Equals(ViolationType.IGNORE) && tab.Equals(SharedTabs.Ignore))
-            {
-                this.control.Visible = true;
-            }
-            else if (this.violationType.Equals(ViolationType.SOLVED) && tab.Equals(SharedTabs.Archive))
-            {
-                this.control.Visible = true;
-            }
-            else
-            {
-                this.control.Visible = false;
+                if (this.Violations.Count == 1)
+                {
+                    this.ViolationSelected = true;
+                }
+                if (this.violationType.Equals(ViolationType.OPEN) && tab.Equals(SharedTabs.Open))
+                {
+                    this.control.Visible = true;
+                }
+                else if (this.violationType.Equals(ViolationType.LATER) && tab.Equals(SharedTabs.Later))
+                {
+                    this.control.Visible = true;
+                }
+                else if (this.violationType.Equals(ViolationType.IGNORE) && tab.Equals(SharedTabs.Ignore))
+                {
+                    this.control.Visible = true;
+                }
+                else if (this.violationType.Equals(ViolationType.SOLVED) && tab.Equals(SharedTabs.Archive))
+                {
+                    this.control.Visible = true;
+                }
+                else
+                {
+                    this.control.Visible = false;
+                    this.ViolationSelected = false;
+                }
             }
         }
 

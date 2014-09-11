@@ -551,7 +551,7 @@ namespace SIF.Visualization.Excel.Core
         private void Workbook_SheetCalculate(object Sh)
         {
             // Run a scan if necessary
-            if (Settings.Default.AutomaticScans)
+            if (PolicySettings.hasAutomaticScans() && Settings.Default.AutomaticScans)
             {
                 this.Inspect(InspectionType.LIVE);
             }

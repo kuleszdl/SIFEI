@@ -21,17 +21,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="SIF.Visualization.Excel.Core.GroupViolation">
-    <Position X="11.75" Y="10.25" Width="2.5" />
-    <Members>
-      <Field Name="severity" Hidden="true" />
-      <Field Name="violations" Hidden="true" />
-    </Members>
-    <TypeIdentifier>
-      <HashCode>BAAAAACAIAAAggAEgAIAAAACACAAAIAAAAAAABQIAiA=</HashCode>
-      <FileName>Core\GroupViolation.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="SIF.Visualization.Excel.Core.WorkbookModel">
     <Position X="3" Y="4" Width="2" />
     <Members>
@@ -61,7 +50,7 @@
       </Delegate>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>hIUCgECGwBBIgFBBikZAgQBCCgECU5gIAhIACwAAgjM=</HashCode>
+      <HashCode>hIECkECGwBBMgFBDjkZAAgBCCgAAU5gIIhaBCyAAgzM=</HashCode>
       <FileName>Core\WorkbookModel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -78,33 +67,14 @@
       <FileName>Core\Policy.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SIF.Visualization.Excel.Core.SingleViolation">
-    <Position X="15" Y="10.25" Width="2.5" />
-    <Members>
-      <Field Name="severity" Hidden="true" />
-    </Members>
-    <TypeIdentifier>
-      <HashCode>BAAAAAAUAAAAFAQAgAAEAAAAACAAQIAAAEAAABQAAiA=</HashCode>
-      <FileName>Core\SingleViolation.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="SIF.Visualization.Excel.Core.Violation">
     <Position X="11.75" Y="4" Width="2.25" />
     <Members>
       <Field Name="causingElement" Hidden="true" />
       <Field Name="description" Hidden="true" />
-      <Field Name="id" Hidden="true" />
-      <Field Name="isVisible" Hidden="true" />
     </Members>
-    <NestedTypes>
-      <Enum Name="SIF.Visualization.Excel.Core.Violation.ViolationType" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Core\Violation.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAACwAAAAkAgEEAAoBBEEAAABTAAgIEAAIAAABQgAqA=</HashCode>
+      <HashCode>BAACwAAQAMAgkEAAoIBEEAAABxAAgIEAAIAgCBQAAqA=</HashCode>
       <FileName>Core\Violation.cs</FileName>
     </TypeIdentifier>
   </Class>

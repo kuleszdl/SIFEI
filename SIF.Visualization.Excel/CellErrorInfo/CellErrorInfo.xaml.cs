@@ -21,6 +21,13 @@ namespace SIF.Visualization.Excel
         public CellErrorInfo()
         {
             InitializeComponent();
+            
         }
+
+        void Violations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Console.WriteLine("Context changed");
+        }
+
     }
 }

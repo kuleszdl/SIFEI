@@ -355,14 +355,14 @@ namespace SIF.Visualization.Excel.Core
                     {
                         this.Cell = cell;
                         cell.Violations.Add(this);
+                        cell.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
                         return;
                     }
                 }
-                CellLocation newCell = new CellLocation(workbook, location);
-                newCell.ViolationType = this.violationState;
-                newCell.Violations.Add(this);
-                this.Cell = newCell;
-                DataModel.Instance.CurrentWorkbook.ViolatedCells.Add(newCell);
+                this.cell = new CellLocation(workbook, location);
+                this.cell.ViolationType = this.violationState;
+                this.cell.Violations.Add(this);
+                DataModel.Instance.CurrentWorkbook.ViolatedCells.Add(this.cell);
             }
         }
 
