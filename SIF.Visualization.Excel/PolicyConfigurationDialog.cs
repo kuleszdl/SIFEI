@@ -218,6 +218,7 @@ namespace SIF.Visualization.Excel
             settings.StringDistanceAutomatic = SD_A.Checked;
 
             DataModel.Instance.CurrentWorkbook.PolicySettings = settings;
+            DataModel.Instance.CurrentWorkbook.Workbook.Saved = false;
             this.Close();
 
         }
