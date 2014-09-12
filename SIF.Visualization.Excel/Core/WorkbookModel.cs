@@ -477,6 +477,19 @@ namespace SIF.Visualization.Excel.Core
                 (from p in solvedXml.Elements(XName.Get("solvedviolation"))
                  select new Violation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
             }
+
+            XElement polSettings = XMLPartManager.Instance.LoadXMLPart(this, "policySettings");
+            PolicyConfigurationModel polModel = new PolicyConfigurationModel();
+            try
+            {
+                polModel.loadXML(polSettings);
+            }
+            catch (Exception e)
+            {
+                // no settings existed, use the default config
+                polModel = new PolicyConfigurationModel();
+            }
+            policySettings = polModel;
         }
 
         private void Sheet_SelectionChange(object Sh, Range Target)
@@ -508,18 +521,6 @@ namespace SIF.Visualization.Excel.Core
                 }
             }
 
-            XElement polSettings = XMLPartManager.Instance.LoadXMLPart(this, "policySettings");
-            PolicyConfigurationModel polModel = new PolicyConfigurationModel();
-            try
-            {
-                polModel.loadXML(polSettings);
-            }
-            catch (Exception e)
-            {
-                // no settings existed, use the default config
-                polModel = new PolicyConfigurationModel();
-            }
-            policySettings = polModel;
 
         }
 

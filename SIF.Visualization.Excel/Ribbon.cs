@@ -21,6 +21,8 @@ namespace SIF.Visualization.Excel
         {
             DataModel.Instance.WorkbookSelectionChangedEventHandler += Ribbon_WorkbookSelectionChanged;
             DataModel.Instance.CellDefinitionChangedEventHandler += Ribbon_WorkbookSelectionChanged;
+
+            automaticScanCheckBox.Checked = Settings.Default.AutomaticScans;
         }
 
         private void testButton_Click(object sender, RibbonControlEventArgs e)
