@@ -13,13 +13,13 @@
         <viewmodel:InputCellTypeToVisibilityConverter x:Key="InputCellConverter"/>
         <viewmodel:InverseIntToVisibilityMultiValueConverter x:Key="InverseIntToVisibilityMultiValueConverter"/>
         <viewmodel:IntToVisibilityMultiValueConverter x:Key="IntToVisibilityMultiValueConverter"/>
-        
+
         <!--Icons-->
-        <BitmapImage x:Key="DeleteImageSource" UriSource="../icons/Delete_black_32x32.png"/>
+        <BitmapImage x:Key="DeleteImageSource" UriSource="../icons/Delete_black.png"/>
         <BitmapImage x:Key="InputCellIcon" UriSource="../icons/input_clear.png"/>
         <BitmapImage x:Key="IntermediateCellIcon" UriSource="../icons/intermediate_clear.png"/>
         <BitmapImage x:Key="OutputCellIcon" UriSource="../icons/output_clear.png"/>
-        
+
         <!--data templates-->
         <DataTemplate DataType="{x:Type cells:InputCell}">
             <Grid Margin="0 2 0 2">
@@ -95,5 +95,5 @@
             </StackPanel>
         </Border>
     </Grid>
-    
+
 </UserControl>

@@ -2,8 +2,11 @@
 using SIF.Visualization.Excel.Properties;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Data;
 
 namespace SIF.Visualization.Excel.Core
 {
@@ -17,6 +20,13 @@ namespace SIF.Visualization.Excel.Core
         private string letter;
         private int number;
         private Worksheet worksheet;
+        private ObservableCollection<Violation> violations;
+        private string controlName;
+        private ViolationType violationType;
+        private Microsoft.Office.Tools.Excel.ControlSite control;
+        private bool violationSelected;
+        private Violation selectedViolation;
+        private ListCollectionView violationsPane;
 
         #endregion
 
@@ -50,6 +60,48 @@ namespace SIF.Visualization.Excel.Core
             set { this.SetProperty(ref this.worksheet, value); }
         }
 
+        public ObservableCollection<Violation> Violations
+        {
+            get
+            {
+                if (this.violations == null)
+                {
+                    this.violations = new ObservableCollection<Violation>();
+                }
+                return this.violations;
+            }
+            set { this.SetProperty(ref this.violations, value); }
+        }
+
+        public ViolationType ViolationType
+        {
+            get { return this.violationType; }
+            set { this.SetProperty(ref this.violationType, value); }
+        }
+
+        public bool ViolationSelected
+        {
+            get { return this.violationSelected; }
+            set { this.SetProperty(ref this.violationSelected, value); }
+        }
+
+        public Violation SelectedViolation
+        {
+            get { return this.selectedViolation; }
+            set { this.SetProperty(ref this.selectedViolation, value); }
+        }
+
+        public CellLocation Cell
+        {
+            get { return this; }
+        }
+
+        public ListCollectionView ViolationsPane
+        {
+            get { return this.violationsPane; }
+            set { this.SetProperty(ref this.violationsPane, value); }
+        }
+
         #endregion
 
         #region Operators
@@ -66,6 +118,7 @@ namespace SIF.Visualization.Excel.Core
 
             return this.Letter == other.Letter &&
                    this.Number == other.Number &&
+                   this.ViolationType == other.ViolationType &&
                    Object.ReferenceEquals(this.Worksheet, other.Worksheet);
         }
 
@@ -193,6 +246,34 @@ namespace SIF.Visualization.Excel.Core
             this.Letter = Regex.Match(cell, "[A-Z]*").Value.ToUpper();
             if (cell.Contains(":")) cell = cell.Substring(letter.Length, cell.IndexOf(":") - 1);
             this.Number = int.Parse(cell.Replace(this.Letter, ""));
+            this.Violations.CollectionChanged += Violations_CollectionChanged;
+        }
+
+        public void Violations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (this.violations.Count > 0)
+            {
+                if (this.violations.Count == 1 && this.control == null)
+                {
+                    this.selectedViolation = violations.ElementAt(0);
+                    this.ViolationSelected = true;
+                    this.DrawIcon();
+                }
+                else
+                {
+                    this.ViolationSelected = false;
+                }
+                this.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
+                this.violationsPane = new ListCollectionView(Violations);
+                this.violationsPane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
+                this.ViolationsPane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
+                this.OnPropertyChanged("Violations");
+            }
+            else
+            {
+                this.RemoveIcon();
+                DataModel.Instance.CurrentWorkbook.ViolatedCells.Remove(this);
+            }
         }
 
         /// <summary>
@@ -312,6 +393,21 @@ namespace SIF.Visualization.Excel.Core
             this.Worksheet.Range[this.ShortLocation].Select();
         }
 
+        public void Select(Violation violation)
+        {
+            this.Select();
+            this.SelectedViolation = violation;
+            this.ViolationSelected = true;
+        }
+
+        public void Unselect()
+        {
+            if (this.Violations.Count > 1)
+            {
+                this.ViolationSelected = false;
+            }
+        }
+
         /// <summary>
         /// Scrolls this cell into view.
         /// </summary>
@@ -319,6 +415,66 @@ namespace SIF.Visualization.Excel.Core
         {
             ((_Worksheet)this.Worksheet).Activate();
             this.Worksheet.Range[this.ShortLocation].Show();
+        }
+
+        private void DrawIcon()
+        {
+            var container = new CellErrorInfoContainer();
+            container.ElementHost.Child = new CellErrorInfo() 
+            { 
+                DataContext = this 
+            };
+
+            var vsto = Globals.Factory.GetVstoObject(this.Worksheet);
+
+            this.controlName = Guid.NewGuid().ToString();
+
+            this.control = vsto.Controls.AddControl(container, this.Worksheet.Range[this.ShortLocation], this.controlName);
+            this.control.Width = this.control.Height + 4;
+            this.control.Placement = Microsoft.Office.Interop.Excel.XlPlacement.xlMove;
+            this.control.AutoLoad = true;
+        }
+
+        private void RemoveIcon()
+        {
+            if (!string.IsNullOrWhiteSpace(this.controlName))
+            {
+                var vsto = Globals.Factory.GetVstoObject(this.Worksheet);
+                vsto.Controls.Remove(this.controlName);
+                this.controlName = null;
+            }
+        }
+
+        public void SetVisibility(SharedTabs tab)
+        {
+            if (this.control != null)
+            {
+                if (this.Violations.Count == 1)
+                {
+                    this.ViolationSelected = true;
+                }
+                if (this.violationType.Equals(ViolationType.OPEN) && tab.Equals(SharedTabs.Open))
+                {
+                    this.control.Visible = true;
+                }
+                else if (this.violationType.Equals(ViolationType.LATER) && tab.Equals(SharedTabs.Later))
+                {
+                    this.control.Visible = true;
+                }
+                else if (this.violationType.Equals(ViolationType.IGNORE) && tab.Equals(SharedTabs.Ignore))
+                {
+                    this.control.Visible = true;
+                }
+                else if (this.violationType.Equals(ViolationType.SOLVED) && tab.Equals(SharedTabs.Archive))
+                {
+                    this.control.Visible = true;
+                }
+                else
+                {
+                    this.control.Visible = false;
+                    this.ViolationSelected = false;
+                }
+            }
         }
 
         #endregion

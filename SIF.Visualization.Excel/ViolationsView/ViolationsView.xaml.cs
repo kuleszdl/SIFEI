@@ -1,20 +1,10 @@
 ﻿using SIF.Visualization.Excel.Core;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SIF.Visualization.Excel.ViolationsView
 {
@@ -56,27 +46,21 @@ namespace SIF.Visualization.Excel.ViolationsView
                 this.ViolationList.ScrollIntoView(e.AddedItems[0]);
                 DataModel.Instance.CurrentWorkbook.UnreadViolationCount = (from vi in DataModel.Instance.CurrentWorkbook.Violations where vi.IsRead == false select vi).Count();
             }
+            e.Handled = true;
         }
 
-        private void FalsePositive_Click(object sender, RoutedEventArgs e)
+        private void Ignore_Click(object sender, RoutedEventArgs e)
         {
             Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
             Violation violation = (grid.DataContext as Violation);
-            violation.ViolationState = Violation.ViolationType.FALSEPOSITIVE;
+            violation.ViolationState = ViolationType.IGNORE;
         }
 
         private void Later_Click(object sender, RoutedEventArgs e)
         {
             Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
             Violation violation = (grid.DataContext as Violation);
-            violation.ViolationState = Violation.ViolationType.LATER;
-        }
-
-        private void Visible_Click(object sender, RoutedEventArgs e)
-        {
-            Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
-            Violation violation = (grid.DataContext as Violation);
-            violation.IsVisible = !violation.IsVisible;
+            violation.ViolationState = ViolationType.LATER;
         }
     }
 

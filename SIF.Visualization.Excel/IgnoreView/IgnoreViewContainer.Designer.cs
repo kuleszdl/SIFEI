@@ -1,6 +1,6 @@
-﻿namespace SIF.Visualization.Excel.FalsePositiveView
+﻿namespace SIF.Visualization.Excel.IgnoreView
 {
-    partial class FalsePositiveViewContainer
+    partial class IgnoreViewContainer
     {
         /// <summary> 
         /// Erforderliche Designervariable.
@@ -40,14 +40,14 @@
             this.elementHost1.Size = new System.Drawing.Size(150, 150);
             this.elementHost1.TabIndex = 0;
             this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = new FalsePositiveView();
+            this.elementHost1.Child = new IgnoreView();
             // 
             // FindingsPaneContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.elementHost1);
-            this.Name = "FalsePositiveViewContainer";
+            this.Name = "IgnoreViewContainer";
             this.ResumeLayout(false);
         }
 

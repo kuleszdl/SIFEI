@@ -1,19 +1,24 @@
-﻿using SIF.Visualization.Excel.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
 
 namespace SIF.Visualization.Excel.ViewModel
 {
-    public class SingleViolationToVisibilityConverter : IValueConverter
+    class BooleanToBorderThicknessConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return value is Violation ? Visibility.Visible : Visibility.Collapsed;
+            if (value is bool && (bool)value)
+            {
+                return 2;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

@@ -13,7 +13,7 @@ namespace SIF.Visualization.Excel.ViewModel
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return value is SingleViolation ? Visibility.Collapsed : Visibility.Visible;
+            return value is Violation ? Visibility.Collapsed : Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

@@ -4,26 +4,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
 namespace SIF.Visualization.Excel.ViewModel
 {
-    class SeverityFalsePositiveToColorConverter : IMultiValueConverter
+    class SeverityIgnoreToColorConverter : IMultiValueConverter
     {
 
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if (values[0] == DependencyProperty.UnsetValue || values[1] == DependencyProperty.UnsetValue)
+            {
+                return null;
+            }
             decimal severity = (decimal)values[0];
-            Violation.ViolationType violationType = (Violation.ViolationType)values[1];
+            ViolationType violationType = (ViolationType)values[1];
 
             // Fixed colors
             switch (violationType)
             {
-                case Violation.ViolationType.FALSEPOSITIVE:
-                    return Colors.Gray;
-                case Violation.ViolationType.SOLVED:
-                    return Colors.Green;
+                case ViolationType.IGNORE:
+                    return Colors.LightGray;
+                case ViolationType.SOLVED:
+                    return Color.FromRgb(20, 210, 0);
             }
 
             // Color for others
@@ -35,9 +40,9 @@ namespace SIF.Visualization.Excel.ViewModel
             decimal startG = 215;
             decimal startB = 0;
 
-            decimal endR = 192;
-            decimal endG = 0;
-            decimal endB = 0;
+            decimal endR = 255;
+            decimal endG = 50;
+            decimal endB = 50;
 
             decimal diffR = endR - startR;
             decimal diffG = endG - startG;

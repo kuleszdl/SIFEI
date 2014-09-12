@@ -1,5 +1,4 @@
-﻿using SIF.Visualization.Excel.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +8,18 @@ using System.Windows.Data;
 
 namespace SIF.Visualization.Excel.ViewModel
 {
-    public class SingleViolationToVisibilityConverter : IValueConverter
+    public class InverseBooleanToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return value is Violation ? Visibility.Visible : Visibility.Collapsed;
+            if (value is bool && (bool)value)
+            {
+                return Visibility.Collapsed;
+            }
+            else
+            {
+                return Visibility.Visible;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

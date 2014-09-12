@@ -21,33 +21,6 @@ namespace SIF.Visualization.Excel.SharedView
     /// </summary>
     public partial class SharedPane : UserControl
     {
-        public enum SharedPaneTabIndex
-        {
-            /// <summary>
-            /// Register Violations
-            /// </summary>
-            Violations,
-            /// <summary>
-            /// Register FalsePositive
-            /// </summary>
-            FalsePositive,
-            /// <summary>
-            /// Register Later
-            /// </summary>
-            Later,
-            /// <summary>
-            /// Register Solved
-            /// </summary>
-            Solved,
-            /// <summary>
-            /// Register Cells
-            /// </summary>
-            Cells,
-            /// <summary>
-            /// Register Scenarios
-            /// </summary>
-            Scenarios,
-        }
 
         public SharedPane()
         {
@@ -55,20 +28,28 @@ namespace SIF.Visualization.Excel.SharedView
             tabcontrol.SelectionChanged += TabControl_SelectionChanged;
         }
 
-        public void changeTabTo(SharedPaneTabIndex tabIndex)
-        {
-            tabcontrol.SelectedIndex = (int)tabIndex;
-        }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.Source is TabControl)
             {
-                SharedPaneTabIndex index = (SharedPaneTabIndex)tabcontrol.SelectedIndex;
-                DataModel.Instance.CurrentWorkbook.Violations.ToList().ForEach(vi => vi.IsSelected = false);
-                DataModel.Instance.CurrentWorkbook.FalsePositives.ToList().ForEach(vi => vi.IsSelected = false);
-                DataModel.Instance.CurrentWorkbook.LaterViolations.ToList().ForEach(vi => vi.IsSelected = false);
-                DataModel.Instance.CurrentWorkbook.SolvedViolations.ToList().ForEach(vi => vi.IsSelected = false);
+                var datamodel = DataModel.Instance.CurrentWorkbook;
+                switch (datamodel.SelectedTab)
+                {
+                    case SharedTabs.Open:
+                        datamodel.Violations.ToList().ForEach(vi => vi.IsSelected = false);
+                        break;
+                    case SharedTabs.Later:
+                        datamodel.LaterViolations.ToList().ForEach(vi => vi.IsSelected = false);
+                        break;
+                    case SharedTabs.Ignore:
+                        datamodel.IgnoredViolations.ToList().ForEach(vi => vi.IsSelected = false);
+                        break;
+                    case SharedTabs.Archive:
+                        datamodel.SolvedViolations.ToList().ForEach(vi => vi.IsSelected = false);
+                        break;
+                }
+                datamodel.SelectedTab = (SharedTabs)tabcontrol.SelectedIndex;
             }
         }
     }

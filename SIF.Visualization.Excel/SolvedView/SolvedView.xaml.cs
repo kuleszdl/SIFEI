@@ -52,15 +52,8 @@ namespace SIF.Visualization.Excel.SolvedView
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
                 this.SolvedList.ScrollIntoView(e.AddedItems[0]);
-                DataModel.Instance.CurrentWorkbook.UnreadSolvedCount = (from vi in DataModel.Instance.CurrentWorkbook.SolvedViolations where vi.IsRead == false select vi).Count();
             }
-        }
-
-        private void Visible_Click(object sender, RoutedEventArgs e)
-        {
-            Grid grid = ((Grid)((TextBlock)(sender as Hyperlink).Parent).Parent);
-            Violation violation = (grid.DataContext as Violation);
-            violation.IsVisible = !violation.IsVisible;
+            e.Handled = true;
         }
     }
 }

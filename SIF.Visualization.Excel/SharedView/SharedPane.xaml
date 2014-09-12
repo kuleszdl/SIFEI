@@ -6,7 +6,7 @@
              xmlns:scenarioView="clr-namespace:SIF.Visualization.Excel.ScenarioView"
              xmlns:viewmodel="clr-namespace:SIF.Visualization.Excel.ViewModel"
              xmlns:violationsView="clr-namespace:SIF.Visualization.Excel.ViolationsView"
-             xmlns:falsePositiveView="clr-namespace:SIF.Visualization.Excel.FalsePositiveView"
+             xmlns:falsePositiveView="clr-namespace:SIF.Visualization.Excel.IgnoreView"
              xmlns:laterView="clr-namespace:SIF.Visualization.Excel.LaterView"
              xmlns:solvedView="clr-namespace:SIF.Visualization.Excel.SolvedView"
              mc:Ignorable="d" 
@@ -19,34 +19,6 @@
 
                     <!--Converter-->
                     <viewmodel:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
-
-                    <LinearGradientBrush x:Key="MenuPopupBrush"
-                                 EndPoint="0.5,1"
-                                 StartPoint="0.5,0">
-                        <GradientStop Color="{DynamicResource ControlLightColor}"
-                            Offset="0" />
-                        <GradientStop Color="{DynamicResource ControlMediumColor}"
-                            Offset="0.5" />
-                        <GradientStop Color="{DynamicResource ControlLightColor}"
-                            Offset="1" />
-                    </LinearGradientBrush>
-
-                    <LinearGradientBrush x:Key="ProgressBarIndicatorAnimatedFill"
-                                 StartPoint="0,0"
-                                 EndPoint="1,0">
-                        <LinearGradientBrush.GradientStops>
-                            <GradientStopCollection>
-                                <GradientStop Color="#000000FF"
-                                Offset="0" />
-                                <GradientStop Color="#600000FF"
-                                Offset="0.4" />
-                                <GradientStop Color="#600000FF"
-                                Offset="0.6" />
-                                <GradientStop Color="#000000FF"
-                                Offset="1" />
-                            </GradientStopCollection>
-                        </LinearGradientBrush.GradientStops>
-                    </LinearGradientBrush>
 
                     <!--tabcontrol style-->
                     <Style x:Key="sharedPaneTabStyle" TargetType="{x:Type TabControl}">
@@ -83,6 +55,7 @@
                                                   IsItemsHost="True"
                                                   KeyboardNavigation.TabIndex="1"
                                                   Background="Transparent" />
+                                        <TextBlock Text="{Binding SelectedTab}" Grid.Row="2" Margin="0 2 0 0" FontSize="16" FontWeight="Bold"/>
                                         <Border x:Name="Border"
                                                 Grid.Row="2"
                                                 Margin="0 20 0 0"
@@ -192,13 +165,13 @@
         <TabControl x:Name="tabcontrol"
                     Background="Transparent"
                     Margin="0 20 0 0"
-                    Style="{StaticResource sharedPaneTabStyle}" >
+                    Style="{StaticResource sharedPaneTabStyle}">
             <TabItem x:Name="findings">
                 <TabItem.Header>
                     <Grid Width="30" Height="30">
                         <Image x:Name="findingsicon"
                            Source="{StaticResource violationsIcon}"
-                           ToolTip="Violations"
+                           ToolTip="Open"
                            Height="25"
                            Width="25"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -207,20 +180,7 @@
                                     VerticalAlignment="Top" BorderBrush="Red" Margin="0 -10 -4 0"/>
                     </Grid>
                 </TabItem.Header>
-                <violationsView:ViolationsView/>
-            </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <Grid Width="30" Height="30">
-                        <Image x:Name="falsepositiveicon"
-                           Source="{StaticResource falsepositiveIcon}"
-                           ToolTip="False Positives"
-                           Height="25"
-                           Width="25"
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </TabItem.Header>
-                <falsePositiveView:FalsePositiveView />
+                <violationsView:ViolationsView Grid.Row="1"/>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
@@ -238,15 +198,25 @@
             <TabItem>
                 <TabItem.Header>
                     <Grid Width="30" Height="30">
-                        <Image x:Name="solvedView"
-                           Source="{StaticResource solvedIcon}"
-                           ToolTip="Solved"
+                        <Image x:Name="falsepositiveicon"
+                           Source="{StaticResource falsepositiveIcon}"
+                           ToolTip="Ignored"
                            Height="25"
                            Width="25"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding UnreadSolvedCount}" Background="Green" Foreground="White" Template="{StaticResource TextBoxBaseControlTemplate}" 
-                                    Visibility="{Binding UnreadSolvedCount, Converter={StaticResource IntToVisibilityConverter}}" HorizontalAlignment="Right" 
-                                    VerticalAlignment="Top" BorderBrush="Green" Margin="0 -10 -4 0"/>
+                    </Grid>
+                </TabItem.Header>
+                <falsePositiveView:IgnoreView />
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Grid Width="30" Height="30">
+                        <Image x:Name="solvedView"
+                           Source="{StaticResource solvedIcon}"
+                           ToolTip="Archive"
+                           Height="25"
+                           Width="25"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Grid>
                 </TabItem.Header>
                 <solvedView:SolvedView/>

@@ -17,7 +17,7 @@
     <BitmapImage x:Key="scenarios" UriSource="../icons/scenarios.png"/>
     <BitmapImage x:Key="scenarioDetails" UriSource="../icons/scenario-details.png"/>
 
-    <!--colours-->
+    <!--colors-->
     <Color x:Key="excelGreen">#0A6332</Color>
 
     <!--Border colors-->

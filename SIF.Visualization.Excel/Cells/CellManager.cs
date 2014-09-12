@@ -205,14 +205,6 @@ namespace SIF.Visualization.Excel.Cells
         public void SelectCell(WorkbookModel wb, string location)
         {
             new CellLocation(wb.Workbook, location).Select();
-
-            //try
-            //{
-            //    var worksheet =  wb.Workbook.Sheets[Cells.CellManager.Instance.ParseWorksheetName(location)] as Worksheet;
-            //    (worksheet.Range[ParseCellLocation(location)]).Select();
-            //}
-            //catch (Exception)
-            //{ }
         }
 
         /// <summary>
