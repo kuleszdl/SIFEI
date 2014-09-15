@@ -56,6 +56,7 @@ namespace SIF.Visualization.Excel
                 DataModel.Instance.WorkbookModels.Add(workbook);
 
                 DataModel.Instance.CurrentWorkbook = workbook;
+                DataModel.Instance.CurrentWorkbook.LoadExtraInformation();
 
                 /// create shared pane
                 var sharedPaneContainer = new SharedPaneContainer();

@@ -435,7 +435,10 @@ namespace SIF.Visualization.Excel.Core
             this.Workbook.AfterSave += Workbook_AfterSave;
             this.Workbook.SheetSelectionChange += Sheet_SelectionChange;
             this.workbook.SheetCalculate += Workbook_SheetCalculate;
+        }
 
+        public void LoadExtraInformation()
+        {
             // Load cell definitions
             this.Accept(new XMLToCellDefinitionVisitor(XMLPartManager.Instance.LoadXMLPart(this, "CellDefinitions")));
 
@@ -451,12 +454,12 @@ namespace SIF.Visualization.Excel.Core
                  select new Violation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
             }
 
-            // Load the false positives
-            var falsePositivesXml = XMLPartManager.Instance.LoadXMLPart(this, "FalsePositives");
-            if (falsePositivesXml != null)
+            // Load the ignored
+            var ignoredXml = XMLPartManager.Instance.LoadXMLPart(this, "IgnoredViolations");
+            if (ignoredXml != null)
             {
-                // Add them to the FalsePositives collection
-                (from p in falsePositivesXml.Elements(XName.Get("falsepositive"))
+                // Add them to the ignored violations collection
+                (from p in ignoredXml.Elements(XName.Get("ignoredviolations"))
                  select new Violation(p, workbook)).ToList().ForEach(p => this.IgnoredViolations.Add(p));
             }
 
@@ -464,17 +467,17 @@ namespace SIF.Visualization.Excel.Core
             var laterXml = XMLPartManager.Instance.LoadXMLPart(this, "LaterViolations");
             if (laterXml != null)
             {
-                // Add them to the FalsePositives collection
+                // Add them to the later violations collection
                 (from p in laterXml.Elements(XName.Get("laterviolation"))
                  select new Violation(p, workbook)).ToList().ForEach(p => this.LaterViolations.Add(p));
             }
 
-            // Load the solved violations
-            var solvedXml = XMLPartManager.Instance.LoadXMLPart(this, "SolvedViolations");
-            if (solvedXml != null)
+            // Load the archived violations
+            var archivedXml = XMLPartManager.Instance.LoadXMLPart(this, "ArchivedViolations");
+            if (archivedXml != null)
             {
-                // Add them to the FalsePositives collection
-                (from p in solvedXml.Elements(XName.Get("solvedviolation"))
+                // Add them to the archived violations collection
+                (from p in archivedXml.Elements(XName.Get("archivedviolation"))
                  select new Violation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
             }
 
@@ -489,7 +492,7 @@ namespace SIF.Visualization.Excel.Core
                 // no settings existed, use the default config
                 polModel = new PolicyConfigurationModel();
             }
-            policySettings = polModel;
+            this.policySettings = polModel;
         }
 
         private void Sheet_SelectionChange(object Sh, Range Target)
@@ -568,13 +571,13 @@ namespace SIF.Visualization.Excel.Core
             XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("violations"), from p in this.Violations select p.ToXElement("violation")), "Violations");
 
             //Save the false positives
-            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("falsepositives"), from p in this.IgnoredViolations select p.ToXElement("falsepositive")), "FalsePositives");
+            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("ignoredviolations"), from p in this.IgnoredViolations select p.ToXElement("ignoredviolations")), "IgnoredViolations");
 
             // Save the later violations
             XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("laterviolations"), from p in this.LaterViolations select p.ToXElement("laterviolation")), "LaterViolations");
 
             // Save the solved violations
-            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("solvedviolations"), from p in this.SolvedViolations select p.ToXElement("solvedviolation")), "SolvedViolations");
+            XMLPartManager.Instance.SaveXMLPart(this, new XElement(XName.Get("archivedviolations"), from p in this.SolvedViolations select p.ToXElement("archivedviolation")), "ArchivedViolations");
 
             // Save the scenarios
             XMLPartManager.Instance.SaveXMLPart(this, this.Accept(new ScenarioToXMLVisitor()) as XElement, "Scenario");
