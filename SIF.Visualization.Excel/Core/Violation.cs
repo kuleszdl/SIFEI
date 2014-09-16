@@ -20,6 +20,7 @@ namespace SIF.Visualization.Excel.Core
         private bool cellSelected;
         private bool isSelected;
         private bool load;
+        private bool newCell;
         private ViolationType violationState;
         private decimal severity;
         private Workbook workbook;
@@ -354,15 +355,28 @@ namespace SIF.Visualization.Excel.Core
                     if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
                     {
                         this.Cell = cell;
-                        cell.Violations.Add(this);
-                        cell.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
+                        this.newCell = false;
                         return;
                     }
                 }
                 this.cell = new CellLocation(workbook, location);
                 this.cell.ViolationType = this.violationState;
+                this.newCell = true;
+            }
+        }
+
+        public void PersistCellLocation()
+        {
+            if (!this.newCell)
+            {
+                this.cell.Violations.Add(this);
+                this.cell.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
+            }
+            else
+            {
                 this.cell.Violations.Add(this);
                 DataModel.Instance.CurrentWorkbook.ViolatedCells.Add(this.cell);
+                this.cell.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
             }
         }
 

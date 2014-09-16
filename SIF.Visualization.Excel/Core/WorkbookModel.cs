@@ -743,7 +743,10 @@ namespace SIF.Visualization.Excel.Core
                 {
                     this.Violations.ElementAt(this.Violations.IndexOf(violation)).FoundAgain = true;
                 }
-                else if (this.IgnoredViolations.Contains(violation) || this.SolvedViolations.Contains(violation))
+
+                else if ((from vi in this.IgnoredViolations 
+                          where (vi.Cell.Letter.Equals(violation.Cell.Letter) && vi.Cell.Number.Equals(violation.Cell.Number)) 
+                          select vi).Count() > 0)
                 {
                     // nothing to do here
                 }
@@ -753,6 +756,7 @@ namespace SIF.Visualization.Excel.Core
                 }
                 else
                 {
+                    violation.PersistCellLocation();
                     this.Violations.Add(violation);
                 }
             }
