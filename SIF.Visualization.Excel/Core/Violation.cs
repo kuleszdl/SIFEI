@@ -20,7 +20,6 @@ namespace SIF.Visualization.Excel.Core
         private bool cellSelected;
         private bool isSelected;
         private bool load;
-        private bool newCell;
         private ViolationType violationState;
         private decimal severity;
         private Workbook workbook;
@@ -238,7 +237,7 @@ namespace SIF.Visualization.Excel.Core
             this.firstOccurrence = scanTime;
             this.rule = rule;
             this.foundAgain = true;
-            FindCellLocation(root.Attribute(XName.Get("location")).Value, workbook);
+            FindCellLocation(root.Attribute(XName.Get("location")).Value);
             this.violationState = ViolationType.OPEN;
         }
 
@@ -260,7 +259,7 @@ namespace SIF.Visualization.Excel.Core
             this.isSelected = Convert.ToBoolean(element.Attribute(XName.Get("isselected")).Value);
             this.severity = Decimal.Parse(element.Attribute(XName.Get("severity")).Value);
             this.Rule = new Rule(element.Element(XName.Get("rule")));
-            FindCellLocation(element.Attribute(XName.Get("cell")).Value, workbook);
+            FindCellLocation(element.Attribute(XName.Get("cell")).Value);
             this.load = false;
             this.IsCellSelected = false;
         }
@@ -313,7 +312,7 @@ namespace SIF.Visualization.Excel.Core
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.Add(this);
                         break;
                 }
-                FindCellLocation(this.Cell.Location, this.workbook);
+                FindCellLocation(this.Cell.Location);
             }
         }
 
@@ -344,7 +343,7 @@ namespace SIF.Visualization.Excel.Core
             }
         }
 
-        private void FindCellLocation(String location, Workbook workbook)
+        private void FindCellLocation(String location)
         {
             if (!string.IsNullOrWhiteSpace(location))
             {
@@ -355,28 +354,38 @@ namespace SIF.Visualization.Excel.Core
                     if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
                     {
                         this.Cell = cell;
-                        this.newCell = false;
                         return;
                     }
                 }
                 this.cell = new CellLocation(workbook, location);
                 this.cell.ViolationType = this.violationState;
-                this.newCell = true;
             }
         }
 
         public void PersistCellLocation()
         {
-            if (!this.newCell)
-            {
-                this.cell.Violations.Add(this);
-                this.cell.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
+            if (this.cell == null) {
+                throw new NullReferenceException("The cell location is null. You have to call FindCellLocation before");
             }
-            else
+            string location = this.Cell.Location;
+            if (!string.IsNullOrWhiteSpace(location))
             {
+                location = location.Substring(location.IndexOf(']') + 1);
+                foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
+                {
+                    Regex rgx = new Regex(@"\$|=");
+                    if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
+                    {
+                        this.Cell = cell;
+                        cell.Violations.Add(this);
+                        cell.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
+                        return;
+                    }
+                }
+                this.cell = new CellLocation(workbook, location);
+                this.cell.ViolationType = this.violationState;
                 this.cell.Violations.Add(this);
                 DataModel.Instance.CurrentWorkbook.ViolatedCells.Add(this.cell);
-                this.cell.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
             }
         }
 
