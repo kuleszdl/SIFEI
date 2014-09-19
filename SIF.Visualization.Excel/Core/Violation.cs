@@ -312,7 +312,7 @@ namespace SIF.Visualization.Excel.Core
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.Add(this);
                         break;
                 }
-                FindCellLocation(this.Cell.Location);
+                PersistCellLocation();
             }
         }
 
@@ -391,7 +391,15 @@ namespace SIF.Visualization.Excel.Core
 
         private void RemovefromCellLocation()
         {
-            this.Cell.Violations.Remove(this);
+            string location = this.Cell.Location;
+            foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
+            {
+                Regex rgx = new Regex(@"\$|=");
+                if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
+                {
+                    cell.Violations.Remove(this);
+                }
+            }
         }
         #endregion
     }
