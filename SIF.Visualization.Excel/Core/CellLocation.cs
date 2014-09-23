@@ -123,6 +123,16 @@ namespace SIF.Visualization.Excel.Core
                    Object.ReferenceEquals(this.Worksheet, other.Worksheet);
         }
 
+        public bool EqualsWithoutType(object obj)
+        {
+            CellLocation other = obj as CellLocation;
+            if ((object)other == null) return false;
+
+            return this.Letter == other.Letter &&
+                   this.Number == other.Number &&
+                   Object.ReferenceEquals(this.Worksheet, other.Worksheet);
+        }
+
         /// <summary>
         /// Serves as a hash function for a particular type. 
         /// </summary>

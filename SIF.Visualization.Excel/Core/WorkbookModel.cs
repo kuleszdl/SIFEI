@@ -507,19 +507,19 @@ namespace SIF.Visualization.Excel.Core
                 {
                     case SharedTabs.Open:
                         this.Violations.ToList().ForEach(vi => vi.IsCellSelected = false);
-                        (from vi in Violations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        (from vi in Violations where vi.Cell.EqualsWithoutType(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
                     case SharedTabs.Later:
                         this.LaterViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
-                        (from vi in LaterViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        (from vi in LaterViolations where vi.Cell.EqualsWithoutType(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
                     case SharedTabs.Ignore:
                         this.IgnoredViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
-                        (from vi in IgnoredViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        (from vi in IgnoredViolations where vi.Cell.EqualsWithoutType(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
                     case SharedTabs.Archive:
                         this.SolvedViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
-                        (from vi in SolvedViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        (from vi in SolvedViolations where vi.Cell.EqualsWithoutType(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
                 }
             }
