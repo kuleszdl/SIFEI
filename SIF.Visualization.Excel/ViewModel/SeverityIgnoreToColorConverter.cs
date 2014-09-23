@@ -28,7 +28,7 @@ namespace SIF.Visualization.Excel.ViewModel
                 case ViolationType.IGNORE:
                     return Colors.LightGray;
                 case ViolationType.SOLVED:
-                    return Color.FromRgb(20, 210, 0);
+                    return Color.FromRgb(255, 255, 255);
             }
 
             // Color for others
