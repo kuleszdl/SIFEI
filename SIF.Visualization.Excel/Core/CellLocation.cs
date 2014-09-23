@@ -252,13 +252,16 @@ namespace SIF.Visualization.Excel.Core
 
         public void Violations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (this.violations.Count > 0)
+            if (this.Violations.Count > 0)
             {
-                if (this.violations.Count == 1 && this.control == null)
+                if (this.Violations.Count == 1)
                 {
-                    this.selectedViolation = violations.ElementAt(0);
+                    this.SelectedViolation = violations.ElementAt(0);
                     this.ViolationSelected = true;
-                    this.DrawIcon();
+                    if (this.control == null)
+                    {
+                        this.DrawIcon();
+                    }
                 }
                 else
                 {
@@ -450,10 +453,6 @@ namespace SIF.Visualization.Excel.Core
         {
             if (this.control != null)
             {
-                if (this.Violations.Count == 1)
-                {
-                    this.ViolationSelected = true;
-                }
                 if (this.violationType.Equals(ViolationType.OPEN) && tab.Equals(SharedTabs.Open))
                 {
                     this.control.Visible = true;
@@ -473,7 +472,6 @@ namespace SIF.Visualization.Excel.Core
                 else
                 {
                     this.control.Visible = false;
-                    this.ViolationSelected = false;
                 }
             }
         }

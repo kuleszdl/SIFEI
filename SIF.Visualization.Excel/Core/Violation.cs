@@ -128,6 +128,7 @@ namespace SIF.Visualization.Excel.Core
                             if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(this.Cell.Location, "")))
                             {
                                 cell.Select(this);
+                                return;
                             }
                         }
                     }
@@ -139,6 +140,7 @@ namespace SIF.Visualization.Excel.Core
                             if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(this.Cell.Location, "")))
                             {
                                 cell.Unselect();
+                                return;
                             }
                         }
                     }
@@ -413,6 +415,7 @@ namespace SIF.Visualization.Excel.Core
                 if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
                 {
                     cell.Violations.Remove(this);
+                    return;
                 }
             }
         }
