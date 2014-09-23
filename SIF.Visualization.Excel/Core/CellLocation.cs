@@ -3,6 +3,7 @@ using SIF.Visualization.Excel.Properties;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -435,7 +436,7 @@ namespace SIF.Visualization.Excel.Core
             this.control.AutoLoad = true;
         }
 
-        private void RemoveIcon()
+        public void RemoveIcon()
         {
             if (!string.IsNullOrWhiteSpace(this.controlName))
             {

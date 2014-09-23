@@ -122,11 +122,25 @@ namespace SIF.Visualization.Excel.Core
                     if (value)
                     {
                         this.IsRead = true;
-                        this.cell.Select(this);
+                        foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
+                        {
+                            Regex rgx = new Regex(@"\$|=");
+                            if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(this.Cell.Location, "")))
+                            {
+                                cell.Select(this);
+                            }
+                        }
                     }
                     else
                     {
-                        this.cell.Unselect();
+                        foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
+                        {
+                            Regex rgx = new Regex(@"\$|=");
+                            if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(this.Cell.Location, "")))
+                            {
+                                cell.Unselect();
+                            }
+                        }
                     }
                 }
             }
@@ -392,8 +406,9 @@ namespace SIF.Visualization.Excel.Core
         private void RemovefromCellLocation()
         {
             string location = this.Cell.Location;
-            foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
+            for (int i = DataModel.Instance.CurrentWorkbook.ViolatedCells.Count-1; i >=0; i--) 
             {
+                CellLocation cell = DataModel.Instance.CurrentWorkbook.ViolatedCells[i];
                 Regex rgx = new Regex(@"\$|=");
                 if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
                 {
