@@ -507,19 +507,19 @@ namespace SIF.Visualization.Excel.Core
                 {
                     case SharedTabs.Open:
                         this.Violations.ToList().ForEach(vi => vi.IsCellSelected = false);
-                        (from vi in Violations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        (from vi in Violations where vi.Cell.EqualsWithoutType(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
                     case SharedTabs.Later:
                         this.LaterViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
-                        (from vi in LaterViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        (from vi in LaterViolations where vi.Cell.EqualsWithoutType(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
                     case SharedTabs.Ignore:
                         this.IgnoredViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
-                        (from vi in IgnoredViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        (from vi in IgnoredViolations where vi.Cell.EqualsWithoutType(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
                     case SharedTabs.Archive:
                         this.SolvedViolations.ToList().ForEach(vi => vi.IsCellSelected = false);
-                        (from vi in SolvedViolations where vi.Cell.Equals(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
+                        (from vi in SolvedViolations where vi.Cell.EqualsWithoutType(cell) select vi).ToList().ForEach(vi => vi.IsCellSelected = true);
                         break;
                 }
             }
@@ -743,7 +743,10 @@ namespace SIF.Visualization.Excel.Core
                 {
                     this.Violations.ElementAt(this.Violations.IndexOf(violation)).FoundAgain = true;
                 }
-                else if (this.IgnoredViolations.Contains(violation) || this.SolvedViolations.Contains(violation))
+
+                else if ((from vi in this.IgnoredViolations 
+                          where (vi.Cell.Letter.Equals(violation.Cell.Letter) && vi.Cell.Number.Equals(violation.Cell.Number)) 
+                          select vi).Count() > 0)
                 {
                     // nothing to do here
                 }
@@ -753,6 +756,7 @@ namespace SIF.Visualization.Excel.Core
                 }
                 else
                 {
+                    violation.PersistCellLocation();
                     this.Violations.Add(violation);
                 }
             }

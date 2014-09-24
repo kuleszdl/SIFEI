@@ -47,18 +47,11 @@ namespace SIF.Visualization.Excel
         private void clearButton_Click(object sender, RibbonControlEventArgs e)
         {
             // Remove all controls from this workbook
-            var worksheets = DataModel.Instance.CurrentWorkbook.Workbook.Worksheets;
-            foreach (Worksheet worksheet in worksheets)
+            foreach (CellLocation cl in DataModel.Instance.CurrentWorkbook.ViolatedCells)
             {
-                var vsto = Globals.Factory.GetVstoObject(worksheet);
-                for (int i = vsto.Controls.Count - 1; i >= 0; i--)
-                {
-                    var control = vsto.Controls[i];
-                    if (control.GetType() == typeof(CellErrorInfoContainer))
-                        vsto.Controls.Remove(control);
-                }
+                cl.RemoveIcon();
             }
-
+            DataModel.Instance.CurrentWorkbook.ViolatedCells.Clear();
             DataModel.Instance.CurrentWorkbook.Violations.Clear();
             DataModel.Instance.CurrentWorkbook.IgnoredViolations.Clear();
             DataModel.Instance.CurrentWorkbook.SolvedViolations.Clear();

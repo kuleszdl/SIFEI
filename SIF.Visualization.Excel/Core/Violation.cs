@@ -122,11 +122,27 @@ namespace SIF.Visualization.Excel.Core
                     if (value)
                     {
                         this.IsRead = true;
-                        this.cell.Select(this);
+                        foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
+                        {
+                            Regex rgx = new Regex(@"\$|=");
+                            if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(this.Cell.Location, "")))
+                            {
+                                cell.Select(this);
+                                return;
+                            }
+                        }
                     }
                     else
                     {
-                        this.cell.Unselect();
+                        foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
+                        {
+                            Regex rgx = new Regex(@"\$|=");
+                            if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(this.Cell.Location, "")))
+                            {
+                                cell.Unselect();
+                                return;
+                            }
+                        }
                     }
                 }
             }
@@ -237,7 +253,7 @@ namespace SIF.Visualization.Excel.Core
             this.firstOccurrence = scanTime;
             this.rule = rule;
             this.foundAgain = true;
-            FindCellLocation(root.Attribute(XName.Get("location")).Value, workbook);
+            FindCellLocation(root.Attribute(XName.Get("location")).Value);
             this.violationState = ViolationType.OPEN;
         }
 
@@ -259,7 +275,7 @@ namespace SIF.Visualization.Excel.Core
             this.isSelected = Convert.ToBoolean(element.Attribute(XName.Get("isselected")).Value);
             this.severity = Decimal.Parse(element.Attribute(XName.Get("severity")).Value);
             this.Rule = new Rule(element.Element(XName.Get("rule")));
-            FindCellLocation(element.Attribute(XName.Get("cell")).Value, workbook);
+            FindCellLocation(element.Attribute(XName.Get("cell")).Value);
             this.load = false;
             this.IsCellSelected = false;
         }
@@ -312,7 +328,7 @@ namespace SIF.Visualization.Excel.Core
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.Add(this);
                         break;
                 }
-                FindCellLocation(this.Cell.Location, this.workbook);
+                PersistCellLocation();
             }
         }
 
@@ -343,8 +359,31 @@ namespace SIF.Visualization.Excel.Core
             }
         }
 
-        private void FindCellLocation(String location, Workbook workbook)
+        private void FindCellLocation(String location)
         {
+            if (!string.IsNullOrWhiteSpace(location))
+            {
+                location = location.Substring(location.IndexOf(']') + 1);
+                foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
+                {
+                    Regex rgx = new Regex(@"\$|=");
+                    if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
+                    {
+                        this.Cell = cell;
+                        return;
+                    }
+                }
+                this.cell = new CellLocation(workbook, location);
+                this.cell.ViolationType = this.violationState;
+            }
+        }
+
+        public void PersistCellLocation()
+        {
+            if (this.cell == null) {
+                throw new NullReferenceException("The cell location is null. You have to call FindCellLocation before");
+            }
+            string location = this.Cell.Location;
             if (!string.IsNullOrWhiteSpace(location))
             {
                 location = location.Substring(location.IndexOf(']') + 1);
@@ -368,7 +407,17 @@ namespace SIF.Visualization.Excel.Core
 
         private void RemovefromCellLocation()
         {
-            this.Cell.Violations.Remove(this);
+            string location = this.Cell.Location;
+            for (int i = DataModel.Instance.CurrentWorkbook.ViolatedCells.Count-1; i >=0; i--) 
+            {
+                CellLocation cell = DataModel.Instance.CurrentWorkbook.ViolatedCells[i];
+                Regex rgx = new Regex(@"\$|=");
+                if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
+                {
+                    cell.Violations.Remove(this);
+                    return;
+                }
+            }
         }
         #endregion
     }
