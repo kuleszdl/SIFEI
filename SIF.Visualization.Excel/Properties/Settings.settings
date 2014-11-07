@@ -35,5 +35,8 @@
     <Setting Name="SifOptions" Type="System.String" Scope="User">
       <Value Profile="(Default)">socket</Value>
     </Setting>
+    <Setting Name="SifUseThousandsSeparator" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

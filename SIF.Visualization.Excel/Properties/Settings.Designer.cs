@@ -127,5 +127,17 @@ namespace SIF.Visualization.Excel.Properties {
                 this["SifOptions"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SifUseThousandsSeparator {
+            get {
+                return ((bool)(this["SifUseThousandsSeparator"]));
+            }
+            set {
+                this["SifUseThousandsSeparator"] = value;
+            }
+        }
     }
 }

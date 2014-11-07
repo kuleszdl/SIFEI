@@ -236,6 +236,13 @@
     <Compile Include="PolicyConfigurationDialog.Designer.cs">
       <DependentUpon>PolicyConfigurationDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="ScenarioView\NumberValidationMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScenarioView\NumberValidationMessageBox.Designer.cs">
+      <DependentUpon>NumberValidationMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScenarioView\NumberValidationRule.cs" />
     <Compile Include="ScenarioView\ScenarioCore\SanityCellData.cs" />
     <Compile Include="ScenarioView\ScenarioCore\ScenarioUICreator.cs" />
     <Compile Include="ScenarioView\CreateScenarioDataField.xaml.cs">
@@ -366,6 +373,9 @@
     </Compile>
     <EmbeddedResource Include="Ribbon.resx">
       <DependentUpon>Ribbon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScenarioView\NumberValidationMessageBox.resx">
+      <DependentUpon>NumberValidationMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScenarioView\ScenarioDetailPaneContainer.resx">
       <DependentUpon>ScenarioDetailPaneContainer.cs</DependentUpon>

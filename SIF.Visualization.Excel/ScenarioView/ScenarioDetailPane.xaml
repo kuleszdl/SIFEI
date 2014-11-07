@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:scenarioCore="clr-namespace:SIF.Visualization.Excel.ScenarioCore"
+             xmlns:scenarioView="clr-namespace:SIF.Visualization.Excel.ScenarioView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -37,11 +38,19 @@
                                        Margin="0 1 3 1"
                                        TextAlignment="Right"
                                        VerticalAlignment="Center"/>
-                            <TextBox Text="{Binding Path=Content, Mode=TwoWay}" 
-                                     Grid.Column="2" 
+                            <TextBox
+                                Grid.Column="2" 
                                      Margin="0 1 3 1"
                                      TextAlignment="Right"
-                                     VerticalAlignment="Center"/>
+                                     VerticalAlignment="Center">
+                                <TextBox.Text>
+                                    <Binding Path="Content" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <scenarioView:NumberValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                         </Grid>
                     </DataTemplate>
 
