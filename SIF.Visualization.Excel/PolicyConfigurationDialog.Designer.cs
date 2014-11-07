@@ -64,6 +64,7 @@
             this.CB_StringDistance = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SD_Amount = new System.Windows.Forms.TextBox();
+            this.cb_Ask_Thousands = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -76,7 +77,7 @@
             // 
             // Button_OK
             // 
-            this.Button_OK.Location = new System.Drawing.Point(78, 463);
+            this.Button_OK.Location = new System.Drawing.Point(81, 471);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 23);
             this.Button_OK.TabIndex = 9;
@@ -86,7 +87,7 @@
             // 
             // Button_Cancel
             // 
-            this.Button_Cancel.Location = new System.Drawing.Point(162, 463);
+            this.Button_Cancel.Location = new System.Drawing.Point(162, 471);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.Button_Cancel.TabIndex = 10;
@@ -463,12 +464,23 @@
             this.SD_Amount.Size = new System.Drawing.Size(45, 20);
             this.SD_Amount.TabIndex = 31;
             // 
+            // cb_Ask_Thousands
+            // 
+            this.cb_Ask_Thousands.AutoSize = true;
+            this.cb_Ask_Thousands.Location = new System.Drawing.Point(32, 426);
+            this.cb_Ask_Thousands.Name = "cb_Ask_Thousands";
+            this.cb_Ask_Thousands.Size = new System.Drawing.Size(137, 30);
+            this.cb_Ask_Thousands.TabIndex = 32;
+            this.cb_Ask_Thousands.Text = "Ask whether thousand \r\nseparators are intended";
+            this.cb_Ask_Thousands.UseVisualStyleBackColor = true;
+            // 
             // PolicyConfigurationDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(249, 498);
+            this.ClientSize = new System.Drawing.Size(249, 506);
+            this.Controls.Add(this.cb_Ask_Thousands);
             this.Controls.Add(this.SD_Amount);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel8);
@@ -553,5 +565,6 @@
         private System.Windows.Forms.CheckBox CB_StringDistance;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox SD_Amount;
+        private System.Windows.Forms.CheckBox cb_Ask_Thousands;
     }
 }

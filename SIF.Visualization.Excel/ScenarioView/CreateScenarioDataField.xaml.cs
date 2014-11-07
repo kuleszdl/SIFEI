@@ -38,6 +38,7 @@ namespace SIF.Visualization.Excel.ScenarioView
                 var myCellData = this.DataContext as CellData;
                 
                 //set text binding
+
                 var textBinding = new Binding()
                 {
                     Source = myCellData,
@@ -45,6 +46,7 @@ namespace SIF.Visualization.Excel.ScenarioView
                     Mode = BindingMode.OneWayToSource,
                     UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
                 };
+                textBinding.ValidationRules.Add(new NumberValidationRule());
 
                 this.DataTextBox.SetBinding(TextBox.TextProperty, textBinding);
 

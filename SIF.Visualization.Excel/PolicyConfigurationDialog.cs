@@ -154,6 +154,8 @@ namespace SIF.Visualization.Excel
                 SD_Amount.Enabled = false;
             }
 
+            cb_Ask_Thousands.Checked = !Settings.Default.SifUseThousandsSeparator;
+
 
             this.ShowDialog();
         }
@@ -217,8 +219,11 @@ namespace SIF.Visualization.Excel
             settings.StringDistance = CB_StringDistance.Checked;
             settings.StringDistanceAutomatic = SD_A.Checked;
 
+            Settings.Default.SifUseThousandsSeparator = !cb_Ask_Thousands.Checked;
+
             DataModel.Instance.CurrentWorkbook.PolicySettings = settings;
             DataModel.Instance.CurrentWorkbook.Workbook.Saved = false;
+
             this.Close();
 
         }
