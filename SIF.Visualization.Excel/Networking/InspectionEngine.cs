@@ -1,4 +1,5 @@
-﻿using SIF.Visualization.Excel.Core;
+﻿using System.Runtime.InteropServices;
+using SIF.Visualization.Excel.Core;
 using SIF.Visualization.Excel.Properties;
 using System;
 using System.Collections.Concurrent;
@@ -233,6 +234,14 @@ namespace SIF.Visualization.Excel.Networking
 
                     #endregion
                 }
+            }
+            catch (ExternalException) // Java is not on the path
+            {
+                MessageBox.Show(
+                    "No java runtime was found!\n" +
+                        "Please ensure a java runtime environmet >= 1.7 is installed and accesible through the PATH variable.\n" +
+                        "The Scan button will be without function.",
+                    "Error");
             }
             catch (Exception)
             {
