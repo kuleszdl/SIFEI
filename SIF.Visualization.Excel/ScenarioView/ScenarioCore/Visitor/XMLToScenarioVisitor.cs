@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using SIF.Visualization.Excel.ScenarioCore.Visitor;
 
 namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 {
@@ -104,82 +99,6 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             if (cellTypeElement != null)
             {
                 n.CellType = (TestInputType) Enum.Parse(typeof(TestInputType), cellTypeElement.Value.ToUpper());
-            }
-
-            return true;
-        }
-
-        public object Visit(SanityConstraintCellData n)
-        {
-            if (this.root == null) return false;
-
-            var locationElement = root.Element(XName.Get("Location"));
-            n.Location = (locationElement != null) ? locationElement.Value : String.Empty;
-
-            var contentElement = root.Element(XName.Get("Content"));
-            n.Content = (contentElement != null) ? contentElement.Value : String.Empty;
-
-            var cellTypeElement = root.Element(XName.Get("CellType"));
-            if (cellTypeElement != null)
-            {
-                n.CellType = (TestInputType)Enum.Parse(typeof(TestInputType), cellTypeElement.Value.ToUpper());
-            }
-
-            return true;
-        }
-
-        public object Visit(SanityValueCellData n)
-        {
-            if (this.root == null) return false;
-
-            var locationElement = root.Element(XName.Get("Location"));
-            n.Location = (locationElement != null) ? locationElement.Value : String.Empty;
-
-            var contentElement = root.Element(XName.Get("Content"));
-            n.Content = (contentElement != null) ? contentElement.Value : String.Empty;
-
-            var cellTypeElement = root.Element(XName.Get("CellType"));
-            if (cellTypeElement != null)
-            {
-                n.CellType = (TestInputType)Enum.Parse(typeof(TestInputType), cellTypeElement.Value.ToUpper());
-            }
-
-            return true;
-        }
-
-        public object Visit(SanityExplanationCellData n)
-        {
-            if (this.root == null) return false;
-
-            var locationElement = root.Element(XName.Get("Location"));
-            n.Location = (locationElement != null) ? locationElement.Value : String.Empty;
-
-            var contentElement = root.Element(XName.Get("Content"));
-            n.Content = (contentElement != null) ? contentElement.Value : String.Empty;
-
-            var cellTypeElement = root.Element(XName.Get("CellType"));
-            if (cellTypeElement != null)
-            {
-                n.CellType = (TestInputType)Enum.Parse(typeof(TestInputType), cellTypeElement.Value.ToUpper());
-            }
-
-            return true;
-        }
-
-        public object Visit(SanityCheckingCellData n)
-        {
-            if (this.root == null) return false;
-
-            var locationElement = root.Element(XName.Get("Location"));
-            n.Location = (locationElement != null) ? locationElement.Value : String.Empty;
-
-            var contentElement = root.Element(XName.Get("Content"));
-            n.Content = (contentElement != null) ? contentElement.Value : String.Empty;
-
-            var cellTypeElement = root.Element(XName.Get("CellType"));
-            if (cellTypeElement != null)
-            {
-                n.CellType = (TestInputType)Enum.Parse(typeof(TestInputType), cellTypeElement.Value.ToUpper());
             }
 
             return true;

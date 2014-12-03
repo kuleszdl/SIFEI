@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using SIF.Visualization.Excel.ScenarioCore.Visitor;
-using System.Xml.Schema;
-using SIF.Visualization.Excel.Networking;
 using SIF.Visualization.Excel.Core;
-using SIF.Visualization.Excel.Properties;
 
 namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 {
@@ -474,25 +465,6 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             throw new NotImplementedException();
         }
 
-        public object Visit(SanityConstraintCellData n)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object Visit(SanityValueCellData n)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object Visit(SanityExplanationCellData n)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object Visit(SanityCheckingCellData n)
-        {
-            throw new NotImplementedException();
-        }
         #endregion
 
         #region private class methods

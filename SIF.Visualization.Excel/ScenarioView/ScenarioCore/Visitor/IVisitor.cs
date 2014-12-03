@@ -1,10 +1,5 @@
 ﻿using SIF.Visualization.Excel.Core;
 using SIF.Visualization.Excel.ScenarioCore.StaticScenarios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace SIF.Visualization.Excel.ScenarioCore.Visitor
@@ -24,14 +19,6 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         object Visit(ResultCellData n);
 
         object Visit(Cell n);
-
-        object Visit(SanityConstraintCellData n);
-
-        object Visit(SanityValueCellData n);
-
-        object Visit(SanityExplanationCellData n);
-
-        object Visit(SanityCheckingCellData n);
 
     }
 }
