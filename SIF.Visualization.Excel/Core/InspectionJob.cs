@@ -1,4 +1,5 @@
-﻿using SIF.Visualization.Excel.Networking;
+﻿using System.Dynamic;
+using SIF.Visualization.Excel.Networking;
 using SIF.Visualization.Excel.Properties;
 using SIF.Visualization.Excel.ViolationsView;
 using System;
@@ -112,14 +113,25 @@ namespace SIF.Visualization.Excel.Core
             this.policyXML = policyXML;
         }
 
+        public void DeleteWorkbookFile()
+        {
+            try
+            {
+                File.Delete(this.SpreadsheetPath);
+            }
+            catch (FileNotFoundException)
+            {
+                // ignore silently
+            }
+        }
+
         /// <summary>
         /// The execution has been successful, now handle the report.
         /// </summary>
         public void Finalize(string report)
         {
+            DeleteWorkbookFile();
             if (this.Workbook == null) return;
-            File.Delete(this.SpreadsheetPath);
-
             // Execute on the right dispatcher
             (Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(this.Workbook, "Violations")].Control as ViolationsViewContainer).ViolationsView.Dispatcher.Invoke(() =>
             {

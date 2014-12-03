@@ -180,6 +180,7 @@ namespace SIF.Visualization.Excel.Networking
         /// </summary>
         protected void ServerRunLoop()
         {
+            TcpListener currentTcpListener = TcpServer;
             try
             {
                 // The server will keep running until its thread is aborted.
@@ -188,17 +189,21 @@ namespace SIF.Visualization.Excel.Networking
                     if (!File.Exists(Settings.Default.FrameworkPath + Path.DirectorySeparatorChar + "sif.jar"))
                     {
                         // Sif has not been installed correctly.
-                        MessageBox.Show("The Spreadsheet Inspection Framework was not found at this location:\n" + Settings.Default.FrameworkPath + Path.DirectorySeparatorChar + "sif.jar\n\nPlease install the Spreadsheet Inspection Framework and restart Excel.", "Error");
+                        MessageBox.Show(
+                            "The Spreadsheet Inspection Framework was not found at this location:\n" +
+                            Settings.Default.FrameworkPath + Path.DirectorySeparatorChar +
+                            "sif.jar\n\nPlease install the Spreadsheet Inspection Framework and restart Excel.", "Error");
                     }
 
                     // Launch a new instance of the Spreadsheet Inspection Framework
-                    var startInfo = new ProcessStartInfo("java", "-jar \"" + Settings.Default.FrameworkPath + Path.DirectorySeparatorChar + "sif.jar\" " 
+                    var startInfo = new ProcessStartInfo("java",
+                        "-jar \"" + Settings.Default.FrameworkPath + Path.DirectorySeparatorChar + "sif.jar\" "
                         + Settings.Default.SifOptions + " " + InspectionEngine.Instance.Port);
                     startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     var process = Process.Start(startInfo);
 
                     // Wait for the client to connect.
-                    var clientSocket = TcpServer.AcceptSocket();
+                    var clientSocket = currentTcpListener.AcceptSocket();
 
                     #region Functionality
 
@@ -214,21 +219,31 @@ namespace SIF.Visualization.Excel.Networking
                             currentJob.PolicyXML.Save(writer);
                             clientSocket.SendString(writer.GetStringBuilder().ToString());
 
-                            // Then, send the spreadsheet
-                            // reading the whole file beforehand reduces the possibility of a corrupt file on the receiving end
-                            // byte[] toSend = File.ReadAllBytes(currentJob.SpreadsheetPath);
-                            // clientSocket.SendBytes(toSend);
-
                             // Read the report from the socket connection
                             var report = clientSocket.ReadString();
 
                             // Let the inspection job know about the report
                             currentJob.Finalize(report);
                         }
+                        catch (OutOfMemoryException)
+                        {
+                            // Try to release as many resources as possible
+                            MessageBox.Show(
+                                "The inspection queue has been cleared due to memory restrictions.\nPlease restart any needed scans.");
+                            currentJob.DeleteWorkbookFile();
+                            foreach (InspectionJob job in InspectionQueue)
+                            {
+                                job.DeleteWorkbookFile();
+                            }
+                            InspectionQueue.Dispose();
+                            InspectionQueue = new BlockingCollection<InspectionJob>();
+                            // restart the server loop
+                            throw new Exception();
+                        }
                         catch (Exception e)
                         {
                             // Put the job in the queue again
-                            MessageBox.Show("The test of the current document failed!\n" + e.Message, "Error");
+                            MessageBox.Show("The test of the current document failed!\n" + e.ToString(), "Error");
                         }
                     }
 
@@ -239,28 +254,22 @@ namespace SIF.Visualization.Excel.Networking
             {
                 MessageBox.Show(
                     "No java runtime was found!\n" +
-                        "Please ensure a java runtime environmet >= 1.7 is installed and accesible through the PATH variable.\n" +
-                        "The Scan button will be without function.",
+                    "Please ensure a java runtime environmet >= 1.7 is installed and accesible through the PATH variable.\n" +
+                    "The Scan button will be without function.",
                     "Error");
             }
             catch (Exception)
             {
-                // An error occured, so try and restart the server
-                if (this.TcpServer != null)
-                    this.RestartServer();
+                // start will fork into a new thread
+                Start();
+                // we will die in a short while, nothing to be done
             }
             finally
             {
-                if (this.TcpServer != null)
-                    this.TcpServer.Stop();
+                currentTcpListener.Stop();
             }
         }
 
-        private void RestartServer()
-        {
-            this.Stop();
-            this.Start();
-        }
 
         #endregion
     }
