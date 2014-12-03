@@ -1,9 +1,5 @@
 ﻿using SIF.Visualization.Excel.Cells;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.ScenarioCore.Visitor
@@ -160,25 +156,6 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             throw new NotImplementedException();
         }
 
-        public object Visit(SanityConstraintCellData n)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object Visit(SanityValueCellData n)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object Visit(SanityExplanationCellData n)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object Visit(SanityCheckingCellData n)
-        {
-            throw new NotImplementedException();
-        }
         #endregion
     }
 }
