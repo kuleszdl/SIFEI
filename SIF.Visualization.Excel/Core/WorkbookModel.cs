@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using System.Windows;
+using Microsoft.Office.Interop.Excel;
 using SIF.Visualization.Excel.Cells;
 using SIF.Visualization.Excel.Networking;
 using SIF.Visualization.Excel.Properties;
@@ -8,16 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
@@ -439,46 +432,88 @@ namespace SIF.Visualization.Excel.Core
 
         public void LoadExtraInformation()
         {
-            // Load cell definitions
-            this.Accept(new XMLToCellDefinitionVisitor(XMLPartManager.Instance.LoadXMLPart(this, "CellDefinitions")));
-
-            // Load the scenarios
-            this.Accept(new XMLToScenarioVisitor(XMLPartManager.Instance.LoadXMLPart(this, "Scenario")));
-
-            // Load the violations
-            var violationsXml = XMLPartManager.Instance.LoadXMLPart(this, "Violations");
-            if (violationsXml != null)
+            String error = "";
+            try
             {
-                // Add them to the violations collection
-                (from p in violationsXml.Elements(XName.Get("violation"))
-                 select new Violation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
+                // Load cell definitions
+                this.Accept(new XMLToCellDefinitionVisitor(XMLPartManager.Instance.LoadXMLPart(this, "CellDefinitions")));
+            }
+            catch (Exception)
+            {
+                error += "Loading the cell definitions failed.\n";
+            }
+            try
+            {
+                // Load the scenarios
+                this.Accept(new XMLToScenarioVisitor(XMLPartManager.Instance.LoadXMLPart(this, "Scenario")));
+            }
+            catch (Exception)
+            {
+                error += "Loading the scenarios failed.\n";
             }
 
-            // Load the ignored
-            var ignoredXml = XMLPartManager.Instance.LoadXMLPart(this, "IgnoredViolations");
-            if (ignoredXml != null)
+            try
             {
-                // Add them to the ignored violations collection
-                (from p in ignoredXml.Elements(XName.Get("ignoredviolations"))
-                 select new Violation(p, workbook)).ToList().ForEach(p => this.IgnoredViolations.Add(p));
+                // Load the violations
+                var violationsXml = XMLPartManager.Instance.LoadXMLPart(this, "Violations");
+                if (violationsXml != null)
+                {
+                    // Add them to the violations collection
+                    (from p in violationsXml.Elements(XName.Get("violation"))
+                     select new Violation(p, workbook)).ToList().ForEach(p => this.Violations.Add(p));
+                }
+            }
+            catch (Exception)
+            {
+                error += "Loading the displayed violations failed.\n";
             }
 
-            // Load the later violations
-            var laterXml = XMLPartManager.Instance.LoadXMLPart(this, "LaterViolations");
-            if (laterXml != null)
+            try
             {
-                // Add them to the later violations collection
-                (from p in laterXml.Elements(XName.Get("laterviolation"))
-                 select new Violation(p, workbook)).ToList().ForEach(p => this.LaterViolations.Add(p));
+                // Load the ignored
+                var ignoredXml = XMLPartManager.Instance.LoadXMLPart(this, "IgnoredViolations");
+                if (ignoredXml != null)
+                {
+                    // Add them to the ignored violations collection
+                    (from p in ignoredXml.Elements(XName.Get("ignoredviolations"))
+                     select new Violation(p, workbook)).ToList().ForEach(p => this.IgnoredViolations.Add(p));
+                }
+            }
+            catch (Exception)
+            {
+                error += "Loading the ignored violations failed.\n";
             }
 
-            // Load the archived violations
-            var archivedXml = XMLPartManager.Instance.LoadXMLPart(this, "ArchivedViolations");
-            if (archivedXml != null)
+            try
             {
-                // Add them to the archived violations collection
-                (from p in archivedXml.Elements(XName.Get("archivedviolation"))
-                 select new Violation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
+                // Load the later violations
+                var laterXml = XMLPartManager.Instance.LoadXMLPart(this, "LaterViolations");
+                if (laterXml != null)
+                {
+                    // Add them to the later violations collection
+                    (from p in laterXml.Elements(XName.Get("laterviolation"))
+                     select new Violation(p, workbook)).ToList().ForEach(p => this.LaterViolations.Add(p));
+                }
+            }
+            catch (Exception)
+            {
+                error += "Loading the 'later' violations failed.\n";
+            }
+
+            try
+            {
+                // Load the archived violations
+                var archivedXml = XMLPartManager.Instance.LoadXMLPart(this, "ArchivedViolations");
+                if (archivedXml != null)
+                {
+                    // Add them to the archived violations collection
+                    (from p in archivedXml.Elements(XName.Get("archivedviolation"))
+                     select new Violation(p, workbook)).ToList().ForEach(p => this.SolvedViolations.Add(p));
+                }
+            }
+            catch (Exception)
+            {
+                error += "Loading the archived violations failed.\n";
             }
 
             XElement polSettings = XMLPartManager.Instance.LoadXMLPart(this, "policySettings");
@@ -493,6 +528,12 @@ namespace SIF.Visualization.Excel.Core
                 polModel = new PolicyConfigurationModel();
             }
             this.policySettings = polModel;
+
+            if (!String.IsNullOrWhiteSpace(error))
+            {
+                MessageBox.Show("The following parts were unable to load:\n" + error,
+                    "Loading from workbook failed");
+            }
         }
 
         private void Sheet_SelectionChange(object Sh, Range Target)
