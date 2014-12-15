@@ -1,4 +1,6 @@
-﻿using SIF.Visualization.Excel.Properties;
+﻿using System.Diagnostics;
+using System.IO;
+using SIF.Visualization.Excel.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,8 @@ namespace SIF.Visualization.Excel
 {
     public partial class PolicyConfigurationDialog : Form
     {
+        private readonly String debugFile = Settings.Default.FrameworkPath + @"\debug";
+
         public PolicyConfigurationDialog()
         {
             InitializeComponent();
@@ -154,6 +158,27 @@ namespace SIF.Visualization.Excel
                 SD_Amount.Enabled = false;
             }
 
+            if (settings.ErrorInCells)
+            {
+                CB_ErrorInCells.Checked = true;
+                EIC_A.Enabled = true;
+                EIC_M.Enabled = true;
+
+                if (!settings.OneAmongOthersAutomatic)
+                {
+                    EIC_M.Checked = true;
+                }
+                else
+                {
+                    EIC_A.Checked = true;
+                }
+            }
+
+            if (File.Exists(debugFile))
+            {
+                CB_SifDebugMode.Checked = true;
+            }
+            
             cb_Ask_Thousands.Checked = !Settings.Default.SifUseThousandsSeparator;
 
 
@@ -190,6 +215,23 @@ namespace SIF.Visualization.Excel
                     settings.StringDistanceMaxDist = stringDstMax;
                 }
             }
+            try
+            {
+                if (CB_SifDebugMode.Checked)
+                {
+                    File.Create(debugFile);
+                }
+                else
+                {
+                    File.Delete(debugFile);
+                }
+            }
+            catch (Exception)
+            {
+                error = true;
+                MessageBox.Show("Failed to create or delete the debug file, check that you have write permissions for " +
+                                debugFile + ", or create it yourself.", "Error");
+            }
             #endregion
 
             if (error) // abort the closing and further parsing of members
@@ -218,6 +260,9 @@ namespace SIF.Visualization.Excel
 
             settings.StringDistance = CB_StringDistance.Checked;
             settings.StringDistanceAutomatic = SD_A.Checked;
+
+            settings.ErrorInCells = CB_ErrorInCells.Checked;
+            settings.ErrorInCellsAutomatic = EIC_A.Checked;
 
             Settings.Default.SifUseThousandsSeparator = !cb_Ask_Thousands.Checked;
 
@@ -329,6 +374,19 @@ namespace SIF.Visualization.Excel
             {
                 OAO_A.Enabled = false;
                 OAO_M.Enabled = false;
+            }
+        }
+        private void CB_ErrorInCells_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CB_ErrorInCells.Checked)
+            {
+                EIC_A.Enabled = true;
+                EIC_M.Enabled = true;
+            }
+            else
+            {
+                EIC_A.Enabled = false;
+                EIC_M.Enabled = false;
             }
         }
 

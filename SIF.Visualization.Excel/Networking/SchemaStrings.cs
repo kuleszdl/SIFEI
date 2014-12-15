@@ -401,6 +401,22 @@ namespace SIF.Visualization.Excel.Networking
     </xs:complexContent>
   </xs:complexType>
 
+  <xs:complexType name=""errorContainingCellPolicyRule"">
+    <xs:complexContent>
+      <xs:extension base=""monolithicPolicyRule"">
+        <xs:sequence>
+          <xs:element name=""ignoredCells"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""location"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
   <xs:complexType name=""dynamicPolicy"">
     <xs:complexContent>
       <xs:extension base=""policy"">
@@ -486,6 +502,7 @@ namespace SIF.Visualization.Excel.Networking
       <xs:element name=""refToNullPolicyRule"" type=""refToNullPolicyRule"" minOccurs=""0""/>
       <xs:element name=""stringDistancePolicyRule"" type=""stringDistancePolicyRule"" minOccurs=""0""/>
       <xs:element name=""multipleSameRefPolicyRule"" type=""multipleSameRefPolicyRule"" minOccurs=""0""/>
+      <xs:element name=""errorContainingCellPolicyRule"" type=""errorContainingCellPolicyRule"" minOccurs=""0""/>
     </xs:sequence>
   </xs:complexType>
 
@@ -810,6 +827,22 @@ namespace SIF.Visualization.Excel.Networking
   </xs:complexType>
 
   <xs:complexType name=""refToNullPolicyRule"">
+    <xs:complexContent>
+      <xs:extension base=""monolithicPolicyRule"">
+        <xs:sequence>
+          <xs:element name=""ignoredCells"" minOccurs=""0"">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name=""location"" type=""xs:string"" minOccurs=""0"" maxOccurs=""unbounded""/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name=""errorContainingCellPolicyRule"">
     <xs:complexContent>
       <xs:extension base=""monolithicPolicyRule"">
         <xs:sequence>

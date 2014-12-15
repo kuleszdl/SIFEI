@@ -11,6 +11,7 @@ namespace SIF.Visualization.Excel.Core
     {
         #region Fields
         #region XML Names
+
         private String name_formulaComplexity = "fc",
             name_formulaComplexityAutomatic = "fc_a",
             name_noConstantsInFormulas = "ncif",
@@ -27,9 +28,12 @@ namespace SIF.Visualization.Excel.Core
             name_oneAmongOthersAutomatic = "oao_a",
             name_stringDistance = "sd",
             name_stringDistanceAutomatic = "sd_a",
-            name_stringDistanceMaxDist = "sd_maxDist";
+            name_stringDistanceMaxDist = "sd_maxDist",
+            name_errorInCells = "eic",
+            name_errorInCellsAutomatic = "eic_a";
         #endregion
         #region Settings
+
         private Boolean formulaComplexity = false,
             formulaComplexityAutomatic = true,
             noConstantsInFormulas = false,
@@ -45,7 +49,10 @@ namespace SIF.Visualization.Excel.Core
             oneAmongOthers = false,
             oneAmongOthersAutomatic = true,
             stringDistance = false,
-            stringDistanceAutomatic = true;
+            stringDistanceAutomatic = true,
+            errorInCells = false,
+            errorInCellsAutomatic = true;
+
         private int stringDistanceMaxDist = 1;
 
         #endregion
@@ -137,6 +144,16 @@ namespace SIF.Visualization.Excel.Core
             get { return this.stringDistanceMaxDist; }
             set { this.stringDistanceMaxDist = value; }
         }
+        public Boolean ErrorInCellsAutomatic
+        {
+            get { return this.errorInCellsAutomatic; }
+            set { this.errorInCellsAutomatic = value; }
+        }
+        public Boolean ErrorInCells
+        {
+            get { return this.errorInCells; }
+            set { this.errorInCells = value; }
+        }
 
         #endregion
 
@@ -144,7 +161,7 @@ namespace SIF.Visualization.Excel.Core
         {
             return noConstantsInFormulasAutomatic || readingDirectionAutomatic || formulaComplexityAutomatic
                 || multipleSameRefAutomatic || nonConsideredConstantsAutomatic || refToNullAutomatic
-                || oneAmongOthersAutomatic || stringDistanceAutomatic;
+                || oneAmongOthersAutomatic || stringDistanceAutomatic || errorInCellsAutomatic;
         }
 
         public void loadXML(XElement settingsRoot)
@@ -166,6 +183,16 @@ namespace SIF.Visualization.Excel.Core
             stringDistance = Convert.ToBoolean(settingsRoot.Element(XName.Get(name_stringDistance)).Value);
             stringDistanceAutomatic = Convert.ToBoolean(settingsRoot.Element(XName.Get(name_stringDistanceAutomatic)).Value);
             stringDistanceMaxDist = Convert.ToInt32(settingsRoot.Element(XName.Get(name_stringDistanceMaxDist)).Value);
+            var eic = settingsRoot.Element(XName.Get(name_errorInCells));
+            if (eic != null)
+            {
+                errorInCells = Convert.ToBoolean(eic.Value);
+            }
+            var eica = settingsRoot.Element(XName.Get(name_errorInCellsAutomatic));
+            if (eica != null)
+            {
+                errorInCellsAutomatic = Convert.ToBoolean(eica.Value);
+            }
         }
 
         public void saveXML(XElement settingsRoot)
@@ -229,6 +256,12 @@ namespace SIF.Visualization.Excel.Core
             settingsRoot.Add(xstringDistanceAutomatic);
             settingsRoot.Add(xstringDistanceMaxDist);
 
+            XElement xeic = new XElement(name_errorInCells);
+            xeic.Value = errorInCells.ToString();
+            XElement xeica = new XElement(name_errorInCellsAutomatic);
+            xeica.Value = errorInCellsAutomatic.ToString();
+            settingsRoot.Add(xeic);
+            settingsRoot.Add(xeica);
         }
     }
 }

@@ -4,11 +4,11 @@ using SIF.Visualization.Excel.Core;
 
 namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 {
-    class Sprudel1_3XMLVisitor : IVisitor
+    class Sprudel1_5XMLVisitor : IVisitor
     {
         private InspectionType type;
 
-        public Sprudel1_3XMLVisitor(InspectionType scanningType)
+        public Sprudel1_5XMLVisitor(InspectionType scanningType)
         {
             type = scanningType;
         }
@@ -99,8 +99,20 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
                 XElement msr = createMultipleSameRef();
                 root.Add(msr);
             }
+            if ((settings.ErrorInCells && type == InspectionType.MANUAL) ||
+                (settings.ErrorInCells && settings.ErrorInCellsAutomatic))
+            {
+                XElement eic = createErrorInCells();
+                root.Add(eic);
+            }
                 
             return root;
+        }
+
+        private XElement createErrorInCells()
+        {
+            XElement eic = new XElement("errorContainingCellPolicyRule");
+            return eic;
         }
 
         private XElement createMultipleSameRef()
