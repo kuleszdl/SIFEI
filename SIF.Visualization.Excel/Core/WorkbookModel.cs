@@ -666,15 +666,15 @@ namespace SIF.Visualization.Excel.Core
             switch (inspectionMode)
             {
                 case InspectionMode.All:
-                    xmlDoc.Add(this.Accept(new Sprudel1_3XMLVisitor(inspectionType)) as XElement);
+                    xmlDoc.Add(this.Accept(new Sprudel1_5XMLVisitor(inspectionType)) as XElement);
                     //TODO add static
                     break;
                 case InspectionMode.Dynamic:
-                    xmlDoc.Add(this.Accept(new Sprudel1_3XMLVisitor(inspectionType)) as XElement);
+                    xmlDoc.Add(this.Accept(new Sprudel1_5XMLVisitor(inspectionType)) as XElement);
                     break;
                 case InspectionMode.Static:
                     //TODO change to static
-                    xmlDoc.Add(this.Accept(new Sprudel1_3XMLVisitor(inspectionType)) as XElement);
+                    xmlDoc.Add(this.Accept(new Sprudel1_5XMLVisitor(inspectionType)) as XElement);
                     break;
             };
 

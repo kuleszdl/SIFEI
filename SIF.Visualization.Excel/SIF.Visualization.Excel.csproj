@@ -278,7 +278,7 @@
     <Compile Include="ScenarioView\ScenarioCore\Scenario.cs" />
     <Compile Include="ScenarioView\ScenarioCore\Visitor\ScenarioToXMLVisitor.cs" />
     <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\SpecializedCollection.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\Visitor\Sprudel1_3XMLVisitor.cs" />
+    <Compile Include="ScenarioView\ScenarioCore\Visitor\Sprudel1_5XMLVisitor.cs" />
     <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\StaticScenario.cs" />
     <Compile Include="ScenarioView\ScenarioCore\TestInputType.cs" />
     <Compile Include="ScenarioView\ScenarioCore\Visitor\XMLToCellDefinitionVisitor.cs" />

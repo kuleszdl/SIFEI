@@ -65,6 +65,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SD_Amount = new System.Windows.Forms.TextBox();
             this.cb_Ask_Thousands = new System.Windows.Forms.CheckBox();
+            this.CB_SifDebugMode = new System.Windows.Forms.CheckBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.EIC_A = new System.Windows.Forms.RadioButton();
+            this.EIC_M = new System.Windows.Forms.RadioButton();
+            this.CB_ErrorInCells = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -73,11 +78,12 @@
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // Button_OK
             // 
-            this.Button_OK.Location = new System.Drawing.Point(81, 471);
+            this.Button_OK.Location = new System.Drawing.Point(168, 331);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 23);
             this.Button_OK.TabIndex = 9;
@@ -87,7 +93,7 @@
             // 
             // Button_Cancel
             // 
-            this.Button_Cancel.Location = new System.Drawing.Point(162, 471);
+            this.Button_Cancel.Location = new System.Drawing.Point(249, 331);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.Button_Cancel.TabIndex = 10;
@@ -231,7 +237,7 @@
             // 
             this.CB_MultipleSameRef.AllowDrop = true;
             this.CB_MultipleSameRef.AutoSize = true;
-            this.CB_MultipleSameRef.Location = new System.Drawing.Point(10, 156);
+            this.CB_MultipleSameRef.Location = new System.Drawing.Point(245, 12);
             this.CB_MultipleSameRef.Name = "CB_MultipleSameRef";
             this.CB_MultipleSameRef.Size = new System.Drawing.Size(166, 17);
             this.CB_MultipleSameRef.TabIndex = 20;
@@ -243,7 +249,7 @@
             // 
             this.panel4.Controls.Add(this.MSR_A);
             this.panel4.Controls.Add(this.MSR_M);
-            this.panel4.Location = new System.Drawing.Point(32, 179);
+            this.panel4.Location = new System.Drawing.Point(267, 29);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(160, 23);
             this.panel4.TabIndex = 21;
@@ -276,7 +282,7 @@
             // 
             this.panel5.Controls.Add(this.NCC_A);
             this.panel5.Controls.Add(this.NCC_M);
-            this.panel5.Location = new System.Drawing.Point(32, 231);
+            this.panel5.Location = new System.Drawing.Point(267, 79);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(160, 23);
             this.panel5.TabIndex = 23;
@@ -308,7 +314,7 @@
             // CB_NonConsideredConstants
             // 
             this.CB_NonConsideredConstants.AutoSize = true;
-            this.CB_NonConsideredConstants.Location = new System.Drawing.Point(12, 208);
+            this.CB_NonConsideredConstants.Location = new System.Drawing.Point(245, 61);
             this.CB_NonConsideredConstants.Name = "CB_NonConsideredConstants";
             this.CB_NonConsideredConstants.Size = new System.Drawing.Size(150, 17);
             this.CB_NonConsideredConstants.TabIndex = 22;
@@ -320,7 +326,7 @@
             // 
             this.panel6.Controls.Add(this.RTN_A);
             this.panel6.Controls.Add(this.RTN_M);
-            this.panel6.Location = new System.Drawing.Point(32, 283);
+            this.panel6.Location = new System.Drawing.Point(267, 122);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(160, 23);
             this.panel6.TabIndex = 25;
@@ -352,7 +358,7 @@
             // CB_RefToNull
             // 
             this.CB_RefToNull.AutoSize = true;
-            this.CB_RefToNull.Location = new System.Drawing.Point(12, 260);
+            this.CB_RefToNull.Location = new System.Drawing.Point(245, 108);
             this.CB_RefToNull.Name = "CB_RefToNull";
             this.CB_RefToNull.Size = new System.Drawing.Size(146, 17);
             this.CB_RefToNull.TabIndex = 24;
@@ -364,7 +370,7 @@
             // 
             this.panel7.Controls.Add(this.OAO_A);
             this.panel7.Controls.Add(this.OAO_M);
-            this.panel7.Location = new System.Drawing.Point(32, 335);
+            this.panel7.Location = new System.Drawing.Point(32, 164);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(160, 23);
             this.panel7.TabIndex = 27;
@@ -396,7 +402,7 @@
             // CB_OneAmongOthers
             // 
             this.CB_OneAmongOthers.AutoSize = true;
-            this.CB_OneAmongOthers.Location = new System.Drawing.Point(12, 312);
+            this.CB_OneAmongOthers.Location = new System.Drawing.Point(14, 150);
             this.CB_OneAmongOthers.Name = "CB_OneAmongOthers";
             this.CB_OneAmongOthers.Size = new System.Drawing.Size(113, 17);
             this.CB_OneAmongOthers.TabIndex = 26;
@@ -408,7 +414,7 @@
             // 
             this.panel8.Controls.Add(this.SD_A);
             this.panel8.Controls.Add(this.SD_M);
-            this.panel8.Location = new System.Drawing.Point(30, 387);
+            this.panel8.Location = new System.Drawing.Point(267, 176);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(160, 23);
             this.panel8.TabIndex = 29;
@@ -440,7 +446,7 @@
             // CB_StringDistance
             // 
             this.CB_StringDistance.AutoSize = true;
-            this.CB_StringDistance.Location = new System.Drawing.Point(10, 364);
+            this.CB_StringDistance.Location = new System.Drawing.Point(247, 159);
             this.CB_StringDistance.Name = "CB_StringDistance";
             this.CB_StringDistance.Size = new System.Drawing.Size(98, 17);
             this.CB_StringDistance.TabIndex = 28;
@@ -451,7 +457,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(115, 365);
+            this.label1.Location = new System.Drawing.Point(352, 160);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 30;
@@ -459,7 +465,7 @@
             // 
             // SD_Amount
             // 
-            this.SD_Amount.Location = new System.Drawing.Point(192, 362);
+            this.SD_Amount.Location = new System.Drawing.Point(429, 157);
             this.SD_Amount.Name = "SD_Amount";
             this.SD_Amount.Size = new System.Drawing.Size(45, 20);
             this.SD_Amount.TabIndex = 31;
@@ -467,19 +473,76 @@
             // cb_Ask_Thousands
             // 
             this.cb_Ask_Thousands.AutoSize = true;
-            this.cb_Ask_Thousands.Location = new System.Drawing.Point(32, 426);
+            this.cb_Ask_Thousands.Location = new System.Drawing.Point(247, 216);
             this.cb_Ask_Thousands.Name = "cb_Ask_Thousands";
             this.cb_Ask_Thousands.Size = new System.Drawing.Size(137, 30);
             this.cb_Ask_Thousands.TabIndex = 32;
             this.cb_Ask_Thousands.Text = "Ask whether thousand \r\nseparators are intended";
             this.cb_Ask_Thousands.UseVisualStyleBackColor = true;
             // 
+            // CB_SifDebugMode
+            // 
+            this.CB_SifDebugMode.AutoSize = true;
+            this.CB_SifDebugMode.Location = new System.Drawing.Point(16, 294);
+            this.CB_SifDebugMode.Name = "CB_SifDebugMode";
+            this.CB_SifDebugMode.Size = new System.Drawing.Size(169, 17);
+            this.CB_SifDebugMode.TabIndex = 33;
+            this.CB_SifDebugMode.Text = "Enable the SIF debug console";
+            this.CB_SifDebugMode.UseVisualStyleBackColor = true;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.EIC_A);
+            this.panel9.Controls.Add(this.EIC_M);
+            this.panel9.Location = new System.Drawing.Point(32, 216);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(160, 23);
+            this.panel9.TabIndex = 29;
+            // 
+            // EIC_A
+            // 
+            this.EIC_A.AutoSize = true;
+            this.EIC_A.Checked = true;
+            this.EIC_A.Enabled = false;
+            this.EIC_A.Location = new System.Drawing.Point(0, 3);
+            this.EIC_A.Name = "EIC_A";
+            this.EIC_A.Size = new System.Drawing.Size(58, 17);
+            this.EIC_A.TabIndex = 15;
+            this.EIC_A.TabStop = true;
+            this.EIC_A.Text = "Always";
+            this.EIC_A.UseVisualStyleBackColor = true;
+            // 
+            // EIC_M
+            // 
+            this.EIC_M.AutoSize = true;
+            this.EIC_M.Enabled = false;
+            this.EIC_M.Location = new System.Drawing.Point(93, 3);
+            this.EIC_M.Name = "EIC_M";
+            this.EIC_M.Size = new System.Drawing.Size(60, 17);
+            this.EIC_M.TabIndex = 16;
+            this.EIC_M.Text = "Manual";
+            this.EIC_M.UseVisualStyleBackColor = true;
+            // 
+            // CB_ErrorInCells
+            // 
+            this.CB_ErrorInCells.AutoSize = true;
+            this.CB_ErrorInCells.Location = new System.Drawing.Point(14, 202);
+            this.CB_ErrorInCells.Name = "CB_ErrorInCells";
+            this.CB_ErrorInCells.Size = new System.Drawing.Size(102, 17);
+            this.CB_ErrorInCells.TabIndex = 28;
+            this.CB_ErrorInCells.Text = "Cells with #Error";
+            this.CB_ErrorInCells.UseVisualStyleBackColor = true;
+            this.CB_ErrorInCells.CheckedChanged += new System.EventHandler(this.CB_ErrorInCells_CheckedChanged);
+            // 
             // PolicyConfigurationDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(249, 506);
+            this.ClientSize = new System.Drawing.Size(504, 384);
+            this.Controls.Add(this.panel9);
+            this.Controls.Add(this.CB_ErrorInCells);
+            this.Controls.Add(this.CB_SifDebugMode);
             this.Controls.Add(this.cb_Ask_Thousands);
             this.Controls.Add(this.SD_Amount);
             this.Controls.Add(this.label1);
@@ -522,6 +585,8 @@
             this.panel7.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -566,5 +631,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox SD_Amount;
         private System.Windows.Forms.CheckBox cb_Ask_Thousands;
+        private System.Windows.Forms.CheckBox CB_SifDebugMode;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.RadioButton EIC_A;
+        private System.Windows.Forms.RadioButton EIC_M;
+        private System.Windows.Forms.CheckBox CB_ErrorInCells;
     }
 }
