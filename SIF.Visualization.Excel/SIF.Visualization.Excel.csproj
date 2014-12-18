@@ -404,6 +404,7 @@
       <SubType>Code</SubType>
     </Compile>
     <None Include="ScenarioView\ScenarioCore\SIF-Frontend_classes.cd" />
+    <None Include="SIF.Visualization.Excel_5_TemporaryKey.pfx" />
     <None Include="SIF.Visualization.Excel_TemporaryKey.pfx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
@@ -525,10 +526,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>SIF.Visualization.Excel_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>SIF.Visualization.Excel_5_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>AA1E34248CDC6EFE347FC282D20A1417653F620B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>442F2EB14BDB4638CFBA8E08EC8BB943D72D6AD8</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

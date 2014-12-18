@@ -36,7 +36,7 @@
         {
             this.inspectionTab = this.Factory.CreateRibbonTab();
             this.testGroup = this.Factory.CreateRibbonGroup();
-            this.testButton = this.Factory.CreateRibbonButton();
+            this.scanButton = this.Factory.CreateRibbonButton();
             this.automaticScanCheckBox = this.Factory.CreateRibbonCheckBox();
             this.policyConfigurationDialog = this.Factory.CreateRibbonButton();
             this.btnLoadFile1 = this.Factory.CreateRibbonButton();
@@ -78,7 +78,7 @@
             // 
             // testGroup
             // 
-            this.testGroup.Items.Add(this.testButton);
+            this.testGroup.Items.Add(this.scanButton);
             this.testGroup.Items.Add(this.automaticScanCheckBox);
             this.testGroup.Items.Add(this.policyConfigurationDialog);
             this.testGroup.Items.Add(this.btnLoadFile1);
@@ -86,16 +86,16 @@
             this.testGroup.Label = "Test";
             this.testGroup.Name = "testGroup";
             // 
-            // testButton
+            // scanButton
             // 
-            this.testButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.testButton.Description = "Scans the current workbook with all scenarios.";
-            this.testButton.Label = "Scan";
-            this.testButton.Name = "testButton";
-            this.testButton.OfficeImageId = "Synchronize";
-            this.testButton.ScreenTip = "Scans the current workbook.";
-            this.testButton.ShowImage = true;
-            this.testButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.testButton_Click);
+            this.scanButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.scanButton.Description = "Scans the current workbook with all scenarios.";
+            this.scanButton.Label = "Scan";
+            this.scanButton.Name = "testButton";
+            this.scanButton.OfficeImageId = "Synchronize";
+            this.scanButton.ScreenTip = "Scans the current workbook.";
+            this.scanButton.ShowImage = true;
+            this.scanButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.scanButton_Click);
             // 
             // automaticScanCheckBox
             // 
@@ -294,7 +294,7 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab inspectionTab;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup testGroup;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton testButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton scanButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup viewGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton clearButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup scenarioGroup;

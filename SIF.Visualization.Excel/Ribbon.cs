@@ -25,7 +25,7 @@ namespace SIF.Visualization.Excel
             automaticScanCheckBox.Checked = Settings.Default.AutomaticScans;
         }
 
-        private void testButton_Click(object sender, RibbonControlEventArgs e)
+        private void scanButton_Click(object sender, RibbonControlEventArgs e)
         {
             // Inspect the current workbook
             DataModel.Instance.CurrentWorkbook.Inspect(InspectionType.MANUAL);
