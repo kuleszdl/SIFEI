@@ -27,8 +27,18 @@ namespace SIF.Visualization.Excel
 
         private void scanButton_Click(object sender, RibbonControlEventArgs e)
         {
-            // Inspect the current workbook
-            DataModel.Instance.CurrentWorkbook.Inspect(InspectionType.MANUAL);
+
+            if (DataModel.Instance.CurrentWorkbook.PolicySettings.hasManualScans())
+            {
+                // Inspect the current workbook
+                DataModel.Instance.CurrentWorkbook.Inspect(InspectionType.MANUAL);
+            }
+            else
+            {
+                MessageBox.Show("No policies are enabled for manual scans. Please enable at least one policy and try again.", "error", MessageBoxButtons.OK);
+            }
+
+            
         }
 
         private void warnings_Click(object sender, RibbonControlEventArgs e)

@@ -164,6 +164,13 @@ namespace SIF.Visualization.Excel.Core
                 || oneAmongOthersAutomatic || stringDistanceAutomatic || errorInCellsAutomatic;
         }
 
+        public Boolean hasManualScans()
+        {
+            return noConstantsInFormulas || readingDirection || formulaComplexity
+                || multipleSameRef || nonConsideredConstants || refToNull
+                || oneAmongOthers || stringDistance || errorInCells;
+        }
+
         public void loadXML(XElement settingsRoot)
         {
             formulaComplexity = Convert.ToBoolean(settingsRoot.Element(XName.Get(name_formulaComplexity)).Value);
