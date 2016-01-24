@@ -11,6 +11,7 @@
             : base(Globals.Factory.GetRibbonFactory())
         {
             InitializeComponent();
+            InitializeComponentOverride();
         }
 
         /// <summary> 
@@ -24,6 +25,23 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// Method for manually overriding stuff (especially labels for translation) created by the designer
+        /// </summary>
+        private void InitializeComponentOverride()
+        {
+            this.inspectionTab.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_Title;
+            this.testGroup.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_Title;
+            this.automaticScanCheckBox.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_AutomaticScansCheckbox;
+            this.automaticScanCheckBox.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_AutomaticScansCheckboxTooltip;
+            this.policyConfigurationDialog.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_PolicyConfigurationButton;
+            this.policyConfigurationDialog.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_PolicyConfigurationButtonTooltip;
+            this.scanButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_ScanButton;
+            this.scanButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_ScanButtonTooltip;
+            
+
         }
 
         #region Vom Komponenten-Designer generierter Code

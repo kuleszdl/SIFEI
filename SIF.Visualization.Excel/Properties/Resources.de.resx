@@ -134,4 +134,31 @@
     <value>Keine ignorierten Befunde</value>
     <comment>Text to be shown when no ignored findings are there</comment>
   </data>
+  <data name="tl_IgnoreView_InList" xml:space="preserve">
+    <value>Befund(e) in der Liste</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_AutomaticScansCheckbox" xml:space="preserve">
+    <value>Automatisch prüfen</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_AutomaticScansCheckboxTooltip" xml:space="preserve">
+    <value>Wenn aktiviert, wird die Prüfung automatisch nach bestimmten Aktionen (z.B. Speichern, Formeln ändern etc.) durchgeführt</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_PolicyConfigurationButton" xml:space="preserve">
+    <value>Regeln konfigurieren</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_PolicyConfigurationButtonTooltip" xml:space="preserve">
+    <value>Öffnet den Dialog, in dem die Regeln konfiguriert werden können.</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_ScanButton" xml:space="preserve">
+    <value>Prüfen</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_ScanButtonTooltip" xml:space="preserve">
+    <value>Prüft die aktuelle Arbeitsmappe bezüglich der Einhaltung aller aktivierten Regeln</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_Title" xml:space="preserve">
+    <value>Aktionen</value>
+  </data>
+  <data name="tl_Ribbon_Title" xml:space="preserve">
+    <value>INSPEKTION</value>
+  </data>
 </root>

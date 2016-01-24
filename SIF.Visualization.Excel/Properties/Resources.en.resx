@@ -134,4 +134,31 @@
     <value>No ignored findings</value>
     <comment>Text to be shown when no ignored findings are there</comment>
   </data>
+  <data name="tl_IgnoreView_InList" xml:space="preserve">
+    <value>finding(s) in list</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_AutomaticScansCheckbox" xml:space="preserve">
+    <value>Enable automatic scans</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_AutomaticScansCheckboxTooltip" xml:space="preserve">
+    <value>If enabled, scans will be automatically executed after certain actions (saving, editing formulas etc.)</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_PolicyConfigurationButton" xml:space="preserve">
+    <value>Configure rules</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_PolicyConfigurationButtonTooltip" xml:space="preserve">
+    <value>Opens the dialog for configuring the rules.</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_ScanButton" xml:space="preserve">
+    <value>Scan</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_ScanButtonTooltip" xml:space="preserve">
+    <value>Scans the current workbook regarding the conformance with all enabled rules</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_Title" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="tl_Ribbon_Title" xml:space="preserve">
+    <value>INSPECTION</value>
+  </data>
 </root>

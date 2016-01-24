@@ -108,5 +108,86 @@ namespace SIF.Visualization.Excel.Properties {
                 return ResourceManager.GetString("tl_IgnoreView_Empty", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die violation(s) in list ähnelt.
+        /// </summary>
+        public static string tl_IgnoreView_InList {
+            get {
+                return ResourceManager.GetString("tl_IgnoreView_InList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Automatic scans ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScan_AutomaticScansCheckbox {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScan_AutomaticScansCheckbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScan_AutomaticScansCheckboxTooltip {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScan_AutomaticScansCheckboxTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Policy configuration ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScan_PolicyConfigurationButton {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScan_PolicyConfigurationButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScan_PolicyConfigurationButtonTooltip {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScan_PolicyConfigurationButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Scan ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScan_ScanButton {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScan_ScanButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Scans the current workbook with all scenarios. ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScan_ScanButtonTooltip {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScan_ScanButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Test ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScan_Title {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScan_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die INSPECTION ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_Title {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_Title", resourceCulture);
+            }
+        }
     }
 }

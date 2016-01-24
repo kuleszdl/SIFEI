@@ -134,4 +134,32 @@
     <value>No ignored violations. Please ignore violations if this is necessary.</value>
     <comment>Text to be shown when no ignored findings are there</comment>
   </data>
+  <data name="tl_IgnoreView_InList" xml:space="preserve">
+    <value>violation(s) in list</value>
+    <comment>Text which shows up at the bottom indicating number of findings in list</comment>
+  </data>
+  <data name="tl_Ribbon_AreaScan_AutomaticScansCheckbox" xml:space="preserve">
+    <value>Automatic scans</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_AutomaticScansCheckboxTooltip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tl_Ribbon_AreaScan_PolicyConfigurationButton" xml:space="preserve">
+    <value>Policy configuration</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_PolicyConfigurationButtonTooltip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tl_Ribbon_AreaScan_ScanButton" xml:space="preserve">
+    <value>Scan</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_ScanButtonTooltip" xml:space="preserve">
+    <value>Scans the current workbook with all scenarios.</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_Title" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="tl_Ribbon_Title" xml:space="preserve">
+    <value>INSPECTION</value>
+  </data>
 </root>
