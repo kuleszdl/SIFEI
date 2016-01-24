@@ -60,6 +60,15 @@
             this.submitScenarioButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScenario_SaveButton;
             this.submitScenarioButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScenario_SaveButtonTooltip;
 
+            // Cell definition area
+            this.defineGroup.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaDefine_Title;
+            this.inputCellToggleButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaDefine_Inputcell;
+            this.inputCellToggleButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaDefine_InputcellTooltip;
+            this.intermediateCellToggleButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaDefine_Intermediatecell;
+            this.intermediateCellToggleButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaDefine_IntermediatecellTooltip;
+            this.resultCellToggleButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaDefine_Resultcell;
+            this.resultCellToggleButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaDefine_ResultcellTooltip;
+
         }
 
         #region Vom Komponenten-Designer generierter Code

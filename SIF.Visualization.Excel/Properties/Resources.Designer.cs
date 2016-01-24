@@ -119,6 +119,69 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Input Cell ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaDefine_Inputcell {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaDefine_Inputcell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Defines a Input Cell. ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaDefine_InputcellTooltip {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaDefine_InputcellTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Intermediate Cell ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaDefine_Intermediatecell {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaDefine_Intermediatecell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Defines a Intermediate Cell. ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaDefine_IntermediatecellTooltip {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaDefine_IntermediatecellTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Result Cell ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaDefine_Resultcell {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaDefine_Resultcell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Defines a Result Cell. ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaDefine_ResultcellTooltip {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaDefine_ResultcellTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Define Scenario Cells ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaDefine_Title {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaDefine_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Automatic scans ähnelt.
         /// </summary>
         public static string tl_Ribbon_AreaScan_AutomaticScansCheckbox {

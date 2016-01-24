@@ -197,4 +197,25 @@
   <data name="tl_Ribbon_AreaView_Title" xml:space="preserve">
     <value>View</value>
   </data>
+  <data name="tl_Ribbon_AreaDefine_Inputcell" xml:space="preserve">
+    <value>Eingabezelle</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_InputcellTooltip" xml:space="preserve">
+    <value>Klicken um die aktuelle Zelle als Eingabezelle festzulegen. Diese Schaltfläche leuchtet auch auf, wenn sie eine bereits festgelegte Zelle anwählen.</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_Intermediatecell" xml:space="preserve">
+    <value>Zwischenergebniszelle</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_IntermediatecellTooltip" xml:space="preserve">
+    <value>Klicken um die aktuelle Zelle als Zwischenergebniszelle festzulegen. Diese Schaltfläche leuchtet auch auf, wenn sie eine bereits festgelegte Zelle anwählen.</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_Resultcell" xml:space="preserve">
+    <value>Ergebniszelle</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_ResultcellTooltip" xml:space="preserve">
+    <value>Klicken um die aktuelle Zelle als Ergebniszelle festzulegen. Diese Schaltfläche leuchtet auch auf, wenn sie eine bereits festgelegte Zelle anwählen.</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_Title" xml:space="preserve">
+    <value>Zellen festlegen</value>
+  </data>
 </root>

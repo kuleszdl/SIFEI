@@ -198,4 +198,25 @@
   <data name="tl_Ribbon_AreaView_Title" xml:space="preserve">
     <value>View</value>
   </data>
+  <data name="tl_Ribbon_AreaDefine_Inputcell" xml:space="preserve">
+    <value>Input Cell</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_InputcellTooltip" xml:space="preserve">
+    <value>Defines a Input Cell.</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_Intermediatecell" xml:space="preserve">
+    <value>Intermediate Cell</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_IntermediatecellTooltip" xml:space="preserve">
+    <value>Defines a Intermediate Cell.</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_Resultcell" xml:space="preserve">
+    <value>Result Cell</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_ResultcellTooltip" xml:space="preserve">
+    <value>Defines a Result Cell.</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_Title" xml:space="preserve">
+    <value>Define Scenario Cells</value>
+  </data>
 </root>
