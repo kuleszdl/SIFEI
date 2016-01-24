@@ -87,9 +87,9 @@
             // 
             this.inspectionTab.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.inspectionTab.Groups.Add(this.testGroup);
+            this.inspectionTab.Groups.Add(this.viewGroup);
             this.inspectionTab.Groups.Add(this.scenarioGroup);
             this.inspectionTab.Groups.Add(this.defineGroup);
-            this.inspectionTab.Groups.Add(this.viewGroup);
             this.inspectionTab.Groups.Add(this.sanityGroup);
             this.inspectionTab.Label = "INSPECTION";
             this.inspectionTab.Name = "inspectionTab";
@@ -109,7 +109,7 @@
             this.scanButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.scanButton.Description = "Scans the current workbook with all scenarios.";
             this.scanButton.Label = "Scan";
-            this.scanButton.Name = "testButton";
+            this.scanButton.Name = "scanButton";
             this.scanButton.OfficeImageId = "Synchronize";
             this.scanButton.ScreenTip = "Scans the current workbook.";
             this.scanButton.ShowImage = true;
