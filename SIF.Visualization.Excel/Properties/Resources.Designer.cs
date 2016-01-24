@@ -182,6 +182,69 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScenario_CancelButton {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScenario_CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Discard this scenario ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScenario_CancelButtonTolltip {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScenario_CancelButtonTolltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScenario_NewButton {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScenario_NewButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Creates a new scenario ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScenario_NewButtonTooltip {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScenario_NewButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScenario_SaveButton {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScenario_SaveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save this scenario ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScenario_SaveButtonTooltip {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScenario_SaveButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Scenario ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaScenario_Title {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaScenario_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Inspection Pane ähnelt.
         /// </summary>
         public static string tl_Ribbon_AreaView_PaneButton {

@@ -161,6 +161,27 @@
   <data name="tl_Ribbon_Title" xml:space="preserve">
     <value>INSPEKTION</value>
   </data>
+  <data name="tl_Ribbon_AreaScenario_CancelButton" xml:space="preserve">
+    <value>Verwerfen</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_CancelButtonTolltip" xml:space="preserve">
+    <value>Verwirft alle Änderungen am aktuellen Szenario</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_NewButton" xml:space="preserve">
+    <value>Neu</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_NewButtonTooltip" xml:space="preserve">
+    <value>Erstellt ein neues Szenario</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_SaveButton" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_SaveButtonTooltip" xml:space="preserve">
+    <value>Speichert das aktuelle Szenario</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_Title" xml:space="preserve">
+    <value>Szenario</value>
+  </data>
   <data name="tl_Ribbon_AreaView_PaneButton" xml:space="preserve">
     <value>Seitenleiste</value>
   </data>

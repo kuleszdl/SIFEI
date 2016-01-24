@@ -51,6 +51,15 @@
             this.clearButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_ResetButton;
             this.clearButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_ResetButtonTooltip;
 
+            // Scenario area
+            this.scenarioGroup.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScenario_Title;
+            this.CreateNewScenarioButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScenario_NewButton;
+            this.CreateNewScenarioButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScenario_NewButtonTooltip;
+            this.cancelScenarioButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScenario_CancelButton;
+            this.cancelScenarioButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScenario_CancelButtonTolltip;
+            this.submitScenarioButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScenario_SaveButton;
+            this.submitScenarioButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScenario_SaveButtonTooltip;
+
         }
 
         #region Vom Komponenten-Designer generierter Code

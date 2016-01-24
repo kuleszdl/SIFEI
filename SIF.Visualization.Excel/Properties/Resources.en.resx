@@ -161,6 +161,27 @@
   <data name="tl_Ribbon_Title" xml:space="preserve">
     <value>INSPECTION</value>
   </data>
+  <data name="tl_Ribbon_AreaScenario_CancelButton" xml:space="preserve">
+    <value>Discard</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_CancelButtonTolltip" xml:space="preserve">
+    <value>Discards all changes to the current scenario</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_NewButton" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_NewButtonTooltip" xml:space="preserve">
+    <value>Creates a new scenario</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_SaveButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_SaveButtonTooltip" xml:space="preserve">
+    <value>Saves the current scenario</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_Title" xml:space="preserve">
+    <value>Scenario</value>
+  </data>
   <data name="tl_Ribbon_AreaView_PaneButton" xml:space="preserve">
     <value>Side pane</value>
   </data>
