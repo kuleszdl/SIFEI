@@ -162,4 +162,19 @@
   <data name="tl_Ribbon_Title" xml:space="preserve">
     <value>INSPECTION</value>
   </data>
+  <data name="tl_Ribbon_AreaView_PaneButton" xml:space="preserve">
+    <value>Inspection Pane</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_PaneButtonTooltip" xml:space="preserve">
+    <value>Opens a pane with the cell definitions, scenario overview and findings.</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_ResetButton" xml:space="preserve">
+    <value>Reset document</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_ResetButtonTooltip" xml:space="preserve">
+    <value>Resets the document to the state before the test execution.</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_Title" xml:space="preserve">
+    <value>View</value>
+  </data>
 </root>

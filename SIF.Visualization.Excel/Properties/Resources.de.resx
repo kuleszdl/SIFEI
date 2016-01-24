@@ -161,4 +161,19 @@
   <data name="tl_Ribbon_Title" xml:space="preserve">
     <value>INSPEKTION</value>
   </data>
+  <data name="tl_Ribbon_AreaView_PaneButton" xml:space="preserve">
+    <value>Seitenleiste</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_PaneButtonTooltip" xml:space="preserve">
+    <value>Öffnet bzw. schließt eine Seitenleiste, die Befunde, festgelegte Zellen und mehr anzeigt.</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_ResetButton" xml:space="preserve">
+    <value>Befundmarker entfernen</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_ResetButtonTooltip" xml:space="preserve">
+    <value>Entfernt alle Befundmarkierungen in der Hauptansicht</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_Title" xml:space="preserve">
+    <value>View</value>
+  </data>
 </root>

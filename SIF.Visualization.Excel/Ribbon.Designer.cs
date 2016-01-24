@@ -32,7 +32,10 @@
         /// </summary>
         private void InitializeComponentOverride()
         {
+            // inspectionTab
             this.inspectionTab.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_Title;
+
+            // Action area
             this.testGroup.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_Title;
             this.automaticScanCheckBox.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_AutomaticScansCheckbox;
             this.automaticScanCheckBox.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_AutomaticScansCheckboxTooltip;
@@ -40,7 +43,13 @@
             this.policyConfigurationDialog.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_PolicyConfigurationButtonTooltip;
             this.scanButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_ScanButton;
             this.scanButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_ScanButtonTooltip;
-            
+
+            // View area
+            this.viewGroup.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_Title;
+            this.sharedPaneButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_PaneButton;
+            this.sharedPaneButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_PaneButtonTooltip;
+            this.clearButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_ResetButton;
+            this.clearButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_ResetButtonTooltip;
 
         }
 
@@ -59,6 +68,9 @@
             this.policyConfigurationDialog = this.Factory.CreateRibbonButton();
             this.btnLoadFile1 = this.Factory.CreateRibbonButton();
             this.btnLoadFile2 = this.Factory.CreateRibbonButton();
+            this.viewGroup = this.Factory.CreateRibbonGroup();
+            this.sharedPaneButton = this.Factory.CreateRibbonButton();
+            this.clearButton = this.Factory.CreateRibbonButton();
             this.scenarioGroup = this.Factory.CreateRibbonGroup();
             this.CreateNewScenarioButton = this.Factory.CreateRibbonButton();
             this.submitScenarioButton = this.Factory.CreateRibbonButton();
@@ -67,9 +79,6 @@
             this.inputCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.intermediateCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.resultCellToggleButton = this.Factory.CreateRibbonToggleButton();
-            this.viewGroup = this.Factory.CreateRibbonGroup();
-            this.sharedPaneButton = this.Factory.CreateRibbonButton();
-            this.clearButton = this.Factory.CreateRibbonButton();
             this.sanityGroup = this.Factory.CreateRibbonGroup();
             this.sanityValueCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.sanityConstraintCellToggleButton = this.Factory.CreateRibbonToggleButton();
@@ -78,9 +87,9 @@
             this.sanityWarnCheckbox = this.Factory.CreateRibbonCheckBox();
             this.inspectionTab.SuspendLayout();
             this.testGroup.SuspendLayout();
+            this.viewGroup.SuspendLayout();
             this.scenarioGroup.SuspendLayout();
             this.defineGroup.SuspendLayout();
-            this.viewGroup.SuspendLayout();
             this.sanityGroup.SuspendLayout();
             // 
             // inspectionTab
@@ -138,6 +147,35 @@
             // 
             this.btnLoadFile2.Label = "";
             this.btnLoadFile2.Name = "btnLoadFile2";
+            // 
+            // viewGroup
+            // 
+            this.viewGroup.Items.Add(this.sharedPaneButton);
+            this.viewGroup.Items.Add(this.clearButton);
+            this.viewGroup.Label = "View";
+            this.viewGroup.Name = "viewGroup";
+            // 
+            // sharedPaneButton
+            // 
+            this.sharedPaneButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.sharedPaneButton.Description = "Opens the inspections pane.";
+            this.sharedPaneButton.Image = global::SIF.Visualization.Excel.Properties.Resources.inspectionpane;
+            this.sharedPaneButton.Label = "Inspection Pane";
+            this.sharedPaneButton.Name = "sharedPaneButton";
+            this.sharedPaneButton.ScreenTip = "Opens a pane with the cell definitions, scenario overview and findings.";
+            this.sharedPaneButton.ShowImage = true;
+            this.sharedPaneButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.sharedPaneButton_Click);
+            // 
+            // clearButton
+            // 
+            this.clearButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.clearButton.Description = "Resets the document to the state before the test execution.";
+            this.clearButton.Label = "Reset document";
+            this.clearButton.Name = "clearButton";
+            this.clearButton.OfficeImageId = "ClearRow";
+            this.clearButton.ScreenTip = "Resets the document to the state before the test execution.";
+            this.clearButton.ShowImage = true;
+            this.clearButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.clearButton_Click);
             // 
             // scenarioGroup
             // 
@@ -218,34 +256,6 @@
             this.resultCellToggleButton.ShowImage = true;
             this.resultCellToggleButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.DefineResultCell_Click);
             // 
-            // viewGroup
-            // 
-            this.viewGroup.Items.Add(this.sharedPaneButton);
-            this.viewGroup.Items.Add(this.clearButton);
-            this.viewGroup.Label = "View";
-            this.viewGroup.Name = "viewGroup";
-            // 
-            // sharedPaneButton
-            // 
-            this.sharedPaneButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.sharedPaneButton.Description = "Opens the inspections pane.";
-            this.sharedPaneButton.Image = global::SIF.Visualization.Excel.Properties.Resources.inspectionpane;
-            this.sharedPaneButton.Label = "Inspection Pane";
-            this.sharedPaneButton.Name = "sharedPaneButton";
-            this.sharedPaneButton.ScreenTip = "Opens a pane with the cell definitions, scenario overview and findings.";
-            this.sharedPaneButton.ShowImage = true;
-            this.sharedPaneButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.sharedPaneButton_Click);
-            // 
-            // clearButton
-            // 
-            this.clearButton.Description = "Resets the document to the state before the test execution.";
-            this.clearButton.Label = "Reset document";
-            this.clearButton.Name = "clearButton";
-            this.clearButton.OfficeImageId = "ClearRow";
-            this.clearButton.ScreenTip = "Resets the document to the state before the test execution.";
-            this.clearButton.ShowImage = true;
-            this.clearButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.clearButton_Click);
-            // 
             // sanityGroup
             // 
             this.sanityGroup.Items.Add(this.sanityValueCellToggleButton);
@@ -297,12 +307,12 @@
             this.inspectionTab.PerformLayout();
             this.testGroup.ResumeLayout(false);
             this.testGroup.PerformLayout();
+            this.viewGroup.ResumeLayout(false);
+            this.viewGroup.PerformLayout();
             this.scenarioGroup.ResumeLayout(false);
             this.scenarioGroup.PerformLayout();
             this.defineGroup.ResumeLayout(false);
             this.defineGroup.PerformLayout();
-            this.viewGroup.ResumeLayout(false);
-            this.viewGroup.PerformLayout();
             this.sanityGroup.ResumeLayout(false);
             this.sanityGroup.PerformLayout();
 

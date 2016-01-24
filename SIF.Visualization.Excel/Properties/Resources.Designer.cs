@@ -182,6 +182,51 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Inspection Pane ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaView_PaneButton {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaView_PaneButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Opens a pane with the cell definitions, scenario overview and findings. ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaView_PaneButtonTooltip {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaView_PaneButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reset document ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaView_ResetButton {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaView_ResetButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Resets the document to the state before the test execution. ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaView_ResetButtonTooltip {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaView_ResetButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die View ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaView_Title {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaView_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die INSPECTION ähnelt.
         /// </summary>
         public static string tl_Ribbon_Title {
