@@ -218,4 +218,40 @@
   <data name="tl_Ribbon_AreaDefine_Title" xml:space="preserve">
     <value>Zellen festlegen</value>
   </data>
+  <data name="tl_Ribbon_AreaMiscellaneous_GlobalSettingsButton" xml:space="preserve">
+    <value>Globale Einstellungen</value>
+  </data>
+  <data name="tl_Ribbon_AreaMiscellaneous_Title" xml:space="preserve">
+    <value>Sonstiges</value>
+  </data>
+  <data name="DebugReadWriteErrorPre_MessageBoxText1" xml:space="preserve">
+    <value>Konnte Debug-Datei nicht erstellen, prüfen Sie, dass Sie Schreibrechte für</value>
+  </data>
+  <data name="DebugReadWriteErrorSuff_MessageBoxText" xml:space="preserve">
+    <value>, oder erstellen Sie sie selbst.</value>
+  </data>
+  <data name="DebugReadWriteErrorSuf_MessageBoxText" xml:space="preserve">
+    <value>, oder erstellen Sie sie selbst.</value>
+  </data>
+  <data name="DebugReadWriteError_MessageBoxText" xml:space="preserve">
+    <value>Konnte Debug-Datei nicht erstellen, prüfen Sie, dass Sie Schreibrechte für</value>
+  </data>
+  <data name="DebugReadWriteError_MessageBoxTitle1" xml:space="preserve">
+    <value>Debug-Datei Fehler</value>
+  </data>
+  <data name="GlobalSettingsDialog_B_VerifySifPath_Click_SIF_or_JRE_not_installed" xml:space="preserve">
+    <value>SIF oder JRE nicht installiert</value>
+  </data>
+  <data name="NoJreSifInstallationError_MessageBoxText" xml:space="preserve">
+    <value>Bitte installieren Sie die Java-Version von SIF in den gewählten Pfad oder geben Sie einen anderen Pfad an und fügen sie die JRE der PATH_Variable zu, nachdem Sie sie installiert haben.</value>
+  </data>
+  <data name="NoJreSifInstallationError_MessageBoxTitle" xml:space="preserve">
+    <value>SIF oder JRE nicht installiert</value>
+  </data>
+  <data name="NoMonoSifInstallaionError_MessageBoxText" xml:space="preserve">
+    <value>Bitte installieren Sie die .NET-Version von SIF in dem gewählten Verzeichnis oder geben Sie einen anderen Pfad an und installieren Sie Mono und fügen es Ihrer PATH-umgebungsvariable hinzu oder wählen Sie dessen Verzeichnis über "Durchsuchen..." aus, wenn Sie nicht das .NET-Framework verwenden wollen und installieren Sie die Assemblies von IKVM in ihrem Assembly-Cache.</value>
+  </data>
+  <data name="NoMonoSifInstallationError_MessageBoxTitle" xml:space="preserve">
+    <value>SIF or Mono Runtime Environment not installed</value>
+  </data>
 </root>
