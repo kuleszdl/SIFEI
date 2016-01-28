@@ -211,6 +211,10 @@
     <Compile Include="Core\Policy.cs" />
     <Compile Include="Core\Violation.cs" />
     <Compile Include="Core\DataModel.cs" />
+    <Compile Include="GlobalSettingsDialog.cs" />
+    <Compile Include="GlobalSettingsDialog.Designer.cs">
+      <DependentUpon>GlobalSettingsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="IgnoreView\IgnoreView.xaml.cs">
       <DependentUpon>IgnoreView.xaml</DependentUpon>
     </Compile>
@@ -363,6 +367,15 @@
     </Compile>
     <EmbeddedResource Include="CellErrorInfo\CellErrorInfoContainer.resx">
       <DependentUpon>CellErrorInfoContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalSettingsDialog.de.resx">
+      <DependentUpon>GlobalSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalSettingsDialog.en.resx">
+      <DependentUpon>GlobalSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalSettingsDialog.resx">
+      <DependentUpon>GlobalSettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PolicyConfigurationDialog.resx">
       <DependentUpon>PolicyConfigurationDialog.cs</DependentUpon>
