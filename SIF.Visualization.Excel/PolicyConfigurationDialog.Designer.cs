@@ -65,7 +65,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SD_Amount = new System.Windows.Forms.TextBox();
             this.cb_Ask_Thousands = new System.Windows.Forms.CheckBox();
-            this.CB_SifDebugMode = new System.Windows.Forms.CheckBox();
             this.panel9 = new System.Windows.Forms.Panel();
             this.EIC_A = new System.Windows.Forms.RadioButton();
             this.EIC_M = new System.Windows.Forms.RadioButton();
@@ -83,7 +82,7 @@
             // 
             // Button_OK
             // 
-            this.Button_OK.Location = new System.Drawing.Point(168, 331);
+            this.Button_OK.Location = new System.Drawing.Point(168, 286);
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(75, 23);
             this.Button_OK.TabIndex = 9;
@@ -93,7 +92,7 @@
             // 
             // Button_Cancel
             // 
-            this.Button_Cancel.Location = new System.Drawing.Point(249, 331);
+            this.Button_Cancel.Location = new System.Drawing.Point(249, 286);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.Button_Cancel.TabIndex = 10;
@@ -480,16 +479,6 @@
             this.cb_Ask_Thousands.Text = "Ask whether thousand \r\nseparators are intended";
             this.cb_Ask_Thousands.UseVisualStyleBackColor = true;
             // 
-            // CB_SifDebugMode
-            // 
-            this.CB_SifDebugMode.AutoSize = true;
-            this.CB_SifDebugMode.Location = new System.Drawing.Point(16, 294);
-            this.CB_SifDebugMode.Name = "CB_SifDebugMode";
-            this.CB_SifDebugMode.Size = new System.Drawing.Size(169, 17);
-            this.CB_SifDebugMode.TabIndex = 33;
-            this.CB_SifDebugMode.Text = "Enable the SIF debug console";
-            this.CB_SifDebugMode.UseVisualStyleBackColor = true;
-            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.EIC_A);
@@ -539,10 +528,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(504, 384);
+            this.ClientSize = new System.Drawing.Size(504, 334);
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.CB_ErrorInCells);
-            this.Controls.Add(this.CB_SifDebugMode);
             this.Controls.Add(this.cb_Ask_Thousands);
             this.Controls.Add(this.SD_Amount);
             this.Controls.Add(this.label1);
@@ -631,7 +619,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox SD_Amount;
         private System.Windows.Forms.CheckBox cb_Ask_Thousands;
-        private System.Windows.Forms.CheckBox CB_SifDebugMode;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.RadioButton EIC_A;
         private System.Windows.Forms.RadioButton EIC_M;

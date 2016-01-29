@@ -174,11 +174,7 @@ namespace SIF.Visualization.Excel
                 }
             }
 
-            if (File.Exists(debugFile))
-            {
-                CB_SifDebugMode.Checked = true;
-            }
-            
+           
             cb_Ask_Thousands.Checked = !Settings.Default.SifUseThousandsSeparator;
 
 
@@ -215,23 +211,7 @@ namespace SIF.Visualization.Excel
                     settings.StringDistanceMaxDist = stringDstMax;
                 }
             }
-            try
-            {
-                if (CB_SifDebugMode.Checked)
-                {
-                    File.Create(debugFile);
-                }
-                else
-                {
-                    File.Delete(debugFile);
-                }
-            }
-            catch (Exception)
-            {
-                error = true;
-                MessageBox.Show("Failed to create or delete the debug file, check that you have write permissions for " +
-                                debugFile + ", or create it yourself.", "Error");
-            }
+           
             #endregion
 
             if (error) // abort the closing and further parsing of members

@@ -69,6 +69,12 @@
             this.resultCellToggleButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaDefine_Resultcell;
             this.resultCellToggleButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaDefine_ResultcellTooltip;
 
+            // Miscellaneous area
+            this.miscellaneousGroup.Label =
+                SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_Title;
+            this.globalSettingsDialog.Label =
+                SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_GlobalSettingsButton;
+
         }
 
         #region Vom Komponenten-Designer generierter Code
@@ -103,12 +109,15 @@
             this.sanityExplanationCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.sanityCheckingCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.sanityWarnCheckbox = this.Factory.CreateRibbonCheckBox();
+            this.miscellaneousGroup = this.Factory.CreateRibbonGroup();
+            this.globalSettingsDialog = this.Factory.CreateRibbonButton();
             this.inspectionTab.SuspendLayout();
             this.testGroup.SuspendLayout();
             this.viewGroup.SuspendLayout();
             this.scenarioGroup.SuspendLayout();
             this.defineGroup.SuspendLayout();
             this.sanityGroup.SuspendLayout();
+            this.miscellaneousGroup.SuspendLayout();
             // 
             // inspectionTab
             // 
@@ -118,6 +127,7 @@
             this.inspectionTab.Groups.Add(this.scenarioGroup);
             this.inspectionTab.Groups.Add(this.defineGroup);
             this.inspectionTab.Groups.Add(this.sanityGroup);
+            this.inspectionTab.Groups.Add(this.miscellaneousGroup);
             this.inspectionTab.Label = "INSPECTION";
             this.inspectionTab.Name = "inspectionTab";
             // 
@@ -315,6 +325,20 @@
             this.sanityWarnCheckbox.Name = "sanityWarnCheckbox";
             this.sanityWarnCheckbox.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.warnings_Click);
             // 
+            // miscellaneousGroup
+            // 
+            this.miscellaneousGroup.Items.Add(this.globalSettingsDialog);
+            this.miscellaneousGroup.Label = "Miscellaneous";
+            this.miscellaneousGroup.Name = "miscellaneousGroup";
+            // 
+            // globalSettingsDialog
+            // 
+            this.globalSettingsDialog.Image = global::SIF.Visualization.Excel.Properties.Resources.input_clear;
+            this.globalSettingsDialog.Label = "Global Settings";
+            this.globalSettingsDialog.Name = "globalSettingsDialog";
+            this.globalSettingsDialog.ShowImage = true;
+            this.globalSettingsDialog.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.globalSettings_Click);
+            // 
             // Ribbon
             // 
             this.Name = "Ribbon";
@@ -333,6 +357,8 @@
             this.defineGroup.PerformLayout();
             this.sanityGroup.ResumeLayout(false);
             this.sanityGroup.PerformLayout();
+            this.miscellaneousGroup.ResumeLayout(false);
+            this.miscellaneousGroup.PerformLayout();
 
         }
 
@@ -362,6 +388,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnLoadFile1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnLoadFile2;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton policyConfigurationDialog;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup miscellaneousGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton globalSettingsDialog;
     }
 
     partial class ThisRibbonCollection

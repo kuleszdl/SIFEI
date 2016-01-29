@@ -445,5 +445,10 @@ namespace SIF.Visualization.Excel
         {
             PolicyConfigurationDialog settingsDialog = new PolicyConfigurationDialog();
         }
+
+        private void globalSettings_Click(object sender, RibbonControlEventArgs e)
+        {
+            GlobalSettingsDialog settingsDialog = new GlobalSettingsDialog();
+        }
     }
 }

@@ -1,0 +1,993 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TC_GlobalSettings.AccessibleName" xml:space="preserve">
+    <value>GlobalConfigurationTabControl</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="L_DotnetVersion.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="L_DotnetVersion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>56, 24</value>
+  </data>
+  <data name="L_DotnetVersion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 13</value>
+  </data>
+  <data name="L_DotnetVersion.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="L_DotnetVersion.Text" xml:space="preserve">
+    <value>Version: </value>
+  </data>
+  <data name="&gt;&gt;L_DotnetVersion.Name" xml:space="preserve">
+    <value>L_DotnetVersion</value>
+  </data>
+  <data name="&gt;&gt;L_DotnetVersion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;L_DotnetVersion.Parent" xml:space="preserve">
+    <value>GB_DotNetFrameworkSelection</value>
+  </data>
+  <data name="&gt;&gt;L_DotnetVersion.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="TB_DotnetVersion.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="TB_DotnetVersion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>109, 21</value>
+  </data>
+  <data name="TB_DotnetVersion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 20</value>
+  </data>
+  <data name="TB_DotnetVersion.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="&gt;&gt;TB_DotnetVersion.Name" xml:space="preserve">
+    <value>TB_DotnetVersion</value>
+  </data>
+  <data name="&gt;&gt;TB_DotnetVersion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TB_DotnetVersion.Parent" xml:space="preserve">
+    <value>GB_DotNetFrameworkSelection</value>
+  </data>
+  <data name="&gt;&gt;TB_DotnetVersion.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="TB_MonoPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>56, 63</value>
+  </data>
+  <data name="TB_MonoPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 20</value>
+  </data>
+  <data name="TB_MonoPath.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="&gt;&gt;TB_MonoPath.Name" xml:space="preserve">
+    <value>TB_MonoPath</value>
+  </data>
+  <data name="&gt;&gt;TB_MonoPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TB_MonoPath.Parent" xml:space="preserve">
+    <value>GB_DotNetFrameworkSelection</value>
+  </data>
+  <data name="&gt;&gt;TB_MonoPath.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="B_MonoBrowse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>178, 61</value>
+  </data>
+  <data name="B_MonoBrowse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="B_MonoBrowse.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="B_MonoBrowse.Text" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="&gt;&gt;B_MonoBrowse.Name" xml:space="preserve">
+    <value>B_MonoBrowse</value>
+  </data>
+  <data name="&gt;&gt;B_MonoBrowse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;B_MonoBrowse.Parent" xml:space="preserve">
+    <value>GB_DotNetFrameworkSelection</value>
+  </data>
+  <data name="&gt;&gt;B_MonoBrowse.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="RB_Mono.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RB_Mono.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 66</value>
+  </data>
+  <data name="RB_Mono.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 17</value>
+  </data>
+  <data name="RB_Mono.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="RB_Mono.Text" xml:space="preserve">
+    <value>Mono</value>
+  </data>
+  <data name="&gt;&gt;RB_Mono.Name" xml:space="preserve">
+    <value>RB_Mono</value>
+  </data>
+  <data name="&gt;&gt;RB_Mono.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RB_Mono.Parent" xml:space="preserve">
+    <value>GB_DotNetFrameworkSelection</value>
+  </data>
+  <data name="&gt;&gt;RB_Mono.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="RB_DotNet.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RB_DotNet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 22</value>
+  </data>
+  <data name="RB_DotNet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 17</value>
+  </data>
+  <data name="RB_DotNet.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="RB_DotNet.Text" xml:space="preserve">
+    <value>.NET</value>
+  </data>
+  <data name="&gt;&gt;RB_DotNet.Name" xml:space="preserve">
+    <value>RB_DotNet</value>
+  </data>
+  <data name="&gt;&gt;RB_DotNet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RB_DotNet.Parent" xml:space="preserve">
+    <value>GB_DotNetFrameworkSelection</value>
+  </data>
+  <data name="&gt;&gt;RB_DotNet.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="GB_MonoPathSelection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>52, 50</value>
+  </data>
+  <data name="GB_MonoPathSelection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 39</value>
+  </data>
+  <data name="GB_MonoPathSelection.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="&gt;&gt;GB_MonoPathSelection.Name" xml:space="preserve">
+    <value>GB_MonoPathSelection</value>
+  </data>
+  <data name="&gt;&gt;GB_MonoPathSelection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GB_MonoPathSelection.Parent" xml:space="preserve">
+    <value>GB_DotNetFrameworkSelection</value>
+  </data>
+  <data name="&gt;&gt;GB_MonoPathSelection.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>52, 8</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 39</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>GB_DotNetFrameworkSelection</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="GB_DotNetFrameworkSelection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="GB_DotNetFrameworkSelection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 98</value>
+  </data>
+  <data name="GB_DotNetFrameworkSelection.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;GB_DotNetFrameworkSelection.Name" xml:space="preserve">
+    <value>GB_DotNetFrameworkSelection</value>
+  </data>
+  <data name="&gt;&gt;GB_DotNetFrameworkSelection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GB_DotNetFrameworkSelection.Parent" xml:space="preserve">
+    <value>T_Framework</value>
+  </data>
+  <data name="&gt;&gt;GB_DotNetFrameworkSelection.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="T_Framework.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="T_Framework.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="T_Framework.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 107</value>
+  </data>
+  <data name="T_Framework.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="T_Framework.Text" xml:space="preserve">
+    <value>Framework</value>
+  </data>
+  <data name="&gt;&gt;T_Framework.Name" xml:space="preserve">
+    <value>T_Framework</value>
+  </data>
+  <data name="&gt;&gt;T_Framework.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;T_Framework.Parent" xml:space="preserve">
+    <value>TC_JavaDotNet</value>
+  </data>
+  <data name="&gt;&gt;T_Framework.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RB_DLLAccess.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RB_DLLAccess.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="RB_DLLAccess.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 70</value>
+  </data>
+  <data name="RB_DLLAccess.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 17</value>
+  </data>
+  <data name="RB_DLLAccess.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="RB_DLLAccess.Text" xml:space="preserve">
+    <value>Access via dll (not yet implemented)</value>
+  </data>
+  <data name="&gt;&gt;RB_DLLAccess.Name" xml:space="preserve">
+    <value>RB_DLLAccess</value>
+  </data>
+  <data name="&gt;&gt;RB_DLLAccess.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RB_DLLAccess.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;RB_DLLAccess.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RB_NetPipe.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RB_NetPipe.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="RB_NetPipe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 44</value>
+  </data>
+  <data name="RB_NetPipe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 17</value>
+  </data>
+  <data name="RB_NetPipe.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="RB_NetPipe.Text" xml:space="preserve">
+    <value>.NET pipe communication (not yet implemented)</value>
+  </data>
+  <data name="&gt;&gt;RB_NetPipe.Name" xml:space="preserve">
+    <value>RB_NetPipe</value>
+  </data>
+  <data name="&gt;&gt;RB_NetPipe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RB_NetPipe.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;RB_NetPipe.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="RB_JavaNetSocket.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RB_JavaNetSocket.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 18</value>
+  </data>
+  <data name="RB_JavaNetSocket.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 17</value>
+  </data>
+  <data name="RB_JavaNetSocket.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="RB_JavaNetSocket.Text" xml:space="preserve">
+    <value>Java to .NET socket communication</value>
+  </data>
+  <data name="&gt;&gt;RB_JavaNetSocket.Name" xml:space="preserve">
+    <value>RB_JavaNetSocket</value>
+  </data>
+  <data name="&gt;&gt;RB_JavaNetSocket.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RB_JavaNetSocket.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;RB_JavaNetSocket.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>262, 98</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>T_Communication</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="T_Communication.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="T_Communication.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="T_Communication.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 107</value>
+  </data>
+  <data name="T_Communication.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="T_Communication.Text" xml:space="preserve">
+    <value>Communication</value>
+  </data>
+  <data name="&gt;&gt;T_Communication.Name" xml:space="preserve">
+    <value>T_Communication</value>
+  </data>
+  <data name="&gt;&gt;T_Communication.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;T_Communication.Parent" xml:space="preserve">
+    <value>TC_JavaDotNet</value>
+  </data>
+  <data name="&gt;&gt;T_Communication.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="RB_SocketNew.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RB_SocketNew.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="RB_SocketNew.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 51</value>
+  </data>
+  <data name="RB_SocketNew.Size" type="System.Drawing.Size, System.Drawing">
+    <value>241, 17</value>
+  </data>
+  <data name="RB_SocketNew.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="RB_SocketNew.Text" xml:space="preserve">
+    <value>Use new socket communication (not impl. yet)</value>
+  </data>
+  <data name="&gt;&gt;RB_SocketNew.Name" xml:space="preserve">
+    <value>RB_SocketNew</value>
+  </data>
+  <data name="&gt;&gt;RB_SocketNew.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RB_SocketNew.Parent" xml:space="preserve">
+    <value>groupBoxJavaSelection</value>
+  </data>
+  <data name="&gt;&gt;RB_SocketNew.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RB_SocketOld.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RB_SocketOld.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 21</value>
+  </data>
+  <data name="RB_SocketOld.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 17</value>
+  </data>
+  <data name="RB_SocketOld.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="RB_SocketOld.Text" xml:space="preserve">
+    <value>Use old socket communication</value>
+  </data>
+  <data name="&gt;&gt;RB_SocketOld.Name" xml:space="preserve">
+    <value>RB_SocketOld</value>
+  </data>
+  <data name="&gt;&gt;RB_SocketOld.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RB_SocketOld.Parent" xml:space="preserve">
+    <value>groupBoxJavaSelection</value>
+  </data>
+  <data name="&gt;&gt;RB_SocketOld.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBoxJavaSelection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="groupBoxJavaSelection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>262, 98</value>
+  </data>
+  <data name="groupBoxJavaSelection.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;groupBoxJavaSelection.Name" xml:space="preserve">
+    <value>groupBoxJavaSelection</value>
+  </data>
+  <data name="&gt;&gt;groupBoxJavaSelection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxJavaSelection.Parent" xml:space="preserve">
+    <value>T_Socket</value>
+  </data>
+  <data name="&gt;&gt;groupBoxJavaSelection.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="T_Socket.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="T_Socket.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="T_Socket.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 107</value>
+  </data>
+  <data name="T_Socket.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="T_Socket.Text" xml:space="preserve">
+    <value>Socket</value>
+  </data>
+  <data name="&gt;&gt;T_Socket.Name" xml:space="preserve">
+    <value>T_Socket</value>
+  </data>
+  <data name="&gt;&gt;T_Socket.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;T_Socket.Parent" xml:space="preserve">
+    <value>TC_JavaDotNet</value>
+  </data>
+  <data name="&gt;&gt;T_Socket.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="TC_JavaDotNet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 102</value>
+  </data>
+  <data name="TC_JavaDotNet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 133</value>
+  </data>
+  <data name="TC_JavaDotNet.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="&gt;&gt;TC_JavaDotNet.Name" xml:space="preserve">
+    <value>TC_JavaDotNet</value>
+  </data>
+  <data name="&gt;&gt;TC_JavaDotNet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TC_JavaDotNet.Parent" xml:space="preserve">
+    <value>T_Runtime</value>
+  </data>
+  <data name="&gt;&gt;TC_JavaDotNet.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="CB_SifVersion.Items" xml:space="preserve">
+    <value>Java</value>
+  </data>
+  <data name="CB_SifVersion.Items1" xml:space="preserve">
+    <value>.NET</value>
+  </data>
+  <data name="CB_SifVersion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 25</value>
+  </data>
+  <data name="CB_SifVersion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="CB_SifVersion.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;CB_SifVersion.Name" xml:space="preserve">
+    <value>CB_SifVersion</value>
+  </data>
+  <data name="&gt;&gt;CB_SifVersion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CB_SifVersion.Parent" xml:space="preserve">
+    <value>T_Runtime</value>
+  </data>
+  <data name="&gt;&gt;CB_SifVersion.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="LBL_SifVersion.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LBL_SifVersion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>151, 8</value>
+  </data>
+  <data name="LBL_SifVersion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 13</value>
+  </data>
+  <data name="LBL_SifVersion.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="LBL_SifVersion.Text" xml:space="preserve">
+    <value>SIF version used by SIFEI:</value>
+  </data>
+  <data name="&gt;&gt;LBL_SifVersion.Name" xml:space="preserve">
+    <value>LBL_SifVersion</value>
+  </data>
+  <data name="&gt;&gt;LBL_SifVersion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LBL_SifVersion.Parent" xml:space="preserve">
+    <value>T_Runtime</value>
+  </data>
+  <data name="&gt;&gt;LBL_SifVersion.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="CB_SifStartup.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CB_SifStartup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 21</value>
+  </data>
+  <data name="CB_SifStartup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 17</value>
+  </data>
+  <data name="CB_SifStartup.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="CB_SifStartup.Text" xml:space="preserve">
+    <value>Start SIF on startup</value>
+  </data>
+  <data name="&gt;&gt;CB_SifStartup.Name" xml:space="preserve">
+    <value>CB_SifStartup</value>
+  </data>
+  <data name="&gt;&gt;CB_SifStartup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CB_SifStartup.Parent" xml:space="preserve">
+    <value>T_Runtime</value>
+  </data>
+  <data name="&gt;&gt;CB_SifStartup.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="B_VerifySifPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 14</value>
+  </data>
+  <data name="B_VerifySifPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="B_VerifySifPath.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="B_VerifySifPath.Text" xml:space="preserve">
+    <value>Verify path</value>
+  </data>
+  <data name="&gt;&gt;B_VerifySifPath.Name" xml:space="preserve">
+    <value>B_VerifySifPath</value>
+  </data>
+  <data name="&gt;&gt;B_VerifySifPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;B_VerifySifPath.Parent" xml:space="preserve">
+    <value>GB_SifPath</value>
+  </data>
+  <data name="&gt;&gt;B_VerifySifPath.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="TB_SifPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="TB_SifPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 20</value>
+  </data>
+  <data name="TB_SifPath.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="&gt;&gt;TB_SifPath.Name" xml:space="preserve">
+    <value>TB_SifPath</value>
+  </data>
+  <data name="&gt;&gt;TB_SifPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TB_SifPath.Parent" xml:space="preserve">
+    <value>GB_SifPath</value>
+  </data>
+  <data name="&gt;&gt;TB_SifPath.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="B_SifBrowse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>109, 14</value>
+  </data>
+  <data name="B_SifBrowse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="B_SifBrowse.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="B_SifBrowse.Text" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="&gt;&gt;B_SifBrowse.Name" xml:space="preserve">
+    <value>B_SifBrowse</value>
+  </data>
+  <data name="&gt;&gt;B_SifBrowse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;B_SifBrowse.Parent" xml:space="preserve">
+    <value>GB_SifPath</value>
+  </data>
+  <data name="&gt;&gt;B_SifBrowse.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="GB_SifPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 52</value>
+  </data>
+  <data name="GB_SifPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 44</value>
+  </data>
+  <data name="GB_SifPath.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="&gt;&gt;GB_SifPath.Name" xml:space="preserve">
+    <value>GB_SifPath</value>
+  </data>
+  <data name="&gt;&gt;GB_SifPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GB_SifPath.Parent" xml:space="preserve">
+    <value>T_Runtime</value>
+  </data>
+  <data name="&gt;&gt;GB_SifPath.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="T_Runtime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="T_Runtime.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="T_Runtime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>288, 241</value>
+  </data>
+  <data name="T_Runtime.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="T_Runtime.Text" xml:space="preserve">
+    <value>Runtime</value>
+  </data>
+  <data name="&gt;&gt;T_Runtime.Name" xml:space="preserve">
+    <value>T_Runtime</value>
+  </data>
+  <data name="&gt;&gt;T_Runtime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;T_Runtime.Parent" xml:space="preserve">
+    <value>TC_GlobalSettings</value>
+  </data>
+  <data name="&gt;&gt;T_Runtime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="CB_SifDebugMode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CB_SifDebugMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 21</value>
+  </data>
+  <data name="CB_SifDebugMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 17</value>
+  </data>
+  <data name="CB_SifDebugMode.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="CB_SifDebugMode.Text" xml:space="preserve">
+    <value>Enable the SIF debug console</value>
+  </data>
+  <data name="&gt;&gt;CB_SifDebugMode.Name" xml:space="preserve">
+    <value>CB_SifDebugMode</value>
+  </data>
+  <data name="&gt;&gt;CB_SifDebugMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CB_SifDebugMode.Parent" xml:space="preserve">
+    <value>T_Debug</value>
+  </data>
+  <data name="&gt;&gt;CB_SifDebugMode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="T_Debug.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="T_Debug.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="T_Debug.Size" type="System.Drawing.Size, System.Drawing">
+    <value>288, 241</value>
+  </data>
+  <data name="T_Debug.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="T_Debug.Text" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="&gt;&gt;T_Debug.Name" xml:space="preserve">
+    <value>T_Debug</value>
+  </data>
+  <data name="&gt;&gt;T_Debug.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;T_Debug.Parent" xml:space="preserve">
+    <value>TC_GlobalSettings</value>
+  </data>
+  <data name="&gt;&gt;T_Debug.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="TC_GlobalSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="TC_GlobalSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 267</value>
+  </data>
+  <data name="TC_GlobalSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;TC_GlobalSettings.Name" xml:space="preserve">
+    <value>TC_GlobalSettings</value>
+  </data>
+  <data name="&gt;&gt;TC_GlobalSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TC_GlobalSettings.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TC_GlobalSettings.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Button_Cancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 279</value>
+  </data>
+  <data name="Button_Cancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="Button_Cancel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="Button_Cancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;Button_Cancel.Name" xml:space="preserve">
+    <value>Button_Cancel</value>
+  </data>
+  <data name="&gt;&gt;Button_Cancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Button_Cancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Button_Cancel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Button_OK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 279</value>
+  </data>
+  <data name="Button_OK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="Button_OK.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="Button_OK.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="&gt;&gt;Button_OK.Name" xml:space="preserve">
+    <value>Button_OK</value>
+  </data>
+  <data name="&gt;&gt;Button_OK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Button_OK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Button_OK.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="FBD_SifDirectorySelect.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>31, 17</value>
+  </metadata>
+  <data name="FBD_SifDirectorySelect.Description" xml:space="preserve">
+    <value>Please select the directory of SIF</value>
+  </data>
+  <metadata name="FBD_MonoDirectorySelect.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 17</value>
+  </metadata>
+  <data name="FBD_MonoDirectorySelect.Description" xml:space="preserve">
+    <value>Please select the directory of SIF</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>296, 320</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Global settings</value>
+  </data>
+  <data name="&gt;&gt;FBD_SifDirectorySelect.Name" xml:space="preserve">
+    <value>FBD_SifDirectorySelect</value>
+  </data>
+  <data name="&gt;&gt;FBD_SifDirectorySelect.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FBD_MonoDirectorySelect.Name" xml:space="preserve">
+    <value>FBD_MonoDirectorySelect</value>
+  </data>
+  <data name="&gt;&gt;FBD_MonoDirectorySelect.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>GlobalSettingsDialog</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SIF.Visualization.Excel.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="FrameworkPath" Type="System.String" Scope="Application">
+    <Setting Name="FrameworkPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Spreadsheet Inspection Framework</Value>
     </Setting>
     <Setting Name="DefaultPort" Type="System.UInt16" Scope="Application">
@@ -37,6 +37,18 @@
     </Setting>
     <Setting Name="SifUseThousandsSeparator" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SifVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SifStartup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="CommunicationMethod" Type="System.String" Scope="User">
+      <Value Profile="(Default)">standard</Value>
+    </Setting>
+    <Setting Name="MonoFrameworkPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Spreadsheet Inspection Framework</Value>
     </Setting>
   </Settings>
 </SettingsFile>
