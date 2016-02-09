@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:SIF.Visualization.Excel.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -103,11 +104,11 @@
             <Expander.Style>
                 <Style TargetType="Expander">
                     <Setter Property="IsExpanded" Value="False" />
-                    <Setter Property="Header" Value="More Details" />
+                    <Setter Property="Header" Value="{x:Static p:Resources.tl_ViolationTemplate_MoreDetails}" />
 
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                            <Setter Property="Header" Value="Less Details" />
+                            <Setter Property="Header" Value="{x:Static p:Resources.tl_ViolationTemplate_LessDetails}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -126,31 +127,31 @@
 
                 <TextBlock  Margin="10 0 5 5"  TextWrapping="Wrap">
                     <TextBlock.Inlines>
-                        <Run FontWeight="Bold" Text="Description:" />
+                        <Run FontWeight="Bold" Text="{x:Static p:Resources.tl_ViolationTemplate_Type}" />
                         <Run Text="{Binding Description}"/>
                     </TextBlock.Inlines>
                 </TextBlock>
                 <TextBlock Grid.Row="1" Margin="10 0 5 5" TextWrapping="Wrap">
                     <TextBlock.Inlines>
-                        <Run FontWeight="Bold" Text="Possible Solution:" />
+                        <Run FontWeight="Bold" Text="{x:Static p:Resources.tl_ViolationTemplate_PossibleSolution}" />
                         <Run Text="{Binding Rule.PossibleSolution}"/>
                     </TextBlock.Inlines>
                 </TextBlock>
                 <TextBlock Grid.Row="2" Margin="10 0 5 5" TextWrapping="Wrap">
                     <TextBlock.Inlines>
-                        <Run FontWeight="Bold" Text="Background:" />
+                        <Run FontWeight="Bold" Text="{x:Static p:Resources.tl_ViolationTemplate_Background}" />
                         <Run Text="{Binding Rule.Background}"/>
                     </TextBlock.Inlines>
                 </TextBlock>
                 <TextBlock  Grid.Row="3" Margin="10 0 5 5" TextWrapping="Wrap">
                     <TextBlock.Inlines>
-                        <Run FontWeight="Bold" Text="Type:" />
+                        <Run FontWeight="Bold" Text="{x:Static p:Resources.tl_ViolationTemplate_Type}" />
                         <Run Text="{Binding Rule.Type, Converter={StaticResource TypeConverter}}"/>
                     </TextBlock.Inlines>
                 </TextBlock>
                 <TextBlock  Grid.Row="4" Margin="10 0 5 5" TextWrapping="Wrap">
                     <TextBlock.Inlines>
-                        <Run FontWeight="Bold" Text="First Occurrence:" />
+                        <Run FontWeight="Bold" Text="{x:Static p:Resources.tl_ViolationTemplate_FirstOccurence}" />
                         <Run Text="{Binding FirstOccurrence, StringFormat=' {0: dd MMMM yyyy, HH:mm:ss}'}"/>
                     </TextBlock.Inlines>
                 </TextBlock>

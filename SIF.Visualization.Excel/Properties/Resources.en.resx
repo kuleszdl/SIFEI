@@ -254,4 +254,37 @@
   <data name="NoMonoSifInstallationError_MessageBoxTitle" xml:space="preserve">
     <value>SIF or Mono Runtime Environment not installed</value>
   </data>
+  <data name="tl_CellErrorInfo_PossibleSolution" xml:space="preserve">
+    <value>Possible repair</value>
+  </data>
+  <data name="tl_CellErrorInfo_Background" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="tl_ViolationTemplate_Background" xml:space="preserve">
+    <value>Background:</value>
+  </data>
+  <data name="tl_ViolationTemplate_Description" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="tl_ViolationTemplate_FirstOccurence" xml:space="preserve">
+    <value>First occurence:</value>
+  </data>
+  <data name="tl_ViolationTemplate_Ignore" xml:space="preserve">
+    <value>ignore</value>
+  </data>
+  <data name="tl_ViolationTemplate_Later" xml:space="preserve">
+    <value>later</value>
+  </data>
+  <data name="tl_ViolationTemplate_LessDetails" xml:space="preserve">
+    <value>Less details</value>
+  </data>
+  <data name="tl_ViolationTemplate_MoreDetails" xml:space="preserve">
+    <value>More details</value>
+  </data>
+  <data name="tl_ViolationTemplate_PossibleSolution" xml:space="preserve">
+    <value>Possible solution:</value>
+  </data>
+  <data name="tl_ViolationTemplate_Type" xml:space="preserve">
+    <value>Type:</value>
+  </data>
 </root>

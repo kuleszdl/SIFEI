@@ -6,6 +6,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib" 
              xmlns:Controls="clr-namespace:SIF.Visualization.Excel.ViewCommon"
              xmlns:model="clr-namespace:SIF.Visualization.Excel.Core"
+             xmlns:p="clr-namespace:SIF.Visualization.Excel.Properties"
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
@@ -78,12 +79,12 @@
 
                                 <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 0 5 5">
                                 <Hyperlink Click="Later_Click">
-                                    Later
+                                    <TextBlock Text="{x:Static p:Resources.tl_ViolationTemplate_Later}" />
                                 </Hyperlink>
                                 </TextBlock>
                                 <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5 0 5 5">
                                 <Hyperlink Click="Ignore_Click">
-                                    Ignore
+                                    <TextBlock Text="{x:Static p:Resources.tl_ViolationTemplate_Ignore}" />
                                 </Hyperlink>
                                 </TextBlock>
                             </Grid>

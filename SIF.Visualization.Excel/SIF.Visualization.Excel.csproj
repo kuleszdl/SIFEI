@@ -211,7 +211,9 @@
     <Compile Include="Core\Policy.cs" />
     <Compile Include="Core\Violation.cs" />
     <Compile Include="Core\DataModel.cs" />
-    <Compile Include="GlobalSettingsDialog.cs" />
+    <Compile Include="GlobalSettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GlobalSettingsDialog.Designer.cs">
       <DependentUpon>GlobalSettingsDialog.cs</DependentUpon>
     </Compile>
@@ -438,6 +440,7 @@
     </Compile>
     <None Include="ScenarioView\ScenarioCore\SIF-Frontend_classes.cd" />
     <None Include="SIF.Visualization.Excel_1_TemporaryKey.pfx" />
+    <None Include="SIF.Visualization.Excel_2_TemporaryKey.pfx" />
     <None Include="SIF.Visualization.Excel_5_TemporaryKey.pfx" />
     <None Include="SIF.Visualization.Excel_TemporaryKey.pfx" />
     <None Include="ThisAddIn.Designer.xml">
@@ -560,10 +563,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>SIF.Visualization.Excel_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>SIF.Visualization.Excel_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>2AAF391B34E6F67913FE5F21D8653DFD9F707CC5</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>C8A12CCC16DC81CED84E1EB48F354CBD18355338</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
