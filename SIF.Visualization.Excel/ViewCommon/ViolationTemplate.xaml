@@ -127,7 +127,7 @@
 
                 <TextBlock  Margin="10 0 5 5"  TextWrapping="Wrap">
                     <TextBlock.Inlines>
-                        <Run FontWeight="Bold" Text="{x:Static p:Resources.tl_ViolationTemplate_Type}" />
+                        <Run FontWeight="Bold" Text="{x:Static p:Resources.tl_ViolationTemplate_Description}" />
                         <Run Text="{Binding Description}"/>
                     </TextBlock.Inlines>
                 </TextBlock>
