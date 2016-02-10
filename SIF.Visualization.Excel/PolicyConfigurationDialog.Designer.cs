@@ -62,7 +62,7 @@
             this.SD_A = new System.Windows.Forms.RadioButton();
             this.SD_M = new System.Windows.Forms.RadioButton();
             this.CB_StringDistance = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lb_MaxDistance = new System.Windows.Forms.Label();
             this.SD_Amount = new System.Windows.Forms.TextBox();
             this.cb_Ask_Thousands = new System.Windows.Forms.CheckBox();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -413,7 +413,7 @@
             // 
             this.panel8.Controls.Add(this.SD_A);
             this.panel8.Controls.Add(this.SD_M);
-            this.panel8.Location = new System.Drawing.Point(267, 176);
+            this.panel8.Location = new System.Drawing.Point(267, 202);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(160, 23);
             this.panel8.TabIndex = 29;
@@ -423,7 +423,7 @@
             this.SD_A.AutoSize = true;
             this.SD_A.Checked = true;
             this.SD_A.Enabled = false;
-            this.SD_A.Location = new System.Drawing.Point(0, 3);
+            this.SD_A.Location = new System.Drawing.Point(3, 3);
             this.SD_A.Name = "SD_A";
             this.SD_A.Size = new System.Drawing.Size(58, 17);
             this.SD_A.TabIndex = 15;
@@ -453,26 +453,26 @@
             this.CB_StringDistance.UseVisualStyleBackColor = true;
             this.CB_StringDistance.CheckedChanged += new System.EventHandler(this.CB_StringDistance_CheckedChanged);
             // 
-            // label1
+            // lb_MaxDistance
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(352, 160);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Max distance:";
+            this.lb_MaxDistance.AutoSize = true;
+            this.lb_MaxDistance.Location = new System.Drawing.Point(264, 179);
+            this.lb_MaxDistance.Name = "lb_MaxDistance";
+            this.lb_MaxDistance.Size = new System.Drawing.Size(73, 13);
+            this.lb_MaxDistance.TabIndex = 30;
+            this.lb_MaxDistance.Text = "Max distance:";
             // 
             // SD_Amount
             // 
-            this.SD_Amount.Location = new System.Drawing.Point(429, 157);
+            this.SD_Amount.Location = new System.Drawing.Point(360, 176);
             this.SD_Amount.Name = "SD_Amount";
-            this.SD_Amount.Size = new System.Drawing.Size(45, 20);
+            this.SD_Amount.Size = new System.Drawing.Size(67, 20);
             this.SD_Amount.TabIndex = 31;
             // 
             // cb_Ask_Thousands
             // 
             this.cb_Ask_Thousands.AutoSize = true;
-            this.cb_Ask_Thousands.Location = new System.Drawing.Point(247, 216);
+            this.cb_Ask_Thousands.Location = new System.Drawing.Point(245, 240);
             this.cb_Ask_Thousands.Name = "cb_Ask_Thousands";
             this.cb_Ask_Thousands.Size = new System.Drawing.Size(137, 30);
             this.cb_Ask_Thousands.TabIndex = 32;
@@ -533,7 +533,7 @@
             this.Controls.Add(this.CB_ErrorInCells);
             this.Controls.Add(this.cb_Ask_Thousands);
             this.Controls.Add(this.SD_Amount);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lb_MaxDistance);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.CB_StringDistance);
             this.Controls.Add(this.panel7);
@@ -616,7 +616,7 @@
         private System.Windows.Forms.RadioButton SD_A;
         private System.Windows.Forms.RadioButton SD_M;
         private System.Windows.Forms.CheckBox CB_StringDistance;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lb_MaxDistance;
         private System.Windows.Forms.TextBox SD_Amount;
         private System.Windows.Forms.CheckBox cb_Ask_Thousands;
         private System.Windows.Forms.Panel panel9;

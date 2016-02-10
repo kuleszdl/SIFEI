@@ -17,10 +17,13 @@ namespace SIF.Visualization.Excel
     public partial class PolicyConfigurationDialog : Form
     {
         private readonly String debugFile = Settings.Default.FrameworkPath + @"\debug";
+        
 
         public PolicyConfigurationDialog()
         {
             InitializeComponent();
+
+            postInitialize();
 
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             PolicyConfigurationModel settings = DataModel.Instance.CurrentWorkbook.PolicySettings;
@@ -179,6 +182,49 @@ namespace SIF.Visualization.Excel
 
 
             this.ShowDialog();
+        }
+
+        /// <summary>
+        /// Update Labels and other UI elements from translation via Resources
+        /// </summary>
+        private void postInitialize()
+        {
+            this.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_WindowTitle; // Window title
+            Button_Cancel.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Button_Cancel;
+            Button_OK.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Button_Ok;
+            CB_ErrorInCells.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_CellsWithErrors;
+            CB_FormulaComplexity.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_FormulaComplexity;
+            CB_MultipleSameRef.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_SameMultipleRefs;
+            CB_NoConstantsInFormulas.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_Constants;
+            CB_NonConsideredConstants.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_NonConsideredConstants;
+            CB_OneAmongOthers.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_OneAmongOthers;
+            CB_ReadingDirection.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_ReadingDirection;
+            CB_RefToNull.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_ReferencesToBlankCells;
+            CB_StringDistance.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_StringDistance;
+            lb_MaxDistance.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_StringDistanceExtra;
+
+            // Labels always / manual
+            String textAlways = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Label_Always;
+            String textManual = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Label_Manual;
+            
+            NCIF_A.Text = textAlways;
+            NCIF_M.Text = textManual;
+            RD_A.Text = textAlways;
+            RD_M.Text = textManual;
+            FC_A.Text = textAlways;
+            FC_M.Text = textManual;
+            MSR_A.Text = textAlways;
+            MSR_M.Text = textManual;
+            NCC_A.Text = textAlways;
+            NCC_M.Text = textManual;
+            RTN_A.Text = textAlways;
+            RTN_M.Text = textManual;
+            OAO_A.Text = textAlways;
+            OAO_M.Text = textManual;
+            EIC_A.Text = textAlways;
+            EIC_M.Text = textManual;
+            SD_A.Text = textAlways;
+            SD_M.Text = textManual;
         }
 
         private void Button_OK_Click(object sender, EventArgs e)

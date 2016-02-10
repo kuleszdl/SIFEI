@@ -227,6 +227,150 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Button_Cancel {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Button_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ok ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Button_Ok {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Button_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Always ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Label_Always {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Label_Always", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Manual ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Label_Manual {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Label_Manual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ask whether thousand separators are intended ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Label_ThousandSeparators {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Label_ThousandSeparators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cells with #Errors ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Rule_CellsWithErrors {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Rule_CellsWithErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Constants in Formulas ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Rule_Constants {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Rule_Constants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Formula Complexity ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Rule_FormulaComplexity {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Rule_FormulaComplexity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Non-considered constants ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Rule_NonConsideredConstants {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Rule_NonConsideredConstants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die One among others ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Rule_OneAmongOthers {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Rule_OneAmongOthers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reading direction ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Rule_ReadingDirection {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Rule_ReadingDirection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die References to blank cells ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Rule_ReferencesToBlankCells {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Rule_ReferencesToBlankCells", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Same reference multiple times ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Rule_SameMultipleRefs {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Rule_SameMultipleRefs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die String distance ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Rule_StringDistance {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Rule_StringDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Maximum distance: ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_Rule_StringDistanceExtra {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_Rule_StringDistanceExtra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Policy Configuration ähnelt.
+        /// </summary>
+        public static string tl_PolicyConfiguration_WindowTitle {
+            get {
+                return ResourceManager.GetString("tl_PolicyConfiguration_WindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Input Cell ähnelt.
         /// </summary>
         public static string tl_Ribbon_AreaDefine_Inputcell {

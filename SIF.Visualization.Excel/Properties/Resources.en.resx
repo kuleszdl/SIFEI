@@ -290,4 +290,52 @@
   <data name="tl_ViolationView_Footer" xml:space="preserve">
     <value>finding(s) in list</value>
   </data>
+  <data name="tl_PolicyConfiguration_Button_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Button_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Label_Always" xml:space="preserve">
+    <value>automatic</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Label_Manual" xml:space="preserve">
+    <value>manual</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Label_ThousandSeparators" xml:space="preserve">
+    <value>Ask whether thousand separators are intended</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Rule_CellsWithErrors" xml:space="preserve">
+    <value>Cells with #Errors</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Rule_Constants" xml:space="preserve">
+    <value>Constants in Formulas</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Rule_FormulaComplexity" xml:space="preserve">
+    <value>Formula Complexity</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Rule_NonConsideredConstants" xml:space="preserve">
+    <value>Non-considered constants</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Rule_OneAmongOthers" xml:space="preserve">
+    <value>One among others</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Rule_ReadingDirection" xml:space="preserve">
+    <value>Reading direction</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Rule_ReferencesToBlankCells" xml:space="preserve">
+    <value>References to blank cells</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Rule_SameMultipleRefs" xml:space="preserve">
+    <value>Same reference multiple times</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Rule_StringDistance" xml:space="preserve">
+    <value>String distance</value>
+  </data>
+  <data name="tl_PolicyConfiguration_Rule_StringDistanceExtra" xml:space="preserve">
+    <value>Maximum distance:</value>
+  </data>
+  <data name="tl_PolicyConfiguration_WindowTitle" xml:space="preserve">
+    <value>Policy Configuration</value>
+  </data>
 </root>
