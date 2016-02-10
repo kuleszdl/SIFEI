@@ -211,6 +211,7 @@
     <Compile Include="Core\Policy.cs" />
     <Compile Include="Core\Violation.cs" />
     <Compile Include="Core\DataModel.cs" />
+    <Compile Include="CustomInputDialog.cs" />
     <Compile Include="GlobalSettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -453,6 +454,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="CellErrorInfo\CellErrorInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomInputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

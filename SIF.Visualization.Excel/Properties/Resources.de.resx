@@ -341,4 +341,13 @@
   <data name="tl_Ribbon_AreaMiscellaneous_ShowSanity" xml:space="preserve">
     <value>Plausi-Steuerung anzeigen</value>
   </data>
+  <data name="tl_NewScenarioDialog_DefaultAnswer" xml:space="preserve">
+    <value>Unbenanntes neues Szenario</value>
+  </data>
+  <data name="tl_NewScenarioDialog_Question" xml:space="preserve">
+    <value>Bitte geben Sie dem neuen Szenario einen Namen</value>
+  </data>
+  <data name="tl_NewScenarioDialog_Title" xml:space="preserve">
+    <value>Neues Szenario...</value>
+  </data>
 </root>

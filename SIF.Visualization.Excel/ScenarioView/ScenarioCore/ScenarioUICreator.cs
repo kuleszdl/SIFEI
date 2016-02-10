@@ -53,15 +53,16 @@ namespace SIF.Visualization.Excel.ScenarioCore
         #endregion
 
         #region Methods
-        public void Start(Core.WorkbookModel wb)
+        public void Start(Core.WorkbookModel wb, string scenarioTitle)
         {
             if (this.newScenario != null) return;
             lock (syncScenario)
             {
                 if (this.newScenario != null) return;
+
                 this.newScenario = new Scenario()
                     {
-                        Title = "Untiteled Scenario - " + DateTime.Now.ToString(),
+                        Title = scenarioTitle,
                         CrationDate = DateTime.Now,
                         Author = this.GetDocumentProperty(wb, "Last Author")
                     };

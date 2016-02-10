@@ -227,6 +227,33 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Untitled new scenario ähnelt.
+        /// </summary>
+        public static string tl_NewScenarioDialog_DefaultAnswer {
+            get {
+                return ResourceManager.GetString("tl_NewScenarioDialog_DefaultAnswer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please give your scenario a name: ähnelt.
+        /// </summary>
+        public static string tl_NewScenarioDialog_Question {
+            get {
+                return ResourceManager.GetString("tl_NewScenarioDialog_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New Scenario... ähnelt.
+        /// </summary>
+        public static string tl_NewScenarioDialog_Title {
+            get {
+                return ResourceManager.GetString("tl_NewScenarioDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
         /// </summary>
         public static string tl_PolicyConfiguration_Button_Cancel {

@@ -324,13 +324,27 @@ namespace SIF.Visualization.Excel
 
         private void NewScenarioButton_Click(object sender, RibbonControlEventArgs e)
         {
-            // set scenario buttons styles
-            SetScenarioCreationButtonStyles(true);
 
-            // set 
+            string title = null;
 
-            // start scenario creation
-            ScenarioCore.ScenarioUICreator.Instance.Start(DataModel.Instance.CurrentWorkbook);
+            CustomInputDialog inputDialog = new CustomInputDialog(
+                SIF.Visualization.Excel.Properties.Resources.tl_NewScenarioDialog_Question,
+                SIF.Visualization.Excel.Properties.Resources.tl_NewScenarioDialog_Title,
+                SIF.Visualization.Excel.Properties.Resources.tl_NewScenarioDialog_DefaultAnswer);
+            if (inputDialog.ShowDialog() == true)
+            {
+                title = inputDialog.Answer;
+            }
+
+            // If the user did not can the dialog, proceed with the scenario creation process
+            if (title != null)
+            {
+                // set scenario buttons styles
+                SetScenarioCreationButtonStyles(true);
+
+                // start scenario creation
+                ScenarioCore.ScenarioUICreator.Instance.Start(DataModel.Instance.CurrentWorkbook, title);
+            }
 
 
         }
