@@ -104,7 +104,7 @@
             // 
             this.NCIF_M.AutoSize = true;
             this.NCIF_M.Enabled = false;
-            this.NCIF_M.Location = new System.Drawing.Point(94, 3);
+            this.NCIF_M.Location = new System.Drawing.Point(60, 3);
             this.NCIF_M.Name = "NCIF_M";
             this.NCIF_M.Size = new System.Drawing.Size(60, 17);
             this.NCIF_M.TabIndex = 12;
@@ -115,7 +115,7 @@
             // 
             this.RD_M.AutoSize = true;
             this.RD_M.Enabled = false;
-            this.RD_M.Location = new System.Drawing.Point(94, 3);
+            this.RD_M.Location = new System.Drawing.Point(60, 5);
             this.RD_M.Name = "RD_M";
             this.RD_M.Size = new System.Drawing.Size(60, 17);
             this.RD_M.TabIndex = 14;
@@ -126,7 +126,7 @@
             // 
             this.FC_M.AutoSize = true;
             this.FC_M.Enabled = false;
-            this.FC_M.Location = new System.Drawing.Point(93, 3);
+            this.FC_M.Location = new System.Drawing.Point(59, 3);
             this.FC_M.Name = "FC_M";
             this.FC_M.Size = new System.Drawing.Size(60, 17);
             this.FC_M.TabIndex = 16;
@@ -270,7 +270,7 @@
             // 
             this.MSR_M.AutoSize = true;
             this.MSR_M.Enabled = false;
-            this.MSR_M.Location = new System.Drawing.Point(93, 3);
+            this.MSR_M.Location = new System.Drawing.Point(64, 3);
             this.MSR_M.Name = "MSR_M";
             this.MSR_M.Size = new System.Drawing.Size(60, 17);
             this.MSR_M.TabIndex = 16;
@@ -303,7 +303,7 @@
             // 
             this.NCC_M.AutoSize = true;
             this.NCC_M.Enabled = false;
-            this.NCC_M.Location = new System.Drawing.Point(93, 3);
+            this.NCC_M.Location = new System.Drawing.Point(64, 3);
             this.NCC_M.Name = "NCC_M";
             this.NCC_M.Size = new System.Drawing.Size(60, 17);
             this.NCC_M.TabIndex = 16;
@@ -347,7 +347,7 @@
             // 
             this.RTN_M.AutoSize = true;
             this.RTN_M.Enabled = false;
-            this.RTN_M.Location = new System.Drawing.Point(93, 3);
+            this.RTN_M.Location = new System.Drawing.Point(62, 3);
             this.RTN_M.Name = "RTN_M";
             this.RTN_M.Size = new System.Drawing.Size(60, 17);
             this.RTN_M.TabIndex = 16;
@@ -391,7 +391,7 @@
             // 
             this.OAO_M.AutoSize = true;
             this.OAO_M.Enabled = false;
-            this.OAO_M.Location = new System.Drawing.Point(93, 3);
+            this.OAO_M.Location = new System.Drawing.Point(59, 3);
             this.OAO_M.Name = "OAO_M";
             this.OAO_M.Size = new System.Drawing.Size(60, 17);
             this.OAO_M.TabIndex = 16;
@@ -435,7 +435,7 @@
             // 
             this.SD_M.AutoSize = true;
             this.SD_M.Enabled = false;
-            this.SD_M.Location = new System.Drawing.Point(93, 3);
+            this.SD_M.Location = new System.Drawing.Point(62, 3);
             this.SD_M.Name = "SD_M";
             this.SD_M.Size = new System.Drawing.Size(60, 17);
             this.SD_M.TabIndex = 16;
@@ -505,7 +505,7 @@
             // 
             this.EIC_M.AutoSize = true;
             this.EIC_M.Enabled = false;
-            this.EIC_M.Location = new System.Drawing.Point(93, 3);
+            this.EIC_M.Location = new System.Drawing.Point(59, 3);
             this.EIC_M.Name = "EIC_M";
             this.EIC_M.Size = new System.Drawing.Size(60, 17);
             this.EIC_M.TabIndex = 16;

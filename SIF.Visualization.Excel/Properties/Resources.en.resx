@@ -297,10 +297,10 @@
     <value>Ok</value>
   </data>
   <data name="tl_PolicyConfiguration_Label_Always" xml:space="preserve">
-    <value>automatic</value>
+    <value>always</value>
   </data>
   <data name="tl_PolicyConfiguration_Label_Manual" xml:space="preserve">
-    <value>manual</value>
+    <value>manual only</value>
   </data>
   <data name="tl_PolicyConfiguration_Label_ThousandSeparators" xml:space="preserve">
     <value>Ask whether thousand separators are intended</value>
