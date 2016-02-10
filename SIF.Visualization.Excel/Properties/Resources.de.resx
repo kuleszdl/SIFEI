@@ -338,4 +338,7 @@
   <data name="tl_PolicyConfiguration_WindowTitle" xml:space="preserve">
     <value>Regeln konfigurieren</value>
   </data>
+  <data name="tl_Ribbon_AreaMiscellaneous_ShowSanity" xml:space="preserve">
+    <value>Plausi-Steuerung anzeigen</value>
+  </data>
 </root>

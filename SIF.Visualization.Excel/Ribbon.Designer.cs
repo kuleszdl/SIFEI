@@ -74,6 +74,7 @@
                 SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_Title;
             this.globalSettingsDialog.Label =
                 SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_GlobalSettingsButton;
+            this.CB_SanityControls.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_ShowSanity;
 
         }
 
@@ -111,6 +112,7 @@
             this.sanityWarnCheckbox = this.Factory.CreateRibbonCheckBox();
             this.miscellaneousGroup = this.Factory.CreateRibbonGroup();
             this.globalSettingsDialog = this.Factory.CreateRibbonButton();
+            this.CB_SanityControls = this.Factory.CreateRibbonCheckBox();
             this.inspectionTab.SuspendLayout();
             this.testGroup.SuspendLayout();
             this.viewGroup.SuspendLayout();
@@ -293,6 +295,7 @@
             this.sanityGroup.Items.Add(this.sanityWarnCheckbox);
             this.sanityGroup.Label = "Headers for the plausibility";
             this.sanityGroup.Name = "sanityGroup";
+            this.sanityGroup.Visible = false;
             // 
             // sanityValueCellToggleButton
             // 
@@ -328,6 +331,7 @@
             // miscellaneousGroup
             // 
             this.miscellaneousGroup.Items.Add(this.globalSettingsDialog);
+            this.miscellaneousGroup.Items.Add(this.CB_SanityControls);
             this.miscellaneousGroup.Label = "Miscellaneous";
             this.miscellaneousGroup.Name = "miscellaneousGroup";
             // 
@@ -338,6 +342,12 @@
             this.globalSettingsDialog.Name = "globalSettingsDialog";
             this.globalSettingsDialog.ShowImage = true;
             this.globalSettingsDialog.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.globalSettings_Click);
+            // 
+            // CB_SanityControls
+            // 
+            this.CB_SanityControls.Label = "Show sanity controls";
+            this.CB_SanityControls.Name = "CB_SanityControls";
+            this.CB_SanityControls.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.CB_SanityControls_Click);
             // 
             // Ribbon
             // 
@@ -390,6 +400,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton policyConfigurationDialog;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup miscellaneousGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton globalSettingsDialog;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox CB_SanityControls;
     }
 
     partial class ThisRibbonCollection

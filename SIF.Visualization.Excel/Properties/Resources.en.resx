@@ -338,4 +338,7 @@
   <data name="tl_PolicyConfiguration_WindowTitle" xml:space="preserve">
     <value>Policy Configuration</value>
   </data>
+  <data name="tl_Ribbon_AreaMiscellaneous_ShowSanity" xml:space="preserve">
+    <value>Show sanity controls</value>
+  </data>
 </root>

@@ -450,5 +450,19 @@ namespace SIF.Visualization.Excel
         {
             GlobalSettingsDialog settingsDialog = new GlobalSettingsDialog();
         }
+
+
+        private void CB_SanityControls_Click(object sender, RibbonControlEventArgs e)
+        {
+            Boolean oldState = sanityGroup.Visible;
+            if (oldState == true)
+            {
+                sanityGroup.Visible = false;
+            }
+            else
+            {
+                sanityGroup.Visible = true;
+            }
+        }
     }
 }

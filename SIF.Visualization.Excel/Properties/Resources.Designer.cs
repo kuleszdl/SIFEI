@@ -443,6 +443,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show sanity controls ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaMiscellaneous_ShowSanity {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaMiscellaneous_ShowSanity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Miscellaneous ähnelt.
         /// </summary>
         public static string tl_Ribbon_AreaMiscellaneous_Title {
