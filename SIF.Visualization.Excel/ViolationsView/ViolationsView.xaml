@@ -79,12 +79,12 @@
 
                                 <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 0 5 5">
                                 <Hyperlink Click="Later_Click">
-                                    <TextBlock Text="{x:Static p:Resources.tl_ViolationTemplate_Later}" />
+                                    <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Later}" />
                                 </Hyperlink>
                                 </TextBlock>
                                 <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5 0 5 5">
                                 <Hyperlink Click="Ignore_Click">
-                                    <TextBlock Text="{x:Static p:Resources.tl_ViolationTemplate_Ignore}" />
+                                    <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Ignore}" />
                                 </Hyperlink>
                                 </TextBlock>
                             </Grid>
@@ -95,7 +95,7 @@
         </ListBox>
         <StatusBar Background="LightGray" Grid.Row="1">
             <TextBlock Text="{Binding Violations.Count}" FontWeight="Bold"/>
-            <TextBlock Text="violation(s) in list"/>
+            <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Footer}"/>
         </StatusBar>
     </Grid>
 </UserControl>

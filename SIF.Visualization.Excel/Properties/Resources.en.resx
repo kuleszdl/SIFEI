@@ -269,10 +269,10 @@
   <data name="tl_ViolationTemplate_FirstOccurence" xml:space="preserve">
     <value>First occurence:</value>
   </data>
-  <data name="tl_ViolationTemplate_Ignore" xml:space="preserve">
+  <data name="tl_ViolationView_Ignore" xml:space="preserve">
     <value>ignore</value>
   </data>
-  <data name="tl_ViolationTemplate_Later" xml:space="preserve">
+  <data name="tl_ViolationView_Later" xml:space="preserve">
     <value>later</value>
   </data>
   <data name="tl_ViolationTemplate_LessDetails" xml:space="preserve">
@@ -286,5 +286,8 @@
   </data>
   <data name="tl_ViolationTemplate_Type" xml:space="preserve">
     <value>Type:</value>
+  </data>
+  <data name="tl_ViolationView_Footer" xml:space="preserve">
+    <value>finding(s) in list</value>
   </data>
 </root>
