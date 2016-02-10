@@ -202,6 +202,7 @@ namespace SIF.Visualization.Excel
             CB_RefToNull.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_ReferencesToBlankCells;
             CB_StringDistance.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_StringDistance;
             lb_MaxDistance.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_StringDistanceExtra;
+            cb_Ask_Thousands.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Label_ThousandSeparators;
 
             // Labels always / manual
             String textAlways = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Label_Always;

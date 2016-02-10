@@ -82,9 +82,9 @@
             // 
             // Button_OK
             // 
-            this.Button_OK.Location = new System.Drawing.Point(168, 286);
+            this.Button_OK.Location = new System.Drawing.Point(329, 314);
             this.Button_OK.Name = "Button_OK";
-            this.Button_OK.Size = new System.Drawing.Size(75, 23);
+            this.Button_OK.Size = new System.Drawing.Size(98, 23);
             this.Button_OK.TabIndex = 9;
             this.Button_OK.Text = "OK";
             this.Button_OK.UseVisualStyleBackColor = true;
@@ -92,7 +92,7 @@
             // 
             // Button_Cancel
             // 
-            this.Button_Cancel.Location = new System.Drawing.Point(249, 286);
+            this.Button_Cancel.Location = new System.Drawing.Point(245, 314);
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.Button_Cancel.TabIndex = 10;
@@ -413,7 +413,7 @@
             // 
             this.panel8.Controls.Add(this.SD_A);
             this.panel8.Controls.Add(this.SD_M);
-            this.panel8.Location = new System.Drawing.Point(267, 202);
+            this.panel8.Location = new System.Drawing.Point(267, 182);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(160, 23);
             this.panel8.TabIndex = 29;
@@ -445,7 +445,7 @@
             // CB_StringDistance
             // 
             this.CB_StringDistance.AutoSize = true;
-            this.CB_StringDistance.Location = new System.Drawing.Point(247, 159);
+            this.CB_StringDistance.Location = new System.Drawing.Point(245, 159);
             this.CB_StringDistance.Name = "CB_StringDistance";
             this.CB_StringDistance.Size = new System.Drawing.Size(98, 17);
             this.CB_StringDistance.TabIndex = 28;
@@ -456,7 +456,7 @@
             // lb_MaxDistance
             // 
             this.lb_MaxDistance.AutoSize = true;
-            this.lb_MaxDistance.Location = new System.Drawing.Point(264, 179);
+            this.lb_MaxDistance.Location = new System.Drawing.Point(264, 216);
             this.lb_MaxDistance.Name = "lb_MaxDistance";
             this.lb_MaxDistance.Size = new System.Drawing.Size(73, 13);
             this.lb_MaxDistance.TabIndex = 30;
@@ -464,15 +464,15 @@
             // 
             // SD_Amount
             // 
-            this.SD_Amount.Location = new System.Drawing.Point(360, 176);
+            this.SD_Amount.Location = new System.Drawing.Point(377, 213);
             this.SD_Amount.Name = "SD_Amount";
-            this.SD_Amount.Size = new System.Drawing.Size(67, 20);
+            this.SD_Amount.Size = new System.Drawing.Size(50, 20);
             this.SD_Amount.TabIndex = 31;
             // 
             // cb_Ask_Thousands
             // 
             this.cb_Ask_Thousands.AutoSize = true;
-            this.cb_Ask_Thousands.Location = new System.Drawing.Point(245, 240);
+            this.cb_Ask_Thousands.Location = new System.Drawing.Point(14, 264);
             this.cb_Ask_Thousands.Name = "cb_Ask_Thousands";
             this.cb_Ask_Thousands.Size = new System.Drawing.Size(137, 30);
             this.cb_Ask_Thousands.TabIndex = 32;
@@ -528,7 +528,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(504, 334);
+            this.ClientSize = new System.Drawing.Size(472, 363);
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.CB_ErrorInCells);
             this.Controls.Add(this.cb_Ask_Thousands);
