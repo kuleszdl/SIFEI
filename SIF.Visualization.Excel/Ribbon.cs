@@ -35,7 +35,7 @@ namespace SIF.Visualization.Excel
             }
             else
             {
-                MessageBox.Show("No policies are enabled for manual scans. Please enable at least one policy and try again.", "error", MessageBoxButtons.OK);
+                MessageBox.Show(SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_MessageNoPolicies, SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_MessageNoPolicies_Title, MessageBoxButtons.OK);
             }
 
             

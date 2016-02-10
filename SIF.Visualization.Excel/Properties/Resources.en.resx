@@ -350,4 +350,10 @@
   <data name="tl_NewScenarioDialog_Title" xml:space="preserve">
     <value>New Scenario...</value>
   </data>
+  <data name="tl_Ribbon_MessageNoPolicies" xml:space="preserve">
+    <value>No policies are enabled for manual scans. Please enable at least one policy and try again.</value>
+  </data>
+  <data name="tl_Ribbon_MessageNoPolicies_Title" xml:space="preserve">
+    <value>Scan not possible</value>
+  </data>
 </root>

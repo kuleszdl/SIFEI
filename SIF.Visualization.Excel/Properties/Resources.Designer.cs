@@ -659,6 +659,24 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No policies are enabled for manual scans. Please enable at least one policy and try again. ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_MessageNoPolicies {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_MessageNoPolicies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_MessageNoPolicies_Title {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_MessageNoPolicies_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die INSPECTION ähnelt.
         /// </summary>
         public static string tl_Ribbon_Title {

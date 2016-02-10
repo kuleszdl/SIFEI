@@ -350,4 +350,10 @@
   <data name="tl_NewScenarioDialog_Title" xml:space="preserve">
     <value>Neues Szenario...</value>
   </data>
+  <data name="tl_Ribbon_MessageNoPolicies" xml:space="preserve">
+    <value>Es sind keine Regeln für die Prüfung aktiviert. Aktivieren Sie bitte mindestens eine Regel und versuchen Sie es erneut.</value>
+  </data>
+  <data name="tl_Ribbon_MessageNoPolicies_Title" xml:space="preserve">
+    <value>Prüfung nicht möglich.</value>
+  </data>
 </root>
