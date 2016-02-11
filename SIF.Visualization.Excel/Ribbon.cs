@@ -28,7 +28,8 @@ namespace SIF.Visualization.Excel
         private void scanButton_Click(object sender, RibbonControlEventArgs e)
         {
 
-            if (DataModel.Instance.CurrentWorkbook.PolicySettings.hasManualScans())
+            if (DataModel.Instance.CurrentWorkbook.PolicySettings.hasManualScans() 
+                || DataModel.Instance.CurrentWorkbook.Scenarios.Count > 0)
             {
                 // Inspect the current workbook
                 DataModel.Instance.CurrentWorkbook.Inspect(InspectionType.MANUAL);
