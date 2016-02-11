@@ -26,7 +26,7 @@
         <!--Message if nothing is showable-->
         <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="14" TextWrapping="WrapWithOverflow"
                    Visibility="{Binding Violations.Count, Converter={StaticResource InverseIntToVisibilityConverter}}"
-                   Text="No findings data. Please trigger a scan from the Ribbon menu." Foreground="#333333" Margin="0 20" />
+                   Text="{x:Static p:Resources.tl_OpenView_Empty}" Foreground="#333333" Margin="0 20" />
 
         <!--The listbox-->
         <ListBox x:Name="ViolationList" FontFamily="Segoe UI" FontSize="12" Visibility="{Binding Violations.Count, Converter={StaticResource IntToVisibilityConverter}}"

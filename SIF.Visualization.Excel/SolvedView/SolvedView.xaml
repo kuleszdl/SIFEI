@@ -6,6 +6,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib" 
              xmlns:Controls="clr-namespace:SIF.Visualization.Excel.ViewCommon"
              xmlns:model="clr-namespace:SIF.Visualization.Excel.Core"
+             xmlns:p="clr-namespace:SIF.Visualization.Excel.Properties"
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
@@ -25,7 +26,7 @@
         <!--Message if nothing is showable-->
         <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="14" TextWrapping="WrapWithOverflow"
                    Visibility="{Binding SolvedViolations.Count, Converter={StaticResource InverseIntToVisibilityConverter}}"
-                   Text="No solved violations. Please solve some violations to see them here." Foreground="#333333" Margin="0 20" />
+                   Text="{x:Static p:Resources.tl_SolvedView_Empty}" Foreground="#333333" Margin="0 20" />
 
         <ListBox x:Name="SolvedList" FontFamily="Segoe UI" FontSize="12" Visibility="{Binding SolvedViolations.Count, Converter={StaticResource IntToVisibilityConverter}}"
                SelectedIndex="-1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" 
@@ -70,7 +71,7 @@
         </ListBox>
         <StatusBar Background="LightGray" Grid.Row="1">
             <TextBlock Text="{Binding SolvedViolations.Count}" FontWeight="Bold"/>
-            <TextBlock Text="violation(s) in list"/>
+            <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Footer}"/>
         </StatusBar>
     </Grid>
 </UserControl>

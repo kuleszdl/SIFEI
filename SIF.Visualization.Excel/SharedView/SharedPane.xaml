@@ -9,6 +9,7 @@
              xmlns:falsePositiveView="clr-namespace:SIF.Visualization.Excel.IgnoreView"
              xmlns:laterView="clr-namespace:SIF.Visualization.Excel.LaterView"
              xmlns:solvedView="clr-namespace:SIF.Visualization.Excel.SolvedView"
+             xmlns:p="clr-namespace:SIF.Visualization.Excel.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>

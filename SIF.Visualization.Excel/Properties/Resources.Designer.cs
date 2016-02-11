@@ -227,6 +227,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No findings for later ähnelt.
+        /// </summary>
+        public static string tl_LaterView_Empty {
+            get {
+                return ResourceManager.GetString("tl_LaterView_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Untitled new scenario ähnelt.
         /// </summary>
         public static string tl_NewScenarioDialog_DefaultAnswer {
@@ -250,6 +259,15 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_NewScenarioDialog_Title {
             get {
                 return ResourceManager.GetString("tl_NewScenarioDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No open findings ähnelt.
+        /// </summary>
+        public static string tl_OpenView_Empty {
+            get {
+                return ResourceManager.GetString("tl_OpenView_Empty", resourceCulture);
             }
         }
         
@@ -682,6 +700,15 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_Ribbon_Title {
             get {
                 return ResourceManager.GetString("tl_Ribbon_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No solved findings ähnelt.
+        /// </summary>
+        public static string tl_SolvedView_Empty {
+            get {
+                return ResourceManager.GetString("tl_SolvedView_Empty", resourceCulture);
             }
         }
         

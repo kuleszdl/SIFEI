@@ -89,7 +89,7 @@
         </ListBox>
         <StatusBar Background="LightGray" Grid.Row="1">
             <TextBlock Text="{Binding IgnoredViolations.Count}" FontWeight="Bold"/>
-            <TextBlock Text="violation(s) in list"/>
+            <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Footer}"/>
         </StatusBar>
     </Grid>
 </UserControl>

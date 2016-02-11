@@ -356,4 +356,13 @@
   <data name="tl_Ribbon_MessageNoPolicies_Title" xml:space="preserve">
     <value>Prüfung nicht möglich.</value>
   </data>
+  <data name="tl_LaterView_Empty" xml:space="preserve">
+    <value>Keine für später markierten Befunde</value>
+  </data>
+  <data name="tl_OpenView_Empty" xml:space="preserve">
+    <value>Keine offenen Befunde</value>
+  </data>
+  <data name="tl_SolvedView_Empty" xml:space="preserve">
+    <value>Keine gelösten Befunde archiviert</value>
+  </data>
 </root>
