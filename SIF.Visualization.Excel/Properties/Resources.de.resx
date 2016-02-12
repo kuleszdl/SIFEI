@@ -383,4 +383,16 @@
   <data name="tl_SolvedView_Empty" xml:space="preserve">
     <value>Keine gelösten Befunde archiviert</value>
   </data>
+  <data name="tl_ScenarioPane_DeleteConfirmQuestion" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie folgendes Szenario löschen möchten</value>
+  </data>
+  <data name="tl_ScenarioPane_DeleteConfirmQuestionTitle" xml:space="preserve">
+    <value>Szenario löschen</value>
+  </data>
+  <data name="tl_ScenarioPane_DeleteScenario" xml:space="preserve">
+    <value>Szenario löschen</value>
+  </data>
+  <data name="tl_ScenarioPane_DeleteScenarioTooltip" xml:space="preserve">
+    <value>Löscht dieses Szenario</value>
+  </data>
 </root>

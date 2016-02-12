@@ -163,6 +163,11 @@ namespace SIF.Visualization.Excel.ScenarioView
 
             if (selectedItem == null || !(selectedItem is Scenario)) return;
 
+            string messageText = SIF.Visualization.Excel.Properties.Resources.tl_ScenarioPane_DeleteConfirmQuestion +  "?:" + "\n" + (selectedItem as Scenario).Title;
+            MessageBoxResult result = MessageBox.Show(messageText, SIF.Visualization.Excel.Properties.Resources.tl_ScenarioPane_DeleteConfirmQuestionTitle, MessageBoxButton.YesNo);
+            if (result != MessageBoxResult.Yes) return;
+            
+
             #region if the selected scenario ist opend in the detail pane close it
             // get scenario detail pane
             var scenarioDetailPane = Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>((this.DataContext as WorkbookModel), "Scenario Details")];

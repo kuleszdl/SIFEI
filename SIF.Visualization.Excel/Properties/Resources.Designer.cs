@@ -704,6 +704,42 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Are you sure you want to delete the scenario named ähnelt.
+        /// </summary>
+        public static string tl_ScenarioPane_DeleteConfirmQuestion {
+            get {
+                return ResourceManager.GetString("tl_ScenarioPane_DeleteConfirmQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete scenario ähnelt.
+        /// </summary>
+        public static string tl_ScenarioPane_DeleteConfirmQuestionTitle {
+            get {
+                return ResourceManager.GetString("tl_ScenarioPane_DeleteConfirmQuestionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete scenario ähnelt.
+        /// </summary>
+        public static string tl_ScenarioPane_DeleteScenario {
+            get {
+                return ResourceManager.GetString("tl_ScenarioPane_DeleteScenario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Deletes the selected scenario ähnelt.
+        /// </summary>
+        public static string tl_ScenarioPane_DeleteScenarioTooltip {
+            get {
+                return ResourceManager.GetString("tl_ScenarioPane_DeleteScenarioTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Archived findings ähnelt.
         /// </summary>
         public static string tl_SharedPane_Archived {

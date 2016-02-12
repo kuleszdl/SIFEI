@@ -384,4 +384,16 @@
   <data name="tl_SolvedView_Empty" xml:space="preserve">
     <value>No solved findings</value>
   </data>
+  <data name="tl_ScenarioPane_DeleteConfirmQuestion" xml:space="preserve">
+    <value>Are you sure you want to delete the scenario named</value>
+  </data>
+  <data name="tl_ScenarioPane_DeleteConfirmQuestionTitle" xml:space="preserve">
+    <value>Delete scenario</value>
+  </data>
+  <data name="tl_ScenarioPane_DeleteScenario" xml:space="preserve">
+    <value>Delete scenario</value>
+  </data>
+  <data name="tl_ScenarioPane_DeleteScenarioTooltip" xml:space="preserve">
+    <value>Deletes the selected scenario</value>
+  </data>
 </root>
