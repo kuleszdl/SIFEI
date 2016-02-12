@@ -56,7 +56,8 @@
                                                   IsItemsHost="True"
                                                   KeyboardNavigation.TabIndex="1"
                                                   Background="Transparent" />
-                                        <TextBlock Text="{Binding SelectedTab}" Grid.Row="2" Margin="0 2 0 0" FontSize="16" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding SelectedTabLabel}" Grid.Row="2" Margin="0 2 0 0" FontSize="16" FontWeight="Bold"/>
+                                        
                                         <Border x:Name="Border"
                                                 Grid.Row="2"
                                                 Margin="0 20 0 0"

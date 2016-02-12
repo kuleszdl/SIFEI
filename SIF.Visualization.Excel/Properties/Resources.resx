@@ -363,6 +363,24 @@
   <data name="tl_OpenView_Empty" xml:space="preserve">
     <value>No open findings</value>
   </data>
+  <data name="tl_SharedPane_Archived" xml:space="preserve">
+    <value>Archived findings</value>
+  </data>
+  <data name="tl_SharedPane_Cells" xml:space="preserve">
+    <value>Marked cells</value>
+  </data>
+  <data name="tl_SharedPane_Ignored" xml:space="preserve">
+    <value>Ignored findings</value>
+  </data>
+  <data name="tl_SharedPane_Later" xml:space="preserve">
+    <value>Findings for later</value>
+  </data>
+  <data name="tl_SharedPane_Open" xml:space="preserve">
+    <value>Open findings</value>
+  </data>
+  <data name="tl_SharedPane_Scenarios" xml:space="preserve">
+    <value>Scenarios</value>
+  </data>
   <data name="tl_SolvedView_Empty" xml:space="preserve">
     <value>No solved findings</value>
   </data>

@@ -50,6 +50,30 @@ namespace SIF.Visualization.Excel.SharedView
                         break;
                 }
                 datamodel.SelectedTab = (SharedTabs)tabcontrol.SelectedIndex;
+                
+                // Update label, since tab is switched now
+                switch (datamodel.SelectedTab)
+                {
+                    case SharedTabs.Open:
+                        datamodel.SelectedTabLabel = SIF.Visualization.Excel.Properties.Resources.tl_SharedPane_Open;
+                        break;
+                    case SharedTabs.Later:
+                        datamodel.SelectedTabLabel = SIF.Visualization.Excel.Properties.Resources.tl_SharedPane_Later;
+                        break;
+                    case SharedTabs.Ignore:
+                        datamodel.SelectedTabLabel = SIF.Visualization.Excel.Properties.Resources.tl_SharedPane_Ignored;
+                        break;
+                    case SharedTabs.Archive:
+                        datamodel.SelectedTabLabel = SIF.Visualization.Excel.Properties.Resources.tl_SharedPane_Archived;
+                        break;
+                    case SharedTabs.Cells:
+                        datamodel.SelectedTabLabel = SIF.Visualization.Excel.Properties.Resources.tl_SharedPane_Cells;
+                        break;
+                    case SharedTabs.Scenarios:
+                        datamodel.SelectedTabLabel = SIF.Visualization.Excel.Properties.Resources.tl_SharedPane_Scenarios;
+                        break;
+                }
+
             }
         }
     }

@@ -362,6 +362,24 @@
   <data name="tl_OpenView_Empty" xml:space="preserve">
     <value>Keine offenen Befunde</value>
   </data>
+  <data name="tl_SharedPane_Archived" xml:space="preserve">
+    <value>Archiviert</value>
+  </data>
+  <data name="tl_SharedPane_Cells" xml:space="preserve">
+    <value>Markierte Zellen</value>
+  </data>
+  <data name="tl_SharedPane_Ignored" xml:space="preserve">
+    <value>Ignoriert</value>
+  </data>
+  <data name="tl_SharedPane_Later" xml:space="preserve">
+    <value>Später</value>
+  </data>
+  <data name="tl_SharedPane_Open" xml:space="preserve">
+    <value>Offen</value>
+  </data>
+  <data name="tl_SharedPane_Scenarios" xml:space="preserve">
+    <value>Szenarien</value>
+  </data>
   <data name="tl_SolvedView_Empty" xml:space="preserve">
     <value>Keine gelösten Befunde archiviert</value>
   </data>

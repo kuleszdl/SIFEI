@@ -72,6 +72,7 @@ namespace SIF.Visualization.Excel.Core
         private ObservableCollection<SIF.Visualization.Excel.ScenarioCore.Scenario> scenarios;
         private Boolean sanityWarnings = true;
         private SharedTabs selectedTab;
+        private string selectedTabLabel = "unnamed";
 
         private Workbook workbook;
         private PolicyConfigurationModel policySettings;
@@ -339,9 +340,22 @@ namespace SIF.Visualization.Excel.Core
             set { this.SetProperty(ref this.workbook, value); }
         }
 
+        /// <summary>
+        /// Gets or sets the translated name of the current tab (for the label)
+        /// </summary>
+        public string SelectedTabLabel
+             {
+            get { return this.selectedTabLabel; }
+            set {this.SetProperty(ref this.selectedTabLabel, value); }
+        }
+
+
         public SharedTabs SelectedTab
         {
-            get { return this.selectedTab; }
+            get
+            {
+                return this.selectedTab; 
+            }
             set
             {
                 this.SetProperty(ref this.selectedTab, value);

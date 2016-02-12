@@ -365,4 +365,22 @@
   <data name="tl_SolvedView_Empty" xml:space="preserve">
     <value>No solved findings</value>
   </data>
+  <data name="tl_SharedPane_Archived" xml:space="preserve">
+    <value>Archived</value>
+  </data>
+  <data name="tl_SharedPane_Cells" xml:space="preserve">
+    <value>Marked cells</value>
+  </data>
+  <data name="tl_SharedPane_Ignored" xml:space="preserve">
+    <value>Ignored</value>
+  </data>
+  <data name="tl_SharedPane_Later" xml:space="preserve">
+    <value>Later</value>
+  </data>
+  <data name="tl_SharedPane_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="tl_SharedPane_Scenarios" xml:space="preserve">
+    <value>Scenarios</value>
+  </data>
 </root>

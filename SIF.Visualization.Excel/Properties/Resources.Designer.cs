@@ -704,6 +704,60 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Archived findings ähnelt.
+        /// </summary>
+        public static string tl_SharedPane_Archived {
+            get {
+                return ResourceManager.GetString("tl_SharedPane_Archived", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Marked cells ähnelt.
+        /// </summary>
+        public static string tl_SharedPane_Cells {
+            get {
+                return ResourceManager.GetString("tl_SharedPane_Cells", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ignored findings ähnelt.
+        /// </summary>
+        public static string tl_SharedPane_Ignored {
+            get {
+                return ResourceManager.GetString("tl_SharedPane_Ignored", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Findings for later ähnelt.
+        /// </summary>
+        public static string tl_SharedPane_Later {
+            get {
+                return ResourceManager.GetString("tl_SharedPane_Later", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open findings ähnelt.
+        /// </summary>
+        public static string tl_SharedPane_Open {
+            get {
+                return ResourceManager.GetString("tl_SharedPane_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Scenarios ähnelt.
+        /// </summary>
+        public static string tl_SharedPane_Scenarios {
+            get {
+                return ResourceManager.GetString("tl_SharedPane_Scenarios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No solved findings ähnelt.
         /// </summary>
         public static string tl_SolvedView_Empty {
