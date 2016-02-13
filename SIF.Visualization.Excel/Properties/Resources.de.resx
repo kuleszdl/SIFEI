@@ -395,4 +395,10 @@
   <data name="tl_ScenarioPane_DeleteScenarioTooltip" xml:space="preserve">
     <value>Löscht dieses Szenario</value>
   </data>
+  <data name="tl_Ribbon_MessageNoScansInScnearioMode" xml:space="preserve">
+    <value>Sie können keine Prüfung starten, während Sie ein Szenario bearbeiten. Speichern oder verwerfen Sie das Szenario und versuchen Sie es erneut.</value>
+  </data>
+  <data name="tl_Ribbon_MessageNoScansInScnearioModeTitle" xml:space="preserve">
+    <value>Prüfung derzeit nicht möglich</value>
+  </data>
 </root>

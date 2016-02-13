@@ -27,7 +27,15 @@ namespace SIF.Visualization.Excel
 
         private void scanButton_Click(object sender, RibbonControlEventArgs e)
         {
-
+            // Do not allow scans while creating a scenario
+            // FIXME: There must be a cleaner way to check the state other than inspecting the enabled/disabled state of the button!
+            if (this.CreateNewScenarioButton.Enabled == false)
+            {
+                //message if starting a scan while in scenario creation
+                MessageBox.Show(SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_MessageNoScansInScnearioMode, SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_MessageNoScansInScnearioModeTitle, MessageBoxButtons.OK);
+                return;
+            }
+            
             if (DataModel.Instance.CurrentWorkbook.PolicySettings.hasManualScans() 
                 || DataModel.Instance.CurrentWorkbook.Scenarios.Count > 0)
             {

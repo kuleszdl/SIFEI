@@ -695,6 +695,24 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You cannot run a scan while editing a scenario. Save or discard the scenario and try again. ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_MessageNoScansInScnearioMode {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_MessageNoScansInScnearioMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Scanning not possible now ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_MessageNoScansInScnearioModeTitle {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_MessageNoScansInScnearioModeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die INSPECTION ähnelt.
         /// </summary>
         public static string tl_Ribbon_Title {

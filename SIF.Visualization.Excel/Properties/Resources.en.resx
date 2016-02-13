@@ -395,4 +395,10 @@
   <data name="tl_ScenarioPane_DeleteConfirmQuestionTitle" xml:space="preserve">
     <value>Delete scenario</value>
   </data>
+  <data name="tl_Ribbon_MessageNoScansInScnearioMode" xml:space="preserve">
+    <value>You cannot run a scan while editing a scenario. Save or discard the scenario and try again.</value>
+  </data>
+  <data name="tl_Ribbon_MessageNoScansInScnearioModeTitle" xml:space="preserve">
+    <value>Scanning not possible now</value>
+  </data>
 </root>
