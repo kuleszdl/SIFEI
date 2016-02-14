@@ -366,6 +366,15 @@ namespace SIF.Visualization.Excel
             var emptyIntermediates = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.IntermediateCell));
             var emptyResults = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.OutputCell));
 
+            if (emptyInputs > 0 | emptyIntermediates > 0 | emptyResults > 0)
+            {
+                // FIXME: q&d temporary fix without translations: Do not allow creating scenarios when not all cells are filled
+                MessageBox.Show(
+                    "Sie haben nicht alle von Ihnen zuvor markierten Zellen (Eingabe-, Zwischenergebnis- und Ausgabezellen) befüllt. Bite befüllen Sie die fehlenden Zellen oder brechen Sie die Szenario-Erstellung ab, entfernen Sie unnötige Markierungen und versuchen Sie es erneut.",
+                    "Kann Szenario nicht erstellen",
+                    MessageBoxButtons.OK);
+                return;
+            }
             if (ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.InputCell)))
             {
                 //message for no result cell values
@@ -383,42 +392,45 @@ namespace SIF.Visualization.Excel
                 //back to the scenario editor
                 return;
             }
-            else if (emptyInputs > 0 | emptyIntermediates > 0 | emptyResults > 0)
-            {
-                // message for some empty fields
-                #region create message
-                var messageList = new List<Tuple<string, int>>();
-                if (emptyInputs > 0) messageList.Add(new Tuple<string, int>("input cells", emptyInputs));
-                if (emptyIntermediates > 0) messageList.Add(new Tuple<string, int>("intermediate cells", emptyIntermediates));
-                if (emptyResults > 0) messageList.Add(new Tuple<string, int>("result cells", emptyResults));
+            //else if (emptyInputs > 0 | emptyIntermediates > 0 | emptyResults > 0)
+            //{
+                // FIXME: Re-enable logic and remove hotfix once the issue has been solved (some inputs made by the user are missing in created scenarios when continuing with incomplete scenario)
 
-                var message = new StringBuilder();
-                message.Append("Maybe your scenario isn't complete. ");
-                message.Append("The scenario has ");
-                foreach (var p in messageList)
-                {
-                    message.Append(p.Item2 + " empty fields for " + p.Item1);
-                    if (messageList.IndexOf(p) < messageList.Count - 2)
-                    {
-                        message.Append(", ");
-                    }
-                    else if (messageList.IndexOf(p) == messageList.Count - 2)
-                    {
-                        message.Append(" and ");
-                    }
-                }
-                message.Append(".");
+                //// message for some empty fields
+                //#region create message
+                //var messageList = new List<Tuple<string, int>>();
+                //if (emptyInputs > 0) messageList.Add(new Tuple<string, int>("input cells", emptyInputs));
+                //if (emptyIntermediates > 0) messageList.Add(new Tuple<string, int>("intermediate cells", emptyIntermediates));
+                //if (emptyResults > 0) messageList.Add(new Tuple<string, int>("result cells", emptyResults));
 
-                #endregion
+                //var message = new StringBuilder();
+                //message.Append("Maybe your scenario isn't complete. ");
+                //message.Append("The scenario has ");
+                //foreach (var p in messageList)
+                //{
+                //    message.Append(p.Item2 + " empty fields for " + p.Item1);
+                //    if (messageList.IndexOf(p) < messageList.Count - 2)
+                //    {
+                //        message.Append(", ");
+                //    }
+                //    else if (messageList.IndexOf(p) == messageList.Count - 2)
+                //    {
+                //        message.Append(" and ");
+                //    }
+                //}
+                //message.Append(".");
+                 
+                //#endregion
 
-                var result = MessageBox.Show(
-                    message.ToString(),
-                    "warning",
-                    MessageBoxButtons.OKCancel);
+                //var result = MessageBox.Show(
+                //    message.ToString(),
+                //    "warning",
+                //    MessageBoxButtons.OKCancel);
 
-                //back to the scenario editor
-                if (result == DialogResult.Cancel) return;
-            }
+                ////back to the scenario editor
+                //if (result == DialogResult.Cancel) return;
+
+            //}
             #endregion
 
             // end scenario creation
