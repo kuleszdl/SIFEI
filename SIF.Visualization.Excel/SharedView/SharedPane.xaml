@@ -167,7 +167,7 @@
         <TabControl x:Name="tabcontrol"
                     Background="Transparent"
                     Margin="0 20 0 0"
-                    Style="{StaticResource sharedPaneTabStyle}" SelectionChanged="tabcontrol_SelectionChanged_1">
+                    Style="{StaticResource sharedPaneTabStyle}">
             <TabItem x:Name="findings">
                 <TabItem.Header>
                     <Grid Width="30" Height="30">
