@@ -401,4 +401,7 @@
   <data name="tl_Ribbon_MessageNoScansInScnearioModeTitle" xml:space="preserve">
     <value>Prüfung derzeit nicht möglich</value>
   </data>
+  <data name="tl_ScenarioPane_NoScenarios" xml:space="preserve">
+    <value>Keine Szenarien. Bitte markieren Sie Zellen und erstellen Sie ein neues Szenario, um es hier zu sehen.</value>
+  </data>
 </root>

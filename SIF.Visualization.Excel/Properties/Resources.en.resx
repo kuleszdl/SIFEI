@@ -401,4 +401,7 @@
   <data name="tl_Ribbon_MessageNoScansInScnearioModeTitle" xml:space="preserve">
     <value>Scanning not possible now</value>
   </data>
+  <data name="tl_ScenarioPane_NoScenarios" xml:space="preserve">
+    <value>No scenarios. Please mark cells and create a new scenario to see it here.</value>
+  </data>
 </root>

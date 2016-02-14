@@ -758,6 +758,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No scenarios created. Please create a new scenario from the Ribbon menu. ähnelt.
+        /// </summary>
+        public static string tl_ScenarioPane_NoScenarios {
+            get {
+                return ResourceManager.GetString("tl_ScenarioPane_NoScenarios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Archived findings ähnelt.
         /// </summary>
         public static string tl_SharedPane_Archived {

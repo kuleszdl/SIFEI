@@ -402,4 +402,7 @@
   <data name="tl_Ribbon_MessageNoScansInScnearioModeTitle" xml:space="preserve">
     <value>Scanning not possible now</value>
   </data>
+  <data name="tl_ScenarioPane_NoScenarios" xml:space="preserve">
+    <value>No scenarios created. Please create a new scenario from the Ribbon menu.</value>
+  </data>
 </root>
