@@ -327,7 +327,7 @@
     <value>Verweise auf leere Zellen</value>
   </data>
   <data name="tl_PolicyConfiguration_Rule_SameMultipleRefs" xml:space="preserve">
-    <value>Eine Referenz mehrfach hintereinander</value>
+    <value>Gleiche Verweise hintereinander</value>
   </data>
   <data name="tl_PolicyConfiguration_Rule_StringDistance" xml:space="preserve">
     <value>Entfernung zwischen Zeichenketten</value>

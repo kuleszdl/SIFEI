@@ -327,7 +327,7 @@
     <value>References to blank cells</value>
   </data>
   <data name="tl_PolicyConfiguration_Rule_SameMultipleRefs" xml:space="preserve">
-    <value>Same reference multiple times</value>
+    <value>Same references one after another</value>
   </data>
   <data name="tl_PolicyConfiguration_Rule_StringDistance" xml:space="preserve">
     <value>String distance</value>
