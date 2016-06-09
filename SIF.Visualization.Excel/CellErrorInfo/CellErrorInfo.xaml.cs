@@ -1,20 +1,13 @@
-﻿using Microsoft.Office.Tools;
-using SIF.Visualization.Excel.Core;
-using SIF.Visualization.Excel.SharedView;
-using SIF.Visualization.Excel.ViolationsView;
-using System;
-using System.ComponentModel;
-using System.Linq;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace SIF.Visualization.Excel
 {
     /// <summary>
     /// Interaktionslogik für CellErrorInfo.xaml
+    /// This handles how the images in the sidepane get visualized
     /// </summary>
     public partial class CellErrorInfo : UserControl
     {
@@ -26,8 +19,44 @@ namespace SIF.Visualization.Excel
 
         void Violations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            Console.WriteLine("Context changed");
+            
         }
 
+        private void Layout_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+            Grid grid = sender as Grid;
+
+            if (grid != null)
+            {
+                /*   ContextMenu contextMenu = grid.ContextMenu;
+                   contextMenu.PlacementTarget = grid;
+                   contextMenu.IsOpen = true;*/
+                //grid.ContextMenu.IsOpen = true;
+                //grid.ContextMenu.PlacementTarget = grid;
+                // grid.ContextMenu.
+                ContextMenuMulti.PlacementTarget = grid;
+                ContextMenuMulti.IsOpen = true;
+
+            }
+        }
+        private void Layout_OnMouseDown2(object sender, MouseButtonEventArgs e)
+        {
+            
+            Grid grid = sender as Grid;
+
+            if (grid != null)
+            {
+                /*   ContextMenu contextMenu = grid.ContextMenu;
+                   contextMenu.PlacementTarget = grid;
+                   contextMenu.IsOpen = true;*/
+                //grid.ContextMenu.IsOpen = true;
+                //grid.ContextMenu.PlacementTarget = grid;
+                // grid.ContextMenu.
+                ContextMenu2.PlacementTarget = grid;
+                ContextMenu2.IsOpen = true;
+
+            }
+        }
     }
 }

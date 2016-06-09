@@ -1,12 +1,6 @@
 ﻿using SIF.Visualization.Excel.Core;
-using SIF.Visualization.Excel.ScenarioCore.StaticScenarios;
 using SIF.Visualization.Excel.ScenarioCore.Visitor;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
 {
@@ -41,8 +35,8 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         /// </summary>
         public string Description
         {
-            get { return this.description; }
-            set { this.SetProperty(ref this.description, value); }
+            get { return description; }
+            set { SetProperty(ref description, value); }
         }
 
         /// <summary>
@@ -50,8 +44,8 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         /// </summary>
         public string Author
         {
-            get { return this.author; }
-            set { this.SetProperty(ref this.author, value); }
+            get { return author; }
+            set { SetProperty(ref author, value); }
         }
 
         /// <summary>
@@ -59,8 +53,8 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         /// </summary>
         public DateTime CrationDate
         {
-            get { return this.creationDate; }
-            set { this.SetProperty(ref this.creationDate, value); }
+            get { return creationDate; }
+            set { SetProperty(ref creationDate, value); }
         }
 
         /// <summary>
@@ -70,7 +64,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         {
             get 
             {
-                if (this.staticScenarioRules == null) this.staticScenarioRules = new SpecializedCollection<StaticScenarioRule>();
+                if (staticScenarioRules == null) staticScenarioRules = new SpecializedCollection<StaticScenarioRule>();
                 return staticScenarioRules;
             }
         }

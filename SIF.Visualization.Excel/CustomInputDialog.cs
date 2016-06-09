@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace SIF.Visualization.Excel
@@ -19,7 +15,7 @@ namespace SIF.Visualization.Excel
 
         private void btnDialogOk_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
+            DialogResult = true;
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)

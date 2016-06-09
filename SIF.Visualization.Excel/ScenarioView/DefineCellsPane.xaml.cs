@@ -1,22 +1,9 @@
 ﻿using SIF.Visualization.Excel.Cells;
 using SIF.Visualization.Excel.Core;
-using SIF.Visualization.Excel.ScenarioCore;
-using SIF.Visualization.Excel.ViewModel;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SIF.Visualization.Excel.ScenarioView
 {
@@ -29,14 +16,14 @@ namespace SIF.Visualization.Excel.ScenarioView
         {
             InitializeComponent();
             
-            this.DataContextChanged += DefineCellsPane_DataContextChanged;
+            DataContextChanged += DefineCellsPane_DataContextChanged;
         }
 
         private void DefineCellsPane_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (this.DataContext == null || !(this.DataContext is WorkbookModel)) return;
+            if (DataContext == null || !(DataContext is WorkbookModel)) return;
 
-            var myWorkbookModel = this.DataContext as WorkbookModel;
+            var myWorkbookModel = DataContext as WorkbookModel;
             var defineCellsCollection = new CompositeCollection();
 
             #region collection containers
@@ -66,45 +53,45 @@ namespace SIF.Visualization.Excel.ScenarioView
                 Mode = BindingMode.OneWay
             };
 
-            this.CellDefinitionsList.SetBinding(ListBox.ItemsSourceProperty, defineCellsBinding);
+            CellDefinitionsList.SetBinding(ItemsControl.ItemsSourceProperty, defineCellsBinding);
         }
 
         private void CellDefinitionsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItem = (sender as ListBox).SelectedItem as Core.Cell;
+            var selectedItem = (sender as ListBox).SelectedItem as Cell;
 
             if (selectedItem != null)
             {
                 //synchronize selection
-                CellManager.Instance.SelectCell(Core.DataModel.Instance.CurrentWorkbook, selectedItem.Location);
+                CellManager.Instance.SelectCell(DataModel.Instance.CurrentWorkbook, selectedItem.Location);
             }
 
         }
 
         private void DeleteDataButton_Click(object sender, RoutedEventArgs e)
         {
-            var wb = Core.DataModel.Instance.CurrentWorkbook;
+            var wb = DataModel.Instance.CurrentWorkbook;
             var selectedItems = new List<object>();
-            foreach (var item in this.CellDefinitionsList.SelectedItems)
+            foreach (var item in CellDefinitionsList.SelectedItems)
             {
                 selectedItems.Add(item);
             }
 
             foreach (var selectedItem in selectedItems)
             {
-                if (selectedItem is Cells.InputCell)
+                if (selectedItem is InputCell)
                 {
                     var cellList = new List<Cell>();
                     cellList.Add(selectedItem as Cell);
                     wb.DefineInputCell(cellList, WorkbookModel.CellDefinitionOption.Undefine);
                 }
-                else if (selectedItem is Cells.IntermediateCell)
+                else if (selectedItem is IntermediateCell)
                 {
                     var cellList = new List<Cell>();
                     cellList.Add(selectedItem as Cell);
                     wb.DefineIntermediateCell(cellList, WorkbookModel.CellDefinitionOption.Undefine);
                 }
-                else if (selectedItem is Cells.OutputCell)
+                else if (selectedItem is OutputCell)
                 {
                     var cellList = new List<Cell>();
                     cellList.Add(selectedItem as Cell);

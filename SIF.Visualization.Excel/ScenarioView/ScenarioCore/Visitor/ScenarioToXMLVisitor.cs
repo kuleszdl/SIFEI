@@ -6,7 +6,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 {
     class ScenarioToXMLVisitor : IVisitor
     {
-        public object Visit(Core.WorkbookModel n)
+        public object Visit(WorkbookModel n)
         {
             var root = new XElement("SIF.Scenario");
             root.Add(new XAttribute("Title", NullCheck(n.Title)));
@@ -31,13 +31,13 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             root.Add(new XAttribute("CreationDate", n.CrationDate));
             root.Add(new XAttribute("Rating", n.Rating));
 
-            var inputElements = this.SaveInputs(n);
+            var inputElements = SaveInputs(n);
             if (inputElements != null) root.Add(inputElements);
 
-            var intermediateElements = this.SaveIntermediates(n);
+            var intermediateElements = SaveIntermediates(n);
             if (intermediateElements != null) root.Add(intermediateElements);
 
-            var resultElements = this.SaveResults(n);
+            var resultElements = SaveResults(n);
             if (resultElements != null) root.Add(resultElements);
 
 

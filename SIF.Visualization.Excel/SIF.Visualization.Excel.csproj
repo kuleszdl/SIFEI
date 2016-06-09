@@ -100,6 +100,7 @@
     <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <!--
     This section defines properties that are set when the "Release" configuration is selected.
@@ -554,12 +555,21 @@
   <ItemGroup>
     <Resource Include="icons\violations\dynamic_unread.png" />
     <Resource Include="icons\violations\sanity_unread.png" />
-    <Resource Include="icons\violations\static_unread.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\Delete_black.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="icons\Edit.png" />
+    <Resource Include="icons\save.png" />
+    <Resource Include="icons\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.bmp" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -568,10 +578,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>SIF.Visualization.Excel_2_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>SIF.Visualization.Excel_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C8A12CCC16DC81CED84E1EB48F354CBD18355338</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>AA1E34248CDC6EFE347FC282D20A1417653F620B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

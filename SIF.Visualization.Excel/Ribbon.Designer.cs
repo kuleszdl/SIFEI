@@ -10,6 +10,7 @@
         public Ribbon()
             : base(Globals.Factory.GetRibbonFactory())
         {
+           
             InitializeComponent();
             InitializeComponentOverride();
         }
@@ -34,6 +35,7 @@
         {
             // inspectionTab
             this.inspectionTab.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_Title;
+            
 
             // Action area
             this.testGroup.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_Title;
@@ -75,6 +77,7 @@
             this.globalSettingsDialog.Label =
                 SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_GlobalSettingsButton;
             this.CB_SanityControls.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_ShowSanity;
+            
 
         }
 

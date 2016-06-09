@@ -1,15 +1,13 @@
 ﻿using SIF.Visualization.Excel.Core;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Windows;
 using System.IO;
+using SIF.Visualization.Excel.Properties;
 
 namespace SIF.Visualization.Excel.Networking
 {
@@ -50,7 +48,7 @@ namespace SIF.Visualization.Excel.Networking
         #region Methods
         public XElement LoadXMLPart(WorkbookModel workbook, string id)
         {
-            var part = this.GetCustomXLPart(workbook, id);
+            var part = GetCustomXLPart(workbook, id);
 
             if (part != null)
             {
@@ -74,7 +72,7 @@ namespace SIF.Visualization.Excel.Networking
             masterRoot.Add(root);
 
             //clear old
-            var oldPart = this.GetCustomXLPart(workbook, id);
+            var oldPart = GetCustomXLPart(workbook, id);
             if (oldPart != null)
             {
                 oldPart.Delete();
@@ -164,7 +162,7 @@ namespace SIF.Visualization.Excel.Networking
             else if (e.Severity == XmlSeverityType.Error)
             {
                 Debug.Write("ERROR ValidationCallback: ");
-                MessageBox.Show("The validation caused an error!\n" + e.Message, "Error");
+                MessageBox.Show(Resources.tl_ValidationError + e.Message, Resources.tl_MessageBox_Error);
             }
 
             Debug.WriteLine(e.Message);

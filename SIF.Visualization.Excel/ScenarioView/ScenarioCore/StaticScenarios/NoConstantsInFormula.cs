@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
 {
@@ -23,10 +18,10 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         {
             get
             {
-                if (ingnoredConstants == null) this.ingnoredConstants = new SpecializedCollection<TestInputType>();
-                return this.ingnoredConstants;
+                if (ingnoredConstants == null) ingnoredConstants = new SpecializedCollection<TestInputType>();
+                return ingnoredConstants;
             }
-            set { this.SetProperty(ref this.ingnoredConstants, value); }
+            set { SetProperty(ref ingnoredConstants, value); }
         }
 
         /// <summary>
@@ -36,10 +31,10 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         {
             get
             {
-                if (ignoredFunction == null) this.ignoredFunction = new ObservableCollection<string>();
-                return this.ignoredFunction;
+                if (ignoredFunction == null) ignoredFunction = new ObservableCollection<string>();
+                return ignoredFunction;
             }
-            set { this.SetProperty(ref this.ignoredFunction, value); }
+            set { SetProperty(ref ignoredFunction, value); }
         }
 
         #endregion

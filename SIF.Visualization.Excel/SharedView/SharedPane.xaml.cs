@@ -1,18 +1,6 @@
 ﻿using SIF.Visualization.Excel.Core;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SIF.Visualization.Excel.SharedView
 {
@@ -55,22 +43,22 @@ namespace SIF.Visualization.Excel.SharedView
                 switch (datamodel.SelectedTab)
                 {
                     case SharedTabs.Open:
-                        datamodel.SelectedTabLabel = SIF.Visualization.Excel.Properties.Resources.tl_SharedPane_Open;
+                        datamodel.SelectedTabLabel = Properties.Resources.tl_SharedPane_Open;
                         break;
                     case SharedTabs.Later:
-                        datamodel.SelectedTabLabel = SIF.Visualization.Excel.Properties.Resources.tl_SharedPane_Later;
+                        datamodel.SelectedTabLabel = Properties.Resources.tl_SharedPane_Later;
                         break;
                     case SharedTabs.Ignore:
-                        datamodel.SelectedTabLabel = SIF.Visualization.Excel.Properties.Resources.tl_SharedPane_Ignored;
+                        datamodel.SelectedTabLabel = Properties.Resources.tl_SharedPane_Ignored;
                         break;
                     case SharedTabs.Archive:
-                        datamodel.SelectedTabLabel = SIF.Visualization.Excel.Properties.Resources.tl_SharedPane_Archived;
+                        datamodel.SelectedTabLabel = Properties.Resources.tl_SharedPane_Archived;
                         break;
                     case SharedTabs.Cells:
-                        datamodel.SelectedTabLabel = SIF.Visualization.Excel.Properties.Resources.tl_SharedPane_Cells;
+                        datamodel.SelectedTabLabel = Properties.Resources.tl_SharedPane_Cells;
                         break;
                     case SharedTabs.Scenarios:
-                        datamodel.SelectedTabLabel = SIF.Visualization.Excel.Properties.Resources.tl_SharedPane_Scenarios;
+                        datamodel.SelectedTabLabel = Properties.Resources.tl_SharedPane_Scenarios;
                         break;
                 }
 

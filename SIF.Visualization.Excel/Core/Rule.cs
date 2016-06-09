@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.Core
@@ -32,8 +28,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public String Author
         {
-            get { return this.author; }
-            set { this.SetProperty(ref this.author, value); }
+            get { return author; }
+            set { SetProperty(ref author, value); }
         }
 
         /// <summary>
@@ -41,8 +37,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public String Background
         {
-            get { return this.background; }
-            set { this.SetProperty(ref this.background, value); }
+            get { return background; }
+            set { SetProperty(ref background, value); }
         }
 
         /// <summary>
@@ -50,8 +46,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public String Description
         {
-            get { return this.description; }
-            set { this.SetProperty(ref this.description, value); }
+            get { return description; }
+            set { SetProperty(ref description, value); }
         }
 
         /// <summary>
@@ -59,8 +55,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public String Name
         {
-            get { return this.name; }
-            set { this.SetProperty(ref this.name, value); }
+            get { return name; }
+            set { SetProperty(ref name, value); }
         }
 
         /// <summary>
@@ -68,8 +64,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public String PossibleSolution
         {
-            get { return this.possibleSolution; }
-            set { this.SetProperty(ref this.possibleSolution, value); }
+            get { return possibleSolution; }
+            set { SetProperty(ref possibleSolution, value); }
         }
 
         /// <summary>
@@ -77,8 +73,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public RuleType Type
         {
-            get { return this.type; }
-            set { this.SetProperty(ref this.type, value); }
+            get { return type; }
+            set { SetProperty(ref type, value); }
         }
 
         #endregion
@@ -90,14 +86,14 @@ namespace SIF.Visualization.Excel.Core
         /// <param name="root">the root node of the xml for this rule</param>
         public Rule(XElement root)
         {
-            this.Author = root.Attribute(XName.Get("author")).Value;
-            this.Background = root.Attribute(XName.Get("background")).Value;
-            this.Description = root.Attribute(XName.Get("description")).Value;
-            this.Name = root.Attribute(XName.Get("name")).Value;
+            Author = root.Attribute(XName.Get("author")).Value;
+            Background = root.Attribute(XName.Get("background")).Value;
+            Description = root.Attribute(XName.Get("description")).Value;
+            Name = root.Attribute(XName.Get("name")).Value;
             XAttribute ps = root.Attribute(XName.Get("possibleSolution"));
             if (ps != null)
-                this.PossibleSolution = ps.Value;
-            this.Type = (RuleType)Enum.Parse(typeof(RuleType), root.Attribute(XName.Get("type")).Value);
+                PossibleSolution = ps.Value;
+            Type = (RuleType)Enum.Parse(typeof(RuleType), root.Attribute(XName.Get("type")).Value);
         }
 
         #endregion
@@ -115,12 +111,12 @@ namespace SIF.Visualization.Excel.Core
             if ((object)other == null) return false;
 
             return base.Equals(other) &&
-                   this.Author == other.Author &&
-                   this.Background == other.Background &&
-                   this.Description == other.Description &&
-                   this.Name == other.Name &&
-                   this.PossibleSolution == other.PossibleSolution &&
-                   this.type == other.type;
+                   Author == other.Author &&
+                   Background == other.Background &&
+                   Description == other.Description &&
+                   Name == other.Name &&
+                   PossibleSolution == other.PossibleSolution &&
+                   type == other.type;
         }
 
         /// <summary>
@@ -140,7 +136,7 @@ namespace SIF.Visualization.Excel.Core
         /// <returns>true, if the given instances are equal; otherwise, false.</returns>
         public static bool operator ==(Rule a, Rule b)
         {
-            if (System.Object.ReferenceEquals(a, b)) return true;
+            if (ReferenceEquals(a, b)) return true;
             if (((object)a == null) || ((object)b == null)) return false;
 
             return a.Equals(b);
@@ -160,12 +156,12 @@ namespace SIF.Visualization.Excel.Core
         public XElement ToXElement()
         {
             var element = new XElement(XName.Get("rule"));
-            element.SetAttributeValue("author", this.author);
-            element.SetAttributeValue("background", this.background);
-            element.SetAttributeValue("description", this.description);
-            element.SetAttributeValue("name", this.name);
-            element.SetAttributeValue("solution", this.possibleSolution);
-            element.SetAttributeValue("type", this.type);
+            element.SetAttributeValue("author", author);
+            element.SetAttributeValue("background", background);
+            element.SetAttributeValue("description", description);
+            element.SetAttributeValue("name", name);
+            element.SetAttributeValue("solution", possibleSolution);
+            element.SetAttributeValue("type", type);
             return element;
         }
 

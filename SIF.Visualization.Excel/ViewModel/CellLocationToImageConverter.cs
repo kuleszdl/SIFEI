@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
@@ -41,7 +39,7 @@ namespace SIF.Visualization.Excel.ViewModel
                 object[] objs = new object[2];
                 objs[0] = values[2];
                 objs[1] = values[3];
-                return (BitmapImage)conv.Convert(objs, typeof(System.Windows.Media.Imaging.BitmapImage), parameter, culture);
+                return (BitmapImage)conv.Convert(objs, typeof(BitmapImage), parameter, culture);
             }
             else
             {

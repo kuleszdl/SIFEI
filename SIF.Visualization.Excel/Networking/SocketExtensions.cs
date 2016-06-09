@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SIF.Visualization.Excel.Networking
 {
@@ -11,7 +8,7 @@ namespace SIF.Visualization.Excel.Networking
     {
         public static void SendString(this Socket socket, string value)
         {
-            var buffer = UTF8Encoding.UTF8.GetBytes(value);
+            var buffer = Encoding.UTF8.GetBytes(value);
             socket.Send(BitConverter.GetBytes((long)buffer.Length));
             socket.Send(buffer);
         }
@@ -32,7 +29,7 @@ namespace SIF.Visualization.Excel.Networking
             buffer = new byte[stringLength];
             socket.Receive(buffer, 0, stringLength, SocketFlags.None);
 
-            return UTF8Encoding.UTF8.GetString(buffer).Trim();
+            return Encoding.UTF8.GetString(buffer).Trim();
         }
     }
 }

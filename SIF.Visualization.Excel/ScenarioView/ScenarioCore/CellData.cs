@@ -1,10 +1,4 @@
 ﻿using SIF.Visualization.Excel.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.ScenarioCore
 {
@@ -26,8 +20,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
         /// </summary>
         public string Location
         {
-            get { return this.location; }
-            set { this.SetProperty(ref this.location, value); }
+            get { return location; }
+            set { SetProperty(ref location, value); }
         }
 
         /// <summary>
@@ -35,8 +29,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
         /// </summary>
         public string SifLocation
         {
-            get { return this.sifLocation; }
-            set { this.SetProperty(ref this.sifLocation, value); }
+            get { return sifLocation; }
+            set { SetProperty(ref sifLocation, value); }
         }
 
         /// <summary>
@@ -44,8 +38,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
         /// </summary>
         public string Content
         {
-            get { return this.content; }
-            set { this.SetProperty(ref this.content, value); }
+            get { return content; }
+            set { SetProperty(ref content, value); }
         }
 
         /// <summary>
@@ -53,8 +47,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
         /// </summary>
         public TestInputType CellType
         {
-            get { return this.cellType; }
-            set { this.SetProperty(ref this.cellType, value); }
+            get { return cellType; }
+            set { SetProperty(ref cellType, value); }
         }
 
         #endregion

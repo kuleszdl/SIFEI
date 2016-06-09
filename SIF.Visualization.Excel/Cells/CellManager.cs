@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIF.Visualization.Excel.Cells
 {
@@ -94,7 +92,7 @@ namespace SIF.Visualization.Excel.Cells
         public String GetUserCellName(WorkbookModel wb, String a1Adress)
         {
             // Without FalsePositive.* and SIF.Visualization.*
-            var name = this.GetUserCellNames(wb.Workbook, a1Adress).FirstOrDefault();
+            var name = GetUserCellNames(wb.Workbook, a1Adress).FirstOrDefault();
 
             if (name != null) return name.Name;
             return a1Adress;
@@ -132,9 +130,9 @@ namespace SIF.Visualization.Excel.Cells
         /// <returns>if a user name is defined: user name, else cell location</returns>
         public String GetUserCellNameWithSIFName(WorkbookModel wb, String sifName)
         {
-            var a1Adress = this.GetA1Adress(wb, sifName);
+            var a1Adress = GetA1Adress(wb, sifName);
 
-            return this.GetUserCellName(wb, a1Adress);
+            return GetUserCellName(wb, a1Adress);
         }
 
         /// <summary>

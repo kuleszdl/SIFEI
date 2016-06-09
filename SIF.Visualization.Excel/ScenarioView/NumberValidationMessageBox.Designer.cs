@@ -1,4 +1,6 @@
-﻿namespace SIF.Visualization.Excel.ScenarioView
+﻿using SIF.Visualization.Excel.Properties;
+
+namespace SIF.Visualization.Excel.ScenarioView
 {
     partial class NumberValidationMessageBox
     {
@@ -41,7 +43,7 @@
             this.explanationLabel.Name = "explanationLabel";
             this.explanationLabel.Size = new System.Drawing.Size(373, 13);
             this.explanationLabel.TabIndex = 0;
-            this.explanationLabel.Text = "You have used a thousands separator character, was this intended behavior?";
+            this.explanationLabel.Text = Resources.tl_Separator_intended;
             // 
             // button1
             // 
@@ -50,7 +52,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Yes, don\'t show again";
+            this.button1.Text = Resources.tl_Separator_Confirmed_all;
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -60,7 +62,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(135, 23);
             this.button2.TabIndex = 2;
-            this.button2.Text = "Yes, ignore it in this field";
+            this.button2.Text = Resources.tl_Separator_Confirmed_this;
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -70,7 +72,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(91, 23);
             this.button3.TabIndex = 3;
-            this.button3.Text = "No";
+            this.button3.Text = Resources.tl_MessageBox_No;
             this.button3.UseVisualStyleBackColor = true;
             // 
             // NumberValidationMessageBox
@@ -84,7 +86,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.explanationLabel);
             this.Name = "NumberValidationMessageBox";
-            this.Text = "Number format";
+            this.Text = Resources.tl_Number_Format;
             this.ResumeLayout(false);
             this.PerformLayout();
 

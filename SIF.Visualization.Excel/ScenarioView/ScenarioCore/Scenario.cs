@@ -28,8 +28,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
         /// </summary>
         public string Title
         {
-            get { return this.title; }
-            set { this.SetProperty(ref this.title, value); }
+            get { return title; }
+            set { SetProperty(ref title, value); }
         }
 
         /// <summary>
@@ -37,8 +37,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
         /// </summary>
         public string Description
         {
-            get { return this.description; }
-            set { this.SetProperty(ref this.description, value); }
+            get { return description; }
+            set { SetProperty(ref description, value); }
         }
 
         /// <summary>
@@ -46,8 +46,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
         /// </summary>
         public string Author
         {
-            get { return this.author; }
-            set { this.SetProperty(ref this.author, value); }
+            get { return author; }
+            set { SetProperty(ref author, value); }
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
         /// </summary>
         public DateTime CrationDate
         {
-            get { return this.creationDate; }
-            set { this.SetProperty(ref this.creationDate, value); }
+            get { return creationDate; }
+            set { SetProperty(ref creationDate, value); }
         }
 
         /// <summary>
@@ -64,8 +64,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
         /// </summary>
         public double Rating
         {
-            get { return this.rating; }
-            set { this.SetProperty(ref this.rating, value); }
+            get { return rating; }
+            set { SetProperty(ref rating, value); }
         }
 
         /// <summary>
@@ -75,10 +75,10 @@ namespace SIF.Visualization.Excel.ScenarioCore
         {
             get
             {
-                if (this.inputs == null) this.inputs = new ObservableCollection<InputCellData>();
-                return this.inputs;
+                if (inputs == null) inputs = new ObservableCollection<InputCellData>();
+                return inputs;
             }
-            set { this.SetProperty(ref this.inputs, value); }
+            set { SetProperty(ref inputs, value); }
         }
 
         /// <summary>
@@ -88,10 +88,10 @@ namespace SIF.Visualization.Excel.ScenarioCore
         {
             get
             {
-                if (this.intermediates == null) this.intermediates = new ObservableCollection<IntermediateCellData>();
-                return this.intermediates;
+                if (intermediates == null) intermediates = new ObservableCollection<IntermediateCellData>();
+                return intermediates;
             }
-            set { this.SetProperty(ref this.intermediates, value); }
+            set { SetProperty(ref intermediates, value); }
         }
 
         /// <summary>
@@ -101,10 +101,10 @@ namespace SIF.Visualization.Excel.ScenarioCore
         {
             get
             {
-                if (this.results == null) this.results = new ObservableCollection<ResultCellData>();
-                return this.results;
+                if (results == null) results = new ObservableCollection<ResultCellData>();
+                return results;
             }
-            set { this.SetProperty(ref this.results, value); }
+            set { SetProperty(ref results, value); }
         }
 
 
@@ -124,7 +124,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
 
             var other = obj as Scenario;
 
-            if (this.id.Equals(other.id))
+            if (id.Equals(other.id))
             {
                 return true;
             }
@@ -152,7 +152,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
         /// <returns>true, if the given instances are equal; otherwise, false.</returns>
         public static bool operator ==(Scenario a, Scenario b)
         {
-            if (System.Object.ReferenceEquals(a, b)) return true;
+            if (ReferenceEquals(a, b)) return true;
             if (((object)a == null) || ((object)b == null)) return false;
 
             return a.Equals(b);

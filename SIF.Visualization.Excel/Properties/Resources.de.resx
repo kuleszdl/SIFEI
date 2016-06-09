@@ -404,4 +404,106 @@
   <data name="tl_ScenarioPane_NoScenarios" xml:space="preserve">
     <value>Keine Szenarien. Bitte markieren Sie Zellen und erstellen Sie ein neues Szenario, um es hier zu sehen.</value>
   </data>
+  <data name="tl_ProcessingScan" xml:space="preserve">
+    <value>Scan wird durchgeführt</value>
+  </data>
+  <data name="tl_Scan_successful" xml:space="preserve">
+    <value>Erfolgreicher Scan durchgeführt</value>
+  </data>
+  <data name="tl_Scan_unsuccessful" xml:space="preserve">
+    <value>Scan konnte nicht erfolgreich beendet werden</value>
+  </data>
+  <data name="tl_NoScanPossible" xml:space="preserve">
+    <value>Kein Scan möglich</value>
+  </data>
+  <data name="tl_ScenarioPane_EditScenarioTooltip" xml:space="preserve">
+    <value>Öffnet ein neues Fenster um das Szenario zu bearbeiten</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_DeleteData" xml:space="preserve">
+    <value>Zelle löschen</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_SaveData" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_DeleteDataTooltip" xml:space="preserve">
+    <value>Ausgewählte Zelle löschen</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_DiscardData" xml:space="preserve">
+    <value>Verwerfen</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_DiscardDataTooltip" xml:space="preserve">
+    <value>Verwirft die vorgenommen Änderungen im Szenario</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_SaveDataTooltip" xml:space="preserve">
+    <value>Speichert die Änderungen im geöffnete Szenario</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_DiscardDataMessageBox" xml:space="preserve">
+    <value>Sind sie sicher, dass sie die Änderungen verwerfen wollen?</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_DiscardDataMessageBoxTitle" xml:space="preserve">
+    <value>Änderungen verwerfen</value>
+  </data>
+  <data name="tl_Load_Failed" xml:space="preserve">
+    <value>Die Folgenden Teile konnten nicht geladen werden:</value>
+  </data>
+  <data name="tl_Load_Failed_Title" xml:space="preserve">
+    <value>Laden aus dem Workbook nicht geklappt</value>
+  </data>
+  <data name="tl_MessageBox_Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="tl_No_Java_Enviroment" xml:space="preserve">
+    <value>Java Runtime wurde nicht gefunden!
+Bitte stellen sie sicher, dass die Java Runtime in der Version 1.7 oder höher installiert ist und in der PATH Variable gesetzt wurde</value>
+  </data>
+  <data name="tl_Number_Format" xml:space="preserve">
+    <value>Nummernformat</value>
+  </data>
+  <data name="tl_Path_install" xml:space="preserve">
+    <value>Bitte installieren sie das Spreadsheet Inspection Framework und starten sie Excel neu.</value>
+  </data>
+  <data name="tl_Path_missing" xml:space="preserve">
+    <value>Das Spreadsheet Inspection Framework wurde im folgenden Ordner nicht gefunden:
+</value>
+  </data>
+  <data name="tl_PolicyConfiguration_No_Constants" xml:space="preserve">
+    <value>Keine Konstanten inFormeln</value>
+  </data>
+  <data name="tl_Scan_failed" xml:space="preserve">
+    <value>Der Test der aktuellen Datei ist fehlgeschlagen
+</value>
+  </data>
+  <data name="tl_Scan_needingsavetitle" xml:space="preserve">
+    <value>Scan abgebrochen</value>
+  </data>
+  <data name="tl_Scan_needssave" xml:space="preserve">
+    <value>Die Datei muss vor dem Scan gespeichert sein. 
+Scan wir abgebrochen</value>
+  </data>
+  <data name="tl_Scenario_CantCreate" xml:space="preserve">
+    <value>Kann Szenario nicht erstellen.</value>
+  </data>
+  <data name="tl_Scenario_MinOneInput" xml:space="preserve">
+    <value>Ein Szenario braucht mindestens eine Eingabezelle.</value>
+  </data>
+  <data name="tl_Scenario_MinOneOutput" xml:space="preserve">
+    <value>Ein Szenario braucht mindestens eine Eingabezelle.</value>
+  </data>
+  <data name="tl_Scenario_Notallcellsfilled" xml:space="preserve">
+    <value>Sie haben nicht alle von Ihnen zuvor markierten Zellen (Eingabe-, Zwischenergebnis- und Ausgabezellen) befüllt.
+Bite befüllen Sie die fehlenden Zellen oder brechen Sie die Szenario-Erstellung ab, entfernen Sie unnötige Markierungen und versuchen Sie es erneut.</value>
+  </data>
+  <data name="tl_Separator_Confirmed_all" xml:space="preserve">
+    <value>Ja, Warnmeldung nicht mehr anzeigen</value>
+  </data>
+  <data name="tl_Separator_Confirmed_this" xml:space="preserve">
+    <value>Ja, Wanrmeldung für dieses Feld nicht mehr anzeigen</value>
+  </data>
+  <data name="tl_Separator_intended" xml:space="preserve">
+    <value>Sie haben ein Tausendertrennzeichen verwendet. War dies mit Absicht?</value>
+  </data>
+  <data name="tl_ValidationError" xml:space="preserve">
+    <value>Die Validierung hat einen Fehler verursacht!
+</value>
+  </data>
 </root>

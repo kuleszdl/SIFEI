@@ -1,18 +1,10 @@
 ﻿using SIF.Visualization.Excel.ScenarioCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SIF.Visualization.Excel.ScenarioView
 {
@@ -25,17 +17,17 @@ namespace SIF.Visualization.Excel.ScenarioView
         {
             InitializeComponent();
 
-            this.DataContextChanged += CreateScenarioDataField_DataContextChanged;
+            DataContextChanged += CreateScenarioDataField_DataContextChanged;
         }
 
         private void CreateScenarioDataField_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             // remove binding 
-            BindingOperations.ClearAllBindings(this.DataTextBox);
+            BindingOperations.ClearAllBindings(DataTextBox);
 
-            if (this.DataContext != null && this.DataContext is CellData)
+            if (DataContext != null && DataContext is CellData)
             {
-                var myCellData = this.DataContext as CellData;
+                var myCellData = DataContext as CellData;
                 
                 //set text binding
 
@@ -48,24 +40,24 @@ namespace SIF.Visualization.Excel.ScenarioView
                 };
                 textBinding.ValidationRules.Add(new NumberValidationRule());
 
-                this.DataTextBox.SetBinding(TextBox.TextProperty, textBinding);
+                DataTextBox.SetBinding(TextBox.TextProperty, textBinding);
 
                 //set icon
-                if (this.DataContext is InputCellData)
+                if (DataContext is InputCellData)
                 {
-                    this.DataIcon.Source = this.Resources["InputCellIcon"] as ImageSource;
+                    DataIcon.Source = Resources["InputCellIcon"] as ImageSource;
                 }
-                else if (this.DataContext is IntermediateCellData)
+                else if (DataContext is IntermediateCellData)
                 {
-                    this.DataIcon.Source = this.Resources["IntermediateCellIcon"] as ImageSource;
+                    DataIcon.Source = Resources["IntermediateCellIcon"] as ImageSource;
                 }
-                else if (this.DataContext is ResultCellData)
+                else if (DataContext is ResultCellData)
                 {
-                    this.DataIcon.Source = this.Resources["OutputCellIcon"] as ImageSource;
+                    DataIcon.Source = Resources["OutputCellIcon"] as ImageSource;
                 }
                 else
                 {
-                    this.DataIcon.Source = this.Resources["InputCellIcon"] as ImageSource;
+                    DataIcon.Source = Resources["InputCellIcon"] as ImageSource;
                 }
             }
         }
@@ -73,14 +65,14 @@ namespace SIF.Visualization.Excel.ScenarioView
         private void ContextMenu_Open(object sender, RoutedEventArgs e)
         {
             
-            this.DataIcon.ContextMenu.PlacementTarget = this.DataIcon;
-            this.DataIcon.ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
-            this.DataIcon.ContextMenu.IsOpen = true;
+            DataIcon.ContextMenu.PlacementTarget = DataIcon;
+            DataIcon.ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            DataIcon.ContextMenu.IsOpen = true;
         }
 
         private void ContextMenu_Close(object sender, RoutedEventArgs e)
         {
-            this.DataIcon.ContextMenu.IsOpen = false;
+            DataIcon.ContextMenu.IsOpen = false;
         }
 
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
@@ -119,7 +111,7 @@ namespace SIF.Visualization.Excel.ScenarioView
         /// <param name="e"></param>
         private void SetFocus(object sender, EventArgs e)
         {
-            this.DataTextBox.Focus();
+            DataTextBox.Focus();
         }
 
         /// <summary>
@@ -127,7 +119,7 @@ namespace SIF.Visualization.Excel.ScenarioView
         /// </summary>
         public void SetFocus()
         {
-            this.DataTextBox.Focus();
+            DataTextBox.Focus();
         }
 
         /// <summary>
@@ -136,7 +128,7 @@ namespace SIF.Visualization.Excel.ScenarioView
         /// <param name="nextField"></param>
         public void RegisterNextFocusField(CreateScenarioDataField nextField)
         {
-            this.FocusToNext += new EventHandler(nextField.SetFocus);
+            FocusToNext += new EventHandler(nextField.SetFocus);
         }
 
         #endregion

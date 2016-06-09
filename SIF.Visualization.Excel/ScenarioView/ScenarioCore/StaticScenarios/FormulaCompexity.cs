@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
+﻿namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
 {
     public class FormulaCompexity : StaticScenarioRule
     {
@@ -18,8 +12,8 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         /// </summary>
         public int MaxNestingLevel
         {
-            get { return this.maxNestingLevel; }
-            set { this.SetProperty(ref this.maxNestingLevel, value); }
+            get { return maxNestingLevel; }
+            set { SetProperty(ref maxNestingLevel, value); }
         }
 
         /// <summary>
@@ -27,8 +21,8 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         /// </summary>
         public int MaxNumbersOfOperations
         {
-            get { return this.maxNumbersOfOperations; }
-            set { this.SetProperty(ref this.maxNumbersOfOperations, value); }
+            get { return maxNumbersOfOperations; }
+            set { SetProperty(ref maxNumbersOfOperations, value); }
         }
 
         #endregion

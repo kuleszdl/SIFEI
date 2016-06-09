@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Runtime.InteropServices;
+using System.Windows;
 using Microsoft.Office.Tools.Ribbon;
 using SIF.Visualization.Excel.Core;
 using Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
 using SIF.Visualization.Excel.Properties;
-using System.Diagnostics;
 using SIF.Visualization.Excel.Cells;
-using System.Windows.Controls.Primitives;
-using System.Xml;
-using System.IO;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace SIF.Visualization.Excel
 {
@@ -29,24 +26,38 @@ namespace SIF.Visualization.Excel
         {
             // Do not allow scans while creating a scenario
             // FIXME: There must be a cleaner way to check the state other than inspecting the enabled/disabled state of the button!
-            if (this.CreateNewScenarioButton.Enabled == false)
+            if (CreateNewScenarioButton.Enabled == false)
             {
                 //message if starting a scan while in scenario creation
-                MessageBox.Show(SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_MessageNoScansInScnearioMode, SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_MessageNoScansInScnearioModeTitle, MessageBoxButtons.OK);
+                MessageBox.Show(Resources.tl_Ribbon_MessageNoScansInScnearioMode, Resources.tl_Ribbon_MessageNoScansInScnearioModeTitle, MessageBoxButtons.OK);
                 return;
             }
             
             if (DataModel.Instance.CurrentWorkbook.PolicySettings.hasManualScans() 
                 || DataModel.Instance.CurrentWorkbook.Scenarios.Count > 0)
             {
-                // Inspect the current workbook
-                DataModel.Instance.CurrentWorkbook.Inspect(InspectionType.MANUAL);
+                // SIFCore can't handle if it the documents is not saved. So if an inspection is started it is assured the file is saved somewhere.
+                //Quietly swallow this exception. The exception gets thrown when the user presses cancel or no on the dialogprompt
+                try
+                {
+                    if (DataModel.Instance.CurrentWorkbook.Workbook.Path.Length <= 0)
+                    {
+                        DataModel.Instance.CurrentWorkbook.Workbook.SaveAs(DataModel.Instance.CurrentWorkbook.Workbook.Name, XlFileFormat.xlWorkbookNormal);
+                    }
+                    // Inspect the current workbook
+                    DataModel.Instance.CurrentWorkbook.Inspect(InspectionType.MANUAL);
+                    
+                }
+                catch (COMException ex)
+                {
+                    object message = MessageBox.Show(Resources.tl_Scan_needssave, Resources.tl_Scan_needingsavetitle, MessageBoxButtons.OK);
+                }
+                
             }
             else
             {
-                MessageBox.Show(SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_MessageNoPolicies, SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_MessageNoPolicies_Title, MessageBoxButtons.OK);
+                MessageBox.Show(Resources.tl_Ribbon_MessageNoPolicies, Resources.tl_Ribbon_MessageNoPolicies_Title, MessageBoxButtons.OK); 
             }
-
             
         }
 
@@ -245,12 +256,12 @@ namespace SIF.Visualization.Excel
         /// <param name="target"></param>
         private void Ribbon_WorkbookSelectionChanged(object sh, Range target)
         {
-            this.WorkbookSelectionChanged();
+            WorkbookSelectionChanged();
         }
 
         private void Ribbon_WorkbookSelectionChanged(object sender, EventArgs data)
         {
-            this.WorkbookSelectionChanged();
+            WorkbookSelectionChanged();
         }
 
         /// <summary>
@@ -263,71 +274,71 @@ namespace SIF.Visualization.Excel
             //set input cell toggle button
             if (firstSelectedCell != null && DataModel.Instance.CurrentWorkbook.InputCells.Contains(firstSelectedCell))
             {
-                this.inputCellToggleButton.Checked = true;
+                inputCellToggleButton.Checked = true;
             }
             else
             {
-                this.inputCellToggleButton.Checked = false;
+                inputCellToggleButton.Checked = false;
             }
 
             //set intermediate cell toggle button
             if (firstSelectedCell != null && DataModel.Instance.CurrentWorkbook.IntermediateCells.Contains(firstSelectedCell))
             {
-                this.intermediateCellToggleButton.Checked = true;
+                intermediateCellToggleButton.Checked = true;
             }
             else
             {
-                this.intermediateCellToggleButton.Checked = false;
+                intermediateCellToggleButton.Checked = false;
             }
 
             //set output cell toggle button
             if (firstSelectedCell != null && DataModel.Instance.CurrentWorkbook.OutputCells.Contains(firstSelectedCell))
             {
-                this.resultCellToggleButton.Checked = true;
+                resultCellToggleButton.Checked = true;
             }
             else
             {
-                this.resultCellToggleButton.Checked = false;
+                resultCellToggleButton.Checked = false;
             }
 
             //set SanityValue cell toggle button
             if (firstSelectedCell != null && DataModel.Instance.CurrentWorkbook.SanityValueCells.Contains(firstSelectedCell))
             {
-                this.sanityValueCellToggleButton.Checked = true;
+                sanityValueCellToggleButton.Checked = true;
             }
             else
             {
-                this.sanityValueCellToggleButton.Checked = false;
+                sanityValueCellToggleButton.Checked = false;
             }
 
             //set sanityConstraint cell toggle button
             if (firstSelectedCell != null && DataModel.Instance.CurrentWorkbook.SanityConstraintCells.Contains(firstSelectedCell))
             {
-                this.sanityConstraintCellToggleButton.Checked = true;
+                sanityConstraintCellToggleButton.Checked = true;
             }
             else
             {
-                this.sanityConstraintCellToggleButton.Checked = false;
+                sanityConstraintCellToggleButton.Checked = false;
             }
 
             //set sanityExplanation cell toggle button
             if (firstSelectedCell != null && DataModel.Instance.CurrentWorkbook.SanityExplanationCells.Contains(firstSelectedCell))
             {
-                this.sanityExplanationCellToggleButton.Checked = true;
+                sanityExplanationCellToggleButton.Checked = true;
             }
             else
             {
-                this.sanityExplanationCellToggleButton.Checked = false;
+                sanityExplanationCellToggleButton.Checked = false;
             }
 
             //set sanityChecking cell toggle button
             if (firstSelectedCell != null && DataModel.Instance.CurrentWorkbook.SanityCheckingCells.Contains(firstSelectedCell))
             {
-                this.sanityCheckingCellToggleButton.Checked = true;
+                sanityCheckingCellToggleButton.Checked = true;
             }
             else
             {
-                this.sanityCheckingCellToggleButton.Checked = false;
+                sanityCheckingCellToggleButton.Checked = false;
             }
         }
 
@@ -337,9 +348,9 @@ namespace SIF.Visualization.Excel
             string title = null;
 
             CustomInputDialog inputDialog = new CustomInputDialog(
-                SIF.Visualization.Excel.Properties.Resources.tl_NewScenarioDialog_Question,
-                SIF.Visualization.Excel.Properties.Resources.tl_NewScenarioDialog_Title,
-                SIF.Visualization.Excel.Properties.Resources.tl_NewScenarioDialog_DefaultAnswer);
+                Resources.tl_NewScenarioDialog_Question,
+                Resources.tl_NewScenarioDialog_Title,
+                Resources.tl_NewScenarioDialog_DefaultAnswer);
             if (inputDialog.ShowDialog() == true)
             {
                 title = inputDialog.Answer;
@@ -362,32 +373,31 @@ namespace SIF.Visualization.Excel
         {
             // validate and show warnings
             #region validate
-            var emptyInputs = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.InputCell));
-            var emptyIntermediates = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.IntermediateCell));
-            var emptyResults = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(Cells.OutputCell));
+            var emptyInputs = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(InputCell));
+            var emptyIntermediates = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(IntermediateCell));
+            var emptyResults = ScenarioCore.ScenarioUICreator.Instance.GetEmptyEntrysCount(typeof(OutputCell));
 
             if (emptyInputs > 0 | emptyIntermediates > 0 | emptyResults > 0)
             {
                 // FIXME: q&d temporary fix without translations: Do not allow creating scenarios when not all cells are filled
                 MessageBox.Show(
-                    "Sie haben nicht alle von Ihnen zuvor markierten Zellen (Eingabe-, Zwischenergebnis- und Ausgabezellen) befüllt. Bite befüllen Sie die fehlenden Zellen oder brechen Sie die Szenario-Erstellung ab, entfernen Sie unnötige Markierungen und versuchen Sie es erneut.",
-                    "Kann Szenario nicht erstellen",
+                    Resources.tl_Scenario_Notallcellsfilled, Resources.tl_Scenario_CantCreate,
                     MessageBoxButtons.OK);
                 return;
             }
-            if (ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.InputCell)))
+            if (ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(InputCell)))
             {
                 //message for no result cell values
-                MessageBox.Show("A scenario needs at least one input cell value.", "error", MessageBoxButtons.OK);
+                MessageBox.Show(Resources.tl_Scenario_MinOneInput, Resources.tl_MessageBox_Error, MessageBoxButtons.OK);
 
                 //back to the scenario editor
                 return;
             }
-            else if (ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.IntermediateCell))
-                     && ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(Cells.OutputCell)))
+            else if (ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(IntermediateCell))
+                     && ScenarioCore.ScenarioUICreator.Instance.NoValue(typeof(OutputCell)))
             {
                 //message for no input cell values
-                MessageBox.Show("A scenario needs at least one result cell value or one intermediate cell value.", "error", MessageBoxButtons.OK);
+                MessageBox.Show(Resources.tl_Scenario_MinOneOutput, Resources.tl_MessageBox_Error, MessageBoxButtons.OK);
 
                 //back to the scenario editor
                 return;
@@ -461,19 +471,19 @@ namespace SIF.Visualization.Excel
         private void SetScenarioCreationButtonStyles(bool create)
         {
             // set scenario buttons styles
-            this.submitScenarioButton.Visible = create;
-            this.cancelScenarioButton.Visible = create;
-            this.CreateNewScenarioButton.Enabled = !create;
+            submitScenarioButton.Visible = create;
+            cancelScenarioButton.Visible = create;
+            CreateNewScenarioButton.Enabled = !create;
 
             // set define cells buttons styles
-            this.inputCellToggleButton.Enabled = !create;
-            this.intermediateCellToggleButton.Enabled = !create;
-            this.resultCellToggleButton.Enabled = !create;
+            inputCellToggleButton.Enabled = !create;
+            intermediateCellToggleButton.Enabled = !create;
+            resultCellToggleButton.Enabled = !create;
         }
 
         private void automaticScanCheckBox_Click(object sender, RibbonControlEventArgs e)
         {
-            Settings.Default.AutomaticScans = this.automaticScanCheckBox.Checked;
+            Settings.Default.AutomaticScans = automaticScanCheckBox.Checked;
         }
 
         private void button1_Click(object sender, RibbonControlEventArgs e)

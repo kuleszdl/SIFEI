@@ -404,4 +404,119 @@
   <data name="tl_ScenarioPane_NoScenarios" xml:space="preserve">
     <value>No scenarios. Please mark cells and create a new scenario to see it here.</value>
   </data>
+  <data name="tl_ProcessingScan" xml:space="preserve">
+    <value>Processing scan</value>
+  </data>
+  <data name="tl_Scan_successful" xml:space="preserve">
+    <value>Scan successful</value>
+  </data>
+  <data name="tl_Scan_unsuccessful" xml:space="preserve">
+    <value>Scan unsuccessful</value>
+  </data>
+  <data name="tl_NoScanPossible" xml:space="preserve">
+    <value>Scaning not avaliable right nowsc</value>
+  </data>
+  <data name="tl_ScenarioPane_EditScenarioTooltip" xml:space="preserve">
+    <value>Opens a window to edit the scenario</value>
+  </data>
+  <data name="tl_ScenarioPane_EditScenario" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_DeleteData" xml:space="preserve">
+    <value>Delete cell</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_SaveData" xml:space="preserve">
+    <value>Save data</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_DeleteDataTooltip" xml:space="preserve">
+    <value>Delete selected cell</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_DiscardData" xml:space="preserve">
+    <value>Discard</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_DiscardDataTooltip" xml:space="preserve">
+    <value>Discards the changes on the selected scenario</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_SaveDataTooltip" xml:space="preserve">
+    <value>Save changes in the open scenario</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_DiscardDataMessageBox" xml:space="preserve">
+    <value>Are you sure you want to discard the changes?</value>
+  </data>
+  <data name="tl_ScenarioDetailPane_DiscardDataMessageBoxTitle" xml:space="preserve">
+    <value>Discard changes</value>
+  </data>
+  <data name="tl_Load_Failed" xml:space="preserve">
+    <value>The following parts were unable to load:</value>
+  </data>
+  <data name="tl_Load_Failed_Title" xml:space="preserve">
+    <value>Loading from workbook failed</value>
+  </data>
+  <data name="tl_MessageBox_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="tl_MessageBox_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="tl_MessageBox_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="tl_No_Java_Enviroment" xml:space="preserve">
+    <value>No java runtime was found!
+Please ensure a Java runtime environment &gt;= 1.7 is installed and accessible through the PATH variable.
+The Scan button will be without function.</value>
+  </data>
+  <data name="tl_Number_Format" xml:space="preserve">
+    <value>Number format</value>
+  </data>
+  <data name="tl_Path_install" xml:space="preserve">
+    <value>Please install the Spreadsheet Inspection Framework and restart Excel.</value>
+  </data>
+  <data name="tl_Path_missing" xml:space="preserve">
+    <value>The Spreadsheet Inspection Framework was not found at this location:
+</value>
+  </data>
+  <data name="tl_PolicyConfiguration_No_Constants" xml:space="preserve">
+    <value>No constants in formulas</value>
+  </data>
+  <data name="tl_Scan_failed" xml:space="preserve">
+    <value>The test of the current document failed!
+</value>
+  </data>
+  <data name="tl_Scan_needingsavetitle" xml:space="preserve">
+    <value>Scan aborted</value>
+  </data>
+  <data name="tl_Scan_needssave" xml:space="preserve">
+    <value>The file needs to be saved before a scan can be done.
+Scan will be aborted </value>
+  </data>
+  <data name="tl_Scenario_CantCreate" xml:space="preserve">
+    <value>Can\'t create scenario</value>
+  </data>
+  <data name="tl_Scenario_MinOneInput" xml:space="preserve">
+    <value>A scenario needs at least one input cell value.</value>
+  </data>
+  <data name="tl_Scenario_MinOneOutput" xml:space="preserve">
+    <value>A scenario needs at least one output cell value.</value>
+  </data>
+  <data name="tl_Scenario_Notallcellsfilled" xml:space="preserve">
+    <value>You didn't fill all selected input-, output- and itermediatecells.
+Possible solutions:
+- fill these missing cells
+- abort the scenario creation.
+- delete unncessaryselected cells and try it again.</value>
+  </data>
+  <data name="tl_Separator_Confirmed_all" xml:space="preserve">
+    <value>Yes don\'t show again</value>
+  </data>
+  <data name="tl_Separator_Confirmed_this" xml:space="preserve">
+    <value>Yes, ignore it in this field</value>
+  </data>
+  <data name="tl_Separator_intended" xml:space="preserve">
+    <value>You have used a thousands separator character, was this intended behavior?</value>
+  </data>
+  <data name="tl_ValidationError" xml:space="preserve">
+    <value>The validation caused an error!
+</value>
+  </data>
 </root>

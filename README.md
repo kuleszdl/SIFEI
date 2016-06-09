@@ -7,3 +7,6 @@ This project provides a Visualization for the Spreadsheet Inspection Framework b
 spreadsheet detection back-ends. More documentation is available from the Spreadsheet Inspection Framework project:
 
 https://github.com/kuleszdl/Spreadsheet-Inspection-Framework
+
+Der Momentane Zeitplan für die Bachelorarbeit sieht folgendermaßen aus:
+![](/Bilder/ganttdiagramm.JPG)

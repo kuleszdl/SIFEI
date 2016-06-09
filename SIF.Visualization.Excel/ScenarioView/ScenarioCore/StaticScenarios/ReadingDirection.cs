@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
 {
@@ -20,8 +16,8 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         /// </summary>
         public Boolean MustBeLeftToRightReadable
         {
-            get { return this.mustBeLeftToRightReadable; }
-            set { this.SetProperty(ref this.mustBeLeftToRightReadable, value); }
+            get { return mustBeLeftToRightReadable; }
+            set { SetProperty(ref mustBeLeftToRightReadable, value); }
         }
 
         /// <summary>
@@ -29,8 +25,8 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         /// </summary>
         public Boolean MustBeTopToDownReadable
         {
-            get { return this.mustBeTopToDownReadable; }
-            set { this.SetProperty(ref this.mustBeTopToDownReadable, value); }
+            get { return mustBeTopToDownReadable; }
+            set { SetProperty(ref mustBeTopToDownReadable, value); }
         }
 
         #endregion

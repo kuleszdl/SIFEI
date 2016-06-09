@@ -1,14 +1,6 @@
-﻿using System.Diagnostics;
-using System.IO;
-using SIF.Visualization.Excel.Properties;
+﻿using SIF.Visualization.Excel.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SIF.Visualization.Excel.Core;
 
@@ -25,7 +17,7 @@ namespace SIF.Visualization.Excel
 
             postInitialize();
 
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             PolicyConfigurationModel settings = DataModel.Instance.CurrentWorkbook.PolicySettings;
 
             if (settings.NoConstantsInFormulas)                                   // if the Constraints box was previously selected and is stored in the settings
@@ -181,7 +173,7 @@ namespace SIF.Visualization.Excel
             cb_Ask_Thousands.Checked = !Settings.Default.SifUseThousandsSeparator;
 
 
-            this.ShowDialog();
+            ShowDialog();
         }
 
         /// <summary>
@@ -189,24 +181,24 @@ namespace SIF.Visualization.Excel
         /// </summary>
         private void postInitialize()
         {
-            this.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_WindowTitle; // Window title
-            Button_Cancel.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Button_Cancel;
-            Button_OK.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Button_Ok;
-            CB_ErrorInCells.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_CellsWithErrors;
-            CB_FormulaComplexity.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_FormulaComplexity;
-            CB_MultipleSameRef.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_SameMultipleRefs;
-            CB_NoConstantsInFormulas.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_Constants;
-            CB_NonConsideredConstants.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_NonConsideredConstants;
-            CB_OneAmongOthers.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_OneAmongOthers;
-            CB_ReadingDirection.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_ReadingDirection;
-            CB_RefToNull.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_ReferencesToBlankCells;
-            CB_StringDistance.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_StringDistance;
-            lb_MaxDistance.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Rule_StringDistanceExtra;
-            cb_Ask_Thousands.Text = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Label_ThousandSeparators;
+            Text = Resources.tl_PolicyConfiguration_WindowTitle; // Window title
+            Button_Cancel.Text = Resources.tl_PolicyConfiguration_Button_Cancel;
+            Button_OK.Text = Resources.tl_PolicyConfiguration_Button_Ok;
+            CB_ErrorInCells.Text = Resources.tl_PolicyConfiguration_Rule_CellsWithErrors;
+            CB_FormulaComplexity.Text = Resources.tl_PolicyConfiguration_Rule_FormulaComplexity;
+            CB_MultipleSameRef.Text = Resources.tl_PolicyConfiguration_Rule_SameMultipleRefs;
+            CB_NoConstantsInFormulas.Text = Resources.tl_PolicyConfiguration_Rule_Constants;
+            CB_NonConsideredConstants.Text = Resources.tl_PolicyConfiguration_Rule_NonConsideredConstants;
+            CB_OneAmongOthers.Text = Resources.tl_PolicyConfiguration_Rule_OneAmongOthers;
+            CB_ReadingDirection.Text = Resources.tl_PolicyConfiguration_Rule_ReadingDirection;
+            CB_RefToNull.Text = Resources.tl_PolicyConfiguration_Rule_ReferencesToBlankCells;
+            CB_StringDistance.Text = Resources.tl_PolicyConfiguration_Rule_StringDistance;
+            lb_MaxDistance.Text = Resources.tl_PolicyConfiguration_Rule_StringDistanceExtra;
+            cb_Ask_Thousands.Text = Resources.tl_PolicyConfiguration_Label_ThousandSeparators;
 
             // Labels always / manual
-            String textAlways = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Label_Always;
-            String textManual = SIF.Visualization.Excel.Properties.Resources.tl_PolicyConfiguration_Label_Manual;
+            String textAlways = Resources.tl_PolicyConfiguration_Label_Always;
+            String textManual = Resources.tl_PolicyConfiguration_Label_Manual;
             
             NCIF_A.Text = textAlways;
             NCIF_M.Text = textManual;
@@ -296,13 +288,13 @@ namespace SIF.Visualization.Excel
             DataModel.Instance.CurrentWorkbook.PolicySettings = settings;
             DataModel.Instance.CurrentWorkbook.Workbook.Saved = false;
 
-            this.Close();
+            Close();
 
         }
 
         private void Button_Cancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void CB_Constraints_CheckedChanged(object sender, EventArgs e)

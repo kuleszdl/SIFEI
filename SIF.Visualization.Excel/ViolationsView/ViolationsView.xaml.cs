@@ -24,26 +24,26 @@ namespace SIF.Visualization.Excel.ViolationsView
         {
             InitializeComponent();
 
-            this.DataContextChanged += ViolationsView_DataContextChanged;
+            DataContextChanged += ViolationsView_DataContextChanged;
         }
 
         private void ViolationsView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
 
-            if (this.DataContext == null) return;
+            if (DataContext == null) return;
 
-            this.ViolationsPane = new ListCollectionView((this.DataContext as WorkbookModel).Violations);
-            this.ViolationsPane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
-            this.ViolationsPane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
+            ViolationsPane = new ListCollectionView((DataContext as WorkbookModel).Violations);
+            ViolationsPane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
+            ViolationsPane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
 
-            this.ViolationList.ItemsSource = this.ViolationsPane;
+            ViolationList.ItemsSource = ViolationsPane;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
-                this.ViolationList.ScrollIntoView(e.AddedItems[0]);
+                ViolationList.ScrollIntoView(e.AddedItems[0]);
                 DataModel.Instance.CurrentWorkbook.UnreadViolationCount = (from vi in DataModel.Instance.CurrentWorkbook.Violations where vi.IsRead == false select vi).Count();
             }
             e.Handled = true;
