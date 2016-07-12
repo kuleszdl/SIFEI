@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.Core
@@ -61,98 +57,98 @@ namespace SIF.Visualization.Excel.Core
         #region Properties_Settings
         public Boolean FormulaComplexity
         {
-            get { return this.formulaComplexity; }
-            set { this.formulaComplexity = value; }
+            get { return formulaComplexity; }
+            set { formulaComplexity = value; }
         }
         public Boolean FormulaComplexityAutomatic
         {
-            get { return this.formulaComplexityAutomatic; }
-            set { this.formulaComplexityAutomatic = value; }
+            get { return formulaComplexityAutomatic; }
+            set { formulaComplexityAutomatic = value; }
         }
         public Boolean NoConstantsInFormulas
         {
-            get { return this.noConstantsInFormulas; }
-            set { this.noConstantsInFormulas = value; }
+            get { return noConstantsInFormulas; }
+            set { noConstantsInFormulas = value; }
         }
         public Boolean NoConstantsInFormulasAutomatic
         {
-            get { return this.noConstantsInFormulasAutomatic; }
-            set { this.noConstantsInFormulasAutomatic = value; }
+            get { return noConstantsInFormulasAutomatic; }
+            set { noConstantsInFormulasAutomatic = value; }
         }
         public Boolean ReadingDirection
         {
-            get { return this.readingDirection; }
-            set { this.readingDirection = value; }
+            get { return readingDirection; }
+            set { readingDirection = value; }
         }
         public Boolean ReadingDirectionAutomatic
         {
-            get { return this.readingDirectionAutomatic; }
-            set { this.readingDirectionAutomatic = value; }
+            get { return readingDirectionAutomatic; }
+            set { readingDirectionAutomatic = value; }
         }
         public Boolean MultipleSameRef
         {
-            get { return this.multipleSameRef; }
-            set { this.multipleSameRef = value; }
+            get { return multipleSameRef; }
+            set { multipleSameRef = value; }
         }
         public Boolean MultipleSameRefAutomatic
         {
-            get { return this.multipleSameRefAutomatic; }
-            set { this.multipleSameRefAutomatic = value; }
+            get { return multipleSameRefAutomatic; }
+            set { multipleSameRefAutomatic = value; }
         }
         public Boolean NonConsideredConstants
         {
-            get { return this.nonConsideredConstants; }
-            set { this.nonConsideredConstants = value; }
+            get { return nonConsideredConstants; }
+            set { nonConsideredConstants = value; }
         }
         public Boolean NonConsideredConstantsAutomatic
         {
-            get { return this.nonConsideredConstantsAutomatic; }
-            set { this.nonConsideredConstantsAutomatic = value; }
+            get { return nonConsideredConstantsAutomatic; }
+            set { nonConsideredConstantsAutomatic = value; }
         }
         public Boolean RefToNull
         {
-            get { return this.refToNull; }
-            set { this.refToNull = value; }
+            get { return refToNull; }
+            set { refToNull = value; }
         }
         public Boolean RefToNullAutomatic
         {
-            get { return this.refToNullAutomatic; }
-            set { this.refToNullAutomatic = value; }
+            get { return refToNullAutomatic; }
+            set { refToNullAutomatic = value; }
         }
         public Boolean OneAmongOthers
         {
-            get { return this.oneAmongOthers; }
-            set { this.oneAmongOthers = value; }
+            get { return oneAmongOthers; }
+            set { oneAmongOthers = value; }
         }
         public Boolean OneAmongOthersAutomatic
         {
-            get { return this.oneAmongOthersAutomatic; }
-            set { this.oneAmongOthersAutomatic = value; }
+            get { return oneAmongOthersAutomatic; }
+            set { oneAmongOthersAutomatic = value; }
         }
         public Boolean StringDistance
         {
-            get { return this.stringDistance; }
-            set { this.stringDistance = value; }
+            get { return stringDistance; }
+            set { stringDistance = value; }
         }
         public Boolean StringDistanceAutomatic
         {
-            get { return this.stringDistanceAutomatic; }
-            set { this.stringDistanceAutomatic = value; }
+            get { return stringDistanceAutomatic; }
+            set { stringDistanceAutomatic = value; }
         }
         public int StringDistanceMaxDist
         {
-            get { return this.stringDistanceMaxDist; }
-            set { this.stringDistanceMaxDist = value; }
+            get { return stringDistanceMaxDist; }
+            set { stringDistanceMaxDist = value; }
         }
         public Boolean ErrorInCellsAutomatic
         {
-            get { return this.errorInCellsAutomatic; }
-            set { this.errorInCellsAutomatic = value; }
+            get { return errorInCellsAutomatic; }
+            set { errorInCellsAutomatic = value; }
         }
         public Boolean ErrorInCells
         {
-            get { return this.errorInCells; }
-            set { this.errorInCells = value; }
+            get { return errorInCells; }
+            set { errorInCells = value; }
         }
 
         #endregion

@@ -1,4 +1,6 @@
-﻿namespace SIF.Visualization.Excel
+﻿using SIF.Visualization.Excel.Properties;
+
+namespace SIF.Visualization.Excel
 {
     partial class PolicyConfigurationDialog
     {
@@ -86,7 +88,7 @@
             this.Button_OK.Name = "Button_OK";
             this.Button_OK.Size = new System.Drawing.Size(98, 23);
             this.Button_OK.TabIndex = 9;
-            this.Button_OK.Text = "OK";
+            this.Button_OK.Text = Resources.tl_PolicyConfiguration_Button_Ok;
             this.Button_OK.UseVisualStyleBackColor = true;
             this.Button_OK.Click += new System.EventHandler(this.Button_OK_Click);
             // 
@@ -96,7 +98,7 @@
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.Button_Cancel.TabIndex = 10;
-            this.Button_Cancel.Text = "Cancel";
+            this.Button_Cancel.Text = Resources.tl_PolicyConfiguration_Button_Cancel;
             this.Button_Cancel.UseVisualStyleBackColor = true;
             this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
@@ -108,7 +110,7 @@
             this.NCIF_M.Name = "NCIF_M";
             this.NCIF_M.Size = new System.Drawing.Size(60, 17);
             this.NCIF_M.TabIndex = 12;
-            this.NCIF_M.Text = "Manual";
+            this.NCIF_M.Text = Resources.tl_PolicyConfiguration_Label_Manual;
             this.NCIF_M.UseVisualStyleBackColor = true;
             // 
             // RD_M
@@ -119,7 +121,7 @@
             this.RD_M.Name = "RD_M";
             this.RD_M.Size = new System.Drawing.Size(60, 17);
             this.RD_M.TabIndex = 14;
-            this.RD_M.Text = "Manual";
+            this.RD_M.Text = Resources.tl_PolicyConfiguration_Label_Manual;
             this.RD_M.UseVisualStyleBackColor = true;
             // 
             // FC_M
@@ -130,7 +132,7 @@
             this.FC_M.Name = "FC_M";
             this.FC_M.Size = new System.Drawing.Size(60, 17);
             this.FC_M.TabIndex = 16;
-            this.FC_M.Text = "Manual";
+            this.FC_M.Text = Resources.tl_PolicyConfiguration_Label_Manual;
             this.FC_M.UseVisualStyleBackColor = true;
             // 
             // panel1
@@ -152,7 +154,7 @@
             this.NCIF_A.Size = new System.Drawing.Size(58, 17);
             this.NCIF_A.TabIndex = 11;
             this.NCIF_A.TabStop = true;
-            this.NCIF_A.Text = "Always";
+            this.NCIF_A.Text = Resources.tl_PolicyConfiguration_Label_Always;
             this.NCIF_A.UseVisualStyleBackColor = true;
             // 
             // panel2
@@ -174,7 +176,7 @@
             this.RD_A.Size = new System.Drawing.Size(58, 17);
             this.RD_A.TabIndex = 13;
             this.RD_A.TabStop = true;
-            this.RD_A.Text = "Always";
+            this.RD_A.Text = Resources.tl_PolicyConfiguration_Label_Always;
             this.RD_A.UseVisualStyleBackColor = true;
             // 
             // panel3
@@ -196,7 +198,7 @@
             this.FC_A.Size = new System.Drawing.Size(58, 17);
             this.FC_A.TabIndex = 15;
             this.FC_A.TabStop = true;
-            this.FC_A.Text = "Always";
+            this.FC_A.Text = Resources.tl_PolicyConfiguration_Label_Always;
             this.FC_A.UseVisualStyleBackColor = true;
             // 
             // CB_FormulaComplexity
@@ -206,7 +208,7 @@
             this.CB_FormulaComplexity.Name = "CB_FormulaComplexity";
             this.CB_FormulaComplexity.Size = new System.Drawing.Size(116, 17);
             this.CB_FormulaComplexity.TabIndex = 6;
-            this.CB_FormulaComplexity.Text = "Formula Complexity";
+            this.CB_FormulaComplexity.Text = Resources.tl_PolicyConfiguration_Rule_FormulaComplexity;
             this.CB_FormulaComplexity.UseVisualStyleBackColor = true;
             this.CB_FormulaComplexity.CheckedChanged += new System.EventHandler(this.CB_FormulaComplexity_CheckedChanged);
             // 
@@ -217,7 +219,7 @@
             this.CB_ReadingDirection.Name = "CB_ReadingDirection";
             this.CB_ReadingDirection.Size = new System.Drawing.Size(111, 17);
             this.CB_ReadingDirection.TabIndex = 3;
-            this.CB_ReadingDirection.Text = "Reading Direction";
+            this.CB_ReadingDirection.Text = Resources.tl_PolicyConfiguration_Rule_ReadingDirection;
             this.CB_ReadingDirection.UseVisualStyleBackColor = true;
             this.CB_ReadingDirection.CheckedChanged += new System.EventHandler(this.CB_ReadingDirection_CheckedChanged);
             // 
@@ -228,7 +230,7 @@
             this.CB_NoConstantsInFormulas.Name = "CB_NoConstantsInFormulas";
             this.CB_NoConstantsInFormulas.Size = new System.Drawing.Size(146, 17);
             this.CB_NoConstantsInFormulas.TabIndex = 0;
-            this.CB_NoConstantsInFormulas.Text = "No Constants in Formulas";
+            this.CB_NoConstantsInFormulas.Text = Resources.tl_PolicyConfiguration_No_Constants;
             this.CB_NoConstantsInFormulas.UseVisualStyleBackColor = true;
             this.CB_NoConstantsInFormulas.CheckedChanged += new System.EventHandler(this.CB_Constraints_CheckedChanged);
             // 
@@ -240,7 +242,7 @@
             this.CB_MultipleSameRef.Name = "CB_MultipleSameRef";
             this.CB_MultipleSameRef.Size = new System.Drawing.Size(166, 17);
             this.CB_MultipleSameRef.TabIndex = 20;
-            this.CB_MultipleSameRef.Text = "Same reference multiple times";
+            this.CB_MultipleSameRef.Text = Resources.tl_PolicyConfiguration_Rule_SameMultipleRefs;
             this.CB_MultipleSameRef.UseVisualStyleBackColor = true;
             this.CB_MultipleSameRef.CheckedChanged += new System.EventHandler(this.CB_MultipleSameRef_CheckedChanged);
             // 
@@ -263,7 +265,7 @@
             this.MSR_A.Size = new System.Drawing.Size(58, 17);
             this.MSR_A.TabIndex = 15;
             this.MSR_A.TabStop = true;
-            this.MSR_A.Text = "Always";
+            this.MSR_A.Text = Resources.tl_PolicyConfiguration_Label_Always;
             this.MSR_A.UseVisualStyleBackColor = true;
             // 
             // MSR_M
@@ -274,7 +276,7 @@
             this.MSR_M.Name = "MSR_M";
             this.MSR_M.Size = new System.Drawing.Size(60, 17);
             this.MSR_M.TabIndex = 16;
-            this.MSR_M.Text = "Manual";
+            this.MSR_M.Text = Resources.tl_PolicyConfiguration_Label_Manual;
             this.MSR_M.UseVisualStyleBackColor = true;
             // 
             // panel5
@@ -296,7 +298,7 @@
             this.NCC_A.Size = new System.Drawing.Size(58, 17);
             this.NCC_A.TabIndex = 15;
             this.NCC_A.TabStop = true;
-            this.NCC_A.Text = "Always";
+            this.NCC_A.Text = Resources.tl_PolicyConfiguration_Label_Always;
             this.NCC_A.UseVisualStyleBackColor = true;
             // 
             // NCC_M
@@ -307,7 +309,7 @@
             this.NCC_M.Name = "NCC_M";
             this.NCC_M.Size = new System.Drawing.Size(60, 17);
             this.NCC_M.TabIndex = 16;
-            this.NCC_M.Text = "Manual";
+            this.NCC_M.Text = Resources.tl_PolicyConfiguration_Label_Manual;
             this.NCC_M.UseVisualStyleBackColor = true;
             // 
             // CB_NonConsideredConstants
@@ -317,7 +319,7 @@
             this.CB_NonConsideredConstants.Name = "CB_NonConsideredConstants";
             this.CB_NonConsideredConstants.Size = new System.Drawing.Size(150, 17);
             this.CB_NonConsideredConstants.TabIndex = 22;
-            this.CB_NonConsideredConstants.Text = "Non considered constants";
+            this.CB_NonConsideredConstants.Text = Resources.tl_PolicyConfiguration_Rule_NonConsideredConstants;
             this.CB_NonConsideredConstants.UseVisualStyleBackColor = true;
             this.CB_NonConsideredConstants.CheckedChanged += new System.EventHandler(this.CB_NonConsideredConstants_CheckedChanged);
             // 
@@ -340,7 +342,7 @@
             this.RTN_A.Size = new System.Drawing.Size(58, 17);
             this.RTN_A.TabIndex = 15;
             this.RTN_A.TabStop = true;
-            this.RTN_A.Text = "Always";
+            this.RTN_A.Text = Resources.tl_PolicyConfiguration_Label_Always;
             this.RTN_A.UseVisualStyleBackColor = true;
             // 
             // RTN_M
@@ -351,7 +353,7 @@
             this.RTN_M.Name = "RTN_M";
             this.RTN_M.Size = new System.Drawing.Size(60, 17);
             this.RTN_M.TabIndex = 16;
-            this.RTN_M.Text = "Manual";
+            this.RTN_M.Text = Resources.tl_PolicyConfiguration_Label_Manual;
             this.RTN_M.UseVisualStyleBackColor = true;
             // 
             // CB_RefToNull
@@ -361,7 +363,7 @@
             this.CB_RefToNull.Name = "CB_RefToNull";
             this.CB_RefToNull.Size = new System.Drawing.Size(146, 17);
             this.CB_RefToNull.TabIndex = 24;
-            this.CB_RefToNull.Text = "References to blank cells";
+            this.CB_RefToNull.Text = Resources.tl_PolicyConfiguration_Rule_ReferencesToBlankCells;
             this.CB_RefToNull.UseVisualStyleBackColor = true;
             this.CB_RefToNull.CheckedChanged += new System.EventHandler(this.CB_RefToNull_CheckedChanged);
             // 
@@ -384,7 +386,7 @@
             this.OAO_A.Size = new System.Drawing.Size(58, 17);
             this.OAO_A.TabIndex = 15;
             this.OAO_A.TabStop = true;
-            this.OAO_A.Text = "Always";
+            this.OAO_A.Text = Resources.tl_PolicyConfiguration_Label_Always;
             this.OAO_A.UseVisualStyleBackColor = true;
             // 
             // OAO_M
@@ -395,7 +397,7 @@
             this.OAO_M.Name = "OAO_M";
             this.OAO_M.Size = new System.Drawing.Size(60, 17);
             this.OAO_M.TabIndex = 16;
-            this.OAO_M.Text = "Manual";
+            this.OAO_M.Text = Resources.tl_PolicyConfiguration_Label_Manual;
             this.OAO_M.UseVisualStyleBackColor = true;
             // 
             // CB_OneAmongOthers
@@ -405,7 +407,7 @@
             this.CB_OneAmongOthers.Name = "CB_OneAmongOthers";
             this.CB_OneAmongOthers.Size = new System.Drawing.Size(113, 17);
             this.CB_OneAmongOthers.TabIndex = 26;
-            this.CB_OneAmongOthers.Text = "One among others";
+            this.CB_OneAmongOthers.Text = Resources.tl_PolicyConfiguration_Rule_OneAmongOthers;
             this.CB_OneAmongOthers.UseVisualStyleBackColor = true;
             this.CB_OneAmongOthers.CheckedChanged += new System.EventHandler(this.CB_OneAmongOthers_CheckedChanged);
             // 
@@ -428,7 +430,7 @@
             this.SD_A.Size = new System.Drawing.Size(58, 17);
             this.SD_A.TabIndex = 15;
             this.SD_A.TabStop = true;
-            this.SD_A.Text = "Always";
+            this.SD_A.Text = Resources.tl_PolicyConfiguration_Label_Always;
             this.SD_A.UseVisualStyleBackColor = true;
             // 
             // SD_M
@@ -439,7 +441,7 @@
             this.SD_M.Name = "SD_M";
             this.SD_M.Size = new System.Drawing.Size(60, 17);
             this.SD_M.TabIndex = 16;
-            this.SD_M.Text = "Manual";
+            this.SD_M.Text = Resources.tl_PolicyConfiguration_Label_Manual;
             this.SD_M.UseVisualStyleBackColor = true;
             // 
             // CB_StringDistance
@@ -449,7 +451,7 @@
             this.CB_StringDistance.Name = "CB_StringDistance";
             this.CB_StringDistance.Size = new System.Drawing.Size(98, 17);
             this.CB_StringDistance.TabIndex = 28;
-            this.CB_StringDistance.Text = "String Distance";
+            this.CB_StringDistance.Text = Resources.tl_PolicyConfiguration_Rule_StringDistance;
             this.CB_StringDistance.UseVisualStyleBackColor = true;
             this.CB_StringDistance.CheckedChanged += new System.EventHandler(this.CB_StringDistance_CheckedChanged);
             // 
@@ -460,7 +462,7 @@
             this.lb_MaxDistance.Name = "lb_MaxDistance";
             this.lb_MaxDistance.Size = new System.Drawing.Size(73, 13);
             this.lb_MaxDistance.TabIndex = 30;
-            this.lb_MaxDistance.Text = "Max distance:";
+            this.lb_MaxDistance.Text = Resources.tl_PolicyConfiguration_Rule_StringDistanceExtra;
             // 
             // SD_Amount
             // 
@@ -476,7 +478,7 @@
             this.cb_Ask_Thousands.Name = "cb_Ask_Thousands";
             this.cb_Ask_Thousands.Size = new System.Drawing.Size(137, 30);
             this.cb_Ask_Thousands.TabIndex = 32;
-            this.cb_Ask_Thousands.Text = "Ask whether thousand \r\nseparators are intended";
+            this.cb_Ask_Thousands.Text = Resources.tl_PolicyConfiguration_Label_ThousandSeparators;
             this.cb_Ask_Thousands.UseVisualStyleBackColor = true;
             // 
             // panel9
@@ -498,7 +500,7 @@
             this.EIC_A.Size = new System.Drawing.Size(58, 17);
             this.EIC_A.TabIndex = 15;
             this.EIC_A.TabStop = true;
-            this.EIC_A.Text = "Always";
+            this.EIC_A.Text = Resources.tl_PolicyConfiguration_Label_Always;
             this.EIC_A.UseVisualStyleBackColor = true;
             // 
             // EIC_M
@@ -509,7 +511,7 @@
             this.EIC_M.Name = "EIC_M";
             this.EIC_M.Size = new System.Drawing.Size(60, 17);
             this.EIC_M.TabIndex = 16;
-            this.EIC_M.Text = "Manual";
+            this.EIC_M.Text = Resources.tl_PolicyConfiguration_Label_Manual;
             this.EIC_M.UseVisualStyleBackColor = true;
             // 
             // CB_ErrorInCells
@@ -519,7 +521,7 @@
             this.CB_ErrorInCells.Name = "CB_ErrorInCells";
             this.CB_ErrorInCells.Size = new System.Drawing.Size(102, 17);
             this.CB_ErrorInCells.TabIndex = 28;
-            this.CB_ErrorInCells.Text = "Cells with #Error";
+            this.CB_ErrorInCells.Text = Resources.tl_PolicyConfiguration_Rule_CellsWithErrors;
             this.CB_ErrorInCells.UseVisualStyleBackColor = true;
             this.CB_ErrorInCells.CheckedChanged += new System.EventHandler(this.CB_ErrorInCells_CheckedChanged);
             // 
@@ -556,7 +558,7 @@
             this.MinimizeBox = false;
             this.Name = "PolicyConfigurationDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Policy Configuration";
+            this.Text = Resources.tl_PolicyConfiguration_WindowTitle;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

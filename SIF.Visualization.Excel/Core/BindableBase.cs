@@ -30,7 +30,7 @@ namespace SIF.Visualization.Excel.Core
         /// desired value.</returns>
         protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
         {
-            if (object.Equals(storage, value)) return false;
+            if (Equals(storage, value)) return false;
 
             if (value is string && string.IsNullOrWhiteSpace(value as string))
             {
@@ -41,7 +41,7 @@ namespace SIF.Visualization.Excel.Core
                 storage = value;
             }
 
-            this.OnPropertyChanged(propertyName);
+            OnPropertyChanged(propertyName);
             return true;
         }
 
@@ -53,7 +53,7 @@ namespace SIF.Visualization.Excel.Core
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var eventHandler = this.PropertyChanged;
+            var eventHandler = PropertyChanged;
             if (eventHandler != null)
             {
                 eventHandler(this, new PropertyChangedEventArgs(propertyName));
@@ -102,7 +102,7 @@ namespace SIF.Visualization.Excel.Core
         /// <returns>true, if the given instances are equal; otherwise, false.</returns>
         public static bool operator ==(BindableBase a, BindableBase b)
         {
-            if (System.Object.ReferenceEquals(a, b)) return true;
+            if (ReferenceEquals(a, b)) return true;
             if (((object)a == null) || ((object)b == null)) return false;
 
             return a.Equals(b);

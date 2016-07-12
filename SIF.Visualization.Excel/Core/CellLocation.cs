@@ -3,11 +3,16 @@ using SIF.Visualization.Excel.Properties;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Data;
+using System.Windows.Ink;
+using System.Windows.Shapes;
+using Microsoft.Office.Core;
+using Excel_Range = Microsoft.Office.Interop.Excel.Range;
+using Rectangle = System.Windows.Shapes.Rectangle;
+using Shape = System.Windows.Shapes.Shape;
 
 namespace SIF.Visualization.Excel.Core
 {
@@ -38,8 +43,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string Letter
         {
-            get { return this.letter; }
-            set { this.SetProperty(ref this.letter, value); }
+            get { return letter; }
+            set { SetProperty(ref letter, value); }
         }
 
         /// <summary>
@@ -47,8 +52,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public int Number
         {
-            get { return this.number; }
-            set { this.SetProperty(ref this.number, value); }
+            get { return number; }
+            set { SetProperty(ref number, value); }
         }
 
 
@@ -57,39 +62,39 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public Worksheet Worksheet
         {
-            get { return this.worksheet; }
-            set { this.SetProperty(ref this.worksheet, value); }
+            get { return worksheet; }
+            set { SetProperty(ref worksheet, value); }
         }
 
         public ObservableCollection<Violation> Violations
         {
             get
             {
-                if (this.violations == null)
+                if (violations == null)
                 {
-                    this.violations = new ObservableCollection<Violation>();
+                    violations = new ObservableCollection<Violation>();
                 }
-                return this.violations;
+                return violations;
             }
-            set { this.SetProperty(ref this.violations, value); }
+            set { SetProperty(ref violations, value); }
         }
 
         public ViolationType ViolationType
         {
-            get { return this.violationType; }
-            set { this.SetProperty(ref this.violationType, value); }
+            get { return violationType; }
+            set { SetProperty(ref violationType, value); }
         }
 
         public bool ViolationSelected
         {
-            get { return this.violationSelected; }
-            set { this.SetProperty(ref this.violationSelected, value); }
+            get { return violationSelected; }
+            set { SetProperty(ref violationSelected, value); }
         }
 
         public Violation SelectedViolation
         {
-            get { return this.selectedViolation; }
-            set { this.SetProperty(ref this.selectedViolation, value); }
+            get { return selectedViolation; }
+            set { SetProperty(ref selectedViolation, value); }
         }
 
         public CellLocation Cell
@@ -99,8 +104,8 @@ namespace SIF.Visualization.Excel.Core
 
         public ListCollectionView ViolationsPane
         {
-            get { return this.violationsPane; }
-            set { this.SetProperty(ref this.violationsPane, value); }
+            get { return violationsPane; }
+            set { SetProperty(ref violationsPane, value); }
         }
 
         #endregion
@@ -117,10 +122,10 @@ namespace SIF.Visualization.Excel.Core
             CellLocation other = obj as CellLocation;
             if ((object)other == null) return false;
 
-            return this.Letter == other.Letter &&
-                   this.Number == other.Number &&
-                   this.ViolationType == other.ViolationType &&
-                   Object.ReferenceEquals(this.Worksheet, other.Worksheet);
+            return Letter == other.Letter &&
+                   Number == other.Number &&
+                   ViolationType == other.ViolationType &&
+                   ReferenceEquals(Worksheet, other.Worksheet);
         }
 
         public bool EqualsWithoutType(object obj)
@@ -128,9 +133,9 @@ namespace SIF.Visualization.Excel.Core
             CellLocation other = obj as CellLocation;
             if ((object)other == null) return false;
 
-            return this.Letter == other.Letter &&
-                   this.Number == other.Number &&
-                   Object.ReferenceEquals(this.Worksheet, other.Worksheet);
+            return Letter == other.Letter &&
+                   Number == other.Number &&
+                   ReferenceEquals(Worksheet, other.Worksheet);
         }
 
         /// <summary>
@@ -150,7 +155,7 @@ namespace SIF.Visualization.Excel.Core
         /// <returns>true, if the given instances are equal; otherwise, false.</returns>
         public static bool operator ==(CellLocation a, CellLocation b)
         {
-            if (System.Object.ReferenceEquals(a, b)) return true;
+            if (ReferenceEquals(a, b)) return true;
             if (((object)a == null) || ((object)b == null)) return false;
 
             return a.Equals(b);
@@ -176,7 +181,7 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string Location
         {
-            get { return "=" + this.Worksheet.Name + "!$" + this.Letter + "$" + this.Number; }
+            get { return "=" + Worksheet.Name + "!$" + Letter + "$" + Number; }
         }
 
         /// <summary>
@@ -184,7 +189,7 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string ShortLocation
         {
-            get { return this.Letter + this.Number; }
+            get { return Letter + Number; }
         }
 
         /// <summary>
@@ -192,7 +197,7 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public IEnumerable<Name> Names
         {
-            get { return from Name p in this.Worksheet.Application.Names where (p.RefersTo as string) == this.Location select p; }
+            get { return from Name p in Worksheet.Application.Names where (p.RefersTo as string) == Location select p; }
         }
 
         /// <summary>
@@ -200,7 +205,7 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public IEnumerable<Name> ScenarioNames
         {
-            get { return from p in this.Names where p.Name.StartsWith(Settings.Default["CellNameTag"] as string) select p; }
+            get { return from p in Names where p.Name.StartsWith(Settings.Default["CellNameTag"] as string) select p; }
         }
 
         /// <summary>
@@ -208,7 +213,7 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public IEnumerable<Name> FalsePositiveNames
         {
-            get { return from p in this.Names where p.Name.StartsWith(Settings.Default["FalsePositivePrefix"] as string) select p; }
+            get { return from p in Names where p.Name.StartsWith(Settings.Default["FalsePositivePrefix"] as string) select p; }
         }
 
         /// <summary>
@@ -216,7 +221,7 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public IEnumerable<Name> UserNames
         {
-            get { return this.Names.Except(this.ScenarioNames).Except(this.FalsePositiveNames); }
+            get { return Names.Except(ScenarioNames).Except(FalsePositiveNames); }
         }
 
         /// <summary>
@@ -224,8 +229,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string Content
         {
-            get { return this.Worksheet.Range[this.ShortLocation].Formula as string; }
-            set { this.Worksheet.Range[this.ShortLocation].Formula = value; }
+            get { return Worksheet.Range[ShortLocation].Formula as string; }
+            set { Worksheet.Range[ShortLocation].Formula = value; }
         }
 
         #endregion
@@ -254,38 +259,38 @@ namespace SIF.Visualization.Excel.Core
             if (cell.Contains('!')) cell = cell.Substring(cell.IndexOf('!') + 1);
 
             // Parse letter and number
-            this.Letter = Regex.Match(cell, "[A-Z]*").Value.ToUpper();
+            Letter = Regex.Match(cell, "[A-Z]*").Value.ToUpper();
             if (cell.Contains(":")) cell = cell.Substring(letter.Length, cell.IndexOf(":") - 1);
-            this.Number = int.Parse(cell.Replace(this.Letter, ""));
-            this.Violations.CollectionChanged += Violations_CollectionChanged;
+            Number = int.Parse(cell.Replace(Letter, ""));
+            Violations.CollectionChanged += Violations_CollectionChanged;
         }
 
         public void Violations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (this.Violations.Count > 0)
+            if (Violations.Count > 0)
             {
-                if (this.Violations.Count == 1)
+                if (Violations.Count == 1)
                 {
-                    this.SelectedViolation = violations.ElementAt(0);
-                    this.ViolationSelected = true;
-                    if (this.control == null)
+                    SelectedViolation = violations.ElementAt(0);
+                    ViolationSelected = true;
+                    if (control == null)
                     {
-                        this.DrawIcon();
+                        DrawIcon();
                     }
                 }
                 else
                 {
-                    this.ViolationSelected = false;
+                    ViolationSelected = false;
                 }
-                this.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
-                this.violationsPane = new ListCollectionView(Violations);
-                this.violationsPane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
-                this.ViolationsPane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
-                this.OnPropertyChanged("Violations");
+                SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
+                violationsPane = new ListCollectionView(Violations);
+                violationsPane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
+                ViolationsPane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
+                OnPropertyChanged("Violations");
             }
             else
             {
-                this.RemoveIcon();
+                RemoveIcon();
                 DataModel.Instance.CurrentWorkbook.ViolatedCells.Remove(this);
             }
         }
@@ -298,7 +303,7 @@ namespace SIF.Visualization.Excel.Core
         public CellLocation(Worksheet worksheet, string location)
             : this(ref location)
         {
-            this.Worksheet = worksheet;
+            Worksheet = worksheet;
         }
 
         /// <summary>
@@ -323,7 +328,7 @@ namespace SIF.Visualization.Excel.Core
             // Could not find a worksheet...
             if (worksheet == null) throw new ArgumentException("Could not find the right worksheet inside this workbook model.");
 
-            this.Worksheet = worksheet;
+            Worksheet = worksheet;
         }
 
         /// <summary>
@@ -331,7 +336,7 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public override string ToString()
         {
-            return this.Location;
+            return Location;
         }
 
         #region Cell Names
@@ -343,7 +348,7 @@ namespace SIF.Visualization.Excel.Core
         /// <param name="visible">Determines whether this cell name should be visible to the user.</param>
         protected Name InternalAddName(string name, bool visible)
         {
-            return this.Worksheet.Application.Names.Add(name, this.Location, visible);
+            return Worksheet.Application.Names.Add(name, Location, visible);
         }
 
         /// <summary>
@@ -354,7 +359,7 @@ namespace SIF.Visualization.Excel.Core
         public Name AddName(string prefix, bool visible)
         {
             var name = prefix + Guid.NewGuid().ToString().Replace("-", "");
-            return this.InternalAddName(name, visible);
+            return InternalAddName(name, visible);
         }
 
         /// <summary>
@@ -363,9 +368,9 @@ namespace SIF.Visualization.Excel.Core
         /// <param name="name">The name that is to be deleted.</param>
         public void DeleteName(string name)
         {
-            if (this.HasName(name))
+            if (HasName(name))
             {
-                this.GetName(name).Delete();
+                GetName(name).Delete();
             }
         }
 
@@ -376,9 +381,9 @@ namespace SIF.Visualization.Excel.Core
         /// <returns>The specified name, null if that name does not exist.</returns>
         public Name GetName(string name)
         {
-            if (this.HasName(name))
+            if (HasName(name))
             {
-                return this.Names.Where(p => p.Name == name).FirstOrDefault();
+                return Names.Where(p => p.Name == name).FirstOrDefault();
             }
             else
             {
@@ -393,7 +398,7 @@ namespace SIF.Visualization.Excel.Core
         /// <returns>True, if that name is pointing to this cell, otherwise false.</returns>
         public bool HasName(string name)
         {
-            return this.Names.Where(p => p.Name == name).Count() > 0;
+            return Names.Where(p => p.Name == name).Count() > 0;
         }
 
         #endregion
@@ -403,22 +408,22 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public void Select()
         {
-            ((_Worksheet)this.Worksheet).Activate();
-            this.Worksheet.Range[this.ShortLocation].Select();
+            ((_Worksheet)Worksheet).Activate();
+            Worksheet.Range[ShortLocation].Select();
         }
 
         public void Select(Violation violation)
         {
-            this.Select();
-            this.SelectedViolation = violation;
-            this.ViolationSelected = true;
+            Select();
+            SelectedViolation = violation;
+            ViolationSelected = true;
         }
 
         public void Unselect()
         {
-            if (this.Violations.Count > 1)
+            if (Violations.Count > 1)
             {
-                this.ViolationSelected = false;
+                ViolationSelected = false;
             }
         }
 
@@ -427,61 +432,75 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public void ScrollIntoView()
         {
-            ((_Worksheet)this.Worksheet).Activate();
-            this.Worksheet.Range[this.ShortLocation].Show();
+            ((_Worksheet)Worksheet).Activate();
+            Worksheet.Range[ShortLocation].Show();
         }
 
         private void DrawIcon()
         {
-            var container = new CellErrorInfoContainer();
-            container.ElementHost.Child = new CellErrorInfo() 
-            { 
-                DataContext = this 
-            };
+            try
+            {
+                var container = new CellErrorInfoContainer();
+                container.ElementHost.Child = new CellErrorInfo()
+                {
+                    DataContext = this
+                };
 
-            var vsto = Globals.Factory.GetVstoObject(this.Worksheet);
+                
+                var vsto = Globals.Factory.GetVstoObject(Worksheet);
+               // Range left = this.Worksheet.Range = control.Ra= Cell.ShortLocation.
+                controlName = Guid.NewGuid().ToString();
 
-            this.controlName = Guid.NewGuid().ToString();
+                control = vsto.Controls.AddControl(container, Worksheet.Range[ShortLocation], controlName);
+                
+                Range left = Worksheet.get_Range(ShortLocation);
+                int distLeft =(int) left.Left;
+                int disttop = (int) left.Top;
 
-            this.control = vsto.Controls.AddControl(container, this.Worksheet.Range[this.ShortLocation], this.controlName);
-            this.control.Width = this.control.Height + 4;
-            this.control.Placement = Microsoft.Office.Interop.Excel.XlPlacement.xlMove;
-            this.control.AutoLoad = true;
+   
+                
+                control.Width = control.Height + 4;
+                control.Placement = XlPlacement.xlMove;
+                  
+                control.AutoLoad = true;
+                
+            }
+            catch (Exception ex) { Console.Out.WriteLine(ex.ToString()); }
         }
 
         public void RemoveIcon()
         {
-            if (!string.IsNullOrWhiteSpace(this.controlName))
+            if (!string.IsNullOrWhiteSpace(controlName))
             {
-                var vsto = Globals.Factory.GetVstoObject(this.Worksheet);
-                vsto.Controls.Remove(this.controlName);
-                this.controlName = null;
+                var vsto = Globals.Factory.GetVstoObject(Worksheet);
+                vsto.Controls.Remove(controlName);
+                controlName = null;
             }
         }
 
         public void SetVisibility(SharedTabs tab)
         {
-            if (this.control != null)
+            if (control != null)
             {
-                if (this.violationType.Equals(ViolationType.OPEN) && tab.Equals(SharedTabs.Open))
+                if (violationType.Equals(ViolationType.OPEN) && tab.Equals(SharedTabs.Open))
                 {
-                    this.control.Visible = true;
+                    control.Visible = true;
                 }
-                else if (this.violationType.Equals(ViolationType.LATER) && tab.Equals(SharedTabs.Later))
+                else if (violationType.Equals(ViolationType.LATER) && tab.Equals(SharedTabs.Later))
                 {
-                    this.control.Visible = true;
+                    control.Visible = true;
                 }
-                else if (this.violationType.Equals(ViolationType.IGNORE) && tab.Equals(SharedTabs.Ignore))
+                else if (violationType.Equals(ViolationType.IGNORE) && tab.Equals(SharedTabs.Ignore))
                 {
-                    this.control.Visible = true;
+                    control.Visible = true;
                 }
-                else if (this.violationType.Equals(ViolationType.SOLVED) && tab.Equals(SharedTabs.Archive))
+                else if (violationType.Equals(ViolationType.SOLVED) && tab.Equals(SharedTabs.Archive))
                 {
-                    this.control.Visible = true;
+                    control.Visible = true;
                 }
                 else
                 {
-                    this.control.Visible = false;
+                    control.Visible = false;
                 }
             }
         }

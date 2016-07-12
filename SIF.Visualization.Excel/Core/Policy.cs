@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.Core
 {
@@ -24,8 +19,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string Name
         {
-            get { return this.name; }
-            set { this.SetProperty(ref this.name, value); }
+            get { return name; }
+            set { SetProperty(ref name, value); }
         }
 
         /// <summary>
@@ -33,8 +28,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string Description
         {
-            get { return this.description; }
-            set { this.SetProperty(ref this.description, value); }
+            get { return description; }
+            set { SetProperty(ref description, value); }
         }
 
         /// <summary>
@@ -42,8 +37,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string Author
         {
-            get { return this.author; }
-            set { this.SetProperty(ref this.author, value); }
+            get { return author; }
+            set { SetProperty(ref author, value); }
         }
 
         #endregion
@@ -60,9 +55,9 @@ namespace SIF.Visualization.Excel.Core
             Policy other = obj as Policy;
             if ((object)other == null) return false;
 
-            return this.Author == other.Author &&
-                   this.Description == other.Description &&
-                   this.Name == other.Name;
+            return Author == other.Author &&
+                   Description == other.Description &&
+                   Name == other.Name;
         }
 
         /// <summary>
@@ -82,7 +77,7 @@ namespace SIF.Visualization.Excel.Core
         /// <returns>true, if the given instances are equal; otherwise, false.</returns>
         public static bool operator ==(Policy a, Policy b)
         {
-            if (System.Object.ReferenceEquals(a, b)) return true;
+            if (ReferenceEquals(a, b)) return true;
             if (((object)a == null) || ((object)b == null)) return false;
 
             return a.Equals(b);
@@ -109,9 +104,9 @@ namespace SIF.Visualization.Excel.Core
 
         public Policy(XElement root)
         {
-            this.Author = root.Attribute(XName.Get("author")).Value;
-            this.Description = root.Attribute(XName.Get("description")).Value;
-            this.Name = root.Attribute(XName.Get("name")).Value;
+            Author = root.Attribute(XName.Get("author")).Value;
+            Description = root.Attribute(XName.Get("description")).Value;
+            Name = root.Attribute(XName.Get("name")).Value;
         }
 
         #endregion

@@ -25,10 +25,10 @@ namespace SIF.Visualization.Excel.Networking
         private InspectionEngine()
         {
             // Initialize the default port
-            this.Port = Settings.Default.DefaultPort;
+            Port = Settings.Default.DefaultPort;
 
             // Create the inspection queue
-            this.InspectionQueue = new BlockingCollection<InspectionJob>();
+            InspectionQueue = new BlockingCollection<InspectionJob>();
         }
 
         /// <summary>
@@ -118,26 +118,26 @@ namespace SIF.Visualization.Excel.Networking
                 try
                 {
                     // Try to bind the socket to the standard or the incremented port
-                    this.TcpServer = new TcpListener(new IPEndPoint(IPAddress.Loopback, this.Port));
+                    TcpServer = new TcpListener(new IPEndPoint(IPAddress.Loopback, Port));
 
                     // Try and start the socket server.
-                    this.TcpServer.Start();
+                    TcpServer.Start();
 
                     // If there was no exception, the socket server is now connected.
                     isStarted = true;
 
                     // Create and start the server thread.
-                    this.ServerThread = new Thread(new ThreadStart(ServerRunLoop));
-                    this.ServerThread.IsBackground = true;
-                    this.ServerThread.Start();
+                    ServerThread = new Thread(new ThreadStart(ServerRunLoop));
+                    ServerThread.IsBackground = true;
+                    ServerThread.Start();
 
                     // Notify that the server is now up and running.
-                    this.State = InspectionEngineState.Waiting;
+                    State = InspectionEngineState.Waiting;
                 }
                 catch (Exception)
                 {
                     // Increment the port number by one.
-                    this.Port++;
+                    Port++;
                 }
             }
         }
@@ -147,19 +147,19 @@ namespace SIF.Visualization.Excel.Networking
         /// </summary>
         public void Stop()
         {
-            if (this.TcpServer != null)
+            if (TcpServer != null)
             {
-                this.TcpServer.Stop();
-                this.TcpServer = null;
+                TcpServer.Stop();
+                TcpServer = null;
             }
 
-            this.State = InspectionEngineState.NotRunning;
+            State = InspectionEngineState.NotRunning;
 
-            this.ServerThread.Abort();
+            ServerThread.Abort();
         }
 
         /// <summary>
-        /// Returns a value that indicates, whether the specified socket connected or not.
+        /// Returns a value that indicates, whether the specified socket is connected or not.
         /// </summary>
         public static bool IsSocketConnected(Socket socket)
         {
@@ -189,16 +189,17 @@ namespace SIF.Visualization.Excel.Networking
                     if (!File.Exists(Settings.Default.FrameworkPath + Path.DirectorySeparatorChar + "sif.jar"))
                     {
                         // Sif has not been installed correctly.
-                        MessageBox.Show(
-                            "The Spreadsheet Inspection Framework was not found at this location:\n" +
-                            Settings.Default.FrameworkPath + Path.DirectorySeparatorChar +
-                            "sif.jar\n\nPlease install the Spreadsheet Inspection Framework and restart Excel.", "Error");
+                        MessageBox.Show(Resources.tl_Path_missing
+                                        +
+                                        Settings.Default.FrameworkPath + Path.DirectorySeparatorChar +
+                                        "sif.jar\n\n" + Resources.tl_Path_install, Resources.tl_MessageBox_Error);
                     }
 
                     // Launch a new instance of the Spreadsheet Inspection Framework
                     var startInfo = new ProcessStartInfo("cmd",
-                        "/q /c java -jar \"" + Settings.Default.FrameworkPath + Path.DirectorySeparatorChar + "sif.jar\" "
-                        + Settings.Default.SifOptions + " " + InspectionEngine.Instance.Port);
+                        "/q /c java -jar \"" + Settings.Default.FrameworkPath + Path.DirectorySeparatorChar +
+                        "sif.jar\" "
+                        + Settings.Default.SifOptions + " " + Instance.Port);
                     startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     var process = Process.Start(startInfo);
 
@@ -209,8 +210,16 @@ namespace SIF.Visualization.Excel.Networking
 
                     while (IsSocketConnected(clientSocket))
                     {
+                        if (InspectionQueue.Count <= 0)
+                        {
+                            Globals.ThisAddIn.Application.StatusBar = Resources.tl_Scan_unsuccessful;
+                            Globals.Ribbons.Ribbon.scanButton.Enabled = true;
+                            Globals.Ribbons.Ribbon.scanButton.Label =
+                                Resources.tl_Ribbon_AreaScan_ScanButton;
+                        }
                         // Get the next inspection job from the inspection queue
-                        var currentJob = this.InspectionQueue.Take();
+                        var currentJob = InspectionQueue.Take();
+
 
                         try
                         {
@@ -218,8 +227,9 @@ namespace SIF.Visualization.Excel.Networking
                             var writer = new StringWriter();
                             currentJob.PolicyXML.Save(writer);
                             clientSocket.SendString(writer.GetStringBuilder().ToString());
-
                             // Read the report from the socket connection
+
+
                             var report = clientSocket.ReadString();
 
                             // Let the inspection job know about the report
@@ -237,14 +247,19 @@ namespace SIF.Visualization.Excel.Networking
                             }
                             InspectionQueue.Dispose();
                             InspectionQueue = new BlockingCollection<InspectionJob>();
+                           
+                            
                             // restart the server loop
                             throw new Exception();
                         }
                         catch (Exception e)
                         {
                             // Put the job in the queue again
-                            MessageBox.Show("The test of the current document failed!\n" + e.ToString(), "Error");
+                            MessageBox.Show(Resources.tl_Scan_failed + e.ToString(), Resources.tl_MessageBox_Error);
+                            Start();
+                           
                         }
+
                     }
 
                     #endregion
@@ -253,12 +268,10 @@ namespace SIF.Visualization.Excel.Networking
             catch (ExternalException) // Java is not on the path
             {
                 MessageBox.Show(
-                    "No java runtime was found!\n" +
-                    "Please ensure a java runtime environmet >= 1.7 is installed and accesible through the PATH variable.\n" +
-                    "The Scan button will be without function.",
-                    "Error");
+                    Resources.tl_No_Java_Enviroment,
+                    Resources.tl_MessageBox_Error);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 // start will fork into a new thread
                 Start();
@@ -267,7 +280,7 @@ namespace SIF.Visualization.Excel.Networking
             finally
             {
                 currentTcpListener.Stop();
-            }
+                }
         }
 
 

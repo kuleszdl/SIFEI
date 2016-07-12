@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -24,9 +22,9 @@ namespace SIF.Visualization.Excel.ViewModel
             object[] objs = new object[2];
             objs[0] = maxSeverity;
             objs[1] = violationState;
-            Color maxColor = (Color)conv.Convert(objs, typeof(System.Windows.Media.Color), parameter, culture);
+            Color maxColor = (Color)conv.Convert(objs, typeof(Color), parameter, culture);
             objs[0] = minSeverity;
-            Color minColor = (Color)conv.Convert(objs, typeof(System.Windows.Media.Color), parameter, culture);
+            Color minColor = (Color)conv.Convert(objs, typeof(Color), parameter, culture);
             LinearGradientBrush brush = new LinearGradientBrush();
             brush.StartPoint = new Point(0, 1);
             brush.EndPoint = new Point(0, 0);

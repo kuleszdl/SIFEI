@@ -19,7 +19,7 @@ namespace SIF.Visualization.Excel.ScenarioView
         private Boolean ignoreLocal = false;
 
 
-        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             ValidationResult result;
             string val = (string) value;

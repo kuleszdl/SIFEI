@@ -1,9 +1,4 @@
 ﻿using SIF.Visualization.Excel.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
 {
@@ -20,8 +15,8 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         /// </summary>
         public string Name
         {
-            get { return this.name; }
-            set { this.SetProperty(ref this.name, value); }
+            get { return name; }
+            set { SetProperty(ref name, value); }
         }
 
         /// <summary>
@@ -29,8 +24,8 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         /// </summary>
         public string Author
         {
-            get { return this.author; }
-            set { this.SetProperty(ref this.author, value); }
+            get { return author; }
+            set { SetProperty(ref author, value); }
         }
 
         /// <summary>
@@ -38,8 +33,8 @@ namespace SIF.Visualization.Excel.ScenarioCore.StaticScenarios
         /// </summary>
         public double SevertyWight
         {
-            get { return this.severtyWight; }
-            set { this.SetProperty(ref this.severtyWight, value); }
+            get { return severtyWight; }
+            set { SetProperty(ref severtyWight, value); }
         }
 
         #endregion

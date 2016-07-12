@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace SIF.Visualization.Excel.ScenarioView
@@ -16,8 +10,8 @@ namespace SIF.Visualization.Excel.ScenarioView
         {
             get
             {
-                if (this.ScenarioDetailPaneHost != null && this.ScenarioDetailPaneHost.Child != null)
-                    return this.ScenarioDetailPaneHost.Child as ScenarioDetailPane;
+                if (ScenarioDetailPaneHost != null && ScenarioDetailPaneHost.Child != null)
+                    return ScenarioDetailPaneHost.Child as ScenarioDetailPane;
                 else return null;
             }
         }
@@ -25,6 +19,24 @@ namespace SIF.Visualization.Excel.ScenarioView
         public ScenarioDetailPaneContainer()
         {
             InitializeComponent();
+            VisibleChanged += ScenarioDetailPaneContainer_VisibleChanged;
+            
+        }
+
+        void ScenarioDetailPaneContainer_VisibleChanged(object sender, EventArgs e)
+        {
+            
+                if (Visible)
+                {
+                    ScenarioDetailPane.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ScenarioDetailPane.Visibility = Visibility.Collapsed;
+                }
+           
+
+
         }
     }
 }

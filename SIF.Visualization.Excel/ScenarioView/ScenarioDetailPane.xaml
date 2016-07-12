@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:scenarioCore="clr-namespace:SIF.Visualization.Excel.ScenarioCore"
              xmlns:scenarioView="clr-namespace:SIF.Visualization.Excel.ScenarioView"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:p="clr-namespace:SIF.Visualization.Excel.Properties"
+             mc:Ignorable="d" Height="592.125" Width="300">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -23,7 +23,7 @@
 
                     <!--Cell Data List Templates-->
                     <DataTemplate DataType="{x:Type scenarioCore:InputCellData}">
-                        <Grid Margin="0 2 0 2">
+                        <Grid Margin="0 0 0 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="*"/>
@@ -44,7 +44,7 @@
                                      TextAlignment="Right"
                                      VerticalAlignment="Center">
                                 <TextBox.Text>
-                                    <Binding Path="Content" Mode="TwoWay">
+                                    <Binding Path="Content" Mode="TwoWay" UpdateSourceTrigger="Explicit">
                                         <Binding.ValidationRules>
                                             <scenarioView:NumberValidationRule/>
                                         </Binding.ValidationRules>
@@ -67,12 +67,12 @@
                                     <Image Source="{StaticResource IntermediateCellIcon}" 
                                            Width="17" Grid.Column="0"
                                            Margin="0 1 5 1"/>
-                                    <TextBlock Text="{Binding Path=Location, Mode=TwoWay}" FontWeight="50"
+                                    <TextBlock Text="{Binding Path=Location, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontWeight="50"
                                                Grid.Column="1"
                                                Margin="0 1 3 1"
                                                TextAlignment="Right"
                                                VerticalAlignment="Center"/>
-                                    <TextBox Text="{Binding Path=Content, Mode=TwoWay}" 
+                                    <TextBox Text="{Binding Path=Content, Mode=TwoWay, UpdateSourceTrigger=Explicit}" 
                                              Grid.Column="2" 
                                              Margin="0 1 3 1"
                                              TextAlignment="Right"
@@ -91,14 +91,14 @@
                                 <TextBlock Text="Up"
                                            Grid.Column="0" Grid.Row="0"/>
                                 <TextBox x:Name="DifferenceUpTextBox"
-                                         Text="{Binding Path=DifferenceUp, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                         Text="{Binding Path=DifferenceUp, UpdateSourceTrigger=Explicit, Mode=TwoWay}"
                                          Margin="5 5 5 5"
                                          Grid.Column="1" Grid.Row="0"/>
 
                                 <TextBlock Text="Down"
                                            Grid.Column="0" Grid.Row="1"/>
                                 <TextBox x:Name="DifferenceDownTextBox"
-                                         Text="{Binding Path=DifferenceDown, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                         Text="{Binding Path=DifferenceDown, UpdateSourceTrigger=Explicit, Mode=TwoWay}"
                                          Margin="5 5 5 5"
                                          Grid.Column="1" Grid.Row="1"/>
                             </Grid>
@@ -123,7 +123,7 @@
                                                Margin="0 1 3 1"
                                                TextAlignment="Right"
                                                VerticalAlignment="Center"/>
-                                    <TextBox Text="{Binding Path=Content, Mode=TwoWay}" 
+                                    <TextBox Text="{Binding Path=Content, UpdateSourceTrigger=Explicit, Mode=TwoWay}" 
                                              Grid.Column="2" 
                                              Margin="0 1 3 1"
                                              TextAlignment="Right"
@@ -142,20 +142,20 @@
                                 <TextBlock Text="Up"
                                            Grid.Column="0" Grid.Row="0"/>
                                 <TextBox x:Name="DifferenceUpTextBox"
-                                         Text="{Binding Path=DifferenceUp, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                         Text="{Binding Path=DifferenceUp, UpdateSourceTrigger=Explicit, Mode=TwoWay}"
                                          Margin="5 5 5 5"
                                          Grid.Column="1" Grid.Row="0"/>
 
                                 <TextBlock Text="Down"
                                            Grid.Column="0" Grid.Row="1"/>
                                 <TextBox x:Name="DifferenceDownTextBox"
-                                         Text="{Binding Path=DifferenceDown, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                         Text="{Binding Path=DifferenceDown, UpdateSourceTrigger=Explicit, Mode=TwoWay}"
                                          Margin="5 5 5 5"
                                          Grid.Column="1" Grid.Row="1"/>
                             </Grid>
                         </Expander>
                     </DataTemplate>
-                    
+
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -165,6 +165,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="PaneTitle" Foreground="{StaticResource PaneTitleBrush}" 
                    FontSize="16"
@@ -172,17 +173,19 @@
                    Margin="6 0 0 10"
                    Grid.Row="0"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto"
-                      Grid.Row="1">
-            <Grid Margin="0 0 10 10">
+                      Grid.Row="1" Margin="0,0,0,0">
+            <Grid Margin="0 0 0 0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Expander x:Name="GeneralExpander" Header="General"
+                          Width="Auto"
                   IsExpanded="True"
                   Style="{StaticResource FlatExpanderStyle}"
                   Grid.Row="0">
@@ -209,7 +212,8 @@
                 </Expander>
 
                 <Expander x:Name="DescriptionExpander" Header="Description"
-                  IsExpanded="False"
+                          MinWidth="300"
+                  IsExpanded="True"
                   Style="{StaticResource FlatExpanderStyle}"
                   Grid.Row="1">
                     <Grid Margin="25 5 0 10">
@@ -221,7 +225,8 @@
                         <TextBox x:Name="DescriptionTextBox" Grid.Row="1"
                          TextWrapping="Wrap"
                          Height="100"
-                         VerticalScrollBarVisibility="Auto"/>
+                                 Width="Auto"
+                         VerticalScrollBarVisibility="Auto" Margin="0,0,44,0"/>
                     </Grid>
                 </Expander>
 
@@ -229,34 +234,52 @@
                   IsExpanded="True"
                   Style="{StaticResource FlatExpanderStyle}"
                   Grid.Row="2">
-                    <Grid Margin="25 5 0 10">
+                    <Grid Margin="15 0 0 0">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
+                        <Button Grid.Row="0" x:Name="DeleteDataButton" BorderThickness="0" Background="Transparent"
+                                Click="DeleteDataButton_Click" HorizontalAlignment="Left" Margin="5 0 5 0" ToolTip="{x:Static p:Resources.tl_ScenarioDetailPane_DeleteDataTooltip}">
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                                <Image Source="{StaticResource DeleteImageSource}" Width="15" Height="15"/>
+                                <TextBlock Text="{x:Static p:Resources.tl_ScenarioDetailPane_DeleteData}"/>
+                            </StackPanel>
+                        </Button>
                         <ListBox x:Name="ScenarioDataListBox"
-                         BorderThickness="1 1 1 0"
+                         BorderThickness="0 0 0 0"
                          HorizontalContentAlignment="Stretch"
                          VerticalAlignment="Stretch"
-                         Grid.Row="0"
+                         Grid.Row="1"
                          SelectionChanged="ScenarioDataListBox_SelectionChanged"/>
-                        <Border BorderThickness="1 0 1 1" Background="White" BorderBrush="#FFABADB3"
-                        Grid.Row="1"  >
-                            <StackPanel Orientation="Horizontal" Margin="0 5 10 5" HorizontalAlignment="Right">
-                                <Button x:Name="DeleteDataButton" 
-                                BorderThickness="0" Background="Transparent"
-                                Click="DeleteDataButton_Click">
-                                    <Image Source="{StaticResource DeleteImageSource}" Width="15" Height="15"/>
-                                </Button>
-                            </StackPanel>
-                        </Border>
+
                     </Grid>
                 </Expander>
+               
+
 
             </Grid>
         </ScrollViewer>
+        <StackPanel Grid.Row="3" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="5 10 5 5" HorizontalAlignment="Center" Width="Auto">
+            <Button x:Name="SaveDataButton" HorizontalAlignment="Left"
+                                BorderThickness="0" Background="Transparent" Margin="5 0 5 0" ToolTip="{x:Static p:Resources.tl_ScenarioDetailPane_SaveDataTooltip}"
+                                Click="SaveDataButton_OnClickDataButton_Click">
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <Image Source="{StaticResource SaveImageSource}" Width="15" Height="15" />
+                    <TextBlock Text="{x:Static p:Resources.tl_ScenarioDetailPane_SaveData}" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="DiscardDataButton" BorderThickness="0" Background="Transparent"
+                                Click="DiscardDataButton_OnClickDataButton_Click" HorizontalAlignment="Right" Margin="5 0 0 0" ToolTip="{x:Static p:Resources.tl_ScenarioDetailPane_DiscardDataTooltip}">
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <Image Source="{StaticResource DiscardImageSource}" Width="15" Height="15"/>
+                    <TextBlock Text="{x:Static p:Resources.tl_ScenarioDetailPane_DiscardData}"/>
+                </StackPanel>
+
+            </Button>
+        </StackPanel>
     </Grid>
 
-    
+
 </UserControl>

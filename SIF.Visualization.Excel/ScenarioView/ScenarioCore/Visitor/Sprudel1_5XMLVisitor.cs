@@ -17,15 +17,15 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         /// </summary>
         /// <param name="n">WorkbookModel</param>
         /// <returns>complete sprudel xml as XElement</returns>
-        public object Visit(Core.WorkbookModel n)
+        public object Visit(WorkbookModel n)
         {
             PolicyConfigurationModel settings = n.PolicySettings;
             var root = new XElement("policyList");
             var dynamicPolicy = new XElement("dynamicPolicy");
             //attributes
             dynamicPolicy.Add(new XAttribute("name", NullCheck(n.Title) + " Inspection"));
-            dynamicPolicy.Add(new XAttribute("description", this.GetDocumentProperty(n, "Comments")));
-            dynamicPolicy.Add(new XAttribute("author", this.GetDocumentProperty(n, "Author")));
+            dynamicPolicy.Add(new XAttribute("description", GetDocumentProperty(n, "Comments")));
+            dynamicPolicy.Add(new XAttribute("author", GetDocumentProperty(n, "Author")));
 
             //rules 
             var rules = new XElement("rules");
@@ -199,7 +199,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 
         #region private workbook model visitor methods
 
-        private XElement CreateSanityRules(Core.WorkbookModel n)
+        private XElement CreateSanityRules(WorkbookModel n)
         {
             var root = new XElement("sanityRules");
 
@@ -219,7 +219,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             return root;
         }
 
-        private XElement CreateInputCells(Core.WorkbookModel n)
+        private XElement CreateInputCells(WorkbookModel n)
         {
             var root = new XElement("inputCells");
 
@@ -232,7 +232,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             return root;
         }
 
-        private XElement CreateSanityValueCells(Core.WorkbookModel n)
+        private XElement CreateSanityValueCells(WorkbookModel n)
         {
             var root = new XElement("sanityValueCells");
 
@@ -244,7 +244,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             return root;
         }
 
-        private XElement CreateSanityConstraintCells(Core.WorkbookModel n)
+        private XElement CreateSanityConstraintCells(WorkbookModel n)
         {
             var root = new XElement("sanityConstraintCells");
 
@@ -256,7 +256,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             return root;
         }
 
-        private XElement CreateSanityExplanationCells(Core.WorkbookModel n)
+        private XElement CreateSanityExplanationCells(WorkbookModel n)
         {
             var root = new XElement("sanityExplanationCells");
 
@@ -268,7 +268,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             return root;
         }
 
-        private XElement CreateSanityCheckingCells(Core.WorkbookModel n)
+        private XElement CreateSanityCheckingCells(WorkbookModel n)
         {
             var root = new XElement("sanityCheckingCells");
 
@@ -281,7 +281,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         }
 
 
-        private XElement CreateOutputCells(Core.WorkbookModel n)
+        private XElement CreateOutputCells(WorkbookModel n)
         {
             var root = new XElement("outputCells");
 
@@ -300,7 +300,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         /// <param name="n">Workbook model with the excel workbook</param>
         /// <param name="propertyName">name of the requested property</param>
         /// <returns></returns>
-        private string GetDocumentProperty(Core.WorkbookModel n, string propertyName)
+        private string GetDocumentProperty(WorkbookModel n, string propertyName)
         {
             var properties = (Microsoft.Office.Core.DocumentProperties)n.Workbook.BuiltinDocumentProperties;
             string value;
@@ -472,7 +472,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             throw new NotImplementedException();
         }
 
-        public object Visit(Core.Cell n)
+        public object Visit(Cell n)
         {
             throw new NotImplementedException();
         }

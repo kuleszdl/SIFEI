@@ -3,10 +3,6 @@ using SIF.Visualization.Excel.Cells;
 using SIF.Visualization.Excel.ScenarioCore;
 using SIF.Visualization.Excel.ScenarioCore.Visitor;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.Core
@@ -29,8 +25,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public int Id
         {
-            get { return this.id; }
-            set { this.SetProperty(ref this.id, value); }
+            get { return id; }
+            set { SetProperty(ref id, value); }
         }
 
         /// <summary>
@@ -38,8 +34,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string Location
         {
-            get { return this.location; }
-            set { this.SetProperty(ref this.location, value); }
+            get { return location; }
+            set { SetProperty(ref location, value); }
         }
 
         /// <summary>
@@ -47,8 +43,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string SifLocation
         {
-            get { return this.sifLocation; }
-            set { this.SetProperty(ref this.sifLocation, value); }
+            get { return sifLocation; }
+            set { SetProperty(ref sifLocation, value); }
         }
 
         /// <summary>
@@ -56,8 +52,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string Content
         {
-            get { return this.content; }
-            set { this.SetProperty(ref this.content, value); }
+            get { return content; }
+            set { SetProperty(ref content, value); }
         }
 
         #endregion
@@ -74,9 +70,9 @@ namespace SIF.Visualization.Excel.Core
             Cell other = obj as Cell;
             if ((object)other == null) return false;
 
-            return this.Id == other.Id &&
+            return Id == other.Id &&
                 //this.Content == other.Content &&
-                   this.Location == other.Location;
+                   Location == other.Location;
         }
 
         /// <summary>
@@ -96,7 +92,7 @@ namespace SIF.Visualization.Excel.Core
         /// <returns>true, if the given instances are equal; otherwise, false.</returns>
         public static bool operator ==(Cell a, Cell b)
         {
-            if (System.Object.ReferenceEquals(a, b)) return true;
+            if (ReferenceEquals(a, b)) return true;
             if (((object)a == null) || ((object)b == null)) return false;
 
             return a.Equals(b);
@@ -120,103 +116,103 @@ namespace SIF.Visualization.Excel.Core
         {
             var cell = new Cell()
             {
-                Id = this.Id,
-                Content = this.Content,
-                Location = this.Location,
-                SifLocation = this.SifLocation
+                Id = Id,
+                Content = Content,
+                Location = Location,
+                SifLocation = SifLocation
             };
             return cell;
         }
 
-        public Cells.InputCell ToInputCell()
+        public InputCell ToInputCell()
         {
-            var cell = new Cells.InputCell()
+            var cell = new InputCell()
             {
-                Id = this.Id,
-                Content = this.Content,
-                Location = this.Location,
-                SifLocation = this.SifLocation
+                Id = Id,
+                Content = Content,
+                Location = Location,
+                SifLocation = SifLocation
             };
             return cell;
         }
 
-        public Cells.IntermediateCell ToIntermediateCell()
+        public IntermediateCell ToIntermediateCell()
         {
-            var cell = new Cells.IntermediateCell()
+            var cell = new IntermediateCell()
             {
-                Id = this.Id,
-                Content = this.Content,
-                Location = this.Location,
-                SifLocation = this.SifLocation
+                Id = Id,
+                Content = Content,
+                Location = Location,
+                SifLocation = SifLocation
             };
             return cell;
         }
 
-        public Cells.SanityValueCell ToSanityValueCell()
+        public SanityValueCell ToSanityValueCell()
         {
-            var cell = new Cells.SanityValueCell()
+            var cell = new SanityValueCell()
             {
-                Id = this.Id,
-                Content = this.Content,
-                Location = this.Location,
-                SifLocation = this.SifLocation
+                Id = Id,
+                Content = Content,
+                Location = Location,
+                SifLocation = SifLocation
             };
             return cell;
         }
 
-        public Cells.SanityCheckingCell ToSanityCheckingCell()
+        public SanityCheckingCell ToSanityCheckingCell()
         {
-            var cell = new Cells.SanityCheckingCell()
+            var cell = new SanityCheckingCell()
             {
-                Id = this.Id,
-                Content = this.Content,
-                Location = this.Location,
-                SifLocation = this.SifLocation
+                Id = Id,
+                Content = Content,
+                Location = Location,
+                SifLocation = SifLocation
             };
             return cell;
         }
 
-        public Cells.SanityConstraintCell ToSanityConstraintCell()
+        public SanityConstraintCell ToSanityConstraintCell()
         {
-            var cell = new Cells.SanityConstraintCell()
+            var cell = new SanityConstraintCell()
             {
-                Id = this.Id,
-                Content = this.Content,
-                Location = this.Location,
-                SifLocation = this.SifLocation
+                Id = Id,
+                Content = Content,
+                Location = Location,
+                SifLocation = SifLocation
             };
             return cell;
         }
 
-        public Cells.SanityExplanationCell ToSanityExplanationCell()
+        public SanityExplanationCell ToSanityExplanationCell()
         {
-            var cell = new Cells.SanityExplanationCell()
+            var cell = new SanityExplanationCell()
             {
-                Id = this.Id,
-                Content = this.Content,
-                Location = this.Location,
-                SifLocation = this.SifLocation
+                Id = Id,
+                Content = Content,
+                Location = Location,
+                SifLocation = SifLocation
             };
             return cell;
         }
 
-        public Cells.OutputCell ToOutputCell()
+        public OutputCell ToOutputCell()
         {
-            var cell = new Cells.OutputCell()
+            var cell = new OutputCell()
             {
-                Id = this.Id,
-                Content = this.Content,
-                Location = this.Location,
-                SifLocation = this.SifLocation
+                Id = Id,
+                Content = Content,
+                Location = Location,
+                SifLocation = SifLocation
             };
             return cell;
         }
 
         public Cell ToCellType(Type t)
         {
-            if (t == typeof(InputCell)) return this.ToInputCell();
-            if (t == typeof(IntermediateCell)) return this.ToIntermediateCell();
-            if (t == typeof(OutputCell)) return this.ToOutputCell();
+            if (t == typeof(InputCell)) return ToInputCell();
+            if (t == typeof(IntermediateCell)) return ToIntermediateCell();
+            if (t == typeof(OutputCell)) return ToOutputCell();
 
             return null;
         }
@@ -231,9 +227,9 @@ namespace SIF.Visualization.Excel.Core
 
         public Cell(XElement root, Workbook workbook)
         {
-            this.Id = Convert.ToInt32(root.Attribute(XName.Get("number")).Value);
-            this.Content = root.Attribute(XName.Get("content")).Value;
-            this.Location = new CellLocation(workbook, root.Attribute(XName.Get("location")).Value).Location;
+            Id = Convert.ToInt32(root.Attribute(XName.Get("number")).Value);
+            Content = root.Attribute(XName.Get("content")).Value;
+            Location = new CellLocation(workbook, root.Attribute(XName.Get("location")).Value).Location;
         }
 
         #endregion

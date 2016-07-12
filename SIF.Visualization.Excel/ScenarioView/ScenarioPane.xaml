@@ -18,6 +18,7 @@
         <BitmapImage x:Key="AddImageSource" UriSource="../icons/112_Plus_Grey_32x32_72.png"/>
         <BitmapImage x:Key="DeleteImageSource" UriSource="../icons/Delete_black.png"/>
         <BitmapImage x:Key="Search" UriSource="../icons/magnifier_16xLG.png"/>
+        <BitmapImage x:Key="EditImageSource" UriSource="../icons/Edit.png"/>
 
     </UserControl.Resources>
 
@@ -62,15 +63,14 @@
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Path=Title}" 
-                                       FontWeight="SemiBold" Margin="5 0 0 0"
-                                       MouseLeftButtonDown="ScenarioDesc_MouseLeftButtonDown"/>
+                                       FontWeight="SemiBold" Margin="5 0 0 0" />
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Text="{Binding Path=Description, Converter={StaticResource DescriptionToShortDescriptionConverter}}"
@@ -78,19 +78,31 @@
                                        TextWrapping="Wrap"
                                        Foreground="Gray"
                                        Margin="0 0 0 3"
-                                       MouseLeftButtonDown="ScenarioDesc_MouseLeftButtonDown"/>
+                                       MouseLeftButtonDown="EditScenarioButton_Click"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1">
                                 <Button x:Name="DeleteScenarioButton" 
                                     ToolTip="{x:Static p:Resources.tl_ScenarioPane_DeleteScenarioTooltip}"
                                     Margin="0 5 5 5"
-                                    Grid.Column="1" Grid.Row="0"
                                     VerticalAlignment="Center" HorizontalAlignment="Right"
                                     BorderThickness="0" Background="Transparent"
                                     Click="DeleteScenarioButton_Click">
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Width="Auto">
                                         <Image Source="{StaticResource DeleteImageSource}" Width="15" Height="15"/>
                                         <TextBlock Text="{x:Static p:Resources.tl_ScenarioPane_DeleteScenario}"></TextBlock>
                                     </StackPanel>
                                 </Button>
+                                <Button x:Name="EditScenarioButton" 
+                                    ToolTip="{x:Static p:Resources.tl_ScenarioPane_EditScenarioTooltip}"
+                                    Margin="0 5 5 5"
+                                    VerticalAlignment="Center" HorizontalAlignment="Left"
+                                    BorderThickness="0" Background="Transparent"
+                                    Click="EditScenarioButton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource EditImageSource}" Width="15" Height="15"/>
+                                        <TextBlock Text="{x:Static p:Resources.tl_ScenarioPane_EditScenario}"></TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                </StackPanel>
                             </Grid>
                         </StackPanel>
                     </DataTemplate>

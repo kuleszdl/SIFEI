@@ -38,7 +38,7 @@
             this.ScenarioDetailPaneHost.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ScenarioDetailPaneHost.Location = new System.Drawing.Point(0, 0);
             this.ScenarioDetailPaneHost.Name = "ScenarioDetailPaneHost";
-            this.ScenarioDetailPaneHost.Size = new System.Drawing.Size(157, 596);
+            this.ScenarioDetailPaneHost.Size = new System.Drawing.Size(238, 596);
             this.ScenarioDetailPaneHost.TabIndex = 0;
             this.ScenarioDetailPaneHost.Text = "ScenarioDetailPaneHost";
             this.ScenarioDetailPaneHost.Child = this.scenarioDetailPane1;
@@ -49,7 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ScenarioDetailPaneHost);
             this.Name = "ScenarioDetailPaneContainer";
-            this.Size = new System.Drawing.Size(157, 596);
+            this.Size = new System.Drawing.Size(238, 596);
             this.ResumeLayout(false);
             this.PerformLayout();
 

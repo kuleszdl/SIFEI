@@ -1,10 +1,7 @@
 ﻿using SIF.Visualization.Excel.ViolationsView;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
 
 namespace SIF.Visualization.Excel.Core
 {
@@ -55,17 +52,17 @@ namespace SIF.Visualization.Excel.Core
         {
             get
             {
-                if (this.currentWorkbook == null)
+                if (currentWorkbook == null)
                 {
                     // This method is called whenever a workbook comes to the front
                     // Does not necessarily need to be a workbook that is persisted on the disk
-                    var workbook = DataModel.Instance.WorkbookModels.Where(p => object.ReferenceEquals(p.Workbook, Globals.ThisAddIn.Application.ActiveWorkbook)).FirstOrDefault();
+                    var workbook = Instance.WorkbookModels.Where(p => ReferenceEquals(p.Workbook, Globals.ThisAddIn.Application.ActiveWorkbook)).FirstOrDefault();
                     if (workbook == null)
                     {
                         workbook = new WorkbookModel(Globals.ThisAddIn.Application.ActiveWorkbook);
-                        DataModel.Instance.WorkbookModels.Add(workbook);
+                        Instance.WorkbookModels.Add(workbook);
 
-                        DataModel.Instance.CurrentWorkbook = workbook;
+                        Instance.CurrentWorkbook = workbook;
 
                         var violationsViewContainer = new ViolationsViewContainer();
                         var taskPane = Globals.ThisAddIn.CustomTaskPanes.Add(violationsViewContainer, "Violations");
@@ -75,11 +72,11 @@ namespace SIF.Visualization.Excel.Core
                         Globals.ThisAddIn.TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "Violations"), taskPane);
                     }
 
-                    this.currentWorkbook = workbook;
+                    currentWorkbook = workbook;
                 }
-                return this.currentWorkbook;
+                return currentWorkbook;
             }
-            set { this.SetProperty(ref this.currentWorkbook, value); }
+            set { SetProperty(ref currentWorkbook, value); }
         }
 
         /// <summary>
@@ -89,8 +86,8 @@ namespace SIF.Visualization.Excel.Core
         {
             get
             {
-                if (this.workbookModels == null) this.workbookModels = new ObservableCollection<WorkbookModel>();
-                return this.workbookModels;
+                if (workbookModels == null) workbookModels = new ObservableCollection<WorkbookModel>();
+                return workbookModels;
             }
         }
 
@@ -100,7 +97,7 @@ namespace SIF.Visualization.Excel.Core
             set;
         }
 
-        public SIF.Visualization.Excel.Core.WorkbookModel.CellDefinitionChangeHandler CellDefinitionChangedEventHandler
+        public WorkbookModel.CellDefinitionChangeHandler CellDefinitionChangedEventHandler
         {
             get;
             set;
@@ -120,8 +117,8 @@ namespace SIF.Visualization.Excel.Core
             DataModel other = obj as DataModel;
             if ((object)other == null) return false;
 
-            return this.CurrentWorkbook == other.CurrentWorkbook &&
-                   this.WorkbookModels.SequenceEqual(other.WorkbookModels);
+            return CurrentWorkbook == other.CurrentWorkbook &&
+                   WorkbookModels.SequenceEqual(other.WorkbookModels);
         }
 
         /// <summary>
@@ -141,7 +138,7 @@ namespace SIF.Visualization.Excel.Core
         /// <returns>true, if the given instances are equal; otherwise, false.</returns>
         public static bool operator ==(DataModel a, DataModel b)
         {
-            if (System.Object.ReferenceEquals(a, b)) return true;
+            if (ReferenceEquals(a, b)) return true;
             if (((object)a == null) || ((object)b == null)) return false;
 
             return a.Equals(b);

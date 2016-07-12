@@ -1,21 +1,9 @@
-﻿using Microsoft.Office.Tools;
-using SIF.Visualization.Excel.Core;
-using SIF.Visualization.Excel.ViolationsView;
-using System;
-using System.Collections.Generic;
+﻿using SIF.Visualization.Excel.Core;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SIF.Visualization.Excel.LaterView
 {
@@ -34,20 +22,20 @@ namespace SIF.Visualization.Excel.LaterView
         public LaterView()
         {
             InitializeComponent();
-            this.DataContextChanged += LaterView_DataContextChanged;
+            DataContextChanged += LaterView_DataContextChanged;
         }
 
 
         private void LaterView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
 
-            if (this.DataContext == null) return;
+            if (DataContext == null) return;
 
-            this.LaterViolationsPane = new ListCollectionView((this.DataContext as WorkbookModel).LaterViolations);
-            this.LaterViolationsPane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
-            this.LaterViolationsPane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
+            LaterViolationsPane = new ListCollectionView((DataContext as WorkbookModel).LaterViolations);
+            LaterViolationsPane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
+            LaterViolationsPane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
 
-            this.LaterList.ItemsSource = this.LaterViolationsPane;
+            LaterList.ItemsSource = LaterViolationsPane;
         }
 
 
@@ -55,7 +43,7 @@ namespace SIF.Visualization.Excel.LaterView
         {
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
-                this.LaterList.ScrollIntoView(e.AddedItems[0]);
+                LaterList.ScrollIntoView(e.AddedItems[0]);
             }
             e.Handled = true;
         }

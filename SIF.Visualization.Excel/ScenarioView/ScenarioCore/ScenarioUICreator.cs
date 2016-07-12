@@ -2,10 +2,7 @@
 using SIF.Visualization.Excel.ScenarioView;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIF.Visualization.Excel.ScenarioCore
 {
@@ -55,20 +52,20 @@ namespace SIF.Visualization.Excel.ScenarioCore
         #region Methods
         public void Start(Core.WorkbookModel wb, string scenarioTitle)
         {
-            if (this.newScenario != null) return;
+            if (newScenario != null) return;
             lock (syncScenario)
             {
-                if (this.newScenario != null) return;
+                if (newScenario != null) return;
 
-                this.newScenario = new Scenario()
+                newScenario = new Scenario()
                     {
                         Title = scenarioTitle,
                         CrationDate = DateTime.Now,
-                        Author = this.GetDocumentProperty(wb, "Last Author")
+                        Author = GetDocumentProperty(wb, "Last Author")
                     };
 
             }
-            this.workbook = wb.Workbook;
+            workbook = wb.Workbook;
 
             var workingList = wb.InputCells.Union(wb.IntermediateCells).Union(wb.OutputCells).ToList();
 
@@ -160,9 +157,9 @@ namespace SIF.Visualization.Excel.ScenarioCore
                     lock (syncScenario)
                     {
                         //clear this object
-                        this.containers.Clear();
-                        this.workbook = null;
-                        this.newScenario = null;
+                        containers.Clear();
+                        workbook = null;
+                        newScenario = null;
 
                         return;
                     }
@@ -199,7 +196,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
                     container,
                     currentWorksheet.Range[Cells.CellManager.Instance.ParseCellLocation(c.Location)],
                     Guid.NewGuid().ToString());
-                control.Placement = Microsoft.Office.Interop.Excel.XlPlacement.xlMove;
+                control.Placement = XlPlacement.xlMove;
             }
 
             //set focus to first control
@@ -287,10 +284,10 @@ namespace SIF.Visualization.Excel.ScenarioCore
 
         public Scenario End()
         {
-            if (this.newScenario == null) return null;
+            if (newScenario == null) return null;
 
             //delete data contexts of the containers
-            foreach (var c in this.containers)
+            foreach (var c in containers)
             {
                 c.createScenarioDataField.DataContext = null;
             }
@@ -339,14 +336,14 @@ namespace SIF.Visualization.Excel.ScenarioCore
             #endregion
 
             // end up and clear
-            var resultScenario = this.newScenario;
+            var resultScenario = newScenario;
 
             lock (syncScenario)
             {
                 //clear this object
-                this.containers.Clear();
-                this.workbook = null;
-                this.newScenario = null;
+                containers.Clear();
+                workbook = null;
+                newScenario = null;
 
                 if (resultScenario.Inputs.Count == 0 &&
                     resultScenario.Intermediates.Count == 0 &&

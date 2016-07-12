@@ -1,10 +1,4 @@
 ﻿using SIF.Visualization.Excel.ScenarioCore.Visitor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.ScenarioCore
 {
@@ -24,8 +18,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
         /// </summary>
         public double DifferenceUp
         {
-            get { return this.differenceUp; }
-            set { this.SetProperty(ref this.differenceUp, value); }
+            get { return differenceUp; }
+            set { SetProperty(ref differenceUp, value); }
         }
 
         /// <summary>
@@ -33,8 +27,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
         /// </summary>
         public double DifferenceDown
         {
-            get { return this.differenceDown; }
-            set { this.SetProperty(ref this.differenceDown, value); }
+            get { return differenceDown; }
+            set { SetProperty(ref differenceDown, value); }
         }
 
         #endregion

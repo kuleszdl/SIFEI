@@ -1,19 +1,9 @@
 ﻿using SIF.Visualization.Excel.Core;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SIF.Visualization.Excel.IgnoreView
 {
@@ -31,21 +21,21 @@ namespace SIF.Visualization.Excel.IgnoreView
         public IgnoreView()
         {
             InitializeComponent();
-            this.DataContextChanged += FalsePositiveView_DataContextChanged;
-            this.IgnoreList.SelectionChanged += this.ListBox_SelectionChanged;
+            DataContextChanged += FalsePositiveView_DataContextChanged;
+            IgnoreList.SelectionChanged += ListBox_SelectionChanged;
         }
 
 
         private void FalsePositiveView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
 
-            if (this.DataContext == null) return;
+            if (DataContext == null) return;
 
-            this.IgnorePane = new ListCollectionView((this.DataContext as WorkbookModel).IgnoredViolations);
-            this.IgnorePane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
-            this.IgnorePane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
+            IgnorePane = new ListCollectionView((DataContext as WorkbookModel).IgnoredViolations);
+            IgnorePane.SortDescriptions.Add(new SortDescription("FirstOccurrence", ListSortDirection.Descending));
+            IgnorePane.SortDescriptions.Add(new SortDescription("Severity", ListSortDirection.Descending));
 
-            this.IgnoreList.ItemsSource = this.IgnorePane;
+            IgnoreList.ItemsSource = IgnorePane;
         }
 
 
@@ -53,7 +43,7 @@ namespace SIF.Visualization.Excel.IgnoreView
         {
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
-                this.IgnoreList.ScrollIntoView(e.AddedItems[0]);
+                IgnoreList.ScrollIntoView(e.AddedItems[0]);
             }
             e.Handled = true;
         }

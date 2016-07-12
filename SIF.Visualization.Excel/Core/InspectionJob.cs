@@ -1,11 +1,6 @@
-﻿using System.Dynamic;
-using SIF.Visualization.Excel.Networking;
-using SIF.Visualization.Excel.Properties;
-using SIF.Visualization.Excel.ViolationsView;
+﻿using SIF.Visualization.Excel.ViolationsView;
 using System;
-using System.Diagnostics;
 using System.IO;
-using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.Core
@@ -27,8 +22,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public WorkbookModel Workbook
         {
-            get { return this.workbook; }
-            set { this.SetProperty(ref this.workbook, value); }
+            get { return workbook; }
+            set { SetProperty(ref workbook, value); }
         }
 
         /// <summary>
@@ -36,8 +31,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string SpreadsheetPath
         {
-            get { return this.spreadsheetPath; }
-            set { this.SetProperty(ref this.spreadsheetPath, value); }
+            get { return spreadsheetPath; }
+            set { SetProperty(ref spreadsheetPath, value); }
         }
 
         // <summary>
@@ -45,8 +40,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public XDocument PolicyXML
         {
-            get { return this.policyXML; }
-            set { this.SetProperty(ref this.policyXML, value); }
+            get { return policyXML; }
+            set { SetProperty(ref policyXML, value); }
         }
 
         #endregion
@@ -63,9 +58,9 @@ namespace SIF.Visualization.Excel.Core
             var other = obj as InspectionJob;
             if ((object)other == null) return false;
 
-            return this.Workbook == other.Workbook &&
-                   this.SpreadsheetPath == other.SpreadsheetPath &&
-                   this.policyXML == other.policyXML;
+            return Workbook == other.Workbook &&
+                   SpreadsheetPath == other.SpreadsheetPath &&
+                   policyXML == other.policyXML;
         }
 
         /// <summary>
@@ -85,7 +80,7 @@ namespace SIF.Visualization.Excel.Core
         /// <returns>true, if the given instances are equal; otherwise, false.</returns>
         public static bool operator ==(InspectionJob a, InspectionJob b)
         {
-            if (System.Object.ReferenceEquals(a, b)) return true;
+            if (ReferenceEquals(a, b)) return true;
             if (((object)a == null) || ((object)b == null)) return false;
 
             return a.Equals(b);
@@ -117,7 +112,7 @@ namespace SIF.Visualization.Excel.Core
         {
             try
             {
-                File.Delete(this.SpreadsheetPath);
+                File.Delete(SpreadsheetPath);
             }
             catch (FileNotFoundException)
             {
@@ -131,11 +126,11 @@ namespace SIF.Visualization.Excel.Core
         public void Finalize(string report)
         {
             DeleteWorkbookFile();
-            if (this.Workbook == null) return;
+            if (Workbook == null) return;
             // Execute on the right dispatcher
-            (Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(this.Workbook, "Violations")].Control as ViolationsViewContainer).ViolationsView.Dispatcher.Invoke(() =>
+            (Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(Workbook, "Violations")].Control as ViolationsViewContainer).ViolationsView.Dispatcher.Invoke(() =>
             {
-                this.Workbook.Load(report);
+                Workbook.Load(report);
             });
         }
 

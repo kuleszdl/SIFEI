@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace SIF.Visualization.Excel.SharedView
 {
@@ -16,9 +8,9 @@ namespace SIF.Visualization.Excel.SharedView
         {
             get
             {
-                if (this.sharedPaneHost != null && this.sharedPaneHost.Child != null)
+                if (sharedPaneHost != null && sharedPaneHost.Child != null)
                 {
-                    return this.sharedPaneHost.Child as SharedPane;
+                    return sharedPaneHost.Child as SharedPane;
                 }
                 else
                 {

@@ -14,7 +14,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 
         public object Visit(Core.WorkbookModel n)
         {
-            if (this.root == null) return false;
+            if (root == null) return false;
             foreach (var scenarioElement in root.Elements())
             {
                 if (scenarioElement.Name != "Scenario") continue;
@@ -29,7 +29,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 
         public object Visit(Scenario n)
         {
-            if (this.root == null) return false;
+            if (root == null) return false;
 
             var titleAttribute = root.Attribute(XName.Get("Title"));
             n.Title = (titleAttribute != null) ? titleAttribute.Value : String.Empty;
@@ -87,7 +87,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 
         public object Visit(InputCellData n)
         {
-            if (this.root == null) return false;
+            if (root == null) return false;
 
             var locationElement = root.Element(XName.Get("Location"));
             n.Location = (locationElement != null) ? locationElement.Value : String.Empty;
@@ -106,7 +106,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 
         public object Visit(IntermediateCellData n)
         {
-            if (this.root == null) return false;
+            if (root == null) return false;
 
             var locationElement = root.Element(XName.Get("Location"));
             n.Location = (locationElement != null) ? locationElement.Value : String.Empty;
@@ -131,7 +131,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 
         public object Visit(ResultCellData n)
         {
-            if (this.root == null) return false;
+            if (root == null) return false;
 
             var locationElement = root.Element(XName.Get("Location"));
             n.Location = (locationElement != null) ? locationElement.Value : String.Empty;
@@ -156,7 +156,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
 
         public object Visit(Core.Cell n)
         {
-            if (this.root == null) return false;
+            if (root == null) return false;
 
             var idElement = root.Element(XName.Get("ID"));
             n.Id = (idElement != null) ? Convert.ToInt32(idElement.Value) : 1;

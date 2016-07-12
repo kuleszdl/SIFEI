@@ -26,18 +26,15 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Border BorderBrush="Black" BorderThickness="1" Background="White">
-        <Grid IsHitTestVisible="True" x:Name="Layout">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+    <Border BorderBrush="Black" BorderThickness="1" Background="White" >
+        <Grid IsHitTestVisible="True" x:Name="Layout" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.ContextMenu>
-                <ContextMenu HasDropShadow="False" Width="280" x:Name="ContextMenuMulti" MaxHeight="300">
+                <ContextMenu HasDropShadow="False" Width="280" x:Name="ContextMenuMulti" Height="Auto">
                     <ContextMenu.Template>
                         <ControlTemplate TargetType="ContextMenu" x:Name="ListboxTemplate">
                             <Border SnapsToDevicePixels="True" Background="White" BorderBrush="Black" BorderThickness="1">
@@ -201,7 +198,7 @@
                 </Image>
 
                 <Grid.ContextMenu>
-                    <ContextMenu HasDropShadow="False" Width="280">
+                    <ContextMenu HasDropShadow="False" Width="280" Name="ContextMenu2">
                         <ContextMenu.Template>
                             <ControlTemplate TargetType="ContextMenu">
                                 <Border SnapsToDevicePixels="True" Background="White" BorderBrush="Black" BorderThickness="1">
