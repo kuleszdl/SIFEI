@@ -25,14 +25,15 @@ namespace SIF.Visualization.Excel.ScenarioView
 
         void ScenarioDetailPaneContainer_VisibleChanged(object sender, EventArgs e)
         {
-            
+
+            scenarioDetailPane1.Visibility = Visibility.Collapsed;
                 if (Visible)
                 {
-                    ScenarioDetailPane.Visibility = Visibility.Visible;
+                    scenarioDetailPane1.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    ScenarioDetailPane.Visibility = Visibility.Collapsed;
+                    scenarioDetailPane1.Visibility = Visibility.Collapsed;
                 }
            
 

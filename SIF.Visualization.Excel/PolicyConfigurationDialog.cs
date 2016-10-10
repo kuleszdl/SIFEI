@@ -6,11 +6,14 @@ using SIF.Visualization.Excel.Core;
 
 namespace SIF.Visualization.Excel
 {
+    /// <summary>
+    /// The class representing a Dialog to configure the Plocies for which should be checked
+    /// </summary>
     public partial class PolicyConfigurationDialog : Form
-    {
-        private readonly String debugFile = Settings.Default.FrameworkPath + @"\debug";
-        
-
+    {       
+        /// <summary>
+        /// An instance of a dialog in which the policies to check can be defined
+        /// </summary>
         public PolicyConfigurationDialog()
         {
             InitializeComponent();
@@ -19,119 +22,53 @@ namespace SIF.Visualization.Excel
 
             FormBorderStyle = FormBorderStyle.FixedDialog;
             PolicyConfigurationModel settings = DataModel.Instance.CurrentWorkbook.PolicySettings;
+            SetNoConstants(settings);
+            SetReadingDir(settings);
+            SetFormuCompl(settings);
+            SetMultSamRef(settings);
+            SetNonConCon(settings);
+            SetRefToNull(settings);
+            SetOneAmongOth(settings);
+            SetStringDist(settings);
+            SetErrorinCell(settings);
+           
+            cb_Ask_Thousands.Checked = !Settings.Default.SifUseThousandsSeparator;
 
-            if (settings.NoConstantsInFormulas)                                   // if the Constraints box was previously selected and is stored in the settings
+
+            ShowDialog();
+        }
+
+        #region Methods to set Settings
+
+        /// <summary>
+        /// Sets the setting for Error in Cells
+        /// </summary>
+        /// <param name="settings"></param>
+        private void SetErrorinCell(PolicyConfigurationModel settings)
+        {
+            if (settings.ErrorInCells)
             {
-                CB_NoConstantsInFormulas.Checked = true;                                  // display the Constraints box as checked
-                NCIF_A.Enabled = true;                                   // and enable the Always and Manual radio buttons
-                NCIF_M.Enabled = true;
-
-                if (settings.NoConstantsInFormulasAutomatic)                     // The frequency is set to Always by default. If it is changed to false (aka Manual)
-                {
-                    NCIF_A.Checked = true;                               // display the frequency as Manual 
-                }
-                else
-                {
-                    NCIF_M.Checked = true;                               // otherwise, keep the defaul setting of Always
-                }
-            }
-
-            if (settings.ReadingDirection)
-            {
-                CB_ReadingDirection.Checked = true;
-                RD_A.Enabled = true;
-                RD_M.Enabled = true;
-
-                if (!settings.ReadingDirectionAutomatic)
-                {
-                    RD_M.Checked = true;
-                }
-                else
-                {
-                    RD_A.Checked = true;
-                }
-            }
-
-            if (settings.FormulaComplexity)
-            {
-                CB_FormulaComplexity.Checked = true;
-                FC_A.Enabled = true;
-                FC_M.Enabled = true;
-
-                if (!settings.FormulaComplexityAutomatic)
-                {
-                    FC_M.Checked = true;
-                }
-                else
-                {
-                    FC_A.Checked = true;
-                }
-            }
-
-            if (settings.MultipleSameRef)
-            {
-                CB_MultipleSameRef.Checked = true;
-                MSR_A.Enabled = true;
-                MSR_M.Enabled = true;
-
-                if (!settings.MultipleSameRefAutomatic)
-                {
-                    MSR_M.Checked = true;
-                }
-                else
-                {
-                    MSR_A.Checked = true;
-                }
-            }
-
-            if (settings.NonConsideredConstants)
-            {
-                CB_NonConsideredConstants.Checked = true;
-                NCC_A.Enabled = true;
-                NCC_M.Enabled = true;
-
-                if (!settings.NonConsideredConstantsAutomatic)
-                {
-                    NCC_M.Checked = true;
-                }
-                else
-                {
-                    NCC_A.Checked = true;
-                }
-            }
-
-            if (settings.RefToNull)
-            {
-                CB_RefToNull.Checked = true;
-                RTN_A.Enabled = true;
-                RTN_M.Enabled = true;
-
-                if (!settings.RefToNullAutomatic)
-                {
-                    RTN_M.Checked = true;
-                }
-                else
-                {
-                    RTN_A.Checked = true;
-                }
-            }
-
-            if (settings.OneAmongOthers)
-            {
-                CB_OneAmongOthers.Checked = true;
-                OAO_A.Enabled = true;
-                OAO_M.Enabled = true;
+                CB_ErrorInCells.Checked = true;
+                EIC_A.Enabled = true;
+                EIC_M.Enabled = true;
 
                 if (!settings.OneAmongOthersAutomatic)
                 {
-                    OAO_M.Checked = true;
+                    EIC_M.Checked = true;
                 }
                 else
                 {
-                    OAO_A.Checked = true;
+                    EIC_A.Checked = true;
                 }
             }
+        }
 
+        /// <summary>
+        /// Sets the Setting for the string distance
+        /// </summary>
+        /// <param name="settings"></param>
+        private void SetStringDist(PolicyConfigurationModel settings)
+        {
             if (settings.StringDistance)
             {
                 CB_StringDistance.Checked = true;
@@ -152,32 +89,177 @@ namespace SIF.Visualization.Excel
             {
                 SD_Amount.Enabled = false;
             }
+        }
 
-            if (settings.ErrorInCells)
+
+        /// <summary>
+        /// Sets settings for the one among others rule 
+        /// </summary>
+        /// <param name="settings"></param>
+        private void SetOneAmongOth(PolicyConfigurationModel settings)
+        {
+            if (settings.OneAmongOthers)
             {
-                CB_ErrorInCells.Checked = true;
-                EIC_A.Enabled = true;
-                EIC_M.Enabled = true;
+                CB_OneAmongOthers.Checked = true;
+                OAO_A.Enabled = true;
+                OAO_M.Enabled = true;
 
                 if (!settings.OneAmongOthersAutomatic)
                 {
-                    EIC_M.Checked = true;
+                    OAO_M.Checked = true;
                 }
                 else
                 {
-                    EIC_A.Checked = true;
+                    OAO_A.Checked = true;
                 }
             }
-
-           
-            cb_Ask_Thousands.Checked = !Settings.Default.SifUseThousandsSeparator;
-
-
-            ShowDialog();
         }
 
         /// <summary>
-        /// Update Labels and other UI elements from translation via Resources
+        /// Sets the Settings for the reference to null in a cell
+        /// </summary>
+        /// <param name="settings"></param>
+        private void SetRefToNull(PolicyConfigurationModel settings)
+        {
+            if (settings.RefToNull)
+            {
+                CB_RefToNull.Checked = true;
+                RTN_A.Enabled = true;
+                RTN_M.Enabled = true;
+
+                if (!settings.RefToNullAutomatic)
+                {
+                    RTN_M.Checked = true;
+                }
+                else
+                {
+                    RTN_A.Checked = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets Settings for non consider constants
+        /// </summary>
+        /// <param name="settings"></param>
+        private void SetNonConCon(PolicyConfigurationModel settings)
+        {
+            if (settings.NonConsideredConstants)
+            {
+                CB_NonConsideredConstants.Checked = true;
+                NCC_A.Enabled = true;
+                NCC_M.Enabled = true;
+
+                if (!settings.NonConsideredConstantsAutomatic)
+                {
+                    NCC_M.Checked = true;
+                }
+                else
+                {
+                    NCC_A.Checked = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the Settings for Multiple same References in a formula
+        /// </summary>
+        /// <param name="settings"></param>
+        private void SetMultSamRef(PolicyConfigurationModel settings)
+        {
+            if (settings.MultipleSameRef)
+            {
+                CB_MultipleSameRef.Checked = true;
+                MSR_A.Enabled = true;
+                MSR_M.Enabled = true;
+
+                if (!settings.MultipleSameRefAutomatic)
+                {
+                    MSR_M.Checked = true;
+                }
+                else
+                {
+                    MSR_A.Checked = true;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Sets the Settings for Formula Complexity 
+        /// </summary>
+        /// <param name="settings"></param>
+        private void SetFormuCompl(PolicyConfigurationModel settings)
+        {
+            if (settings.FormulaComplexity)
+            {
+                CB_FormulaComplexity.Checked = true;
+                FC_A.Enabled = true;
+                FC_M.Enabled = true;
+
+                if (!settings.FormulaComplexityAutomatic)
+                {
+                    FC_M.Checked = true;
+                }
+                else
+                {
+                    FC_A.Checked = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the settings for No Constants in Formulas
+        /// </summary>
+        /// <param name="settings"></param>
+        private void SetNoConstants(PolicyConfigurationModel settings)
+        {
+            if (settings.NoConstantsInFormulas)                                   // if the Constraints box was previously selected and is stored in the settings
+            {
+                CB_NoConstantsInFormulas.Checked = true;                                  // display the Constraints box as checked
+                NCIF_A.Enabled = true;                                   // and enable the Always and Manual radio buttons
+                NCIF_M.Enabled = true;
+
+                if (settings.NoConstantsInFormulasAutomatic)                     // The frequency is set to Always by default. If it is changed to false (aka Manual)
+                {
+                    NCIF_A.Checked = true;                               // display the frequency as Manual 
+                }
+                else
+                {
+                    NCIF_M.Checked = true;                               // otherwise, keep the defaul setting of Always
+                }
+            }
+        }
+
+        
+
+        /// <summary>
+        /// Sets the settings for the Reading Direction
+        /// </summary>
+        /// <param name="settings"></param>
+        private void SetReadingDir(PolicyConfigurationModel settings)
+        {
+            if (settings.ReadingDirection)
+            {
+                CB_ReadingDirection.Checked = true;
+                RD_A.Enabled = true;
+                RD_M.Enabled = true;
+
+                if (!settings.ReadingDirectionAutomatic)
+                {
+                    RD_M.Checked = true;
+                }
+                else
+                {
+                    RD_A.Checked = true;
+                }
+            }
+        }
+
+#endregion
+
+        /// <summary>
+        /// Update Labels and other UI elements from translation via Resources after ecerything is initialized
         /// </summary>
         private void postInitialize()
         {
@@ -220,6 +302,11 @@ namespace SIF.Visualization.Excel
             SD_M.Text = textManual;
         }
 
+        /// <summary>
+        /// Eventhandler for when the ok Button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_OK_Click(object sender, EventArgs e)
         {
             bool error = false;
@@ -292,11 +379,21 @@ namespace SIF.Visualization.Excel
 
         }
 
+        /// <summary>
+        /// Closes the Dialog when the Cancel Button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Cancel_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Handler when Checkbox of the No Constants in Formulars  is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CB_Constraints_CheckedChanged(object sender, EventArgs e)
         {
             if (CB_NoConstantsInFormulas.Checked)                                         // If the Constraints box is checked
@@ -311,6 +408,11 @@ namespace SIF.Visualization.Excel
             }
         }
 
+        /// <summary>
+        /// Handler when Checkbox of the reading direction  is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CB_ReadingDirection_CheckedChanged(object sender, EventArgs e)
         {
             if (CB_ReadingDirection.Checked)
@@ -325,6 +427,11 @@ namespace SIF.Visualization.Excel
             }
         }
 
+        /// <summary>
+        /// Handler when Checkbox of the Formula Complexity  is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CB_FormulaComplexity_CheckedChanged(object sender, EventArgs e)
         {
             if (CB_FormulaComplexity.Checked)
@@ -340,6 +447,11 @@ namespace SIF.Visualization.Excel
             }
         }
 
+        /// <summary>
+        /// Handler when Checkbox of the multiple same reference  is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CB_MultipleSameRef_CheckedChanged(object sender, EventArgs e)
         {
             if (CB_MultipleSameRef.Checked)

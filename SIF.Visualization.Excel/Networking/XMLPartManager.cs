@@ -131,7 +131,7 @@ namespace SIF.Visualization.Excel.Networking
             {
                 var sprudel = XmlReader.Create(new StringReader(SchemaStrings.getRequestXSD()));
                 request = new XmlSchemaSet();
-                request.Add("", sprudel);
+                request.Add(string.Empty, sprudel);
                 request.ValidationEventHandler += ValidationCallback;
             }
             return request;
@@ -147,7 +147,7 @@ namespace SIF.Visualization.Excel.Networking
             {
                 var sprudel = XmlReader.Create(new StringReader(SchemaStrings.getReportXSD()));
                 report = new XmlSchemaSet();
-                report.Add("", sprudel);
+                report.Add(string.Empty, sprudel);
                 report.ValidationEventHandler += ValidationCallback;
             }
             return report;

@@ -6,52 +6,45 @@ using SIF.Visualization.Excel.Properties;
 
 namespace SIF.Visualization.Excel
 {
+    /// <summary>
+    /// A Dialog in which the global settings can be deinfed
+    /// </summary>
     public partial class GlobalSettingsDialog : Form
     {
         private readonly string _debugFile = Settings.Default.FrameworkPath + @"\debug";
 
+        /// <summary>
+        /// Instanciates a new Dialog in which the global settings can be changed
+        /// </summary>
         public GlobalSettingsDialog()
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.FixedDialog;
 
-            if (Settings.Default.SifStartup)
-            {
-                CB_SifStartup.Checked = true;
-            }
-            if(!Settings.Default.SifStartup)
-            {
-                CB_SifStartup.Checked = false;
-            }
-
-            if (File.Exists(_debugFile))
-            {
-                CB_SifDebugMode.Checked = true;
-            }
-            if (!File.Exists(_debugFile))
-            {
-                CB_SifDebugMode.Checked = false;
-            }
-            if (string.IsNullOrEmpty(Settings.Default.FrameworkPath))
-            {
+            if (Settings.Default.SifStartup) CB_SifStartup.Checked = true;
+            
+            if(!Settings.Default.SifStartup) CB_SifStartup.Checked = false;
+            
+            if (File.Exists(_debugFile)) CB_SifDebugMode.Checked = true;
+            
+            if (!File.Exists(_debugFile)) CB_SifDebugMode.Checked = false;
+            
+            if (string.IsNullOrEmpty(Settings.Default.FrameworkPath)) 
                 TB_SifPath.Text = "C:\\Spreadsheet Inspection Framework";
-            }
+            
             if (!string.IsNullOrEmpty(Settings.Default.FrameworkPath))
-            {
                 TB_SifPath.Text = Settings.Default.FrameworkPath;
-            }
+           
             if (string.IsNullOrEmpty(Settings.Default.SifVersion) ||
                 Settings.Default.SifVersion.Equals("Java"))
-            {
                 // Trigger actions by CB_SifVersion_SelectedIndexChanged for Java
                 CB_SifVersion.SelectedIndex = 0;
-            }
+            
             if (Settings.Default.SifVersion.Equals("Mono") ||
                 Settings.Default.SifVersion.Equals(".NET"))
-            {
                 // Trigger actions by CB_SifVersion_SelectedIndexChanged for .NET or Mono
                 CB_SifVersion.SelectedIndex = 1;
-            }
+            
 
             TB_DotnetVersion.Text = Environment.Version.ToString();
 
@@ -69,55 +62,25 @@ namespace SIF.Visualization.Excel
 
         private void CB_SifVersion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            #region Java SIF version
+
 
             if (CB_SifVersion.SelectedIndex == 0)
             {
-                if (Settings.Default.SifOptions.Equals("socket"))
-                {
-                    RB_SocketOld.Checked = true;
-                }
-                if (Settings.Default.SifOptions.Equals("socketNew"))
-                {
-                    RB_SocketNew.Checked = true;
-                }
-                if ((File.Exists(TB_SifPath.Text + @"\sif.jar"))
-                    && ExecutableExistsOnPath("java.exe"))
-                {
-                    Button_OK.Enabled = true;
-                }
-                if ((!File.Exists(Settings.Default.FrameworkPath + @"\sif.jar"))
-                    || !ExecutableExistsOnPath("java.exe"))
-                {
-                    Button_OK.Enabled = false;
-                }
-                if (T_Framework.Enabled)
-                {
-                    T_Framework.Enabled = false;
-                    }
-                if (T_Communication.Enabled)
-                {
-                    T_Communication.Enabled = false;
-                   }
-                if (!T_Socket.Enabled)
-                {
-                    T_Socket.Enabled = true;
-                   if (!Settings.Default.SifOptions.Equals("socketNew"))
-                    {
-                        RB_SocketOld.Checked = true;
-                    }
-                    else
-                    {
-                        RB_SocketNew.Checked = true;
-                    }
-                }
+                LoadJavaSettings();
             }
-                #endregion
-                #region .NET or Mono SIF version
 
             else
             {
-                if (!T_Framework.Enabled)
+                LoadNetMonoVersion();
+            }
+        }
+
+        /// <summary>
+        /// Loads the settings if .Net or Mono were selected
+        /// </summary>
+        private void LoadNetMonoVersion()
+        {
+            if (!T_Framework.Enabled)
                 {
                    T_Framework.Enabled = true;
                 }
@@ -171,11 +134,60 @@ namespace SIF.Visualization.Excel
                         // TODO other methods not implemented yet
                     }
                 }
-            }
-
-            #endregion
+            
         }
 
+        /// <summary>
+        /// Loads the settings when the Java verion got selected
+        /// </summary>
+        private void LoadJavaSettings()
+        {
+            if (Settings.Default.SifOptions.Equals("socket"))
+            {
+                RB_SocketOld.Checked = true;
+            }
+            if (Settings.Default.SifOptions.Equals("socketNew"))
+            {
+                RB_SocketNew.Checked = true;
+            }
+            if ((File.Exists(TB_SifPath.Text + @"\sif.jar"))
+                && ExecutableExistsOnPath("java.exe"))
+            {
+                Button_OK.Enabled = true;
+            }
+            if ((!File.Exists(Settings.Default.FrameworkPath + @"\sif.jar"))
+                || !ExecutableExistsOnPath("java.exe"))
+            {
+                Button_OK.Enabled = false;
+            }
+            if (T_Framework.Enabled)
+            {
+                T_Framework.Enabled = false;
+            }
+            if (T_Communication.Enabled)
+            {
+                T_Communication.Enabled = false;
+            }
+            if (!T_Socket.Enabled)
+            {
+                T_Socket.Enabled = true;
+                if (!Settings.Default.SifOptions.Equals("socketNew"))
+                {
+                    RB_SocketOld.Checked = true;
+                }
+                else
+                {
+                    RB_SocketNew.Checked = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Click Handler of the Ok Button
+        /// Checks if the settings put by the user are valid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_OK_Click(object sender, EventArgs e)
         {
             if (CB_SifStartup.Checked)
@@ -216,73 +228,87 @@ namespace SIF.Visualization.Excel
             
             if (CB_SifVersion.SelectedIndex == 0)
             {
-                Settings.Default.SifVersion = "Java";
+                LoadJava();
+            }
+            if (CB_SifVersion.SelectedIndex == 1)
+            {
+                LoadMonoNet();
+            }
+
+            Close();
+        }
+
+        /// <summary>
+        /// Loading if Mono or .Net got selectesd
+        /// </summary>
+        private void LoadMonoNet()
+        {
+            if (RB_Mono.Checked)
+            {
+                Settings.Default.SifVersion = "Mono";
                 Settings.Default.Save();
+                Settings.Default.MonoFrameworkPath = ExecutableExistsOnPath("mono.exe")
+                    ? string.Empty
+                    : TB_MonoPath.Text;
+                Settings.Default.Save();
+            }
+
+            if (RB_DotNet.Checked)
+            {
+                Settings.Default.SifVersion = ".NET";
+                Settings.Default.Save();
+            }
+            if (RB_JavaNetSocket.Checked)
+            {
                 Settings.Default.CommunicationMethod = "standard";
                 Settings.Default.Save();
-                
                 if (RB_SocketOld.Checked)
                 {
                     Settings.Default.SifOptions = "socket";
                     Settings.Default.Save();
-                    }
+                }
                 if (RB_SocketNew.Checked)
                 {
                     Settings.Default.SifOptions = "socketNew";
                     Settings.Default.Save();
-                    }
-            }
-            if (CB_SifVersion.SelectedIndex == 1)
-            {
-                if (RB_Mono.Checked)
-                {
-                    Settings.Default.SifVersion = "Mono";
-                    Settings.Default.Save();
-                    Settings.Default.MonoFrameworkPath = ExecutableExistsOnPath("mono.exe")
-                        ? ""
-                        : TB_MonoPath.Text;
-                    Settings.Default.Save();
-                    }
-
-                if (RB_DotNet.Checked)
-                {
-                    Settings.Default.SifVersion = ".NET";
-                    Settings.Default.Save();
                 }
-                if (RB_JavaNetSocket.Checked)
-                    {
-                        Settings.Default.CommunicationMethod = "standard";
-                        Settings.Default.Save();
-                        if (RB_SocketOld.Checked)
-                        {
-                            Settings.Default.SifOptions = "socket";
-                            Settings.Default.Save();
-                            }
-                        if (RB_SocketNew.Checked)
-                        {
-                            Settings.Default.SifOptions = "socketNew";
-                            Settings.Default.Save();
-                            }
-                    }
-                    if (RB_NetPipe.Checked)
-                    {
-                        Settings.Default.CommunicationMethod = "pipe";
-                        Settings.Default.Save();
-                        Settings.Default.SifOptions = "";
-                        Settings.Default.Save();
-                        }
-                    if (RB_DLLAccess.Checked)
-                    {
-                        Settings.Default.CommunicationMethod = "dll";
-                        Settings.Default.Save();
-                        Settings.Default.SifOptions = "";
-                        Settings.Default.Save();
-                        }
-                
-                
             }
+            if (RB_NetPipe.Checked)
+            {
+                Settings.Default.CommunicationMethod = "pipe";
+                Settings.Default.Save();
+                Settings.Default.SifOptions = string.Empty;
+                Settings.Default.Save();
+            }
+            if (RB_DLLAccess.Checked)
+            {
+                Settings.Default.CommunicationMethod = "dll";
+                Settings.Default.Save();
+                Settings.Default.SifOptions = string.Empty;
+                Settings.Default.Save();
+            }
+        }
 
-            Close();
+        /// <summary>
+        /// Loading if Java was selected
+        /// </summary>
+        private void LoadJava()
+        {
+            Settings.Default.SifVersion = "Java";
+            Settings.Default.Save();
+            Settings.Default.CommunicationMethod = "standard";
+            Settings.Default.Save();
+
+            if (RB_SocketOld.Checked)
+            {
+                Settings.Default.SifOptions = "socket";
+                Settings.Default.Save();
+            }
+            if (RB_SocketNew.Checked)
+            {
+                Settings.Default.SifOptions = "socketNew";
+                Settings.Default.Save();
+            }
         }
 
 
@@ -371,6 +397,11 @@ namespace SIF.Visualization.Excel
         {
         }
 
+        /// <summary>
+        /// Buitton to browase for the mono instance
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void B_MonoBrowse_Click(object sender, EventArgs e)
         {
             Button_OK.Enabled = false;
@@ -382,6 +413,11 @@ namespace SIF.Visualization.Excel
             }
         }
 
+        /// <summary>
+        /// Handler for the Checkbox if Mono shoudld be used
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RB_Mono_CheckedChanged(object sender, EventArgs e)
         {
             GB_MonoPathSelection.Enabled = true;
@@ -398,6 +434,11 @@ namespace SIF.Visualization.Excel
             }
         }
 
+        /// <summary>
+        /// Checks weather an executable file exists in the specified path
+        /// </summary>
+        /// <param name="executableFileName"></param>
+        /// <returns></returns>
         public static bool ExecutableExistsOnPath(string executableFileName)
         {
             var pathEntries = Environment.GetEnvironmentVariable(("PATH"));
@@ -471,6 +512,11 @@ namespace SIF.Visualization.Excel
             }
         }
 
+        /// <summary>
+        /// Verifies weather there is SIF located on the specified path
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void B_VerifySifPath_Click(object sender, EventArgs e)
         {
             if (CB_SifVersion.SelectedIndex == 0)

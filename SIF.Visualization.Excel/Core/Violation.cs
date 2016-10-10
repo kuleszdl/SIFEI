@@ -128,7 +128,7 @@ namespace SIF.Visualization.Excel.Core
                         foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
                         {
                             Regex rgx = new Regex(@"\$|=");
-                            if (cell.ViolationType.Equals(violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(Cell.Location, "")))
+                            if (cell.ViolationType.Equals(violationState) && rgx.Replace(cell.Location, string.Empty).Equals(rgx.Replace(Cell.Location, string.Empty)))
                             {
                                 cell.Select(this);
                                 return;
@@ -140,7 +140,7 @@ namespace SIF.Visualization.Excel.Core
                         foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
                         {
                             Regex rgx = new Regex(@"\$|=");
-                            if (cell.ViolationType.Equals(violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(Cell.Location, "")))
+                            if (cell.ViolationType.Equals(violationState) && rgx.Replace(cell.Location, string.Empty).Equals(rgx.Replace(Cell.Location, String.Empty)))
                             {
                                 cell.Unselect();
                                 return;
@@ -174,8 +174,11 @@ namespace SIF.Visualization.Excel.Core
                 SetProperty(ref violationState, value);
                 // Add to new list
                 HandleNewState(value);
+                
             }
         }
+
+
 
         #endregion
 
@@ -246,10 +249,9 @@ namespace SIF.Visualization.Excel.Core
         /// <param name="rule">the rule of this violation</param>
         public Violation(XElement root, Workbook workbook, DateTime scanTime, Rule rule)
         {
-            //this.Id = Convert.ToInt32(root.Attribute(XName.Get("number")).Value);
             CausingElement = root.Attribute(XName.Get("causingelement")).Value;
             Description = root.Attribute(XName.Get("description")).Value;
-            Severity = decimal.Parse(root.Attribute(XName.Get("severity")).Value.Replace(".0", ""));
+            Severity = decimal.Parse(root.Attribute(XName.Get("severity")).Value.Replace(".0", String.Empty));
 
             this.workbook = workbook;
 
@@ -257,7 +259,6 @@ namespace SIF.Visualization.Excel.Core
             this.rule = rule;
             foundAgain = true;
             FindCellLocation(root.Attribute(XName.Get("location")).Value);
-           // this.ViolationState =(ViolationType) root.Attribute(XName.Get("violationstate")).Value;
             //Before there was the following Code written here:
             //this.violationState = ViolationType.OPEN;
             // It got commented out because like this any finding marked with later got overriten
@@ -336,6 +337,7 @@ namespace SIF.Visualization.Excel.Core
                         DataModel.Instance.CurrentWorkbook.SolvedViolations.Add(this);
                         break;
                 }
+                
                 PersistCellLocation();
             }
         }
@@ -344,27 +346,26 @@ namespace SIF.Visualization.Excel.Core
         /// Handles the action when an old ViolationState is removed
         /// </summary>
         private void HandleOldState()
-        {
-            if (!load)
+        { 
+            if (load) return;
+            IsCellSelected = false;
+            switch (violationState)
             {
-                switch (violationState)
-                {
-                    case ViolationType.OPEN:
-                        DataModel.Instance.CurrentWorkbook.Violations.Remove(this);
-                        break;
-                    case ViolationType.IGNORE:
-                        DataModel.Instance.CurrentWorkbook.IgnoredViolations.Remove(this);
-                        break;
-                    case ViolationType.LATER:
-                        DataModel.Instance.CurrentWorkbook.LaterViolations.Remove(this);
-                        break;
-                    case ViolationType.SOLVED:
-                        DataModel.Instance.CurrentWorkbook.SolvedViolations.Remove(this);
-                        break;
-                }
-                IsCellSelected = false;
-                RemovefromCellLocation();
+                case ViolationType.OPEN:
+                    DataModel.Instance.CurrentWorkbook.Violations.Remove(this);
+                    break;
+                case ViolationType.IGNORE:
+                    DataModel.Instance.CurrentWorkbook.IgnoredViolations.Remove(this);
+                    break;
+                case ViolationType.LATER:
+                    DataModel.Instance.CurrentWorkbook.LaterViolations.Remove(this);
+                    break;
+                case ViolationType.SOLVED:
+                    DataModel.Instance.CurrentWorkbook.SolvedViolations.Remove(this);
+                    break;
             }
+                this.IsCellSelected = false;
+            RemovefromCellLocation();
         }
 
         private void FindCellLocation(String location)
@@ -375,21 +376,20 @@ namespace SIF.Visualization.Excel.Core
                 foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
                 {
                     Regex rgx = new Regex(@"\$|=");
-                    if (rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
+                    if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
                     {
                         Cell = cell;
                         return;
                     }
                 }
                 this.cell = new CellLocation(workbook, location);
-                if (violationState == ViolationType.LATER)
-                {
-                    Console.Out.WriteLine("hier");
-                }
-                // this.cell.ViolationType = violationState;
             }
         }
 
+        /// <summary>
+        /// Checks if the cell of the violation already has other violations and adds the new one or adds a new cell to the cellswithviolations and adds the violation to the
+        /// respecting cell
+        /// </summary>
         public void PersistCellLocation()
         {
             if (this.cell == null)
@@ -403,16 +403,17 @@ namespace SIF.Visualization.Excel.Core
                 foreach (CellLocation cell in DataModel.Instance.CurrentWorkbook.ViolatedCells)
                 {
                     Regex rgx = new Regex(@"\$|=");
-                    if (rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
+                    if (cell.ViolationType.Equals(this.violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
                     {
                         Cell = cell;
                         cell.Violations.Add(this);
+                        // Should the current Violation be visible (depending of the tab/categorie that is clicked in the sidepane)
                         cell.SetVisibility(DataModel.Instance.CurrentWorkbook.SelectedTab);
                         return;
                     }
                 }
-                this.cell = new CellLocation(workbook, location);
-                //this.cell.ViolationType = violationState;
+                //Only happens if until now there was no violation with matching cell found
+                this.cell.ViolationType = violationState;
                 this.cell.Violations.Add(this);
                 DataModel.Instance.CurrentWorkbook.ViolatedCells.Add(this.cell);
             }
@@ -425,7 +426,7 @@ namespace SIF.Visualization.Excel.Core
             {
                 CellLocation cell = DataModel.Instance.CurrentWorkbook.ViolatedCells[i];
                 Regex rgx = new Regex(@"\$|=");
-                if (cell.ViolationType.Equals(violationState) && rgx.Replace(cell.Location, "").Equals(rgx.Replace(location, "")))
+                if (cell.ViolationType.Equals(violationState) && rgx.Replace(cell.Location, string.Empty).Equals(rgx.Replace(location, string.Empty)))
                 {
                     cell.Violations.Remove(this);
                     return;

@@ -240,7 +240,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Button Grid.Row="0" x:Name="DeleteDataButton" BorderThickness="0" Background="Transparent"
+                        <Button Grid.Row="0" x:Name="DeleteDataButton" BorderThickness="0" Background="Transparent" BorderBrush="Black"
                                 Click="DeleteDataButton_Click" HorizontalAlignment="Left" Margin="5 0 5 0" ToolTip="{x:Static p:Resources.tl_ScenarioDetailPane_DeleteDataTooltip}">
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
                                 <Image Source="{StaticResource DeleteImageSource}" Width="15" Height="15"/>

@@ -202,6 +202,24 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive.
+        /// </summary>
+        public static string tl_Archive {
+            get {
+                return ResourceManager.GetString("tl_Archive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cell definitions.
+        /// </summary>
+        public static string tl_CellDefinitions {
+            get {
+                return ResourceManager.GetString("tl_CellDefinitions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Background.
         /// </summary>
         public static string tl_CellErrorInfo_Background {
@@ -220,6 +238,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ignored.
+        /// </summary>
+        public static string tl_Ignored {
+            get {
+                return ResourceManager.GetString("tl_Ignored", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No ignored violations. Please ignore violations if this is necessary..
         /// </summary>
         public static string tl_IgnoreView_Empty {
@@ -234,6 +261,15 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_IgnoreView_InList {
             get {
                 return ResourceManager.GetString("tl_IgnoreView_InList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Later.
+        /// </summary>
+        public static string tl_Later {
+            get {
+                return ResourceManager.GetString("tl_Later", resourceCulture);
             }
         }
         
@@ -261,6 +297,15 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_Load_Failed_Title {
             get {
                 return ResourceManager.GetString("tl_Load_Failed_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The inspection queue has been cleared due to memory restrictions..
+        /// </summary>
+        public static string tl_MemoryRestrictions {
+            get {
+                return ResourceManager.GetString("tl_MemoryRestrictions", resourceCulture);
             }
         }
         
@@ -339,6 +384,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No scenarios created. Please create a new scenario from the Ribbon menu..
+        /// </summary>
+        public static string tl_NoScenariosSide {
+            get {
+                return ResourceManager.GetString("tl_NoScenariosSide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number format.
         /// </summary>
         public static string tl_Number_Format {
@@ -348,11 +402,29 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string tl_Open {
+            get {
+                return ResourceManager.GetString("tl_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No open findings.
         /// </summary>
         public static string tl_OpenView_Empty {
             get {
                 return ResourceManager.GetString("tl_OpenView_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is not enough memory (RAM) to scan the file.
+        /// </summary>
+        public static string tl_OutOfMemory {
+            get {
+                return ResourceManager.GetString("tl_OutOfMemory", resourceCulture);
             }
         }
         
@@ -891,6 +963,16 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scan failed.
+        ///.
+        /// </summary>
+        public static string tl_Scan_unsuccessfulMessage {
+            get {
+                return ResourceManager.GetString("tl_Scan_unsuccessfulMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can\&apos;t create scenario.
         /// </summary>
         public static string tl_Scenario_CantCreate {
@@ -999,6 +1081,15 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_ScenarioDetailPane_SaveDataTooltip {
             get {
                 return ResourceManager.GetString("tl_ScenarioDetailPane_SaveDataTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scenario Overview.
+        /// </summary>
+        public static string tl_ScenarioOverview {
+            get {
+                return ResourceManager.GetString("tl_ScenarioOverview", resourceCulture);
             }
         }
         
@@ -1147,11 +1238,39 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unfortunatly SIFCore crashed.
+        ///Try scanning the file again and if this doesn&apos;t help close and open the file again..
+        /// </summary>
+        public static string tl_SIFCorecrashed {
+            get {
+                return ResourceManager.GetString("tl_SIFCorecrashed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No solved findings.
         /// </summary>
         public static string tl_SolvedView_Empty {
             get {
                 return ResourceManager.GetString("tl_SolvedView_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please start a new Scans.
+        /// </summary>
+        public static string tl_StartNewScan {
+            get {
+                return ResourceManager.GetString("tl_StartNewScan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please stop editing the cell and start a new scan.
+        /// </summary>
+        public static string tl_stopEdit {
+            get {
+                return ResourceManager.GetString("tl_stopEdit", resourceCulture);
             }
         }
         
@@ -1261,6 +1380,36 @@ namespace SIF.Visualization.Excel.Properties {
         public static System.Drawing.Bitmap trash {
             get {
                 object obj = ResourceManager.GetObject("trash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Vdynamic {
+            get {
+                object obj = ResourceManager.GetObject("Vdynamic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Vsanity {
+            get {
+                object obj = ResourceManager.GetObject("Vsanity", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Vstatic {
+            get {
+                object obj = ResourceManager.GetObject("Vstatic", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

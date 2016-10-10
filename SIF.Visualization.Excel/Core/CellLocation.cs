@@ -6,13 +6,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Data;
-using System.Windows.Ink;
-using System.Windows.Shapes;
-using Microsoft.Office.Core;
 using Excel_Range = Microsoft.Office.Interop.Excel.Range;
-using Rectangle = System.Windows.Shapes.Rectangle;
-using Shape = System.Windows.Shapes.Shape;
+using Workbook = Microsoft.Office.Interop.Excel.Workbook;
+using Worksheet = Microsoft.Office.Interop.Excel.Worksheet;
 
 namespace SIF.Visualization.Excel.Core
 {
@@ -33,6 +31,15 @@ namespace SIF.Visualization.Excel.Core
         private bool violationSelected;
         private Violation selectedViolation;
         private ListCollectionView violationsPane;
+        private int hasMultiple;
+
+        /// <summary>
+        /// Contained Violationtypes in this cell 
+        /// [0] = Dynamic
+        /// [1] = Static
+        /// [2] = Sanity
+        /// </summary>
+        private int[] _ruleOccurrences = new int[3];
 
         #endregion
 
@@ -66,6 +73,9 @@ namespace SIF.Visualization.Excel.Core
             set { SetProperty(ref worksheet, value); }
         }
 
+        /// <summary>
+        /// Gets or sets the Violations of this cell
+        /// </summary>
         public ObservableCollection<Violation> Violations
         {
             get
@@ -79,33 +89,65 @@ namespace SIF.Visualization.Excel.Core
             set { SetProperty(ref violations, value); }
         }
 
+        /// <summary>
+        /// Gets or sets the Violationtype of this cell
+        /// </summary>
         public ViolationType ViolationType
         {
             get { return violationType; }
             set { SetProperty(ref violationType, value); }
         }
 
+        /// <summary>
+        /// Checks weather one of the contained Violations is selected
+        /// </summary>
         public bool ViolationSelected
         {
             get { return violationSelected; }
             set { SetProperty(ref violationSelected, value); }
         }
 
+        /// <summary>
+        /// Gets or sets the selected violation of this cell
+        /// </summary>
         public Violation SelectedViolation
         {
             get { return selectedViolation; }
             set { SetProperty(ref selectedViolation, value); }
         }
 
+        /// <summary>
+        /// Gets the Cell this celllocation belongs to
+        /// </summary>
         public CellLocation Cell
         {
             get { return this; }
         }
 
+        /// <summary>
+        /// Gets or Sets the ViolationPane of the cell
+        /// </summary>
         public ListCollectionView ViolationsPane
         {
             get { return violationsPane; }
             set { SetProperty(ref violationsPane, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the ammount of Rule Occurances in this cell
+        /// </summary>
+        public int[] RuleOccurrences
+        {
+            get { return _ruleOccurrences; }
+            set { _ruleOccurrences = value; }
+        }
+
+        /// <summary>
+        /// If it has Multiple it should return the int 2 otherwise 0
+        /// </summary>
+        public int HasMultiple
+        {
+            get { return hasMultiple; }
         }
 
         #endregion
@@ -244,13 +286,13 @@ namespace SIF.Visualization.Excel.Core
         protected CellLocation(ref string location)
         {
             location = location.Trim();
-            location = location.Replace("$", "");
-            location = location.Replace("=", "");
+            location = location.Replace("$", string.Empty);
+            location = location.Replace("=", string.Empty);
 
             // Remove the optional [spreadsheet.xls]
             if (location.Contains('[') && location.Contains(']'))
             {
-                location = location.Replace(Regex.Match(location, "\\[{1}.*\\]{1}").Value, "");
+                location = location.Replace(Regex.Match(location, "\\[{1}.*\\]{1}").Value, string.Empty);
             }
 
             string cell = location;
@@ -261,12 +303,18 @@ namespace SIF.Visualization.Excel.Core
             // Parse letter and number
             Letter = Regex.Match(cell, "[A-Z]*").Value.ToUpper();
             if (cell.Contains(":")) cell = cell.Substring(letter.Length, cell.IndexOf(":") - 1);
-            Number = int.Parse(cell.Replace(Letter, ""));
+            Number = int.Parse(cell.Replace(Letter, string.Empty));
             Violations.CollectionChanged += Violations_CollectionChanged;
         }
 
+        /// <summary>
+        /// Handler when the Violations collection changed (Especially when Violations get added or removed)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void Violations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            CalculateOccurances();
             if (Violations.Count > 0)
             {
                 if (Violations.Count == 1)
@@ -296,12 +344,43 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
+        /// Calculates how many Violations of whoch kind are located in this cell
+        /// </summary>
+        private void CalculateOccurances()
+        {
+            hasMultiple = 0;
+            //Checks how many violations of what type appear in this location
+            Array.Clear(RuleOccurrences, 0, RuleOccurrences.Length - 1);
+            foreach (Violation violation in Violations.Where(violation => violation != null))
+            {
+                switch (violation.Rule.Type)
+                {
+                    case Rule.RuleType.DYNAMIC:
+                        RuleOccurrences[0]++;
+                        hasMultiple = 10;
+                        break;
+                    case Rule.RuleType.STATIC:
+                        RuleOccurrences[1]++;
+                        hasMultiple = 10;
+                        break;
+                    case Rule.RuleType.SANITY:
+                        RuleOccurrences[2]++;
+                        hasMultiple = 10;
+                        break;
+                    case Rule.RuleType.COMPOSITE:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the cell location class.
         /// </summary>
         /// <param name="worksheet">The worksheet that contains this cell location.</param>
         /// <param name="location">The location of this cell, must be in A1 notation, e.g. "=Rechner!A34" or "=Rechner!$A$34", or "$A$34", or "A34".</param>
-        public CellLocation(Worksheet worksheet, string location)
-            : this(ref location)
+        public CellLocation(Worksheet worksheet, string location) : this(ref location)
         {
             Worksheet = worksheet;
         }
@@ -311,8 +390,7 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         /// <param name="workbook">The workbook that contains the worksheet containing this cell location.</param>
         /// <param name="location">The location of this cell, must be in A1 notation, e.g. "=Rechner!A34" or "=Rechner!$A$34".</param>
-        public CellLocation(Workbook workbook, string location)
-            : this(ref location)
+        public CellLocation(Workbook workbook, string location) : this(ref location)
         {
             if (!location.Contains('!'))
                 throw new ArgumentException("The cell location must contain a worksheet name.");
@@ -321,9 +399,7 @@ namespace SIF.Visualization.Excel.Core
             location = location.Substring(0, location.IndexOf('!'));
 
             // Find the right worksheet depending on location
-            var worksheet = (from Worksheet p in workbook.Worksheets
-                             where p.Name == location
-                             select p).FirstOrDefault();
+            var worksheet = (from Worksheet p in workbook.Worksheets where p.Name == location select p).FirstOrDefault();
 
             // Could not find a worksheet...
             if (worksheet == null) throw new ArgumentException("Could not find the right worksheet inside this workbook model.");
@@ -358,7 +434,7 @@ namespace SIF.Visualization.Excel.Core
         /// <param name="visible">Determines whether this cell name should be visible to the user.</param>
         public Name AddName(string prefix, bool visible)
         {
-            var name = prefix + Guid.NewGuid().ToString().Replace("-", "");
+            var name = prefix + Guid.NewGuid().ToString().Replace("-", string.Empty);
             return InternalAddName(name, visible);
         }
 
@@ -408,10 +484,14 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public void Select()
         {
-            ((_Worksheet)Worksheet).Activate();
+            ((_Worksheet) Worksheet).Activate();
             Worksheet.Range[ShortLocation].Select();
         }
 
+        /// <summary>
+        /// If a violation gets selected also this cell gets selected
+        /// </summary>
+        /// <param name="violation"></param>
         public void Select(Violation violation)
         {
             Select();
@@ -419,6 +499,9 @@ namespace SIF.Visualization.Excel.Core
             ViolationSelected = true;
         }
 
+        /// <summary>
+        /// Unselects this cell
+        /// </summary>
         public void Unselect()
         {
             if (Violations.Count > 1)
@@ -432,42 +515,44 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public void ScrollIntoView()
         {
-            ((_Worksheet)Worksheet).Activate();
+            ((_Worksheet) Worksheet).Activate();
             Worksheet.Range[ShortLocation].Show();
         }
 
+        /// <summary>
+        /// Draws the respecting Icon for this cell
+        /// </summary>
         private void DrawIcon()
         {
             try
             {
                 var container = new CellErrorInfoContainer();
-                container.ElementHost.Child = new CellErrorInfo()
+                container.SuspendLayout();
+                container.ElementHost.Child = new CellErrorInfo
                 {
-                    DataContext = this
+                    DataContext = this, Visibility = Visibility.Visible, Opacity = 1.00
                 };
-
-                
+                container.ElementHost.Child.UpdateLayout();
                 var vsto = Globals.Factory.GetVstoObject(Worksheet);
-               // Range left = this.Worksheet.Range = control.Ra= Cell.ShortLocation.
                 controlName = Guid.NewGuid().ToString();
-
+                container.Visible = false;
+                container.ResumeLayout(true);
                 control = vsto.Controls.AddControl(container, Worksheet.Range[ShortLocation], controlName);
-                
-                Range left = Worksheet.get_Range(ShortLocation);
-                int distLeft =(int) left.Left;
-                int disttop = (int) left.Top;
-
-   
-                
+                control.Visible = false;
                 control.Width = control.Height + 4;
-                control.Placement = XlPlacement.xlMove;
-                  
+                control.Placement = XlPlacement.xlMoveAndSize;
                 control.AutoLoad = true;
-                
+                container.Visible = true;
             }
-            catch (Exception ex) { Console.Out.WriteLine(ex.ToString()); }
+            catch (Exception ex)
+            {
+                Console.Out.WriteLine(ex.ToString());
+            }
         }
 
+        /// <summary>
+        /// Removes the icon from this cell
+        /// </summary>
         public void RemoveIcon()
         {
             if (!string.IsNullOrWhiteSpace(controlName))
@@ -478,30 +563,33 @@ namespace SIF.Visualization.Excel.Core
             }
         }
 
+        /// <summary>
+        /// Decides weather the icon of this cell should be visible.
+        /// Depending on which Tab is open and which status the violations in these cells are
+        /// </summary>
+        /// <param name="tab">The tab whose visibiliy should be set</param>
         public void SetVisibility(SharedTabs tab)
         {
-            if (control != null)
+            if (control == null) return;
+            if (violationType.Equals(ViolationType.OPEN) && tab.Equals(SharedTabs.Open))
             {
-                if (violationType.Equals(ViolationType.OPEN) && tab.Equals(SharedTabs.Open))
-                {
-                    control.Visible = true;
-                }
-                else if (violationType.Equals(ViolationType.LATER) && tab.Equals(SharedTabs.Later))
-                {
-                    control.Visible = true;
-                }
-                else if (violationType.Equals(ViolationType.IGNORE) && tab.Equals(SharedTabs.Ignore))
-                {
-                    control.Visible = true;
-                }
-                else if (violationType.Equals(ViolationType.SOLVED) && tab.Equals(SharedTabs.Archive))
-                {
-                    control.Visible = true;
-                }
-                else
-                {
-                    control.Visible = false;
-                }
+                control.Visible = true;
+            }
+            else if (violationType.Equals(ViolationType.LATER) && tab.Equals(SharedTabs.Later))
+            {
+                control.Visible = true;
+            }
+            else if (violationType.Equals(ViolationType.IGNORE) && tab.Equals(SharedTabs.Ignore))
+            {
+                control.Visible = true;
+            }
+            else if (violationType.Equals(ViolationType.SOLVED) && tab.Equals(SharedTabs.Archive))
+            {
+                control.Visible = true;
+            }
+            else
+            {
+                control.Visible = false;
             }
         }
 

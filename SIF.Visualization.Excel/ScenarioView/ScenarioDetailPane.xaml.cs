@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using SIF.Visualization.Excel.Cells;
 using SIF.Visualization.Excel.ScenarioCore;
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,7 +16,7 @@ namespace SIF.Visualization.Excel.ScenarioView
     /// <summary>
     /// Interaktionslogik für ScenarioDetailPane.xaml
     /// </summary>
-    public partial class ScenarioDetailPane : UserControl
+    public  partial class ScenarioDetailPane : UserControl
     {
         #region Properties
 
@@ -25,6 +26,9 @@ namespace SIF.Visualization.Excel.ScenarioView
 
         #region Methods
 
+        /// <summary>
+        /// Instanciates a new Scenario Detail Window
+        /// </summary>
         public ScenarioDetailPane()
         {
             InitializeComponent();
@@ -34,34 +38,30 @@ namespace SIF.Visualization.Excel.ScenarioView
             IsVisibleChanged += ScenarioDetailPane_VisibilityChanged;
         }
 
+        
+
+        #region Event Handling Methods
+
         private void ScenarioDetailPane_VisibilityChanged(object sender,
             DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            if (!IsVisible)
+            //If it just got opened there are no changes to get discarded
+            if (IsVisible) return;
+            // If there is nothing to save, you dont need to reopen the Detailpane
+            if (!NeedSave()) return;
+            MessageBoxResult result = DiscardChanges();
+            if (result != MessageBoxResult.No) return;
+            foreach (
+                KeyValuePair<Tuple<WorkbookModel, string>, CustomTaskPane> customTaskPane in
+                    Globals.ThisAddIn.TaskPanes)
             {
-                MessageBoxResult result = DiscardChanges();
-                if (result == MessageBoxResult.No)
-                {
-                    Visibility = Visibility.Visible;
-                    foreach (
-                        KeyValuePair<Tuple<WorkbookModel, string>, CustomTaskPane> customTaskPane in
-                            Globals.ThisAddIn.TaskPanes)
-                    {
-                        if (customTaskPane.Value.Title == "Scenario")
-                        {
-
-                            
-                            if (customTaskPane.Value != null)
-                            {
-                                Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() => { customTaskPane.Value.Visible = true; }));
-                            }
-                        }
-                    }
-                }
+                if (customTaskPane.Value.Title != "Scenario") continue;
+                // Reopens the ScenariodetailPane
+                if (customTaskPane.Value == null) continue;
+                Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() => { customTaskPane.Value.Visible = true; }));
             }
         }
 
-        #region Event Handling Methods
 
         private void ScenarioDetailPane_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -167,8 +167,6 @@ namespace SIF.Visualization.Excel.ScenarioView
 
             #endregion
 
-            /*this.ScenarioDataView = new ListCollectionView(scenarioDataCollection);
-            this.ScenarioDataView.SortDescriptions.Add(new SortDescription("Location", ListSortDirection.Ascending));*/
             ScenarioDataListBox.ItemsSource = ScenarioDataCollection;
 
             #endregion
@@ -179,7 +177,7 @@ namespace SIF.Visualization.Excel.ScenarioView
         #region Click Methods
 
         /// <summary>
-        /// Updates the changes Scenario values into the datamodel
+        /// Updates the changes in the scenario values into the datamodel. Occurs when the save button is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -195,6 +193,11 @@ namespace SIF.Visualization.Excel.ScenarioView
             if (be != null) be.UpdateSource();
             be = RatingTextBox.GetBindingExpression(TextBox.TextProperty);
             if (be != null) be.UpdateSource();
+            WorkbookModel workbook = new WorkbookModel(Globals.ThisAddIn.Application.ActiveWorkbook);
+            workbook.ShouldScanAfterSave = false;
+            Globals.ThisAddIn.Application.ActiveWorkbook.Save();
+            workbook.ShouldScanAfterSave = true;
+            
         }
 
         /// <summary>
@@ -247,6 +250,8 @@ namespace SIF.Visualization.Excel.ScenarioView
         /// <param name="e"></param>
         private void DiscardDataButton_OnClickDataButton_Click(object sender, RoutedEventArgs e)
         {
+           // If there is nothing to save, you dont need to ask if changes should be thrown out
+            if (!NeedSave()) return;
             DiscardChanges();
         }
 
@@ -263,7 +268,7 @@ namespace SIF.Visualization.Excel.ScenarioView
             }
         }
 
-        #endregion
+        
 
         /// <summary>
         /// Updates the Data in the Detailpane with the Data saved in the Datamodel discarding the last changes.
@@ -278,7 +283,7 @@ namespace SIF.Visualization.Excel.ScenarioView
                         Globals.ThisAddIn.TaskPanes
                     )
                 {
-                    
+
                     if (customTaskPane.Value == null || customTaskPane.Key == null) continue;
                     if (customTaskPane.Value.Title != "Scenario") continue;
                     string messageText =
@@ -287,26 +292,58 @@ namespace SIF.Visualization.Excel.ScenarioView
                         Properties.Resources.tl_ScenarioDetailPane_DiscardDataMessageBoxTitle,
                         MessageBoxButton.YesNo);
                     if (result != MessageBoxResult.Yes) return MessageBoxResult.No;
-                    Tuple<WorkbookModel, string> tempTaskPane = null;
                     // Update the target with whatever is in source. Since the source only gets updated by an explicit save
                     // the source still has the "old" values
-                    BindingExpression be = TitleTextBox.GetBindingExpression(TextBox.TextProperty);
-                    if (be != null) be.UpdateTarget();
-                    be = AuthorTextbox.GetBindingExpression(TextBox.TextProperty);
-                    if (be != null) be.UpdateTarget();
-                    be = DescriptionTextBox.GetBindingExpression(TextBox.TextProperty);
-                    if (be != null) be.UpdateTarget();
-                    be = CreateDatePicker.GetBindingExpression(DatePicker.SelectedDateProperty);
-                    if (be != null) be.UpdateTarget();
-                    be = RatingTextBox.GetBindingExpression(TextBox.TextProperty);
-                    if (be != null) be.UpdateTarget();
+                    UpdateTargets();
+                    
                 }
             }
             catch (ObjectDisposedException ex)
             {
                 //Quietly swallow the exception. Should only occur if the Pane is never opened and then the complete file is closed.
             }
+            catch (COMException ex)
+            {
+                //Quietly swallow the exception. Should only occur if the Pane is never opened and then the complete file is closed.
+            }
             return MessageBoxResult.Yes;
         }
+
+        /// <summary>
+        /// Updates the Targets of every field. This is done when changes get discarded. So the values get overridden with the values in the source of the binding
+        /// </summary>
+        private void UpdateTargets()
+        {
+            BindingExpression be = TitleTextBox.GetBindingExpression(TextBox.TextProperty);
+            if (be != null) be.UpdateTarget();
+            be = AuthorTextbox.GetBindingExpression(TextBox.TextProperty);
+            if (be != null) be.UpdateTarget();
+            be = DescriptionTextBox.GetBindingExpression(TextBox.TextProperty);
+            if (be != null) be.UpdateTarget();
+            be = CreateDatePicker.GetBindingExpression(DatePicker.SelectedDateProperty);
+            if (be != null) be.UpdateTarget();
+            be = RatingTextBox.GetBindingExpression(TextBox.TextProperty);
+            if (be != null) be.UpdateTarget();
+        }
+
+        /// <summary>
+        /// Checks if the scenario details need saving or not
+        /// </summary>
+        /// <returns></returns>
+        public bool NeedSave()
+        {
+            BindingExpression be = TitleTextBox.GetBindingExpression(TextBox.TextProperty);
+            if (be != null && be.IsDirty) return true;
+            be = AuthorTextbox.GetBindingExpression(TextBox.TextProperty);
+            if (be != null && be.IsDirty) return true;
+            be = DescriptionTextBox.GetBindingExpression(TextBox.TextProperty);
+            if (be != null && be.IsDirty) return true;
+            be = CreateDatePicker.GetBindingExpression(DatePicker.SelectedDateProperty);
+            if (be != null && be.IsDirty) return true;
+            be = RatingTextBox.GetBindingExpression(TextBox.TextProperty);
+            if (be != null && be.IsDirty) return true;
+            return false;
+        }
+        #endregion
     }
 }

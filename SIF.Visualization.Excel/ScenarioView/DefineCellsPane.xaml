@@ -88,7 +88,7 @@
             Grid.Column="0" Grid.Row="1"  >
             <StackPanel Orientation="Horizontal" Margin="0 5 10 5" HorizontalAlignment="Right">
                 <Button x:Name="DeleteDataButton" 
-                    BorderThickness="0" Background="Transparent"
+                    BorderThickness="0" Background="White"
                     Click="DeleteDataButton_Click">
                     <Image Source="{StaticResource DeleteImageSource}" Width="15" Height="15"/>
                 </Button>

@@ -1,6 +1,9 @@
 ﻿namespace SIF.Visualization.Excel.ScenarioCore
 {
-    enum CellDefinitionType
+    /// <summary>
+    /// Different Types the Scenariocells can be of.
+    /// </summary>
+    public enum CellDefinitionType
     {
         Input,
         Intermediate,

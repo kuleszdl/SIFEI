@@ -1,5 +1,8 @@
 ﻿namespace SIF.Visualization.Excel.Core
 {
+    /// <summary>
+    /// The different tabs that are avaliable in the sidepane
+    /// </summary>
     public enum SharedTabs
     {
         /// <summary>
@@ -15,11 +18,11 @@
         /// </summary>
         Ignore,
         /// <summary>
-        /// Register Solved
+        /// Register Solved so they can get archived
         /// </summary>
         Archive,
         /// <summary>
-        /// Register Solved
+        /// 
         /// </summary>
         Splitter,
         /// <summary>

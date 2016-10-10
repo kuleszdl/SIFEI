@@ -1,6 +1,5 @@
 ﻿using Microsoft.Office.Core;
 using SIF.Visualization.Excel.Core;
-using SIF.Visualization.Excel.ScenarioCore;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -8,9 +7,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 using Binding = System.Windows.Data.Binding;
+using Button = System.Windows.Forms.Button;
 using CustomTaskPane = Microsoft.Office.Tools.CustomTaskPane;
 using MessageBox = System.Windows.MessageBox;
+using Scenario = SIF.Visualization.Excel.ScenarioCore.Scenario;
 using TextBox = System.Windows.Controls.TextBox;
 using UserControl = System.Windows.Controls.UserControl;
 
@@ -23,6 +25,7 @@ namespace SIF.Visualization.Excel.ScenarioView
     {
         #region Fields
 
+
         private string filterString;
 
         #endregion
@@ -31,6 +34,9 @@ namespace SIF.Visualization.Excel.ScenarioView
 
         internal ListCollectionView ScenariosView { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the string to filter for in the search box
+        /// </summary>
         public string FilterString
         {
             get
@@ -49,6 +55,9 @@ namespace SIF.Visualization.Excel.ScenarioView
 
         #region Methods
 
+        /// <summary>
+        /// Initializes a new Scenario Pane including some Binding for the searchbox
+        /// </summary>
         public ScenarioPane()
         {
             InitializeComponent();
@@ -107,39 +116,56 @@ namespace SIF.Visualization.Excel.ScenarioView
         #endregion
 
         #region Click Methods
-
+        
+        
+        /// <summary>
+        /// Checks on which scenario the edit button got clicked to then open the detailed view of that scenario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="routedEventArgs"></param>
         private void EditScenarioButton_Click(object sender, RoutedEventArgs routedEventArgs)
         {
-            if (DataContext is WorkbookModel)
+            var model = DataContext as WorkbookModel;
+            if (model != null)
             {
-                var workbook = (DataContext as WorkbookModel);
-
+                var workbook = model;
                 // get scenario detail pane
                 var scenarioDetailPane =
                     Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(workbook, "Scenario Details")];
 
-
                 if (scenarioDetailPane.Control is ScenarioDetailPaneContainer)
                 {
+                    var selectedItem = (sender as FrameworkElement).Tag;
+                    ScenariosList.SelectedItem = selectedItem;
                     //open scenario detail pane
-
-                    //scenarioDetailPane.DockPosition = (MsoCTPDockPosition) MsoCTPDockPosition.msoCTPDockPositionFloating;
-                    //scenarioDetailPane.Height = 500;
+                    scenarioDetailPane.DockPosition = (MsoCTPDockPosition) MsoCTPDockPosition.msoCTPDockPositionFloating;
+                    scenarioDetailPane.Height = 500;
                     scenarioDetailPane.Control.AutoSize = true;
                     scenarioDetailPane.Control.AutoSizeMode = AutoSizeMode.GrowOnly;
-                    scenarioDetailPane.Width = 300;
+                    scenarioDetailPane.Width = 500;
                     scenarioDetailPane.Visible = true;
-                    scenarioDetailPane.VisibleChanged += new EventHandler((sender1, e) => PlayMusicEvent(sender, e, scenarioDetailPane));
+                    scenarioDetailPane.VisibleChanged += new EventHandler((sender1, e) => ChangeVisibility(sender, e, scenarioDetailPane));
                 }
             }
         }
 
-        private void PlayMusicEvent(object sender, EventArgs eventArgs, CustomTaskPane scenarioDetailPane)
+        /// <summary>
+        /// Changes the Visibility of the scenario detail pane
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="eventArgs"></param>
+        /// <param name="scenarioDetailPane"></param>
+        private void ChangeVisibility(object sender, EventArgs eventArgs, CustomTaskPane scenarioDetailPane)
         {
             scenarioDetailPane.Control.Visible = scenarioDetailPane.Visible;
         }
 
-
+        /// <summary>
+        /// Nico: Believe this is depreciated now. Since there was no comment before on what this method really does can't be sure though.
+        /// So for now i am leaving it in. Sorry 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ScenariosList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataContext is WorkbookModel)
@@ -156,6 +182,7 @@ namespace SIF.Visualization.Excel.ScenarioView
 
                     if (scenarioDetailPane.Control is ScenarioDetailPaneContainer)
                     {
+                        
                         // set new data context
                         var selectedItem = ScenariosList.SelectedItem as Scenario;
                         var scenarioDetailPaneContainer = scenarioDetailPane.Control as ScenarioDetailPaneContainer;
@@ -168,9 +195,16 @@ namespace SIF.Visualization.Excel.ScenarioView
             }
         }
 
+        /// <summary>
+        /// Checks on which scenario the delete button got clicked to then delete the corresponding scenario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="routedEventArgs"></param>
         private void DeleteScenarioButton_Click(object sender, RoutedEventArgs e)
         {
-            var selectedItem = ScenariosList.SelectedItem;
+            var selectedItem = (sender as FrameworkElement).Tag;
+            ScenariosList.SelectedItem = selectedItem;
+            
 
             if (selectedItem == null || !(selectedItem is Scenario)) return;
 

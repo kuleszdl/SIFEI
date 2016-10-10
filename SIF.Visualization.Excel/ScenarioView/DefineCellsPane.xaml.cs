@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using SIF.Visualization.Excel.ScenarioCore;
 
 namespace SIF.Visualization.Excel.ScenarioView
 {
@@ -12,6 +13,9 @@ namespace SIF.Visualization.Excel.ScenarioView
     /// </summary>
     public partial class DefineCellsPane : UserControl
     {
+        /// <summary>
+        /// Puts a Textox over defined scenariocells so the user can input the desired values in them
+        /// </summary>
         public DefineCellsPane()
         {
             InitializeComponent();

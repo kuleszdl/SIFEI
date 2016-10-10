@@ -7,6 +7,9 @@ using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.Core
 {
+    /// <summary>
+    /// Represents a cell in the Worksheet (Only the ones that contain violations or at some moment contained violations
+    /// </summary>
     public class Cell : BindableBase, IAcceptVisitor
     {
         #region Fields
@@ -112,6 +115,11 @@ namespace SIF.Visualization.Excel.Core
         #endregion
 
         #region Converters
+
+        /// <summary>
+        /// Converts the cell to a normal cell (not involved in a scenario)
+        /// </summary>
+        /// <returns></returns>
         public Cell ToCell()
         {
             var cell = new Cell()
@@ -124,6 +132,10 @@ namespace SIF.Visualization.Excel.Core
             return cell;
         }
 
+        /// <summary>
+        /// Defines this cell as an input cell for a scenario
+        /// </summary>
+        /// <returns></returns>
         public InputCell ToInputCell()
         {
             var cell = new InputCell()
@@ -136,6 +148,10 @@ namespace SIF.Visualization.Excel.Core
             return cell;
         }
 
+        /// <summary>
+        /// Defines this cell as an intermediate cell for a scenario
+        /// </summary>
+        /// <returns></returns>
         public IntermediateCell ToIntermediateCell()
         {
             var cell = new IntermediateCell()
@@ -148,6 +164,10 @@ namespace SIF.Visualization.Excel.Core
             return cell;
         }
 
+        /// <summary>
+        /// Defines this cell as an Sanity value cell
+        /// </summary>
+        /// <returns></returns>
         public SanityValueCell ToSanityValueCell()
         {
             var cell = new SanityValueCell()
@@ -160,6 +180,10 @@ namespace SIF.Visualization.Excel.Core
             return cell;
         }
 
+        /// <summary>
+        /// Defines this cell as an Sanity checking cell
+        /// </summary>
+        /// <returns></returns>
         public SanityCheckingCell ToSanityCheckingCell()
         {
             var cell = new SanityCheckingCell()
@@ -171,7 +195,10 @@ namespace SIF.Visualization.Excel.Core
             };
             return cell;
         }
-
+        /// <summary>
+        /// Defines this cell as an Sanity constrained cell
+        /// </summary>
+        /// <returns></returns>
         public SanityConstraintCell ToSanityConstraintCell()
         {
             var cell = new SanityConstraintCell()
@@ -184,6 +211,10 @@ namespace SIF.Visualization.Excel.Core
             return cell;
         }
 
+        /// <summary>
+        /// Defines this cell as an Sanity explanation cell
+        /// </summary>
+        /// <returns></returns>
         public SanityExplanationCell ToSanityExplanationCell()
         {
             var cell = new SanityExplanationCell()
@@ -196,6 +227,10 @@ namespace SIF.Visualization.Excel.Core
             return cell;
         }
 
+        /// <summary>
+        /// Defines this cell as an output cell for a scenario
+        /// </summary>
+        /// <returns></returns>
         public OutputCell ToOutputCell()
         {
             var cell = new OutputCell()
@@ -208,6 +243,11 @@ namespace SIF.Visualization.Excel.Core
             return cell;
         }
 
+        /// <summary>
+        /// Converts this cell to the specified celltype
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
         public Cell ToCellType(Type t)
         {
             if (t == typeof(InputCell)) return ToInputCell();
@@ -221,10 +261,18 @@ namespace SIF.Visualization.Excel.Core
 
         #region Methods
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Cell()
         {
         }
 
+        /// <summary>
+        /// Creates a new cell in the defined workbook
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="workbook"></param>
         public Cell(XElement root, Workbook workbook)
         {
             Id = Convert.ToInt32(root.Attribute(XName.Get("number")).Value);

@@ -16,20 +16,20 @@ namespace SIF.Visualization.Excel.ViewModel
 
             ViolationType violationState = (ViolationType)values[0];
             ICollection<Violation> violations = values[1] as ICollection<Violation>;
-
-            decimal maxSeverity = violations.Max(vi => vi.Severity);
-            decimal minSeverity = violations.Min(vi => vi.Severity);
-            object[] objs = new object[2];
-            objs[0] = maxSeverity;
-            objs[1] = violationState;
-            Color maxColor = (Color)conv.Convert(objs, typeof(Color), parameter, culture);
-            objs[0] = minSeverity;
-            Color minColor = (Color)conv.Convert(objs, typeof(Color), parameter, culture);
-            LinearGradientBrush brush = new LinearGradientBrush();
-            brush.StartPoint = new Point(0, 1);
-            brush.EndPoint = new Point(0, 0);
-            brush.GradientStops.Add(new GradientStop(minColor, 0));
-            brush.GradientStops.Add(new GradientStop(maxColor, 1));
+            SolidColorBrush brush = new SolidColorBrush();
+            brush.Color= Colors.White;
+            if (violations != null && violations.Any())
+            {
+                decimal maxSeverity = violations.Max(vi => vi.Severity);
+                decimal minSeverity = violations.Min(vi => vi.Severity);
+                object[] objs = new object[2];
+                objs[0] = maxSeverity;
+                objs[1] = violationState;
+                Color maxColor = (Color)conv.Convert(objs, typeof(Color), parameter, culture);
+                objs[0] = minSeverity;
+                //Color minColor = (Color)conv.Convert(objs, typeof(Color), parameter, culture);
+                brush.Color = maxColor;
+            }
             return brush;
         }
 

@@ -16,7 +16,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
         #region Properties
 
         /// <summary>
-        /// Gets or sets the cell name of the current cell data.
+        /// Gets or sets the cell name (Location) of the current cell data.
         /// </summary>
         public string Location
         {
@@ -24,8 +24,8 @@ namespace SIF.Visualization.Excel.ScenarioCore
             set { SetProperty(ref location, value); }
         }
 
-        /// <summary>
-        /// Gets or sets the auto generated cell name of the current cell data.
+        /// <summary> 
+        /// Gets or sets the auto generated cell name (Location) of the current cell data.
         /// </summary>
         public string SifLocation
         {

@@ -1,8 +1,11 @@
-﻿using Microsoft.Office.Interop.Excel;
-using SIF.Visualization.Excel.ScenarioView;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Office.Core;
+using Microsoft.Office.Interop.Excel;
+using SIF.Visualization.Excel.Cells;
+using SIF.Visualization.Excel.Core;
+using SIF.Visualization.Excel.ScenarioView;
 
 namespace SIF.Visualization.Excel.ScenarioCore
 {
@@ -44,21 +47,21 @@ namespace SIF.Visualization.Excel.ScenarioCore
 
         private List<CreateScenarioDataFieldContainer> containers = new List<CreateScenarioDataFieldContainer>();
         private Workbook workbook;
-        private Scenario newScenario = null;
+        private Scenario newScenario;
         private static object syncScenario = new Object();
 
         #endregion
 
         #region Methods
-        public void Start(Core.WorkbookModel wb, string scenarioTitle)
+        public void Start(WorkbookModel wb, string scenarioTitle)
         {
             if (newScenario != null) return;
             lock (syncScenario)
             {
                 if (newScenario != null) return;
 
-                newScenario = new Scenario()
-                    {
+                newScenario = new Scenario
+                {
                         Title = scenarioTitle,
                         CrationDate = DateTime.Now,
                         Author = GetDocumentProperty(wb, "Last Author")
@@ -72,52 +75,38 @@ namespace SIF.Visualization.Excel.ScenarioCore
             //sort working list column first
             #region sort
 
-            workingList.Sort(delegate(Core.Cell x, Core.Cell y)
+            workingList.Sort(delegate(Cell x, Cell y)
             {
                 //sort by worksheet
-                var xSheet = workbook.Sheets[Cells.CellManager.Instance.ParseWorksheetName(x.Location)] as Worksheet;
-                var ySheet = workbook.Sheets[Cells.CellManager.Instance.ParseWorksheetName(x.Location)] as Worksheet;
+                var xSheet = workbook.Sheets[CellManager.Instance.ParseWorksheetName(x.Location)] as Worksheet;
+                var ySheet = workbook.Sheets[CellManager.Instance.ParseWorksheetName(x.Location)] as Worksheet;
 
                 if (xSheet.Index < ySheet.Index)
                 {
                     return -1;
                 }
-                else if (xSheet.Index > ySheet.Index)
+                if (xSheet.Index > ySheet.Index)
                 {
                     return 1;
                 }
-                else
+                //sort by column
+                var xRange = xSheet.Range[CellManager.Instance.ParseCellLocation(x.Location)];
+                var yRange = ySheet.Range[CellManager.Instance.ParseCellLocation(y.Location)];
+
+                if (xRange.Column < yRange.Column)
                 {
-                    //sort by column
-                    var xRange = xSheet.Range[Cells.CellManager.Instance.ParseCellLocation(x.Location)];
-                    var yRange = ySheet.Range[Cells.CellManager.Instance.ParseCellLocation(y.Location)];
-
-                    if (xRange.Column < yRange.Column)
-                    {
-                        return -1;
-                    }
-                    else if (xRange.Column > yRange.Column)
-                    {
-                        return 1;
-                    }
-                    else
-                    {
-                        //sort by row
-                        if (xRange.Row < yRange.Row)
-                        {
-                            return -1;
-                        }
-                        else if (xRange.Row > yRange.Row)
-                        {
-                            return 1;
-                        }
-                        else
-                        {
-                            return 0;
-                        }
-                    }
+                    return -1;
                 }
-
+                if (xRange.Column > yRange.Column)
+                {
+                    return 1;
+                }
+                //sort by row
+                if (xRange.Row < yRange.Row)
+                {
+                    return -1;
+                }
+                return xRange.Row > yRange.Row ? 1 : 0;
             });
 
             #endregion
@@ -130,21 +119,21 @@ namespace SIF.Visualization.Excel.ScenarioCore
                 CellData cellData;
 
                 #region create cell data
-                if (c is Cells.InputCell)
+                if (c is InputCell)
                 {
                     cellData = new InputCellData();
                     cellData.Location = c.Location;
                     cellData.SifLocation = c.SifLocation;
                     newScenario.Inputs.Add(cellData as InputCellData);
                 }
-                else if (c is Cells.IntermediateCell)
+                else if (c is IntermediateCell)
                 {
                     cellData = new IntermediateCellData();
                     cellData.Location = c.Location;
                     cellData.SifLocation = c.SifLocation;
                     newScenario.Intermediates.Add(cellData as IntermediateCellData);
                 }
-                else if (c is Cells.OutputCell)
+                else if (c is OutputCell)
                 {
                     cellData = new ResultCellData();
                     cellData.Location = c.Location;
@@ -168,7 +157,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
                 #endregion
 
                 //get worksheet
-                var currentWorksheet = workbook.Sheets[Cells.CellManager.Instance.ParseWorksheetName(c.Location)] as Worksheet;
+                var currentWorksheet = workbook.Sheets[CellManager.Instance.ParseWorksheetName(c.Location)] as Worksheet;
                 var vsto = Globals.Factory.GetVstoObject(currentWorksheet);
 
                 //create container
@@ -194,7 +183,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
                 //create control
                 var control = vsto.Controls.AddControl(
                     container,
-                    currentWorksheet.Range[Cells.CellManager.Instance.ParseCellLocation(c.Location)],
+                    currentWorksheet.Range[CellManager.Instance.ParseCellLocation(c.Location)],
                     Guid.NewGuid().ToString());
                 control.Placement = XlPlacement.xlMove;
             }
@@ -216,31 +205,28 @@ namespace SIF.Visualization.Excel.ScenarioCore
         {
             if (newScenario == null) return 0;
 
-            if (cellType == typeof(Cells.InputCell))
+            if (cellType == typeof(InputCell))
             {
                 var emptyInputs = (from q in newScenario.Inputs
                                    where q.Content == null
                                    select q).ToList().Count;
                 return emptyInputs;
             }
-            else if (cellType == typeof(Cells.IntermediateCell))
+            if (cellType == typeof(IntermediateCell))
             {
                 var emptyIntermediates = (from q in newScenario.Intermediates
-                                          where q.Content == null
-                                          select q).ToList().Count;
+                    where q.Content == null
+                    select q).ToList().Count;
                 return emptyIntermediates;
             }
-            else if (cellType == typeof(Cells.OutputCell))
+            if (cellType == typeof(OutputCell))
             {
                 var emptyResults = (from q in newScenario.Results
-                                    where q.Content == null
-                                    select q).ToList().Count;
+                    where q.Content == null
+                    select q).ToList().Count;
                 return emptyResults;
             }
-            else
-            {
-                return 0;
-            }
+            return 0;
         }
 
         /// <summary>
@@ -252,7 +238,7 @@ namespace SIF.Visualization.Excel.ScenarioCore
         {
             if (newScenario == null) return true;
 
-            if (cellType == typeof(Cells.InputCell))
+            if (cellType == typeof(InputCell))
             {
                 var noFilledInputs = (from q in newScenario.Inputs
                                       where q.Content != null
@@ -260,26 +246,23 @@ namespace SIF.Visualization.Excel.ScenarioCore
 
                 return noFilledInputs;
             }
-            else if (cellType == typeof(Cells.IntermediateCell))
+            if (cellType == typeof(IntermediateCell))
             {
                 var noFilledIntermediates = (from q in newScenario.Intermediates
-                                             where q.Content != null
-                                             select q).ToList().Count <= 0;
+                    where q.Content != null
+                    select q).ToList().Count <= 0;
 
                 return noFilledIntermediates;
             }
-            else if (cellType == typeof(Cells.OutputCell))
+            if (cellType == typeof(OutputCell))
             {
                 var noFilledResults = (from q in newScenario.Results
-                                       where q.Content != null
-                                       select q).ToList().Count <= 0;
+                    where q.Content != null
+                    select q).ToList().Count <= 0;
 
                 return noFilledResults;
             }
-            else
-            {
-                return true;
-            }
+            return true;
         }
 
         public Scenario End()
@@ -351,16 +334,13 @@ namespace SIF.Visualization.Excel.ScenarioCore
                 {
                     return null;
                 }
-                else
-                {
-                    return resultScenario;
-                }
+                return resultScenario;
             }
         }
 
-        private string GetDocumentProperty(Core.WorkbookModel n, string propertyName)
+        private string GetDocumentProperty(WorkbookModel n, string propertyName)
         {
-            var properties = (Microsoft.Office.Core.DocumentProperties)n.Workbook.BuiltinDocumentProperties;
+            var properties = (DocumentProperties)n.Workbook.BuiltinDocumentProperties;
             string value;
             try
             {

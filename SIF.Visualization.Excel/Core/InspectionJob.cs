@@ -5,6 +5,9 @@ using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.Core
 {
+    /// <summary>
+    /// Instance of an inspection
+    /// </summary>
     public class InspectionJob : BindableBase
     {
         #region Fields
@@ -35,7 +38,7 @@ namespace SIF.Visualization.Excel.Core
             set { SetProperty(ref spreadsheetPath, value); }
         }
 
-        // <summary>
+        /// <summary>
         /// Gets or sets the policy of the spreadsheet that is under evaluation.
         /// </summary>
         public XDocument PolicyXML
@@ -101,6 +104,12 @@ namespace SIF.Visualization.Excel.Core
 
         #region Methods
 
+        /// <summary>
+        /// Constructor to  create a new Inspection Job
+        /// </summary>
+        /// <param name="workbook"> Workbook that should be inspected</param>
+        /// <param name="spreadsheetPath">Path where the Sheet is saved</param>
+        /// <param name="policyXML"> The XML where it is defined which rules should be checked</param>
         public InspectionJob(WorkbookModel workbook, string spreadsheetPath, XDocument policyXML)
         {
             this.workbook = workbook;
@@ -108,6 +117,9 @@ namespace SIF.Visualization.Excel.Core
             this.policyXML = policyXML;
         }
 
+        /// <summary>
+        /// Deletes the Workbook saved in the before specified Path
+        /// </summary>
         public void DeleteWorkbookFile()
         {
             try
@@ -121,7 +133,7 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
-        /// The execution has been successful, now handle the report.
+        /// The scan has been successful, now handle the report to finalize the whole process
         /// </summary>
         public void Finalize(string report)
         {

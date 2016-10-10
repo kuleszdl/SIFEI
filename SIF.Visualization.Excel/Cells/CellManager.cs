@@ -60,16 +60,6 @@ namespace SIF.Visualization.Excel.Cells
             if (name != null) return name.Name;
             else return string.Empty;
 
-            //foreach (Name n in wb.Workbook.Application.Names)
-            //{
-            //    if (n.RefersTo as String == a1Adress
-            //        && n.Name.Contains(Properties.Settings.Default.CellNameTag))
-            //    {
-            //        return n.Name;
-            //    }
-            //}
-
-            //return String.Empty;
         }
 
         /// <summary>
@@ -97,18 +87,6 @@ namespace SIF.Visualization.Excel.Cells
             if (name != null) return name.Name;
             return a1Adress;
 
-            //String name = a1Adress;
-
-            //foreach (Name n in wb.Workbook.Application.Names)
-            //{
-            //    if (n.RefersTo as String == a1Adress
-            //        && !n.Name.Contains(Properties.Settings.Default.CellNameTag))
-            //    {
-            //        name = n.Name;
-            //    }
-            //}
-
-            //return name;
         }
 
         /// <summary>
@@ -155,27 +133,13 @@ namespace SIF.Visualization.Excel.Cells
         }
 
         /// <summary>
-        /// Creates a invisible sif cell name with the propertys cell name tag and a guid (without '-')
+        /// Creates a invisible sif cell name with the properties cell name tag and a guid (without '-')
         /// ex. SIF.Visualisation.0f8fad5bd9cb469fa16570867728950e
+        /// </summary>
         /// <returns></returns>
         public String CreateSIFCellName(WorkbookModel wb, String a1Adress)
         {
             return new CellLocation(wb.Workbook, a1Adress).AddName(Settings.Default.CellNameTag, false).Name;
-
-            //if (a1Adress == null) return null;
-
-            //String sifName = Properties.Settings.Default.CellNameTag + (Guid.NewGuid().ToString()).Replace("-", String.Empty);
-
-            //try
-            //{
-            //    var Name = wb.Workbook.Application.Names.Add(sifName, a1Adress, false);
-
-            //    return sifName;
-            //}
-            //catch (Exception e)
-            //{
-            //    return null;
-            //}
 
         }
 
@@ -187,6 +151,7 @@ namespace SIF.Visualization.Excel.Cells
             return a1Adress.Substring(startIndex, endIndex - startIndex + 1);
         }
 
+        
         public String ParseCellLocation(String a1Adress)
         {
             return a1Adress.Substring(a1Adress.IndexOf("!") + 1);

@@ -173,7 +173,7 @@
                     <Grid Width="30" Height="30">
                         <Image x:Name="findingsicon"
                            Source="{StaticResource violationsIcon}"
-                           ToolTip="Open"
+                           ToolTip="{x:StaticExtension p:Resources.tl_Open}"
                            Height="25"
                            Width="25"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -189,7 +189,7 @@
                     <Grid Width="30" Height="30">
                         <Image x:Name="laterView"
                            Source="{StaticResource laterIcon}"
-                           ToolTip="Later"
+                           ToolTip="{x:Static p:Resources.tl_Later}"
                            Height="25"
                            Width="25"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -202,7 +202,7 @@
                     <Grid Width="30" Height="30">
                         <Image x:Name="falsepositiveicon"
                            Source="{StaticResource falsepositiveIcon}"
-                           ToolTip="Ignored"
+                           ToolTip="{x:Static p:Resources.tl_Ignored}"
                            Height="25"
                            Width="25"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -215,7 +215,7 @@
                     <Grid Width="30" Height="30">
                         <Image x:Name="solvedView"
                            Source="{StaticResource solvedIcon}"
-                           ToolTip="Archive"
+                           ToolTip="{x:Static p:Resources.tl_Archive}"
                            Height="25"
                            Width="25"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -233,7 +233,7 @@
                     <Grid Width="30" Height="30">
                         <Image x:Name="cellDefinitionIcon"
                            Source="{StaticResource InputCellIcon}"
-                           ToolTip="Cell Definitions"
+                               ToolTip="{x:Static p:Resources.tl_CellDefinitions}"
                            Height="25"
                            Width="25"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -246,7 +246,7 @@
                     <Grid Width="30" Height="30">
                         <Image x:Name="scenariosicon"
                            Source="{StaticResource scenarios}"
-                           ToolTip="Scenario Overview"
+                           ToolTip="{x:Static p:Resources.tl_ScenarioOverview}"
                            Height="25"
                            Width="25"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>

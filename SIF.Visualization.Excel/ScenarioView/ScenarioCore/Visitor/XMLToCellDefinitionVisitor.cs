@@ -120,7 +120,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
             n.Content = (contentElement != null) ? contentElement.Value : String.Empty;
 
             //get the user cell name
-            if (n.SifLocation != null && n.SifLocation != String.Empty)
+            if (!String.IsNullOrEmpty(n.SifLocation))
             {
                 n.Location = CellManager.Instance.GetUserCellNameWithSIFName(wb, n.SifLocation);
             }

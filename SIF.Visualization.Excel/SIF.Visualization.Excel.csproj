@@ -100,7 +100,8 @@
     <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>GlobalizationRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <!--
     This section defines properties that are set when the "Release" configuration is selected.
@@ -125,6 +126,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <!--
     This section specifies references for the project.
@@ -219,6 +221,7 @@
     <Compile Include="GlobalSettingsDialog.Designer.cs">
       <DependentUpon>GlobalSettingsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ScanHelper.cs" />
     <Compile Include="IgnoreView\IgnoreView.xaml.cs">
       <DependentUpon>IgnoreView.xaml</DependentUpon>
     </Compile>
@@ -358,6 +361,7 @@
     <Compile Include="ViewModel\SingleViolationToVisibilityConverter.cs" />
     <Compile Include="ViewModel\StringEqualsToBoolConverter.cs" />
     <Compile Include="ViewModel\TypeConverter.cs" />
+    <Compile Include="ViewModel\MultipleToImageConverter.cs" />
     <Compile Include="ViewModel\TypeReadToImageConverter.cs" />
     <Compile Include="ViewModel\VisibleToTextConverter.cs" />
     <Compile Include="ViolationsView\ViolationsView.xaml.cs">
@@ -555,6 +559,7 @@
   <ItemGroup>
     <Resource Include="icons\violations\dynamic_unread.png" />
     <Resource Include="icons\violations\sanity_unread.png" />
+    <Resource Include="icons\violations\static_unread.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\Delete_black.png" />
@@ -569,6 +574,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\save.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icons\violations\empty.png" />
+    <Resource Include="icons\violations\plus.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

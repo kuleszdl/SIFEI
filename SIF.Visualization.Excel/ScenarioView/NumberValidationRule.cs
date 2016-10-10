@@ -27,12 +27,12 @@ namespace SIF.Visualization.Excel.ScenarioView
             #region check whether empty or non-numeric
             if (string.IsNullOrEmpty(val))
             {
-                return new ValidationResult(true, "");
+                return new ValidationResult(true, string.Empty);
             }
 
             if (Nonnumeric.IsMatch(val))
             {
-                return  new ValidationResult(true, "");
+                return  new ValidationResult(true, string.Empty);
             }
             #endregion
 
@@ -45,7 +45,7 @@ namespace SIF.Visualization.Excel.ScenarioView
                     thousandsValid = true;
                     Double.Parse(val, NormalStyles);
                 }
-                result = new ValidationResult(true, "");
+                result = new ValidationResult(true, string.Empty);
             }
             catch (FormatException e)
             {

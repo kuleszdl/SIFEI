@@ -44,7 +44,7 @@ namespace SIF.Visualization.Excel.ViewModel
             decimal diffG = endG - startG;
             decimal diffB = endB - startB;
 
-            return new Color() { A = 255, R = (byte)(startR + severity * diffR), G = (byte)(startG + severity * diffG), B = (byte)(startB + severity * diffB) };
+            return new Color() {A=255, R = (byte)(startR + severity * diffR), G = (byte)(startG + severity * diffG), B = (byte)(startB + severity * diffB) };
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
