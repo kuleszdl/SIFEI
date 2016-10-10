@@ -23,7 +23,7 @@ namespace SIF.Visualization.Excel
 
         public CellErrorInfoContainer()
         {
-            InitializeComponent();
+            InitializeComponent();  
         }
     }
 }

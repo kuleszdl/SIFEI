@@ -1,2 +1,8 @@
 ﻿*.suo
 
+*.db
+/excel.psess
+/excel160412.vspx
+/excel160412.etl
+SIF.Visualization.Excel_TemporaryKey.pfx
+/SIF.Visualization.Excel_TemporaryKey.pfx
