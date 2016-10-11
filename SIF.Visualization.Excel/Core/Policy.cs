@@ -2,6 +2,9 @@
 
 namespace SIF.Visualization.Excel.Core
 {
+    /// <summary>
+    /// Class that represents a policy
+    /// </summary>
     public class Policy : BindableBase
     {
         #region Fields
@@ -97,11 +100,17 @@ namespace SIF.Visualization.Excel.Core
         #endregion
 
         #region Methods
-
+        /// <summary>
+        /// Empty Constructor for this class
+        /// </summary>
         public Policy()
         {
         }
 
+        /// <summary>
+        /// Creating a new policy defining the author, the description and the name
+        /// </summary>
+        /// <param name="root"></param>
         public Policy(XElement root)
         {
             Author = root.Attribute(XName.Get("author")).Value;

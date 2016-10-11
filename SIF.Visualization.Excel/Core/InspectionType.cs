@@ -1,5 +1,8 @@
 ﻿namespace SIF.Visualization.Excel.Core
 {
+    /// <summary>
+    /// Types of inspections possible
+    /// </summary>
     public enum InspectionType
     {
         /// <summary>

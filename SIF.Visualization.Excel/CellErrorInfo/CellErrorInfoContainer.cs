@@ -13,9 +13,12 @@ namespace SIF.Visualization.Excel
             get { return elementHost1; }
         }
 
+        /// <summary>
+        /// Instanciates a new Container setting the Paintingstyles
+        /// </summary>
         public CellErrorInfoContainer()
         {
-            //The SetStyle comands increase the drawing speed by a bit and reduces flickering
+            //The SetStyle commands increase the drawing speed by a bit and reduce flickering
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -23,7 +26,7 @@ namespace SIF.Visualization.Excel
             InitializeComponent();
         }
 
-        private void elementHost1_ChildChanged(object sender, ChildChangedEventArgs e)
+        private void ElementHost1_ChildChanged(object sender, ChildChangedEventArgs e)
         {
 
         }

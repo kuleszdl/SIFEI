@@ -30,14 +30,14 @@
 
         <ListBox x:Name="LaterList" FontFamily="Segoe UI" FontSize="12" Visibility="{Binding LaterViolations.Count, Converter={StaticResource IntToVisibilityConverter}}"
              SelectedIndex="-1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                 SelectionMode="Single" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged" Background="Transparent" ScrollViewer.CanContentScroll="False"
+                 SelectionMode="Single" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged" Background="White" ScrollViewer.CanContentScroll="False"
                  BorderThickness="0" HorizontalAlignment="Stretch" ItemContainerStyle="{StaticResource listBoxItemStyle}" HorizontalContentAlignment="Stretch">
             <ListBox.Resources>
                 <!--Template for the Single Violations-->
                 <DataTemplate DataType="{x:Type model:Violation}">
                     <Border BorderThickness="{Binding IsCellSelected, Converter={StaticResource BooleanToBorderThicknessConverter}}" 
                             BorderBrush="#217346">
-                        <Grid HorizontalAlignment="Stretch" Background="Transparent">
+                        <Grid HorizontalAlignment="Stretch" Background="White">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />

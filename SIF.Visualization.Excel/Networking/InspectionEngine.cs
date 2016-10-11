@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows;
+using SIF.Visualization.Excel.Helper;
 
 namespace SIF.Visualization.Excel.Networking
 {
@@ -17,6 +18,11 @@ namespace SIF.Visualization.Excel.Networking
     /// </summary>
     public class InspectionEngine
     {
+        /// <summary>
+        /// Saves for a short time if an MemoryRestriction Exception got raised
+        /// </summary>
+        private bool _hadMemoryRestriction = false;
+
         #region Singleton
 
         private static volatile InspectionEngine instance;
@@ -58,47 +64,27 @@ namespace SIF.Visualization.Excel.Networking
         /// <summary>
         /// Gets or sets the state of the inspection engine.
         /// </summary>
-        public InspectionEngineState State
-        {
-            get;
-            private set;
-        }
+        public InspectionEngineState State { get; private set; }
 
         /// <summary>
         /// Gets the inspection queue.
         /// </summary>
-        public BlockingCollection<InspectionJob> InspectionQueue
-        {
-            get;
-            private set;
-        }
+        public BlockingCollection<InspectionJob> InspectionQueue { get; private set; }
 
         /// <summary>
         /// Gets or sets the server thread.
         /// </summary>
-        protected Thread ServerThread
-        {
-            get;
-            private set;
-        }
+        protected Thread ServerThread { get; private set; }
 
         /// <summary>
         /// Gets or sets the server socket.
         /// </summary>
-        protected TcpListener TcpServer
-        {
-            get;
-            private set;
-        }
+        protected TcpListener TcpServer { get; private set; }
 
         /// <summary>
         /// Gets or sets the local port.
         /// </summary>
-        public ushort Port
-        {
-            get;
-            private set;
-        }
+        public ushort Port { get; private set; }
 
         #endregion
 
@@ -201,7 +187,7 @@ namespace SIF.Visualization.Excel.Networking
                         "sif.jar\" "
                         + Settings.Default.SifOptions + " " + Instance.Port);
                     startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    var process = Process.Start(startInfo);
+                    Process.Start(startInfo);
 
                     // Wait for the client to connect.
                     var clientSocket = currentTcpListener.AcceptSocket();
@@ -210,16 +196,8 @@ namespace SIF.Visualization.Excel.Networking
 
                     while (IsSocketConnected(clientSocket))
                     {
-                        if (InspectionQueue.Count <= 0)
-                        {
-                            Globals.ThisAddIn.Application.StatusBar = Resources.tl_Scan_unsuccessful;
-                            Globals.Ribbons.Ribbon.scanButton.Enabled = true;
-                            Globals.Ribbons.Ribbon.scanButton.Label =
-                                Resources.tl_Ribbon_AreaScan_ScanButton;
-                        }
                         // Get the next inspection job from the inspection queue
                         var currentJob = InspectionQueue.Take();
-
 
                         try
                         {
@@ -229,7 +207,6 @@ namespace SIF.Visualization.Excel.Networking
                             clientSocket.SendString(writer.GetStringBuilder().ToString());
                             // Read the report from the socket connection
 
-
                             var report = clientSocket.ReadString();
 
                             // Let the inspection job know about the report
@@ -237,9 +214,9 @@ namespace SIF.Visualization.Excel.Networking
                         }
                         catch (OutOfMemoryException)
                         {
-                            // Try to release as many resources as possible
-                            MessageBox.Show(
-                                "The inspection queue has been cleared due to memory restrictions.\nPlease restart any needed scans.");
+                            // Try to release as many resources as possible#
+                            ScanHelper.ScanUnsuccessful(Resources.tl_MemoryRestrictions + "\n" + Resources.tl_StartNewScan);
+                            _hadMemoryRestriction = true;
                             currentJob.DeleteWorkbookFile();
                             foreach (InspectionJob job in InspectionQueue)
                             {
@@ -247,19 +224,15 @@ namespace SIF.Visualization.Excel.Networking
                             }
                             InspectionQueue.Dispose();
                             InspectionQueue = new BlockingCollection<InspectionJob>();
-                           
                             
                             // restart the server loop
                             throw new Exception();
                         }
                         catch (Exception e)
                         {
-                            // Put the job in the queue again
-                            MessageBox.Show(Resources.tl_Scan_failed + e.ToString(), Resources.tl_MessageBox_Error);
+                            if (!_hadMemoryRestriction) ScanHelper.ScanUnsuccessful();
                             Start();
-                           
                         }
-
                     }
 
                     #endregion
@@ -267,12 +240,30 @@ namespace SIF.Visualization.Excel.Networking
             }
             catch (ExternalException) // Java is not on the path
             {
-                MessageBox.Show(
+                if (Globals.Ribbons.Ribbon.scanButton != null && Globals.Ribbons.Ribbon != null &&
+                    Globals.Ribbons != null)
+                {
+                    ScanHelper.ScanUnsuccessful(Resources.tl_No_Java_Enviroment);
+                }
+                else
+                {
+                    MessageBox.Show(
                     Resources.tl_No_Java_Enviroment,
                     Resources.tl_MessageBox_Error);
+                }
             }
             catch (Exception e)
             {
+                
+                try
+                {
+                    ScanHelper.ScanUnsuccessful();
+                }
+                    //Catch if Ribbon was never instantiated 
+                catch (NullReferenceException ex)
+                {
+                    // Quietly swallow exception
+                }
                 // start will fork into a new thread
                 Start();
                 // we will die in a short while, nothing to be done
@@ -280,9 +271,8 @@ namespace SIF.Visualization.Excel.Networking
             finally
             {
                 currentTcpListener.Stop();
-                }
+            }
         }
-
 
         #endregion
     }

@@ -55,91 +55,165 @@ namespace SIF.Visualization.Excel.Core
         #endregion
 
         #region Properties_Settings
+        
+        /// <summary>
+        /// Gets or sets weather Formula Complexity should be checked 
+        /// </summary>
         public Boolean FormulaComplexity
         {
             get { return formulaComplexity; }
             set { formulaComplexity = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather Formula Complexity should be checked  in automatic scans
+        /// </summary>
         public Boolean FormulaComplexityAutomatic
         {
             get { return formulaComplexityAutomatic; }
             set { formulaComplexityAutomatic = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather No Constants in Formulas should be checked
+        /// </summary>
         public Boolean NoConstantsInFormulas
         {
             get { return noConstantsInFormulas; }
             set { noConstantsInFormulas = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather No Constants in Formulas should be checked in automatic scans
+        /// </summary>
         public Boolean NoConstantsInFormulasAutomatic
         {
             get { return noConstantsInFormulasAutomatic; }
             set { noConstantsInFormulasAutomatic = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather reading direction should be checked 
+        /// </summary>
         public Boolean ReadingDirection
         {
             get { return readingDirection; }
             set { readingDirection = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather reading directions  should be checked in automatic scans
+        /// </summary>
         public Boolean ReadingDirectionAutomatic
         {
             get { return readingDirectionAutomatic; }
             set { readingDirectionAutomatic = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather multiple same references should be checked
+        /// </summary>
         public Boolean MultipleSameRef
         {
             get { return multipleSameRef; }
             set { multipleSameRef = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather multiple same references should be checked in automatic scans
+        /// </summary>
         public Boolean MultipleSameRefAutomatic
         {
             get { return multipleSameRefAutomatic; }
             set { multipleSameRefAutomatic = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather non considered constants should be checked
+        /// </summary>
         public Boolean NonConsideredConstants
         {
             get { return nonConsideredConstants; }
             set { nonConsideredConstants = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather non considered constants should be checked in automatic scans
+        /// </summary>
         public Boolean NonConsideredConstantsAutomatic
         {
             get { return nonConsideredConstantsAutomatic; }
             set { nonConsideredConstantsAutomatic = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather references to null in Formulas should be checked
+        /// </summary>
         public Boolean RefToNull
         {
             get { return refToNull; }
             set { refToNull = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather references to null should be checked in automatic scans
+        /// </summary>
         public Boolean RefToNullAutomatic
         {
             get { return refToNullAutomatic; }
             set { refToNullAutomatic = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather the one among others rule should be checked
+        /// </summary>
         public Boolean OneAmongOthers
         {
             get { return oneAmongOthers; }
             set { oneAmongOthers = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather the one among others rule should be checked in automatic scans
+        /// </summary>
         public Boolean OneAmongOthersAutomatic
         {
             get { return oneAmongOthersAutomatic; }
             set { oneAmongOthersAutomatic = value; }
         }
+
+        /// <summary>
+        /// Gets or sets weather the string distance should be checked
+        /// </summary>
         public Boolean StringDistance
         {
             get { return stringDistance; }
             set { stringDistance = value; }
         }
+
+        /// <summary>
+        /// /// <summary>
+        /// Gets or sets weather the string distance should be checked in automatic scans
+        /// </summary>
+        /// </summary>
         public Boolean StringDistanceAutomatic
         {
             get { return stringDistanceAutomatic; }
             set { stringDistanceAutomatic = value; }
         }
+
+        /// <summary>
+        /// Gets or sets for how big the String Distance should be
+        /// </summary>
         public int StringDistanceMaxDist
         {
             get { return stringDistanceMaxDist; }
             set { stringDistanceMaxDist = value; }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public Boolean ErrorInCellsAutomatic
         {
             get { return errorInCellsAutomatic; }
@@ -153,13 +227,21 @@ namespace SIF.Visualization.Excel.Core
 
         #endregion
 
-        public Boolean hasAutomaticScans()
+        /// <summary>
+        /// Checks weather any automatic scan criterias are enabled
+        /// </summary>
+        /// <returns></returns>
+        public Boolean HasAutomaticScans()
         {
             return noConstantsInFormulasAutomatic || readingDirectionAutomatic || formulaComplexityAutomatic
                 || multipleSameRefAutomatic || nonConsideredConstantsAutomatic || refToNullAutomatic
                 || oneAmongOthersAutomatic || stringDistanceAutomatic || errorInCellsAutomatic;
         }
 
+        /// <summary>
+        /// Checks weather any manual scan criterias are enabled
+        /// </summary>
+        /// <returns></returns>
         public Boolean hasManualScans()
         {
             return noConstantsInFormulas || readingDirection || formulaComplexity

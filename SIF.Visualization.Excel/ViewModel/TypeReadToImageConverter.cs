@@ -29,6 +29,7 @@ namespace SIF.Visualization.Excel.ViewModel
             {
                 temp = temp + "_unread";
             }
+
             image.UriSource = new Uri(temp + ".png", UriKind.Relative);
             image.EndInit();
             return image;

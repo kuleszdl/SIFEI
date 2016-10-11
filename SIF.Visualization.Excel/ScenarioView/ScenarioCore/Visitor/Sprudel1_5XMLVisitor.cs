@@ -380,7 +380,7 @@ namespace SIF.Visualization.Excel.ScenarioCore.Visitor
         /// <returns></returns>
         private XElement CreateRule(Scenario n, string type, bool takeIntermediates, bool takeResults)
         {
-            if (type == null || type == String.Empty) return null;
+            if (String.IsNullOrEmpty(type)) return null;
             if (type != "invariants" && type != "postconditions") return null;
 
             var rule = new XElement(type);

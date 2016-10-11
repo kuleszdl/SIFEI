@@ -405,16 +405,16 @@
     <value>Keine Szenarien. Bitte markieren Sie Zellen und erstellen Sie ein neues Szenario, um es hier zu sehen.</value>
   </data>
   <data name="tl_ProcessingScan" xml:space="preserve">
-    <value>Scan wird durchgeführt</value>
+    <value>Prüfung wird durchgeführt</value>
   </data>
   <data name="tl_Scan_successful" xml:space="preserve">
-    <value>Erfolgreicher Scan durchgeführt</value>
+    <value>Erfolgreiche Prüfung durchgeführt</value>
   </data>
   <data name="tl_Scan_unsuccessful" xml:space="preserve">
-    <value>Scan konnte nicht erfolgreich beendet werden</value>
+    <value>Prüfung konnte nicht erfolgreich beendet werden</value>
   </data>
   <data name="tl_NoScanPossible" xml:space="preserve">
-    <value>Kein Scan möglich</value>
+    <value>Keine Prüfung möglich</value>
   </data>
   <data name="tl_ScenarioPane_EditScenarioTooltip" xml:space="preserve">
     <value>Öffnet ein neues Fenster um das Szenario zu bearbeiten</value>
@@ -438,7 +438,7 @@
     <value>Speichert die Änderungen im geöffnete Szenario</value>
   </data>
   <data name="tl_ScenarioDetailPane_DiscardDataMessageBox" xml:space="preserve">
-    <value>Sind sie sicher, dass sie die Änderungen verwerfen wollen?</value>
+    <value>Sind sie sicher, dass sie Ihre Änderungen verwerfen wollen?</value>
   </data>
   <data name="tl_ScenarioDetailPane_DiscardDataMessageBoxTitle" xml:space="preserve">
     <value>Änderungen verwerfen</value>
@@ -474,11 +474,11 @@ Bitte stellen sie sicher, dass die Java Runtime in der Version 1.7 oder höher i
 </value>
   </data>
   <data name="tl_Scan_needingsavetitle" xml:space="preserve">
-    <value>Scan abgebrochen</value>
+    <value>Prüfung abgebrochen</value>
   </data>
   <data name="tl_Scan_needssave" xml:space="preserve">
-    <value>Die Datei muss vor dem Scan gespeichert sein. 
-Scan wir abgebrochen</value>
+    <value>Die Datei muss vor der Prüfung gespeichert sein. 
+Prüfung wir abgebrochen</value>
   </data>
   <data name="tl_Scenario_CantCreate" xml:space="preserve">
     <value>Kann Szenario nicht erstellen.</value>
@@ -505,5 +505,46 @@ Bite befüllen Sie die fehlenden Zellen oder brechen Sie die Szenario-Erstellung
   <data name="tl_ValidationError" xml:space="preserve">
     <value>Die Validierung hat einen Fehler verursacht!
 </value>
+  </data>
+  <data name="tl_Scan_unsuccessfulMessage" xml:space="preserve">
+    <value>Prüfung konnte nicht erfolgreich durchgeführt werden.</value>
+  </data>
+  <data name="tl_SIFCorecrashed" xml:space="preserve">
+    <value>Leider ist SIFCore abgestürtzt.
+Bitte starten Sie eine neue Prüfung.
+Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und öffnen Sie die Datei erneut.</value>
+  </data>
+  <data name="tl_OutOfMemory" xml:space="preserve">
+    <value>Nicht genügend Arbeitsspeicher für eine Prüfung vorhanden</value>
+  </data>
+  <data name="tl_stopEdit" xml:space="preserve">
+    <value>Bitte stoppen sie das Editieren der Zelle und starten sie eine neue Prüfung</value>
+  </data>
+  <data name="tl_StartNewScan" xml:space="preserve">
+    <value>Bitte starten Sie eine neue Prüfung</value>
+  </data>
+  <data name="tl_MemoryRestrictions" xml:space="preserve">
+    <value>Die Warteschlange für die Prüfungen wurde wegen Speichereinschränkungen gelöscht.</value>
+  </data>
+  <data name="tl_Archive" xml:space="preserve">
+    <value>Archiv</value>
+  </data>
+  <data name="tl_CellDefinitions" xml:space="preserve">
+    <value>Zellendefinitionen</value>
+  </data>
+  <data name="tl_Ignored" xml:space="preserve">
+    <value>Ignoriert</value>
+  </data>
+  <data name="tl_Later" xml:space="preserve">
+    <value>Später</value>
+  </data>
+  <data name="tl_NoScenariosSide" xml:space="preserve">
+    <value>Keine Szenarios erstellt. Bitte erstellen sie ein neues Szenario.</value>
+  </data>
+  <data name="tl_Open" xml:space="preserve">
+    <value>Offen</value>
+  </data>
+  <data name="tl_ScenarioOverview" xml:space="preserve">
+    <value>Szenario Übersicht</value>
   </data>
 </root>

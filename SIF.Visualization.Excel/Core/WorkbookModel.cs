@@ -9,22 +9,26 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.Schema;
-using Microsoft.Office.Tools.Outlook;
+using SIF.Visualization.Excel.Helper;
 using MessageBox = System.Windows.MessageBox;
 
 namespace SIF.Visualization.Excel.Core
 {
     /// <summary>
-    /// This is the model class for one worksheet.
+    /// This is the model class for one 
+    /// 
+    /// 
+    /// .
     /// </summary>
     public class WorkbookModel : BindableBase, IAcceptVisitor
     {
+        /// <summary>
+        /// Defines if a cell should be defined or undefined
+        /// </summary>
         public enum CellDefinitionOption
         {
             /// <summary>
@@ -38,10 +42,13 @@ namespace SIF.Visualization.Excel.Core
             Undefine
         };
 
+        /// <summary>
+        /// Decides how the inspection should be done or what should be inspected
+        /// </summary>
         public enum InspectionMode
         {
             /// <summary>
-            /// Starts the Inspection with the scenarios, without static tests
+            /// Starts the Inspection with the scenarios, without static tests but with dynamic tests
             /// </summary>
             Dynamic,
 
@@ -56,50 +63,58 @@ namespace SIF.Visualization.Excel.Core
             All
         };
 
-        // private Object lockObject = new Object();
-
         #region Fields
 
-        private string title;
-        private string spreadsheet;
-        private string policyPath;
-        private Policy policy;
-        private ObservableCollection<Cell> inputCells;
-        private ObservableCollection<Cell> sanityValueCells;
-        private ObservableCollection<Cell> sanityConstraintCells;
-        private ObservableCollection<Cell> sanityExplanationCells;
-        private ObservableCollection<Cell> sanityCheckingCells;
-        private ObservableCollection<Cell> intermediateCells;
-        private ObservableCollection<Cell> outputCells;
-        private ObservableCollection<Violation> violations;
-        private ObservableCollection<Violation> ignoredViolations;
-        private ObservableCollection<Violation> laterViolations;
-        private ObservableCollection<Violation> solvedViolations;
-        private ObservableCollection<CellLocation> violatedCells;
-        private int unreadViolationCount;
-        private ObservableCollection<ScenarioCore.Scenario> scenarios;
-        private Boolean sanityWarnings = true;
-        private SharedTabs selectedTab;
-        private string selectedTabLabel = "unnamed";
+        private string _title;
+        private string _spreadsheet;
+        private string _policyPath;
+        private Policy _policy;
+        private ObservableCollection<Cell> _inputCells;
+        private ObservableCollection<Cell> _sanityValueCells;
+        private ObservableCollection<Cell> _sanityConstraintCells;
+        private ObservableCollection<Cell> _sanityExplanationCells;
+        private ObservableCollection<Cell> _sanityCheckingCells;
+        private ObservableCollection<Cell> _intermediateCells;
+        private ObservableCollection<Cell> _outputCells;
+        private ObservableCollection<Violation> _violations;
+        private ObservableCollection<Violation> _ignoredViolations;
+        private ObservableCollection<Violation> _laterViolations;
+        private ObservableCollection<Violation> _solvedViolations;
+        private ObservableCollection<CellLocation> _violatedCells;
+        private int _unreadViolationCount;
+        private ObservableCollection<ScenarioCore.Scenario> _scenarios;
+        private Boolean _sanityWarnings = true;
+        private SharedTabs _selectedTab;
+        private string _selectedTabLabel = "unnamed";
 
-        private Workbook workbook;
-        private PolicyConfigurationModel policySettings;
+        private Workbook _workbook;
+        private PolicyConfigurationModel _policySettings;
+        private int tries = 0;
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        /// Should a workbook be scaned after the saving process
+        /// </summary>
+        public bool ShouldScanAfterSave { get; set; }
+
+
+        /// <summary>
+        /// Gets or Sets the settings of the policy
+        /// </summary>
         public PolicyConfigurationModel PolicySettings
         {
             get
             {
-                if (policySettings == null)
+                if (_policySettings == null)
                 {
-                    policySettings = new PolicyConfigurationModel();
+                    _policySettings = new PolicyConfigurationModel();
                 }
-                return policySettings;
+                return _policySettings;
             }
-            set { policySettings = value; }
+            set { _policySettings = value; }
         }
 
         /// <summary>
@@ -107,8 +122,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string Title
         {
-            get { return title; }
-            set { SetProperty(ref title, value); }
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
         }
 
         /// <summary>
@@ -116,8 +131,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string Spreadsheet
         {
-            get { return spreadsheet; }
-            set { SetProperty(ref spreadsheet, value); }
+            get { return _spreadsheet; }
+            set { SetProperty(ref _spreadsheet, value); }
         }
 
         /// <summary>
@@ -125,8 +140,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string PolicyPath
         {
-            get { return policyPath; }
-            set { SetProperty(ref policyPath, value); }
+            get { return _policyPath; }
+            set { SetProperty(ref _policyPath, value); }
         }
 
         /// <summary>
@@ -134,8 +149,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public Policy Policy
         {
-            get { return policy; }
-            set { SetProperty(ref policy, value); }
+            get { return _policy; }
+            set { SetProperty(ref _policy, value); }
         }
 
         /// <summary>
@@ -145,10 +160,10 @@ namespace SIF.Visualization.Excel.Core
         {
             get
             {
-                if (inputCells == null) inputCells = new ObservableCollection<Cell>();
-                return inputCells;
+                if (_inputCells == null) _inputCells = new ObservableCollection<Cell>();
+                return _inputCells;
             }
-            set { SetProperty(ref inputCells, value); }
+            set { SetProperty(ref _inputCells, value); }
         }
 
         /// <summary>
@@ -158,10 +173,10 @@ namespace SIF.Visualization.Excel.Core
         {
             get
             {
-                if (intermediateCells == null) intermediateCells = new ObservableCollection<Cell>();
-                return intermediateCells;
+                if (_intermediateCells == null) _intermediateCells = new ObservableCollection<Cell>();
+                return _intermediateCells;
             }
-            set { SetProperty(ref intermediateCells, value); }
+            set { SetProperty(ref _intermediateCells, value); }
         }
 
         /// <summary>
@@ -171,10 +186,10 @@ namespace SIF.Visualization.Excel.Core
         {
             get
             {
-                if (sanityValueCells == null) sanityValueCells = new ObservableCollection<Cell>();
-                return sanityValueCells;
+                if (_sanityValueCells == null) _sanityValueCells = new ObservableCollection<Cell>();
+                return _sanityValueCells;
             }
-            set { SetProperty(ref sanityValueCells, value); }
+            set { SetProperty(ref _sanityValueCells, value); }
         }
 
         /// <summary>
@@ -184,10 +199,10 @@ namespace SIF.Visualization.Excel.Core
         {
             get
             {
-                if (sanityConstraintCells == null) sanityConstraintCells = new ObservableCollection<Cell>();
-                return sanityConstraintCells;
+                if (_sanityConstraintCells == null) _sanityConstraintCells = new ObservableCollection<Cell>();
+                return _sanityConstraintCells;
             }
-            set { SetProperty(ref sanityConstraintCells, value); }
+            set { SetProperty(ref _sanityConstraintCells, value); }
         }
 
         /// <summary>
@@ -197,10 +212,10 @@ namespace SIF.Visualization.Excel.Core
         {
             get
             {
-                if (sanityExplanationCells == null) sanityExplanationCells = new ObservableCollection<Cell>();
-                return sanityExplanationCells;
+                if (_sanityExplanationCells == null) _sanityExplanationCells = new ObservableCollection<Cell>();
+                return _sanityExplanationCells;
             }
-            set { SetProperty(ref sanityExplanationCells, value); }
+            set { SetProperty(ref _sanityExplanationCells, value); }
         }
 
         /// <summary>
@@ -210,26 +225,30 @@ namespace SIF.Visualization.Excel.Core
         {
             get
             {
-                if (sanityCheckingCells == null) sanityCheckingCells = new ObservableCollection<Cell>();
-                return sanityCheckingCells;
+                if (_sanityCheckingCells == null) _sanityCheckingCells = new ObservableCollection<Cell>();
+                return _sanityCheckingCells;
             }
-            set { SetProperty(ref sanityCheckingCells, value); }
+            set { SetProperty(ref _sanityCheckingCells, value); }
         }
 
+        /// <summary>
+        /// The Cells in this Workbook that contain violations
+        /// </summary>
         public ObservableCollection<CellLocation> ViolatedCells
         {
             get
             {
-                if (violatedCells == null) violatedCells = new ObservableCollection<CellLocation>();
-                return violatedCells;
+                if (_violatedCells == null) _violatedCells = new ObservableCollection<CellLocation>();
+                return _violatedCells;
             }
-            set { SetProperty(ref violatedCells, value); }
+            set { SetProperty(ref _violatedCells, value); }
         }
+
 
         public Boolean SanityWarnings
         {
-            get { return sanityWarnings; }
-            set { sanityWarnings = value; }
+            get { return _sanityWarnings; }
+            set { _sanityWarnings = value; }
         }
 
         /// <summary>
@@ -239,10 +258,10 @@ namespace SIF.Visualization.Excel.Core
         {
             get
             {
-                if (outputCells == null) outputCells = new ObservableCollection<Cell>();
-                return outputCells;
+                if (_outputCells == null) _outputCells = new ObservableCollection<Cell>();
+                return _outputCells;
             }
-            set { SetProperty(ref outputCells, value); }
+            set { SetProperty(ref _outputCells, value); }
         }
 
         /// <summary>
@@ -252,15 +271,15 @@ namespace SIF.Visualization.Excel.Core
         {
             get
             {
-                if (violations == null)
+                if (_violations == null)
                 {
-                    violations = new ObservableCollection<Violation>();
-                    violations.CollectionChanged += violations_CollectionChanged;
+                    _violations = new ObservableCollection<Violation>();
+                    _violations.CollectionChanged += violations_CollectionChanged;
                 }
 
-                return violations;
+                return _violations;
             }
-            set { SetProperty(ref violations, value); }
+            set { SetProperty(ref _violations, value); }
         }
 
 
@@ -271,39 +290,39 @@ namespace SIF.Visualization.Excel.Core
         {
             get
             {
-                if (ignoredViolations == null) ignoredViolations = new ObservableCollection<Violation>();
-                return ignoredViolations;
+                if (_ignoredViolations == null) _ignoredViolations = new ObservableCollection<Violation>();
+                return _ignoredViolations;
             }
-            set { SetProperty(ref ignoredViolations, value); }
+            set { SetProperty(ref _ignoredViolations, value); }
         }
 
         /// <summary>
-        /// Gets or sets the false positives of the current document.
+        /// Gets or sets the violations that got marked with later
         /// </summary>
         public ObservableCollection<Violation> LaterViolations
         {
             get
             {
-                if (laterViolations == null) laterViolations = new ObservableCollection<Violation>();
-                return laterViolations;
+                if (_laterViolations == null) _laterViolations = new ObservableCollection<Violation>();
+                return _laterViolations;
             }
-            set { SetProperty(ref laterViolations, value); }
+            set { SetProperty(ref _laterViolations, value); }
         }
 
         /// <summary>
-        /// Gets or sets the false positives of the current document.
+        /// Gets or sets the solved violations of the current document
         /// </summary>
         public ObservableCollection<Violation> SolvedViolations
         {
             get
             {
-                if (solvedViolations == null)
+                if (_solvedViolations == null)
                 {
-                    solvedViolations = new ObservableCollection<Violation>();
+                    _solvedViolations = new ObservableCollection<Violation>();
                 }
-                return solvedViolations;
+                return _solvedViolations;
             }
-            set { SetProperty(ref solvedViolations, value); }
+            set { SetProperty(ref _solvedViolations, value); }
         }
 
         /// <summary>
@@ -313,10 +332,10 @@ namespace SIF.Visualization.Excel.Core
         {
             get
             {
-                if (scenarios == null) scenarios = new ObservableCollection<ScenarioCore.Scenario>();
-                return scenarios;
+                if (_scenarios == null) _scenarios = new ObservableCollection<ScenarioCore.Scenario>();
+                return _scenarios;
             }
-            set { SetProperty(ref scenarios, value); }
+            set { SetProperty(ref _scenarios, value); }
         }
 
         /// <summary>
@@ -324,8 +343,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public int UnreadViolationCount
         {
-            get { return unreadViolationCount; }
-            set { SetProperty(ref unreadViolationCount, value); }
+            get { return _unreadViolationCount; }
+            set { SetProperty(ref _unreadViolationCount, value); }
         }
 
         /// <summary>
@@ -333,8 +352,8 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public Workbook Workbook
         {
-            get { return workbook; }
-            set { SetProperty(ref workbook, value); }
+            get { return _workbook; }
+            set { SetProperty(ref _workbook, value); }
         }
 
         /// <summary>
@@ -342,17 +361,19 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public string SelectedTabLabel
         {
-            get { return selectedTabLabel; }
-            set { SetProperty(ref selectedTabLabel, value); }
+            get { return _selectedTabLabel; }
+            set { SetProperty(ref _selectedTabLabel, value); }
         }
 
-
+        /// <summary>
+        /// Gets or sets which tab of the sidepane is selected
+        /// </summary>
         public SharedTabs SelectedTab
         {
-            get { return selectedTab; }
+            get { return _selectedTab; }
             set
             {
-                SetProperty(ref selectedTab, value);
+                SetProperty(ref _selectedTab, value);
                 ViolatedCells.ToList().ForEach(vc => vc.SetVisibility(value));
             }
         }
@@ -429,19 +450,23 @@ namespace SIF.Visualization.Excel.Core
         /// <param name="workbook">The workbook that is used for initialization.</param>
         public WorkbookModel(Workbook workbook)
         {
+            ShouldScanAfterSave = false;
             Workbook = workbook;
 
-            Workbook.BeforeSave += Workbook_BeforeSave;
+            Workbook.BeforeSave += workbook_BeforeSave;
             Workbook.BeforeClose += Workbook_BeforeClose;
             Workbook.AfterSave += Workbook_AfterSave;
-            Workbook.SheetSelectionChange += Sheet_SelectionChange;
+            Workbook.SheetSelectionChange += sheet_SelectionChange;
             // Occurs after any worksheet is recalculated or after any changed data is plotted on a chart.
-            this.workbook.SheetCalculate += Workbook_SheetCalculate;
+            this._workbook.SheetCalculate += workbook_SheetCalculate;
         }
 
+        /// <summary>
+        /// Loads all the data related to violations and scenarios
+        /// </summary>
         public void LoadExtraInformation()
         {
-            String error = "";
+            String error = string.Empty;
             try
             {
                 // Load cell definitions
@@ -469,7 +494,7 @@ namespace SIF.Visualization.Excel.Core
                 {
                     // Add them to the violations collection
                     (from p in violationsXml.Elements(XName.Get("violation"))
-                        select new Violation(p, workbook)).ToList().ForEach(p => Violations.Add(p));
+                        select new Violation(p, _workbook)).ToList().ForEach(p => Violations.Add(p));
                 }
             }
             catch (Exception)
@@ -485,7 +510,7 @@ namespace SIF.Visualization.Excel.Core
                 {
                     // Add them to the ignored violations collection
                     (from p in ignoredXml.Elements(XName.Get("ignoredviolations"))
-                        select new Violation(p, workbook)).ToList().ForEach(p => IgnoredViolations.Add(p));
+                        select new Violation(p, _workbook)).ToList().ForEach(p => IgnoredViolations.Add(p));
                 }
             }
             catch (Exception)
@@ -501,7 +526,7 @@ namespace SIF.Visualization.Excel.Core
                 {
                     // Add them to the later violations collection
                     (from p in laterXml.Elements(XName.Get("laterviolation"))
-                        select new Violation(p, workbook)).ToList().ForEach(p => LaterViolations.Add(p));
+                        select new Violation(p, _workbook)).ToList().ForEach(p => LaterViolations.Add(p));
                 }
             }
             catch (Exception)
@@ -517,7 +542,7 @@ namespace SIF.Visualization.Excel.Core
                 {
                     // Add them to the archived violations collection
                     (from p in archivedXml.Elements(XName.Get("archivedviolation"))
-                        select new Violation(p, workbook)).ToList().ForEach(p => SolvedViolations.Add(p));
+                        select new Violation(p, _workbook)).ToList().ForEach(p => SolvedViolations.Add(p));
                 }
             }
             catch (Exception)
@@ -536,23 +561,23 @@ namespace SIF.Visualization.Excel.Core
                 // no settings existed, use the default config
                 polModel = new PolicyConfigurationModel();
             }
-            policySettings = polModel;
+            _policySettings = polModel;
 
             if (!String.IsNullOrWhiteSpace(error))
             {
                 MessageBox.Show(Resources.tl_Load_Failed + error,
-                   Resources.tl_Load_Failed_Title);
+                    Resources.tl_Load_Failed_Title);
             }
         }
 
-        private void Sheet_SelectionChange(object Sh, Range Target)
+        private void sheet_SelectionChange(object sh, Range target)
         {
-            if (Target.Cells.Count == 1)
+            if (target.Cells.Count == 1)
             {
-                int row = Target.Cells.Row;
-                int column = Target.Cells.Column;
-                string location = "=" + Target.Worksheet.Name + "!" + getExcelColumnName(column) + row;
-                CellLocation cell = new CellLocation(workbook, location);
+                int row = target.Cells.Row;
+                int column = target.Cells.Column;
+                string location = "=" + target.Worksheet.Name + "!" + GetExcelColumnName(column) + row;
+                CellLocation cell = new CellLocation(_workbook, location);
                 switch (SelectedTab)
                 {
                     case SharedTabs.Open:
@@ -579,7 +604,12 @@ namespace SIF.Visualization.Excel.Core
             }
         }
 
-        private string getExcelColumnName(int columnNumber)
+        /// <summary>
+        /// Gets the name / location of a column in the workbook
+        /// </summary>
+        /// <param name="columnNumber"></param>
+        /// <returns></returns>
+        private string GetExcelColumnName(int columnNumber)
         {
             int dividend = columnNumber;
             string columnName = String.Empty;
@@ -595,19 +625,24 @@ namespace SIF.Visualization.Excel.Core
             return columnName;
         }
 
-        private void Workbook_AfterSave(bool Success)
+        /// <summary>
+        /// Happens after a Workbook gets saved
+        /// </summary>
+        /// <param name="success"> Gives back if the saving process was succesfull</param>
+        private void Workbook_AfterSave(bool success)
         {
+            if (ShouldScanAfterSave) return;
             // Run a scan if necessary
-            if (PolicySettings.hasAutomaticScans() && Settings.Default.AutomaticScans)
+            if (PolicySettings.HasAutomaticScans() && Settings.Default.AutomaticScans)
             {
-                // Cecks if if would be allowed to scan
+                // Checks if if would be allowed to scan
                 if (Globals.Ribbons.Ribbon.scanButton.Enabled)
                 {
                     // Makes sure the file is saved before starting the Scan after Save.
                     // Important: DON'T DELETE seems redundant and unnecessary since the Method only seems to get called
-                    // after the File is saved. But it is also called when a Saving process got abortet (e.g. by the user by pressing no
+                    // after the File is saved. But it is also called when a Saving process got aborted (e.g. by the user by pressing no
                     // in the dialog box)
-                    if (Workbook.Saved)
+                    if (Workbook.Path.Length > 0)
                     {
                         Inspect(InspectionType.LIVE);
                     }
@@ -616,26 +651,23 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
-        /// Occurs after any worksheet is recalculated or after any changed data is plotted on a chart.
+        /// Occurs after any workbook is recalculated or after any changed data is plotted on a chart.
         /// </summary>
-        /// <param name="Sh"></param>
-        private void Workbook_SheetCalculate(object Sh)
+        /// <param name="sh"></param>
+        private void workbook_SheetCalculate(object sh)
         {
             // Run a scan if necessary
-            if (PolicySettings.hasAutomaticScans() && Settings.Default.AutomaticScans)
-            {
-                if (Globals.Ribbons.Ribbon.scanButton.Enabled)
-                {
-                    Inspect(InspectionType.LIVE);
-                }
-            }
+            if (!PolicySettings.HasAutomaticScans() || !Settings.Default.AutomaticScans) return;
+            if (!Globals.Ribbons.Ribbon.scanButton.Enabled) return;
+            // SIFCore can't handle if it the documents is not saved. So if an inspection is started it is assured the file is saved somewhere.
+            ScanHelper.SaveBefore(InspectionType.LIVE);
         }
 
 
         /// <summary>
         /// Saves the custom XML parts that are used to persist the cells, scenarios and false positives.
         /// </summary>
-        private void Workbook_BeforeSave(bool SaveAsUI, ref bool Cancel)
+        private void workbook_BeforeSave(bool saveAsUi, ref bool cancel)
         {
             //Save the violations
             XMLPartManager.Instance.SaveXMLPart(this,
@@ -666,7 +698,7 @@ namespace SIF.Visualization.Excel.Core
 
             // Save the policy configuration
             XElement polSettings = new XElement("policySettings");
-            policySettings.saveXML(polSettings);
+            _policySettings.saveXML(polSettings);
             XMLPartManager.Instance.SaveXMLPart(this, polSettings, "policySettings");
         }
 
@@ -674,11 +706,34 @@ namespace SIF.Visualization.Excel.Core
         /// <summary>
         /// Handle the scenario controls in the cells before close.
         /// </summary>
-        /// <param name="Cancel"></param>
-        void Workbook_BeforeClose(ref bool Cancel)
+        /// <param name="cancel"></param>
+        void Workbook_BeforeClose(ref bool cancel)
         {
+            ShouldScanAfterSave = true;
             ScenarioUICreator.Instance.End();
-            //RemoveIcon();
+            // Deletes all controls that might be in the cells (markers)
+            foreach (Worksheet worksheet in Workbook.Worksheets)
+            {
+                var worksheet2 = Globals.Factory.GetVstoObject(worksheet);
+
+                System.Collections.ArrayList controlsToRemove =
+                    new System.Collections.ArrayList();
+
+                // Get all of the Windows Forms controls.
+                foreach (object control in worksheet2.Controls)
+                {
+                    if (control is System.Windows.Forms.Control)
+                    {
+                        controlsToRemove.Add(control);
+                    }
+                }
+
+                // Remove all of the Windows Forms controls from the document.
+                foreach (object control in controlsToRemove)
+                {
+                    worksheet2.Controls.Remove(control);
+                }
+            }
         }
 
         #endregion
@@ -689,10 +744,6 @@ namespace SIF.Visualization.Excel.Core
         public void Inspect(InspectionType inspectionType)
         {
             Inspect(InspectionMode.All, inspectionType);
-            
-            // Thread thread = new Thread(new ParameterizedThreadStart(Inspect));
-            // thread.Start(inspectionType);
-            //Task task1 = Task.Factory.StartNew(Inspect, inspectionType);
         }
 
 
@@ -708,50 +759,43 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         public void Inspect(InspectionMode inspectionMode, InspectionType inspectionType)
         {
+            Globals.ThisAddIn.Application.StatusBar = Resources.tl_ProcessingScan;
+            Globals.Ribbons.Ribbon.scanButton.Enabled = false;
+            Globals.Ribbons.Ribbon.scanButton.Label = Resources.tl_NoScanPossible;
 
-                Globals.ThisAddIn.Application.StatusBar = Resources.tl_ProcessingScan;
-                Globals.Ribbons.Ribbon.scanButton.Enabled = false;
-                Globals.Ribbons.Ribbon.scanButton.Label = Resources.tl_NoScanPossible;
-
-                // Save a copy of this workbook temporarily
-                string workbookFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) +
-                                      System.IO.Path.DirectorySeparatorChar + Guid.NewGuid().ToString() + ".xls";
-                Workbook.SaveCopyAs(workbookFile);
+            // Save a copy of this workbook temporarily
+            string workbookFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) +
+                                  System.IO.Path.DirectorySeparatorChar + Guid.NewGuid().ToString() + ".xls";
+            Workbook.SaveCopyAs(workbookFile);
 
 
-                var xmlDoc = new XDocument();
-                // lock (lockObject)
-                {
-                    // Create the rules
+            var xmlDoc = new XDocument();
 
-                    switch (inspectionMode)
-                    {
-                        case InspectionMode.All:
-                            xmlDoc.Add(Accept(new Sprudel1_5XMLVisitor(inspectionType)) as XElement);
-                            //TODO add static
-                            break;
-                        case InspectionMode.Dynamic:
-                            xmlDoc.Add(Accept(new Sprudel1_5XMLVisitor(inspectionType)) as XElement);
-                            break;
-                        case InspectionMode.Static:
-                            //TODO change to static
-                            xmlDoc.Add(Accept(new Sprudel1_5XMLVisitor(inspectionType)) as XElement);
-                            break;
-                    
-                }
-
-                var x = xmlDoc.Element(XName.Get("policyList"));
-                var a = x.Element(XName.Get("dynamicPolicy"));
-                var b = a.Element(XName.Get("spreadsheetFilePath"));
-                b.Value = workbookFile;
-
-                xmlDoc.Validate(XMLPartManager.Instance.GetRequestSchema(), null);
-
-                // Enqueue this inspection
-                InspectionEngine.Instance.InspectionQueue.Add(new InspectionJob(this, workbookFile, xmlDoc));
+            // Create the rules
+            switch (inspectionMode)
+            {
+                case InspectionMode.All:
+                    xmlDoc.Add(Accept(new Sprudel1_5XMLVisitor(inspectionType)) as XElement);
+                    //TODO add static
+                    break;
+                case InspectionMode.Dynamic:
+                    xmlDoc.Add(Accept(new Sprudel1_5XMLVisitor(inspectionType)) as XElement);
+                    break;
+                case InspectionMode.Static:
+                    //TODO change to static
+                    xmlDoc.Add(Accept(new Sprudel1_5XMLVisitor(inspectionType)) as XElement);
+                    break;
             }
 
+            var x = xmlDoc.Element(XName.Get("policyList"));
+            var a = x.Element(XName.Get("dynamicPolicy"));
+            var b = a.Element(XName.Get("spreadsheetFilePath"));
+            b.Value = workbookFile;
 
+            xmlDoc.Validate(XMLPartManager.Instance.GetRequestSchema(), null);
+
+            // Enqueue this inspection
+            InspectionEngine.Instance.InspectionQueue.Add(new InspectionJob(this, workbookFile, xmlDoc));
         }
 
         /// <summary>
@@ -762,85 +806,88 @@ namespace SIF.Visualization.Excel.Core
             /*
              * Load the data
              */
-            if (xml != null && xml.Length > 0)
+            if (xml == null || xml.Length <= 0)
+            {
+                ScanHelper.ScanUnsuccessful(Resources.tl_SIFCorecrashed);
+            }
+            else
             {
                 try
                 {
-                    //lock(lockObject)
-                    {
-                        XElement rootElement = XElement.Parse(xml);
+                    XElement rootElement = LoadXml(xml);
+                    LoadViolations(rootElement);
 
-
-                        XDocument d = new XDocument(rootElement);
-                        d.Validate(XMLPartManager.Instance.getReportSchema(), null);
-
-                        // General attributes
-                        var titleAttribute = rootElement.Attribute(XName.Get("title"));
-                        if (titleAttribute != null) Title = titleAttribute.Value;
-                        else Title = null;
-
-                        var spreadsheetAttribute = rootElement.Attribute(XName.Get("file"));
-                        if (spreadsheet != null) Spreadsheet = spreadsheetAttribute.Value;
-                        else Spreadsheet = null;
-
-                        // Policy
-                        var policyElement = rootElement.Element(XName.Get("policy"));
-                        if (policyElement != null) Policy = new Policy(policyElement);
-                        else Policy = null;
-
-                        // Cells
-                        var cellsElement = rootElement.Element(XName.Get("cells"));
-                        if (cellsElement != null)
-                        {
-                            var cells = cellsElement;
-
-                            // Input cells
-                            var inputCells = cells.Element(XName.Get("input"));
-                            //this.ParseCells(inputCells, this.InputCells, typeof(InputCell)); /*functionality dosn't right, we need a inteligent mergeing*/
-
-                            // Intermediate cells
-                            var intermediateCells = cells.Element(XName.Get("intermediate"));
-                            //this.ParseCells(intermediateCells, this.IntermediateCells, typeof(IntermediateCell));
-
-                            // Output cells
-                            var outputCells = cells.Element(XName.Get("output"));
-                            //this.ParseCells(outputCells, this.OutputCells, typeof(OutputCell));
-                        }
-                        else
-                        {
-                            InputCells.Clear();
-                            IntermediateCells.Clear();
-                            OutputCells.Clear();
-                        }
-                        LoadViolations(rootElement);
-                    }
-                    Globals.ThisAddIn.Application.StatusBar = Resources.tl_Scan_successful;
-                    Globals.Ribbons.Ribbon.scanButton.Enabled = true;
-                    Globals.Ribbons.Ribbon.scanButton.Label =
-                        Resources.tl_Ribbon_AreaScan_ScanButton;
-                    StatusbarControlBack();
+                    ScanHelper.ScanSuccessful();
+                    tries = 0;
                 }
                 catch (Exception ex)
                 {
-                    Console.Out.WriteLine(ex);
-                    Globals.ThisAddIn.Application.StatusBar = Resources.tl_Scan_unsuccessful;
-                    Globals.Ribbons.Ribbon.scanButton.Enabled = true;
-                    Globals.Ribbons.Ribbon.scanButton.Label =
-                        Resources.tl_Ribbon_AreaScan_ScanButton;
-                    StatusbarControlBack();
+                    if (tries <= 3)
+                    {
+                        tries++;
+                        Load(xml);
+                    }
+                    else
+                    {
+                        ScanHelper.ScanUnsuccessful();
+                        tries = 0;
+                    }
                 }
             }
+            
         }
 
         /// <summary>
-        /// Gives the control over the statusbar back to Excel after 10 sec
+        /// Loads the Information saved in the xml
         /// </summary>
-        /// <returns></returns>
-        public async Task StatusbarControlBack()
+        /// <param name="xml"></param>
+        private XElement LoadXml(string xml)
         {
-            await Task.Delay(10000);
-            Globals.ThisAddIn.Application.StatusBar = false;
+            XElement rootElement = XElement.Parse(xml);
+                    XDocument d = new XDocument(rootElement);
+                    d.Validate(XMLPartManager.Instance.getReportSchema(), null);
+
+                    // General attributes
+                    var titleAttribute = rootElement.Attribute(XName.Get("title"));
+                    if (titleAttribute != null) Title = titleAttribute.Value;
+                    else Title = null;
+
+                    var spreadsheetAttribute = rootElement.Attribute(XName.Get("file"));
+                    if (_spreadsheet != null) Spreadsheet = spreadsheetAttribute.Value;
+                    else Spreadsheet = null;
+
+                    // Policy
+                    var policyElement = rootElement.Element(XName.Get("policy"));
+                    if (policyElement != null) Policy = new Policy(policyElement);
+                    else Policy = null;
+
+                    // Cells
+                    var cellsElement = rootElement.Element(XName.Get("cells"));
+                    if (cellsElement != null)
+                    {
+                        var cells = cellsElement;
+
+                        // Input cells
+                        cells.Element(XName.Get("input"));
+                        //this.ParseCells(inputCells, this.InputCells, typeof(InputCell)); /*functionality dosn't right, we need a inteligent mergeing*/
+
+                        // Intermediate cells
+                        cells.Element(XName.Get("intermediate"));
+                        //this.ParseCells(intermediateCells, this.IntermediateCells, typeof(IntermediateCell));
+
+                        // Output cells
+                        cells.Element(XName.Get("output"));
+                        //this.ParseCells(outputCells, this.OutputCells, typeof(OutputCell));
+                    }
+                    else
+                    {
+                        InputCells.Clear();
+                        IntermediateCells.Clear();
+                        OutputCells.Clear();
+                    }
+            return rootElement;
         }
+
 
         /// <summary>
         /// This method loads the violations of the xml report
@@ -853,84 +900,107 @@ namespace SIF.Visualization.Excel.Core
                 XNamespace ns = "http://www.w3.org/2001/XMLSchema-instance";
                 var findings = rootElement.Element(XName.Get("findings"));
                 var violations = new List<Violation>();
-                foreach (var ruleXML in findings.Elements(XName.Get("testedRule")))
+                foreach (var ruleXml in findings.Elements(XName.Get("testedRule")))
                 {
-                    Rule rule = new Rule(ruleXML.Element(XName.Get("testedPolicy")));
+                    Rule rule = new Rule(ruleXml.Element(XName.Get("testedPolicy")));
 
                     // Parse violations
-                    var xmlVio = ruleXML.Elements(XName.Get("violations"));
+                    var xmlVio = ruleXml.Elements(XName.Get("violations"));
                     foreach (XElement vio in xmlVio)
                     {
                         var x = vio.Attribute(ns + "type");
                         if (x.Value.Equals("singleviolation"))
                         {
-                            violations.Add(new Violation(vio, workbook, scanTime, rule));
+                            violations.Add(new Violation(vio, _workbook, scanTime, rule));
                         }
                         else if (x.Value.Equals("violationgroup"))
                         {
                             (from p in vio.Elements(XName.Get("singleviolation"))
-                                select new Violation(p, workbook, scanTime, rule)).ToList()
+                                select new Violation(p, _workbook, scanTime, rule)).ToList()
                                 .ForEach(p => violations.Add(p));
                         }
                     }
                 }
-
                 // Add only new violations
-                foreach (Violation violation in violations)
-                {
-                    if (Violations.Contains(violation))
-                    {
-                        Violations.ElementAt(Violations.IndexOf(violation)).FoundAgain = true;
-                    }
-
-                    else if ((from vi in IgnoredViolations
-                        where
-                            (vi.Cell.Letter.Equals(violation.Cell.Letter) &&
-                             vi.Cell.Number.Equals(violation.Cell.Number))
-                        select vi).Count() > 0)
-                    {
-                        // nothing to do here
-                    }
-                    else if (LaterViolations.Contains(violation))
-                    {
-                        LaterViolations.ElementAt(LaterViolations.IndexOf(violation)).FoundAgain = true;
-                    }
-                    else
-                    {
-                        violation.PersistCellLocation();
-                        Violations.Add(violation);
-                    }
-                }
-
+                AddNewViolations(violations);
+                // mark all solved violations from the Open Category
+                MarkSolvedViolations(scanTime, Violations);
+                // mark all solved violations from the Later Category
+                MarkSolvedViolations(scanTime, LaterViolations);
                 // mark all solved violations
+                tries = 0;
+            }
+            catch (Exception ex)
+            {
+                if (tries <= 3)
+                {
+                    tries++;
+                    LoadViolations(rootElement);
+                }
+                else
+                {
+                    ScanHelper.ScanUnsuccessful();
+                    tries = 0;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Marks all solved Violations as marked
+        /// </summary>
+        /// <param name="scanTime"></param>
+        private void MarkSolvedViolations(DateTime scanTime,ObservableCollection<Violation> Violations)
+        {
+            try
+            {
                 for (int i = Violations.Count - 1; i >= 0; i--)
                 {
-                    if (Violations.ElementAt(i).FoundAgain == true)
+                    if (Violations.ElementAt(i).FoundAgain)
                     {
                         Violations.ElementAt(i).FoundAgain = false;
                     }
+                    // If it didnt get found again means it didnt appear again ergo its solved
                     else
                     {
                         Violations.ElementAt(i).SolvedTime = scanTime;
                         Violations.ElementAt(i).ViolationState = ViolationType.SOLVED;
                     }
                 }
-                for (int i = LaterViolations.Count - 1; i >= 0; i--)
-                {
-                    if (LaterViolations.ElementAt(i).FoundAgain == true)
-                    {
-                        LaterViolations.ElementAt(i).FoundAgain = false;
-                    }
-                    else
-                    {
-                        LaterViolations.ElementAt(i).SolvedTime = scanTime;
-                        LaterViolations.ElementAt(i).ViolationState = ViolationType.SOLVED;
-                    }
-                }
             }
-            catch (Exception ex)
+            catch (COMException) { }
+            catch (TargetInvocationException){}
+        }
+
+        /// <summary>
+        /// Adds all the new Violations to the Violations collection
+        /// </summary>
+        /// <param name="violations"></param>
+        private void AddNewViolations(List<Violation> violations)
+        {
+            foreach (Violation violation in violations)
             {
-                Console.Out.WriteLine(ex.ToString());
+                if (Violations.Contains(violation))
+                {
+                    Violations.ElementAt(Violations.IndexOf(violation)).FoundAgain = true;
+                }
+
+                else if ((from vi in IgnoredViolations
+                          where
+                              (vi.Cell.Letter.Equals(violation.Cell.Letter) &&
+                               vi.Cell.Number.Equals(violation.Cell.Number))
+                          select vi).Count() > 0)
+                {
+                    // nothing to do here
+                }
+                else if (LaterViolations.Contains(violation))
+                {
+                    LaterViolations.ElementAt(LaterViolations.IndexOf(violation)).FoundAgain = true;
+                }
+                else
+                {
+                    violation.PersistCellLocation();
+                    Violations.Add(violation);
+                }
             }
         }
 
@@ -948,7 +1018,7 @@ namespace SIF.Visualization.Excel.Core
             {
                 foreach (var element in cellElements)
                 {
-                    var cell = new Cell(element, workbook);
+                    var cell = new Cell(element, _workbook);
                     if (cellType == typeof (InputCell))
                     {
                         var list = new List<Cell>();
@@ -980,51 +1050,57 @@ namespace SIF.Visualization.Excel.Core
         /// <param name="define">Optíon to set wheter the cells will add, or remove from the input cell list</param>
         public void DefineInputCell(List<Cell> inputs, CellDefinitionOption define)
         {
-            if (define == CellDefinitionOption.Define)
+            switch (define)
             {
-                foreach (var c in inputs)
-                {
-                    // create sif cell name
-                    if (c.SifLocation == null)
+                case CellDefinitionOption.Define:
+                    foreach (var c in inputs)
                     {
-                        c.SifLocation = CellManager.Instance.CreateSIFCellName(this,
-                            CellManager.Instance.GetA1Adress(this, c.Location));
-                    }
+                        // create sif cell name
+                        if (c.SifLocation == null)
+                        {
+                            c.SifLocation = CellManager.Instance.CreateSIFCellName(this,
+                                CellManager.Instance.GetA1Adress(this, c.Location));
+                        }
 
-                    //remove from the other lists
-                    IntermediateCells.Remove(c);
-                    OutputCells.Remove(c);
+                        //remove from the other lists
+                        IntermediateCells.Remove(c);
+                        OutputCells.Remove(c);
 
-                    //add to input list
-                    if (!inputCells.Contains(c))
-                    {
-                        InputCells.Add(c.ToInputCell());
+                        //add to input list
+                        if (!_inputCells.Contains(c))
+                        {
+                            InputCells.Add(c.ToInputCell());
+                        }
                     }
-                }
-            }
-            else if (define == CellDefinitionOption.Undefine)
-            {
-                //remove from input list
-                foreach (var c in inputs)
-                {
-                    try
+                    break;
+                case CellDefinitionOption.Undefine:
+                    //remove from input list
+                    foreach (var c in inputs)
                     {
-                        InputCells.Remove(c);
+                        try
+                        {
+                            InputCells.Remove(c);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.Out.WriteLine(e);
+                        }
                     }
-                    catch (Exception)
-                    {
-                    }
-                }
+                    break;
             }
             OnCellDefinitionChanged(new EventArgs());
         }
 
+
+       
         /// <summary>
         /// Defines or undefines a intermediate cell.
         /// </summary>
         /// <param name="inputs">List of cells</param>
         /// <param name="define">Optíon to set wheter the cells will add, or remove from the intermediate cell list</param>
-        public void DefineIntermediateCell(List<Cell> intermediates, CellDefinitionOption define)
+        public
+        void DefineIntermediateCell
+            (List<Cell> intermediates, CellDefinitionOption define)
         {
             if (define == CellDefinitionOption.Define)
             {
@@ -1036,15 +1112,14 @@ namespace SIF.Visualization.Excel.Core
                         c.SifLocation = CellManager.Instance.CreateSIFCellName(this,
                             CellManager.Instance.GetA1Adress(this, c.Location));
                     }
-
                     //remove from the other lists
                     InputCells.Remove(c);
                     OutputCells.Remove(c);
 
                     //add to intermediate list
-                    if (!intermediateCells.Contains(c))
+                    if (!_intermediateCells.Contains(c))
                     {
-                        intermediateCells.Add(c.ToIntermediateCell());
+                        _intermediateCells.Add(c.ToIntermediateCell());
                     }
                 }
             }
@@ -1053,7 +1128,7 @@ namespace SIF.Visualization.Excel.Core
                 //remove from intermediate list
                 foreach (var c in intermediates)
                 {
-                    intermediateCells.Remove(c);
+                    _intermediateCells.Remove(c);
                 }
             }
             OnCellDefinitionChanged(new EventArgs());
@@ -1064,7 +1139,9 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         /// <param name="inputs">List of cells</param>
         /// <param name="define">Optíon to set wheter the cells will add, or remove from the intermediate cell list</param>
-        public void DefineSanityValueCell(List<Cell> sanityValues, CellDefinitionOption define)
+        public
+            void DefineSanityValueCell
+            (List<Cell> sanityValues, CellDefinitionOption define)
         {
             if (define == CellDefinitionOption.Define)
             {
@@ -1081,13 +1158,13 @@ namespace SIF.Visualization.Excel.Core
                     InputCells.Remove(c);
                     OutputCells.Remove(c);
                     IntermediateCells.Remove(c);
-                    sanityCheckingCells.Remove(c);
-                    sanityExplanationCells.Remove(c);
-                    sanityConstraintCells.Remove(c);
+                    _sanityCheckingCells.Remove(c);
+                    _sanityExplanationCells.Remove(c);
+                    _sanityConstraintCells.Remove(c);
                     //add to sanityValue list
-                    if (!sanityValueCells.Contains(c))
+                    if (!_sanityValueCells.Contains(c))
                     {
-                        sanityValueCells.Add(c.ToSanityValueCell());
+                        _sanityValueCells.Add(c.ToSanityValueCell());
                     }
                 }
             }
@@ -1096,7 +1173,7 @@ namespace SIF.Visualization.Excel.Core
                 //remove from intermediate list
                 foreach (var c in sanityValues)
                 {
-                    sanityValueCells.Remove(c);
+                    _sanityValueCells.Remove(c);
                 }
             }
             OnCellDefinitionChanged(new EventArgs());
@@ -1107,7 +1184,9 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         /// <param name="inputs">List of cells</param>
         /// <param name="define">Optíon to set wheter the cells will add, or remove from the intermediate cell list</param>
-        public void DefineSanityConstraintCell(List<Cell> sanityConstraints, CellDefinitionOption define)
+        public
+            void DefineSanityConstraintCell
+            (List<Cell> sanityConstraints, CellDefinitionOption define)
         {
             if (define == CellDefinitionOption.Define)
             {
@@ -1124,13 +1203,13 @@ namespace SIF.Visualization.Excel.Core
                     InputCells.Remove(c);
                     OutputCells.Remove(c);
                     IntermediateCells.Remove(c);
-                    sanityCheckingCells.Remove(c);
-                    sanityExplanationCells.Remove(c);
-                    sanityValueCells.Remove(c);
+                    _sanityCheckingCells.Remove(c);
+                    _sanityExplanationCells.Remove(c);
+                    _sanityValueCells.Remove(c);
                     //add to sanityValue list
-                    if (!sanityConstraintCells.Contains(c))
+                    if (!_sanityConstraintCells.Contains(c))
                     {
-                        sanityConstraintCells.Add(c.ToSanityConstraintCell());
+                        _sanityConstraintCells.Add(c.ToSanityConstraintCell());
                     }
                 }
             }
@@ -1139,7 +1218,7 @@ namespace SIF.Visualization.Excel.Core
                 //remove from intermediate list
                 foreach (var c in sanityConstraints)
                 {
-                    sanityConstraintCells.Remove(c);
+                    _sanityConstraintCells.Remove(c);
                 }
             }
             OnCellDefinitionChanged(new EventArgs());
@@ -1150,7 +1229,9 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         /// <param name="inputs">List of cells</param>
         /// <param name="define">Optíon to set wheter the cells will add, or remove from the intermediate cell list</param>
-        public void DefineSanityExplanationCell(List<Cell> sanityExplanations, CellDefinitionOption define)
+        public
+            void DefineSanityExplanationCell
+            (List<Cell> sanityExplanations, CellDefinitionOption define)
         {
             if (define == CellDefinitionOption.Define)
             {
@@ -1167,13 +1248,13 @@ namespace SIF.Visualization.Excel.Core
                     InputCells.Remove(c);
                     OutputCells.Remove(c);
                     IntermediateCells.Remove(c);
-                    sanityCheckingCells.Remove(c);
-                    sanityValueCells.Remove(c);
-                    sanityConstraintCells.Remove(c);
+                    _sanityCheckingCells.Remove(c);
+                    _sanityValueCells.Remove(c);
+                    _sanityConstraintCells.Remove(c);
                     //add to sanityExplanation list
-                    if (!sanityExplanationCells.Contains(c))
+                    if (!_sanityExplanationCells.Contains(c))
                     {
-                        sanityExplanationCells.Add(c.ToSanityExplanationCell());
+                        _sanityExplanationCells.Add(c.ToSanityExplanationCell());
                     }
                 }
             }
@@ -1182,7 +1263,7 @@ namespace SIF.Visualization.Excel.Core
                 //remove from intermediate list
                 foreach (var c in sanityExplanations)
                 {
-                    sanityExplanationCells.Remove(c);
+                    _sanityExplanationCells.Remove(c);
                 }
             }
             OnCellDefinitionChanged(new EventArgs());
@@ -1193,7 +1274,9 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         /// <param name="inputs">List of cells</param>
         /// <param name="define">Optíon to set wheter the cells will add, or remove from the intermediate cell list</param>
-        public void DefineSanityCheckingCell(List<Cell> sanityCheckings, CellDefinitionOption define)
+        public
+            void DefineSanityCheckingCell
+            (List<Cell> sanityCheckings, CellDefinitionOption define)
         {
             if (define == CellDefinitionOption.Define)
             {
@@ -1210,13 +1293,13 @@ namespace SIF.Visualization.Excel.Core
                     InputCells.Remove(c);
                     OutputCells.Remove(c);
                     IntermediateCells.Remove(c);
-                    sanityValueCells.Remove(c);
-                    sanityExplanationCells.Remove(c);
-                    sanityConstraintCells.Remove(c);
+                    _sanityValueCells.Remove(c);
+                    _sanityExplanationCells.Remove(c);
+                    _sanityConstraintCells.Remove(c);
                     //add to sanityChecking list
-                    if (!sanityCheckingCells.Contains(c))
+                    if (!_sanityCheckingCells.Contains(c))
                     {
-                        sanityCheckingCells.Add(c.ToSanityCheckingCell());
+                        _sanityCheckingCells.Add(c.ToSanityCheckingCell());
                     }
                 }
             }
@@ -1225,7 +1308,7 @@ namespace SIF.Visualization.Excel.Core
                 //remove from intermediate list
                 foreach (var c in sanityCheckings)
                 {
-                    sanityCheckingCells.Remove(c);
+                    _sanityCheckingCells.Remove(c);
                 }
             }
             OnCellDefinitionChanged(new EventArgs());
@@ -1236,7 +1319,9 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         /// <param name="inputs">List of cells</param>
         /// <param name="define">Optíon to set wheter the cells will add, or remove from the output cell list</param>
-        public void DefineOutputCell(List<Cell> outputs, CellDefinitionOption define)
+        public
+        void DefineOutputCell
+            (List<Cell> outputs, CellDefinitionOption define)
         {
             if (define == CellDefinitionOption.Define)
             {
@@ -1254,9 +1339,9 @@ namespace SIF.Visualization.Excel.Core
                     IntermediateCells.Remove(c);
 
                     //add to intermediate list
-                    if (!outputCells.Contains(c))
+                    if (!_outputCells.Contains(c))
                     {
-                        outputCells.Add(c.ToOutputCell());
+                        _outputCells.Add(c.ToOutputCell());
                     }
                 }
             }
@@ -1265,7 +1350,7 @@ namespace SIF.Visualization.Excel.Core
                 //remove from intermediate list
                 foreach (var c in outputs)
                 {
-                    outputCells.Remove(c);
+                    _outputCells.Remove(c);
                 }
             }
             OnCellDefinitionChanged(new EventArgs());
@@ -1275,7 +1360,10 @@ namespace SIF.Visualization.Excel.Core
 
         #region Accept Visitor
 
-        public object Accept(IVisitor v)
+        public
+            object Accept
+            (IVisitor
+                v)
         {
             return v.Visit(this);
         }
@@ -1286,11 +1374,18 @@ namespace SIF.Visualization.Excel.Core
 
         #region Event Handling
 
-        public delegate void CellDefinitionChangeHandler(object sender, EventArgs data);
+        public
+            delegate
+            void CellDefinitionChangeHandler
+            (object sender, EventArgs data);
 
-        public event CellDefinitionChangeHandler CellDefinitionChange;
+        public event
+            CellDefinitionChangeHandler CellDefinitionChange;
 
-        protected void OnCellDefinitionChanged(EventArgs data)
+        protected
+            void OnCellDefinitionChanged
+            (EventArgs
+                data)
         {
             if (CellDefinitionChange != null)
             {
@@ -1303,9 +1398,11 @@ namespace SIF.Visualization.Excel.Core
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void violations_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private
+            void violations_CollectionChanged
+            (object sender, NotifyCollectionChangedEventArgs e)
         {
-            UnreadViolationCount = (from vi in violations where vi.IsRead == false select vi).Count();
+            UnreadViolationCount = (from vi in _violations where vi.IsRead == false select vi).Count();
         }
 
         #endregion

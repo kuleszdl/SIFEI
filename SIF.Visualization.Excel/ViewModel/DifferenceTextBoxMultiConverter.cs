@@ -26,7 +26,6 @@ namespace SIF.Visualization.Excel.ViewModel
                 values[2] is Boolean &&
                 values[3] is Boolean))
             {
-                //throw new ArgumentException();
                 return DependencyProperty.UnsetValue;
             }
 
