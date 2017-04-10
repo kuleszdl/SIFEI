@@ -31,10 +31,10 @@
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\oem\Desktop\3e43b07\</PublishUrl>
+    <PublishUrl>C:\Users\Frieder\Downloads\a\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.4</ApplicationVersion>
+    <ApplicationVersion>1.0.0.9</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -94,7 +94,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
@@ -102,6 +102,8 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>GlobalizationRules.ruleset</CodeAnalysisRuleSet>
     <UseVSHostingProcess>true</UseVSHostingProcess>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <!--
     This section defines properties that are set when the "Release" configuration is selected.
@@ -139,6 +141,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xaml" />
@@ -187,31 +190,39 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="CellErrorInfo\CellErrorInfo.xaml.cs">
+    <Compile Include="CellErrorInfo.xaml.cs">
       <DependentUpon>CellErrorInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CellErrorInfo\CellErrorInfoContainer.cs">
+    <Compile Include="CellErrorInfoContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CellErrorInfo\CellErrorInfoContainer.Designer.cs">
+    <Compile Include="CellErrorInfoContainer.Designer.cs">
       <DependentUpon>CellErrorInfoContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cells\CellManager.cs" />
-    <Compile Include="Cells\InputCell.cs" />
-    <Compile Include="Cells\IntermediateCell.cs" />
-    <Compile Include="Cells\OutputCell.cs" />
-    <Compile Include="Cells\SanityCells.cs" />
+    <Compile Include="Core\CellManager.cs" />
+    <Compile Include="Core\ScenarioCellType.cs" />
+    <Compile Include="Core\SanityCellType.cs" />
+    <Compile Include="Core\ViolationState.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScenarioDetailDialog.xaml.cs">
+      <DependentUpon>ScenarioDetailDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViolationTemplate.xaml.cs">
+      <DependentUpon>ViolationTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\InspectionEngine.cs" />
+    <Compile Include="Core\Scenarios\InvariantData.cs" />
+    <Compile Include="Core\Scenarios\ScenarioData.cs" />
+    <Compile Include="Core\SchemaStrings.cs" />
     <Compile Include="Core\BindableBase.cs" />
     <Compile Include="Core\Cell.cs" />
-    <Compile Include="Core\CellLocation.cs" />
-    <Compile Include="Core\InspectionJob.cs" />
-    <Compile Include="Core\InspectionType.cs" />
-    <Compile Include="Core\Rule.cs" />
-    <Compile Include="Core\PolicyConfigurationModel.cs" />
-    <Compile Include="Core\SharedTabs.cs" />
-    <Compile Include="Core\ViolationType.cs" />
-    <Compile Include="Core\WorkbookModel.cs" />
     <Compile Include="Core\Policy.cs" />
+    <Compile Include="Core\PolicyConfigurationModel.cs" />
+    <Compile Include="Core\WorkbookModel.cs" />
     <Compile Include="Core\Violation.cs" />
     <Compile Include="Core\DataModel.cs" />
     <Compile Include="CustomInputDialog.cs" />
@@ -222,25 +233,6 @@
       <DependentUpon>GlobalSettingsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\ScanHelper.cs" />
-    <Compile Include="IgnoreView\IgnoreView.xaml.cs">
-      <DependentUpon>IgnoreView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="IgnoreView\IgnoreViewContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="IgnoreView\IgnoreViewContainer.Designer.cs">
-      <DependentUpon>IgnoreViewContainer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LaterView\LaterView.xaml.cs">
-      <DependentUpon>LaterView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LaterView\LaterViewContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="LaterView\LaterViewContainer.Designer.cs">
-      <DependentUpon>LaterViewContainer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Networking\SchemaStrings.cs" />
     <Compile Include="PolicyConfigurationDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,136 +249,79 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ScenarioView\NumberValidationMessageBox.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Core\Scenarios\ScenarioUICreator.cs" />
+    <Compile Include="View\ScenarioDataField.xaml.cs">
+      <DependentUpon>ScenarioDataField.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ScenarioView\NumberValidationMessageBox.Designer.cs">
-      <DependentUpon>NumberValidationMessageBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ScenarioView\NumberValidationRule.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\ScenarioUICreator.cs" />
-    <Compile Include="ScenarioView\CreateScenarioDataField.xaml.cs">
-      <DependentUpon>CreateScenarioDataField.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ScenarioView\CreateScenarioDataFieldContainer.cs">
+    <Compile Include="View\ScenarioDataFieldContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ScenarioView\CreateScenarioDataFieldContainer.Designer.cs">
-      <DependentUpon>CreateScenarioDataFieldContainer.cs</DependentUpon>
+    <Compile Include="View\ScenarioDataFieldContainer.Designer.cs">
+      <DependentUpon>ScenarioDataFieldContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="ScenarioView\DefineCellsPane.xaml.cs">
-      <DependentUpon>DefineCellsPane.xaml</DependentUpon>
+    <Compile Include="View\ScenarioCellList.xaml.cs">
+      <DependentUpon>ScenarioCellList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Networking\InspectionEngine.cs" />
-    <Compile Include="Networking\InspectionEngineState.cs" />
-    <Compile Include="Networking\SocketExtensions.cs" />
-    <Compile Include="Networking\XMLPartManager.cs" />
+    <Compile Include="Core\Scenarios\OperatorType.cs" />
+    <Compile Include="Core\XMLPartManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ScenarioView\ScenarioCore\CellDefinitionType.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\IAcceptVisitor.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\CellData.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\InputCellData.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\IntermediateCellData.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\FormulaCompexity.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\NoConstantsInFormula.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\ReadingDirection.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\StaticScenarioRule.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\Visitor\CellDefinitionToXMLVisitor.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\Visitor\IVisitor.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\ResultCellData.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\Scenario.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\Visitor\ScenarioToXMLVisitor.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\SpecializedCollection.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\Visitor\Sprudel1_5XMLVisitor.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\StaticScenarios\StaticScenario.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\TestInputType.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\Visitor\XMLToCellDefinitionVisitor.cs" />
-    <Compile Include="ScenarioView\ScenarioCore\Visitor\XMLToScenarioVisitor.cs" />
-    <Compile Include="SharedView\SharedPane.xaml.cs">
-      <DependentUpon>SharedPane.xaml</DependentUpon>
+    <Compile Include="Core\Scenarios\InputData.cs" />
+    <Compile Include="Core\IVisitor.cs" />
+    <Compile Include="Core\Scenarios\ConditionData.cs" />
+    <Compile Include="Core\Scenarios\Scenario.cs" />
+    <Compile Include="Core\SprudelXMLVisitor.cs" />
+    <Compile Include="Core\Scenarios\ValueType.cs" />
+    <Compile Include="View\Sidebar.xaml.cs">
+      <DependentUpon>Sidebar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SharedView\SharedPaneContainer.cs">
+    <Compile Include="View\SidebarContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SharedView\SharedPaneContainer.Designer.cs">
-      <DependentUpon>SharedPaneContainer.cs</DependentUpon>
+    <Compile Include="View\SidebarContainer.Designer.cs">
+      <DependentUpon>SidebarContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="SolvedView\SolvedView.xaml.cs">
-      <DependentUpon>SolvedView.xaml</DependentUpon>
+    <Compile Include="ViewModel\Converter\BooleanToBorderThicknessConverter.cs" />
+    <Compile Include="ViewModel\Converter\InverseBooleanToVisibilityConverter.cs" />
+    <Compile Include="ViewModel\Converter\BoolToFontWeightConverter.cs" />
+    <Compile Include="ViewModel\Converter\DifferenceTextBoxMultiConverter.cs" />
+    <Compile Include="View\ScenarioListView.xaml.cs">
+      <DependentUpon>ScenarioListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SolvedView\SolvedViewContainer.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="ViewModel\Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="ViewModel\Converter\CellDataClassToVisibilityConverter.cs" />
+    <Compile Include="ViewModel\Converter\IntToVisibilityMultiValueConverter.cs" />
+    <Compile Include="ViewModel\Converter\InverseIntToVisibilityMultiValueConverter.cs" />
+    <Compile Include="ViewModel\Converter\SeverityIgnoreToColorConverter.cs" />
+    <Compile Include="ViewModel\Converter\StringIsNotEmptyToBoolConverter.cs" />
+    <Compile Include="ViewModel\Converter\DescriptionToShortDescriptionConverter.cs" />
+    <Compile Include="ViewModel\Converter\IntToVisibilityConverter.cs" />
+    <Compile Include="ViewModel\Converter\InverseBoolConverter.cs" />
+    <Compile Include="ViewModel\Converter\InverseIntToVisibilityConverter.cs" />
+    <Compile Include="ViewModel\Converter\SelectionToOpacityConverter.cs" />
+    <Compile Include="ViewModel\Converter\SingleViolationToInverseVisibilityConverter.cs" />
+    <Compile Include="ViewModel\Converter\SingleViolationToVisibilityConverter.cs" />
+    <Compile Include="ViewModel\Converter\StringEqualsToBoolConverter.cs" />
+    <Compile Include="ViewModel\Converter\TypeConverter.cs" />
+    <Compile Include="ViewModel\Converter\CellToImageConverter.cs" />
+    <Compile Include="ViewModel\Converter\TypeReadToImageConverter.cs" />
+    <Compile Include="ViewModel\Converter\VisibleToTextConverter.cs" />
+    <Compile Include="View\ViolationListView.xaml.cs">
+      <DependentUpon>ViolationListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SolvedView\SolvedViewContainer.Designer.cs">
-      <DependentUpon>SolvedViewContainer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewCommon\ViolationTemplate.xaml.cs">
-      <DependentUpon>ViolationTemplate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\BooleanToBorderThicknessConverter.cs" />
-    <Compile Include="ViewModel\InverseBooleanToVisibilityConverter.cs" />
-    <Compile Include="ViewModel\BoolToFontWeightConverter.cs" />
-    <Compile Include="ViewModel\CellLocationToBrushConverter.cs" />
-    <Compile Include="ViewModel\CellLocationToImageConverter.cs" />
-    <Compile Include="ViewModel\DifferenceTextBoxMultiConverter.cs" />
-    <Compile Include="ScenarioView\ScenarioDetailPane.xaml.cs">
-      <DependentUpon>ScenarioDetailPane.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ScenarioView\ScenarioDetailPaneContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ScenarioView\ScenarioDetailPaneContainer.Designer.cs">
-      <DependentUpon>ScenarioDetailPaneContainer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ScenarioView\ScenarioPane.xaml.cs">
-      <DependentUpon>ScenarioPane.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings.cs" />
-    <Compile Include="ViewModel\BooleanToVisibilityConverter.cs" />
-    <Compile Include="ViewModel\CellDataClassToVisibilityConverter.cs" />
-    <Compile Include="ViewModel\IntToVisibilityMultiValueConverter.cs" />
-    <Compile Include="ViewModel\InverseIntToVisibilityMultiValueConverter.cs" />
-    <Compile Include="ViewModel\SeverityIgnoreToColorConverter.cs" />
-    <Compile Include="ViewModel\StringIsNotEmptyToBoolConverter.cs" />
-    <Compile Include="ViewModel\InputCellTypeToVisibilityConverter.cs" />
-    <Compile Include="ViewModel\DescriptionToShortDescriptionConverter.cs" />
-    <Compile Include="ViewModel\IntToVisibilityConverter.cs" />
-    <Compile Include="ViewModel\InverseBoolConverter.cs" />
-    <Compile Include="ViewModel\InverseIntToVisibilityConverter.cs" />
-    <Compile Include="ViewModel\OutputCellTypeToVisibilityConverter.cs" />
-    <Compile Include="ViewModel\SelectionToOpacityConverter.cs" />
-    <Compile Include="ViewModel\SingleViolationToInverseVisibilityConverter.cs" />
-    <Compile Include="ViewModel\SingleViolationToVisibilityConverter.cs" />
-    <Compile Include="ViewModel\StringEqualsToBoolConverter.cs" />
-    <Compile Include="ViewModel\TypeConverter.cs" />
-    <Compile Include="ViewModel\MultipleToImageConverter.cs" />
-    <Compile Include="ViewModel\TypeReadToImageConverter.cs" />
-    <Compile Include="ViewModel\VisibleToTextConverter.cs" />
-    <Compile Include="ViolationsView\ViolationsView.xaml.cs">
-      <DependentUpon>ViolationsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViolationsView\ViolationsViewContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ViolationsView\ViolationsViewContainer.Designer.cs">
-      <DependentUpon>ViolationsViewContainer.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="CellErrorInfo\CellErrorInfoContainer.resx">
+    <EmbeddedResource Include="CellErrorInfoContainer.resx">
       <DependentUpon>CellErrorInfoContainer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GlobalSettingsDialog.de.resx">
-      <DependentUpon>GlobalSettingsDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GlobalSettingsDialog.en.resx">
-      <DependentUpon>GlobalSettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GlobalSettingsDialog.resx">
       <DependentUpon>GlobalSettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PolicyConfigurationDialog.de.resx">
+      <DependentUpon>PolicyConfigurationDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PolicyConfigurationDialog.resx">
       <DependentUpon>PolicyConfigurationDialog.cs</DependentUpon>
+      <LastGenOutput>PolicyConfigurationDialog1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -398,34 +333,21 @@
       <LastGenOutput>Resources.en.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScenarioView\CreateScenarioDataFieldContainer.resx">
-      <DependentUpon>CreateScenarioDataFieldContainer.cs</DependentUpon>
+    <EmbeddedResource Include="View\ScenarioDataFieldContainer.resx">
+      <DependentUpon>ScenarioDataFieldContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Ribbon.resx">
       <DependentUpon>Ribbon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScenarioView\NumberValidationMessageBox.resx">
-      <DependentUpon>NumberValidationMessageBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ScenarioView\ScenarioDetailPaneContainer.resx">
-      <DependentUpon>ScenarioDetailPaneContainer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SharedView\SharedPaneContainer.resx">
-      <DependentUpon>SharedPaneContainer.cs</DependentUpon>
+    <EmbeddedResource Include="View\SidebarContainer.resx">
+      <DependentUpon>SidebarContainer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="Core\Core.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -444,10 +366,6 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="ScenarioView\ScenarioCore\SIF-Frontend_classes.cd" />
-    <None Include="SIF.Visualization.Excel_1_TemporaryKey.pfx" />
-    <None Include="SIF.Visualization.Excel_2_TemporaryKey.pfx" />
-    <None Include="SIF.Visualization.Excel_5_TemporaryKey.pfx" />
     <None Include="SIF.Visualization.Excel_TemporaryKey.pfx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
@@ -458,127 +376,108 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="CellErrorInfo\CellErrorInfo.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="CellErrorInfo.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomInputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="IgnoreView\IgnoreView.xaml">
+    <Page Include="View\ScenarioDetailDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LaterView\LaterView.xaml">
+    <Page Include="View\ScenarioDataField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ScenarioView\CreateScenarioDataField.xaml">
+    <Page Include="View\ScenarioCellList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ScenarioView\DefineCellsPane.xaml">
+    <Page Include="View\ScenarioListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ScenarioView\ScenarioDetailPane.xaml">
+    <Page Include="View\Sidebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ScenarioView\ScenarioPane.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\ViolationTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ScenarioView\ScenarioResources.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SharedView\SharedPane.xaml">
+    <Page Include="View\ViewResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SharedView\SharedResources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SolvedView\SolvedView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ViewCommon\ViolationTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ViewCommon\ViolationViewResources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ViolationsView\ViolationsView.xaml">
+    <Page Include="View\ViolationListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\input_clear.png" />
+    <Resource Include="Resources\Icons\input_clear.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\output_clear.png" />
+    <Resource Include="Resources\Icons\output_clear.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\intermediate_clear.png" />
+    <Resource Include="Resources\Icons\intermediate_clear.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\magnifier_16xLG.png" />
+    <Resource Include="Resources\Icons\magnifier_16xLG.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\findings_new.png" />
+    <Resource Include="Resources\Icons\findings_new.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\scenario-details.png" />
-    <Resource Include="icons\scenarios.png" />
+    <Resource Include="Resources\Icons\scenario-details.png" />
+    <Resource Include="Resources\Icons\scenarios.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\inspectionpane.png" />
+    <None Include="Resources\Icons\inspectionpane.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\violations.png" />
-    <Resource Include="icons\later.png" />
-    <Resource Include="icons\solved.png" />
-    <Resource Include="icons\falsepositive.png" />
+    <Resource Include="Resources\Icons\violations.png" />
+    <Resource Include="Resources\Icons\later.png" />
+    <Resource Include="Resources\Icons\solved.png" />
+    <Resource Include="Resources\Icons\falsepositive.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\violations\static.png" />
+    <Resource Include="Resources\Icons\violations\static.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\violations\sanity.png" />
+    <Resource Include="Resources\Icons\violations\sanity.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\violations\dynamic.png" />
+    <Resource Include="Resources\Icons\violations\dynamic.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\violations\dynamic_unread.png" />
-    <Resource Include="icons\violations\sanity_unread.png" />
-    <Resource Include="icons\violations\static_unread.png" />
+    <Resource Include="Resources\Icons\violations\dynamic_unread.png" />
+    <Resource Include="Resources\Icons\violations\sanity_unread.png" />
+    <Resource Include="Resources\Icons\violations\static_unread.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\Delete_black.png" />
+    <Resource Include="Resources\Icons\Delete_black.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\Edit.png" />
-    <Resource Include="icons\save.png" />
-    <Resource Include="icons\trash.png" />
+    <Resource Include="Resources\Icons\Edit.png" />
+    <Resource Include="Resources\Icons\save.png" />
+    <Resource Include="Resources\Icons\trash.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\save.ico" />
+    <None Include="Resources\Icons\save.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\save.bmp" />
+    <None Include="Resources\Icons\save.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icons\violations\empty.png" />
-    <Resource Include="icons\violations\plus.png" />
+    <Content Include="Resources\Icons\violations\empty.png" />
+    <Resource Include="Resources\Icons\violations\plus.png" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -590,7 +489,7 @@
     <ManifestKeyFile>SIF.Visualization.Excel_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>AA1E34248CDC6EFE347FC282D20A1417653F620B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>814D3BAAE12EB8D2627009EA7679099FB1C6413D</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

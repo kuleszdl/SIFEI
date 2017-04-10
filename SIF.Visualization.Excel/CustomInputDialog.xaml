@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Image Source="icons/scenarios.png" Width="32" Height="32" Grid.RowSpan="2" Margin="20,0" />
+        <Image Source="Resources/Icons/scenarios.png" Width="32" Height="32" Grid.RowSpan="2" Margin="20,0" />
 
         <Label Name="lblQuestion" Grid.Column="1">Question:</Label>
         <TextBox Name="txtAnswer" Grid.Column="1" Grid.Row="1" MinWidth="250">Answer</TextBox>

@@ -119,16 +119,16 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="intermediate_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\intermediate_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Icons\intermediate_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="input_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\input_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Icons\input_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="output_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\output_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Icons\output_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="inspectionpane" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\inspectionpane.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Icons\inspectionpane.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tl_IgnoreView_Empty" xml:space="preserve">
     <value>Keine ignorierten Befunde</value>
@@ -224,36 +224,6 @@
   <data name="tl_Ribbon_AreaMiscellaneous_Title" xml:space="preserve">
     <value>Sonstiges</value>
   </data>
-  <data name="DebugReadWriteErrorPre_MessageBoxText1" xml:space="preserve">
-    <value>Konnte Debug-Datei nicht erstellen, prüfen Sie, dass Sie Schreibrechte für</value>
-  </data>
-  <data name="DebugReadWriteErrorSuff_MessageBoxText" xml:space="preserve">
-    <value>, oder erstellen Sie sie selbst.</value>
-  </data>
-  <data name="DebugReadWriteErrorSuf_MessageBoxText" xml:space="preserve">
-    <value>, oder erstellen Sie sie selbst.</value>
-  </data>
-  <data name="DebugReadWriteError_MessageBoxText" xml:space="preserve">
-    <value>Konnte Debug-Datei nicht erstellen, prüfen Sie, dass Sie Schreibrechte für</value>
-  </data>
-  <data name="DebugReadWriteError_MessageBoxTitle1" xml:space="preserve">
-    <value>Debug-Datei Fehler</value>
-  </data>
-  <data name="GlobalSettingsDialog_B_VerifySifPath_Click_SIF_or_JRE_not_installed" xml:space="preserve">
-    <value>SIF oder JRE nicht installiert</value>
-  </data>
-  <data name="NoJreSifInstallationError_MessageBoxText" xml:space="preserve">
-    <value>Bitte installieren Sie die Java-Version von SIF in den gewählten Pfad oder geben Sie einen anderen Pfad an und fügen sie die JRE der PATH_Variable zu, nachdem Sie sie installiert haben.</value>
-  </data>
-  <data name="NoJreSifInstallationError_MessageBoxTitle" xml:space="preserve">
-    <value>SIF oder JRE nicht installiert</value>
-  </data>
-  <data name="NoMonoSifInstallaionError_MessageBoxText" xml:space="preserve">
-    <value>Bitte installieren Sie die .NET-Version von SIF in dem gewählten Verzeichnis oder geben Sie einen anderen Pfad an und installieren Sie Mono und fügen es Ihrer PATH-umgebungsvariable hinzu oder wählen Sie dessen Verzeichnis über "Durchsuchen..." aus, wenn Sie nicht das .NET-Framework verwenden wollen und installieren Sie die Assemblies von IKVM in ihrem Assembly-Cache.</value>
-  </data>
-  <data name="NoMonoSifInstallationError_MessageBoxTitle" xml:space="preserve">
-    <value>SIF or Mono Runtime Environment not installed</value>
-  </data>
   <data name="tl_CellErrorInfo_PossibleSolution" xml:space="preserve">
     <value>Mögliche Behebung</value>
   </data>
@@ -290,54 +260,6 @@
   <data name="tl_ViolationView_Footer" xml:space="preserve">
     <value>Befund(e) in dieser Liste</value>
   </data>
-  <data name="tl_PolicyConfiguration_Button_Cancel" xml:space="preserve">
-    <value>Abbrechen</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Button_Ok" xml:space="preserve">
-    <value>Ok</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Label_Always" xml:space="preserve">
-    <value>immer</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Label_Manual" xml:space="preserve">
-    <value>nur manuell</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Label_ThousandSeparators" xml:space="preserve">
-    <value>Nachfragen, ob Tausender-Trennzeichen beabsichtigt sind</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Rule_CellsWithErrors" xml:space="preserve">
-    <value>Zellen mit #Fehlern</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Rule_Constants" xml:space="preserve">
-    <value>Konstanten in Formeln</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Rule_FormulaComplexity" xml:space="preserve">
-    <value>Komplexe Formeln</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Rule_NonConsideredConstants" xml:space="preserve">
-    <value>Unberücksichtigte Konstanten</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Rule_OneAmongOthers" xml:space="preserve">
-    <value>Einer unter anderen</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Rule_ReadingDirection" xml:space="preserve">
-    <value>Leserichtung</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Rule_ReferencesToBlankCells" xml:space="preserve">
-    <value>Verweise auf leere Zellen</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Rule_SameMultipleRefs" xml:space="preserve">
-    <value>Gleiche Verweise hintereinander</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Rule_StringDistance" xml:space="preserve">
-    <value>Entfernung zwischen Zeichenketten</value>
-  </data>
-  <data name="tl_PolicyConfiguration_Rule_StringDistanceExtra" xml:space="preserve">
-    <value>Maximaler Abstand:</value>
-  </data>
-  <data name="tl_PolicyConfiguration_WindowTitle" xml:space="preserve">
-    <value>Regeln konfigurieren</value>
-  </data>
   <data name="tl_Ribbon_AreaMiscellaneous_ShowSanity" xml:space="preserve">
     <value>Plausi-Steuerung anzeigen</value>
   </data>
@@ -362,22 +284,22 @@
   <data name="tl_OpenView_Empty" xml:space="preserve">
     <value>Keine offenen Befunde</value>
   </data>
-  <data name="tl_SharedPane_Archived" xml:space="preserve">
+  <data name="tl_Sidebar_Archived" xml:space="preserve">
     <value>Archiviert</value>
   </data>
-  <data name="tl_SharedPane_Cells" xml:space="preserve">
+  <data name="tl_Sidebar_Cells" xml:space="preserve">
     <value>Markierte Zellen</value>
   </data>
-  <data name="tl_SharedPane_Ignored" xml:space="preserve">
+  <data name="tl_Sidebar_Ignored" xml:space="preserve">
     <value>Ignoriert</value>
   </data>
-  <data name="tl_SharedPane_Later" xml:space="preserve">
+  <data name="tl_Sidebar_Later" xml:space="preserve">
     <value>Später</value>
   </data>
-  <data name="tl_SharedPane_Open" xml:space="preserve">
+  <data name="tl_Sidebar_Open" xml:space="preserve">
     <value>Offen</value>
   </data>
-  <data name="tl_SharedPane_Scenarios" xml:space="preserve">
+  <data name="tl_Sidebar_Scenarios" xml:space="preserve">
     <value>Szenarien</value>
   </data>
   <data name="tl_SolvedView_Empty" xml:space="preserve">
@@ -419,28 +341,28 @@
   <data name="tl_ScenarioPane_EditScenarioTooltip" xml:space="preserve">
     <value>Öffnet ein neues Fenster um das Szenario zu bearbeiten</value>
   </data>
-  <data name="tl_ScenarioDetailPane_DeleteData" xml:space="preserve">
+  <data name="tl_ScenarioDetailView_DeleteData" xml:space="preserve">
     <value>Zelle löschen</value>
   </data>
-  <data name="tl_ScenarioDetailPane_SaveData" xml:space="preserve">
+  <data name="tl_ScenarioDetailView_SaveData" xml:space="preserve">
     <value>Speichern</value>
   </data>
-  <data name="tl_ScenarioDetailPane_DeleteDataTooltip" xml:space="preserve">
+  <data name="tl_ScenarioDetailView_DeleteDataTooltip" xml:space="preserve">
     <value>Ausgewählte Zelle löschen</value>
   </data>
-  <data name="tl_ScenarioDetailPane_DiscardData" xml:space="preserve">
+  <data name="tl_ScenarioDetailView_DiscardData" xml:space="preserve">
     <value>Verwerfen</value>
   </data>
-  <data name="tl_ScenarioDetailPane_DiscardDataTooltip" xml:space="preserve">
+  <data name="tl_ScenarioDetailView_DiscardDataTooltip" xml:space="preserve">
     <value>Verwirft die vorgenommen Änderungen im Szenario</value>
   </data>
-  <data name="tl_ScenarioDetailPane_SaveDataTooltip" xml:space="preserve">
+  <data name="tl_ScenarioDetailView_SaveDataTooltip" xml:space="preserve">
     <value>Speichert die Änderungen im geöffnete Szenario</value>
   </data>
-  <data name="tl_ScenarioDetailPane_DiscardDataMessageBox" xml:space="preserve">
+  <data name="tl_ScenarioDetailView_DiscardDataMessageBox" xml:space="preserve">
     <value>Sind sie sicher, dass sie Ihre Änderungen verwerfen wollen?</value>
   </data>
-  <data name="tl_ScenarioDetailPane_DiscardDataMessageBoxTitle" xml:space="preserve">
+  <data name="tl_ScenarioDetailView_DiscardDataMessageBoxTitle" xml:space="preserve">
     <value>Änderungen verwerfen</value>
   </data>
   <data name="tl_Load_Failed" xml:space="preserve">

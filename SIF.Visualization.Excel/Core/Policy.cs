@@ -1,47 +1,92 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 
 namespace SIF.Visualization.Excel.Core
 {
-    /// <summary>
-    /// Class that represents a policy
-    /// </summary>
     public class Policy : BindableBase
     {
+        /// <summary>
+        /// The type of the Policy
+        /// </summary>
+        public enum PolicyType { STATIC, DYNAMIC, SANITY };
+
         #region Fields
 
-        private string name;
-        private string description;
-        private string author;
+        private String background;
+        private String description;
+        private String name;
+        private String solution;
+        private PolicyType type;
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        /// Gets or sets the name of this finding.
+        /// Gets or sets the background description
         /// </summary>
-        public string Name
+        public String Background
         {
-            get { return name; }
-            set { SetProperty(ref name, value); }
+            get { return background; }
+            set { SetProperty(ref background, value); }
         }
 
         /// <summary>
-        /// Gets or sets the description of this finding.
+        /// Gets or sets the description
         /// </summary>
-        public string Description
+        public String Description
         {
             get { return description; }
             set { SetProperty(ref description, value); }
         }
 
         /// <summary>
-        /// Gets or sets the author of this finding.
+        /// Gets or sets the name
         /// </summary>
-        public string Author
+        public String Name
         {
-            get { return author; }
-            set { SetProperty(ref author, value); }
+            get { return name; }
+            set { SetProperty(ref name, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the possible solution
+        /// </summary>
+        public String Solution
+        {
+            get { return solution; }
+            set { SetProperty(ref solution, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the Policy type
+        /// </summary>
+        public Policy.PolicyType Type
+        {
+            get { return type; }
+            set { SetProperty(ref type, value); }
+        }
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Serialization Constructor
+        /// </summary>
+        public Policy() {}
+
+        /// <summary>
+        /// Constructor that loads all fields from a xml
+        /// </summary>
+        /// <param name="root">the root node of the xml for this Policy</param>
+        public Policy(XElement xmlPolicy)
+        {
+            Name = (string) xmlPolicy.Element(XName.Get("name"));
+            Description =  (string) xmlPolicy.Element(XName.Get("description"));
+            Background = (string) xmlPolicy.Element(XName.Get("background"));
+            Solution = (string) xmlPolicy.Element(XName.Get("solution"));
+            Type = (PolicyType) Enum.Parse(typeof(PolicyType), (string) xmlPolicy.Element(XName.Get("policyType")));
         }
 
         #endregion
@@ -58,9 +103,12 @@ namespace SIF.Visualization.Excel.Core
             Policy other = obj as Policy;
             if ((object)other == null) return false;
 
-            return Author == other.Author &&
+            return base.Equals(other) &&
+                   Background == other.Background &&
                    Description == other.Description &&
-                   Name == other.Name;
+                   Name == other.Name &&
+                   Solution == other.Solution &&
+                   type == other.type;
         }
 
         /// <summary>
@@ -97,25 +145,15 @@ namespace SIF.Visualization.Excel.Core
             return !(a == b);
         }
 
-        #endregion
-
-        #region Methods
-        /// <summary>
-        /// Empty Constructor for this class
-        /// </summary>
-        public Policy()
+        public XElement ToXElement()
         {
-        }
-
-        /// <summary>
-        /// Creating a new policy defining the author, the description and the name
-        /// </summary>
-        /// <param name="root"></param>
-        public Policy(XElement root)
-        {
-            Author = root.Attribute(XName.Get("author")).Value;
-            Description = root.Attribute(XName.Get("description")).Value;
-            Name = root.Attribute(XName.Get("name")).Value;
+            var element = new XElement(XName.Get("policy"));
+            element.SetAttributeValue("background", background);
+            element.SetAttributeValue("description", description);
+            element.SetAttributeValue("name", name);
+            element.SetAttributeValue("solution", solution);
+            element.SetAttributeValue("type", type);
+            return element;
         }
 
         #endregion

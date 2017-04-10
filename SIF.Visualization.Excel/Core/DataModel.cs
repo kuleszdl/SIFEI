@@ -1,5 +1,4 @@
-﻿using SIF.Visualization.Excel.ViolationsView;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -51,31 +50,7 @@ namespace SIF.Visualization.Excel.Core
         public WorkbookModel CurrentWorkbook
         {
             get
-            {
-                if (currentWorkbook == null)
-                {
-                    // This method is called whenever a workbook comes to the front
-                    // Does not necessarily need to be a workbook that is persisted on the disk
-                    var workbook = Instance.WorkbookModels.Where(p => ReferenceEquals(p.Workbook, Globals.ThisAddIn.Application.ActiveWorkbook)).FirstOrDefault();
-                    if (workbook == null)
-                    {
-                        workbook = new WorkbookModel(Globals.ThisAddIn.Application.ActiveWorkbook);
-                        Instance.WorkbookModels.Add(workbook);
-
-                        Instance.CurrentWorkbook = workbook;
-
-                        var violationsViewContainer = new ViolationsViewContainer();
-                        var taskPane = Globals.ThisAddIn.CustomTaskPanes.Add(violationsViewContainer, "Violations");
-
-                        violationsViewContainer.ViolationsView.DataContext = workbook;
-
-                        Globals.ThisAddIn.TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "Violations"), taskPane);
-                    }
-
-                    currentWorkbook = workbook;
-                }
-                return currentWorkbook;
-            }
+            { return currentWorkbook; }
             set { SetProperty(ref currentWorkbook, value); }
         }
 
@@ -92,12 +67,6 @@ namespace SIF.Visualization.Excel.Core
         }
 
         public Microsoft.Office.Interop.Excel.AppEvents_SheetSelectionChangeEventHandler WorkbookSelectionChangedEventHandler
-        {
-            get;
-            set;
-        }
-
-        public WorkbookModel.CellDefinitionChangeHandler CellDefinitionChangedEventHandler
         {
             get;
             set;

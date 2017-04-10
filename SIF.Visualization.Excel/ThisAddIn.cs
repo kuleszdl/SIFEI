@@ -1,12 +1,9 @@
-﻿using SIF.Visualization.Excel.Core;
-using SIF.Visualization.Excel.Networking;
-using System.Linq;
-using Microsoft.Office.Tools;
-using System.Collections.Generic;
+﻿using Microsoft.Office.Tools;
+using SIF.Visualization.Excel.Core;
+using SIF.Visualization.Excel.View;
 using System;
-using SIF.Visualization.Excel.ScenarioView;
-using SIF.Visualization.Excel.SharedView;
-using SIF.Visualization.Excel.ViolationsView;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SIF.Visualization.Excel
 {
@@ -28,14 +25,11 @@ namespace SIF.Visualization.Excel
 
         private void ThisAddIn_Startup(object sender, EventArgs e)
         {
-            InspectionEngine.Instance.Start();
-
             Globals.ThisAddIn.Application.WorkbookActivate += Application_WorkbookActivate;
         }
 
         private void ThisAddIn_Shutdown(object sender, EventArgs e)
         {
-            InspectionEngine.Instance.Stop();
             Properties.Settings.Default.Save();
         }
 
@@ -55,62 +49,18 @@ namespace SIF.Visualization.Excel
                 DataModel.Instance.CurrentWorkbook.LoadExtraInformation();
 
                 /// create shared pane
-                var sharedPaneContainer = new SharedPaneContainer();
-                var sharedPane = CustomTaskPanes.Add(sharedPaneContainer, "Inspection");
-                sharedPaneContainer.VisibleChanged += SharedPaneContainer_VisibleChanged;
+                var SidebarContainer = new SidebarContainer();
+                var Sidebar = CustomTaskPanes.Add(SidebarContainer, "Sidebar");
 
-                sharedPaneContainer.SharedPane.DataContext = workbook;
-                sharedPane.Width = 340;
-                TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "shared Pane"), sharedPane);
-
-                // create findings pane
-                var violationViewContainer = new ViolationsViewContainer();
-                var taskPane = CustomTaskPanes.Add(violationViewContainer, "Violations");
-                violationViewContainer.VisibleChanged += FindingsPaneContainer_VisibleChanged;
-
-                violationViewContainer.ViolationsView.DataContext = workbook;
-                TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "Violations"), taskPane);
-
-                //create scenario detail pane
-                var scenarioDetailPainContainer = new ScenarioDetailPaneContainer();
-                var scenarioDetailPane = CustomTaskPanes.Add(scenarioDetailPainContainer, "Scenario");
-                scenarioDetailPane.Width = 260;
-                scenarioDetailPainContainer.VisibleChanged += ScenarioDetailPaneContainer_VisibleChanged;
-
-                TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "Scenario Details"), scenarioDetailPane);
+                SidebarContainer.Sidebar.DataContext = workbook;
+                Sidebar.Width = 320;
+                TaskPanes.Add(new Tuple<WorkbookModel, string>(workbook, "Sidebar"), Sidebar);
 
                 //add selection changed event handler for ribbon
                 Wb.Application.SheetSelectionChange += DataModel.Instance.WorkbookSelectionChangedEventHandler;
-                workbook.CellDefinitionChange += DataModel.Instance.CellDefinitionChangedEventHandler;
-
             }
 
             DataModel.Instance.CurrentWorkbook = workbook;
-        }
-
-        private void SharedPaneContainer_VisibleChanged(object sender, EventArgs e)
-        {
-            //throw new System.NotImplementedException();
-        }
-
-        private void FindingsPaneContainer_VisibleChanged(object sender, EventArgs e)
-        {
-            //throw new System.NotImplementedException();
-        }
-
-        private void ScenarioPaneContainer_VisibleChanged(object sender, EventArgs e)
-        {
-            //throw new System.NotImplementedException();
-        }
-
-        private void ScenarioDetailPaneContainer_VisibleChanged(object sender, EventArgs e)
-        {
-            //throw new System.NotImplementedException();
-        }
-
-        private void DefineCellsPaneContainer_VisibleChanged(object sender, EventArgs e)
-        {
-            //throw new System.NotImplementedException();
         }
 
         #endregion
