@@ -117,4 +117,616 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ReadingDirection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 252</value>
+  </data>
+  <data name="&gt;&gt;StringDistanceMinDistance.Name" xml:space="preserve">
+    <value>StringDistanceMinDistance</value>
+  </data>
+  <data name="StringDistanceMinDistanceLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>61, 363</value>
+  </data>
+  <data name="&gt;&gt;NonConsideredConstants.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;StringDistance.Name" xml:space="preserve">
+    <value>StringDistance</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="OneAmongOthersStyleBoth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;ReadingDirection.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="OneAmongOthersStyleVertical.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ReadingDirectionTopBottom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 24</value>
+  </data>
+  <data name="&gt;&gt;Button_Cancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;MultipleSameRef.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;MultipleSameRef.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersLengthLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="OneAmongOthersStyleBoth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 212</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="OneAmongOthersStyleHorizontal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Button_Cancel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersLengthLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Button_Cancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="&gt;&gt;NoConstantsInFormulas.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxOperationsLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersStyleBoth.Name" xml:space="preserve">
+    <value>OneAmongOthersStyleBoth</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxNestingLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="FormulaComplexityMaxNesting.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 6.75pt</value>
+  </data>
+  <data name="StringDistanceMinDistanceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 14</value>
+  </data>
+  <data name="FormulaComplexityMaxNestingLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>58, 55</value>
+  </data>
+  <data name="ReadingDirectionLeftRight.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="FormulaComplexityMaxNestingLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="FormulaComplexityMaxOperations.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 18</value>
+  </data>
+  <data name="StringDistance.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 336</value>
+  </data>
+  <data name="&gt;&gt;StringDistanceMinDistanceLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="StringDistance.Text" xml:space="preserve">
+    <value>StringDistnace</value>
+  </data>
+  <data name="OneAmongOthers.Text" xml:space="preserve">
+    <value>OneAmongOthers</value>
+  </data>
+  <data name="&gt;&gt;RefToNull.Name" xml:space="preserve">
+    <value>RefToNull</value>
+  </data>
+  <data name="MultipleSameRef.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 94</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxOperations.Name" xml:space="preserve">
+    <value>FormulaComplexityMaxOperations</value>
+  </data>
+  <data name="NonConsideredConstants.Text" xml:space="preserve">
+    <value>NonConsideredConstants</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxOperations.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersStyleHorizontal.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;NoConstantsInFormulas.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;ErrorInCells.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;StringDistanceMinDistanceLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="OneAmongOthersStyleVertical.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersStyleVertical.Name" xml:space="preserve">
+    <value>OneAmongOthersStyleVertical</value>
+  </data>
+  <data name="Button_OK.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersStyleVertical.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ReadingDirectionLeftRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 24</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersStyleHorizontal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ReadingDirectionLeftRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 272</value>
+  </data>
+  <data name="NonConsideredConstants.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="OneAmongOthersStyleVertical.Text" xml:space="preserve">
+    <value>vertical</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersLengthLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="ErrorInCells.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RefToNull.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="StringDistanceMinDistanceLabel.Text" xml:space="preserve">
+    <value>minimal allowed Distance</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersLength.Name" xml:space="preserve">
+    <value>OneAmongOthersLength</value>
+  </data>
+  <data name="ReadingDirectionTopBottom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 291</value>
+  </data>
+  <data name="&gt;&gt;MultipleSameRef.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NoConstantsInFormulas.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 24</value>
+  </data>
+  <data name="&gt;&gt;ReadingDirectionLeftRight.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxOperationsLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="OneAmongOthers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 24</value>
+  </data>
+  <data name="FormulaComplexityMaxOperationsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 16</value>
+  </data>
+  <data name="ReadingDirectionTopBottom.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxNestingLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Button_Cancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="FormulaComplexityMaxNesting.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxNesting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RefToNull.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>PolicyConfigurationDialog</value>
+  </data>
+  <data name="StringDistanceMinDistance.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;NoConstantsInFormulas.Name" xml:space="preserve">
+    <value>NoConstantsInFormulas</value>
+  </data>
+  <data name="&gt;&gt;StringDistanceMinDistance.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="StringDistanceMinDistance.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 20</value>
+  </data>
+  <data name="RefToNull.Text" xml:space="preserve">
+    <value>RefToNull</value>
+  </data>
+  <data name="OneAmongOthersStyleVertical.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="&gt;&gt;ErrorInCells.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;NonConsideredConstants.Name" xml:space="preserve">
+    <value>NonConsideredConstants</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersStyleBoth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthers.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;Button_OK.Name" xml:space="preserve">
+    <value>Button_OK</value>
+  </data>
+  <data name="&gt;&gt;StringDistance.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="ReadingDirectionTopBottom.Text" xml:space="preserve">
+    <value>top to bottom</value>
+  </data>
+  <data name="&gt;&gt;NonConsideredConstants.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="OneAmongOthersLengthLabel.Text" xml:space="preserve">
+    <value>Lenght</value>
+  </data>
+  <data name="OneAmongOthers.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;ReadingDirection.Name" xml:space="preserve">
+    <value>ReadingDirection</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxOperations.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Button_Cancel.Name" xml:space="preserve">
+    <value>Button_Cancel</value>
+  </data>
+  <data name="OneAmongOthersStyleBoth.Text" xml:space="preserve">
+    <value>both</value>
+  </data>
+  <data name="&gt;&gt;StringDistanceMinDistanceLabel.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;MultipleSameRef.Name" xml:space="preserve">
+    <value>MultipleSameRef</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxNesting.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthers.Name" xml:space="preserve">
+    <value>OneAmongOthers</value>
+  </data>
+  <data name="MultipleSameRef.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="OneAmongOthersLengthLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 16</value>
+  </data>
+  <data name="StringDistance.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="FormulaComplexityMaxOperationsLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="FormulaComplexityMaxOperationsLabel.Text" xml:space="preserve">
+    <value>Max Operations</value>
+  </data>
+  <data name="&gt;&gt;StringDistance.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OneAmongOthersStyleHorizontal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 17</value>
+  </data>
+  <data name="ReadingDirection.Text" xml:space="preserve">
+    <value>ReadingDirection</value>
+  </data>
+  <data name="&gt;&gt;ReadingDirectionLeftRight.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxNesting.Name" xml:space="preserve">
+    <value>FormulaComplexityMaxNesting</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxNestingLabel.Name" xml:space="preserve">
+    <value>FormulaComplexityMaxNestingLabel</value>
+  </data>
+  <data name="OneAmongOthersLength.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;ErrorInCells.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexity.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxOperationsLabel.Name" xml:space="preserve">
+    <value>FormulaComplexityMaxOperationsLabel</value>
+  </data>
+  <data name="&gt;&gt;Button_Cancel.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="ErrorInCells.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 17</value>
+  </data>
+  <data name="FormulaComplexity.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="NonConsideredConstants.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 24</value>
+  </data>
+  <data name="FormulaComplexity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 24</value>
+  </data>
+  <data name="Button_OK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="&gt;&gt;Button_OK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="OneAmongOthersLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 18</value>
+  </data>
+  <data name="&gt;&gt;Button_OK.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;ReadingDirectionTopBottom.Name" xml:space="preserve">
+    <value>ReadingDirectionTopBottom</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersStyleHorizontal.Name" xml:space="preserve">
+    <value>OneAmongOthersStyleHorizontal</value>
+  </data>
+  <data name="OneAmongOthersStyleBoth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 17</value>
+  </data>
+  <data name="MultipleSameRef.Text" xml:space="preserve">
+    <value>MultipleSameRef</value>
+  </data>
+  <data name="OneAmongOthersStyleHorizontal.Text" xml:space="preserve">
+    <value>horizontal</value>
+  </data>
+  <data name="OneAmongOthersLengthLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersStyleBoth.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="RefToNull.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="&gt;&gt;ReadingDirectionTopBottom.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="OneAmongOthersStyleVertical.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 196</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersLength.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="ErrorInCells.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="StringDistance.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="RefToNull.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 313</value>
+  </data>
+  <data name="FormulaComplexityMaxNestingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 15</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersStyleVertical.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FormulaComplexityMaxNesting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 18</value>
+  </data>
+  <data name="Button_Cancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 414</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxNesting.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersStyleBoth.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="OneAmongOthersStyleVertical.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 17</value>
+  </data>
+  <data name="&gt;&gt;Button_OK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersLength.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersStyleVertical.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="OneAmongOthersStyleHorizontal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 180</value>
+  </data>
+  <data name="ErrorInCells.Text" xml:space="preserve">
+    <value>ErrorInCells</value>
+  </data>
+  <data name="&gt;&gt;ReadingDirectionLeftRight.Name" xml:space="preserve">
+    <value>ReadingDirectionLeftRight</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxOperations.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NonConsideredConstants.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 138</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersStyleHorizontal.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="OneAmongOthersStyleBoth.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;NoConstantsInFormulas.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RefToNull.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;StringDistanceMinDistance.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ReadingDirectionTopBottom.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;NonConsideredConstants.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="FormulaComplexityMaxOperationsLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>58, 74</value>
+  </data>
+  <data name="ReadingDirection.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="NoConstantsInFormulas.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ReadingDirection.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="FormulaComplexityMaxOperations.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 71</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthers.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ReadingDirection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxOperationsLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NoConstantsInFormulas.Text" xml:space="preserve">
+    <value>NoConstantsInFormulas</value>
+  </data>
+  <data name="&gt;&gt;StringDistanceMinDistance.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="StringDistanceMinDistance.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 359</value>
+  </data>
+  <data name="OneAmongOthers.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 159</value>
+  </data>
+  <data name="OneAmongOthersLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 233</value>
+  </data>
+  <data name="OneAmongOthersStyleBoth.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="FormulaComplexity.Text" xml:space="preserve">
+    <value>FormulaComplexity</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthersLengthLabel.Name" xml:space="preserve">
+    <value>OneAmongOthersLengthLabel</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>278, 450</value>
+  </data>
+  <data name="FormulaComplexityMaxOperations.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 6.75pt</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexity.Name" xml:space="preserve">
+    <value>FormulaComplexity</value>
+  </data>
+  <data name="OneAmongOthersLengthLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>58, 235</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexity.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OneAmongOthersStyleHorizontal.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexity.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="FormulaComplexityMaxOperations.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="&gt;&gt;FormulaComplexityMaxNestingLabel.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="ReadingDirectionLeftRight.Text" xml:space="preserve">
+    <value>left to right</value>
+  </data>
+  <data name="FormulaComplexityMaxNesting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 51</value>
+  </data>
+  <data name="&gt;&gt;StringDistance.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="ErrorInCells.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="&gt;&gt;OneAmongOthers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Button_OK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>144, 414</value>
+  </data>
+  <data name="&gt;&gt;ReadingDirectionLeftRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MultipleSameRef.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 24</value>
+  </data>
+  <data name="FormulaComplexityMaxNestingLabel.Text" xml:space="preserve">
+    <value>Max Nesting</value>
+  </data>
+  <data name="Button_OK.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="&gt;&gt;StringDistanceMinDistanceLabel.Name" xml:space="preserve">
+    <value>StringDistanceMinDistanceLabel</value>
+  </data>
+  <data name="FormulaComplexity.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 29</value>
+  </data>
+  <data name="ReadingDirection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 29</value>
+  </data>
+  <data name="&gt;&gt;RefToNull.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="OneAmongOthersLength.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 6.75pt</value>
+  </data>
+  <data name="NoConstantsInFormulas.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 115</value>
+  </data>
+  <data name="&gt;&gt;ReadingDirectionTopBottom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Button_Cancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="StringDistanceMinDistanceLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;ErrorInCells.Name" xml:space="preserve">
+    <value>ErrorInCells</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

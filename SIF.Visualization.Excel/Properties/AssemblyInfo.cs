@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Universität Stuttgart")]
 [assembly: AssemblyProduct("SIF.Visualization.Excel")]
-[assembly: AssemblyCopyright("Copyright © Ehssan Doust, Jonas Scheurich 2013")]
+[assembly: AssemblyCopyright("Institut für Softwaretechnologie")]
 [assembly: AssemblyTrademark("Spreadsheet Inspection Framework")]
 [assembly: AssemblyCulture("")]
 

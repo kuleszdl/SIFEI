@@ -1,69 +1,75 @@
-﻿using Microsoft.Office.Tools;
-using SIF.Visualization.Excel.Core;
-using System;
-using System.Linq;
+﻿using SIF.Visualization.Excel.Core;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
+using System.Windows.Interop;
 
-namespace SIF.Visualization.Excel
-{
+namespace SIF.Visualization.Excel {
+
     /// <summary>
     /// Interaktionslogik für CellErrorInfo.xaml
+    /// This handles how the images in the sidepane get visualized
     /// </summary>
-    public partial class CellErrorInfo : UserControl
-    {
-        public CellErrorInfo()
-        {
+    public partial class CellErrorInfo : UserControl {
+
+        private bool gotClicked = false;
+
+        public CellErrorInfo() {
+
             InitializeComponent();
+            // @Link http://stackoverflow.com/questions/11859821/rendering-issue-with-wpf-controls-inside-elementhost
+            this.Loaded += delegate {
+                var source = PresentationSource.FromVisual(this);
+                var hwndTarget = source.CompositionTarget as HwndTarget;
+
+                if (hwndTarget != null) {
+                    hwndTarget.RenderMode = RenderMode.SoftwareOnly;
+                }
+            };
         }
 
-        private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            var findingsPane = ((Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Findings")] as CustomTaskPane).Control as FindingsPaneContainer).FindingsPane;
-
-            // Show the findings pane
-            (Globals.ThisAddIn.TaskPanes[new Tuple<WorkbookModel, string>(DataModel.Instance.CurrentWorkbook, "Findings")] as CustomTaskPane).Visible = true;
-
-            var list = findingsPane.FindingsList;
-            var listBoxItemRootGrid = VisualTreeHelper.GetChild((list.ItemContainerGenerator.ContainerFromItem((this.DataContext as SingleViolation).Finding) as ListBoxItem), 0) as Grid;
-
-            var expander = (from UIElement p in listBoxItemRootGrid.Children
-                            where p.GetType() == typeof(Expander)
-                            select p).FirstOrDefault() as Expander;
-
-            expander.IsExpanded = true;
-
-            if ((this.DataContext as SingleViolation).Finding.Violations.Contains(this.DataContext as Violation))
-            {
-                // This is a single violation
-                var expanderContent = expander.Content as Grid;
-
-                var listbox = VisualTreeHelper.GetChild(expanderContent, 0) as ListBox;
-                listbox.SelectedItem = this.DataContext;
-            }
-            else
-            {
-                // This is an element of a group violation
-                var groupViolation = (from p in (this.DataContext as SingleViolation).Finding.Violations
-                                      where p is GroupViolation
-                                      where (p as GroupViolation).Violations.Contains(this.DataContext as SingleViolation)
-                                      select p as GroupViolation).FirstOrDefault();
-
-                var expanderContent = expander.Content as Grid;
-
-                var listbox = VisualTreeHelper.GetChild(expanderContent, 0) as ListBox;
-                listbox.SelectedItem = groupViolation;
-
-                groupViolation.SelectedViolation = this.DataContext as SingleViolation;
-            }
+        /// <summary>
+        /// Occurs when the Mouse enters the Contextmenue
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="mouseEventArgs"></param>
+        private void Layout_OnMouseEnter(object sender, MouseEventArgs mouseEventArgs) {
+            if (gotClicked) return;
+            gotClicked = true;
+            var controlTemplate = SifContextMenu.Template;
+            //Grid grid1 = (Grid) controlTemplate.FindName("ExtraInfo", SifContextMenu);
+            //grid1.Visibility = Visibility.Visible;
         }
 
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            this.PopupMenu.IsOpen = false;
-            (this.DataContext as SingleViolation).IsFalsePositive = true;
+
+        /// <summary>
+        /// Neccessary so the Layoutonmouse Enter only occurs once after the Contextmenue being opened. 
+        /// Contextmenu Opening could not be used since it needs the menu to be initialized already and then starts to redo it
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FrameworkElement_OnContextMenuClosing(object sender, ContextMenuEventArgs e) {
+            gotClicked = false;
+        }
+
+        /// <summary>
+        /// In case the selection of the Listbox gets changed that "Befund" gets shown in the detailed view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ViolationListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var controlTemplate = SifContextMenu.Template;
+            Grid grid = (Grid)controlTemplate.FindName("ExtraInfo", SifContextMenu);
+            Violation vio = ((sender as System.Windows.Controls.ListBox).SelectedItem as Violation);
+            if (vio != null) {
+                vio.IsSelected = true;
+                grid.Visibility = Visibility.Visible;
+                Cell cell = (grid.DataContext as Cell);
+                cell.SelectedViolation = vio;
+            } else {
+                grid.Visibility = Visibility.Collapsed;
+            }
+            e.Handled = true;
         }
     }
 }

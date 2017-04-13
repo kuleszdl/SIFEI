@@ -7,10 +7,8 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        public Ribbon()
-            : base(Globals.Factory.GetRibbonFactory())
+        public Ribbon() : base(Globals.Factory.GetRibbonFactory())
         {
-           
             InitializeComponent();
             InitializeComponentOverride();
         }
@@ -35,7 +33,6 @@
         {
             // inspectionTab
             this.inspectionTab.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_Title;
-            
 
             // Action area
             this.testGroup.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaScan_Title;
@@ -48,8 +45,8 @@
 
             // View area
             this.viewGroup.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_Title;
-            this.sharedPaneButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_PaneButton;
-            this.sharedPaneButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_PaneButtonTooltip;
+            this.SidebarButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_PaneButton;
+            this.SidebarButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_PaneButtonTooltip;
             this.clearButton.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_ResetButton;
             this.clearButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaView_ResetButtonTooltip;
 
@@ -72,10 +69,8 @@
             this.resultCellToggleButton.ScreenTip = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaDefine_ResultcellTooltip;
 
             // Miscellaneous area
-            this.miscellaneousGroup.Label =
-                SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_Title;
-            this.globalSettingsDialog.Label =
-                SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_GlobalSettingsButton;
+            this.miscellaneousGroup.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_Title;
+            this.globalSettingsDialog.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_GlobalSettingsButton;
             this.CB_SanityControls.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_ShowSanity;
             
 
@@ -97,7 +92,7 @@
             this.btnLoadFile1 = this.Factory.CreateRibbonButton();
             this.btnLoadFile2 = this.Factory.CreateRibbonButton();
             this.viewGroup = this.Factory.CreateRibbonGroup();
-            this.sharedPaneButton = this.Factory.CreateRibbonButton();
+            this.SidebarButton = this.Factory.CreateRibbonButton();
             this.clearButton = this.Factory.CreateRibbonButton();
             this.scenarioGroup = this.Factory.CreateRibbonGroup();
             this.CreateNewScenarioButton = this.Factory.CreateRibbonButton();
@@ -183,21 +178,21 @@
             // 
             // viewGroup
             // 
-            this.viewGroup.Items.Add(this.sharedPaneButton);
+            this.viewGroup.Items.Add(this.SidebarButton);
             this.viewGroup.Items.Add(this.clearButton);
             this.viewGroup.Label = "View";
             this.viewGroup.Name = "viewGroup";
             // 
-            // sharedPaneButton
+            // SidebarButton
             // 
-            this.sharedPaneButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.sharedPaneButton.Description = "Opens the inspections pane.";
-            this.sharedPaneButton.Image = global::SIF.Visualization.Excel.Properties.Resources.inspectionpane;
-            this.sharedPaneButton.Label = "Inspection Pane";
-            this.sharedPaneButton.Name = "sharedPaneButton";
-            this.sharedPaneButton.ScreenTip = "Opens a pane with the cell definitions, scenario overview and findings.";
-            this.sharedPaneButton.ShowImage = true;
-            this.sharedPaneButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.sharedPaneButton_Click);
+            this.SidebarButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.SidebarButton.Description = "Opens the inspections pane.";
+            this.SidebarButton.Image = global::SIF.Visualization.Excel.Properties.Resources.inspectionpane;
+            this.SidebarButton.Label = "Inspection Pane";
+            this.SidebarButton.Name = "SidebarButton";
+            this.SidebarButton.ScreenTip = "Opens a pane with the cell definitions, scenario overview and findings.";
+            this.SidebarButton.ShowImage = true;
+            this.SidebarButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.SidebarButton_Click);
             // 
             // clearButton
             // 
@@ -389,7 +384,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton resultCellToggleButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton submitScenarioButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton cancelScenarioButton;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton sharedPaneButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton SidebarButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton CreateNewScenarioButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup sanityGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton sanityValueCellToggleButton;

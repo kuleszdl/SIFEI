@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 
 namespace SIF.Visualization.Excel
@@ -18,11 +10,19 @@ namespace SIF.Visualization.Excel
         /// </summary>
         public ElementHost ElementHost
         {
-            get { return this.elementHost1; }
+            get { return elementHost1; }
         }
 
+        /// <summary>
+        /// Instanciates a new Container setting the Paintingstyles
+        /// </summary>
         public CellErrorInfoContainer()
         {
+            //The SetStyle commands increase the drawing speed by a bit and reduce flickering
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
         }
     }

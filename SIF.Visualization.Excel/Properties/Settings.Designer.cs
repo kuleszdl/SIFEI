@@ -25,22 +25,13 @@ namespace SIF.Visualization.Excel.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Spreadsheet Inspection Framework")]
-        public string FrameworkPath {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8080")]
+        public string SifServerUrl {
             get {
-                return ((string)(this["FrameworkPath"]));
+                return ((string)(this["SifServerUrl"]));
             }
             set {
-                this["FrameworkPath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8080")]
-        public ushort DefaultPort {
-            get {
-                return ((ushort)(this["DefaultPort"]));
+                this["SifServerUrl"] = value;
             }
         }
         
@@ -56,9 +47,9 @@ namespace SIF.Visualization.Excel.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int NumberOfScenarioDetailPanes {
+        public int NumberOfScenarioDetailViews {
             get {
-                return ((int)(this["NumberOfScenarioDetailPanes"]));
+                return ((int)(this["NumberOfScenarioDetailViews"]));
             }
         }
         
@@ -73,37 +64,10 @@ namespace SIF.Visualization.Excel.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("StaticScenario")]
-        public string StaticScenarioName {
-            get {
-                return ((string)(this["StaticScenarioName"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("This special scenario defines the static scan properties.")]
-        public string StaticScenarioDescriptionBase {
-            get {
-                return ((string)(this["StaticScenarioDescriptionBase"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("FalsePositive.")]
-        public string FalsePositivePrefix {
-            get {
-                return ((string)(this["FalsePositivePrefix"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double StandartDifference {
+        public double StandardDifference {
             get {
-                return ((double)(this["StandartDifference"]));
+                return ((double)(this["StandardDifference"]));
             }
         }
         
@@ -121,18 +85,6 @@ namespace SIF.Visualization.Excel.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("socket")]
-        public string SifOptions {
-            get {
-                return ((string)(this["SifOptions"]));
-            }
-            set {
-                this["SifOptions"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool SifUseThousandsSeparator {
             get {
@@ -140,54 +92,6 @@ namespace SIF.Visualization.Excel.Properties {
             }
             set {
                 this["SifUseThousandsSeparator"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public string SifVersion {
-            get {
-                return ((string)(this["SifVersion"]));
-            }
-            set {
-                this["SifVersion"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool SifStartup {
-            get {
-                return ((bool)(this["SifStartup"]));
-            }
-            set {
-                this["SifStartup"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("standard")]
-        public string CommunicationMethod {
-            get {
-                return ((string)(this["CommunicationMethod"]));
-            }
-            set {
-                this["CommunicationMethod"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Spreadsheet Inspection Framework")]
-        public string MonoFrameworkPath {
-            get {
-                return ((string)(this["MonoFrameworkPath"]));
-            }
-            set {
-                this["MonoFrameworkPath"] = value;
             }
         }
     }
