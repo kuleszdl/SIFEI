@@ -366,6 +366,7 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <None Include="SIF.Visualization.Excel_1_TemporaryKey.pfx" />
     <None Include="SIF.Visualization.Excel_TemporaryKey.pfx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
@@ -486,10 +487,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>SIF.Visualization.Excel_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>SIF.Visualization.Excel_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>814D3BAAE12EB8D2627009EA7679099FB1C6413D</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>68B30ED0F385AB1EC6B6B0AF7451489B307AFF0E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
