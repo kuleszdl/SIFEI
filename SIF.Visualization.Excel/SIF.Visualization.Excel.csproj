@@ -208,8 +208,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Ribbon1.cs">
+      <XmlRibbon>true</XmlRibbon>
+    </Compile>
     <Compile Include="View\ScenarioDetailDialog.xaml.cs">
       <DependentUpon>ScenarioDetailDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RuleEdit.xaml.cs">
+      <DependentUpon>RuleEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViolationTemplate.xaml.cs">
       <DependentUpon>ViolationTemplate.xaml</DependentUpon>
@@ -348,6 +354,7 @@
       <DependentUpon>SidebarContainer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -402,6 +409,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Sidebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RuleEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -476,6 +487,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Icons\violations\empty.png" />
+    <EmbeddedResource Include="Ribbon1.xml" />
     <Resource Include="Resources\Icons\violations\plus.png" />
   </ItemGroup>
   <ItemGroup />

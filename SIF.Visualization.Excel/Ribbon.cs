@@ -440,5 +440,10 @@ namespace SIF.Visualization.Excel {
                 sanityGroup.Visible = true;
             }
         }
+
+        private void button1_Click_1(object sender, RibbonControlEventArgs e)
+        {
+
+        }
     }
 }

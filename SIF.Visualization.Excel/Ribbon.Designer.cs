@@ -111,6 +111,8 @@
             this.miscellaneousGroup = this.Factory.CreateRibbonGroup();
             this.globalSettingsDialog = this.Factory.CreateRibbonButton();
             this.CB_SanityControls = this.Factory.CreateRibbonCheckBox();
+            this.RuleEditGroup = this.Factory.CreateRibbonGroup();
+            this.RuleEditButton = this.Factory.CreateRibbonButton();
             this.inspectionTab.SuspendLayout();
             this.testGroup.SuspendLayout();
             this.viewGroup.SuspendLayout();
@@ -118,6 +120,7 @@
             this.defineGroup.SuspendLayout();
             this.sanityGroup.SuspendLayout();
             this.miscellaneousGroup.SuspendLayout();
+            this.RuleEditGroup.SuspendLayout();
             // 
             // inspectionTab
             // 
@@ -128,6 +131,7 @@
             this.inspectionTab.Groups.Add(this.defineGroup);
             this.inspectionTab.Groups.Add(this.sanityGroup);
             this.inspectionTab.Groups.Add(this.miscellaneousGroup);
+            this.inspectionTab.Groups.Add(this.RuleEditGroup);
             this.inspectionTab.Label = "INSPECTION";
             this.inspectionTab.Name = "inspectionTab";
             // 
@@ -347,6 +351,18 @@
             this.CB_SanityControls.Name = "CB_SanityControls";
             this.CB_SanityControls.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.CB_SanityControls_Click);
             // 
+            // RuleEditGroup
+            // 
+            this.RuleEditGroup.Items.Add(this.RuleEditButton);
+            this.RuleEditGroup.Label = "Rule Editor";
+            this.RuleEditGroup.Name = "RuleEditGroup";
+            // 
+            // RuleEditButton
+            // 
+            this.RuleEditButton.Label = "Rule Editor";
+            this.RuleEditButton.Name = "RuleEditButton";
+            this.RuleEditButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click_1);
+            // 
             // Ribbon
             // 
             this.Name = "Ribbon";
@@ -367,6 +383,8 @@
             this.sanityGroup.PerformLayout();
             this.miscellaneousGroup.ResumeLayout(false);
             this.miscellaneousGroup.PerformLayout();
+            this.RuleEditGroup.ResumeLayout(false);
+            this.RuleEditGroup.PerformLayout();
 
         }
 
@@ -399,6 +417,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup miscellaneousGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton globalSettingsDialog;
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox CB_SanityControls;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup RuleEditGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton RuleEditButton;
     }
 
     partial class ThisRibbonCollection

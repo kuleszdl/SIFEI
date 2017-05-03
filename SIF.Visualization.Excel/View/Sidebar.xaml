@@ -250,6 +250,19 @@
                 </TabItem.Header>
                 <v:ScenarioListView />
             </TabItem>
+            <TabItem x:Name="RulesTab">
+            <TabItem.Header>
+                <Grid>
+                    <Image
+                           Source="{StaticResource falsepositiveIcon}"
+                           ToolTip="{x:Static p:Resources.tl_Ignored}"
+                           Height="25"
+                           Width="25"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </TabItem.Header>
+            <v:ViolationListView />
+            </TabItem>
         </TabControl>
     </Grid>
 </UserControl>
