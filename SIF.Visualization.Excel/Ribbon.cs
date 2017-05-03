@@ -441,9 +441,9 @@ namespace SIF.Visualization.Excel {
             }
         }
 
-        private void button1_Click_1(object sender, RibbonControlEventArgs e)
+        private void RuleEdit_Click(object sender, RibbonControlEventArgs e)
         {
-
+            
         }
     }
 }

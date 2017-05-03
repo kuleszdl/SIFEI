@@ -208,14 +208,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Ribbon1.cs">
-      <XmlRibbon>true</XmlRibbon>
+    <Compile Include="RuleEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RuleEditor.Designer.cs">
+      <DependentUpon>RuleEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ScenarioDetailDialog.xaml.cs">
       <DependentUpon>ScenarioDetailDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RuleEdit.xaml.cs">
-      <DependentUpon>RuleEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViolationTemplate.xaml.cs">
       <DependentUpon>ViolationTemplate.xaml</DependentUpon>
@@ -339,6 +339,9 @@
       <LastGenOutput>Resources.en.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="RuleEditor.resx">
+      <DependentUpon>RuleEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ScenarioDataFieldContainer.resx">
       <DependentUpon>ScenarioDataFieldContainer.cs</DependentUpon>
     </EmbeddedResource>
@@ -354,7 +357,6 @@
       <DependentUpon>SidebarContainer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -409,10 +411,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Sidebar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\RuleEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -487,7 +485,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Icons\violations\empty.png" />
-    <EmbeddedResource Include="Ribbon1.xml" />
     <Resource Include="Resources\Icons\violations\plus.png" />
   </ItemGroup>
   <ItemGroup />

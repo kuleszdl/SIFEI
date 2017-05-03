@@ -361,7 +361,7 @@
             // 
             this.RuleEditButton.Label = "Rule Editor";
             this.RuleEditButton.Name = "RuleEditButton";
-            this.RuleEditButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click_1);
+            this.RuleEditButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RuleEdit_Click);
             // 
             // Ribbon
             // 
