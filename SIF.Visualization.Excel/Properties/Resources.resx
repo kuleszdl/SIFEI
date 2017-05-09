@@ -532,4 +532,10 @@ Try scanning the file again and if this doesn't help close and open the file aga
   <data name="violations" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\icons\violations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="tl_Ribbon_AreaRuleEditor" xml:space="preserve">
+    <value>Rule Editor</value>
+  </data>
+  <data name="tl_Ribbon_AreaRuleEditor_Tooltip" xml:space="preserve">
+    <value />
+  </data>
 </root>

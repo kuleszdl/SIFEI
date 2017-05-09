@@ -469,4 +469,7 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   <data name="tl_ScenarioOverview" xml:space="preserve">
     <value>Szenario Übersicht</value>
   </data>
+  <data name="tl_Ribbon_AreaRuleEditor" xml:space="preserve">
+    <value>Regel Editor</value>
+  </data>
 </root>

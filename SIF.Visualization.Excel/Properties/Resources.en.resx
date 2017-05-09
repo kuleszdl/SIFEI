@@ -481,4 +481,7 @@ Try scanning the file again and if this doesn't help close and open the file aga
   <data name="tl_ScenarioOverview" xml:space="preserve">
     <value>Scenario Overview</value>
   </data>
+  <data name="tl_Ribbon_AreaRuleEditor" xml:space="preserve">
+    <value>Rule Editor</value>
+  </data>
 </root>

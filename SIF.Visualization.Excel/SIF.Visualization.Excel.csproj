@@ -217,6 +217,9 @@
     <Compile Include="View\ScenarioDetailDialog.xaml.cs">
       <DependentUpon>ScenarioDetailDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\RuleListView.xaml.cs">
+      <DependentUpon>RuleListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViolationTemplate.xaml.cs">
       <DependentUpon>ViolationTemplate.xaml</DependentUpon>
     </Compile>
@@ -411,6 +414,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Sidebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RuleListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
