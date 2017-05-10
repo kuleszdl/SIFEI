@@ -801,6 +801,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rules.
+        /// </summary>
+        public static string tl_Rules {
+            get {
+                return ResourceManager.GetString("tl_Rules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The test of the current document failed!
         ///.
         /// </summary>

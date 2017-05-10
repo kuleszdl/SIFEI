@@ -359,7 +359,7 @@
             // 
             // tl_Ribbon_AreaRuleEditor
             // 
-            this.tl_Ribbon_AreaRuleEditor.Label = "a";
+            this.tl_Ribbon_AreaRuleEditor.Label = "Rule Editor";
             this.tl_Ribbon_AreaRuleEditor.Name = "tl_Ribbon_AreaRuleEditor";
             this.tl_Ribbon_AreaRuleEditor.ScreenTip = "Opens the Rule Editor";
             this.tl_Ribbon_AreaRuleEditor.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RuleEdit_Click);

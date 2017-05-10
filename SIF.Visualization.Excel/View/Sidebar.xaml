@@ -16,6 +16,7 @@
             <BitmapImage x:Key="OutputCellIcon" UriSource="../Resources/Icons/output_clear.png"/>
             <BitmapImage x:Key="violationsIcon" UriSource="../Resources/Icons/violations.png"/>
             <BitmapImage x:Key="falsepositiveIcon" UriSource="../Resources/Icons/falsepositive.png"/>
+            <BitmapImage x:Key="RulesIcon" UriSource="../Resources/Icons/rules.png"/>
             <BitmapImage x:Key="solvedIcon" UriSource="../Resources/Icons/solved.png"/>
             <BitmapImage x:Key="laterIcon" UriSource="../Resources/Icons/later.png"/>
             <BitmapImage x:Key="scenarios" UriSource="../Resources/Icons/scenarios.png"/>
@@ -267,8 +268,8 @@
                 <TabItem.Header>
                     <Grid>
                         <Image
-                           Source="{StaticResource falsepositiveIcon}"
-                           ToolTip="{x:Static p:Resources.tl_Ignored}"
+                           Source="{StaticResource RulesIcon}"
+                           ToolTip="{x:Static p:Resources.tl_Rules}"
                            Height="25"
                            Width="25"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
