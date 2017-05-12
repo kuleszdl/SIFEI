@@ -491,6 +491,7 @@
     <None Include="Resources\Icons\save.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Icons\rules.png" />
     <Content Include="Resources\Icons\violations\empty.png" />
     <Resource Include="Resources\Icons\violations\plus.png" />
   </ItemGroup>

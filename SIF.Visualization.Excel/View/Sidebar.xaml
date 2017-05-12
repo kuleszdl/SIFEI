@@ -276,7 +276,6 @@
                     </Grid>
                 </TabItem.Header>
                 <v:RuleListView/>
-
             </TabItem>
         </TabControl>
     </Grid>
