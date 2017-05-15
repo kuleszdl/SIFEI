@@ -37,23 +37,23 @@ namespace SIF.Visualization.Excel
             {
                 int pointX = NewConditionButton.Location.X;
                 int pointY = NewConditionButton.Location.Y;
-                ComboBox ConditionFirstComboBox = new ComboBox();
-                ConditionFirstComboBox.Text = "Bedingung wählen";
-                ConditionFirstComboBox.Location = new Point(pointX, pointY);
-                ConditionPanel.Controls.Add(ConditionFirstComboBox);
+                int rows = 0;
+                ComboBox FirstBox = new ComboBox();
+                FirstBox.Text = "Bedingung wählen";
+                FirstBox.Location = new Point(pointX, pointY);
+                ConditionPanel.Controls.Add(FirstBox);
 
-                ConditionFirstComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-                ConditionFirstComboBox.FormattingEnabled = true;
-                ConditionFirstComboBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-                ConditionFirstComboBox.Items.AddRange(new object[] {
+                FirstBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+                FirstBox.FormattingEnabled = true;
+                FirstBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
+                FirstBox.Items.AddRange(new object[] {
             "Regex",
             "Character Count"});
-                ConditionFirstComboBox.Location = new System.Drawing.Point(255, 39);
-                ConditionFirstComboBox.Name = "ConditionFirstComboBox";
-                ConditionFirstComboBox.Size = new System.Drawing.Size(105, 21);
-                ConditionFirstComboBox.TabIndex = 10;
-                ConditionFirstComboBox.Visible = true;
-                ConditionFirstComboBox.SelectedIndexChanged += ConditionFirstCombobox_SelectedIndexChanged;
+                FirstBox.Name = "ConditionFirstComboBox"+ rows.ToString();
+                FirstBox.Size = new System.Drawing.Size(105, 21);
+                FirstBox.TabIndex = 10;
+                FirstBox.Visible = true;
+                FirstBox.SelectedIndexChanged += ConditionFirstCombobox_SelectedIndexChanged;
 
                 ConditionPanel.Show();
                 NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 30);
