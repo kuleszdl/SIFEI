@@ -153,10 +153,11 @@
             this.ConditionFirstComboBox.Items.AddRange(new object[] {
             "Regex",
             "Character Count"});
-            this.ConditionFirstComboBox.Location = new System.Drawing.Point(128, 32);
+            this.ConditionFirstComboBox.Location = new System.Drawing.Point(255, 39);
             this.ConditionFirstComboBox.Name = "ConditionFirstComboBox";
             this.ConditionFirstComboBox.Size = new System.Drawing.Size(105, 21);
             this.ConditionFirstComboBox.TabIndex = 10;
+            this.ConditionFirstComboBox.Visible = false;
             this.ConditionFirstComboBox.SelectedIndexChanged += new System.EventHandler(this.ConditionFirstCombobox_SelectedIndexChanged);
             // 
             // ConditionRegexTextBox

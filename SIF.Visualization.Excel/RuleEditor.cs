@@ -10,7 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace SIF.Visualization.Excel
 {   
@@ -18,12 +18,12 @@ namespace SIF.Visualization.Excel
     {
         int pointX ;
         int pointY ;
-        private Control myControl;
+        // private Control myControl;
         public RuleEditor()
         {
             InitializeComponent();
-            ConditionFirstComboBox.Controls.Add(myControl);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            //  ConditionFirstComboBox.Controls.Add(myControl);
+           // FormBorderStyle = FormBorderStyle.FixedDialog;
             ShowDialog();
         }
 
@@ -36,27 +36,35 @@ namespace SIF.Visualization.Excel
             try
             {
                 int pointX = NewConditionButton.Location.X;
-                int pointY = 40;
-                ConditionPanel.Controls.Clear();
-                TextBox a = new TextBox();
-                a.Text = "Passt so";
-                a.Location = new Point(pointX, pointY);
-                ConditionPanel.Controls.Add(a);
+                int pointY = NewConditionButton.Location.Y;
+                ComboBox ConditionFirstComboBox = new ComboBox();
+                ConditionFirstComboBox.Text = "Bedingung wählen";
+                ConditionFirstComboBox.Location = new Point(pointX, pointY);
+                ConditionPanel.Controls.Add(ConditionFirstComboBox);
+
+                ConditionFirstComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+                ConditionFirstComboBox.FormattingEnabled = true;
+                ConditionFirstComboBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
+                ConditionFirstComboBox.Items.AddRange(new object[] {
+            "Regex",
+            "Character Count"});
+                ConditionFirstComboBox.Location = new System.Drawing.Point(255, 39);
+                ConditionFirstComboBox.Name = "ConditionFirstComboBox";
+                ConditionFirstComboBox.Size = new System.Drawing.Size(105, 21);
+                ConditionFirstComboBox.TabIndex = 10;
+                ConditionFirstComboBox.Visible = true;
+                ConditionFirstComboBox.SelectedIndexChanged += ConditionFirstCombobox_SelectedIndexChanged;
+
                 ConditionPanel.Show();
-                pointY += 20;
-                
+                NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 30);
+
             }
             catch (Exception)
             {
                 MessageBox.Show(e.ToString());
             }
-            //System.Windows.Forms.TextBox RegexTextBox = new System.Windows.Forms.TextBox();
-            //myControl = new UserControl();
-            //myControl.Controls.Add(new TextBox());
-            
-            
+           
         }
-
         private void ConditionFirstCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch((ConditionFirstComboBox.SelectedItem.ToString()))
@@ -86,7 +94,6 @@ namespace SIF.Visualization.Excel
             {
                 pointX = NewConditionButton.Location.X;
                 pointY = NewConditionButton.Location.Y;
-                ConditionPanel.Controls.Clear();
                 for (int i = 0; i < 5; i++)
                 {
                     TextBox a = new TextBox();
