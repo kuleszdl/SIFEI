@@ -1,5 +1,7 @@
 ﻿namespace SIF.Visualization.Excel
 {
+
+
     partial class RuleEditor
     {
         /// <summary>
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            
             this.CancelButton = new System.Windows.Forms.Button();
             this.ConfirmButton = new System.Windows.Forms.Button();
             this.FilterConditionLabel = new System.Windows.Forms.Label();
@@ -38,10 +41,13 @@
             this.RuleNameLabel = new System.Windows.Forms.Label();
             this.RuleNameTextBox = new System.Windows.Forms.TextBox();
             this.NewConditionButton = new System.Windows.Forms.Button();
+            this.ConditionPanel = new System.Windows.Forms.Panel();
             this.ConditionFirstComboBox = new System.Windows.Forms.ComboBox();
             this.ConditionRegexTextBox = new System.Windows.Forms.TextBox();
-            this.ChooseAreaCheckbox = new System.Windows.Forms.CheckBox();
-            this.ConditionPanel = new System.Windows.Forms.Panel();
+            this.RuleAreaLabel = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.ChooseCellButton = new System.Windows.Forms.Button();
             this.ConditionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,16 +77,16 @@
             // FilterConditionLabel
             // 
             this.FilterConditionLabel.AutoSize = true;
-            this.FilterConditionLabel.Location = new System.Drawing.Point(12, 55);
+            this.FilterConditionLabel.Location = new System.Drawing.Point(12, 69);
             this.FilterConditionLabel.Name = "FilterConditionLabel";
-            this.FilterConditionLabel.Size = new System.Drawing.Size(69, 13);
+            this.FilterConditionLabel.Size = new System.Drawing.Size(72, 13);
             this.FilterConditionLabel.TabIndex = 2;
-            this.FilterConditionLabel.Text = "Filter criterion";
+            this.FilterConditionLabel.Text = "Trigger when:";
             // 
             // FilterRadioButtonAND
             // 
             this.FilterRadioButtonAND.AutoSize = true;
-            this.FilterRadioButtonAND.Location = new System.Drawing.Point(132, 51);
+            this.FilterRadioButtonAND.Location = new System.Drawing.Point(132, 67);
             this.FilterRadioButtonAND.Name = "FilterRadioButtonAND";
             this.FilterRadioButtonAND.Size = new System.Drawing.Size(146, 17);
             this.FilterRadioButtonAND.TabIndex = 3;
@@ -91,7 +97,7 @@
             // FilterRadioButtonOR
             // 
             this.FilterRadioButtonOR.AutoSize = true;
-            this.FilterRadioButtonOR.Location = new System.Drawing.Point(132, 74);
+            this.FilterRadioButtonOR.Location = new System.Drawing.Point(132, 90);
             this.FilterRadioButtonOR.Name = "FilterRadioButtonOR";
             this.FilterRadioButtonOR.Size = new System.Drawing.Size(184, 17);
             this.FilterRadioButtonOR.TabIndex = 4;
@@ -102,7 +108,7 @@
             // FilterRadioButtonNONE
             // 
             this.FilterRadioButtonNONE.AutoSize = true;
-            this.FilterRadioButtonNONE.Location = new System.Drawing.Point(132, 97);
+            this.FilterRadioButtonNONE.Location = new System.Drawing.Point(132, 113);
             this.FilterRadioButtonNONE.Name = "FilterRadioButtonNONE";
             this.FilterRadioButtonNONE.Size = new System.Drawing.Size(137, 17);
             this.FilterRadioButtonNONE.TabIndex = 5;
@@ -113,7 +119,7 @@
             // ConditionLabel
             // 
             this.ConditionLabel.AutoSize = true;
-            this.ConditionLabel.Location = new System.Drawing.Point(8, 8);
+            this.ConditionLabel.Location = new System.Drawing.Point(8, 16);
             this.ConditionLabel.Name = "ConditionLabel";
             this.ConditionLabel.Size = new System.Drawing.Size(65, 13);
             this.ConditionLabel.TabIndex = 6;
@@ -137,50 +143,13 @@
             // 
             // NewConditionButton
             // 
-            this.NewConditionButton.Location = new System.Drawing.Point(128, 3);
+            this.NewConditionButton.Location = new System.Drawing.Point(128, 11);
             this.NewConditionButton.Name = "NewConditionButton";
             this.NewConditionButton.Size = new System.Drawing.Size(105, 23);
             this.NewConditionButton.TabIndex = 9;
             this.NewConditionButton.Text = "New Condition";
             this.NewConditionButton.UseVisualStyleBackColor = true;
             this.NewConditionButton.Click += new System.EventHandler(this.NewConditionButton_Click);
-            // 
-            // ConditionFirstComboBox
-            // 
-            this.ConditionFirstComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ConditionFirstComboBox.FormattingEnabled = true;
-            this.ConditionFirstComboBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.ConditionFirstComboBox.Items.AddRange(new object[] {
-            "Regex",
-            "Character Count"});
-            this.ConditionFirstComboBox.Location = new System.Drawing.Point(255, 39);
-            this.ConditionFirstComboBox.Name = "ConditionFirstComboBox";
-            this.ConditionFirstComboBox.Size = new System.Drawing.Size(105, 21);
-            this.ConditionFirstComboBox.TabIndex = 10;
-            this.ConditionFirstComboBox.Visible = false;
-            this.ConditionFirstComboBox.SelectedIndexChanged += new System.EventHandler(this.ConditionFirstCombobox_SelectedIndexChanged);
-            // 
-            // ConditionRegexTextBox
-            // 
-            this.ConditionRegexTextBox.AllowDrop = true;
-            this.ConditionRegexTextBox.Location = new System.Drawing.Point(255, 66);
-            this.ConditionRegexTextBox.Name = "ConditionRegexTextBox";
-            this.ConditionRegexTextBox.Size = new System.Drawing.Size(100, 20);
-            this.ConditionRegexTextBox.TabIndex = 11;
-            this.ConditionRegexTextBox.Text = "Regex String";
-            this.ConditionRegexTextBox.Visible = false;
-            // 
-            // ChooseAreaCheckbox
-            // 
-            this.ChooseAreaCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ChooseAreaCheckbox.AutoSize = true;
-            this.ChooseAreaCheckbox.Location = new System.Drawing.Point(4, 315);
-            this.ChooseAreaCheckbox.Name = "ChooseAreaCheckbox";
-            this.ChooseAreaCheckbox.Size = new System.Drawing.Size(117, 17);
-            this.ChooseAreaCheckbox.TabIndex = 12;
-            this.ChooseAreaCheckbox.Text = "Apply Rule on Area";
-            this.ChooseAreaCheckbox.UseVisualStyleBackColor = true;
-            this.ChooseAreaCheckbox.CheckedChanged += new System.EventHandler(this.ChooseAreaCheckbox_Changed);
             // 
             // ConditionPanel
             // 
@@ -192,10 +161,62 @@
             this.ConditionPanel.Controls.Add(this.ConditionRegexTextBox);
             this.ConditionPanel.Controls.Add(this.NewConditionButton);
             this.ConditionPanel.Controls.Add(this.ConditionLabel);
-            this.ConditionPanel.Location = new System.Drawing.Point(4, 120);
+            this.ConditionPanel.Location = new System.Drawing.Point(4, 136);
             this.ConditionPanel.Name = "ConditionPanel";
-            this.ConditionPanel.Size = new System.Drawing.Size(448, 183);
+            this.ConditionPanel.Size = new System.Drawing.Size(448, 167);
             this.ConditionPanel.TabIndex = 13;
+            // 
+            // ConditionFirstComboBox
+            // 
+            this.ConditionFirstComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ConditionFirstComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ConditionFirstComboBox.FormattingEnabled = true;
+            this.ConditionFirstComboBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.ConditionFirstComboBox.Items.AddRange(new object[] {
+            "Regex",
+            "Character Count"});
+            this.ConditionFirstComboBox.Location = new System.Drawing.Point(239, 13);
+            this.ConditionFirstComboBox.Name = "ConditionFirstComboBox";
+            this.ConditionFirstComboBox.Size = new System.Drawing.Size(105, 21);
+            this.ConditionFirstComboBox.TabIndex = 10;
+            this.ConditionFirstComboBox.Visible = false;
+            //this.ConditionFirstComboBox.SelectedIndexChanged += new System.EventHandler(this.ConditionFirstCombobox_SelectedIndexChanged);
+            // 
+            // ConditionRegexTextBox
+            // 
+            this.ConditionRegexTextBox.AllowDrop = true;
+            this.ConditionRegexTextBox.Location = new System.Drawing.Point(239, 40);
+            this.ConditionRegexTextBox.Name = "ConditionRegexTextBox";
+            this.ConditionRegexTextBox.Size = new System.Drawing.Size(100, 20);
+            this.ConditionRegexTextBox.TabIndex = 11;
+            this.ConditionRegexTextBox.Text = "Regex String";
+            this.ConditionRegexTextBox.Visible = false;
+            // 
+            // RuleAreaLabel
+            // 
+            this.RuleAreaLabel.AutoSize = true;
+            this.RuleAreaLabel.Location = new System.Drawing.Point(12, 44);
+            this.RuleAreaLabel.Name = "RuleAreaLabel";
+            this.RuleAreaLabel.Size = new System.Drawing.Size(52, 13);
+            this.RuleAreaLabel.TabIndex = 14;
+            this.RuleAreaLabel.Text = "Cell Area:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(132, 41);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(203, 20);
+            this.textBox1.TabIndex = 15;
+            // 
+            // ChooseCellButton
+            // 
+            this.ChooseCellButton.Location = new System.Drawing.Point(341, 41);
+            this.ChooseCellButton.Name = "ChooseCellButton";
+            this.ChooseCellButton.Size = new System.Drawing.Size(75, 23);
+            this.ChooseCellButton.TabIndex = 16;
+            this.ChooseCellButton.Text = "Cell Picker";
+            this.ChooseCellButton.UseVisualStyleBackColor = true;
+            this.ChooseCellButton.Click += new System.EventHandler(this.ChooseCellButton_Click);
             // 
             // RuleEditor
             // 
@@ -203,7 +224,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(464, 344);
-            this.Controls.Add(this.ChooseAreaCheckbox);
+            this.Controls.Add(this.ChooseCellButton);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.RuleAreaLabel);
             this.Controls.Add(this.RuleNameTextBox);
             this.Controls.Add(this.RuleNameLabel);
             this.Controls.Add(this.FilterRadioButtonNONE);
@@ -229,6 +252,8 @@
 
         #endregion
 
+       
+
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button ConfirmButton;
         private System.Windows.Forms.Label FilterConditionLabel;
@@ -239,9 +264,14 @@
         private System.Windows.Forms.Label RuleNameLabel;
         private System.Windows.Forms.TextBox RuleNameTextBox;
         private System.Windows.Forms.Button NewConditionButton;
+        private System.Windows.Forms.Panel ConditionPanel;
         private System.Windows.Forms.ComboBox ConditionFirstComboBox;
         private System.Windows.Forms.TextBox ConditionRegexTextBox;
-        private System.Windows.Forms.CheckBox ChooseAreaCheckbox;
-        private System.Windows.Forms.Panel ConditionPanel;
+        private System.Windows.Forms.Label RuleAreaLabel;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button ChooseCellButton;
+
+        
     }
 }

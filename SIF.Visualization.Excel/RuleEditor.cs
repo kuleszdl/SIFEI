@@ -12,20 +12,23 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+
 namespace SIF.Visualization.Excel
-{   
+{
     public partial class RuleEditor : Form
     {
-        int pointX ;
-        int pointY ;
-        // private Control myControl;
+        Microsoft.Office.Interop.Excel.Worksheet ws;
+        int pointX;
+        int pointY;
+        int row = 2;
+        
+
         public RuleEditor()
         {
             InitializeComponent();
-            //  ConditionFirstComboBox.Controls.Add(myControl);
-           // FormBorderStyle = FormBorderStyle.FixedDialog;
             ShowDialog();
         }
+
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -34,7 +37,9 @@ namespace SIF.Visualization.Excel
         private void NewConditionButton_Click(object sender, EventArgs e)
         {
             try
-            {
+            {   
+               // AddNewComboBox();
+
                 int pointX = NewConditionButton.Location.X;
                 int pointY = NewConditionButton.Location.Y;
                 int rows = 0;
@@ -49,7 +54,7 @@ namespace SIF.Visualization.Excel
                 FirstBox.Items.AddRange(new object[] {
             "Regex",
             "Character Count"});
-                FirstBox.Name = "ConditionFirstComboBox"+ rows.ToString();
+                FirstBox.Name = "ConditionFirstComboBox" + rows.ToString();
                 FirstBox.Size = new System.Drawing.Size(105, 21);
                 FirstBox.TabIndex = 10;
                 FirstBox.Visible = true;
@@ -57,7 +62,41 @@ namespace SIF.Visualization.Excel
 
                 ConditionPanel.Show();
                 NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 30);
+                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(e.ToString());
+            }
 
+
+        }
+
+        
+
+        private void FirstBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            
+                
+        }
+
+
+        private void ConditionFirstCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            try
+            {
+                switch ((comboBox.SelectedItem.ToString()))
+                {
+                    case "Regex":
+                        ConditionRegexTextBox.Visible = true;
+                        break;
+                    case "Character Count":
+                        ConditionRegexTextBox.Visible = false;
+                        break;
+
+                }
             }
             catch (Exception)
             {
@@ -65,49 +104,48 @@ namespace SIF.Visualization.Excel
             }
            
         }
-        private void ConditionFirstCombobox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch((ConditionFirstComboBox.SelectedItem.ToString()))
-            {
-                case "Regex":
-                    //myControl = new UserControl();
-                    //myControl.Controls.Add(new TextBox());
-
-                    ConditionRegexTextBox.Visible = true;
-                    break;
-                case "Character Count":
-                    ConditionRegexTextBox.Visible = false;
-                    break;
-                
-            }
-        }
-
-        private void ChooseAreaCheckbox_Changed(object sender, EventArgs e)
-        {
-            // Excel Cell Area Select
-        }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             // TODO: Sendet die eingegeben Daten ab
-            try
-            {
-                pointX = NewConditionButton.Location.X;
-                pointY = NewConditionButton.Location.Y;
-                for (int i = 0; i < 5; i++)
-                {
-                    TextBox a = new TextBox();
-                    a.Text = "Passt so";
-                    a.Location = new Point(pointX, pointY);
-                    ConditionPanel.Controls.Add(a);
-                    ConditionPanel.Show();
-                    pointY += 20;
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(e.ToString());
-            }
+
         }
+
+        private void ChooseCellButton_Click(object sender, EventArgs e)
+        {
+            CellPickerWF cellpicker = new CellPickerWF();
+        }
+
+
+        public System.Windows.Forms.ComboBox AddNewComboBox()
+        {
+            pointX = NewConditionButton.Location.X;
+            pointY = NewConditionButton.Location.Y;
+            ComboBox[] firstBoxes = new ComboBox[row];
+            firstBoxes[row] = new ComboBox();
+
+            this.ConditionPanel.Controls.Add(firstBoxes[row]);
+
+            firstBoxes[row].Text = "Choose Condition";
+            firstBoxes[row].Items.AddRange(new object[] {
+                    "Regex",
+                    "Character Count",
+                    "Includes"});
+            firstBoxes[row].Visible = true;
+            firstBoxes[row].Size = new System.Drawing.Size(105, 21);
+            firstBoxes[row].Location = new System.Drawing.Point(pointX, pointY);
+            firstBoxes[row].Text = "Bedingung wählen";
+            firstBoxes[row].DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            firstBoxes[row].FormattingEnabled = true;
+            firstBoxes[row].ImeMode = System.Windows.Forms.ImeMode.Disable;
+            firstBoxes[row].TabIndex = 10;
+
+            NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 30);
+            row++;
+            return firstBoxes[row];
+        }
+
+
+        
     }
 }
