@@ -30,7 +30,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            
             this.CancelButton = new System.Windows.Forms.Button();
             this.ConfirmButton = new System.Windows.Forms.Button();
             this.FilterConditionLabel = new System.Windows.Forms.Label();
@@ -42,7 +41,6 @@
             this.RuleNameTextBox = new System.Windows.Forms.TextBox();
             this.NewConditionButton = new System.Windows.Forms.Button();
             this.ConditionPanel = new System.Windows.Forms.Panel();
-            this.ConditionFirstComboBox = new System.Windows.Forms.ComboBox();
             this.ConditionRegexTextBox = new System.Windows.Forms.TextBox();
             this.RuleAreaLabel = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -157,35 +155,18 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConditionPanel.AutoSize = true;
-            this.ConditionPanel.Controls.Add(this.ConditionFirstComboBox);
             this.ConditionPanel.Controls.Add(this.ConditionRegexTextBox);
             this.ConditionPanel.Controls.Add(this.NewConditionButton);
             this.ConditionPanel.Controls.Add(this.ConditionLabel);
             this.ConditionPanel.Location = new System.Drawing.Point(4, 136);
             this.ConditionPanel.Name = "ConditionPanel";
-            this.ConditionPanel.Size = new System.Drawing.Size(448, 167);
+            this.ConditionPanel.Size = new System.Drawing.Size(448, 170);
             this.ConditionPanel.TabIndex = 13;
-            // 
-            // ConditionFirstComboBox
-            // 
-            this.ConditionFirstComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ConditionFirstComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ConditionFirstComboBox.FormattingEnabled = true;
-            this.ConditionFirstComboBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.ConditionFirstComboBox.Items.AddRange(new object[] {
-            "Regex",
-            "Character Count"});
-            this.ConditionFirstComboBox.Location = new System.Drawing.Point(239, 13);
-            this.ConditionFirstComboBox.Name = "ConditionFirstComboBox";
-            this.ConditionFirstComboBox.Size = new System.Drawing.Size(105, 21);
-            this.ConditionFirstComboBox.TabIndex = 10;
-            this.ConditionFirstComboBox.Visible = false;
-            //this.ConditionFirstComboBox.SelectedIndexChanged += new System.EventHandler(this.ConditionFirstCombobox_SelectedIndexChanged);
             // 
             // ConditionRegexTextBox
             // 
             this.ConditionRegexTextBox.AllowDrop = true;
-            this.ConditionRegexTextBox.Location = new System.Drawing.Point(239, 40);
+            this.ConditionRegexTextBox.Location = new System.Drawing.Point(22, 147);
             this.ConditionRegexTextBox.Name = "ConditionRegexTextBox";
             this.ConditionRegexTextBox.Size = new System.Drawing.Size(100, 20);
             this.ConditionRegexTextBox.TabIndex = 11;
@@ -265,7 +246,6 @@
         private System.Windows.Forms.TextBox RuleNameTextBox;
         private System.Windows.Forms.Button NewConditionButton;
         private System.Windows.Forms.Panel ConditionPanel;
-        private System.Windows.Forms.ComboBox ConditionFirstComboBox;
         private System.Windows.Forms.TextBox ConditionRegexTextBox;
         private System.Windows.Forms.Label RuleAreaLabel;
         private System.Windows.Forms.TextBox textBox1;

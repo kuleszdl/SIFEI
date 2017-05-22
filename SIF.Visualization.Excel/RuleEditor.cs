@@ -20,7 +20,10 @@ namespace SIF.Visualization.Excel
         Microsoft.Office.Interop.Excel.Worksheet ws;
         int pointX;
         int pointY;
-        int row = 2;
+        int row = 0;
+        private ComboBox firstConditionBox;
+        private TextBox regexBox;
+        string[] conditions = { "Regex", "Character Count"};
         
 
         public RuleEditor()
@@ -37,46 +40,61 @@ namespace SIF.Visualization.Excel
         private void NewConditionButton_Click(object sender, EventArgs e)
         {
             try
-            {   
-               // AddNewComboBox();
-
-                int pointX = NewConditionButton.Location.X;
-                int pointY = NewConditionButton.Location.Y;
-                int rows = 0;
-                ComboBox FirstBox = new ComboBox();
-                FirstBox.Text = "Bedingung wählen";
-                FirstBox.Location = new Point(pointX, pointY);
-                ConditionPanel.Controls.Add(FirstBox);
-
-                FirstBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-                FirstBox.FormattingEnabled = true;
-                FirstBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-                FirstBox.Items.AddRange(new object[] {
-            "Regex",
-            "Character Count"});
-                FirstBox.Name = "ConditionFirstComboBox" + rows.ToString();
-                FirstBox.Size = new System.Drawing.Size(105, 21);
-                FirstBox.TabIndex = 10;
-                FirstBox.Visible = true;
-                FirstBox.SelectedIndexChanged += ConditionFirstCombobox_SelectedIndexChanged;
-
-                ConditionPanel.Show();
-                NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 30);
-                
+            {
+                AddNewRow();
             }
             catch (Exception)
             {
                 MessageBox.Show(e.ToString());
             }
+        }
+        public void AddNewRow()
+        {
+            pointX = NewConditionButton.Location.X;
+            pointY = NewConditionButton.Location.Y;
+
+            firstConditionBox = new ComboBox();
+            ConditionPanel.Controls.Add(firstConditionBox);
+            firstConditionBox.Location = new Point(pointX, pointY);
+            firstConditionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            firstConditionBox.FormattingEnabled = true;
+            firstConditionBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            firstConditionBox.Items.AddRange(conditions);
+            firstConditionBox.Name = row.ToString();
+            firstConditionBox.Size = new System.Drawing.Size(105, 21);
+            firstConditionBox.TabIndex = 10;
+            firstConditionBox.Visible = true;
+            firstConditionBox.SelectedIndexChanged += ConditionFirstCombobox_SelectedIndexChanged;
+
+            
+            
+            NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 30);
 
 
+            row++;
         }
 
+        public void AddRegexBox(int currentRow)
+        {
+            regexBox = new TextBox();
+            ConditionPanel.Controls.Add(regexBox);
+            regexBox.Location = new Point(245, 11+currentRow*30); //Hardcoded, eventuell ändern
+            regexBox.Text = "insert Regex String";
+            regexBox.Name = "regex" + currentRow.ToString();
+            regexBox.Visible = true;
+        }
         
 
         private void FirstBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(e.ToString());
+            }
             
                 
         }
@@ -84,16 +102,22 @@ namespace SIF.Visualization.Excel
 
         private void ConditionFirstCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var comboBox = sender as ComboBox;
             try
             {
-                switch ((comboBox.SelectedItem.ToString()))
+                var comboBox = sender as ComboBox;
+                string currentRow = comboBox.Name;
+                string selected = comboBox.SelectedItem.ToString();
+
+                switch (selected)
                 {
                     case "Regex":
                         ConditionRegexTextBox.Visible = true;
+                        MessageBox.Show(comboBox.Name); // debug
+                        AddRegexBox(Int32.Parse(currentRow));
                         break;
                     case "Character Count":
                         ConditionRegexTextBox.Visible = false;
+                        MessageBox.Show(comboBox.Name); // debug
                         break;
 
                 }
@@ -108,6 +132,7 @@ namespace SIF.Visualization.Excel
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             // TODO: Sendet die eingegeben Daten ab
+            MessageBox.Show(regexBox.Name);
 
         }
 
@@ -116,36 +141,13 @@ namespace SIF.Visualization.Excel
             CellPickerWF cellpicker = new CellPickerWF();
         }
 
-
-        public System.Windows.Forms.ComboBox AddNewComboBox()
+        private void ConditionFirstComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            pointX = NewConditionButton.Location.X;
-            pointY = NewConditionButton.Location.Y;
-            ComboBox[] firstBoxes = new ComboBox[row];
-            firstBoxes[row] = new ComboBox();
 
-            this.ConditionPanel.Controls.Add(firstBoxes[row]);
-
-            firstBoxes[row].Text = "Choose Condition";
-            firstBoxes[row].Items.AddRange(new object[] {
-                    "Regex",
-                    "Character Count",
-                    "Includes"});
-            firstBoxes[row].Visible = true;
-            firstBoxes[row].Size = new System.Drawing.Size(105, 21);
-            firstBoxes[row].Location = new System.Drawing.Point(pointX, pointY);
-            firstBoxes[row].Text = "Bedingung wählen";
-            firstBoxes[row].DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            firstBoxes[row].FormattingEnabled = true;
-            firstBoxes[row].ImeMode = System.Windows.Forms.ImeMode.Disable;
-            firstBoxes[row].TabIndex = 10;
-
-            NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 30);
-            row++;
-            return firstBoxes[row];
         }
 
 
+       
         
     }
 }
