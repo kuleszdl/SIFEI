@@ -23,6 +23,8 @@ namespace SIF.Visualization.Excel
         int row = 0;
         private ComboBox firstConditionBox;
         private TextBox regexBox;
+        private TextBox characterBox;
+        private Button deleteRow;
         string[] conditions = { "Regex", "Character Count"};
         
 
@@ -74,7 +76,7 @@ namespace SIF.Visualization.Excel
             row++;
         }
 
-        public void AddRegexBox(int currentRow)
+        private void AddRegexBox(int currentRow)
         {
             regexBox = new TextBox();
             ConditionPanel.Controls.Add(regexBox);
@@ -82,6 +84,16 @@ namespace SIF.Visualization.Excel
             regexBox.Text = "insert Regex String";
             regexBox.Name = "regex" + currentRow.ToString();
             regexBox.Visible = true;
+        }
+
+        private void AddCharacterBox(int p)
+        {
+            characterBox = new TextBox();
+            ConditionPanel.Controls.Add(characterBox);
+            characterBox.Location = new Point(245, 11 + p * 30); //Hardcoded, eventuell ändern
+            characterBox.Text = "insert maximum Character Count";
+            characterBox.Name = "character" + p.ToString();
+            characterBox.Visible = true;
         }
         
 
@@ -111,13 +123,11 @@ namespace SIF.Visualization.Excel
                 switch (selected)
                 {
                     case "Regex":
-                        ConditionRegexTextBox.Visible = true;
-                        MessageBox.Show(comboBox.Name); // debug
+                        //remove other Boxes
                         AddRegexBox(Int32.Parse(currentRow));
                         break;
                     case "Character Count":
-                        ConditionRegexTextBox.Visible = false;
-                        MessageBox.Show(comboBox.Name); // debug
+                        AddCharacterBox(Int32.Parse(currentRow));
                         break;
 
                 }
@@ -128,6 +138,8 @@ namespace SIF.Visualization.Excel
             }
            
         }
+
+        
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
@@ -141,13 +153,7 @@ namespace SIF.Visualization.Excel
             CellPickerWF cellpicker = new CellPickerWF();
         }
 
-        private void ConditionFirstComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-
-       
+               
         
     }
 }

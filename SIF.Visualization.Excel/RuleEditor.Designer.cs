@@ -41,7 +41,6 @@
             this.RuleNameTextBox = new System.Windows.Forms.TextBox();
             this.NewConditionButton = new System.Windows.Forms.Button();
             this.ConditionPanel = new System.Windows.Forms.Panel();
-            this.ConditionRegexTextBox = new System.Windows.Forms.TextBox();
             this.RuleAreaLabel = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
@@ -155,23 +154,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConditionPanel.AutoSize = true;
-            this.ConditionPanel.Controls.Add(this.ConditionRegexTextBox);
             this.ConditionPanel.Controls.Add(this.NewConditionButton);
             this.ConditionPanel.Controls.Add(this.ConditionLabel);
             this.ConditionPanel.Location = new System.Drawing.Point(4, 136);
             this.ConditionPanel.Name = "ConditionPanel";
             this.ConditionPanel.Size = new System.Drawing.Size(448, 170);
             this.ConditionPanel.TabIndex = 13;
-            // 
-            // ConditionRegexTextBox
-            // 
-            this.ConditionRegexTextBox.AllowDrop = true;
-            this.ConditionRegexTextBox.Location = new System.Drawing.Point(22, 147);
-            this.ConditionRegexTextBox.Name = "ConditionRegexTextBox";
-            this.ConditionRegexTextBox.Size = new System.Drawing.Size(100, 20);
-            this.ConditionRegexTextBox.TabIndex = 11;
-            this.ConditionRegexTextBox.Text = "Regex String";
-            this.ConditionRegexTextBox.Visible = false;
             // 
             // RuleAreaLabel
             // 
@@ -246,7 +234,6 @@
         private System.Windows.Forms.TextBox RuleNameTextBox;
         private System.Windows.Forms.Button NewConditionButton;
         private System.Windows.Forms.Panel ConditionPanel;
-        private System.Windows.Forms.TextBox ConditionRegexTextBox;
         private System.Windows.Forms.Label RuleAreaLabel;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ColorDialog colorDialog1;
