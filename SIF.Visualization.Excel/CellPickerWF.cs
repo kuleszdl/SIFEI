@@ -46,7 +46,10 @@ namespace SIF.Visualization.Excel
             ws.SelectionChange -= ws_SelectionChange;
         }
 
-
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         public Microsoft.Office.Interop.Excel.Worksheet workbook { get; set; }
     }
