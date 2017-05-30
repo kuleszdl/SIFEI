@@ -24,7 +24,7 @@ namespace SIF.Visualization.Excel
         private ComboBox firstConditionBox;
         private TextBox regexBox;
         private TextBox characterBox;
-        private Button deleteRow;
+        private Button deleteRowButton;
         string[] conditions = { "Regex", "Character Count"};
         
 
@@ -68,12 +68,29 @@ namespace SIF.Visualization.Excel
             firstConditionBox.Visible = true;
             firstConditionBox.SelectedIndexChanged += ConditionFirstCombobox_SelectedIndexChanged;
 
-            
+            deleteRowButton = new Button();
+            ConditionPanel.Controls.Add(deleteRowButton);
+            deleteRowButton.Location = new Point(pointX + 223, pointY);
+            deleteRowButton.Name = "delete" + row.ToString();
+            deleteRowButton.Size = new System.Drawing.Size(94, 23);
+            deleteRowButton.Text = "delete this Row";
+            deleteRowButton.Click += deleteRowButton_Click;
             
             NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 30);
 
-
             row++;
+        }
+
+        private void deleteRowButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch
+            {
+                MessageBox.Show(e.ToString());
+            }
         }
 
         private void AddRegexBox(int currentRow)
@@ -81,7 +98,7 @@ namespace SIF.Visualization.Excel
             regexBox = new TextBox();
             ConditionPanel.Controls.Add(regexBox);
             regexBox.Location = new Point(245, 11+currentRow*30); //Hardcoded, eventuell ändern
-            regexBox.Text = "insert Regex String";
+            regexBox.Text = "insert Regex";
             regexBox.Name = "regex" + currentRow.ToString();
             regexBox.Visible = true;
         }
@@ -108,7 +125,6 @@ namespace SIF.Visualization.Excel
                 MessageBox.Show(e.ToString());
             }
             
-                
         }
 
 
@@ -123,7 +139,7 @@ namespace SIF.Visualization.Excel
                 switch (selected)
                 {
                     case "Regex":
-                        //remove other Boxes
+                        //RemoveOtherBoxes();
                         AddRegexBox(Int32.Parse(currentRow));
                         break;
                     case "Character Count":
