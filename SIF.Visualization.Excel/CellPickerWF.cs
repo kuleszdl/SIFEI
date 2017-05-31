@@ -1,9 +1,10 @@
 ﻿using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Tools.Excel;
+using Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using SIF.Visualization.Excel.Core;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -23,15 +24,13 @@ namespace SIF.Visualization.Excel
         {
             InitializeComponent();
             ShowDialog();
+
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            //Workbook wb = Excel.CurrentWorkbook;
-            // ws = wb.activeSheet;
-            //ws = Globals.ThisAddIn.Application.ActiveSheet;
-           // ws.SelectionChange += ws_SelectionChange;
+            
 
         }
 
@@ -52,5 +51,10 @@ namespace SIF.Visualization.Excel
         }
 
         public Microsoft.Office.Interop.Excel.Worksheet workbook { get; set; }
+
+        private void ConfirmButton_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
