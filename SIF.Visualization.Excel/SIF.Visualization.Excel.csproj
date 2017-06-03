@@ -207,6 +207,11 @@
       <DependentUpon>CellPickerWF.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\CellManager.cs" />
+    <Compile Include="Core\RuleCellType.cs" />
+    <Compile Include="Core\Rules\Rule.cs" />
+    <Compile Include="Core\Rules\RuleCells.cs" />
+    <Compile Include="Core\Rules\RuleCreator.cs" />
+    <Compile Include="Core\Rules\Valuetype.cs" />
     <Compile Include="Core\ScenarioCellType.cs" />
     <Compile Include="Core\SanityCellType.cs" />
     <Compile Include="Core\ViolationState.cs" />
@@ -220,6 +225,13 @@
     </Compile>
     <Compile Include="RuleEditor.Designer.cs">
       <DependentUpon>RuleEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RuleDataField.cs" />
+    <Compile Include="View\RuleDataFieldContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\RuleDataFieldContainer.Designer.cs">
+      <DependentUpon>RuleDataFieldContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ScenarioDetailDialog.xaml.cs">
       <DependentUpon>ScenarioDetailDialog.xaml</DependentUpon>
@@ -370,6 +382,7 @@
       <DependentUpon>SidebarContainer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,4 +1,5 @@
 ﻿using SIF.Visualization.Excel.Core.Scenarios;
+using SIF.Visualization.Excel.Core.Rules;
 using System;
 using System.Xml.Linq;
 
@@ -15,7 +16,7 @@ namespace SIF.Visualization.Excel.Core {
             PolicyConfigurationModel settings = n.PolicySettings;
             var wrapper = new XElement("inspectionRequest");
             var root = new XElement("policies");
-
+            
             XElement dynamicPolicy = CreateScenarioElements(n);
             if (dynamicPolicy != null) {
                 root.Add(dynamicPolicy);
@@ -24,6 +25,12 @@ namespace SIF.Visualization.Excel.Core {
             XElement sanityChecks = CreateSanityElements(n);
             if (sanityChecks != null) {
                 root.Add(sanityChecks);
+            }
+
+            XElement rulePolicy = CreateRuleElements(n);
+            if (rulePolicy != null)
+            {
+                root.Add(rulePolicy);
             }
 
             if (settings.ReadingDirection) {
@@ -90,6 +97,24 @@ namespace SIF.Visualization.Excel.Core {
             return null;
         }
 
+        private XElement CreateRuleElements(WorkbookModel n)
+        {
+            if (n.Rules.Count > 0)
+            {
+                XElement rulesPolicy = new XElement("RulesTestingPolicy");
+                var rules = new XElement("rules");
+                foreach (var rule in n.Rules)
+                {
+                    rules.Add(Visit(rule));
+                }
+                rulesPolicy.Add(rules);
+                return rulesPolicy;
+            }
+                return null;
+            
+        }
+
+       
         private XElement createErrorInCells(PolicyConfigurationModel settings) {
             XElement eic = new XElement("errorContainingCellPolicy");
             return eic;
@@ -200,6 +225,35 @@ namespace SIF.Visualization.Excel.Core {
             scenario.Add(CreateConditions(n));
 
             return scenario;
+        }
+
+        public object Visit(Rule n)
+        {
+            var rule = new XElement("rule");
+
+            rule.Add(new XElement("name", n.Title));
+
+            rule.Add(CreateRuleData(n));
+
+            return rule;
+        }
+
+        private XElement CreateRuleData(Rule n)
+        {
+            var inputs = new XElement("inputs");
+            foreach (var test in n.RuleData)
+            {
+                if (test.Value.Equals(""))
+                {
+                    var inputElement = new XElement("input");
+                    inputElement.Add(new XElement("target", test.Target));
+                    inputElement.Add(new XElement("type", test.Type.ToString()));
+                    inputElement.Add(new XElement("value", test.Value));
+                    inputs.Add(inputElement);
+                }
+                
+            }
+            return inputs;
         }
 
         private XElement CreateInputs(Scenario n) {

@@ -1,4 +1,5 @@
-﻿using SIF.Visualization.Excel.Core.Scenarios;
+﻿using SIF.Visualization.Excel.Core.Rules;
+using SIF.Visualization.Excel.Core.Scenarios;
 using SIF.Visualization.Excel.Helper;
 using SIF.Visualization.Excel.Properties;
 using System;
@@ -23,6 +24,7 @@ namespace SIF.Visualization.Excel.Core {
             public const Int32 ArchivedViolations = 3;
             public const Int32 ScenarioCells = 4;
             public const Int32 Scenarios = 5;
+            public const Int32 Rules = 6;
         }
 
         /// <summary>
@@ -62,10 +64,12 @@ namespace SIF.Visualization.Excel.Core {
         private string _title;
         private Dictionary<string, Cell> _cells = new Dictionary<string, Cell>();
         private ObservableCollection<Cell> _scenarioCells;
+        private ObservableCollection<Cell> _ruleCells;
         private ObservableCollection<Cell> _sanityCells;
         private ObservableCollection<Violation> _violations;
         private ObservableCollection<Violation> _visibleViolations;
         private ObservableCollection<Scenario> _scenarios;
+        private ObservableCollection<Rule> _rules;
         private Boolean _sanityWarnings = true;
         private Int32 _selectedTabIndex = 0;
         private string _selectedTabLabel = "undefined";
@@ -108,6 +112,22 @@ namespace SIF.Visualization.Excel.Core {
         }
 
         /// <summary>
+        /// Gets or sets the cells with rules of the current document.
+        /// </summary
+        public ObservableCollection<Cell> RuleCells
+        {
+            get
+            {
+                if (_ruleCells == null) _ruleCells = new ObservableCollection<Cell>();
+                return _ruleCells;
+            }
+            set
+            {
+                SetProperty(ref _ruleCells, value);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the scenario cells of the current document.
         /// </summary>
         public ObservableCollection<Cell> ScenarioCells {
@@ -117,6 +137,8 @@ namespace SIF.Visualization.Excel.Core {
             }
             set { SetProperty(ref _scenarioCells, value); }
         }
+
+        
 
         /// <summary>
         /// Gets or sets the intermediate cells of the current document.
@@ -158,6 +180,20 @@ namespace SIF.Visualization.Excel.Core {
                     _visibleViolations = new ObservableCollection<Violation>();
                 }
                 return _visibleViolations;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Rules of the current document.
+        /// </summary>
+        public ObservableCollection<Rule> Rules {
+            get {
+                if (_rules == null) _rules = new ObservableCollection<Rule>();
+                return _rules;
+            }
+            set
+            {
+                SetProperty(ref _rules, value);
             }
         }
 
@@ -247,6 +283,20 @@ namespace SIF.Visualization.Excel.Core {
                 }
             } catch (Exception) {
                 error += "Loading the violations failed.\n";
+            }
+
+            try
+            {
+                XElement violationsElement = XMLPartManager.Instance.LoadXMLPart(this, "ArrayofRules");
+                if (violationsElement != null)
+                {
+                    _rules = XMLPartManager.Instance.Deserialize<ObservableCollection<Rule>>(violationsElement.ToString());
+                    NotifyPropertyChanged("Rules");
+                }
+            }
+            catch (Exception)
+            {
+                error += "Loading the Rules failed.\n";
             }
 
             try {
@@ -368,6 +418,10 @@ namespace SIF.Visualization.Excel.Core {
             // Save the policy configuration
             XElement policyElement = XElement.Parse(XMLPartManager.Instance.Serialize<PolicyConfigurationModel>(_policySettings));
             XMLPartManager.Instance.SaveXMLPart(this, policyElement, "PolicyConfigurationModel");
+
+            // Save the rules
+            XElement ruleElement = XElement.Parse(XMLPartManager.Instance.Serialize<ObservableCollection<Rule>>(_rules));
+            XMLPartManager.Instance.SaveXMLPart(this, ruleElement, "ArrayofRules");
         }
 
 
@@ -556,6 +610,7 @@ namespace SIF.Visualization.Excel.Core {
             VisibleViolations.Clear();
             ScenarioCells.Clear();
             SanityCells.Clear();
+            RuleCells.Clear();
 
             ViolationState state;
             switch (SelectedTabIndex) {
@@ -581,6 +636,10 @@ namespace SIF.Visualization.Excel.Core {
                     break;
                 case Tabs.Scenarios:
                     SelectedTabLabel = Properties.Resources.tl_Sidebar_Scenarios;
+                    state = ViolationState.NONE;
+                    break;
+                case Tabs.Rules:
+                    SelectedTabLabel = Properties.Resources.tl_Sidebar_Rules;
                     state = ViolationState.NONE;
                     break;
                 default:

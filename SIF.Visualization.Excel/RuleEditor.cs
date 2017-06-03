@@ -66,7 +66,7 @@ namespace SIF.Visualization.Excel
             firstConditionBox.Size = new System.Drawing.Size(105, 21);
             firstConditionBox.TabIndex = 10;
             firstConditionBox.Visible = true;
-            firstConditionBox.SelectedIndexChanged += ConditionFirstCombobox_SelectedIndexChanged;
+            firstConditionBox.SelectedIndexChanged += FirstConditionBox_SelectedIndexChanged;
 
             deleteRowButton = new Button();
             ConditionPanel.Controls.Add(deleteRowButton);
@@ -114,21 +114,7 @@ namespace SIF.Visualization.Excel
         }
         
 
-        private void FirstBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(e.ToString());
-            }
-            
-        }
-
-
-        private void ConditionFirstCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FirstConditionBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {

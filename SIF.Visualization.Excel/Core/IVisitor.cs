@@ -1,4 +1,5 @@
 ﻿using SIF.Visualization.Excel.Core.Scenarios;
+using SIF.Visualization.Excel.Core.Rules;
 
 namespace SIF.Visualization.Excel.Core
 {
@@ -15,6 +16,8 @@ namespace SIF.Visualization.Excel.Core
         object Visit(ConditionData n);
 
         object Visit(Cell n);
+
+        object Visit(Rule n);
 
     }
 }
