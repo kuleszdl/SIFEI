@@ -2,15 +2,13 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using SIF.Visualization.Excel.Core;
+using SIF.Visualization.Excel.Core.Rules;
+using SIF.Visualization.Excel.Helper;
 using SIF.Visualization.Excel.Properties;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 
 namespace SIF.Visualization.Excel
@@ -35,10 +33,6 @@ namespace SIF.Visualization.Excel
         }
 
 
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
         private void NewConditionButton_Click(object sender, EventArgs e)
         {
             try
@@ -146,12 +140,27 @@ namespace SIF.Visualization.Excel
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             // TODO: Sendet die eingegeben Daten ab
-            MessageBox.Show(regexBox.Name);
+            
+            string ruleTitle = RuleNameTextBox.Text;
+            var newRule = RuleCreator.Instance.End();
 
+            if (newRule != null)
+            {
+                DataModel.Instance.CurrentWorkbook.Rules.Add(newRule);
+            }
+            
+
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            RuleCreator.Instance.End();
+            Close();
         }
 
         private void ChooseCellButton_Click(object sender, EventArgs e)
         {
+            // siehe DefineResultCell Event in Ribbon
             CellPickerWF cellpicker = new CellPickerWF();
         }
 

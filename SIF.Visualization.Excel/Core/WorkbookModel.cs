@@ -432,6 +432,7 @@ namespace SIF.Visualization.Excel.Core {
         void Workbook_BeforeClose(ref bool cancel) {
             ShouldScanAfterSave = true;
             SIF.Visualization.Excel.Core.Scenarios.ScenarioUICreator.Instance.End();
+            SIF.Visualization.Excel.Core.Rules.RuleCreator.Instance.End();
             // Deletes all controls that might be in the cells (markers)
             foreach (MSExcel.Worksheet worksheet in Workbook.Worksheets) {
                 var worksheet2 = Globals.Factory.GetVstoObject(worksheet);
@@ -662,6 +663,9 @@ namespace SIF.Visualization.Excel.Core {
                 }
                 if (cell.SanityCellType != SanityCellType.NONE) {
                     SanityCells.Add(cell);
+                }
+                if (cell.RuleCellType == RuleCellType.CELL) {
+                    RuleCells.Add(cell);
                 }
             }
             NotifyPropertyChanged("UnreadViolationCount");

@@ -209,7 +209,7 @@
     <Compile Include="Core\CellManager.cs" />
     <Compile Include="Core\RuleCellType.cs" />
     <Compile Include="Core\Rules\Rule.cs" />
-    <Compile Include="Core\Rules\RuleCells.cs" />
+    <Compile Include="Core\Rules\RuleData.cs" />
     <Compile Include="Core\Rules\RuleCreator.cs" />
     <Compile Include="Core\Rules\Valuetype.cs" />
     <Compile Include="Core\ScenarioCellType.cs" />
@@ -226,7 +226,9 @@
     <Compile Include="RuleEditor.Designer.cs">
       <DependentUpon>RuleEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\RuleDataField.cs" />
+    <Compile Include="View\RuleDataField.xaml.cs">
+      <DependentUpon>RuleDataField.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RuleDataFieldContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -418,6 +420,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomInputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RuleDataField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

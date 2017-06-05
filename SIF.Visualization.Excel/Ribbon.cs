@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Tools.Ribbon;
 using SIF.Visualization.Excel.Core;
+using SIF.Visualization.Excel.Core.Rules;
 using SIF.Visualization.Excel.Core.Scenarios;
 using SIF.Visualization.Excel.Helper;
 using SIF.Visualization.Excel.Properties;
@@ -443,8 +444,9 @@ namespace SIF.Visualization.Excel {
 
         private void RuleEdit_Click(object sender, RibbonControlEventArgs e)
         {
+            string title = null;
             RuleEditor ruleeditor = new RuleEditor();
-            
+            RuleCreator.Instance.Start(DataModel.Instance.CurrentWorkbook, title);
         }
     }
 }

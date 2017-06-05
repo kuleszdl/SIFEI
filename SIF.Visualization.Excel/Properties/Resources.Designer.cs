@@ -395,6 +395,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No Rules created. Please create a new Rule with the Rule Editor. ähnelt.
+        /// </summary>
+        public static string tl_NoRulesSide {
+            get {
+                return ResourceManager.GetString("tl_NoRulesSide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Scaning not avaliable right now ähnelt.
         /// </summary>
         public static string tl_NoScanPossible {
@@ -797,6 +806,24 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_Ribbon_Title {
             get {
                 return ResourceManager.GetString("tl_Ribbon_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Deletes this Rule ähnelt.
+        /// </summary>
+        public static string tl_RulePane_DeleteRuleTooltip {
+            get {
+                return ResourceManager.GetString("tl_RulePane_DeleteRuleTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Opens the Rule Editor to edit this Rule ähnelt.
+        /// </summary>
+        public static string tl_RulePane_EditRuleTooltip {
+            get {
+                return ResourceManager.GetString("tl_RulePane_EditRuleTooltip", resourceCulture);
             }
         }
         

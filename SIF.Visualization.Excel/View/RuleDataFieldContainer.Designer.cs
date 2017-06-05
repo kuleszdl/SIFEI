@@ -28,11 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.ruleDataFieldHost = new System.Windows.Forms.Integration.ElementHost();
+            this.ruleDataField = new RuleDataField();
+            this.SuspendLayout();
+            // 
+            // createScenarioDataFieldHost
+            // 
+            this.ruleDataFieldHost.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ruleDataFieldHost.Name = "scenarioDataFieldHost";
+            this.ruleDataFieldHost.TabIndex = 0;
+            this.ruleDataFieldHost.Text = "elementHost";
+            this.ruleDataFieldHost.Child = this.ruleDataField;
+            // 
+            // CreateScenarioDataFieldContainer
+            //
+            this.Controls.Add(this.ruleDataFieldHost);
+            this.Name = "RuleDataFieldContainer";
+            this.ResumeLayout(false);
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Text = "RuleDataFieldContainer";
         }
 
         #endregion
+
+        private System.Windows.Forms.Integration.ElementHost ruleDataFieldHost;
+        private RuleDataField ruleDataField;
     }
 }

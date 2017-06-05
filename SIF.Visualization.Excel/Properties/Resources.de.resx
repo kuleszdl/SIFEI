@@ -478,4 +478,7 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   <data name="tl_Sidebar_Rules" xml:space="preserve">
     <value>Regeln</value>
   </data>
+  <data name="tl_NoRulesSide" xml:space="preserve">
+    <value>Keine Regeln vorhanden. Bitter erstellen Sie eine neue Regel.</value>
+  </data>
 </root>

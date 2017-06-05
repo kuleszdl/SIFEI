@@ -127,9 +127,9 @@
             this.RuleNameLabel.AutoSize = true;
             this.RuleNameLabel.Location = new System.Drawing.Point(12, 13);
             this.RuleNameLabel.Name = "RuleNameLabel";
-            this.RuleNameLabel.Size = new System.Drawing.Size(84, 13);
+            this.RuleNameLabel.Size = new System.Drawing.Size(38, 13);
             this.RuleNameLabel.TabIndex = 7;
-            this.RuleNameLabel.Text = "Name (optional):";
+            this.RuleNameLabel.Text = "Name:";
             // 
             // RuleNameTextBox
             // 

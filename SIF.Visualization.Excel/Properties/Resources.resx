@@ -544,4 +544,13 @@ Try scanning the file again and if this doesn't help close and open the file aga
   <data name="tl_Sidebar_Rules" xml:space="preserve">
     <value>Rules</value>
   </data>
+  <data name="tl_NoRulesSide" xml:space="preserve">
+    <value>No Rules created. Please create a new Rule with the Rule Editor.</value>
+  </data>
+  <data name="tl_RulePane_DeleteRuleTooltip" xml:space="preserve">
+    <value>Deletes this Rule</value>
+  </data>
+  <data name="tl_RulePane_EditRuleTooltip" xml:space="preserve">
+    <value>Opens the Rule Editor to edit this Rule</value>
+  </data>
 </root>

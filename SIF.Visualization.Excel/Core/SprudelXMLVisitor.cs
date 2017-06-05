@@ -240,12 +240,12 @@ namespace SIF.Visualization.Excel.Core {
 
         private XElement CreateRuleData(Rule n)
         {
-            var inputs = new XElement("inputs");
+            var inputs = new XElement("ruleData");
             foreach (var test in n.RuleData)
             {
                 if (test.Value.Equals(""))
                 {
-                    var inputElement = new XElement("input");
+                    var inputElement = new XElement("ruleData");
                     inputElement.Add(new XElement("target", test.Target));
                     inputElement.Add(new XElement("type", test.Type.ToString()));
                     inputElement.Add(new XElement("value", test.Value));

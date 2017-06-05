@@ -25,6 +25,7 @@ namespace SIF.Visualization.Excel.Core
         private string rowKey;
         private ScenarioCellType scenarioCellType = ScenarioCellType.NONE;
         private SanityCellType sanityCellType = SanityCellType.NONE;
+        private RuleCellType ruleCellType = RuleCellType.CELL;
         private bool isSelected;
         private Workbook workbook;
         private Worksheet worksheet;
@@ -141,6 +142,18 @@ namespace SIF.Visualization.Excel.Core
         public SanityCellType SanityCellType {
             get { return sanityCellType; }
             set { SetProperty(ref sanityCellType, value); }
+        }
+
+        public RuleCellType RuleCellType
+        {
+            get
+            {
+                return ruleCellType;
+            }
+            set
+            {
+                SetProperty(ref ruleCellType, value);
+            }
         }
 
         [XmlIgnore]

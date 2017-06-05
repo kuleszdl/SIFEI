@@ -23,7 +23,7 @@ namespace SIF.Visualization.Excel.Core.Rules
         {
             get
             {
-                if (Instance == null)
+                if (instance == null)
                 {
                     lock (syncRoot)
                     {
@@ -69,27 +69,73 @@ namespace SIF.Visualization.Excel.Core.Rules
             }
 
             //set focus 
-            //if (containers.Count > 0)
-            //{
-            //    foreach (var c in containers)
-            //    {
-            //        c.RuleDataField.RegisternextFocusField(c.RuleDataField);
-            //    }
-            //    containers.First().RuleDataField.SetFocus();
-            //}
+            if (containers.Count > 0)
+            {
+                foreach (var c in containers)
+                {
+                    c.RuleDataField.RegisterNextFocusField(c.RuleDataField);
+                }
+                containers.First().RuleDataField.SetFocus();
+            }
         }
 
         private void createContainer(Cell c, object cellData)
         {
-            //var container = new RuleDataFieldContainer();
-            //container.RuleDataField.DataContext = cellData;
-            //containers.Add(container);
+            var container = new RuleDataFieldContainer();
+            container.RuleDataField.DataContext = cellData;
+            containers.Add(container);
 
-            //var currentWorksheet = workbook.Sheets[c.WorksheetKey] as Worksheet;
-            //var vsto = Globals.Factory.GetVstoObject(currentWorksheet);
+            var currentWorksheet = workbook.Sheets[c.WorksheetKey] as Worksheet;
+            var vsto = Globals.Factory.GetVstoObject(currentWorksheet);
 
-            //var control = vsto.Controls.AddControl(container, currentWorksheet.Range[c.ShortLocation], Guid.NewGuid().ToString());
+            var control = vsto.Controls.AddControl(container, currentWorksheet.Range[c.ShortLocation], Guid.NewGuid().ToString());
         }
         #endregion
+
+        public int GetEmptyRuleDataCount()
+        {
+            if (newRule == null)
+                return 0;
+            else
+                return (from q in newRule.RuleData where q.Value.Equals("") select q).ToList().Count;
+        }
+
+        public Rule End()
+        {
+            if (newRule == null)
+                return null;
+            //delete data context
+            foreach (var c in containers)
+            {
+                c.RuleDataField.DataContext = null;
+            }
+
+            //delete controls
+            foreach (Worksheet ws in workbook.Worksheets)
+            {
+                var vsto = Globals.Factory.GetVstoObject(ws);
+                for (int i = vsto.Controls.Count - 1; i >= 0; i--)
+                {
+                    var control = vsto.Controls[i];
+                    if (control.GetType() == typeof(RuleDataFieldContainer))
+                        vsto.Controls.Remove(control);
+                }
+            }
+
+            var resultRule = newRule;
+
+            lock (syncRule)
+            {
+                containers.Clear();
+                workbook = null;
+                newRule = null;
+
+                if (resultRule.RuleData.Count == 0)
+                {
+                    return null;
+                }
+                return resultRule;
+            }
+        }
     }
 }

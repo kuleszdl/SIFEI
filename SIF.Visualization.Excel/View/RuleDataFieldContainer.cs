@@ -6,20 +6,20 @@ namespace SIF.Visualization.Excel.View
 {
     public partial class RuleDataFieldContainer : UserControl
     {
-    //    public RuleDataField RuleDataField
-    //    {
-    //        get
-    //        {
-    //            if (ruleDataFieldHost != null && RuleDataFieldHost.Child != null)
-    //            {
-    //                return RuleDataFieldHost.Child as RuleDataField;
-    //            }
-    //            else
-    //            {
-    //                return null;
-    //            }
-    //        }
-    //    }
+        public RuleDataField RuleDataField
+        {
+            get
+            {
+                if (ruleDataFieldHost != null && ruleDataFieldHost.Child != null)
+                {
+                    return ruleDataFieldHost.Child as RuleDataField;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
 
         public RuleDataFieldContainer()
         {
