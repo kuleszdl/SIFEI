@@ -113,6 +113,7 @@
             this.CB_SanityControls = this.Factory.CreateRibbonCheckBox();
             this.RuleEditGroup = this.Factory.CreateRibbonGroup();
             this.tl_Ribbon_AreaRuleEditor = this.Factory.CreateRibbonButton();
+            this.CellPicker = this.Factory.CreateRibbonButton();
             this.inspectionTab.SuspendLayout();
             this.testGroup.SuspendLayout();
             this.viewGroup.SuspendLayout();
@@ -354,6 +355,7 @@
             // RuleEditGroup
             // 
             this.RuleEditGroup.Items.Add(this.tl_Ribbon_AreaRuleEditor);
+            this.RuleEditGroup.Items.Add(this.CellPicker);
             this.RuleEditGroup.Label = "Rule Editor";
             this.RuleEditGroup.Name = "RuleEditGroup";
             // 
@@ -363,6 +365,13 @@
             this.tl_Ribbon_AreaRuleEditor.Name = "tl_Ribbon_AreaRuleEditor";
             this.tl_Ribbon_AreaRuleEditor.ScreenTip = "Opens the Rule Editor";
             this.tl_Ribbon_AreaRuleEditor.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RuleEdit_Click);
+            // 
+            // CellPicker
+            // 
+            this.CellPicker.Label = "Cell Area";
+            this.CellPicker.Name = "CellPicker";
+            this.CellPicker.ScreenTip = "Opens the Rule Editor";
+            this.CellPicker.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.CellPicker_Click);
             // 
             // Ribbon
             // 
@@ -420,6 +429,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox CB_SanityControls;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup RuleEditGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton tl_Ribbon_AreaRuleEditor;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton CellPicker;
     }
 
     partial class ThisRibbonCollection

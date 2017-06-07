@@ -287,10 +287,10 @@ namespace SIF.Visualization.Excel.Core {
 
             try
             {
-                XElement violationsElement = XMLPartManager.Instance.LoadXMLPart(this, "ArrayofRules");
-                if (violationsElement != null)
+                XElement rulesElement = XMLPartManager.Instance.LoadXMLPart(this, "ArrayofRules");
+                if (rulesElement != null)
                 {
-                    _rules = XMLPartManager.Instance.Deserialize<ObservableCollection<Rule>>(violationsElement.ToString());
+                    _rules = XMLPartManager.Instance.Deserialize<ObservableCollection<Rule>>(rulesElement.ToString());
                     NotifyPropertyChanged("Rules");
                 }
             }

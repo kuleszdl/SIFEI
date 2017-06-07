@@ -42,7 +42,7 @@ namespace SIF.Visualization.Excel
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            ws.SelectionChange -= ws_SelectionChange;
+            
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

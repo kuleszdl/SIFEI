@@ -45,7 +45,7 @@
                                     VerticalAlignment="Center" HorizontalAlignment="Right"
                                     BorderThickness="1" Background="Transparent"
                                     > 
-                                <Image Source="{StaticResource Delete_black.png}" Width="15" Height="15" Margin="2 2 2 2" />
+                                <Image Width="15" Height="15" Margin="2 2 2 2" />
                             </Button>
                             <Button x:Name="EditRuleButton"
                                     Margin="5 0 0 0"
@@ -54,7 +54,7 @@
                                     VerticalAlignment="Center" HorizontalAlignment="Right"
                                     BorderThickness="1" Background="Transparent"
                                   >
-                                <Image Source="{StaticResource EditImageSource}" Width="15" Height="15" Margin="2 2 2 2" />
+                                <Image Width="15" Height="15" Margin="2 2 2 2" />
                             </Button>
                         </Grid>
                     </DataTemplate>

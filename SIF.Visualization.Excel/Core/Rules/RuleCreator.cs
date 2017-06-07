@@ -46,7 +46,7 @@ namespace SIF.Visualization.Excel.Core.Rules
         #endregion
 
         #region Methods
-        public void Start(WorkbookModel wb, string ruleTitle)
+        public void Start(WorkbookModel wb, string ruleTitle, int rows)
         {
             if (newRule != null)
                 return;
@@ -58,38 +58,48 @@ namespace SIF.Visualization.Excel.Core.Rules
                     //Date?
                 };
             }
-            workbook = wb.Workbook;
+            
+            
+                     
+            for (int i = rows; i > 0; i --)
+            {
+                // condition type check 
+                // transform into regex
+                 newRule.Conditions.Add(condition);
+            }
+                
+                
+                    
+                    
+                
+                    
+            
+
             var workingList = wb.RuleCells.ToList();
+
+            
 
             foreach (var c in DataModel.Instance.CurrentWorkbook.RuleCells)
             {
                 RuleData ruleData = new RuleData(c.Location);
-                createContainer(c, ruleData);
+            //  registerContainer(c, ruleData);
                 newRule.RuleData.Add(ruleData);
             }
 
-            //set focus 
-            if (containers.Count > 0)
-            {
-                foreach (var c in containers)
-                {
-                    c.RuleDataField.RegisterNextFocusField(c.RuleDataField);
-                }
-                containers.First().RuleDataField.SetFocus();
-            }
+            
+
+            
+
         }
 
-        private void createContainer(Cell c, object cellData)
+        private void registerContainer(Cell c, RuleData ruleData)
         {
-            var container = new RuleDataFieldContainer();
-            container.RuleDataField.DataContext = cellData;
-            containers.Add(container);
-
             var currentWorksheet = workbook.Sheets[c.WorksheetKey] as Worksheet;
             var vsto = Globals.Factory.GetVstoObject(currentWorksheet);
 
-            var control = vsto.Controls.AddControl(container, currentWorksheet.Range[c.ShortLocation], Guid.NewGuid().ToString());
+            
         }
+
         #endregion
 
         public int GetEmptyRuleDataCount()
@@ -104,29 +114,11 @@ namespace SIF.Visualization.Excel.Core.Rules
         {
             if (newRule == null)
                 return null;
-            //delete data context
-            foreach (var c in containers)
-            {
-                c.RuleDataField.DataContext = null;
-            }
-
-            //delete controls
-            foreach (Worksheet ws in workbook.Worksheets)
-            {
-                var vsto = Globals.Factory.GetVstoObject(ws);
-                for (int i = vsto.Controls.Count - 1; i >= 0; i--)
-                {
-                    var control = vsto.Controls[i];
-                    if (control.GetType() == typeof(RuleDataFieldContainer))
-                        vsto.Controls.Remove(control);
-                }
-            }
-
+           
             var resultRule = newRule;
 
             lock (syncRule)
             {
-                containers.Clear();
                 workbook = null;
                 newRule = null;
 
@@ -137,5 +129,7 @@ namespace SIF.Visualization.Excel.Core.Rules
                 return resultRule;
             }
         }
+
+        public Condition condition { get; set; }
     }
 }

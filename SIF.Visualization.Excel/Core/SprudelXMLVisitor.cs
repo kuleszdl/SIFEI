@@ -315,6 +315,11 @@ namespace SIF.Visualization.Excel.Core {
             throw new NotImplementedException();
         }
 
+        public object Visit(Condition n)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #region private class methods

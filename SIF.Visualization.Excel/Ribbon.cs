@@ -444,9 +444,22 @@ namespace SIF.Visualization.Excel {
 
         private void RuleEdit_Click(object sender, RibbonControlEventArgs e)
         {
-            string title = null;
             RuleEditor ruleeditor = new RuleEditor();
-            RuleCreator.Instance.Start(DataModel.Instance.CurrentWorkbook, title);
+            
+        }
+
+        private void CellPicker_Click(object sender, RibbonControlEventArgs e)
+        {
+            RuleCellType cellType = RuleCellType.CELL;
+            var selectedCells = CellManager.Instance.GetSelectedCells();
+
+            foreach (var cell in selectedCells)
+            {
+                cell.RuleCellType = cellType;
+            }
+            DataModel.Instance.CurrentWorkbook.RecalculateViewModel();
+
+
         }
     }
 }

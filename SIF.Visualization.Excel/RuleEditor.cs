@@ -7,8 +7,13 @@ using SIF.Visualization.Excel.Core.Rules;
 using SIF.Visualization.Excel.Helper;
 using SIF.Visualization.Excel.Properties;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data;
 
 
 namespace SIF.Visualization.Excel
@@ -19,11 +24,16 @@ namespace SIF.Visualization.Excel
         int pointX;
         int pointY;
         int row = 0;
+        List<Condition> conditions;
+        
         private ComboBox firstConditionBox;
         private TextBox regexBox;
         private TextBox characterBox;
         private Button deleteRowButton;
-        string[] conditions = { "Regex", "Character Count"};
+        string[] avaibleConditions = { 
+                                  "Regex", 
+                              //    "Character Count"
+                              };
         
 
         public RuleEditor()
@@ -48,14 +58,14 @@ namespace SIF.Visualization.Excel
         {
             pointX = NewConditionButton.Location.X;
             pointY = NewConditionButton.Location.Y;
-
+            
             firstConditionBox = new ComboBox();
             ConditionPanel.Controls.Add(firstConditionBox);
             firstConditionBox.Location = new Point(pointX, pointY);
             firstConditionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             firstConditionBox.FormattingEnabled = true;
             firstConditionBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            firstConditionBox.Items.AddRange(conditions);
+            firstConditionBox.Items.AddRange(avaibleConditions);
             firstConditionBox.Name = row.ToString();
             firstConditionBox.Size = new System.Drawing.Size(105, 21);
             firstConditionBox.TabIndex = 10;
@@ -94,7 +104,7 @@ namespace SIF.Visualization.Excel
             regexBox.Location = new Point(245, 11+currentRow*30); //Hardcoded, eventuell ändern
             regexBox.Text = "insert Regex";
             regexBox.Name = "regex" + currentRow.ToString();
-            regexBox.Visible = true;
+            regexBox.Visible = true;            
         }
 
         private void AddCharacterBox(int p)
@@ -139,22 +149,32 @@ namespace SIF.Visualization.Excel
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            // TODO: Sendet die eingegeben Daten ab
-            
             string ruleTitle = RuleNameTextBox.Text;
-            var newRule = RuleCreator.Instance.End();
-
-            if (newRule != null)
-            {
-                DataModel.Instance.CurrentWorkbook.Rules.Add(newRule);
-            }
             
+            // Get List of Conditions
+            // Check for Rulecells
+            // Startet den Rule Creator 
+            RuleCreator.Instance.Start(DataModel.Instance.CurrentWorkbook, ruleTitle, row);
+
+            try
+            {
+                var newRule = RuleCreator.Instance.End();
+                if (newRule != null)
+                {
+                    DataModel.Instance.CurrentWorkbook.Rules.Add(newRule);
+                }
+            }
+            catch
+            {
+                MessageBox.Show(e.ToString());
+            }
+            Close();
 
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            RuleCreator.Instance.End();
+            //RuleCreator.Instance.End();
             Close();
         }
 

@@ -17,6 +17,8 @@ namespace SIF.Visualization.Excel.Core
 
         object Visit(Cell n);
 
+        //object Visit(Condition n);
+
         object Visit(Rule n);
 
     }
