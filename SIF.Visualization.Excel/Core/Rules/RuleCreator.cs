@@ -71,12 +71,6 @@ namespace SIF.Visualization.Excel.Core.Rules
                 
                     
                     
-                
-                    
-            
-
-            var workingList = wb.RuleCells.ToList();
-
             
 
             foreach (var c in DataModel.Instance.CurrentWorkbook.RuleCells)

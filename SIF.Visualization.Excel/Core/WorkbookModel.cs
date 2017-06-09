@@ -287,7 +287,7 @@ namespace SIF.Visualization.Excel.Core {
 
             try
             {
-                XElement rulesElement = XMLPartManager.Instance.LoadXMLPart(this, "ArrayofRules");
+                XElement rulesElement = XMLPartManager.Instance.LoadXMLPart(this, "ArrayOfRule");
                 if (rulesElement != null)
                 {
                     _rules = XMLPartManager.Instance.Deserialize<ObservableCollection<Rule>>(rulesElement.ToString());
@@ -421,7 +421,7 @@ namespace SIF.Visualization.Excel.Core {
 
             // Save the rules
             XElement ruleElement = XElement.Parse(XMLPartManager.Instance.Serialize<ObservableCollection<Rule>>(_rules));
-            XMLPartManager.Instance.SaveXMLPart(this, ruleElement, "ArrayofRules");
+            XMLPartManager.Instance.SaveXMLPart(this, ruleElement, "ArrayOfRule");
         }
 
 

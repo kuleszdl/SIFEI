@@ -7,7 +7,7 @@ using SIF.Visualization.Excel.Core;
 namespace SIF.Visualization.Excel
 {
     /// <summary>
-    /// The class representing a Dialog to configure the Plocies for which should be checked
+    /// The class representing a Dialog to configure the Policies for which should be checked
     /// </summary>
     public partial class PolicyConfigurationDialog : Form {
 

@@ -25,7 +25,7 @@ namespace SIF.Visualization.Excel.Core
         private string rowKey;
         private ScenarioCellType scenarioCellType = ScenarioCellType.NONE;
         private SanityCellType sanityCellType = SanityCellType.NONE;
-        private RuleCellType ruleCellType = RuleCellType.CELL;
+        private RuleCellType ruleCellType = RuleCellType.NONE;
         private bool isSelected;
         private Workbook workbook;
         private Worksheet worksheet;
