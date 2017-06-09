@@ -444,6 +444,7 @@ namespace SIF.Visualization.Excel {
 
         private void RuleEdit_Click(object sender, RibbonControlEventArgs e)
         {
+            
             RuleEditor ruleeditor = new RuleEditor();
             
         }

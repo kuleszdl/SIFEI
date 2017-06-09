@@ -16,6 +16,7 @@ namespace SIF.Visualization.Excel.Core.Rules
         }
         private ConditionType conditionType;
         private string regexValue;
+        private Rule rule;
 
         #endregion
 

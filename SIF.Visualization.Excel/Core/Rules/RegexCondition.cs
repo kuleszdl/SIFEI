@@ -12,7 +12,7 @@ namespace SIF.Visualization.Excel.Core.Rules
 
         private string regexValue = "";
         private ConditionType type = ConditionType.Regex;
-        private Rule d;
+        
         #endregion
 
         RegexCondition()
@@ -23,10 +23,6 @@ namespace SIF.Visualization.Excel.Core.Rules
                
 
 
-        public void AddtoRule(Rule rule)
-        {
-            
-        }
-
+      
     }
 }

@@ -2,7 +2,7 @@
 {
 
 
-    partial class RuleEditor
+    partial class RuleEditorDataGrid
     {
         /// <summary>
         /// Required designer variable.
@@ -41,18 +41,21 @@
             this.RuleNameTextBox = new System.Windows.Forms.TextBox();
             this.NewConditionButton = new System.Windows.Forms.Button();
             this.ConditionPanel = new System.Windows.Forms.Panel();
+            this.conditionDataGridView = new System.Windows.Forms.DataGridView();
+            this.newRowButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.RuleAreaLabel = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.ChooseCellButton = new System.Windows.Forms.Button();
             this.ConditionPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.conditionDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // CancelButton
             // 
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(627, 457);
+            this.CancelButton.Location = new System.Drawing.Point(453, 542);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 0;
@@ -63,7 +66,7 @@
             // ConfirmButton
             // 
             this.ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ConfirmButton.Location = new System.Drawing.Point(546, 457);
+            this.ConfirmButton.Location = new System.Drawing.Point(372, 542);
             this.ConfirmButton.Name = "ConfirmButton";
             this.ConfirmButton.Size = new System.Drawing.Size(75, 23);
             this.ConfirmButton.TabIndex = 1;
@@ -146,7 +149,7 @@
             this.NewConditionButton.TabIndex = 9;
             this.NewConditionButton.Text = "New Condition";
             this.NewConditionButton.UseVisualStyleBackColor = true;
-            this.NewConditionButton.Click += new System.EventHandler(this.NewConditionButton_Click);
+            this.NewConditionButton.Click += NewConditionButton_Click;
             // 
             // ConditionPanel
             // 
@@ -154,12 +157,31 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConditionPanel.AutoSize = true;
+            this.ConditionPanel.Controls.Add(this.conditionDataGridView);
             this.ConditionPanel.Controls.Add(this.NewConditionButton);
             this.ConditionPanel.Controls.Add(this.ConditionLabel);
             this.ConditionPanel.Location = new System.Drawing.Point(4, 136);
             this.ConditionPanel.Name = "ConditionPanel";
-            this.ConditionPanel.Size = new System.Drawing.Size(701, 342);
+            this.ConditionPanel.Size = new System.Drawing.Size(527, 427);
             this.ConditionPanel.TabIndex = 13;
+            // 
+            // conditionDataGridView
+            // 
+            this.conditionDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.conditionDataGridView.ColumnHeadersVisible = false;
+            this.conditionDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.newRowButton});
+            this.conditionDataGridView.Location = new System.Drawing.Point(128, 40);
+            this.conditionDataGridView.Name = "conditionDataGridView";
+            this.conditionDataGridView.RowHeadersVisible = false;
+            this.conditionDataGridView.Size = new System.Drawing.Size(396, 360);
+            this.conditionDataGridView.TabIndex = 10;
+            this.conditionDataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.conditionDataGridView_EditControlShowing);
+            // 
+            // newRowButton
+            // 
+            this.newRowButton.HeaderText = "+";
+            this.newRowButton.Name = "newRowButton";
             // 
             // RuleAreaLabel
             // 
@@ -192,7 +214,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(714, 492);
+            this.ClientSize = new System.Drawing.Size(540, 577);
             this.Controls.Add(this.ChooseCellButton);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.RuleAreaLabel);
@@ -214,6 +236,7 @@
             this.TopMost = true;
             this.ConditionPanel.ResumeLayout(false);
             this.ConditionPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.conditionDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,6 +261,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button ChooseCellButton;
+        private System.Windows.Forms.DataGridView conditionDataGridView;
+        private System.Windows.Forms.DataGridViewButtonColumn newRowButton;
 
 
 

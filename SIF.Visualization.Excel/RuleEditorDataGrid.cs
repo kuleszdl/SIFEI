@@ -18,7 +18,7 @@ using System.Data;
 
 namespace SIF.Visualization.Excel
 {
-    public partial class RuleEditor : Form
+    public partial class RuleEditorDataGrid : Form
     {
         Microsoft.Office.Interop.Excel.Worksheet ws;
         int pointX;
@@ -37,26 +37,32 @@ namespace SIF.Visualization.Excel
                               };
         
 
-        public RuleEditor()
-        {
-            InitializeComponent();
-            ShowDialog();
-        }
+        //public RuleEditor()
+        //{
+        //    InitializeComponent();
+        //    ShowDialog();
+        //}
 
-        public RuleEditor(System.Data.Rule rule)
-        {
-            // TODO: Anzeige einer vorhandenen Regel
-            InitializeComponent();
-            ShowDialog();
-        }
+        //public RuleEditor(System.Data.Rule rule)
+        //{
+        //    // TODO: Anzeige einer vorhandenen Regel
+        //    InitializeComponent();
+        //    ShowDialog();
+        //}
 
 
         private void NewConditionButton_Click(object sender, EventArgs e)
         {
             try
             {
-                AddNewRow();
-                                
+                //AddNewRow();
+
+                
+                
+               AddNewDataRow();
+                
+                    
+                
             }
             catch (Exception f)
             {
@@ -64,7 +70,26 @@ namespace SIF.Visualization.Excel
             }
         }
 
-             
+        private void AddNewDataRow()
+        {
+            DataGridViewComboBoxColumn firstConditionBox = new DataGridViewComboBoxColumn();
+            
+            firstConditionBox.Items.AddRange(avaibleConditions);
+            firstConditionBox.Name = totalRows.ToString();
+            firstConditionBox.Visible = true;
+            
+            conditionDataGridView.Rows.Add(firstConditionBox);
+            totalRows++;
+        }
+
+        private void conditionDataGridView_EditControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e) { 
+            if (e.Control.GetType() == typeof(DataGridViewComboBoxEditingControl))
+            {
+                ComboBox cmb = (ComboBox)e.Control;
+                cmb.SelectedIndexChanged += new EventHandler(FirstConditionBox_SelectedIndexChanged);
+            }
+        }
+      
         private void FirstConditionBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -78,8 +103,8 @@ namespace SIF.Visualization.Excel
                 {
                     case "Regex":
                         //RemoveOtherBoxes();
-                        AddRegexBox(Int32.Parse(currentRow));
-                        
+                        //AddRegexBox(Int32.Parse(currentRow));
+                        AddDataGridRegexBox(currentRow);
                         break;
                     case "Character Count":
                         AddCharacterBox(Int32.Parse(currentRow));
@@ -94,7 +119,13 @@ namespace SIF.Visualization.Excel
            
         }
 
+        private void AddDataGridRegexBox(object sender)
+        {
+            
+        }
+
         
+
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             string ruleTitle = RuleNameTextBox.Text;
@@ -125,35 +156,21 @@ namespace SIF.Visualization.Excel
 
         private void GetConditions()
         {
-            for (int i = 0; i < totalRows ; i++)
+            for (int i = totalRows; i > 0; i--)
             {
-                CheckConditions(i.ToString());
+
             }
         }
 
         private void CheckConditions(String checkBoxName)
         {
-            foreach (Control control in this.ConditionPanel.Controls)
+            foreach (Control control in this.Controls)
             {
-                switch (control.Text) {
-                    case "Regex":
-                        foreach (Control textBoxControl in this.ConditionPanel.Controls) {
-                            if (textBoxControl.Name == "regex"+checkBoxName)
-                            {
-                                String conditionValue = control.Text;
-                                MessageBox.Show(conditionValue); 
-                            }
-                        }
-                        
-                        break;
-                    case "Character Count":
-                        break;
-
+                if (control.Name == checkBoxName)
+                {
+                    String conditionValue = control.Text;
+                    MessageBox.Show(conditionValue);
                 }
-                   
-
-                    
-                    
             }
         }
 
@@ -166,10 +183,8 @@ namespace SIF.Visualization.Excel
         private void ChooseCellButton_Click(object sender, EventArgs e)
         {
             // siehe DefineResultCell Event in Ribbon
-            //CellPickerWF cellpicker = new CellPickerWF();
-            GetConditions();
+            CellPickerWF cellpicker = new CellPickerWF();
         }
-
         private void AddRegexBox(int currentRow)
         {
             regexBox = new TextBox();

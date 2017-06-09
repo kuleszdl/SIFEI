@@ -223,6 +223,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RuleEditorDataGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RuleEditorDataGrid.Designer.cs">
+      <DependentUpon>RuleEditorDataGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="RuleEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -368,6 +374,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RuleEditorDataGrid.resx">
+      <DependentUpon>RuleEditorDataGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RuleEditor.resx">
       <DependentUpon>RuleEditor.cs</DependentUpon>
