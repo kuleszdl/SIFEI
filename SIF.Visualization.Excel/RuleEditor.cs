@@ -23,14 +23,15 @@ namespace SIF.Visualization.Excel
         Microsoft.Office.Interop.Excel.Worksheet ws;
         int pointX;
         int pointY;
+        int panelX = 128;
+        int panelY = 3;
         int totalRows = 0;
-        
-        
-        
+
         private ComboBox firstConditionBox;
         private TextBox regexBox;
         private TextBox characterBox;
         private Button deleteRowButton;
+        private List<Panel> condiPanels = new List<Panel>();
         string[] avaibleConditions = { 
                                   "Regex", 
                                   "Character Count"
@@ -41,6 +42,7 @@ namespace SIF.Visualization.Excel
         {
             InitializeComponent();
             ShowDialog();
+            
         }
 
         public RuleEditor(System.Data.Rule rule)
@@ -64,12 +66,69 @@ namespace SIF.Visualization.Excel
             }
         }
 
+        public void AddNewRow()
+        {
+            pointX = NewConditionButton.Location.X;
+            pointY = NewConditionButton.Location.Y;
+            totalRows = condiPanels.Count;
+           
+            Panel condiPanel = new Panel();
+            ConditionPanel.Controls.Add(condiPanel);
+            condiPanels.Add(condiPanel);
+            condiPanel.Location = new System.Drawing.Point(panelX, panelY);
+            condiPanel.Name = "panel"+totalRows.ToString();
+            condiPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            condiPanel.Size = new System.Drawing.Size(570, 30);
+            condiPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            condiPanel.Padding = new System.Windows.Forms.Padding(10);
+            panelY = panelY + 35;
+            
+            firstConditionBox = new ComboBox();
+            condiPanel.Controls.Add(firstConditionBox);
+            firstConditionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            firstConditionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+            firstConditionBox.Location = new System.Drawing.Point(5,5);
+            firstConditionBox.Margin = new System.Windows.Forms.Padding(10);
+            firstConditionBox.FormattingEnabled = true;
+            firstConditionBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            firstConditionBox.Items.AddRange(avaibleConditions);
+            firstConditionBox.Name = totalRows.ToString();
+            firstConditionBox.Size = new System.Drawing.Size(105, 21);
+            firstConditionBox.TabIndex = 10;
+            firstConditionBox.Visible = true;
+            firstConditionBox.SelectedIndexChanged += FirstConditionBox_SelectedIndexChanged;
+
+            deleteRowButton = new Button();
+            condiPanel.Controls.Add(deleteRowButton);
+            deleteRowButton.Location = new System.Drawing.Point(500 ,5);
+            deleteRowButton.Name = "delete" + totalRows.ToString();
+            deleteRowButton.Size = new System.Drawing.Size(30, 23);
+            deleteRowButton.Image = global::SIF.Visualization.Excel.Properties.Resources.delete;
+            deleteRowButton.Click += deleteRowButton_Click;
+
+            NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 35);
+
+            totalRows++;
+        }
+
+        private void deleteRowButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var button= sender as Button;
+                var parent = button.Parent as Panel;
+                parent.Dispose();
+            }
+            catch
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
              
         private void FirstConditionBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                
                 var comboBox = sender as ComboBox;
                 string currentRow = comboBox.Name;
                 string selected = comboBox.SelectedItem.ToString();
@@ -78,8 +137,7 @@ namespace SIF.Visualization.Excel
                 {
                     case "Regex":
                         //RemoveOtherBoxes();
-                        AddRegexBox(Int32.Parse(currentRow));
-                        
+                        AddRegexBox(Int32.Parse(currentRow));        
                         break;
                     case "Character Count":
                         AddCharacterBox(Int32.Parse(currentRow));
@@ -92,6 +150,42 @@ namespace SIF.Visualization.Excel
                 MessageBox.Show(f.ToString());
             }
            
+        }
+
+        private void AddRegexBox(int currentRow)
+        {
+            foreach (Panel panel in condiPanels)
+            {
+                if (panel.Name == "panel" + currentRow)
+                {
+                    regexBox = new TextBox();
+                    panel.Controls.Add(regexBox);
+                    regexBox.Location = new System.Drawing.Point(115, 5); //Hardcoded, eventuell ändern
+                    regexBox.Text = "insert Regex";
+                    regexBox.Name = "regex" + currentRow.ToString();
+                    regexBox.Visible = true;
+                }
+                
+            }
+            
+        }
+
+        private void AddCharacterBox(int currentRow)
+        {
+            foreach (Panel panel in condiPanels)
+            {
+                if (panel.Name == "panel" + currentRow)
+                {
+                    characterBox = new TextBox();
+                    panel.Controls.Add(characterBox);
+                    characterBox.Location = new Point(115, 5); //Hardcoded, eventuell ändern
+                    characterBox.Text = "insert maximum Character Count";
+                    characterBox.Name = "character" + currentRow.ToString();
+                    characterBox.Visible = true;
+                }
+                
+            }
+            
         }
 
         
@@ -125,6 +219,7 @@ namespace SIF.Visualization.Excel
 
         private void GetConditions()
         {
+            
             for (int i = 0; i < totalRows ; i++)
             {
                 CheckConditions(i.ToString());
@@ -140,7 +235,7 @@ namespace SIF.Visualization.Excel
                         foreach (Control textBoxControl in this.ConditionPanel.Controls) {
                             if (textBoxControl.Name == "regex"+checkBoxName)
                             {
-                                String conditionValue = control.Text;
+                                String conditionValue = textBoxControl.Text;
                                 MessageBox.Show(conditionValue); 
                             }
                         }
@@ -170,68 +265,11 @@ namespace SIF.Visualization.Excel
             GetConditions();
         }
 
-        private void AddRegexBox(int currentRow)
-        {
-            regexBox = new TextBox();
-            ConditionPanel.Controls.Add(regexBox);
-            regexBox.Location = new Point(245, 11 + currentRow * 30); //Hardcoded, eventuell ändern
-            regexBox.Text = "insert Regex";
-            regexBox.Name = "regex" + currentRow.ToString();
-            regexBox.Visible = true;
-        }
+       
 
-        private void AddCharacterBox(int p)
-        {
-            characterBox = new TextBox();
-            ConditionPanel.Controls.Add(characterBox);
-            characterBox.Location = new Point(245, 11 + p * 30); //Hardcoded, eventuell ändern
-            characterBox.Text = "insert maximum Character Count";
-            characterBox.Name = "character" + p.ToString();
-            characterBox.Visible = true;
-        }
+        
 
-        public void AddNewRow()
-        {
-            pointX = NewConditionButton.Location.X;
-            pointY = NewConditionButton.Location.Y;
-
-            firstConditionBox = new ComboBox();
-            ConditionPanel.Controls.Add(firstConditionBox);
-            firstConditionBox.Location = new Point(pointX, pointY);
-            firstConditionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            firstConditionBox.FormattingEnabled = true;
-            firstConditionBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            firstConditionBox.Items.AddRange(avaibleConditions);
-            firstConditionBox.Name = totalRows.ToString();
-            firstConditionBox.Size = new System.Drawing.Size(105, 21);
-            firstConditionBox.TabIndex = 10;
-            firstConditionBox.Visible = true;
-            firstConditionBox.SelectedIndexChanged += FirstConditionBox_SelectedIndexChanged;
-
-            deleteRowButton = new Button();
-            ConditionPanel.Controls.Add(deleteRowButton);
-            deleteRowButton.Location = new Point(pointX + 223, pointY);
-            deleteRowButton.Name = "delete" + totalRows.ToString();
-            deleteRowButton.Size = new System.Drawing.Size(94, 23);
-            deleteRowButton.Text = "delete this Row";
-            deleteRowButton.Click += deleteRowButton_Click;
-
-            NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 30);
-
-            totalRows++;
-        }
-
-        private void deleteRowButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch
-            {
-                MessageBox.Show(e.ToString());
-            }
-        }
+        
 
                
         

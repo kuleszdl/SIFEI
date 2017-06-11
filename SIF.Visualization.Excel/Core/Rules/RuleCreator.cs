@@ -38,7 +38,6 @@ namespace SIF.Visualization.Excel.Core.Rules
         #endregion
 
         #region Fields
-        private List<RuleDataFieldContainer> containers = new List<RuleDataFieldContainer>();
         private Workbook workbook;
         private Rule newRule;
         private static Object syncRule = new Object();

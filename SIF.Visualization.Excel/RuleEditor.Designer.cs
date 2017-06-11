@@ -45,6 +45,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.ChooseCellButton = new System.Windows.Forms.Button();
+            this.DescriptionLabel = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.ConditionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +54,7 @@
             // 
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(627, 457);
+            this.CancelButton.Location = new System.Drawing.Point(598, 498);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 0;
@@ -63,7 +65,7 @@
             // ConfirmButton
             // 
             this.ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ConfirmButton.Location = new System.Drawing.Point(546, 457);
+            this.ConfirmButton.Location = new System.Drawing.Point(517, 498);
             this.ConfirmButton.Name = "ConfirmButton";
             this.ConfirmButton.Size = new System.Drawing.Size(75, 23);
             this.ConfirmButton.TabIndex = 1;
@@ -116,7 +118,7 @@
             // ConditionLabel
             // 
             this.ConditionLabel.AutoSize = true;
-            this.ConditionLabel.Location = new System.Drawing.Point(8, 16);
+            this.ConditionLabel.Location = new System.Drawing.Point(13, 21);
             this.ConditionLabel.Name = "ConditionLabel";
             this.ConditionLabel.Size = new System.Drawing.Size(65, 13);
             this.ConditionLabel.TabIndex = 6;
@@ -133,9 +135,11 @@
             // 
             // RuleNameTextBox
             // 
+            this.RuleNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RuleNameTextBox.Location = new System.Drawing.Point(132, 13);
             this.RuleNameTextBox.Name = "RuleNameTextBox";
-            this.RuleNameTextBox.Size = new System.Drawing.Size(284, 20);
+            this.RuleNameTextBox.Size = new System.Drawing.Size(541, 20);
             this.RuleNameTextBox.TabIndex = 8;
             // 
             // NewConditionButton
@@ -156,9 +160,9 @@
             this.ConditionPanel.AutoSize = true;
             this.ConditionPanel.Controls.Add(this.NewConditionButton);
             this.ConditionPanel.Controls.Add(this.ConditionLabel);
-            this.ConditionPanel.Location = new System.Drawing.Point(4, 136);
+            this.ConditionPanel.Location = new System.Drawing.Point(4, 182);
             this.ConditionPanel.Name = "ConditionPanel";
-            this.ConditionPanel.Size = new System.Drawing.Size(701, 342);
+            this.ConditionPanel.Size = new System.Drawing.Size(672, 310);
             this.ConditionPanel.TabIndex = 13;
             // 
             // RuleAreaLabel
@@ -172,27 +176,51 @@
             // 
             // textBox1
             // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(132, 41);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(203, 20);
+            this.textBox1.Size = new System.Drawing.Size(460, 20);
             this.textBox1.TabIndex = 15;
             // 
             // ChooseCellButton
             // 
-            this.ChooseCellButton.Location = new System.Drawing.Point(341, 41);
+            this.ChooseCellButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChooseCellButton.Location = new System.Drawing.Point(601, 38);
             this.ChooseCellButton.Name = "ChooseCellButton";
-            this.ChooseCellButton.Size = new System.Drawing.Size(75, 23);
+            this.ChooseCellButton.Size = new System.Drawing.Size(72, 23);
             this.ChooseCellButton.TabIndex = 16;
             this.ChooseCellButton.Text = "Cell Picker";
             this.ChooseCellButton.UseVisualStyleBackColor = true;
             this.ChooseCellButton.Click += new System.EventHandler(this.ChooseCellButton_Click);
             // 
+            // DescriptionLabel
+            // 
+            this.DescriptionLabel.AutoSize = true;
+            this.DescriptionLabel.Location = new System.Drawing.Point(12, 150);
+            this.DescriptionLabel.Name = "DescriptionLabel";
+            this.DescriptionLabel.Size = new System.Drawing.Size(102, 13);
+            this.DescriptionLabel.TabIndex = 17;
+            this.DescriptionLabel.Text = "Regelbeschreibung:";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(132, 137);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(541, 39);
+            this.richTextBox1.TabIndex = 18;
+            this.richTextBox1.Text = "";
+            // 
             // RuleEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(714, 492);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(685, 533);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.DescriptionLabel);
             this.Controls.Add(this.ChooseCellButton);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.RuleAreaLabel);
@@ -238,6 +266,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button ChooseCellButton;
+        private System.Windows.Forms.Label DescriptionLabel;
+        private System.Windows.Forms.RichTextBox richTextBox1;
 
 
 
