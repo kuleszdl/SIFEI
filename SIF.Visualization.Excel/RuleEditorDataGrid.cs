@@ -136,7 +136,7 @@ namespace SIF.Visualization.Excel
 
             // Check for Rulecells
             // Startet den Rule Creator 
-            RuleCreator.Instance.Start(DataModel.Instance.CurrentWorkbook, ruleTitle, totalRows);
+            //RuleCreator.Instance.Start(DataModel.Instance.CurrentWorkbook, ruleTitle, Conditions);
 
             try
             {

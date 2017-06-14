@@ -23,7 +23,7 @@ namespace SIF.Visualization.Excel
         public CellPickerWF()
         {
             InitializeComponent();
-            ShowDialog();
+            Show();
 
         }
 
@@ -33,17 +33,7 @@ namespace SIF.Visualization.Excel
             
 
         }
-
-        void ws_SelectionChange(Microsoft.Office.Interop.Excel.Range Target)
-        {
-            this.textBox1.Text = Target.Address;
-        }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            base.OnClosed(e);
-            
-        }
+               
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -54,7 +44,15 @@ namespace SIF.Visualization.Excel
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
+            RuleCellType cellType = RuleCellType.CELL;
+            var selectedCells = CellManager.Instance.GetSelectedCells();
             
+
+            foreach (var cell in selectedCells)
+            {
+                cell.RuleCellType = cellType;
+            }
+            DataModel.Instance.CurrentWorkbook.RecalculateViewModel();
         }
     }
 }

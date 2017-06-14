@@ -38,14 +38,14 @@ namespace SIF.Visualization.Excel.Core.Rules
         #endregion
 
         #region Fields
-        private Workbook workbook;
+        // private Workbook workbook;
         private Rule newRule;
         private static Object syncRule = new Object();
 
         #endregion
 
         #region Methods
-        public void Start(WorkbookModel wb, string ruleTitle, int rows)
+        public void Start(WorkbookModel wb, string ruleTitle, string description)
         {
             if (newRule != null)
                 return;
@@ -53,47 +53,53 @@ namespace SIF.Visualization.Excel.Core.Rules
             {
                 newRule = new Rule
                 {
-                    Title = ruleTitle
+                    Title = ruleTitle,
+                    Description = description
                     //Date?
                 };
             }
             
             
-                     
-            for (int i = rows; i > 0; i --)
-            {
-                // condition type check 
-                // transform into regex
-                 newRule.Conditions.Add(condition);
-            }
+                    
+            //for (int i = conditions.Count; i > 0; i --)
+            //{
+                
+            //    // transform into regex
+            //     newRule.Conditions.Add(condition);
+            //}
                 
                 
-                    
-                    
-            
-
+                  
             foreach (var c in DataModel.Instance.CurrentWorkbook.RuleCells)
             {
                 RuleData ruleData = new RuleData(c.Location);
-            //  registerContainer(c, ruleData);
                 newRule.RuleData.Add(ruleData);
             }
-
-            
-
-            
-
         }
 
-        private void registerContainer(Cell c, RuleData ruleData)
+        public Rule AddRegexCondition(string value)
         {
-            var currentWorksheet = workbook.Sheets[c.WorksheetKey] as Worksheet;
-            var vsto = Globals.Factory.GetVstoObject(currentWorksheet);
-
-            
+            Condition newCondition;
+            newCondition = new Condition {
+                Type = Condition.ConditionType.Regex,
+                Value = value
+            };
+            newRule.Conditions.Add(newCondition);
+            return newRule;
         }
 
-        #endregion
+        public Rule AddCharacterCondition(string value)
+        {
+            Condition newCondition;
+            newCondition = new Condition {
+                Type = Condition.ConditionType.CharacterCount,
+                Value = value
+            };
+            newRule.Conditions.Add(newCondition);
+            return newRule;
+        }
+
+        
 
         public int GetEmptyRuleDataCount()
         {
@@ -112,7 +118,7 @@ namespace SIF.Visualization.Excel.Core.Rules
 
             lock (syncRule)
             {
-                workbook = null;
+                // workbook = null;
                 newRule = null;
 
                 if (resultRule.RuleData.Count == 0)
@@ -123,6 +129,9 @@ namespace SIF.Visualization.Excel.Core.Rules
             }
         }
 
-        public Condition condition { get; set; }
+        
+        #endregion
+
+        
     }
 }

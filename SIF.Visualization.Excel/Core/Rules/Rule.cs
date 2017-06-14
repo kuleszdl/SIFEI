@@ -12,6 +12,7 @@ namespace SIF.Visualization.Excel.Core.Rules
         #region Fields
         private Guid id;
         private string title;
+        private string description;
         private ObservableCollection<RuleData> ruleData;
         private ObservableCollection<Condition> condition;
         #endregion
@@ -25,6 +26,18 @@ namespace SIF.Visualization.Excel.Core.Rules
             }
             set { 
                 SetProperty(ref title, value); 
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+            set
+            {
+                SetProperty(ref description, value);
             }
         }
 

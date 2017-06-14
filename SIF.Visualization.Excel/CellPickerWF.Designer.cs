@@ -28,21 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.ConfirmButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(322, 20);
-            this.textBox1.TabIndex = 0;
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(259, 38);
+            this.CancelButton.Location = new System.Drawing.Point(157, 49);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 1;
@@ -52,7 +45,7 @@
             // 
             // ConfirmButton
             // 
-            this.ConfirmButton.Location = new System.Drawing.Point(178, 38);
+            this.ConfirmButton.Location = new System.Drawing.Point(12, 49);
             this.ConfirmButton.Name = "ConfirmButton";
             this.ConfirmButton.Size = new System.Drawing.Size(75, 23);
             this.ConfirmButton.TabIndex = 2;
@@ -60,14 +53,23 @@
             this.ConfirmButton.UseVisualStyleBackColor = true;
             this.ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "label1";
+            // 
             // CellPickerWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(346, 75);
+            this.ClientSize = new System.Drawing.Size(244, 84);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.textBox1);
             this.Name = "CellPickerWF";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -82,8 +84,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button ConfirmButton;
+        private System.Windows.Forms.Label label1;
     }
 }

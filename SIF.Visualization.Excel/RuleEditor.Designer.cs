@@ -42,34 +42,36 @@
             this.NewConditionButton = new System.Windows.Forms.Button();
             this.ConditionPanel = new System.Windows.Forms.Panel();
             this.RuleAreaLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.CellAreaBox = new System.Windows.Forms.TextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.ChooseCellButton = new System.Windows.Forms.Button();
             this.DescriptionLabel = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.RuleDescriptionTextBox = new System.Windows.Forms.RichTextBox();
             this.ConditionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // CancelButton
             // 
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CancelButton.AutoSize = true;
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.CancelButton.Location = new System.Drawing.Point(598, 498);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 0;
-            this.CancelButton.Text = "Cancel";
+            this.CancelButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_Cancel;
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // ConfirmButton
             // 
             this.ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ConfirmButton.Location = new System.Drawing.Point(517, 498);
+            this.ConfirmButton.AutoSize = true;
+            this.ConfirmButton.Location = new System.Drawing.Point(496, 498);
             this.ConfirmButton.Name = "ConfirmButton";
-            this.ConfirmButton.Size = new System.Drawing.Size(75, 23);
+            this.ConfirmButton.Size = new System.Drawing.Size(96, 23);
             this.ConfirmButton.TabIndex = 1;
-            this.ConfirmButton.Text = "Create Rule";
+            this.ConfirmButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Confirm;
             this.ConfirmButton.UseVisualStyleBackColor = true;
             this.ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
@@ -90,7 +92,7 @@
             this.FilterRadioButtonAND.Size = new System.Drawing.Size(146, 17);
             this.FilterRadioButtonAND.TabIndex = 3;
             this.FilterRadioButtonAND.TabStop = true;
-            this.FilterRadioButtonAND.Text = "All conditions are satisfied";
+            this.FilterRadioButtonAND.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_FilterConditionAND;
             this.FilterRadioButtonAND.UseVisualStyleBackColor = true;
             // 
             // FilterRadioButtonOR
@@ -101,7 +103,7 @@
             this.FilterRadioButtonOR.Size = new System.Drawing.Size(184, 17);
             this.FilterRadioButtonOR.TabIndex = 4;
             this.FilterRadioButtonOR.TabStop = true;
-            this.FilterRadioButtonOR.Text = "(At least) one condition is satisfied";
+            this.FilterRadioButtonOR.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_FilterConditionOR;
             this.FilterRadioButtonOR.UseVisualStyleBackColor = true;
             // 
             // FilterRadioButtonNONE
@@ -112,13 +114,13 @@
             this.FilterRadioButtonNONE.Size = new System.Drawing.Size(137, 17);
             this.FilterRadioButtonNONE.TabIndex = 5;
             this.FilterRadioButtonNONE.TabStop = true;
-            this.FilterRadioButtonNONE.Text = "No Condition is satisfied";
+            this.FilterRadioButtonNONE.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_FilterConditionNONE;
             this.FilterRadioButtonNONE.UseVisualStyleBackColor = true;
             // 
             // ConditionLabel
             // 
             this.ConditionLabel.AutoSize = true;
-            this.ConditionLabel.Location = new System.Drawing.Point(13, 21);
+            this.ConditionLabel.Location = new System.Drawing.Point(8, 16);
             this.ConditionLabel.Name = "ConditionLabel";
             this.ConditionLabel.Size = new System.Drawing.Size(65, 13);
             this.ConditionLabel.TabIndex = 6;
@@ -127,7 +129,7 @@
             // RuleNameLabel
             // 
             this.RuleNameLabel.AutoSize = true;
-            this.RuleNameLabel.Location = new System.Drawing.Point(12, 13);
+            this.RuleNameLabel.Location = new System.Drawing.Point(12, 16);
             this.RuleNameLabel.Name = "RuleNameLabel";
             this.RuleNameLabel.Size = new System.Drawing.Size(38, 13);
             this.RuleNameLabel.TabIndex = 7;
@@ -148,7 +150,7 @@
             this.NewConditionButton.Name = "NewConditionButton";
             this.NewConditionButton.Size = new System.Drawing.Size(105, 23);
             this.NewConditionButton.TabIndex = 9;
-            this.NewConditionButton.Text = "New Condition";
+            this.NewConditionButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_NewCondition;
             this.NewConditionButton.UseVisualStyleBackColor = true;
             this.NewConditionButton.Click += new System.EventHandler(this.NewConditionButton_Click);
             // 
@@ -168,61 +170,61 @@
             // RuleAreaLabel
             // 
             this.RuleAreaLabel.AutoSize = true;
-            this.RuleAreaLabel.Location = new System.Drawing.Point(12, 44);
+            this.RuleAreaLabel.Location = new System.Drawing.Point(12, 48);
             this.RuleAreaLabel.Name = "RuleAreaLabel";
             this.RuleAreaLabel.Size = new System.Drawing.Size(52, 13);
             this.RuleAreaLabel.TabIndex = 14;
             this.RuleAreaLabel.Text = "Cell Area:";
             // 
-            // textBox1
+            // CellAreaBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(132, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(460, 20);
-            this.textBox1.TabIndex = 15;
+            this.CellAreaBox.Location = new System.Drawing.Point(132, 41);
+            this.CellAreaBox.Name = "CellAreaBox";
+            this.CellAreaBox.Size = new System.Drawing.Size(379, 20);
+            this.CellAreaBox.TabIndex = 15;
             // 
             // ChooseCellButton
             // 
             this.ChooseCellButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChooseCellButton.Location = new System.Drawing.Point(601, 38);
+            this.ChooseCellButton.AutoSize = true;
+            this.ChooseCellButton.Location = new System.Drawing.Point(517, 38);
             this.ChooseCellButton.Name = "ChooseCellButton";
-            this.ChooseCellButton.Size = new System.Drawing.Size(72, 23);
+            this.ChooseCellButton.Size = new System.Drawing.Size(156, 23);
             this.ChooseCellButton.TabIndex = 16;
-            this.ChooseCellButton.Text = "Cell Picker";
+            this.ChooseCellButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_CellPicker;
             this.ChooseCellButton.UseVisualStyleBackColor = true;
             this.ChooseCellButton.Click += new System.EventHandler(this.ChooseCellButton_Click);
             // 
             // DescriptionLabel
             // 
             this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Location = new System.Drawing.Point(12, 150);
+            this.DescriptionLabel.Location = new System.Drawing.Point(12, 149);
             this.DescriptionLabel.Name = "DescriptionLabel";
-            this.DescriptionLabel.Size = new System.Drawing.Size(102, 13);
+            this.DescriptionLabel.Size = new System.Drawing.Size(88, 13);
             this.DescriptionLabel.TabIndex = 17;
-            this.DescriptionLabel.Text = "Regelbeschreibung:";
+            this.DescriptionLabel.Text = "Rule Description:";
             // 
-            // richTextBox1
+            // RuleDescriptionTextBox
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.RuleDescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(132, 137);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(541, 39);
-            this.richTextBox1.TabIndex = 18;
-            this.richTextBox1.Text = "";
+            this.RuleDescriptionTextBox.Location = new System.Drawing.Point(132, 137);
+            this.RuleDescriptionTextBox.Name = "RuleDescriptionTextBox";
+            this.RuleDescriptionTextBox.Size = new System.Drawing.Size(541, 39);
+            this.RuleDescriptionTextBox.TabIndex = 18;
+            
             // 
             // RuleEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(685, 533);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.RuleDescriptionTextBox);
             this.Controls.Add(this.DescriptionLabel);
             this.Controls.Add(this.ChooseCellButton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.CellAreaBox);
             this.Controls.Add(this.RuleAreaLabel);
             this.Controls.Add(this.RuleNameTextBox);
             this.Controls.Add(this.RuleNameLabel);
@@ -263,11 +265,11 @@
         private System.Windows.Forms.Button NewConditionButton;
         private System.Windows.Forms.Panel ConditionPanel;
         private System.Windows.Forms.Label RuleAreaLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox CellAreaBox;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button ChooseCellButton;
         private System.Windows.Forms.Label DescriptionLabel;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox RuleDescriptionTextBox;
 
 
 

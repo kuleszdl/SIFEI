@@ -32,16 +32,18 @@ namespace SIF.Visualization.Excel
         private TextBox characterBox;
         private Button deleteRowButton;
         private List<Panel> condiPanels = new List<Panel>();
+        private Condition[] array;
+        private List<Condition> Conditions;
         string[] avaibleConditions = { 
                                   "Regex", 
-                                  "Character Count"
+                                  global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_CharacterCount
                               };
         
 
         public RuleEditor()
         {
             InitializeComponent();
-            ShowDialog();
+            Show();
             
         }
 
@@ -72,6 +74,7 @@ namespace SIF.Visualization.Excel
             pointY = NewConditionButton.Location.Y;
             totalRows = condiPanels.Count;
            
+            // Creates a new Panel for the new Condition
             Panel condiPanel = new Panel();
             ConditionPanel.Controls.Add(condiPanel);
             condiPanels.Add(condiPanel);
@@ -83,6 +86,7 @@ namespace SIF.Visualization.Excel
             condiPanel.Padding = new System.Windows.Forms.Padding(10);
             panelY = panelY + 35;
             
+            // Creates the main Condition Box
             firstConditionBox = new ComboBox();
             condiPanel.Controls.Add(firstConditionBox);
             firstConditionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -93,24 +97,32 @@ namespace SIF.Visualization.Excel
             firstConditionBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             firstConditionBox.Items.AddRange(avaibleConditions);
             firstConditionBox.Name = totalRows.ToString();
-            firstConditionBox.Size = new System.Drawing.Size(105, 21);
+//            firstConditionBox.Size = new System.Drawing.Size(105, 21);
             firstConditionBox.TabIndex = 10;
             firstConditionBox.Visible = true;
             firstConditionBox.SelectedIndexChanged += FirstConditionBox_SelectedIndexChanged;
 
+            // Creates the delete Button for the Panel
             deleteRowButton = new Button();
             condiPanel.Controls.Add(deleteRowButton);
+            deleteRowButton.Margin = new System.Windows.Forms.Padding(10);
             deleteRowButton.Location = new System.Drawing.Point(500 ,5);
             deleteRowButton.Name = "delete" + totalRows.ToString();
             deleteRowButton.Size = new System.Drawing.Size(30, 23);
             deleteRowButton.Image = global::SIF.Visualization.Excel.Properties.Resources.delete;
             deleteRowButton.Click += deleteRowButton_Click;
 
+            // Moves down newConditionButton 
             NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 35);
 
-            totalRows++;
+            
         }
 
+        /// <summary>
+        /// Gets the panel where the Events was triggered and deletes its content
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deleteRowButton_Click(object sender, EventArgs e)
         {
             try
@@ -125,6 +137,11 @@ namespace SIF.Visualization.Excel
             }
         }
              
+        /// <summary>
+        /// Creates the next Controls, depending on the Selection of the main Box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FirstConditionBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -160,9 +177,10 @@ namespace SIF.Visualization.Excel
                 {
                     regexBox = new TextBox();
                     panel.Controls.Add(regexBox);
-                    regexBox.Location = new System.Drawing.Point(115, 5); //Hardcoded, eventuell ändern
+                    regexBox.Location = new System.Drawing.Point(130, 5); //Hardcoded, eventuell ändern
                     regexBox.Text = "insert Regex";
                     regexBox.Name = "regex" + currentRow.ToString();
+                    regexBox.Margin = new System.Windows.Forms.Padding(10);
                     regexBox.Visible = true;
                 }
                 
@@ -178,7 +196,7 @@ namespace SIF.Visualization.Excel
                 {
                     characterBox = new TextBox();
                     panel.Controls.Add(characterBox);
-                    characterBox.Location = new Point(115, 5); //Hardcoded, eventuell ändern
+                    characterBox.Location = new Point(130, 5); //Hardcoded, eventuell ändern
                     characterBox.Text = "insert maximum Character Count";
                     characterBox.Name = "character" + currentRow.ToString();
                     characterBox.Visible = true;
@@ -193,13 +211,14 @@ namespace SIF.Visualization.Excel
         {
             string ruleTitle = RuleNameTextBox.Text;
             
-            // Get List of Conditions
-            GetConditions();
-            
-
             // Check for Rulecells
             // Startet den Rule Creator 
-            RuleCreator.Instance.Start(DataModel.Instance.CurrentWorkbook, ruleTitle, totalRows);
+            RuleCreator.Instance.Start(DataModel.Instance.CurrentWorkbook, RuleNameTextBox.Text, ruleTitle);
+
+            for (int i = 0; i < condiPanels.Count; i++)
+            {
+                CheckConditions(i.ToString());
+            }
 
             try
             {
@@ -217,39 +236,46 @@ namespace SIF.Visualization.Excel
 
         }
 
-        private void GetConditions()
-        {
-            
-            for (int i = 0; i < totalRows ; i++)
-            {
-                CheckConditions(i.ToString());
-            }
-        }
 
         private void CheckConditions(String checkBoxName)
         {
-            foreach (Control control in this.ConditionPanel.Controls)
+            foreach (Control panel in this.ConditionPanel.Controls)
             {
-                switch (control.Text) {
-                    case "Regex":
-                        foreach (Control textBoxControl in this.ConditionPanel.Controls) {
-                            if (textBoxControl.Name == "regex"+checkBoxName)
-                            {
-                                String conditionValue = textBoxControl.Text;
-                                MessageBox.Show(conditionValue); 
-                            }
+                if (panel.Name == "panel" + checkBoxName)
+                {
+                    foreach (Control box in panel.Controls)
+                    {
+                        switch (box.Text)
+                        {
+                            case "Regex":
+                                foreach (Control textBoxControl in panel.Controls)
+                                {
+                                    if (textBoxControl.Name == "regex" + checkBoxName)
+                                    {
+                                        RuleCreator.Instance.AddRegexCondition(textBoxControl.Text);
+                                        // Condition anfügen MessageBox.Show(conditionValue);
+                                    }
+                                }
+
+                                break;
+                            case "Character Count":
+                            case "Gesamtanzahl Zeichen":
+                                foreach (Control textBoxControl in panel.Controls)
+                                {
+                                    if (textBoxControl.Name == "character" + checkBoxName)
+                                    {
+                                        RuleCreator.Instance.AddCharacterCondition(textBoxControl.Text);
+                                        // Condition anfügen MessageBox.Show(conditionValue);
+                                    }
+                                }
+                                break;
                         }
-                        
-                        break;
-                    case "Character Count":
-                        break;
-
+                    }
+                    
                 }
-                   
-
-                    
-                    
             }
+                
+            
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -261,8 +287,8 @@ namespace SIF.Visualization.Excel
         private void ChooseCellButton_Click(object sender, EventArgs e)
         {
             // siehe DefineResultCell Event in Ribbon
-            //CellPickerWF cellpicker = new CellPickerWF();
-            GetConditions();
+            CellPickerWF cellpicker = new CellPickerWF();
+            //GetConditions();
         }
 
        
