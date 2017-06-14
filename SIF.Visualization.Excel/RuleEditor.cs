@@ -32,8 +32,6 @@ namespace SIF.Visualization.Excel
         private TextBox characterBox;
         private Button deleteRowButton;
         private List<Panel> condiPanels = new List<Panel>();
-        private Condition[] array;
-        private List<Condition> Conditions;
         string[] avaibleConditions = { 
                                   "Regex", 
                                   global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_CharacterCount
@@ -156,6 +154,7 @@ namespace SIF.Visualization.Excel
                         //RemoveOtherBoxes();
                         AddRegexBox(Int32.Parse(currentRow));        
                         break;
+                    case "Gesamtanzahl Zeichen":
                     case "Character Count":
                         AddCharacterBox(Int32.Parse(currentRow));
                         break;
@@ -286,9 +285,8 @@ namespace SIF.Visualization.Excel
 
         private void ChooseCellButton_Click(object sender, EventArgs e)
         {
-            // siehe DefineResultCell Event in Ribbon
             CellPickerWF cellpicker = new CellPickerWF();
-            //GetConditions();
+            
         }
 
        

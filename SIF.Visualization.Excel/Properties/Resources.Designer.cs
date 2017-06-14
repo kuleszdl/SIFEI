@@ -258,6 +258,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        /// </summary>
+        public static string tl_Cancel {
+            get {
+                return ResourceManager.GetString("tl_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cell definitions ähnelt.
         /// </summary>
         public static string tl_CellDefinitions {
@@ -281,6 +290,24 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_CellErrorInfo_PossibleSolution {
             get {
                 return ResourceManager.GetString("tl_CellErrorInfo_PossibleSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Confirm ähnelt.
+        /// </summary>
+        public static string tl_CellPicker_Confirm {
+            get {
+                return ResourceManager.GetString("tl_CellPicker_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please ‪select the Cell area on the spreadsheet where the Rule should be applied. ähnelt.
+        /// </summary>
+        public static string tl_CellPicker_Text {
+            get {
+                return ResourceManager.GetString("tl_CellPicker_Text", resourceCulture);
             }
         }
         
@@ -578,14 +605,23 @@ namespace SIF.Visualization.Excel.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Rule Editor ähnelt.
         /// </summary>
-        public static string tl_Ribbon_AreaRuleEditor {
+        public static string tl_Ribbon_AreaRule_RuleEditor {
             get {
-                return ResourceManager.GetString("tl_Ribbon_AreaRuleEditor", resourceCulture);
+                return ResourceManager.GetString("tl_Ribbon_AreaRule_RuleEditor", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rules ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaRule_Title {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaRule_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Opens the Rule Editor for a new Rule ähnelt.
         /// </summary>
         public static string tl_Ribbon_AreaRuleEditor_Tooltip {
             get {
@@ -806,6 +842,114 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_Ribbon_Title {
             get {
                 return ResourceManager.GetString("tl_Ribbon_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Choose Rule application area ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_CellPicker {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_CellPicker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Condition(s): ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Condition {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Condition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Character Count ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Condition_CharacterCount {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Condition_CharacterCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create new Rule ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Confirm {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Trigger when: ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_FilterCondition {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_FilterCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All conditions are satisfied ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_FilterConditionAND {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_FilterConditionAND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No Condition is satisfied ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_FilterConditionNONE {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_FilterConditionNONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die (At least) one condition is satisfied ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_FilterConditionOR {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_FilterConditionOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New Condition ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_NewCondition {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_NewCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cell Area: ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_RuleArea {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_RuleArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rule Description: ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_RuleDescription {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_RuleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rule Editor ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Title {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Title", resourceCulture);
             }
         }
         

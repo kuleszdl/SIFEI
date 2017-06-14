@@ -532,11 +532,11 @@ Try scanning the file again and if this doesn't help close and open the file aga
   <data name="violations" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\icons\violations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tl_Ribbon_AreaRuleEditor" xml:space="preserve">
+  <data name="tl_Ribbon_AreaRule_RuleEditor" xml:space="preserve">
     <value>Rule Editor</value>
   </data>
   <data name="tl_Ribbon_AreaRuleEditor_Tooltip" xml:space="preserve">
-    <value />
+    <value>Opens the Rule Editor for a new Rule</value>
   </data>
   <data name="tl_Rules" xml:space="preserve">
     <value>Rules</value>
@@ -552,5 +552,53 @@ Try scanning the file again and if this doesn't help close and open the file aga
   </data>
   <data name="tl_RulePane_EditRuleTooltip" xml:space="preserve">
     <value>Opens the Rule Editor to edit this Rule</value>
+  </data>
+  <data name="tl_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="tl_Ribbon_AreaRule_Title" xml:space="preserve">
+    <value>Rules</value>
+  </data>
+  <data name="tl_RuleEditor_CellPicker" xml:space="preserve">
+    <value>Choose Rule application area</value>
+  </data>
+  <data name="tl_RuleEditor_Condition" xml:space="preserve">
+    <value>Condition(s):</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_CharacterCount" xml:space="preserve">
+    <value>Character Count</value>
+  </data>
+  <data name="tl_RuleEditor_Confirm" xml:space="preserve">
+    <value>Create new Rule</value>
+  </data>
+  <data name="tl_RuleEditor_FilterCondition" xml:space="preserve">
+    <value>Trigger when:</value>
+  </data>
+  <data name="tl_RuleEditor_FilterConditionAND" xml:space="preserve">
+    <value>All conditions are satisfied</value>
+  </data>
+  <data name="tl_RuleEditor_FilterConditionNONE" xml:space="preserve">
+    <value>No Condition is satisfied</value>
+  </data>
+  <data name="tl_RuleEditor_FilterConditionOR" xml:space="preserve">
+    <value>(At least) one condition is satisfied</value>
+  </data>
+  <data name="tl_RuleEditor_NewCondition" xml:space="preserve">
+    <value>New Condition</value>
+  </data>
+  <data name="tl_RuleEditor_RuleArea" xml:space="preserve">
+    <value>Cell Area:</value>
+  </data>
+  <data name="tl_RuleEditor_RuleDescription" xml:space="preserve">
+    <value>Rule Description:</value>
+  </data>
+  <data name="tl_CellPicker_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="tl_CellPicker_Text" xml:space="preserve">
+    <value>Please ‪select the Cell area on the spreadsheet where the Rule should be applied.</value>
+  </data>
+  <data name="tl_RuleEditor_Title" xml:space="preserve">
+    <value>Rule Editor</value>
   </data>
 </root>

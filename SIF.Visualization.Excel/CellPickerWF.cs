@@ -18,8 +18,6 @@ namespace SIF.Visualization.Excel
 {
     public partial class CellPickerWF : Form
     {
-        //Excel.WorkSheet ws;
-        Microsoft.Office.Interop.Excel.Worksheet ws;         
         public CellPickerWF()
         {
             InitializeComponent();
@@ -27,20 +25,10 @@ namespace SIF.Visualization.Excel
 
         }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            
-
-        }
-               
-
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }
-
-        public Microsoft.Office.Interop.Excel.Worksheet workbook { get; set; }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
@@ -53,6 +41,7 @@ namespace SIF.Visualization.Excel
                 cell.RuleCellType = cellType;
             }
             DataModel.Instance.CurrentWorkbook.RecalculateViewModel();
+            Close();
         }
     }
 }

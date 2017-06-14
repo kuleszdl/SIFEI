@@ -35,21 +35,23 @@
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(157, 49);
+            this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CancelButton.Location = new System.Drawing.Point(209, 47);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 1;
-            this.CancelButton.Text = "Cancel";
+            this.CancelButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_Cancel;
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // ConfirmButton
             // 
-            this.ConfirmButton.Location = new System.Drawing.Point(12, 49);
+            this.ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ConfirmButton.Location = new System.Drawing.Point(12, 47);
             this.ConfirmButton.Name = "ConfirmButton";
             this.ConfirmButton.Size = new System.Drawing.Size(75, 23);
             this.ConfirmButton.TabIndex = 2;
-            this.ConfirmButton.Text = "Confirm";
+            this.ConfirmButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_CellPicker_Confirm;
             this.ConfirmButton.UseVisualStyleBackColor = true;
             this.ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
@@ -58,18 +60,21 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(272, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.label1.Text = "Please ‪select the Cell area where the Rule should apply.";
             // 
             // CellPickerWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(244, 84);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(296, 82);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.CancelButton);
+            this.MaximizeBox = false;
             this.Name = "CellPickerWF";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

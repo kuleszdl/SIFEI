@@ -82,7 +82,7 @@
             this.FilterConditionLabel.Name = "FilterConditionLabel";
             this.FilterConditionLabel.Size = new System.Drawing.Size(72, 13);
             this.FilterConditionLabel.TabIndex = 2;
-            this.FilterConditionLabel.Text = "Trigger when:";
+            this.FilterConditionLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_FilterCondition;
             // 
             // FilterRadioButtonAND
             // 
@@ -124,7 +124,7 @@
             this.ConditionLabel.Name = "ConditionLabel";
             this.ConditionLabel.Size = new System.Drawing.Size(65, 13);
             this.ConditionLabel.TabIndex = 6;
-            this.ConditionLabel.Text = "Condition(s):";
+            this.ConditionLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition;
             // 
             // RuleNameLabel
             // 
@@ -174,7 +174,7 @@
             this.RuleAreaLabel.Name = "RuleAreaLabel";
             this.RuleAreaLabel.Size = new System.Drawing.Size(52, 13);
             this.RuleAreaLabel.TabIndex = 14;
-            this.RuleAreaLabel.Text = "Cell Area:";
+            this.RuleAreaLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_RuleArea;
             // 
             // CellAreaBox
             // 
@@ -202,7 +202,7 @@
             this.DescriptionLabel.Name = "DescriptionLabel";
             this.DescriptionLabel.Size = new System.Drawing.Size(88, 13);
             this.DescriptionLabel.TabIndex = 17;
-            this.DescriptionLabel.Text = "Rule Description:";
+            this.DescriptionLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_RuleDescription;
             // 
             // RuleDescriptionTextBox
             // 
@@ -240,7 +240,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Create new Rule";
+            this.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Title;
             this.TopMost = true;
             this.ConditionPanel.ResumeLayout(false);
             this.ConditionPanel.PerformLayout();

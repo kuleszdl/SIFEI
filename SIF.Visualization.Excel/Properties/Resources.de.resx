@@ -469,7 +469,7 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   <data name="tl_ScenarioOverview" xml:space="preserve">
     <value>Szenario Übersicht</value>
   </data>
-  <data name="tl_Ribbon_AreaRuleEditor" xml:space="preserve">
+  <data name="tl_Ribbon_AreaRule_RuleEditor" xml:space="preserve">
     <value>Regel Editor</value>
   </data>
   <data name="tl_Rules" xml:space="preserve">
@@ -480,5 +480,53 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   </data>
   <data name="tl_NoRulesSide" xml:space="preserve">
     <value>Keine Regeln vorhanden. Bitter erstellen Sie eine neue Regel.</value>
+  </data>
+  <data name="tl_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="tl_Ribbon_AreaRule_Title" xml:space="preserve">
+    <value>Regeln</value>
+  </data>
+  <data name="tl_RuleEditor_CellPicker" xml:space="preserve">
+    <value>Anwendungsbereich wählen</value>
+  </data>
+  <data name="tl_RuleEditor_Condition" xml:space="preserve">
+    <value>Bedingungen:</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_CharacterCount" xml:space="preserve">
+    <value>Gesamtanzahl Zeichen</value>
+  </data>
+  <data name="tl_RuleEditor_Confirm" xml:space="preserve">
+    <value>Neue Regel erstellen</value>
+  </data>
+  <data name="tl_RuleEditor_FilterCondition" xml:space="preserve">
+    <value>Filterbedingungen:</value>
+  </data>
+  <data name="tl_RuleEditor_FilterConditionAND" xml:space="preserve">
+    <value>Alle Bedingungen sind erfüllt</value>
+  </data>
+  <data name="tl_RuleEditor_FilterConditionNONE" xml:space="preserve">
+    <value>Keine Bedingung ist erfüllt</value>
+  </data>
+  <data name="tl_RuleEditor_FilterConditionOR" xml:space="preserve">
+    <value>(Mindestens) eine Bedingung ist erfüllt</value>
+  </data>
+  <data name="tl_RuleEditor_NewCondition" xml:space="preserve">
+    <value>Neue Bedingung</value>
+  </data>
+  <data name="tl_RuleEditor_RuleArea" xml:space="preserve">
+    <value>Anwendungsbereich:</value>
+  </data>
+  <data name="tl_RuleEditor_RuleDescription" xml:space="preserve">
+    <value>Regelbeschreibung:</value>
+  </data>
+  <data name="tl_CellPicker_Confirm" xml:space="preserve">
+    <value>Bestätigen</value>
+  </data>
+  <data name="tl_CellPicker_Text" xml:space="preserve">
+    <value>Bitte wählen sie den Zellenbereich in der Arbeitsmappe aus, auf den die Regel angewendet werden soll.</value>
+  </data>
+  <data name="tl_RuleEditor_Title" xml:space="preserve">
+    <value>Regel Editor</value>
   </data>
 </root>
