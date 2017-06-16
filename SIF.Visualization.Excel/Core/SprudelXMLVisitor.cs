@@ -101,7 +101,7 @@ namespace SIF.Visualization.Excel.Core {
         {
             if (n.Rules.Count > 0)
             {
-                XElement rulesPolicy = new XElement("RulesTestingPolicy");
+                XElement rulesPolicy = new XElement("customRulesPolicy");
                 var rules = new XElement("rules");
                 foreach (var rule in n.Rules)
                 {
@@ -234,18 +234,19 @@ namespace SIF.Visualization.Excel.Core {
             rule.Add(new XElement("name", n.Title));
 
             rule.Add(CreateRuleData(n));
+            rule.Add(CreateRuleCondition(n));
 
             return rule;
         }
 
         private XElement CreateRuleData(Rule n)
         {
-            var inputs = new XElement("ruleData");
+            var inputs = new XElement("ruleCells");
             foreach (var test in n.RuleData)
             {
                 if (test.Value.Equals(""))
                 {
-                    var inputElement = new XElement("ruleData");
+                    var inputElement = new XElement("ruleCell");
                     inputElement.Add(new XElement("target", test.Target));
                     inputElement.Add(new XElement("type", test.Type.ToString()));
                     inputElement.Add(new XElement("value", test.Value));
@@ -255,6 +256,20 @@ namespace SIF.Visualization.Excel.Core {
             }
             return inputs;
         }
+
+        private XElement CreateRuleCondition(Rule n)
+        {
+            var inputs = new XElement("ruleConditions");
+            foreach (var test in n.Conditions) {
+                var inputElement = new XElement("ruleCondition");
+                inputElement.Add(new XElement("conditionType", test.Type.ToString()));
+                inputElement.Add(new XElement("conditionValue", test.Value.ToString()));
+                inputs.Add(inputElement);
+            }
+            return inputs;
+        }
+
+
 
         private XElement CreateInputs(Scenario n) {
             var inputs = new XElement("inputs");

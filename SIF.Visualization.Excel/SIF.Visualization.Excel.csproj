@@ -209,7 +209,6 @@
     <Compile Include="Core\CellManager.cs" />
     <Compile Include="Core\RuleCellType.cs" />
     <Compile Include="Core\Rules\Condition.cs" />
-    <Compile Include="Core\Rules\RegexCondition.cs" />
     <Compile Include="Core\Rules\Rule.cs" />
     <Compile Include="Core\Rules\RuleCreator - Kopieren.cs" />
     <Compile Include="Core\Rules\RuleData.cs" />

@@ -16,8 +16,7 @@ namespace SIF.Visualization.Excel.Core.Rules
             CharacterCount
         }
         private ConditionType type = ConditionType.NONE;
-        private int characterCount = 0;
-        private string regex = "";
+        private string conditionValue;
         private Rule rule;
 
         public ConditionType Type
@@ -26,49 +25,25 @@ namespace SIF.Visualization.Excel.Core.Rules
             set { SetProperty(ref type, value); }
         }
 
-        public int CharacterCount
-        {
-            get { return characterCount;  }
-            set { SetProperty(ref characterCount, value);  }
-        }
-
-        public string Regex
-        {
-            get { return regex; }
-            set { SetProperty(ref regex, value);  }
-        }
-
+        
         public string Value
         {
             get
             {
                 switch (type)
                 {
-                    case ConditionType.Regex: return regex.ToString();
-                    case ConditionType.CharacterCount: return characterCount.ToString();
+                    case ConditionType.Regex: return conditionValue;
+                    case ConditionType.CharacterCount: return conditionValue.ToString();
                     default: return "";
                 }
             }
             set
             {
-                int parsedIntValue;
-                if (Int32.TryParse(value, out parsedIntValue))
-                {
-                    CharacterCount = parsedIntValue;
-                    Type = ConditionType.CharacterCount;
-                }
-                else
-                {
-                    Regex = value;
-                    Type = ConditionType.Regex;
-                }
+                SetProperty(ref conditionValue, value);
                 NotifyPropertyChanged();
             }
         }
         #endregion
 
-        public void AddRegexCondition (ConditionType type, string value) {
-
-        }
     }
 }
