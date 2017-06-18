@@ -30,7 +30,7 @@ namespace SIF.Visualization.Excel {
         /// <param name="e"></param>
         private void scanButton_Click(object sender, RibbonControlEventArgs e) {
             if (!AllowedToScan()) return;
-            if (DataModel.Instance.CurrentWorkbook.PolicySettings.hasManualScans() || DataModel.Instance.CurrentWorkbook.Scenarios.Count > 0) {
+            if (DataModel.Instance.CurrentWorkbook.PolicySettings.hasManualScans() || DataModel.Instance.CurrentWorkbook.Scenarios.Count > 0 || DataModel.Instance.CurrentWorkbook.Rules.Count > 0) {
                 DataModel.Instance.CurrentWorkbook.Inspect();
             } else {
                 ScanHelper.ScanUnsuccessful(Resources.tl_Ribbon_MessageNoPolicies);

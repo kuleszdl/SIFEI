@@ -44,8 +44,9 @@
                                     Grid.Column="1"
                                     VerticalAlignment="Center" HorizontalAlignment="Right"
                                     BorderThickness="1" Background="Transparent"
+                                    Click="SidebarDeleteRuleButton_Click"
                                     > 
-                                <Image Width="15" Height="15" Margin="2 2 2 2" />
+                                <Image Width="15" Height="15" Margin="2 2 2 2" Source="/SIF.Visualization.Excel;component/Resources/Icons/Delete_black.png" />
                             </Button>
                             <Button x:Name="EditRuleButton"
                                     Margin="5 0 0 0"
@@ -53,8 +54,9 @@
                                     Grid.Column="2"
                                     VerticalAlignment="Center" HorizontalAlignment="Right"
                                     BorderThickness="1" Background="Transparent"
+                                    Click="SidebarEditRuleButton_Click"
                                   >
-                                <Image Width="15" Height="15" Margin="2 2 2 2" />
+                                <Image Width="15" Height="15" Margin="2 2 2 2" Source="/SIF.Visualization.Excel;component/Resources/Icons/Edit.png" />
                             </Button>
                         </Grid>
                     </DataTemplate>

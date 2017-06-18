@@ -37,7 +37,26 @@ namespace SIF.Visualization.Excel.View
             RuleListBox.SetBinding(ItemsControl.ItemsSourceProperty, binding);
         }
 
-        //TODO Edit + Delete Click
+        private void SidebarDeleteRuleButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var grid = button.Parent as Grid;
+            var listBox = grid.Parent as ListBox;
+            try
+            {
+                MessageBox.Show(listBox.Items.ToString());
+            }
+            catch
+            {
 
+            }
+            
+            MessageBox.Show("Delete");
+        }
+
+        private void SidebarEditRuleButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Edit");
+        }
     }
 }

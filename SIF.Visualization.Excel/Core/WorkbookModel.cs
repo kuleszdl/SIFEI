@@ -473,7 +473,8 @@ namespace SIF.Visualization.Excel.Core {
                 return;
             }
 
-            string policyFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar + "inspectionRequest.xml";
+            string policyFile = "";
+            policyFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar + "inspectionRequest.xml";
             string spreadsheetFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar + "spreadsheet" + extension;
 
             // create xml document
