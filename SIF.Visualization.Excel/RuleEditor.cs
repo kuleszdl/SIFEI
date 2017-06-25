@@ -20,13 +20,14 @@ namespace SIF.Visualization.Excel
 {
     public partial class RuleEditor : Form
     {
-        Microsoft.Office.Interop.Excel.Worksheet ws;
         int pointX;
         int pointY;
         int panelX = 128;
         int panelY = 3;
         int totalRows = 0;
 
+        public Boolean edited = false;
+        public Boolean hasRuleCells = false;
         private ComboBox firstConditionBox;
         private TextBox regexBox;
         private TextBox characterBox;
@@ -37,22 +38,30 @@ namespace SIF.Visualization.Excel
                                   global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_CharacterCount
                               };
         
-
+        /// <summary>
+        /// Calls the Rule Editor Interface 
+        /// </summary>
         public RuleEditor()
         {
             InitializeComponent();
             Show();
-            
         }
 
-        public RuleEditor(System.Data.Rule rule)
+        /// <summary>
+        /// Shows the Rule Editor Interface with an existing rule
+        /// </summary>
+        /// <param name="rule"></param>
+        public RuleEditor(SIF.Visualization.Excel.Core.Rules.Rule rule)
         {
-            // TODO: Anzeige einer vorhandenen Regel
             InitializeComponent();
-            ShowDialog();
+            Show();
         }
 
-
+        /// <summary>
+        /// Adds a new row at the current location of the Button and moves the button down
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NewConditionButton_Click(object sender, EventArgs e)
         {
             try
@@ -95,7 +104,6 @@ namespace SIF.Visualization.Excel
             firstConditionBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             firstConditionBox.Items.AddRange(avaibleConditions);
             firstConditionBox.Name = totalRows.ToString();
-//            firstConditionBox.Size = new System.Drawing.Size(105, 21);
             firstConditionBox.TabIndex = 10;
             firstConditionBox.Visible = true;
             firstConditionBox.SelectedIndexChanged += FirstConditionBox_SelectedIndexChanged;
@@ -112,8 +120,6 @@ namespace SIF.Visualization.Excel
 
             // Moves down newConditionButton 
             NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 35);
-
-            
         }
 
         /// <summary>
@@ -168,6 +174,10 @@ namespace SIF.Visualization.Excel
            
         }
 
+        /// <summary>
+        /// Creates a RegexBox in row where the SelectedIndexChanged Event was triggered
+        /// </summary>
+        /// <param name="currentRow"></param>
         private void AddRegexBox(int currentRow)
         {
             foreach (Panel panel in condiPanels)
@@ -187,6 +197,10 @@ namespace SIF.Visualization.Excel
             
         }
 
+        /// <summary>
+        /// Creates a CharacterBox in the row where the SelectedIntexChanged Event was triggered
+        /// </summary>
+        /// <param name="currentRow"></param>
         private void AddCharacterBox(int currentRow)
         {
             foreach (Panel panel in condiPanels)
@@ -205,37 +219,66 @@ namespace SIF.Visualization.Excel
             
         }
 
-        
+        /// <summary>
+        /// Checks and commits the Data with the RuleCreator
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            string ruleTitle = RuleNameTextBox.Text;
             
             // Check for Rulecells
-            // Startet den Rule Creator 
-            RuleCreator.Instance.Start(DataModel.Instance.CurrentWorkbook, RuleNameTextBox.Text, ruleTitle);
-
-            for (int i = 0; i < condiPanels.Count; i++)
+            if (CheckInputs())
             {
-                CheckConditions(i.ToString());
-            }
+                string ruleTitle = RuleNameTextBox.Text;
+                RuleCreator.Instance.Start(DataModel.Instance.CurrentWorkbook, RuleNameTextBox.Text, ruleTitle);
 
-            try
-            {
-                var newRule = RuleCreator.Instance.End();
-                if (newRule != null)
+                for (int i = 0; i < condiPanels.Count; i++)
                 {
-                    DataModel.Instance.CurrentWorkbook.Rules.Add(newRule);
+                    CheckConditions(i.ToString());
                 }
+                try
+                {
+                    var newRule = RuleCreator.Instance.End();
+                    if (newRule != null)
+                    {
+                        DataModel.Instance.CurrentWorkbook.Rules.Add(newRule);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(e.ToString());
+                }
+                Close();
             }
-            catch
-            {
-                MessageBox.Show(e.ToString());
-            }
-            Close();
-
+            
         }
 
+        /// <summary>
+        /// Checks the Rule Editor for empty or invalid inputs
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckInputs()
+        {
+            if(condiPanels.Count <= 0 ) {
+                MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_NoCondition);
+                if (RuleNameTextBox.Text == "") {
+                    MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_NoName);
+                }
+                return false;
+            } else {
+                if (RuleDescriptionTextBox.Text == "")
+                {
+                    MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_NoDescription);
+                }
+                return true;
+            }
+        }
 
+        /// <summary>
+        /// Gets the value from the Box in the current panel and adds them to the rule with the Rule Creator
+        /// </summary>
+        /// <param name="checkBoxName"></param>
         private void CheckConditions(String checkBoxName)
         {
             foreach (Control panel in this.ConditionPanel.Controls)
@@ -279,14 +322,14 @@ namespace SIF.Visualization.Excel
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            //RuleCreator.Instance.End();
+            //check for edited
             Close();
         }
 
         private void ChooseCellButton_Click(object sender, EventArgs e)
         {
             CellPickerWF cellpicker = new CellPickerWF();
-            
+            hasRuleCells = true;
         }
 
        
