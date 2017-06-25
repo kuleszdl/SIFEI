@@ -529,4 +529,13 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   <data name="tl_RuleEditor_Title" xml:space="preserve">
     <value>Regel Editor</value>
   </data>
+  <data name="tl_RuleEditor_NoCondition" xml:space="preserve">
+    <value>Keine Bedingungen gefunden. Bitte erstellen Sie mindestens eine Bedingung für die Regel</value>
+  </data>
+  <data name="tl_RuleEditor_NoDescription" xml:space="preserve">
+    <value>Keine Regelbeschreibung gefunden. Die Regel wird ohne eine Beschreibung erstellt.</value>
+  </data>
+  <data name="tl_RuleEditor_NoName" xml:space="preserve">
+    <value>Kein Name gefunden. Bitte geben sie der Regel einen Namen</value>
+  </data>
 </root>

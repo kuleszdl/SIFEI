@@ -490,4 +490,13 @@ Try scanning the file again and if this doesn't help close and open the file aga
   <data name="tl_Sidebar_Rules" xml:space="preserve">
     <value>Rules</value>
   </data>
+  <data name="tl_RuleEditor_NoCondition" xml:space="preserve">
+    <value>No condition specified. Please create at least one condition for the rule</value>
+  </data>
+  <data name="tl_RuleEditor_NoDescription" xml:space="preserve">
+    <value>No Description found. The rule will be created without an description.</value>
+  </data>
+  <data name="tl_RuleEditor_NoName" xml:space="preserve">
+    <value>No name found. Please enter a name for the rule</value>
+  </data>
 </root>

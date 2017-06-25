@@ -927,6 +927,33 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No condition specified. Please create at least one condition for the rule ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_NoCondition {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_NoCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No Description found. The rule will be created without an description. ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_NoDescription {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_NoDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No name found. Please enter a name for the rule ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_NoName {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cell Area: ähnelt.
         /// </summary>
         public static string tl_RuleEditor_RuleArea {

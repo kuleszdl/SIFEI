@@ -33,7 +33,7 @@ namespace SIF.Visualization.Excel
         private TextBox characterBox;
         private Button deleteRowButton;
         private List<Panel> condiPanels = new List<Panel>();
-        string[] avaibleConditions = { 
+        string[] avaibleConditions = {  
                                   "Regex", 
                                   global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_CharacterCount
                               };
@@ -47,14 +47,31 @@ namespace SIF.Visualization.Excel
             Show();
         }
 
+
         /// <summary>
         /// Shows the Rule Editor Interface with an existing rule
         /// </summary>
         /// <param name="rule"></param>
+
         public RuleEditor(SIF.Visualization.Excel.Core.Rules.Rule rule)
         {
             InitializeComponent();
             Show();
+            ShowDialog();
+            foreach (Condition existingCondition in rule.Conditions)
+            {
+                AddExistingRow(existingCondition);
+
+            }
+
+        }
+
+        private void AddExistingRow(Condition existingCondition)
+        {
+            throw new NotImplementedException();
+            Panel condiPanel = new Panel();
+            ConditionPanel.Controls.Add(condiPanel);
+            condiPanels.Add(condiPanel);
         }
 
         /// <summary>
@@ -74,6 +91,7 @@ namespace SIF.Visualization.Excel
                 MessageBox.Show(f.ToString());
             }
         }
+        
 
         public void AddNewRow()
         {
@@ -315,9 +333,7 @@ namespace SIF.Visualization.Excel
                     }
                     
                 }
-            }
-                
-            
+            }                         
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

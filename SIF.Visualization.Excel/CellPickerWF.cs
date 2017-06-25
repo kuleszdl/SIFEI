@@ -34,12 +34,14 @@ namespace SIF.Visualization.Excel
         {
             RuleCellType cellType = RuleCellType.CELL;
             var selectedCells = CellManager.Instance.GetSelectedCells();
-            
-
+            string test = "";
             foreach (var cell in selectedCells)
             {
                 cell.RuleCellType = cellType;
+                test = test + cell.Location;
             }
+            MessageBox.Show(test);
+
             DataModel.Instance.CurrentWorkbook.RecalculateViewModel();
             Close();
         }
