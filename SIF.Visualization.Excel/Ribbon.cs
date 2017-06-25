@@ -444,9 +444,8 @@ namespace SIF.Visualization.Excel {
 
         private void RuleEdit_Click(object sender, RibbonControlEventArgs e)
         {
-            
-            RuleEditor ruleeditor = new RuleEditor();
-            
+
+            RuleEditor.Instance.Start();        
         }
 
         private void CellPicker_Click(object sender, RibbonControlEventArgs e)

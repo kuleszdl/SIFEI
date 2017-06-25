@@ -82,7 +82,7 @@
             this.FilterConditionLabel.Name = "FilterConditionLabel";
             this.FilterConditionLabel.Size = new System.Drawing.Size(72, 13);
             this.FilterConditionLabel.TabIndex = 2;
-            this.FilterConditionLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_FilterCondition;
+            this.FilterConditionLabel.Text = "Trigger when:";
             // 
             // FilterRadioButtonAND
             // 
@@ -120,11 +120,11 @@
             // ConditionLabel
             // 
             this.ConditionLabel.AutoSize = true;
-            this.ConditionLabel.Location = new System.Drawing.Point(8, 16);
+            this.ConditionLabel.Location = new System.Drawing.Point(12, 200);
             this.ConditionLabel.Name = "ConditionLabel";
             this.ConditionLabel.Size = new System.Drawing.Size(65, 13);
             this.ConditionLabel.TabIndex = 6;
-            this.ConditionLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition;
+            this.ConditionLabel.Text = "Condition(s):";
             // 
             // RuleNameLabel
             // 
@@ -146,7 +146,7 @@
             // 
             // NewConditionButton
             // 
-            this.NewConditionButton.Location = new System.Drawing.Point(128, 11);
+            this.NewConditionButton.Location = new System.Drawing.Point(13, 13);
             this.NewConditionButton.Name = "NewConditionButton";
             this.NewConditionButton.Size = new System.Drawing.Size(105, 23);
             this.NewConditionButton.TabIndex = 9;
@@ -161,10 +161,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConditionPanel.AutoSize = true;
             this.ConditionPanel.Controls.Add(this.NewConditionButton);
-            this.ConditionPanel.Controls.Add(this.ConditionLabel);
-            this.ConditionPanel.Location = new System.Drawing.Point(4, 182);
+            this.ConditionPanel.Location = new System.Drawing.Point(132, 182);
             this.ConditionPanel.Name = "ConditionPanel";
-            this.ConditionPanel.Size = new System.Drawing.Size(672, 310);
+            this.ConditionPanel.Padding = new System.Windows.Forms.Padding(10);
+            this.ConditionPanel.Size = new System.Drawing.Size(544, 310);
             this.ConditionPanel.TabIndex = 13;
             // 
             // RuleAreaLabel
@@ -174,7 +174,7 @@
             this.RuleAreaLabel.Name = "RuleAreaLabel";
             this.RuleAreaLabel.Size = new System.Drawing.Size(52, 13);
             this.RuleAreaLabel.TabIndex = 14;
-            this.RuleAreaLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_RuleArea;
+            this.RuleAreaLabel.Text = "Cell Area:";
             // 
             // CellAreaBox
             // 
@@ -202,7 +202,7 @@
             this.DescriptionLabel.Name = "DescriptionLabel";
             this.DescriptionLabel.Size = new System.Drawing.Size(88, 13);
             this.DescriptionLabel.TabIndex = 17;
-            this.DescriptionLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_RuleDescription;
+            this.DescriptionLabel.Text = "Rule Description:";
             // 
             // RuleDescriptionTextBox
             // 
@@ -212,7 +212,7 @@
             this.RuleDescriptionTextBox.Name = "RuleDescriptionTextBox";
             this.RuleDescriptionTextBox.Size = new System.Drawing.Size(541, 39);
             this.RuleDescriptionTextBox.TabIndex = 18;
-            
+            this.RuleDescriptionTextBox.Text = "";
             // 
             // RuleEditor
             // 
@@ -235,15 +235,15 @@
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.ConditionPanel);
+            this.Controls.Add(this.ConditionLabel);
             this.Name = "RuleEditor";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Title;
+            this.Text = "Rule Editor";
             this.TopMost = true;
             this.ConditionPanel.ResumeLayout(false);
-            this.ConditionPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

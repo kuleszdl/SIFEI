@@ -610,4 +610,19 @@ Try scanning the file again and if this doesn't help close and open the file aga
   <data name="tl_RuleEditor_NoName" xml:space="preserve">
     <value>No name found. Please enter a name for the rule</value>
   </data>
+  <data name="tl_ConditionPicker_ChooseCharacterCount" xml:space="preserve">
+    <value>Please enter a valid Number. This Number ist the limit how many characters are allowed in a cell.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseConditionType" xml:space="preserve">
+    <value>Please choose the type of the new condition.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseRegex" xml:space="preserve">
+    <value>Please enter a valid Regex string. This string will limit the contents of the cell.</value>
+  </data>
+  <data name="tl_ConditionPicker_ConditionName" xml:space="preserve">
+    <value>Name of the Condition:</value>
+  </data>
+  <data name="tl_ConditionPicker_Confirm" xml:space="preserve">
+    <value>Create Condition</value>
+  </data>
 </root>

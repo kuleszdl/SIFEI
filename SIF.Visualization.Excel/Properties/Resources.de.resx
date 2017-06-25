@@ -538,4 +538,19 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   <data name="tl_RuleEditor_NoName" xml:space="preserve">
     <value>Kein Name gefunden. Bitte geben sie der Regel einen Namen</value>
   </data>
+  <data name="tl_ConditionPicker_ChooseCharacterCount" xml:space="preserve">
+    <value>Bitte geben sie eine Zahl ein. Diese Zahl legt die maximal erlaubte Anzahl von Zeichen einer Zelle fest.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseConditionType" xml:space="preserve">
+    <value>Wählen sie den Typ, den die neue Bedingung haben soll.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseRegex" xml:space="preserve">
+    <value>Bitte geben sie einen Regex String ein. Dieser String limitiert die Werte einer Zelle</value>
+  </data>
+  <data name="tl_ConditionPicker_ConditionName" xml:space="preserve">
+    <value>Name der Bedingung:</value>
+  </data>
+  <data name="tl_ConditionPicker_Confirm" xml:space="preserve">
+    <value>Erstelle Bedingung</value>
+  </data>
 </root>

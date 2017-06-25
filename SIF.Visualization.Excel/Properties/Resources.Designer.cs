@@ -312,6 +312,51 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a valid Number. This Number ist the limit how many characters are allowed in a cell. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ChooseCharacterCount {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseCharacterCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please choose the type of the new condition. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ChooseConditionType {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseConditionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a valid Regex string. This string will limit the contents of the cell. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ChooseRegex {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseRegex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name of the Condition: ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ConditionName {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ConditionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create Condition ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_Confirm {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Ignored ähnelt.
         /// </summary>
         public static string tl_Ignored {

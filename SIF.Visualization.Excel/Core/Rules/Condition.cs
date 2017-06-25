@@ -17,15 +17,19 @@ namespace SIF.Visualization.Excel.Core.Rules
         }
         private ConditionType type = ConditionType.NONE;
         private string conditionValue;
-        private Rule rule;
+        private string conditionName;
 
         public ConditionType Type
         {
             get { return type; }
             set { SetProperty(ref type, value); }
         }
+        public string Name
+        {
+            get { return conditionName; }
+            set { SetProperty(ref conditionName, value); }
+        }
 
-        
         public string Value
         {
             get

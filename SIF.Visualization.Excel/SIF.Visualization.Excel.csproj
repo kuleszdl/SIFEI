@@ -234,6 +234,12 @@
     <Compile Include="RuleEditor.Designer.cs">
       <DependentUpon>RuleEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConditionPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConditionPicker.Designer.cs">
+      <DependentUpon>ConditionPicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\RuleDataField.xaml.cs">
       <DependentUpon>RuleDataField.xaml</DependentUpon>
     </Compile>
@@ -379,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RuleEditor.resx">
       <DependentUpon>RuleEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConditionPicker.resx">
+      <DependentUpon>ConditionPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ScenarioDataFieldContainer.resx">
       <DependentUpon>ScenarioDataFieldContainer.cs</DependentUpon>

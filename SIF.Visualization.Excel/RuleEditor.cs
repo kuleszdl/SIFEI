@@ -22,13 +22,12 @@ namespace SIF.Visualization.Excel
     {
         int pointX;
         int pointY;
-        int panelX = 128;
+        int panelX = 10;
         int panelY = 3;
         int totalRows = 0;
 
         public Boolean edited = false;
         public Boolean hasRuleCells = false;
-        private ComboBox firstConditionBox;
         private TextBox regexBox;
         private TextBox characterBox;
         private Button deleteRowButton;
@@ -37,14 +36,37 @@ namespace SIF.Visualization.Excel
                                   "Regex", 
                                   global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_CharacterCount
                               };
+
+        private static volatile RuleEditor instance;
+        private static object syncRoot = new Object();
+
+        public static RuleEditor Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                            instance = new RuleEditor();
+                    }
+                }
+                return instance;
+            }
+        }
         
         /// <summary>
         /// Calls the Rule Editor Interface 
         /// </summary>
         public RuleEditor()
         {
+            
+        }
+        public void Start() {
             InitializeComponent();
-            Show();
+            RuleCreator.Instance.BlankStart();
+            Show();            
         }
 
 
@@ -56,23 +78,14 @@ namespace SIF.Visualization.Excel
         public RuleEditor(SIF.Visualization.Excel.Core.Rules.Rule rule)
         {
             InitializeComponent();
-            Show();
-            ShowDialog();
             foreach (Condition existingCondition in rule.Conditions)
             {
                 AddExistingRow(existingCondition);
-
             }
-
+            ShowDialog();
+            
         }
 
-        private void AddExistingRow(Condition existingCondition)
-        {
-            throw new NotImplementedException();
-            Panel condiPanel = new Panel();
-            ConditionPanel.Controls.Add(condiPanel);
-            condiPanels.Add(condiPanel);
-        }
 
         /// <summary>
         /// Adds a new row at the current location of the Button and moves the button down
@@ -83,61 +96,60 @@ namespace SIF.Visualization.Excel
         {
             try
             {
-                AddNewRow();
-                                
+                Close();
+                ConditionPicker conditionPicker = new ConditionPicker();
+                
             }
             catch (Exception f)
             {
                 MessageBox.Show(f.ToString());
-            }
+            }            
         }
-        
 
-        public void AddNewRow()
+        
+        /// <summary>
+        /// Adds existing Conditions to the ConditionPanel
+        /// </summary>
+        /// <param name="existingCondition"></param>
+        private void AddExistingRow(Condition existingCondition)
         {
             pointX = NewConditionButton.Location.X;
             pointY = NewConditionButton.Location.Y;
             totalRows = condiPanels.Count;
-           
-            // Creates a new Panel for the new Condition
+
             Panel condiPanel = new Panel();
             ConditionPanel.Controls.Add(condiPanel);
             condiPanels.Add(condiPanel);
             condiPanel.Location = new System.Drawing.Point(panelX, panelY);
-            condiPanel.Name = "panel"+totalRows.ToString();
+            condiPanel.Name = "panel" + totalRows.ToString();
             condiPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            condiPanel.Size = new System.Drawing.Size(570, 30);
+            condiPanel.Size = new System.Drawing.Size(570, 50);
             condiPanel.BackColor = System.Drawing.SystemColors.ControlDark;
             condiPanel.Padding = new System.Windows.Forms.Padding(10);
-            panelY = panelY + 35;
-            
-            // Creates the main Condition Box
-            firstConditionBox = new ComboBox();
-            condiPanel.Controls.Add(firstConditionBox);
-            firstConditionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            firstConditionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            firstConditionBox.Location = new System.Drawing.Point(5,5);
-            firstConditionBox.Margin = new System.Windows.Forms.Padding(10);
-            firstConditionBox.FormattingEnabled = true;
-            firstConditionBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            firstConditionBox.Items.AddRange(avaibleConditions);
-            firstConditionBox.Name = totalRows.ToString();
-            firstConditionBox.TabIndex = 10;
-            firstConditionBox.Visible = true;
-            firstConditionBox.SelectedIndexChanged += FirstConditionBox_SelectedIndexChanged;
+            panelY = panelY + 55;
+
+            Button condiButton = new Button();
+            condiPanel.Controls.Add(condiButton);
+            condiButton.Text = existingCondition.Name;
+            condiButton.Size = new System.Drawing.Size(150, 30);
+            condiButton.AutoSize = true;
+            condiButton.Location = new System.Drawing.Point(10, 3);
+            //pointY += pointY + 50;
+            // condition bearbeiten Button Event, param: condition
+
 
             // Creates the delete Button for the Panel
             deleteRowButton = new Button();
             condiPanel.Controls.Add(deleteRowButton);
             deleteRowButton.Margin = new System.Windows.Forms.Padding(10);
-            deleteRowButton.Location = new System.Drawing.Point(500 ,5);
+            deleteRowButton.Location = new System.Drawing.Point(500, 5);
             deleteRowButton.Name = "delete" + totalRows.ToString();
-            deleteRowButton.Size = new System.Drawing.Size(30, 23);
+            deleteRowButton.Size = new System.Drawing.Size(30, 30);
             deleteRowButton.Image = global::SIF.Visualization.Excel.Properties.Resources.delete;
             deleteRowButton.Click += deleteRowButton_Click;
 
             // Moves down newConditionButton 
-            NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 35);
+            NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 55);
         }
 
         /// <summary>
@@ -249,7 +261,8 @@ namespace SIF.Visualization.Excel
             if (CheckInputs())
             {
                 string ruleTitle = RuleNameTextBox.Text;
-                RuleCreator.Instance.Start(DataModel.Instance.CurrentWorkbook, RuleNameTextBox.Text, ruleTitle);
+                RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, ruleTitle);
+                RuleCreator.Instance.SetRuleCells(DataModel.Instance.CurrentWorkbook);
 
                 for (int i = 0; i < condiPanels.Count; i++)
                 {
@@ -312,7 +325,7 @@ namespace SIF.Visualization.Excel
                                 {
                                     if (textBoxControl.Name == "regex" + checkBoxName)
                                     {
-                                        RuleCreator.Instance.AddRegexCondition(textBoxControl.Text);
+                                        RuleCreator.Instance.AddRegexCondition("a",textBoxControl.Text);
                                         // Condition anfügen MessageBox.Show(conditionValue);
                                     }
                                 }
@@ -324,7 +337,7 @@ namespace SIF.Visualization.Excel
                                 {
                                     if (textBoxControl.Name == "character" + checkBoxName)
                                     {
-                                        RuleCreator.Instance.AddCharacterCondition(textBoxControl.Text);
+                                        RuleCreator.Instance.AddCharacterCondition("a", textBoxControl.Text);
                                         // Condition anfügen MessageBox.Show(conditionValue);
                                     }
                                 }
