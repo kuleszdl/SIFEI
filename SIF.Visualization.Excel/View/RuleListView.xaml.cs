@@ -41,22 +41,32 @@ namespace SIF.Visualization.Excel.View
         {
             var button = sender as Button;
             var grid = button.Parent as Grid;
-            var listBox = grid.Parent as ListBox;
+            Rule rule = grid.DataContext as Rule;
             try
             {
-                MessageBox.Show(listBox.Items.ToString());
+                DataModel.Instance.CurrentWorkbook.Rules.Remove(rule);
             }
-            catch
+            catch (Exception f)
             {
-
+                MessageBox.Show(f.ToString());
             }
             
-            MessageBox.Show("Delete");
+            
         }
 
         private void SidebarEditRuleButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Edit");
+            var button = sender as Button;
+            var grid = button.Parent as Grid;
+            Rule rule = grid.DataContext as Rule;
+            try
+            {
+                RuleEditor ruleEditor = new RuleEditor(rule);
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show(f.ToString());
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SIF.Visualization.Excel.Core.Rules
 {
-    public class RuleData : BindableBase
+    public class RuleCells : BindableBase
     {
         private ValueType type = ValueType.BLANK;
         private string textValue = "";
@@ -82,11 +82,11 @@ namespace SIF.Visualization.Excel.Core.Rules
             }
         }
 
-        public RuleData(string target) {
+        public RuleCells(string target) {
             this.target = target;
         }
 
-        public RuleData() {}
+        public RuleCells() {}
 
 
     }

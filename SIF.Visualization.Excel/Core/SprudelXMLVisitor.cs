@@ -242,7 +242,7 @@ namespace SIF.Visualization.Excel.Core {
         private XElement CreateRuleData(Rule n)
         {
             var inputs = new XElement("ruleCells");
-            foreach (var test in n.RuleData)
+            foreach (var test in n.RuleCells)
             {
                 if (test.Value.Equals(""))
                 {

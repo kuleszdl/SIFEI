@@ -2,6 +2,7 @@
 using Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using SIF.Visualization.Excel.Core;
+using SIF.Visualization.Excel.Core.Rules;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -27,7 +28,15 @@ namespace SIF.Visualization.Excel
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            Close();
+            try
+            {
+                Dispose();
+                RuleEditor ruleEditor = new RuleEditor(RuleCreator.Instance.GetRule());
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show(f.ToString());
+            }
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
@@ -38,12 +47,15 @@ namespace SIF.Visualization.Excel
             foreach (var cell in selectedCells)
             {
                 cell.RuleCellType = cellType;
+                DataModel.Instance.CurrentWorkbook.RuleCells.Add(cell);
                 test = test + cell.Location;
             }
-            MessageBox.Show(test);
-
+            RuleCreator.Instance.SetRuleCells(DataModel.Instance.CurrentWorkbook);
             DataModel.Instance.CurrentWorkbook.RecalculateViewModel();
-            Close();
+            DataModel.Instance.CurrentWorkbook.RuleCells.Clear();
+            Dispose();
+            RuleEditor ruleEditor = new RuleEditor(RuleCreator.Instance.GetRule());
+                       
         }
     }
 }

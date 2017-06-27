@@ -32,9 +32,9 @@ namespace SIF.Visualization.Excel.View
         {
             BindingOperations.ClearAllBindings(DataTextBox);
 
-            if (DataContext != null && DataContext is RuleData)
+            if (DataContext != null && DataContext is RuleCells)
             {
-                var ruleData = DataContext as RuleData;
+                var ruleData = DataContext as RuleCells;
 
                 //textbinding
                 var textBinding = new Binding()

@@ -88,13 +88,15 @@ namespace SIF.Visualization.Excel
                 ComboBox cmb = (ComboBox)e.Control;
                 cmb.SelectedIndexChanged += new EventHandler(FirstConditionBox_SelectedIndexChanged);
             }
-        }
-      
+        }/// <summary>
+        /// Creates the next Controls, depending on the Selection of the main Box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FirstConditionBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                
                 var comboBox = sender as ComboBox;
                 string currentRow = comboBox.Name;
                 string selected = comboBox.SelectedItem.ToString();
@@ -104,10 +106,10 @@ namespace SIF.Visualization.Excel
                     case "Regex":
                         //RemoveOtherBoxes();
                         //AddRegexBox(Int32.Parse(currentRow));
-                        AddDataGridRegexBox(currentRow);
                         break;
+                    case "Gesamtanzahl Zeichen":
                     case "Character Count":
-                        AddCharacterBox(Int32.Parse(currentRow));
+                        //AddCharacterBox(Int32.Parse(currentRow));
                         break;
 
                 }
@@ -116,7 +118,52 @@ namespace SIF.Visualization.Excel
             {
                 MessageBox.Show(f.ToString());
             }
-           
+
+        }
+
+        /// <summary>
+        /// Creates a RegexBox in row where the SelectedIndexChanged Event was triggered
+        /// </summary>
+        /// <param name="currentRow"></param>
+        private void AddRegexBox(int currentRow)
+        {
+            foreach (Panel panel in condiPanels)
+            {
+                if (panel.Name == "panel" + currentRow)
+                {
+                    regexBox = new TextBox();
+                    panel.Controls.Add(regexBox);
+                    regexBox.Location = new System.Drawing.Point(130, 5); //Hardcoded, eventuell ändern
+                    regexBox.Text = "insert Regex";
+                    regexBox.Name = "regex" + currentRow.ToString();
+                    regexBox.Margin = new System.Windows.Forms.Padding(10);
+                    regexBox.Visible = true;
+                }
+
+            }
+
+        }
+
+        /// <summary>
+        /// Creates a CharacterBox in the row where the SelectedIntexChanged Event was triggered
+        /// </summary>
+        /// <param name="currentRow"></param>
+        private void AddCharacterBox(int currentRow)
+        {
+            foreach (Panel panel in condiPanels)
+            {
+                if (panel.Name == "panel" + currentRow)
+                {
+                    characterBox = new TextBox();
+                    panel.Controls.Add(characterBox);
+                    characterBox.Location = new Point(130, 5); //Hardcoded, eventuell ändern
+                    characterBox.Text = "insert maximum Character Count";
+                    characterBox.Name = "character" + currentRow.ToString();
+                    characterBox.Visible = true;
+                }
+
+            }
+
         }
 
         private void AddDataGridRegexBox(object sender)

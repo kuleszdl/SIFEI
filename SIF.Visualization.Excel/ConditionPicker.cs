@@ -20,6 +20,35 @@ namespace SIF.Visualization.Excel
             ShowDialog();
         }
 
+        public ConditionPicker(Condition condition)
+        {
+            InitializeComponent();
+            ConfigurePicker(condition);            
+            ShowDialog();
+
+        }
+
+        private void ConfigurePicker(Condition condition)
+        {
+            HideFirstBoxes();
+            ResetColourScheme();
+            switch (condition.Type)
+            {
+                case Condition.ConditionType.Regex:
+                    ChooseRegexButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+                    ConditionNameTextBox.Text = condition.Name;
+                    RegexTextBox.Text = condition.Value;
+                    RegexTextBox.Visible = true;
+                    break;
+                case Condition.ConditionType.CharacterCount:
+
+                    break;
+                default:
+                    //Meldung
+                    break;
+            }
+        }
+
         private void ChooseRegex_Click(object sender, EventArgs e)
         {
             this.ChooseRegexButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -48,9 +77,9 @@ namespace SIF.Visualization.Excel
         /// <summary>
         /// TODO: Resets BUtton and Panel highlighting
         /// </summary>
-        private void resetColourScheme()
+        private void ResetColourScheme()
         {
-
+            
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
@@ -93,9 +122,6 @@ namespace SIF.Visualization.Excel
                        
         }
 
-     
-
-        
 
     }
 }

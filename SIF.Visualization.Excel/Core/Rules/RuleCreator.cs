@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SIF.Visualization.Excel.Core.Rules
 {
@@ -38,7 +39,7 @@ namespace SIF.Visualization.Excel.Core.Rules
         #endregion
 
         #region Fields
-        private Rule newRule;
+        private Rule currentRule;
         private static Object syncRule = new Object();
 
         #endregion
@@ -47,54 +48,71 @@ namespace SIF.Visualization.Excel.Core.Rules
 
         public void BlankStart()
         {
-            if (newRule != null)
+            if (currentRule != null)
                 return;
             lock(syncRule)
             {
-                newRule = new Rule { };
+                currentRule = new Rule { };
             }
+        }
+
+        public void OpenRule(Rule rule)
+        {
+            if (currentRule == null)
+                return;
+            lock (syncRule)
+            {
+                currentRule = rule;
+                currentRule.Conditions = rule.Conditions;
+                currentRule.Description = rule.Description;
+                currentRule.RuleCells = rule.RuleCells;
+                currentRule.Title = rule.Title;
+            }
+
         }
 
         public Rule GetRule()
         {
-            if (newRule != null)
-                return newRule;
+            if (currentRule != null)
+                return currentRule;
             return null;
         }
 
         public List<Condition> GetCondition()
         {
-            List<Condition> condition = newRule.Conditions.ToList();
+            List<Condition> condition = currentRule.Conditions.ToList();
             return condition;
         }
 
         public void SetProperties(string ruleTitle, string description)
         {
-            if (newRule != null)
+            if (currentRule == null)
                 return;
             lock (syncRule)
             {
-                newRule.Title = ruleTitle;
-                newRule.Description = description;
+                currentRule.Title = ruleTitle;
+                currentRule.Description = description;
                 //Date?
             }            
         }
 
         public void SetRuleCells(WorkbookModel wb)
         {
+            currentRule.RuleCells.Clear();
+
             foreach (var c in DataModel.Instance.CurrentWorkbook.RuleCells)
             {
                 try
                 {
-                    RuleData ruleData = new RuleData(c.Location);
-                    newRule.RuleData.Add(ruleData);
-                    DataModel.Instance.CurrentWorkbook.RuleCells.Clear();
+                    RuleCells ruleCells = new RuleCells(c.Location);
+                    currentRule.RuleCells.Add(ruleCells);
                 }
                 catch
                 {
                     
                 }
             }
+            DataModel.Instance.CurrentWorkbook.RuleCells.Clear();
         }
 
         public Rule AddRegexCondition(string name, string value)
@@ -105,8 +123,8 @@ namespace SIF.Visualization.Excel.Core.Rules
                 Value = value,
                 Name = name
             };
-            newRule.Conditions.Add(newCondition);
-            return newRule;
+            currentRule.Conditions.Add(newCondition);
+            return currentRule;
         }
 
         public Rule AddCharacterCondition(string name, string value)
@@ -117,33 +135,30 @@ namespace SIF.Visualization.Excel.Core.Rules
                 Value = value,
                 Name = name
             };
-            newRule.Conditions.Add(newCondition);
-            return newRule;
+            currentRule.Conditions.Add(newCondition);
+            return currentRule;
         }
-
-        
 
         public int GetEmptyRuleDataCount()
         {
-            if (newRule == null)
+            if (currentRule == null)
                 return 0;
             else
-                return (from q in newRule.RuleData where q.Value.Equals("") select q).ToList().Count;
+                return (from q in currentRule.RuleCells where q.Value.Equals("") select q).ToList().Count;
         }
 
         public Rule End()
         {
-            if (newRule == null)
+            if (currentRule == null)
                 return null;
            
-            var resultRule = newRule;
+            var resultRule = currentRule;
 
             lock (syncRule)
             {
-                // workbook = null;
-                newRule = null;
+                currentRule = null;
 
-                if (resultRule.RuleData.Count == 0)
+                if (resultRule.RuleCells.Count == 0)
                 {
                     return null;
                 }

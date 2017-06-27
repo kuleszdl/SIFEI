@@ -201,6 +201,8 @@
             this.Name = "ConditionPicker";
             this.ShowIcon = false;
             this.Text = "ConditionPicker";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TopMost = true;
             this.ConditionComponentsPanel.ResumeLayout(false);
             this.ConditionFirstPanel.ResumeLayout(false);
             this.ConditionFirstPanel.PerformLayout();
