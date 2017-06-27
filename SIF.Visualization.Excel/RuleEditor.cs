@@ -28,8 +28,6 @@ namespace SIF.Visualization.Excel
 
         public Boolean edited = false;
         public Boolean hasRuleCells = false;
-        private TextBox regexBox;
-        private TextBox characterBox;
         private Button deleteRowButton;
         private List<Panel> condiPanels = new List<Panel>();
         string[] avaibleConditions = {  
@@ -82,7 +80,28 @@ namespace SIF.Visualization.Excel
             {
                 AddExistingRow(existingCondition);
             }
-            ShowDialog();
+            UpdateInformations(rule);
+            RuleCreator.Instance.OpenRule(rule);
+            Show();
+            
+        }
+
+        public void UpdateInformations(SIF.Visualization.Excel.Core.Rules.Rule rule)
+        {
+            if (RuleNameTextBox.Text == "" )
+                RuleNameTextBox.Text = rule.Title;
+            if (RuleDescriptionTextBox.Text == "")
+                RuleDescriptionTextBox.Text = rule.Description;
+            if (rule.RuleCells != null)
+            {
+                string output = "";
+                foreach (RuleCells rulecells in rule.RuleCells)
+                {
+                    output = output + rulecells.Target.ToString();
+                    this.CellAreaBox.Text = output;
+                }                
+            }
+                
             
         }
 
@@ -96,7 +115,8 @@ namespace SIF.Visualization.Excel
         {
             try
             {
-                Close();
+                RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleNameTextBox.Text);
+                Dispose();
                 ConditionPicker conditionPicker = new ConditionPicker();
                 
             }
@@ -133,8 +153,9 @@ namespace SIF.Visualization.Excel
             condiButton.Text = existingCondition.Name;
             condiButton.Size = new System.Drawing.Size(150, 30);
             condiButton.AutoSize = true;
-            condiButton.Location = new System.Drawing.Point(10, 3);
-            //pointY += pointY + 50;
+            condiButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Right)));
+            condiButton.Location = new System.Drawing.Point(10, 10);
+            condiButton.Click += condiButton_Click;
             // condition bearbeiten Button Event, param: condition
 
 
@@ -142,7 +163,7 @@ namespace SIF.Visualization.Excel
             deleteRowButton = new Button();
             condiPanel.Controls.Add(deleteRowButton);
             deleteRowButton.Margin = new System.Windows.Forms.Padding(10);
-            deleteRowButton.Location = new System.Drawing.Point(500, 5);
+            deleteRowButton.Location = new System.Drawing.Point(500, 10);
             deleteRowButton.Name = "delete" + totalRows.ToString();
             deleteRowButton.Size = new System.Drawing.Size(30, 30);
             deleteRowButton.Image = global::SIF.Visualization.Excel.Properties.Resources.delete;
@@ -150,6 +171,20 @@ namespace SIF.Visualization.Excel
 
             // Moves down newConditionButton 
             NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 55);
+        }
+
+        private void condiButton_Click(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            foreach (Condition condition in RuleCreator.Instance.GetRule().Conditions)
+            {
+                if (condition.Name == button.Text)
+                {
+                    ConditionPicker conditionPicker = new ConditionPicker(condition);
+                }
+            }
+            
+            
         }
 
         /// <summary>
@@ -171,83 +206,7 @@ namespace SIF.Visualization.Excel
             }
         }
              
-        /// <summary>
-        /// Creates the next Controls, depending on the Selection of the main Box
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FirstConditionBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                var comboBox = sender as ComboBox;
-                string currentRow = comboBox.Name;
-                string selected = comboBox.SelectedItem.ToString();
-
-                switch (selected)
-                {
-                    case "Regex":
-                        //RemoveOtherBoxes();
-                        AddRegexBox(Int32.Parse(currentRow));        
-                        break;
-                    case "Gesamtanzahl Zeichen":
-                    case "Character Count":
-                        AddCharacterBox(Int32.Parse(currentRow));
-                        break;
-
-                }
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show(f.ToString());
-            }
-           
-        }
-
-        /// <summary>
-        /// Creates a RegexBox in row where the SelectedIndexChanged Event was triggered
-        /// </summary>
-        /// <param name="currentRow"></param>
-        private void AddRegexBox(int currentRow)
-        {
-            foreach (Panel panel in condiPanels)
-            {
-                if (panel.Name == "panel" + currentRow)
-                {
-                    regexBox = new TextBox();
-                    panel.Controls.Add(regexBox);
-                    regexBox.Location = new System.Drawing.Point(130, 5); //Hardcoded, eventuell ändern
-                    regexBox.Text = "insert Regex";
-                    regexBox.Name = "regex" + currentRow.ToString();
-                    regexBox.Margin = new System.Windows.Forms.Padding(10);
-                    regexBox.Visible = true;
-                }
-                
-            }
-            
-        }
-
-        /// <summary>
-        /// Creates a CharacterBox in the row where the SelectedIntexChanged Event was triggered
-        /// </summary>
-        /// <param name="currentRow"></param>
-        private void AddCharacterBox(int currentRow)
-        {
-            foreach (Panel panel in condiPanels)
-            {
-                if (panel.Name == "panel" + currentRow)
-                {
-                    characterBox = new TextBox();
-                    panel.Controls.Add(characterBox);
-                    characterBox.Location = new Point(130, 5); //Hardcoded, eventuell ändern
-                    characterBox.Text = "insert maximum Character Count";
-                    characterBox.Name = "character" + currentRow.ToString();
-                    characterBox.Visible = true;
-                }
-                
-            }
-            
-        }
+        
 
         /// <summary>
         /// Checks and commits the Data with the RuleCreator
@@ -256,31 +215,19 @@ namespace SIF.Visualization.Excel
         /// <param name="e"></param>
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            
             // Check for Rulecells
             if (CheckInputs())
             {
-                string ruleTitle = RuleNameTextBox.Text;
-                RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, ruleTitle);
+                RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleNameTextBox.Text);
                 RuleCreator.Instance.SetRuleCells(DataModel.Instance.CurrentWorkbook);
 
-                for (int i = 0; i < condiPanels.Count; i++)
-                {
-                    CheckConditions(i.ToString());
-                }
-                try
-                {
-                    var newRule = RuleCreator.Instance.End();
-                    if (newRule != null)
+                var newRule = RuleCreator.Instance.End();
+                if (newRule != null)
                     {
                         DataModel.Instance.CurrentWorkbook.Rules.Add(newRule);
+                        Dispose();
                     }
-                }
-                catch
-                {
-                    MessageBox.Show(e.ToString());
-                }
-                Close();
+                
             }
             
         }
@@ -291,19 +238,27 @@ namespace SIF.Visualization.Excel
         /// <returns></returns>
         private bool CheckInputs()
         {
-            if(condiPanels.Count <= 0 ) {
+            if(RuleCreator.Instance.GetRule().Conditions.Count <= 0) {
                 MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_NoCondition);
-                if (RuleNameTextBox.Text == "") {
+                return false; 
+            }
+
+            if (RuleNameTextBox.Text == "") {
                     MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_NoName);
+                    return false;
                 }
+            if (RuleCreator.Instance.GetRule().RuleCells.Count <= 0)
+            {
+                MessageBox.Show("keine Rulecells");
                 return false;
-            } else {
-                if (RuleDescriptionTextBox.Text == "")
-                {
-                    MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_NoDescription);
-                }
+            }
+            if (RuleDescriptionTextBox.Text == "")
+            {
+                MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_NoDescription);
                 return true;
             }
+            return true;
+            
         }
 
         /// <summary>
@@ -352,17 +307,24 @@ namespace SIF.Visualization.Excel
         private void CancelButton_Click(object sender, EventArgs e)
         {
             //check for edited
+            RuleCreator.Instance.End();
             Close();
+            instance = null;
+            
         }
 
         private void ChooseCellButton_Click(object sender, EventArgs e)
         {
-            CellPickerWF cellpicker = new CellPickerWF();
-            hasRuleCells = true;
+            RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleNameTextBox.Text);
+            Dispose();
+            CellPickerWF cellpicker = new CellPickerWF();            
         }
 
-       
 
+        public void UpdateRuleCells(String locations)
+        {
+            CellAreaBox.Text = locations;
+        }
         
 
         
