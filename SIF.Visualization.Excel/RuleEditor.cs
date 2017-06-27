@@ -27,7 +27,6 @@ namespace SIF.Visualization.Excel
         int totalRows = 0;
 
         public Boolean edited = false;
-        public Boolean hasRuleCells = false;
         private Button deleteRowButton;
         private List<Panel> condiPanels = new List<Panel>();
         string[] avaibleConditions = {  
@@ -73,7 +72,7 @@ namespace SIF.Visualization.Excel
         /// </summary>
         /// <param name="rule"></param>
 
-        public RuleEditor(SIF.Visualization.Excel.Core.Rules.Rule rule)
+        public void Open(SIF.Visualization.Excel.Core.Rules.Rule rule)
         {
             InitializeComponent();
             foreach (Condition existingCondition in rule.Conditions)
@@ -116,8 +115,9 @@ namespace SIF.Visualization.Excel
             try
             {
                 RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleNameTextBox.Text);
+                instance = null;
                 Dispose();
-                ConditionPicker conditionPicker = new ConditionPicker();
+                ConditionPicker conditionPicker = new ConditionPicker(RuleCreator.Instance.GetRule());
                 
             }
             catch (Exception f)
@@ -219,14 +219,18 @@ namespace SIF.Visualization.Excel
             if (CheckInputs())
             {
                 RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleNameTextBox.Text);
-                RuleCreator.Instance.SetRuleCells(DataModel.Instance.CurrentWorkbook);
-
+                
                 var newRule = RuleCreator.Instance.End();
                 if (newRule != null)
                     {
                         DataModel.Instance.CurrentWorkbook.Rules.Add(newRule);
+                        instance = null;
                         Dispose();
                     }
+                else
+                {
+                    MessageBox.Show("keine RuleCells");
+                }
                 
             }
             
@@ -308,23 +312,21 @@ namespace SIF.Visualization.Excel
         {
             //check for edited
             RuleCreator.Instance.End();
-            Close();
             instance = null;
+            Close();
+            
             
         }
 
         private void ChooseCellButton_Click(object sender, EventArgs e)
         {
             RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleNameTextBox.Text);
+            instance = null;
             Dispose();
             CellPickerWF cellpicker = new CellPickerWF();            
         }
 
 
-        public void UpdateRuleCells(String locations)
-        {
-            CellAreaBox.Text = locations;
-        }
         
 
         

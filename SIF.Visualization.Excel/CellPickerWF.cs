@@ -31,7 +31,7 @@ namespace SIF.Visualization.Excel
             try
             {
                 Dispose();
-                RuleEditor ruleEditor = new RuleEditor(RuleCreator.Instance.GetRule());
+                RuleEditor.Instance.Open(RuleCreator.Instance.GetRule());
             }
             catch (Exception f)
             {
@@ -54,7 +54,7 @@ namespace SIF.Visualization.Excel
             DataModel.Instance.CurrentWorkbook.RecalculateViewModel();
             DataModel.Instance.CurrentWorkbook.RuleCells.Clear();
             Dispose();
-            RuleEditor ruleEditor = new RuleEditor(RuleCreator.Instance.GetRule());
+            RuleEditor.Instance.Open(RuleCreator.Instance.GetRule());
                        
         }
     }

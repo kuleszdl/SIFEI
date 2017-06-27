@@ -61,7 +61,7 @@ namespace SIF.Visualization.Excel.View
             Rule rule = grid.DataContext as Rule;
             try
             {
-                RuleEditor ruleEditor = new RuleEditor(rule);
+                RuleEditor.Instance.Open(rule);
             }
             catch (Exception f)
             {

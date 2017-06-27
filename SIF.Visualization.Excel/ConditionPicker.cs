@@ -14,8 +14,10 @@ namespace SIF.Visualization.Excel
     public partial class ConditionPicker : Form
     {
         string chosenType;
-        public ConditionPicker()
+        SIF.Visualization.Excel.Core.Rules.Rule rule;
+        public ConditionPicker(SIF.Visualization.Excel.Core.Rules.Rule rule)
         {
+            this.rule = rule;
             InitializeComponent();
             ShowDialog();
         }
@@ -103,8 +105,9 @@ namespace SIF.Visualization.Excel
             {
                 MessageBox.Show(f.ToString());
             }
-            Dispose();
-            RuleEditor ruleEditor = new RuleEditor(RuleCreator.Instance.GetRule());
+            RuleEditor.Instance.Open(rule);
+            Close();
+            
             
         }
 
@@ -113,7 +116,7 @@ namespace SIF.Visualization.Excel
             try
             {
                 Dispose();
-                RuleEditor ruleEditor = new RuleEditor(RuleCreator.Instance.GetRule());
+                RuleEditor.Instance.Open(RuleCreator.Instance.GetRule());
             }
             catch (Exception f)
             {

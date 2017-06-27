@@ -52,14 +52,17 @@ namespace SIF.Visualization.Excel.Core.Rules
                 return;
             lock(syncRule)
             {
-                currentRule = new Rule { };
+                currentRule = new Rule {
+                Title = "",
+                Conditions = null,
+                Description = "",
+                RuleCells = null
+            };
             }
         }
 
         public void OpenRule(Rule rule)
         {
-            if (currentRule == null)
-                return;
             lock (syncRule)
             {
                 currentRule = rule;
@@ -152,17 +155,18 @@ namespace SIF.Visualization.Excel.Core.Rules
             if (currentRule == null)
                 return null;
            
-            var resultRule = currentRule;
-
+            var resultRule = this.currentRule as Rule;
+            
             lock (syncRule)
             {
-                currentRule = null;
+                this.currentRule = null;
 
                 if (resultRule.RuleCells.Count == 0)
                 {
                     return null;
                 }
                 return resultRule;
+                
             }
         }
 
