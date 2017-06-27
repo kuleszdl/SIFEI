@@ -433,6 +433,7 @@ namespace SIF.Visualization.Excel.Core {
             ShouldScanAfterSave = true;
             SIF.Visualization.Excel.Core.Scenarios.ScenarioUICreator.Instance.End();
             SIF.Visualization.Excel.Core.Rules.RuleCreator.Instance.End();
+            SIF.Visualization.Excel.RuleEditor.Instance.Dispose();
             // Deletes all controls that might be in the cells (markers)
             foreach (MSExcel.Worksheet worksheet in Workbook.Worksheets) {
                 var worksheet2 = Globals.Factory.GetVstoObject(worksheet);

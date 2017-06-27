@@ -114,7 +114,7 @@ namespace SIF.Visualization.Excel
         {
             try
             {
-                RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleNameTextBox.Text);
+                RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
                 instance = null;
                 Dispose();
                 ConditionPicker conditionPicker = new ConditionPicker(RuleCreator.Instance.GetRule());
@@ -218,7 +218,7 @@ namespace SIF.Visualization.Excel
             // Check for Rulecells
             if (CheckInputs())
             {
-                RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleNameTextBox.Text);
+                RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
                 
                 var newRule = RuleCreator.Instance.End();
                 if (newRule != null)
@@ -320,7 +320,7 @@ namespace SIF.Visualization.Excel
 
         private void ChooseCellButton_Click(object sender, EventArgs e)
         {
-            RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleNameTextBox.Text);
+            RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
             instance = null;
             Dispose();
             CellPickerWF cellpicker = new CellPickerWF();            
