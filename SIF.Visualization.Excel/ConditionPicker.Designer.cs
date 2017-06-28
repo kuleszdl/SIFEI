@@ -151,7 +151,7 @@
             this.RegexTextBox.Size = new System.Drawing.Size(446, 20);
             this.RegexTextBox.TabIndex = 0;
             this.RegexTextBox.Visible = false;
-            this.RegexTextBox.Text = "sdf";
+            
             // 
             // CharacterCountTextBox
             // 
