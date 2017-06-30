@@ -479,7 +479,7 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
     <value>Regeln</value>
   </data>
   <data name="tl_NoRulesSide" xml:space="preserve">
-    <value>Keine Regeln vorhanden. Bitter erstellen Sie eine neue Regel.</value>
+    <value>Keine Regeln vorhanden. Bitte erstellen Sie eine neue Regel.</value>
   </data>
   <data name="tl_Cancel" xml:space="preserve">
     <value>Abbrechen</value>
@@ -552,5 +552,17 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   </data>
   <data name="tl_ConditionPicker_Confirm" xml:space="preserve">
     <value>Erstelle Bedingung</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_CellArea" xml:space="preserve">
+    <value>Legt den Anwendungsbereich der Regel fest. Klicken sie dazu auf "Anwendungsbereich wählen", markieren sie die gewünschten Zellen, und klicken Sie dann auf "Bestätigen".</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_Condition" xml:space="preserve">
+    <value>Eine Regel besteht aus einer oder mehreren Bedingungen bestehen, die Sie hier erstellen können. Klicken sie dazu auf "Neue Bedingung", und wählen Sie eine Art aus.</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_Description" xml:space="preserve">
+    <value>Eine Regelbeschreibung sollte ein Hilfstext sein, der erklärt was die Regel bezwecken soll.</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_Name" xml:space="preserve">
+    <value>Bitte geben sie einen gültigen Namen für die Regel ein. Dieser Name wird zum Identifizieren der Regel verwendet.</value>
   </data>
 </root>

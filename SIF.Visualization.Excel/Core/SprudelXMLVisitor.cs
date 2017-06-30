@@ -232,6 +232,7 @@ namespace SIF.Visualization.Excel.Core {
             var rule = new XElement("rule");
 
             rule.Add(new XElement("name", n.Title));
+            rule.Add(new XElement("description", n.Conditions));
 
             rule.Add(CreateRuleData(n));
             rule.Add(CreateRuleCondition(n));
@@ -262,6 +263,7 @@ namespace SIF.Visualization.Excel.Core {
             var inputs = new XElement("ruleConditions");
             foreach (var test in n.Conditions) {
                 var inputElement = new XElement("ruleCondition");
+                inputElement.Add(new XElement("conditionName", test.Name));
                 inputElement.Add(new XElement("conditionType", test.Type.ToString()));
                 inputElement.Add(new XElement("conditionValue", test.Value.ToString()));
                 inputs.Add(inputElement);

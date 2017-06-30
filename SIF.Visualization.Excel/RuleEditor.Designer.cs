@@ -30,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.CancelButton = new System.Windows.Forms.Button();
             this.ConfirmButton = new System.Windows.Forms.Button();
             this.ConditionLabel = new System.Windows.Forms.Label();
@@ -39,10 +40,17 @@
             this.ConditionPanel = new System.Windows.Forms.Panel();
             this.RuleAreaLabel = new System.Windows.Forms.Label();
             this.CellAreaBox = new System.Windows.Forms.TextBox();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.ChooseCellButton = new System.Windows.Forms.Button();
             this.DescriptionLabel = new System.Windows.Forms.Label();
             this.RuleDescriptionTextBox = new System.Windows.Forms.RichTextBox();
+            this.ToolTipName = new System.Windows.Forms.ToolTip(this.components);
+            this.TooltipLabelName = new System.Windows.Forms.Label();
+            this.ToolTipLabelCellArea = new System.Windows.Forms.Label();
+            this.ToolTipLabelDescription = new System.Windows.Forms.Label();
+            this.TooltipLabelCondition = new System.Windows.Forms.Label();
+            this.ToolTipCellArea = new System.Windows.Forms.ToolTip(this.components);
+            this.ToolTipDescription = new System.Windows.Forms.ToolTip(this.components);
+            this.ToolTipCondition = new System.Windows.Forms.ToolTip(this.components);
             this.ConditionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -170,6 +178,82 @@
             this.RuleDescriptionTextBox.TabIndex = 18;
             this.RuleDescriptionTextBox.Text = "";
             // 
+            // ToolTipName
+            // 
+            this.ToolTipName.AutomaticDelay = 0;
+            this.ToolTipName.AutoPopDelay = 5000;
+            this.ToolTipName.InitialDelay = 0;
+            this.ToolTipName.IsBalloon = true;
+            this.ToolTipName.ReshowDelay = 100;
+            // 
+            // TooltipLabelName
+            // 
+            this.TooltipLabelName.AutoSize = true;
+            this.TooltipLabelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TooltipLabelName.Location = new System.Drawing.Point(50, 16);
+            this.TooltipLabelName.Name = "TooltipLabelName";
+            this.TooltipLabelName.Size = new System.Drawing.Size(14, 13);
+            this.TooltipLabelName.TabIndex = 19;
+            this.TooltipLabelName.Text = "?";
+            this.ToolTipName.SetToolTip(this.TooltipLabelName, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_Name);
+            // 
+            // ToolTipLabelCellArea
+            // 
+            this.ToolTipLabelCellArea.AutoSize = true;
+            this.ToolTipLabelCellArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolTipLabelCellArea.Location = new System.Drawing.Point(63, 48);
+            this.ToolTipLabelCellArea.Name = "ToolTipLabelCellArea";
+            this.ToolTipLabelCellArea.Size = new System.Drawing.Size(14, 13);
+            this.ToolTipLabelCellArea.TabIndex = 20;
+            this.ToolTipLabelCellArea.Text = "?";
+            this.ToolTipCellArea.SetToolTip(this.ToolTipLabelCellArea, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_CellArea);
+            // 
+            // ToolTipLabelDescription
+            // 
+            this.ToolTipLabelDescription.AutoSize = true;
+            this.ToolTipLabelDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolTipLabelDescription.Location = new System.Drawing.Point(106, 70);
+            this.ToolTipLabelDescription.Name = "ToolTipLabelDescription";
+            this.ToolTipLabelDescription.Size = new System.Drawing.Size(14, 13);
+            this.ToolTipLabelDescription.TabIndex = 21;
+            this.ToolTipLabelDescription.Text = "?";
+            this.ToolTipDescription.SetToolTip(this.ToolTipLabelDescription, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_Description);
+            // 
+            // TooltipLabelCondition
+            // 
+            this.TooltipLabelCondition.AutoSize = true;
+            this.TooltipLabelCondition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TooltipLabelCondition.Location = new System.Drawing.Point(83, 125);
+            this.TooltipLabelCondition.Name = "TooltipLabelCondition";
+            this.TooltipLabelCondition.Size = new System.Drawing.Size(14, 13);
+            this.TooltipLabelCondition.TabIndex = 22;
+            this.TooltipLabelCondition.Text = "?";
+            this.ToolTipCondition.SetToolTip(this.TooltipLabelCondition, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_Condition);
+            // 
+            // ToolTipCellArea
+            // 
+            this.ToolTipCellArea.AutomaticDelay = 0;
+            this.ToolTipCellArea.AutoPopDelay = 5000;
+            this.ToolTipCellArea.InitialDelay = 0;
+            this.ToolTipCellArea.IsBalloon = true;
+            this.ToolTipCellArea.ReshowDelay = 100;
+            // 
+            // ToolTipDescription
+            // 
+            this.ToolTipDescription.AutomaticDelay = 0;
+            this.ToolTipDescription.AutoPopDelay = 5000;
+            this.ToolTipDescription.InitialDelay = 0;
+            this.ToolTipDescription.IsBalloon = true;
+            this.ToolTipDescription.ReshowDelay = 100;
+            // 
+            // ToolTipCondition
+            // 
+            this.ToolTipCondition.AutomaticDelay = 0;
+            this.ToolTipCondition.AutoPopDelay = 5000;
+            this.ToolTipCondition.InitialDelay = 0;
+            this.ToolTipCondition.IsBalloon = true;
+            this.ToolTipCondition.ReshowDelay = 100;
+            // 
             // RuleEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,6 +261,10 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(685, 533);
+            this.Controls.Add(this.TooltipLabelCondition);
+            this.Controls.Add(this.ToolTipLabelDescription);
+            this.Controls.Add(this.ToolTipLabelCellArea);
+            this.Controls.Add(this.TooltipLabelName);
             this.Controls.Add(this.RuleDescriptionTextBox);
             this.Controls.Add(this.DescriptionLabel);
             this.Controls.Add(this.ChooseCellButton);
@@ -214,10 +302,17 @@
         private System.Windows.Forms.Panel ConditionPanel;
         private System.Windows.Forms.Label RuleAreaLabel;
         private System.Windows.Forms.TextBox CellAreaBox;
-        private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button ChooseCellButton;
         private System.Windows.Forms.Label DescriptionLabel;
         private System.Windows.Forms.RichTextBox RuleDescriptionTextBox;
+        private System.Windows.Forms.ToolTip ToolTipName;
+        private System.Windows.Forms.Label TooltipLabelName;
+        private System.Windows.Forms.Label ToolTipLabelCellArea;
+        private System.Windows.Forms.Label ToolTipLabelDescription;
+        private System.Windows.Forms.Label TooltipLabelCondition;
+        private System.Windows.Forms.ToolTip ToolTipCellArea;
+        private System.Windows.Forms.ToolTip ToolTipDescription;
+        private System.Windows.Forms.ToolTip ToolTipCondition;
 
 
 

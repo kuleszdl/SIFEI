@@ -21,6 +21,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="168*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -29,7 +31,7 @@
         </Grid.ColumnDefinitions>
 
         <!--First row-->
-        <Border Grid.Row="0" Grid.Column="0">
+        <Border Grid.Row="0" Grid.Column="0" Margin="0,0,0,21" Grid.RowSpan="2">
             <Border.Background>
                 <SolidColorBrush >
                     <SolidColorBrush.Color>
@@ -50,7 +52,7 @@
             </Image>
         </Border>
 
-        <Border Grid.Row="0" Grid.Column="1" BorderThickness="2">
+        <Border Grid.Row="0" Grid.Column="1" BorderThickness="2" Margin="0,0,0,21" Grid.RowSpan="2">
             <Border.BorderBrush>
                 <RadialGradientBrush>
                     <GradientStop>
@@ -63,7 +65,7 @@
             <TextBlock Text="{Binding Policy.Name}" FontWeight="{Binding IsRead, Converter={StaticResource BoolToFontWeightConverter}}" FontSize="16" Margin="5 0 0 0"/>
         </Border>
 
-        <Border Grid.Row="0" Grid.Column="2">
+        <Border Grid.Row="0" Grid.Column="2" Margin="0,0,0,21" Grid.RowSpan="2">
             <Border.Background>
                 <SolidColorBrush >
                     <SolidColorBrush.Color>
@@ -75,11 +77,11 @@
         </Border>
 
         <!--Second row-->
-        <TextBlock Text="{Binding Location}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" FontSize="14" Margin="10 5 5 0" VerticalAlignment="Top" TextWrapping="Wrap" />
+        <TextBlock Text="{Binding Location}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" FontSize="14" Margin="10,6,3,0" VerticalAlignment="Top" TextWrapping="Wrap" Grid.RowSpan="3" />
 
         <!--Third Row-->
         <!--More details expander-->
-        <Expander Name="detailExpander" Background="Transparent" Margin="5,6,0,-0.4" BorderThickness="3" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Left" Grid.RowSpan="2">
+        <Expander Name="detailExpander" Background="Transparent" Margin="5,9,0,50" BorderThickness="3" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Left" Grid.RowSpan="3">
             <Expander.Style>
                 <Style TargetType="Expander">
                     <Setter Property="IsExpanded" Value="False" />

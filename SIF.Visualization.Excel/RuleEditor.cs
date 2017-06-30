@@ -36,6 +36,7 @@ namespace SIF.Visualization.Excel
 
         private static volatile RuleEditor instance;
         private static object syncRoot = new Object();
+        private static Object syncEditor = new Object();
 
         public static RuleEditor Instance
         {
@@ -61,9 +62,13 @@ namespace SIF.Visualization.Excel
             
         }
         public void Start() {
-            InitializeComponent();
-            RuleCreator.Instance.BlankStart();
-            Show();            
+            lock (syncEditor)
+            {
+                InitializeComponent();
+                RuleCreator.Instance.BlankStart();
+                Show();            
+            }
+            
         }
 
 
@@ -74,14 +79,18 @@ namespace SIF.Visualization.Excel
 
         public void Open(SIF.Visualization.Excel.Core.Rules.Rule rule)
         {
-            InitializeComponent();
-            foreach (Condition existingCondition in rule.Conditions)
+            lock (syncEditor)
             {
-                AddExistingRow(existingCondition);
+                InitializeComponent();
+                foreach (Condition existingCondition in rule.Conditions)
+                {
+                    AddExistingRow(existingCondition);
+                }
+                UpdateInformations(rule);
+                RuleCreator.Instance.OpenRule(rule);
+                Show();
             }
-            UpdateInformations(rule);
-            RuleCreator.Instance.OpenRule(rule);
-            Show();
+            
             
         }
 
@@ -115,8 +124,7 @@ namespace SIF.Visualization.Excel
             try
             {
                 RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
-                instance = null;
-                Dispose();
+                End();
                 ConditionPicker conditionPicker = new ConditionPicker(RuleCreator.Instance.GetRule());
                 
             }
@@ -224,8 +232,7 @@ namespace SIF.Visualization.Excel
                 if (newRule != null)
                     {
                         DataModel.Instance.CurrentWorkbook.Rules.Add(newRule);
-                        instance = null;
-                        Dispose();
+                        End();
                     }
                 else
                 {
@@ -312,8 +319,7 @@ namespace SIF.Visualization.Excel
         {
             //check for edited
             RuleCreator.Instance.End();
-            instance = null;
-            Close();
+            End();
             
             
         }
@@ -321,17 +327,24 @@ namespace SIF.Visualization.Excel
         private void ChooseCellButton_Click(object sender, EventArgs e)
         {
             RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
-            instance = null;
-            Dispose();
+            End();
             CellPickerWF cellpicker = new CellPickerWF();            
         }
 
+        public void End()
+        {
+            if (instance == null) {
 
-        
+            }
+            lock (syncEditor)
+            {
+                instance = null;
+                Close();
+                Dispose();
+            }           
+            
+        }
 
-        
-
-               
         
     }
 }

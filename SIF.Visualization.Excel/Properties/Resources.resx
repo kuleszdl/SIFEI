@@ -625,4 +625,16 @@ Try scanning the file again and if this doesn't help close and open the file aga
   <data name="tl_ConditionPicker_Confirm" xml:space="preserve">
     <value>Create Condition</value>
   </data>
+  <data name="tl_RuleEditor_ToolTip_CellArea" xml:space="preserve">
+    <value>The area where the rule will be applied.</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_Condition" xml:space="preserve">
+    <value>A rule consists of one or more conditions that can be added with "Add new Condition".</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_Description" xml:space="preserve">
+    <value>A description of the rule that should describe the usage.</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_Name" xml:space="preserve">
+    <value>The name this rule will be using from now.</value>
+  </data>
 </root>

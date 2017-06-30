@@ -1026,6 +1026,42 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The area where the rule will be applied. ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_ToolTip_CellArea {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_ToolTip_CellArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die A rule consists of one or more conditions that can be added with &quot;Add new Condition&quot;. ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_ToolTip_Condition {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_ToolTip_Condition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die A description of the rule that should describe the usage. ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_ToolTip_Description {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_ToolTip_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The name this rule will be using from now. ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_ToolTip_Name {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_ToolTip_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Deletes this Rule ähnelt.
         /// </summary>
         public static string tl_RulePane_DeleteRuleTooltip {
