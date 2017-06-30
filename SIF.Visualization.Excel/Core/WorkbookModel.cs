@@ -433,24 +433,42 @@ namespace SIF.Visualization.Excel.Core {
             ShouldScanAfterSave = true;
             SIF.Visualization.Excel.Core.Scenarios.ScenarioUICreator.Instance.End();
             SIF.Visualization.Excel.Core.Rules.RuleCreator.Instance.End();
-            SIF.Visualization.Excel.RuleEditor.Instance.Dispose();
+            try
+            {
+                SIF.Visualization.Excel.RuleEditor.Instance.End();
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show(f.ToString());
+            }
+            
             // Deletes all controls that might be in the cells (markers)
             foreach (MSExcel.Worksheet worksheet in Workbook.Worksheets) {
-                var worksheet2 = Globals.Factory.GetVstoObject(worksheet);
+                try
+                {
+                    var worksheet2 = Globals.Factory.GetVstoObject(worksheet);
 
-                System.Collections.ArrayList controlsToRemove = new System.Collections.ArrayList();
+                    System.Collections.ArrayList controlsToRemove = new System.Collections.ArrayList();
 
-                // Get all of the Windows Forms controls.
-                foreach (object control in worksheet2.Controls) {
-                    if (control is System.Windows.Forms.Control) {
-                        controlsToRemove.Add(control);
+                    // Get all of the Windows Forms controls.
+                    foreach (object control in worksheet2.Controls)
+                    {
+                        if (control is System.Windows.Forms.Control)
+                        {
+                            controlsToRemove.Add(control);
+                        }
                     }
-                }
 
-                // Remove all of the Windows Forms controls from the document.
-                foreach (object control in controlsToRemove) {
-                    worksheet2.Controls.Remove(control);
+                    // Remove all of the Windows Forms controls from the document.
+                    foreach (object control in controlsToRemove)
+                    {
+                        worksheet2.Controls.Remove(control);
+                    }
+                } catch (Exception f)
+                {
+                    MessageBox.Show(f.ToString());
                 }
+               
             }
         }
 
