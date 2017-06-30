@@ -82,7 +82,7 @@
             // ConditionLabel
             // 
             this.ConditionLabel.AutoSize = true;
-            this.ConditionLabel.Location = new System.Drawing.Point(12, 125);
+            this.ConditionLabel.Location = new System.Drawing.Point(21, 125);
             this.ConditionLabel.Name = "ConditionLabel";
             this.ConditionLabel.Size = new System.Drawing.Size(65, 13);
             this.ConditionLabel.TabIndex = 6;
@@ -91,7 +91,7 @@
             // RuleNameLabel
             // 
             this.RuleNameLabel.AutoSize = true;
-            this.RuleNameLabel.Location = new System.Drawing.Point(12, 16);
+            this.RuleNameLabel.Location = new System.Drawing.Point(21, 16);
             this.RuleNameLabel.Name = "RuleNameLabel";
             this.RuleNameLabel.Size = new System.Drawing.Size(38, 13);
             this.RuleNameLabel.TabIndex = 7;
@@ -134,7 +134,7 @@
             // RuleAreaLabel
             // 
             this.RuleAreaLabel.AutoSize = true;
-            this.RuleAreaLabel.Location = new System.Drawing.Point(12, 48);
+            this.RuleAreaLabel.Location = new System.Drawing.Point(21, 48);
             this.RuleAreaLabel.Name = "RuleAreaLabel";
             this.RuleAreaLabel.Size = new System.Drawing.Size(52, 13);
             this.RuleAreaLabel.TabIndex = 14;
@@ -144,6 +144,7 @@
             // 
             this.CellAreaBox.Location = new System.Drawing.Point(132, 41);
             this.CellAreaBox.Name = "CellAreaBox";
+            this.CellAreaBox.ReadOnly = true;
             this.CellAreaBox.Size = new System.Drawing.Size(379, 20);
             this.CellAreaBox.TabIndex = 15;
             // 
@@ -162,7 +163,7 @@
             // DescriptionLabel
             // 
             this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Location = new System.Drawing.Point(12, 70);
+            this.DescriptionLabel.Location = new System.Drawing.Point(21, 70);
             this.DescriptionLabel.Name = "DescriptionLabel";
             this.DescriptionLabel.Size = new System.Drawing.Size(88, 13);
             this.DescriptionLabel.TabIndex = 17;
@@ -190,7 +191,7 @@
             // 
             this.TooltipLabelName.AutoSize = true;
             this.TooltipLabelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TooltipLabelName.Location = new System.Drawing.Point(50, 16);
+            this.TooltipLabelName.Location = new System.Drawing.Point(1, 16);
             this.TooltipLabelName.Name = "TooltipLabelName";
             this.TooltipLabelName.Size = new System.Drawing.Size(14, 13);
             this.TooltipLabelName.TabIndex = 19;
@@ -201,7 +202,7 @@
             // 
             this.ToolTipLabelCellArea.AutoSize = true;
             this.ToolTipLabelCellArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolTipLabelCellArea.Location = new System.Drawing.Point(63, 48);
+            this.ToolTipLabelCellArea.Location = new System.Drawing.Point(1, 48);
             this.ToolTipLabelCellArea.Name = "ToolTipLabelCellArea";
             this.ToolTipLabelCellArea.Size = new System.Drawing.Size(14, 13);
             this.ToolTipLabelCellArea.TabIndex = 20;
@@ -212,7 +213,7 @@
             // 
             this.ToolTipLabelDescription.AutoSize = true;
             this.ToolTipLabelDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolTipLabelDescription.Location = new System.Drawing.Point(106, 70);
+            this.ToolTipLabelDescription.Location = new System.Drawing.Point(1, 70);
             this.ToolTipLabelDescription.Name = "ToolTipLabelDescription";
             this.ToolTipLabelDescription.Size = new System.Drawing.Size(14, 13);
             this.ToolTipLabelDescription.TabIndex = 21;
@@ -223,7 +224,7 @@
             // 
             this.TooltipLabelCondition.AutoSize = true;
             this.TooltipLabelCondition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TooltipLabelCondition.Location = new System.Drawing.Point(83, 125);
+            this.TooltipLabelCondition.Location = new System.Drawing.Point(1, 125);
             this.TooltipLabelCondition.Name = "TooltipLabelCondition";
             this.TooltipLabelCondition.Size = new System.Drawing.Size(14, 13);
             this.TooltipLabelCondition.TabIndex = 22;

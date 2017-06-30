@@ -65,6 +65,7 @@ namespace SIF.Visualization.Excel
             lock (syncEditor)
             {
                 InitializeComponent();
+                SetDesigner();
                 RuleCreator.Instance.BlankStart();
                 Show();            
             }
@@ -86,12 +87,34 @@ namespace SIF.Visualization.Excel
                 {
                     AddExistingRow(existingCondition);
                 }
+                SetDesigner();
                 UpdateInformations(rule);
+                
                 RuleCreator.Instance.OpenRule(rule);
                 Show();
             }
-            
-            
+        }
+        /// <summary>
+        /// Sets the text and Tooltips to localized string, because Visual studio keeps resetting them
+        /// </summary>
+        private void SetDesigner()
+        {
+            //Buttons
+            this.CancelButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_Cancel;
+            this.ConfirmButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Confirm;
+            this.ChooseCellButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_CellPicker;
+            this.NewConditionButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_NewCondition;
+            //Labels
+            this.ConditionLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition;
+            this.RuleNameLabel.Text = "Name";
+            this.RuleAreaLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_RuleArea;
+            this.DescriptionLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_RuleDescription;
+            //Tooltips
+            this.ToolTipName.SetToolTip(this.TooltipLabelName, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_Name);
+            this.ToolTipCellArea.SetToolTip(this.ToolTipLabelCellArea, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_CellArea);
+            this.ToolTipDescription.SetToolTip(this.ToolTipLabelDescription, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_Description);
+            this.ToolTipCondition.SetToolTip(this.TooltipLabelCondition, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_Condition);
+
         }
 
         public void UpdateInformations(SIF.Visualization.Excel.Core.Rules.Rule rule)

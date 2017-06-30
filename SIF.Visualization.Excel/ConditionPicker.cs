@@ -35,10 +35,12 @@ namespace SIF.Visualization.Excel
         }
         private void SetText()
         {
+            //Buttons
             this.ConfirmButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_Confirm;
             this.ChooseEmptyButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_Empty;
             this.CancelButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_Cancel;
             this.ChooseCharacterCountButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_CharacterCount;
+            //Labels
             this.ConditionNameLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ConditionName;
             this.ConditionFirstPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseConditionType;
         }
@@ -66,28 +68,31 @@ namespace SIF.Visualization.Excel
 
         private void ChooseRegex_Click(object sender, EventArgs e)
         {
+            HideFirstBoxes();
+            ResetColourScheme();
             this.ChooseRegexButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseRegex;
-            HideFirstBoxes();
             this.RegexTextBox.Visible = true;
             chosenType = "Regex";
         }
         private void ChooseEmptyButton_Click(object sender, EventArgs e)
         {
+            HideFirstBoxes();
+            ResetColourScheme();
             this.ChooseEmptyButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ConditionFirstPanel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseEmpty;
-            HideFirstBoxes();
+            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseEmpty;
             chosenType = "Empty";
         }
 
         private void ChooseCharacterCountButton_Click(object sender, EventArgs e)
         {
+            HideFirstBoxes();
+            ResetColourScheme();
             this.ChooseCharacterCountButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseCharacterCount;
-            HideFirstBoxes();
             this.CharacterCountTextBox.Visible = true;
             chosenType = "CharacterCount";
         }
@@ -102,7 +107,13 @@ namespace SIF.Visualization.Excel
         /// </summary>
         private void ResetColourScheme()
         {
-            
+            //Panels
+            this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.ConditionSecondPanel.BackColor = System.Drawing.SystemColors.Control;
+            //Buttons
+            this.ChooseRegexButton.BackColor = System.Drawing.SystemColors.Control;
+            this.ChooseCharacterCountButton.BackColor = System.Drawing.SystemColors.Control;
+            this.ChooseEmptyButton.BackColor = System.Drawing.SystemColors.Control;
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
