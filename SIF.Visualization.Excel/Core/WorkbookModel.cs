@@ -495,7 +495,8 @@ namespace SIF.Visualization.Excel.Core {
             string policyFile = "";
             policyFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar + "inspectionRequest.xml";
             string spreadsheetFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + System.IO.Path.DirectorySeparatorChar + "spreadsheet" + extension;
-
+            try
+            {
             // create xml document
             var xmlDoc = new XDocument();
             // Create the rules
@@ -510,7 +511,14 @@ namespace SIF.Visualization.Excel.Core {
 
             // Enqueue this inspection
             // @TODO http web service request
-            InspectionEngine.Instance.doInspection(this, policyFile, spreadsheetFile);
+            
+                InspectionEngine.Instance.doInspection(this, policyFile, spreadsheetFile);
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Nicht prüfen, wenn gerade eine Zelle editiert wird!\n" + f.ToString());
+            }
+            Globals.Ribbons.Ribbon.scanButton.Enabled = true;
         }
 
         /// <summary>

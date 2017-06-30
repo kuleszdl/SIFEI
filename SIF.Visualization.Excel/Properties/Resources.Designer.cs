@@ -330,6 +330,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The cell has to be empty. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ChooseEmpty {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a valid Regex string. This string will limit the contents of the cell. ähnelt.
         /// </summary>
         public static string tl_ConditionPicker_ChooseRegex {
@@ -353,6 +362,15 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_ConditionPicker_Confirm {
             get {
                 return ResourceManager.GetString("tl_ConditionPicker_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Empty Cell ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_Empty {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_Empty", resourceCulture);
             }
         }
         

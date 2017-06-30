@@ -32,6 +32,7 @@
             this.ConditionNameTextBox = new System.Windows.Forms.TextBox();
             this.ConditionComponentsPanel = new System.Windows.Forms.Panel();
             this.ConditionFirstPanel = new System.Windows.Forms.Panel();
+            this.ChooseEmptyButton = new System.Windows.Forms.Button();
             this.ConditionFirstPanelLabel = new System.Windows.Forms.Label();
             this.ChooseRegexButton = new System.Windows.Forms.Button();
             this.ChooseCharacterCountButton = new System.Windows.Forms.Button();
@@ -41,6 +42,9 @@
             this.CharacterCountTextBox = new System.Windows.Forms.TextBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.ConfirmButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.ConditionComponentsPanel.SuspendLayout();
             this.ConditionFirstPanel.SuspendLayout();
             this.ConditionSecondPanel.SuspendLayout();
@@ -82,14 +86,28 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ConditionFirstPanel.Controls.Add(this.button3);
+            this.ConditionFirstPanel.Controls.Add(this.button2);
+            this.ConditionFirstPanel.Controls.Add(this.button1);
+            this.ConditionFirstPanel.Controls.Add(this.ChooseEmptyButton);
             this.ConditionFirstPanel.Controls.Add(this.ConditionFirstPanelLabel);
             this.ConditionFirstPanel.Controls.Add(this.ChooseRegexButton);
             this.ConditionFirstPanel.Controls.Add(this.ChooseCharacterCountButton);
             this.ConditionFirstPanel.Location = new System.Drawing.Point(13, 13);
             this.ConditionFirstPanel.Name = "ConditionFirstPanel";
             this.ConditionFirstPanel.Padding = new System.Windows.Forms.Padding(9);
-            this.ConditionFirstPanel.Size = new System.Drawing.Size(470, 97);
+            this.ConditionFirstPanel.Size = new System.Drawing.Size(470, 125);
             this.ConditionFirstPanel.TabIndex = 1;
+            // 
+            // ChooseEmptyButton
+            // 
+            this.ChooseEmptyButton.Location = new System.Drawing.Point(165, 32);
+            this.ChooseEmptyButton.Name = "ChooseEmptyButton";
+            this.ChooseEmptyButton.Size = new System.Drawing.Size(140, 30);
+            this.ChooseEmptyButton.TabIndex = 3;
+            this.ChooseEmptyButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_Empty;
+            this.ChooseEmptyButton.UseVisualStyleBackColor = true;
+            this.ChooseEmptyButton.Click += new System.EventHandler(this.ChooseEmptyButton_Click);
             // 
             // ConditionFirstPanelLabel
             // 
@@ -98,14 +116,14 @@
             this.ConditionFirstPanelLabel.Name = "ConditionFirstPanelLabel";
             this.ConditionFirstPanelLabel.Size = new System.Drawing.Size(220, 13);
             this.ConditionFirstPanelLabel.TabIndex = 1;
-            this.ConditionFirstPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseConditionType;
+            this.ConditionFirstPanelLabel.Text = "Please choose the type of the new condition.";
             // 
             // ChooseRegexButton
             // 
             this.ChooseRegexButton.Location = new System.Drawing.Point(12, 32);
             this.ChooseRegexButton.Margin = new System.Windows.Forms.Padding(10);
             this.ChooseRegexButton.Name = "ChooseRegexButton";
-            this.ChooseRegexButton.Size = new System.Drawing.Size(150, 30);
+            this.ChooseRegexButton.Size = new System.Drawing.Size(140, 30);
             this.ChooseRegexButton.TabIndex = 0;
             this.ChooseRegexButton.Text = "Regex";
             this.ChooseRegexButton.UseVisualStyleBackColor = true;
@@ -113,9 +131,10 @@
             // 
             // ChooseCharacterCountButton
             // 
-            this.ChooseCharacterCountButton.Location = new System.Drawing.Point(308, 32);
+            this.ChooseCharacterCountButton.Location = new System.Drawing.Point(318, 32);
+            this.ChooseCharacterCountButton.Margin = new System.Windows.Forms.Padding(10);
             this.ChooseCharacterCountButton.Name = "ChooseCharacterCountButton";
-            this.ChooseCharacterCountButton.Size = new System.Drawing.Size(150, 30);
+            this.ChooseCharacterCountButton.Size = new System.Drawing.Size(140, 30);
             this.ChooseCharacterCountButton.TabIndex = 2;
             this.ChooseCharacterCountButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_CharacterCount;
             this.ChooseCharacterCountButton.UseVisualStyleBackColor = true;
@@ -128,19 +147,19 @@
             this.ConditionSecondPanel.Controls.Add(this.ConditionSecondPanelLabel);
             this.ConditionSecondPanel.Controls.Add(this.RegexTextBox);
             this.ConditionSecondPanel.Controls.Add(this.CharacterCountTextBox);
-            this.ConditionSecondPanel.Location = new System.Drawing.Point(13, 116);
+            this.ConditionSecondPanel.Location = new System.Drawing.Point(13, 144);
             this.ConditionSecondPanel.Name = "ConditionSecondPanel";
             this.ConditionSecondPanel.Size = new System.Drawing.Size(470, 101);
             this.ConditionSecondPanel.TabIndex = 3;
             // 
             // ConditionSecondPanelLabel
             // 
+            this.ConditionSecondPanelLabel.AutoEllipsis = true;
             this.ConditionSecondPanelLabel.AutoSize = true;
             this.ConditionSecondPanelLabel.Location = new System.Drawing.Point(10, 15);
             this.ConditionSecondPanelLabel.Name = "ConditionSecondPanelLabel";
             this.ConditionSecondPanelLabel.Size = new System.Drawing.Size(0, 13);
             this.ConditionSecondPanelLabel.TabIndex = 3;
-            this.ConditionSecondPanelLabel.AutoEllipsis = true;
             // 
             // RegexTextBox
             // 
@@ -151,7 +170,6 @@
             this.RegexTextBox.Size = new System.Drawing.Size(446, 20);
             this.RegexTextBox.TabIndex = 0;
             this.RegexTextBox.Visible = false;
-            
             // 
             // CharacterCountTextBox
             // 
@@ -188,6 +206,33 @@
             this.ConfirmButton.UseVisualStyleBackColor = true;
             this.ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(15, 76);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(140, 30);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(165, 76);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(140, 30);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(318, 76);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(140, 30);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // ConditionPicker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,8 +245,8 @@
             this.Controls.Add(this.ConditionNameLabel);
             this.Name = "ConditionPicker";
             this.ShowIcon = false;
-            this.Text = "ConditionPicker";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "ConditionPicker";
             this.TopMost = true;
             this.ConditionComponentsPanel.ResumeLayout(false);
             this.ConditionFirstPanel.ResumeLayout(false);
@@ -228,5 +273,9 @@
         private System.Windows.Forms.Label ConditionFirstPanelLabel;
         private System.Windows.Forms.TextBox CharacterCountTextBox;
         private System.Windows.Forms.Label ConditionSecondPanelLabel;
+        private System.Windows.Forms.Button ChooseEmptyButton;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

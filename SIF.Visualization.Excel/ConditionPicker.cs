@@ -19,15 +19,28 @@ namespace SIF.Visualization.Excel
         {
             this.rule = rule;
             InitializeComponent();
+            SetText();
             ShowDialog();
         }
+
+        
 
         public ConditionPicker(Condition condition)
         {
             InitializeComponent();
-            ConfigurePicker(condition);            
+            ConfigurePicker(condition);
+            SetText();
             ShowDialog();
 
+        }
+        private void SetText()
+        {
+            this.ConfirmButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_Confirm;
+            this.ChooseEmptyButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_Empty;
+            this.CancelButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_Cancel;
+            this.ChooseCharacterCountButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_CharacterCount;
+            this.ConditionNameLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ConditionName;
+            this.ConditionFirstPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseConditionType;
         }
 
         private void ConfigurePicker(Condition condition)
@@ -59,6 +72,14 @@ namespace SIF.Visualization.Excel
             HideFirstBoxes();
             this.RegexTextBox.Visible = true;
             chosenType = "Regex";
+        }
+        private void ChooseEmptyButton_Click(object sender, EventArgs e)
+        {
+            this.ChooseEmptyButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ConditionFirstPanel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseEmpty;
+            HideFirstBoxes();
+            chosenType = "Empty";
         }
 
         private void ChooseCharacterCountButton_Click(object sender, EventArgs e)
@@ -98,6 +119,9 @@ namespace SIF.Visualization.Excel
                         //Checken
                         RuleCreator.Instance.AddCharacterCondition(ConditionNameTextBox.Text, CharacterCountTextBox.Text);
                         break;
+                    case "Empty":
+                        RuleCreator.Instance.AddEmptyCondition(ConditionNameTextBox.Text);
+                        break;
                 }
                 
             }
@@ -124,6 +148,8 @@ namespace SIF.Visualization.Excel
             }
                        
         }
+
+       
 
 
     }

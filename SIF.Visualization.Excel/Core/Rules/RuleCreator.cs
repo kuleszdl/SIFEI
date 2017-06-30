@@ -130,6 +130,18 @@ namespace SIF.Visualization.Excel.Core.Rules
             return currentRule;
         }
 
+        public Rule AddEmptyCondition(string name)
+        {
+            Condition newCondition;
+            newCondition = new Condition{
+                Type = Condition.ConditionType.Empty,
+                Value = "^$",
+                Name = name
+            };
+            currentRule.Conditions.Add(newCondition);
+            return currentRule;
+        }
+
         public Rule AddCharacterCondition(string name, string value)
         {
             Condition newCondition;

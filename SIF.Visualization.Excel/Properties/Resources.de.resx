@@ -565,4 +565,10 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   <data name="tl_RuleEditor_ToolTip_Name" xml:space="preserve">
     <value>Bitte geben sie einen gültigen Namen für die Regel ein. Dieser Name wird zum Identifizieren der Regel verwendet.</value>
   </data>
+  <data name="tl_conditionPicker_ChooseEmpty" xml:space="preserve">
+    <value>Die Zelle soll leer sein.</value>
+  </data>
+  <data name="tl_ConditionPicker_Empty" xml:space="preserve">
+    <value>Leere Zelle</value>
+  </data>
 </root>

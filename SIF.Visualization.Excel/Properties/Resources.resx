@@ -637,4 +637,10 @@ Try scanning the file again and if this doesn't help close and open the file aga
   <data name="tl_RuleEditor_ToolTip_Name" xml:space="preserve">
     <value>The name this rule will be using from now.</value>
   </data>
+  <data name="tl_ConditionPicker_ChooseEmpty" xml:space="preserve">
+    <value>The cell has to be empty.</value>
+  </data>
+  <data name="tl_ConditionPicker_Empty" xml:space="preserve">
+    <value>Empty Cell</value>
+  </data>
 </root>

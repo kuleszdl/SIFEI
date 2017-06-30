@@ -13,7 +13,8 @@ namespace SIF.Visualization.Excel.Core.Rules
         {
             NONE,
             Regex,
-            CharacterCount
+            CharacterCount,
+            Empty
         }
         private ConditionType type = ConditionType.NONE;
         private string conditionValue;
