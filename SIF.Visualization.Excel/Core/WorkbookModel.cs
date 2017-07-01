@@ -264,7 +264,7 @@ namespace SIF.Visualization.Excel.Core {
             _workbook.BeforeSave += workbook_BeforeSave;
             _workbook.BeforeClose += Workbook_BeforeClose;
             _workbook.AfterSave += Workbook_AfterSave;
-            _workbook.SheetSelectionChange += sheet_SelectionChange;
+            //_workbook.SheetSelectionChange += sheet_SelectionChange;
             // Occurs after any worksheet is recalculated or after any changed data is plotted on a chart.
             _workbook.SheetCalculate += workbook_SheetCalculate;
         }
@@ -331,23 +331,23 @@ namespace SIF.Visualization.Excel.Core {
             
         }
 
-        private void sheet_SelectionChange(object sh, MSExcel.Range target)
-        {
-            // mark all cells as not selected
-            var selectedCells = CellManager.Instance.GetCellsFromRange(target);
-            foreach (Cell cell in Cells.Values)
-            {
-                if (selectedCells.Contains(cell))
-                {
-                    cell.IsSelected = true;
-                }
-                else
-                {
-                    cell.IsSelected = false;
-                }
+        //private void sheet_SelectionChange(object sh, MSExcel.Range target)
+        //{
+        //    // mark all cells as not selected
+        //    var selectedCells = CellManager.Instance.GetCellsFromRange(target);
+        //    foreach (Cell cell in Cells.Values)
+        //    {
+        //        if (selectedCells.Contains(cell))
+        //        {
+        //            cell.IsSelected = true;
+        //        }
+        //        else
+        //        {
+        //            cell.IsSelected = false;
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         /// <summary>
         /// Gets the name / location of a column in the workbook
