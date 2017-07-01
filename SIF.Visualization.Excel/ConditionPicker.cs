@@ -40,6 +40,9 @@ namespace SIF.Visualization.Excel
             this.ChooseEmptyButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_Empty;
             this.CancelButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_Cancel;
             this.ChooseCharacterCountButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_CharacterCount;
+            this.ChooseOnlyNumbersButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_OnlyNumbers;
+            this.Choose1CommaButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_1Comma;
+            this.Choose2CommaButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_2Comma;
             //Labels
             this.ConditionNameLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ConditionName;
             this.ConditionFirstPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseConditionType;
@@ -97,6 +100,38 @@ namespace SIF.Visualization.Excel
             chosenType = "CharacterCount";
         }
 
+        private void ChooseOnlyNumbers_Click(object sender, EventArgs e)
+        {
+            HideFirstBoxes();
+            ResetColourScheme();
+            this.ChooseOnlyNumbersButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseOnlyNumbers;
+            chosenType = "OnlyNumbers";
+        }
+
+        private void Choose1CommaButton_Click(object sender, EventArgs e)
+        {
+            HideFirstBoxes();
+            ResetColourScheme();
+            this.Choose1CommaButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_Choose1Comma;
+            chosenType = "1Comma";
+        }
+
+        private void Choose2CommaButton_Click(object sender, EventArgs e)
+        {
+            HideFirstBoxes();
+            ResetColourScheme();
+            this.Choose2CommaButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_Choose2Comma;
+            chosenType = "2Comma";
+
+        }
+
+
         private void HideFirstBoxes()
         {
             this.RegexTextBox.Visible = false;
@@ -114,6 +149,9 @@ namespace SIF.Visualization.Excel
             this.ChooseRegexButton.BackColor = System.Drawing.SystemColors.Control;
             this.ChooseCharacterCountButton.BackColor = System.Drawing.SystemColors.Control;
             this.ChooseEmptyButton.BackColor = System.Drawing.SystemColors.Control;
+            this.ChooseOnlyNumbersButton.BackColor = System.Drawing.SystemColors.Control;
+            this.Choose1CommaButton.BackColor = System.Drawing.SystemColors.Control;
+            this.Choose2CommaButton.BackColor = System.Drawing.SystemColors.Control;
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
@@ -132,6 +170,15 @@ namespace SIF.Visualization.Excel
                         break;
                     case "Empty":
                         RuleCreator.Instance.AddEmptyCondition(ConditionNameTextBox.Text);
+                        break;
+                    case "OnlyNumbers":
+                        RuleCreator.Instance.AddOnlyNumbersCondition(ConditionNameTextBox.Text);
+                        break;
+                    case "1Comma":
+                        RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, "((^|\\W)([0-9]+?((,|\\.)[0-9])+?)($|\\W))|((^)\\d($|\\W))+?");
+                        break;
+                    case "2Comma":
+                        RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, "((^|\\W)([0-9]+?((,|\\.)([0-9]{1,2}))+?)($|\\W))|((^)\\d($|\\W))+?");
                         break;
                 }
                 
@@ -159,6 +206,8 @@ namespace SIF.Visualization.Excel
             }
                        
         }
+
+      
 
        
 

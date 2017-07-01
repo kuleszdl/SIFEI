@@ -131,9 +131,7 @@ namespace SIF.Visualization.Excel
                     output = output + rulecells.Target.ToString();                    
                 }
                 this.CellAreaBox.Text = output;
-            }
-                
-            
+            }            
         }
 
 
@@ -149,7 +147,6 @@ namespace SIF.Visualization.Excel
                 RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
                 End();
                 ConditionPicker conditionPicker = new ConditionPicker(RuleCreator.Instance.GetRule());
-                
             }
             catch (Exception f)
             {
@@ -298,8 +295,6 @@ namespace SIF.Visualization.Excel
             //check for edited
             RuleCreator.Instance.End();
             End();
-            
-            
         }
 
         private void ChooseCellButton_Click(object sender, EventArgs e)

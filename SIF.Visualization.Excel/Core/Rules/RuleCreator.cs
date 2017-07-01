@@ -154,6 +154,18 @@ namespace SIF.Visualization.Excel.Core.Rules
             return currentRule;
         }
 
+        public Rule AddOnlyNumbersCondition(string name)
+        {
+            Condition newCondition;
+            newCondition = new Condition {
+                Type = Condition.ConditionType.Regex,
+                Value = "([0-9])*",
+                Name = name
+            };
+            currentRule.Conditions.Add(newCondition);
+            return currentRule;
+        }
+
         public int GetEmptyRuleDataCount()
         {
             if (currentRule == null)
@@ -184,6 +196,8 @@ namespace SIF.Visualization.Excel.Core.Rules
 
         
         #endregion
+
+
 
         
     }

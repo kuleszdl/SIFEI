@@ -14,7 +14,8 @@ namespace SIF.Visualization.Excel.Core.Rules
             NONE,
             Regex,
             CharacterCount,
-            Empty
+            Empty,
+            OnlyNumbers
         }
         private ConditionType type = ConditionType.NONE;
         private string conditionValue;

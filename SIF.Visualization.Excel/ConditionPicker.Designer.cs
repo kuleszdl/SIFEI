@@ -32,6 +32,9 @@
             this.ConditionNameTextBox = new System.Windows.Forms.TextBox();
             this.ConditionComponentsPanel = new System.Windows.Forms.Panel();
             this.ConditionFirstPanel = new System.Windows.Forms.Panel();
+            this.Choose2CommaButton = new System.Windows.Forms.Button();
+            this.Choose1CommaButton = new System.Windows.Forms.Button();
+            this.ChooseOnlyNumbersButton = new System.Windows.Forms.Button();
             this.ChooseEmptyButton = new System.Windows.Forms.Button();
             this.ConditionFirstPanelLabel = new System.Windows.Forms.Label();
             this.ChooseRegexButton = new System.Windows.Forms.Button();
@@ -42,9 +45,6 @@
             this.CharacterCountTextBox = new System.Windows.Forms.TextBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.ConfirmButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.ConditionComponentsPanel.SuspendLayout();
             this.ConditionFirstPanel.SuspendLayout();
             this.ConditionSecondPanel.SuspendLayout();
@@ -86,9 +86,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ConditionFirstPanel.Controls.Add(this.button3);
-            this.ConditionFirstPanel.Controls.Add(this.button2);
-            this.ConditionFirstPanel.Controls.Add(this.button1);
+            this.ConditionFirstPanel.Controls.Add(this.Choose2CommaButton);
+            this.ConditionFirstPanel.Controls.Add(this.Choose1CommaButton);
+            this.ConditionFirstPanel.Controls.Add(this.ChooseOnlyNumbersButton);
             this.ConditionFirstPanel.Controls.Add(this.ChooseEmptyButton);
             this.ConditionFirstPanel.Controls.Add(this.ConditionFirstPanelLabel);
             this.ConditionFirstPanel.Controls.Add(this.ChooseRegexButton);
@@ -98,6 +98,36 @@
             this.ConditionFirstPanel.Padding = new System.Windows.Forms.Padding(9);
             this.ConditionFirstPanel.Size = new System.Drawing.Size(470, 125);
             this.ConditionFirstPanel.TabIndex = 1;
+            // 
+            // Choose2CommaButton
+            // 
+            this.Choose2CommaButton.Location = new System.Drawing.Point(318, 76);
+            this.Choose2CommaButton.Name = "Choose2CommaButton";
+            this.Choose2CommaButton.Size = new System.Drawing.Size(140, 30);
+            this.Choose2CommaButton.TabIndex = 6;
+            this.Choose2CommaButton.Text = "2 Comma";
+            this.Choose2CommaButton.UseVisualStyleBackColor = true;
+            this.Choose2CommaButton.Click += new System.EventHandler(this.Choose2CommaButton_Click);
+            // 
+            // Choose1CommaButton
+            // 
+            this.Choose1CommaButton.Location = new System.Drawing.Point(165, 76);
+            this.Choose1CommaButton.Name = "Choose1CommaButton";
+            this.Choose1CommaButton.Size = new System.Drawing.Size(140, 30);
+            this.Choose1CommaButton.TabIndex = 5;
+            this.Choose1CommaButton.Text = "1 Comma";
+            this.Choose1CommaButton.UseVisualStyleBackColor = true;
+            this.Choose1CommaButton.Click += new System.EventHandler(this.Choose1CommaButton_Click);
+            // 
+            // ChooseOnlyNumbersButton
+            // 
+            this.ChooseOnlyNumbersButton.Location = new System.Drawing.Point(15, 76);
+            this.ChooseOnlyNumbersButton.Name = "ChooseOnlyNumbersButton";
+            this.ChooseOnlyNumbersButton.Size = new System.Drawing.Size(140, 30);
+            this.ChooseOnlyNumbersButton.TabIndex = 4;
+            this.ChooseOnlyNumbersButton.Text = "OnlyNumbers";
+            this.ChooseOnlyNumbersButton.UseVisualStyleBackColor = true;
+            this.ChooseOnlyNumbersButton.Click += new System.EventHandler(this.ChooseOnlyNumbers_Click);
             // 
             // ChooseEmptyButton
             // 
@@ -206,33 +236,6 @@
             this.ConfirmButton.UseVisualStyleBackColor = true;
             this.ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(15, 76);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 30);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(165, 76);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(140, 30);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(318, 76);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(140, 30);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // ConditionPicker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,8 +277,8 @@
         private System.Windows.Forms.TextBox CharacterCountTextBox;
         private System.Windows.Forms.Label ConditionSecondPanelLabel;
         private System.Windows.Forms.Button ChooseEmptyButton;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Choose2CommaButton;
+        private System.Windows.Forms.Button Choose1CommaButton;
+        private System.Windows.Forms.Button ChooseOnlyNumbersButton;
     }
 }
