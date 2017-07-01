@@ -19,6 +19,7 @@ namespace SIF.Visualization.Excel
 {
     public partial class CellPickerWF : Form
     {
+        private int maxCells = 10000;
         public CellPickerWF()
         {
             InitializeComponent();
@@ -43,18 +44,17 @@ namespace SIF.Visualization.Excel
         {
             RuleCellType cellType = RuleCellType.CELL;
             var selectedCells = CellManager.Instance.GetSelectedCells();
-            string test = "";
             foreach (var cell in selectedCells)
-            {
-                cell.RuleCellType = cellType;
-                DataModel.Instance.CurrentWorkbook.RuleCells.Add(cell);
-                test = test + cell.Location;
-            }
-            RuleCreator.Instance.SetRuleCells(DataModel.Instance.CurrentWorkbook);
-            DataModel.Instance.CurrentWorkbook.RecalculateViewModel();
-            DataModel.Instance.CurrentWorkbook.RuleCells.Clear();
-            Dispose();
-            RuleEditor.Instance.Open(RuleCreator.Instance.GetRule());
+                {
+                    cell.RuleCellType = cellType;
+                    DataModel.Instance.CurrentWorkbook.RuleCells.Add(cell);
+                }
+                RuleCreator.Instance.SetRuleCells(DataModel.Instance.CurrentWorkbook);
+                DataModel.Instance.CurrentWorkbook.RecalculateViewModel();
+                DataModel.Instance.CurrentWorkbook.RuleCells.Clear();
+                Dispose();
+                RuleEditor.Instance.Open(RuleCreator.Instance.GetRule());
+                        
                        
         }
     }

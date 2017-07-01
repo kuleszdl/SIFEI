@@ -128,9 +128,9 @@ namespace SIF.Visualization.Excel
                 string output = "";
                 foreach (RuleCells rulecells in rule.RuleCells)
                 {
-                    output = output + rulecells.Target.ToString();
-                    this.CellAreaBox.Text = output;
-                }                
+                    output = output + rulecells.Target.ToString();                    
+                }
+                this.CellAreaBox.Text = output;
             }
                 
             
@@ -214,8 +214,6 @@ namespace SIF.Visualization.Excel
                     ConditionPicker conditionPicker = new ConditionPicker(condition);
                 }
             }
-            
-            
         }
 
         /// <summary>
@@ -293,49 +291,6 @@ namespace SIF.Visualization.Excel
             }
             return true;
             
-        }
-
-        /// <summary>
-        /// Gets the value from the Box in the current panel and adds them to the rule with the Rule Creator
-        /// </summary>
-        /// <param name="checkBoxName"></param>
-        private void CheckConditions(String checkBoxName)
-        {
-            foreach (Control panel in this.ConditionPanel.Controls)
-            {
-                if (panel.Name == "panel" + checkBoxName)
-                {
-                    foreach (Control box in panel.Controls)
-                    {
-                        switch (box.Text)
-                        {
-                            case "Regex":
-                                foreach (Control textBoxControl in panel.Controls)
-                                {
-                                    if (textBoxControl.Name == "regex" + checkBoxName)
-                                    {
-                                        RuleCreator.Instance.AddRegexCondition("a",textBoxControl.Text);
-                                        // Condition anfügen MessageBox.Show(conditionValue);
-                                    }
-                                }
-
-                                break;
-                            case "Character Count":
-                            case "Gesamtanzahl Zeichen":
-                                foreach (Control textBoxControl in panel.Controls)
-                                {
-                                    if (textBoxControl.Name == "character" + checkBoxName)
-                                    {
-                                        RuleCreator.Instance.AddCharacterCondition("a", textBoxControl.Text);
-                                        // Condition anfügen MessageBox.Show(conditionValue);
-                                    }
-                                }
-                                break;
-                        }
-                    }
-                    
-                }
-            }                         
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

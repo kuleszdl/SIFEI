@@ -3,6 +3,7 @@ using SIF.Visualization.Excel.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 
 namespace SIF.Visualization.Excel.Core {
@@ -56,11 +57,20 @@ namespace SIF.Visualization.Excel.Core {
             WorkbookModel wb = DataModel.Instance.CurrentWorkbook;
             var cellList = new List<Cell>();
             MSExcel.Range selectedCells = (wb.Workbook.Application.Selection as MSExcel.Range).Cells;
-            Debug.WriteLine("SELECTED CELLS: Creating List ...");
-            DateTime start = DateTime.Now;
-            cellList = GetCellsFromRange(selectedCells);          
-            Debug.WriteLine("SELECTED CELLS: List created! Time: " + (DateTime.Now - start).ToString() + ", Items: " + cellList.Count);
-            return cellList;
+            if (selectedCells.Count < 10000)
+            {
+                Debug.WriteLine("SELECTED CELLS: Creating List ...");
+                DateTime start = DateTime.Now;
+                cellList = GetCellsFromRange(selectedCells); 
+                Debug.WriteLine("SELECTED CELLS: List created! Time: " + (DateTime.Now - start).ToString() + ", Items: " + cellList.Count);
+                return cellList;
+            } else
+            {
+                MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_CellPicker_ToManyCells);
+                return cellList;
+            }
+
+            
         }
 
         /// <summary>
@@ -84,13 +94,23 @@ namespace SIF.Visualization.Excel.Core {
         public List<Cell> GetCellsFromRange(MSExcel.Range range) {
             List<Cell> cellList = new List<Cell>();
             WorkbookModel wb = DataModel.Instance.CurrentWorkbook;
-            foreach (var c in range.Cells) {
-                var currentCell = c as MSExcel.Range;
-                String currentLocation = (currentCell.Parent as MSExcel.Worksheet).Name as String + "!" + currentCell.Address as String;
-                var selectedCell = wb.GetCell(currentLocation);
-                cellList.Add(selectedCell);
+            if (range.Count < 15000)
+            {
+                foreach (var c in range.Cells)
+                {
+                    var currentCell = c as MSExcel.Range;
+                    String currentLocation = (currentCell.Parent as MSExcel.Worksheet).Name as String + "!" + currentCell.Address as String;
+                    var selectedCell = wb.GetCell(currentLocation);
+                    cellList.Add(selectedCell);
+                }
+                return cellList;
             }
-            return cellList;
+            else
+            {
+                MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_ToManyCells);
+                return cellList;
+            }
+            
         }
 
         #endregion

@@ -571,4 +571,28 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   <data name="tl_ConditionPicker_Empty" xml:space="preserve">
     <value>Leere Zelle</value>
   </data>
+  <data name="tl_CellPicker_ToManyCells" xml:space="preserve">
+    <value>Bitte weisen sie einer Regel nicht mehr als 10000 Zellen zu.</value>
+  </data>
+  <data name="tl_ConditionPicker_Choose1Comma" xml:space="preserve">
+    <value>Erlaubt bis zu einer Nachkommastelle.</value>
+  </data>
+  <data name="tl_ConditionPicker_Choose2Comma" xml:space="preserve">
+    <value>Erlaubt bis zu 2 Nachkommastellen.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseOnlyNumbers" xml:space="preserve">
+    <value>Erlaubt nur Zahlen.</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_1Comma" xml:space="preserve">
+    <value>Eine Nachkommastelle</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_2Comma" xml:space="preserve">
+    <value>2 Nachkommastellen</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_OnlyNumbers" xml:space="preserve">
+    <value>Nur Zahlen</value>
+  </data>
+  <data name="tl_ToManyCells" xml:space="preserve">
+    <value>Bitte wählen sie nicht mehr als 10000 Zellen aus.</value>
+  </data>
 </root>

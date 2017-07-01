@@ -312,6 +312,33 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please dont assign more than 10000 cells to a rule. ähnelt.
+        /// </summary>
+        public static string tl_CellPicker_ToManyCells {
+            get {
+                return ResourceManager.GetString("tl_CellPicker_ToManyCells", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only allows 1 digit after comma. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_Choose1Comma {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_Choose1Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only allows up to 2 digits after comma. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_Choose2Comma {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_Choose2Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a valid Number. This Number ist the limit how many characters are allowed in a cell. ähnelt.
         /// </summary>
         public static string tl_ConditionPicker_ChooseCharacterCount {
@@ -335,6 +362,15 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_ConditionPicker_ChooseEmpty {
             get {
                 return ResourceManager.GetString("tl_ConditionPicker_ChooseEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only allows Numbers ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ChooseOnlyNumbers {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseOnlyNumbers", resourceCulture);
             }
         }
         
@@ -927,11 +963,38 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 1 or 0 Commas ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Condition_1Comma {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Condition_1Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 0,1 or 2 Commas ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Condition_2Comma {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Condition_2Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Character Count ähnelt.
         /// </summary>
         public static string tl_RuleEditor_Condition_CharacterCount {
             get {
                 return ResourceManager.GetString("tl_RuleEditor_Condition_CharacterCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only Numbers ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Condition_OnlyNumbers {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Condition_OnlyNumbers", resourceCulture);
             }
         }
         
@@ -1480,6 +1543,15 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_stopEdit {
             get {
                 return ResourceManager.GetString("tl_stopEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please dont select more than 10000 Cells. ähnelt.
+        /// </summary>
+        public static string tl_ToManyCells {
+            get {
+                return ResourceManager.GetString("tl_ToManyCells", resourceCulture);
             }
         }
         

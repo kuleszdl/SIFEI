@@ -643,4 +643,28 @@ Try scanning the file again and if this doesn't help close and open the file aga
   <data name="tl_ConditionPicker_Empty" xml:space="preserve">
     <value>Empty Cell</value>
   </data>
+  <data name="tl_CellPicker_ToManyCells" xml:space="preserve">
+    <value>Please dont assign more than 10000 cells to a rule.</value>
+  </data>
+  <data name="tl_ConditionPicker_Choose1Comma" xml:space="preserve">
+    <value>Only allows 1 digit after comma.</value>
+  </data>
+  <data name="tl_ConditionPicker_Choose2Comma" xml:space="preserve">
+    <value>Only allows up to 2 digits after comma.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseOnlyNumbers" xml:space="preserve">
+    <value>Only allows Numbers</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_1Comma" xml:space="preserve">
+    <value>1 or 0 Commas</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_2Comma" xml:space="preserve">
+    <value>0,1 or 2 Commas</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_OnlyNumbers" xml:space="preserve">
+    <value>Only Numbers</value>
+  </data>
+  <data name="tl_ToManyCells" xml:space="preserve">
+    <value>Please dont select more than 10000 Cells.</value>
+  </data>
 </root>

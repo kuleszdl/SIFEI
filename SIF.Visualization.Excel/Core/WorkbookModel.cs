@@ -331,16 +331,21 @@ namespace SIF.Visualization.Excel.Core {
             
         }
 
-        private void sheet_SelectionChange(object sh, MSExcel.Range target) {
+        private void sheet_SelectionChange(object sh, MSExcel.Range target)
+        {
             // mark all cells as not selected
             var selectedCells = CellManager.Instance.GetCellsFromRange(target);
-            foreach (Cell cell in Cells.Values) {
-                if (selectedCells.Contains(cell)) {
+            foreach (Cell cell in Cells.Values)
+            {
+                if (selectedCells.Contains(cell))
+                {
                     cell.IsSelected = true;
-                } else {
+                }
+                else
+                {
                     cell.IsSelected = false;
                 }
-                
+
             }
         }
 
