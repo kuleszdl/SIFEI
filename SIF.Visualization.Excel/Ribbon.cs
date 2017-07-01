@@ -461,5 +461,19 @@ namespace SIF.Visualization.Excel {
 
 
         }
+
+        private void button1_Click_1(object sender, RibbonControlEventArgs e)
+        {
+            if (this.automaticScanCheckBox.Enabled)
+            {
+                this.automaticScanCheckBox.Enabled = false;
+                MessageBox.Show("Off");
+            }
+            else
+            {
+                this.automaticScanCheckBox.Enabled = true;
+                MessageBox.Show("On");
+            }
+        }
     }
 }
