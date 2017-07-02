@@ -151,7 +151,7 @@
             // 
             // automaticScanCheckBox
             // 
-            this.automaticScanCheckBox.Enabled = false;
+            this.automaticScanCheckBox.Visible = false;
             this.automaticScanCheckBox.Label = "Automatic scans";
             this.automaticScanCheckBox.Name = "automaticScanCheckBox";
             this.automaticScanCheckBox.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.automaticScanCheckBox_Click);

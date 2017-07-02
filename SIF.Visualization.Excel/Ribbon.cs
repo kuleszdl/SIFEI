@@ -464,14 +464,14 @@ namespace SIF.Visualization.Excel {
 
         private void button1_Click_1(object sender, RibbonControlEventArgs e)
         {
-            if (this.automaticScanCheckBox.Enabled)
+            if (this.automaticScanCheckBox.Visible)
             {
-                this.automaticScanCheckBox.Enabled = false;
+                this.automaticScanCheckBox.Visible = false;
                 MessageBox.Show("Off");
             }
             else
             {
-                this.automaticScanCheckBox.Enabled = true;
+                this.automaticScanCheckBox.Visible = true;
                 MessageBox.Show("On");
             }
         }
