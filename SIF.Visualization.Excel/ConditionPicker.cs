@@ -179,7 +179,7 @@ namespace SIF.Visualization.Excel
                             MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_NoCharCount);
                             break;                                                      
                         }
-                        if (int.TryParse(CharacterCountTextBox.Text, out value))
+                        if (!int.TryParse(CharacterCountTextBox.Text, out value))
                         {
                             MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_NoCharCount);
                             break;
