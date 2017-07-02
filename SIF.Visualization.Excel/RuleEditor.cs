@@ -68,11 +68,9 @@ namespace SIF.Visualization.Excel
                 SetDesigner();
                 RuleCreator.Instance.BlankStart();
                 Show();            
-            }
-            
+            }            
         }
-
-
+        
         /// <summary>
         /// Shows the Rule Editor Interface with an existing rule
         /// </summary>
@@ -255,10 +253,8 @@ namespace SIF.Visualization.Excel
                 else
                 {
                     MessageBox.Show("keine RuleCells");
-                }
-                
-            }
-            
+                }                
+            }            
         }
 
         /// <summary>
@@ -314,10 +310,7 @@ namespace SIF.Visualization.Excel
                 instance = null;
                 Close();
                 Dispose();
-            }           
-            
+            }            
         }
-
-        
     }
 }

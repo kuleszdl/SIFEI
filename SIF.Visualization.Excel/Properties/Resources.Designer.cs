@@ -411,6 +411,42 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a valid interger number. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_NoCharCount {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_NoCharCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please select your desired Condition type. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_NoCondition {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_NoCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a name. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_NoName {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a valid Regex string. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_NoRegex {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_NoRegex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Ignored ähnelt.
         /// </summary>
         public static string tl_Ignored {

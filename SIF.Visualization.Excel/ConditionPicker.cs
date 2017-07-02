@@ -158,39 +158,76 @@ namespace SIF.Visualization.Excel
         {
             try
             {
-                switch (chosenType)
+                if (CheckConditions())
                 {
+                    switch (chosenType)
+                    {
                     case "Regex":
-                        //Checken
+                            if (RegexTextBox.Text == "")
+                            {
+                                MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_NoRegex);
+                                break;
+                            }
                         RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, RegexTextBox.Text);
+                            RuleEditor.Instance.Open(rule);
+                        Close();
                         break;
-                    case "CharacterCount":
-                        //Checken
+                    case "CharacterCount":                           
+                        int value;
+                        if (CharacterCountTextBox.Text == "")
+                        {
+                            MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_NoCharCount);
+                            break;                                                      
+                        }
+                        if (int.TryParse(CharacterCountTextBox.Text, out value))
+                        {
+                            MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_NoCharCount);
+                            break;
+                        }  
                         RuleCreator.Instance.AddCharacterCondition(ConditionNameTextBox.Text, CharacterCountTextBox.Text);
+                            RuleEditor.Instance.Open(rule);
+                        Close();
                         break;
                     case "Empty":
                         RuleCreator.Instance.AddEmptyCondition(ConditionNameTextBox.Text);
+                            RuleEditor.Instance.Open(rule);
+                        Close();
                         break;
                     case "OnlyNumbers":
                         RuleCreator.Instance.AddOnlyNumbersCondition(ConditionNameTextBox.Text);
+                            RuleEditor.Instance.Open(rule);
+                        Close();
                         break;
                     case "1Comma":
                         RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, "((^|\\W)([0-9]+?((,|\\.)[0-9])+?)($|\\W))|((^)\\d($|\\W))+?");
+                            RuleEditor.Instance.Open(rule);
+                        Close();
                         break;
                     case "2Comma":
                         RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, "((^|\\W)([0-9]+?((,|\\.)([0-9]{1,2}))+?)($|\\W))|((^)\\d($|\\W))+?");
+                        RuleEditor.Instance.Open(rule);
+                        Close();
                         break;
-                }
+                    default:
+                        MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_NoCondition);
+                        break;
+                    }
                 
+                }                
             }
             catch (Exception f)
             {
                 MessageBox.Show(f.ToString());
             }
-            RuleEditor.Instance.Open(rule);
-            Close();
-            
-            
+        }
+
+        private bool CheckConditions() {
+            if (ConditionNameTextBox.Text == "")
+            {
+                MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_NoName);
+                return false;
+            }
+            return true;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

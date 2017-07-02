@@ -583,6 +583,18 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   <data name="tl_ConditionPicker_ChooseOnlyNumbers" xml:space="preserve">
     <value>Erlaubt nur Zahlen.</value>
   </data>
+  <data name="tl_ConditionPicker_NoCharCount" xml:space="preserve">
+    <value>Bitte geben sie eine ganze Zahl ein.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoCondition" xml:space="preserve">
+    <value>Bitte wählen sie die Art der Bedingung.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoName" xml:space="preserve">
+    <value>Bitte geben sie der Bedingung einen Namen.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoRegex" xml:space="preserve">
+    <value>Bitte geben sie einen gültigen Regex String ein.</value>
+  </data>
   <data name="tl_RuleEditor_Condition_1Comma" xml:space="preserve">
     <value>Eine Nachkommastelle</value>
   </data>

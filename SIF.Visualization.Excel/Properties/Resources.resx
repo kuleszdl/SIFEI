@@ -655,6 +655,18 @@ Try scanning the file again and if this doesn't help close and open the file aga
   <data name="tl_ConditionPicker_ChooseOnlyNumbers" xml:space="preserve">
     <value>Only allows Numbers</value>
   </data>
+  <data name="tl_ConditionPicker_NoCharCount" xml:space="preserve">
+    <value>Please enter a valid interger number.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoCondition" xml:space="preserve">
+    <value>Please select your desired Condition type.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoName" xml:space="preserve">
+    <value>Please enter a name.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoRegex" xml:space="preserve">
+    <value>Please enter a valid Regex string.</value>
+  </data>
   <data name="tl_RuleEditor_Condition_1Comma" xml:space="preserve">
     <value>1 or 0 Commas</value>
   </data>
