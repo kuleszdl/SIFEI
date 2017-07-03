@@ -619,7 +619,7 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   <data name="tl_RuleEditor_NoRuleCells" xml:space="preserve">
     <value>Bitte geben sie an, auf welche Zellen die Regel angewendet werden soll.</value>
   </data>
-  <data name="tl_ViolationView_NoViolation" xml:space="preserve">
+  <data name="tl_ViolationView_NoViolations" xml:space="preserve">
     <value>Keine Befund(e) vorhanden</value>
   </data>
 </root>
