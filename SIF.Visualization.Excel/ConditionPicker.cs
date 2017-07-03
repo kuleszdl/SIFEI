@@ -203,12 +203,12 @@ namespace SIF.Visualization.Excel
                         Close();
                         break;
                     case "1Comma":
-                        RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, "((^|\\W)([0-9]+?((,|\\.)[0-9])+?)($|\\W))|((^)\\d($|\\W))+?");
+                        RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, "((^|\\W)([0-9]+?((,|\\.)[0-9])+?)($|\\W))|((^)\\d*($|\\W))+?");
                             RuleEditor.Instance.Open(rule);
                         Close();
                         break;
                     case "2Comma":
-                        RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, "((^|\\W)([0-9]+?((,|\\.)([0-9]{1,2}))+?)($|\\W))|((^)\\d($|\\W))+?");
+                        RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, "((^|\\W)([0-9]+?((,|\\.)([0-9]{1,2}))+?)($|\\W))|((^)\\d*($|\\W))+?");
                         RuleEditor.Instance.Open(rule);
                         Close();
                         break;
