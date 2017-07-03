@@ -55,6 +55,7 @@
                                     VerticalAlignment="Center" HorizontalAlignment="Right"
                                     BorderThickness="1" Background="Transparent"
                                     Click="SidebarEditRuleButton_Click"
+                                    Visibility="Hidden"
                                   >
                                 <Image Width="15" Height="15" Margin="2 2 2 2" Source="/SIF.Visualization.Excel;component/Resources/Icons/Edit.png" />
                             </Button>
