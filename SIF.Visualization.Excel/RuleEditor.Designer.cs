@@ -282,7 +282,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Rule Editor";
+            this.Text = "Regel Editor";
             this.TopMost = true;
             this.ConditionPanel.ResumeLayout(false);
             this.ResumeLayout(false);

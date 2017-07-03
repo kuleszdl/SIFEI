@@ -46,6 +46,10 @@ namespace SIF.Visualization.Excel
             //Labels
             this.ConditionNameLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ConditionName;
             this.ConditionFirstPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseConditionType;
+            //default name
+            //Check if neu oder editieren
+            int count = rule.Conditions.Count()+1;
+            this.ConditionNameTextBox.Text = "unbenannte Bedingung " + count.ToString();
         }
 
         private void ConfigurePicker(Condition condition)
@@ -85,7 +89,7 @@ namespace SIF.Visualization.Excel
             ResetColourScheme();
             this.ChooseEmptyButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseEmpty;
+            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseEmpty + " \n" + global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_NoInputReq;
             chosenType = "Empty";
         }
 
@@ -95,7 +99,7 @@ namespace SIF.Visualization.Excel
             ResetColourScheme();
             this.ChooseCharacterCountButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseCharacterCount;
+            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseCharacterCount1 + " \n" + global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseCharacterCount2;
             this.CharacterCountTextBox.Visible = true;
             chosenType = "CharacterCount";
         }
@@ -106,7 +110,7 @@ namespace SIF.Visualization.Excel
             ResetColourScheme();
             this.ChooseOnlyNumbersButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseOnlyNumbers;
+            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseOnlyNumbers + " \n" + global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_NoInputReq;
             chosenType = "OnlyNumbers";
         }
 
@@ -116,7 +120,7 @@ namespace SIF.Visualization.Excel
             ResetColourScheme();
             this.Choose1CommaButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_Choose1Comma;
+            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_Choose1Comma + " \n" + global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_NoInputReq;
             chosenType = "1Comma";
         }
 
@@ -126,7 +130,7 @@ namespace SIF.Visualization.Excel
             ResetColourScheme();
             this.Choose2CommaButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_Choose2Comma;
+            this.ConditionSecondPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_Choose2Comma + " \n" + global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_NoInputReq;
             chosenType = "2Comma";
 
         }
@@ -185,7 +189,7 @@ namespace SIF.Visualization.Excel
                             break;
                         }  
                         RuleCreator.Instance.AddCharacterCondition(ConditionNameTextBox.Text, CharacterCountTextBox.Text);
-                            RuleEditor.Instance.Open(rule);
+                        RuleEditor.Instance.Open(rule);
                         Close();
                         break;
                     case "Empty":
@@ -243,6 +247,7 @@ namespace SIF.Visualization.Excel
             }
                        
         }
+
 
       
 

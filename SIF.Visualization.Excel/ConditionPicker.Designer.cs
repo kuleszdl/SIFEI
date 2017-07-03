@@ -186,10 +186,13 @@
             // 
             this.ConditionSecondPanelLabel.AutoEllipsis = true;
             this.ConditionSecondPanelLabel.AutoSize = true;
-            this.ConditionSecondPanelLabel.Location = new System.Drawing.Point(10, 15);
+            this.ConditionSecondPanelLabel.Location = new System.Drawing.Point(9, 9);
             this.ConditionSecondPanelLabel.Name = "ConditionSecondPanelLabel";
-            this.ConditionSecondPanelLabel.Size = new System.Drawing.Size(0, 13);
-            this.ConditionSecondPanelLabel.TabIndex = 3;
+            this.ConditionSecondPanelLabel.Size = new System.Drawing.Size(489, 13);
+            this.ConditionSecondPanelLabel.TabIndex = 0;
+            this.ConditionSecondPanelLabel.Text = "Bitte geben sie eine Zahl ein. Diese Zahl legt die maximal erlaubte Anzahl von Ze" +
+    "ichen einer Zelle fest.";
+            
             // 
             // RegexTextBox
             // 

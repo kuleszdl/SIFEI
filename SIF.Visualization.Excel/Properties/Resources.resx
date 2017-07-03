@@ -610,7 +610,7 @@ Try scanning the file again and if this doesn't help close and open the file aga
   <data name="tl_RuleEditor_NoName" xml:space="preserve">
     <value>No name found. Please enter a name for the rule</value>
   </data>
-  <data name="tl_ConditionPicker_ChooseCharacterCount" xml:space="preserve">
+  <data name="tl_ConditionPicker_ChooseCharacterCount2" xml:space="preserve">
     <value>Please enter a valid Number. This Number ist the limit how many characters are allowed in a cell.</value>
   </data>
   <data name="tl_ConditionPicker_ChooseConditionType" xml:space="preserve">
@@ -678,5 +678,17 @@ Try scanning the file again and if this doesn't help close and open the file aga
   </data>
   <data name="tl_ToManyCells" xml:space="preserve">
     <value>Please dont select more than 10000 Cells.</value>
+  </data>
+  <data name="tl_CellPicker_Label" xml:space="preserve">
+    <value>Please ‪select the Cell area where the Rule should apply.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseCharacterCount1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tl_ConditionPicker_NoInputReq" xml:space="preserve">
+    <value>There is no Input requiered.</value>
+  </data>
+  <data name="tl_RuleEditor_NoRuleCells" xml:space="preserve">
+    <value>No Rule Cells.</value>
   </data>
 </root>

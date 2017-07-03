@@ -470,7 +470,7 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
     <value>Szenario Übersicht</value>
   </data>
   <data name="tl_Ribbon_AreaRule_RuleEditor" xml:space="preserve">
-    <value>Regel Editor</value>
+    <value>Neue Daten-Regel erstellen</value>
   </data>
   <data name="tl_Rules" xml:space="preserve">
     <value>Regeln</value>
@@ -497,7 +497,7 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
     <value>Gesamtanzahl Zeichen</value>
   </data>
   <data name="tl_RuleEditor_Confirm" xml:space="preserve">
-    <value>Neue Regel erstellen</value>
+    <value>OK</value>
   </data>
   <data name="tl_RuleEditor_FilterCondition" xml:space="preserve">
     <value>Filterbedingungen:</value>
@@ -538,14 +538,14 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   <data name="tl_RuleEditor_NoName" xml:space="preserve">
     <value>Kein Name gefunden. Bitte geben sie der Regel einen Namen</value>
   </data>
-  <data name="tl_ConditionPicker_ChooseCharacterCount" xml:space="preserve">
-    <value>Bitte geben sie eine Zahl ein. Diese Zahl legt die maximal erlaubte Anzahl von Zeichen einer Zelle fest.</value>
+  <data name="tl_ConditionPicker_ChooseCharacterCount1" xml:space="preserve">
+    <value>Bitte geben sie eine Zahl ein.</value>
   </data>
   <data name="tl_ConditionPicker_ChooseConditionType" xml:space="preserve">
     <value>Wählen sie den Typ, den die neue Bedingung haben soll.</value>
   </data>
   <data name="tl_ConditionPicker_ChooseRegex" xml:space="preserve">
-    <value>Bitte geben sie einen Regex String ein. Dieser String limitiert die Werte einer Zelle</value>
+    <value>Bitte geben sie einen Regex String ein. Dieser String limitiert die Werte einer Zelle.</value>
   </data>
   <data name="tl_ConditionPicker_ConditionName" xml:space="preserve">
     <value>Name der Bedingung:</value>
@@ -606,5 +606,17 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   </data>
   <data name="tl_ToManyCells" xml:space="preserve">
     <value>Bitte wählen sie nicht mehr als 10000 Zellen aus.</value>
+  </data>
+  <data name="tl_CellPicker_Label" xml:space="preserve">
+    <value>Bitte wählen sie die Zellen aus, auf den die Regel angewendet werden soll.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseCharacterCount2" xml:space="preserve">
+    <value>Diese Zahl legt die maximal erlaubte Anzahl von Zeichen einer Zelle fest.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoInputReq" xml:space="preserve">
+    <value>Für diese Bedingung sind keine weiteren Eingaben erforderlich.</value>
+  </data>
+  <data name="tl_RuleEditor_NoRuleCells" xml:space="preserve">
+    <value>Bitte geben sie an, auf welche Zellen die Regel angewendet werden soll.</value>
   </data>
 </root>

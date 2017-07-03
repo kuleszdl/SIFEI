@@ -112,7 +112,6 @@ namespace SIF.Visualization.Excel
             this.ToolTipCellArea.SetToolTip(this.ToolTipLabelCellArea, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_CellArea);
             this.ToolTipDescription.SetToolTip(this.ToolTipLabelDescription, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_Description);
             this.ToolTipCondition.SetToolTip(this.TooltipLabelCondition, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_Condition);
-
         }
 
         public void UpdateInformations(SIF.Visualization.Excel.Core.Rules.Rule rule)
@@ -181,19 +180,21 @@ namespace SIF.Visualization.Excel
             condiButton.AutoSize = true;
             condiButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Right)));
             condiButton.Location = new System.Drawing.Point(10, 10);
-            condiButton.Click += condiButton_Click;
+            // für Studie deaktiviert
+            //condiButton.Click += condiButton_Click;
             // condition bearbeiten Button Event, param: condition
 
 
             // Creates the delete Button for the Panel
-            deleteRowButton = new Button();
-            condiPanel.Controls.Add(deleteRowButton);
-            deleteRowButton.Margin = new System.Windows.Forms.Padding(10);
-            deleteRowButton.Location = new System.Drawing.Point(500, 10);
-            deleteRowButton.Name = "delete" + totalRows.ToString();
-            deleteRowButton.Size = new System.Drawing.Size(30, 30);
-            deleteRowButton.Image = global::SIF.Visualization.Excel.Properties.Resources.delete;
-            deleteRowButton.Click += deleteRowButton_Click;
+            // für Studie deaktiviert
+            //deleteRowButton = new Button();
+            //condiPanel.Controls.Add(deleteRowButton);
+            //deleteRowButton.Margin = new System.Windows.Forms.Padding(10);
+            //deleteRowButton.Location = new System.Drawing.Point(500, 10);
+            //deleteRowButton.Name = "delete" + totalRows.ToString();
+            //deleteRowButton.Size = new System.Drawing.Size(30, 30);
+            //deleteRowButton.Image = global::SIF.Visualization.Excel.Properties.Resources.delete;
+            //deleteRowButton.Click += deleteRowButton_Click;
 
             // Moves down newConditionButton 
             NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 55);
@@ -274,7 +275,7 @@ namespace SIF.Visualization.Excel
                 }
             if (RuleCreator.Instance.GetRule().RuleCells.Count <= 0)
             {
-                MessageBox.Show("keine Rulecells");
+                MessageBox.Show(global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_NoRuleCells);
                 return false;
             }
             if (RuleDescriptionTextBox.Text == "")

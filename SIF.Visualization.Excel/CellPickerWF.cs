@@ -19,14 +19,20 @@ namespace SIF.Visualization.Excel
 {
     public partial class CellPickerWF : Form
     {
-        private int maxCells = 10000;
         public CellPickerWF()
         {
             InitializeComponent();
+            SetLocalisation();
             Show();
 
         }
 
+        private void SetLocalisation()
+        {
+            this.CancelButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_Cancel;
+            this.ConfirmButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_CellPicker_Confirm;
+            this.CellPickerLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_CellPicker_Label;
+        }
         private void CancelButton_Click(object sender, EventArgs e)
         {
             try

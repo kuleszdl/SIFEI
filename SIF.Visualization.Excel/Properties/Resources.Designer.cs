@@ -303,6 +303,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please ‪select the Cell area where the Rule should apply. ähnelt.
+        /// </summary>
+        public static string tl_CellPicker_Label {
+            get {
+                return ResourceManager.GetString("tl_CellPicker_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Please ‪select the Cell area on the spreadsheet where the Rule should be applied. ähnelt.
         /// </summary>
         public static string tl_CellPicker_Text {
@@ -339,11 +348,20 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ChooseCharacterCount1 {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseCharacterCount1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a valid Number. This Number ist the limit how many characters are allowed in a cell. ähnelt.
         /// </summary>
-        public static string tl_ConditionPicker_ChooseCharacterCount {
+        public static string tl_ConditionPicker_ChooseCharacterCount2 {
             get {
-                return ResourceManager.GetString("tl_ConditionPicker_ChooseCharacterCount", resourceCulture);
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseCharacterCount2", resourceCulture);
             }
         }
         
@@ -425,6 +443,15 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_ConditionPicker_NoCondition {
             get {
                 return ResourceManager.GetString("tl_ConditionPicker_NoCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There is no Input requiered. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_NoInputReq {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_NoInputReq", resourceCulture);
             }
         }
         
@@ -1112,6 +1139,15 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_RuleEditor_NoName {
             get {
                 return ResourceManager.GetString("tl_RuleEditor_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No Rule Cells. ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_NoRuleCells {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_NoRuleCells", resourceCulture);
             }
         }
         

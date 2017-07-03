@@ -214,7 +214,7 @@
             // RuleEditGroup
             // 
             this.RuleEditGroup.Items.Add(this.ruleEditorButton);
-            this.RuleEditGroup.Label = "Rule Editor";
+            this.RuleEditGroup.Label = "Regel Editor";
             this.RuleEditGroup.Name = "RuleEditGroup";
             // 
             // scanButton
@@ -368,6 +368,7 @@
             this.ruleEditorButton.Label = global::SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaRule_RuleEditor;
             this.ruleEditorButton.Name = "ruleEditorButton";
             this.ruleEditorButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RuleEdit_Click);
+            
             // 
             // button1
             // 

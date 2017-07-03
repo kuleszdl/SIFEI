@@ -30,7 +30,7 @@
         {
             this.CancelButton = new System.Windows.Forms.Button();
             this.ConfirmButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.CellPickerLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CancelButton
@@ -57,12 +57,12 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(272, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Please ‪select the Cell area where the Rule should apply.";
+            this.CellPickerLabel.AutoSize = true;
+            this.CellPickerLabel.Location = new System.Drawing.Point(13, 13);
+            this.CellPickerLabel.Name = "label1";
+            this.CellPickerLabel.Size = new System.Drawing.Size(272, 13);
+            this.CellPickerLabel.TabIndex = 3;
+            this.CellPickerLabel.Text = "Please ‪select the Cell area where the Rule should apply.";
             // 
             // CellPickerWF
             // 
@@ -71,7 +71,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(296, 82);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.CellPickerLabel);
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.CancelButton);
             this.MaximizeBox = false;
@@ -80,7 +80,6 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CellPicker";
             this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -91,6 +90,6 @@
 
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button ConfirmButton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label CellPickerLabel;
     }
 }
