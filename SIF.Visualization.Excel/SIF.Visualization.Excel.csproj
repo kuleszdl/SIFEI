@@ -200,10 +200,10 @@
     <Compile Include="CellErrorInfoContainer.Designer.cs">
       <DependentUpon>CellErrorInfoContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="CellPickerWF.cs">
+    <Compile Include="View\CustomRules\CellPickerWF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CellPickerWF.Designer.cs">
+    <Compile Include="View\CustomRules\CellPickerWF.Designer.cs">
       <DependentUpon>CellPickerWF.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\CellManager.cs" />
@@ -222,16 +222,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RuleEditor.cs">
+    <Compile Include="View\CustomRules\RuleEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RuleEditor.Designer.cs">
+    <Compile Include="View\CustomRules\RuleEditor.Designer.cs">
       <DependentUpon>RuleEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConditionPicker.cs">
+    <Compile Include="View\CustomRules\ConditionPicker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConditionPicker.Designer.cs">
+    <Compile Include="View\CustomRules\ConditionPicker.Designer.cs">
       <DependentUpon>ConditionPicker.cs</DependentUpon>
     </Compile>
     <Compile Include="View\RuleDataField.xaml.cs">
@@ -351,7 +351,7 @@
     <EmbeddedResource Include="CellErrorInfoContainer.resx">
       <DependentUpon>CellErrorInfoContainer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CellPickerWF.resx">
+    <EmbeddedResource Include="View\CustomRules\CellPickerWF.resx">
       <DependentUpon>CellPickerWF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GlobalSettingsDialog.resx">
@@ -374,10 +374,10 @@
       <LastGenOutput>Resources.en.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="RuleEditor.resx">
+    <EmbeddedResource Include="View\CustomRules\RuleEditor.resx">
       <DependentUpon>RuleEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConditionPicker.resx">
+    <EmbeddedResource Include="View\CustomRules\ConditionPicker.resx">
       <DependentUpon>ConditionPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ScenarioDataFieldContainer.resx">

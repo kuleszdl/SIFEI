@@ -70,20 +70,18 @@
             // 
             // ConditionComponentsPanel
             // 
-            this.ConditionComponentsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ConditionComponentsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ConditionComponentsPanel.Controls.Add(this.ConditionFirstPanel);
             this.ConditionComponentsPanel.Controls.Add(this.ConditionSecondPanel);
             this.ConditionComponentsPanel.Location = new System.Drawing.Point(11, 49);
             this.ConditionComponentsPanel.Name = "ConditionComponentsPanel";
             this.ConditionComponentsPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.ConditionComponentsPanel.Size = new System.Drawing.Size(496, 409);
+            this.ConditionComponentsPanel.Size = new System.Drawing.Size(496, 263);
             this.ConditionComponentsPanel.TabIndex = 2;
             // 
             // ConditionFirstPanel
             // 
-            this.ConditionFirstPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.ConditionFirstPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConditionFirstPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ConditionFirstPanel.Controls.Add(this.Choose2CommaButton);
@@ -172,8 +170,7 @@
             // 
             // ConditionSecondPanel
             // 
-            this.ConditionSecondPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ConditionSecondPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ConditionSecondPanel.Controls.Add(this.ConditionSecondPanelLabel);
             this.ConditionSecondPanel.Controls.Add(this.RegexTextBox);
             this.ConditionSecondPanel.Controls.Add(this.CharacterCountTextBox);
@@ -192,7 +189,6 @@
             this.ConditionSecondPanelLabel.TabIndex = 0;
             this.ConditionSecondPanelLabel.Text = "Bitte geben sie eine Zahl ein. Diese Zahl legt die maximal erlaubte Anzahl von Ze" +
     "ichen einer Zelle fest.";
-            
             // 
             // RegexTextBox
             // 
@@ -219,7 +215,7 @@
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelButton.AutoSize = true;
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(431, 469);
+            this.CancelButton.Location = new System.Drawing.Point(431, 347);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 3;
@@ -231,7 +227,7 @@
             // 
             this.ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ConfirmButton.AutoSize = true;
-            this.ConfirmButton.Location = new System.Drawing.Point(330, 469);
+            this.ConfirmButton.Location = new System.Drawing.Point(330, 347);
             this.ConfirmButton.Name = "ConfirmButton";
             this.ConfirmButton.Size = new System.Drawing.Size(95, 23);
             this.ConfirmButton.TabIndex = 4;
@@ -243,7 +239,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 499);
+            this.ClientSize = new System.Drawing.Size(519, 377);
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.ConditionComponentsPanel);
@@ -252,7 +248,7 @@
             this.Name = "ConditionPicker";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ConditionPicker";
+            this.Text = "Bedingung wählen";
             this.TopMost = true;
             this.ConditionComponentsPanel.ResumeLayout(false);
             this.ConditionFirstPanel.ResumeLayout(false);

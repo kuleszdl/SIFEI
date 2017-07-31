@@ -48,8 +48,19 @@ namespace SIF.Visualization.Excel
             this.ConditionFirstPanelLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_ConditionPicker_ChooseConditionType;
             //default name
             //Check if neu oder editieren
-            int count = rule.Conditions.Count()+1;
-            this.ConditionNameTextBox.Text = "unbenannte Bedingung " + count.ToString();
+            try
+            {
+                if (rule.Conditions.Count != 0)
+                {
+                    int count = rule.Conditions.Count() + 1;
+                    this.ConditionNameTextBox.Text = "unbenannte Bedingung " + count.ToString();
+                }
+            }
+            catch
+            {
+                // no condititions
+            }
+            
         }
 
         private void ConfigurePicker(Condition condition)
@@ -203,12 +214,12 @@ namespace SIF.Visualization.Excel
                         Close();
                         break;
                     case "1Comma":
-                        RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, "((^|\\W)([0-9]+?((,|\\.)[0-9])+?)($|\\W))|((^)\\d*($|\\W))+?");
+                        RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, "((^|\\W)([0-9]+?((,|\\.)[0-9])+?)($|\\W))|((^)\\d*($|\\W))");
                             RuleEditor.Instance.Open(rule);
                         Close();
                         break;
                     case "2Comma":
-                        RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, "((^|\\W)([0-9]+?((,|\\.)([0-9]{1,2}))+?)($|\\W))|((^)\\d*($|\\W))+?");
+                        RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, "((^|\\W)([0-9]+?((,|\\.)([0-9]{1,2}))+?)($|\\W))|((^)\\d*($|\\W))");
                         RuleEditor.Instance.Open(rule);
                         Close();
                         break;

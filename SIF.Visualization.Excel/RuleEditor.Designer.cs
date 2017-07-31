@@ -59,7 +59,7 @@
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelButton.AutoSize = true;
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(598, 498);
+            this.CancelButton.Location = new System.Drawing.Point(597, 254);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 0;
@@ -71,7 +71,7 @@
             // 
             this.ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ConfirmButton.AutoSize = true;
-            this.ConfirmButton.Location = new System.Drawing.Point(496, 498);
+            this.ConfirmButton.Location = new System.Drawing.Point(495, 254);
             this.ConfirmButton.Name = "ConfirmButton";
             this.ConfirmButton.Size = new System.Drawing.Size(96, 23);
             this.ConfirmButton.TabIndex = 1;
@@ -103,7 +103,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RuleNameTextBox.Location = new System.Drawing.Point(132, 13);
             this.RuleNameTextBox.Name = "RuleNameTextBox";
-            this.RuleNameTextBox.Size = new System.Drawing.Size(541, 20);
+            this.RuleNameTextBox.Size = new System.Drawing.Size(540, 20);
             this.RuleNameTextBox.TabIndex = 8;
             // 
             // NewConditionButton
@@ -128,7 +128,7 @@
             this.ConditionPanel.Location = new System.Drawing.Point(125, 112);
             this.ConditionPanel.Name = "ConditionPanel";
             this.ConditionPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.ConditionPanel.Size = new System.Drawing.Size(550, 380);
+            this.ConditionPanel.Size = new System.Drawing.Size(549, 136);
             this.ConditionPanel.TabIndex = 13;
             // 
             // RuleAreaLabel
@@ -152,7 +152,7 @@
             // 
             this.ChooseCellButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ChooseCellButton.AutoSize = true;
-            this.ChooseCellButton.Location = new System.Drawing.Point(517, 38);
+            this.ChooseCellButton.Location = new System.Drawing.Point(516, 38);
             this.ChooseCellButton.Name = "ChooseCellButton";
             this.ChooseCellButton.Size = new System.Drawing.Size(156, 23);
             this.ChooseCellButton.TabIndex = 16;
@@ -175,7 +175,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RuleDescriptionTextBox.Location = new System.Drawing.Point(132, 67);
             this.RuleDescriptionTextBox.Name = "RuleDescriptionTextBox";
-            this.RuleDescriptionTextBox.Size = new System.Drawing.Size(541, 39);
+            this.RuleDescriptionTextBox.Size = new System.Drawing.Size(540, 39);
             this.RuleDescriptionTextBox.TabIndex = 18;
             this.RuleDescriptionTextBox.Text = "";
             // 
@@ -261,7 +261,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(685, 533);
+            this.ClientSize = new System.Drawing.Size(684, 289);
             this.Controls.Add(this.TooltipLabelCondition);
             this.Controls.Add(this.ToolTipLabelDescription);
             this.Controls.Add(this.ToolTipLabelCellArea);

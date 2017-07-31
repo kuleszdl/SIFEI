@@ -180,21 +180,19 @@ namespace SIF.Visualization.Excel
             condiButton.AutoSize = true;
             condiButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Right)));
             condiButton.Location = new System.Drawing.Point(10, 10);
-            // für Studie deaktiviert
-            //condiButton.Click += condiButton_Click;
+            condiButton.Click += condiButton_Click;
             // condition bearbeiten Button Event, param: condition
 
 
             // Creates the delete Button for the Panel
-            // für Studie deaktiviert
-            //deleteRowButton = new Button();
-            //condiPanel.Controls.Add(deleteRowButton);
-            //deleteRowButton.Margin = new System.Windows.Forms.Padding(10);
-            //deleteRowButton.Location = new System.Drawing.Point(500, 10);
-            //deleteRowButton.Name = "delete" + totalRows.ToString();
-            //deleteRowButton.Size = new System.Drawing.Size(30, 30);
-            //deleteRowButton.Image = global::SIF.Visualization.Excel.Properties.Resources.delete;
-            //deleteRowButton.Click += deleteRowButton_Click;
+            deleteRowButton = new Button();
+            condiPanel.Controls.Add(deleteRowButton);
+            deleteRowButton.Margin = new System.Windows.Forms.Padding(10);
+            deleteRowButton.Location = new System.Drawing.Point(500, 10);
+            deleteRowButton.Name = "delete" + totalRows.ToString();
+            deleteRowButton.Size = new System.Drawing.Size(30, 30);
+            deleteRowButton.Image = global::SIF.Visualization.Excel.Properties.Resources.delete;
+            deleteRowButton.Click += deleteRowButton_Click;
 
             // Moves down newConditionButton 
             NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 55);
