@@ -8,6 +8,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
+using SIF.Visualization.Excel.View.CustomRules;
 using MessageBox = System.Windows.Forms.MessageBox;
 using MSExcel = Microsoft.Office.Interop.Excel;
 
@@ -442,25 +443,17 @@ namespace SIF.Visualization.Excel {
             }
         }
 
+          /// <summary>
+          /// Opens the Rule Editor for a new Rule
+          /// </summary>
+          /// <param name="sender"></param>
+          /// <param name="e"></param>
         private void RuleEdit_Click(object sender, RibbonControlEventArgs e)
         {
 
             RuleEditor.Instance.Start();        
         }
-
-        private void CellPicker_Click(object sender, RibbonControlEventArgs e)
-        {
-            RuleCellType cellType = RuleCellType.CELL;
-            var selectedCells = CellManager.Instance.GetSelectedCells();
-
-            foreach (var cell in selectedCells)
-            {
-                cell.RuleCellType = cellType;
-            }
-            DataModel.Instance.CurrentWorkbook.RecalculateViewModel();
-
-
-        }
+ 
 
         private void button1_Click_1(object sender, RibbonControlEventArgs e)
         {

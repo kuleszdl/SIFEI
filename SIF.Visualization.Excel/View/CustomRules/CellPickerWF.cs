@@ -1,21 +1,10 @@
-﻿using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Interop.Excel;
-using Office = Microsoft.Office.Core;
+﻿using System;
+using System.Windows.Forms;
 using SIF.Visualization.Excel.Core;
 using SIF.Visualization.Excel.Core.Rules;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 
-namespace SIF.Visualization.Excel
+namespace SIF.Visualization.Excel.View.CustomRules
 {
     public partial class CellPickerWF : Form
     {

@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using SIF.Visualization.Excel.View.CustomRules;
 using MessageBox = System.Windows.MessageBox;
 using MSExcel = Microsoft.Office.Interop.Excel;
 
@@ -440,7 +441,7 @@ namespace SIF.Visualization.Excel.Core {
             SIF.Visualization.Excel.Core.Rules.RuleCreator.Instance.End();
             try
             {
-                SIF.Visualization.Excel.RuleEditor.Instance.End();
+                RuleEditor.Instance.End();
             }
             catch (Exception f)
             {

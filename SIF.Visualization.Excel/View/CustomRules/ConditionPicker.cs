@@ -1,15 +1,9 @@
 ﻿using System;
-using SIF.Visualization.Excel.Core.Rules;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using SIF.Visualization.Excel.Core.Rules;
 
-namespace SIF.Visualization.Excel
+namespace SIF.Visualization.Excel.View.CustomRules
 {
     public partial class ConditionPicker : Form
     {

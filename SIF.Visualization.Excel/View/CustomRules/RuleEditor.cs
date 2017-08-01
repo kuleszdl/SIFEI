@@ -1,22 +1,10 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.InteropServices;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using SIF.Visualization.Excel.Core;
 using SIF.Visualization.Excel.Core.Rules;
-using SIF.Visualization.Excel.Helper;
-using SIF.Visualization.Excel.Properties;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
 
-
-namespace SIF.Visualization.Excel
+namespace SIF.Visualization.Excel.View.CustomRules
 {
     public partial class RuleEditor : Form
     {

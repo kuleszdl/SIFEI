@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using SIF.Visualization.Excel.Core;
+using SIF.Visualization.Excel.View.CustomRules;
 using Binding = System.Windows.Data.Binding;
 using Rule = SIF.Visualization.Excel.Core.Rules.Rule;
 using UserControl = System.Windows.Controls.UserControl;

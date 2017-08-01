@@ -1,4 +1,4 @@
-﻿namespace SIF.Visualization.Excel
+﻿namespace SIF.Visualization.Excel.View.CustomRules
 {
     partial class ConditionPicker
     {
