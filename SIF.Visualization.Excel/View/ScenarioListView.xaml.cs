@@ -1,18 +1,17 @@
-﻿using SIF.Visualization.Excel.Core;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using Binding = System.Windows.Data.Binding;
-using Scenario = SIF.Visualization.Excel.Core.Scenarios.Scenario;
-using UserControl = System.Windows.Controls.UserControl;
+using SIF.Visualization.Excel.Core;
+using SIF.Visualization.Excel.Core.Scenarios;
 
-namespace SIF.Visualization.Excel.View {
+namespace SIF.Visualization.Excel.View
+{
     /// <summary>
-    /// Interaktionslogik für ScenarioListView.xaml
+    ///     Interaktionslogik für ScenarioListView.xaml
     /// </summary>
-    public partial class ScenarioListView : UserControl {
-
+    public partial class ScenarioListView : UserControl
+    {
         #region Properties
 
         internal ListCollectionView ScenariosView { get; private set; }
@@ -22,9 +21,10 @@ namespace SIF.Visualization.Excel.View {
         #region Methods
 
         /// <summary>
-        /// Initializes a new Scenario Pane including some Binding for the searchbox
+        ///     Initializes a new Scenario Pane including some Binding for the searchbox
         /// </summary>
-        public ScenarioListView() {
+        public ScenarioListView()
+        {
             InitializeComponent();
             DataContextChanged += ScenarioListView_DataContextChanged;
         }
@@ -34,7 +34,7 @@ namespace SIF.Visualization.Excel.View {
             if (DataContext == null)
                 return;
 
-            var binding = new Binding()
+            var binding = new Binding
             {
                 Source = DataModel.Instance.CurrentWorkbook.Scenarios,
                 Mode = BindingMode.OneWay
@@ -47,17 +47,19 @@ namespace SIF.Visualization.Excel.View {
 
         #region Click Methods
 
-
         /// <summary>
-        /// Checks on which scenario the edit button got clicked to then open the detailed view of that scenario
+        ///     Checks on which scenario the edit button got clicked to then open the detailed view of that scenario
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="routedEventArgs"></param>
-        private void EditScenarioButton_Click(object sender, RoutedEventArgs routedEventArgs) {
+        private void EditScenarioButton_Click(object sender, RoutedEventArgs routedEventArgs)
+        {
             var model = DataContext as WorkbookModel;
-            if (model != null) {
+            if (model != null)
+            {
                 var workbook = model;
-                System.Windows.Window window = new System.Windows.Window {
+                var window = new Window
+                {
                     // @TODO: use resources
                     Title = "Scenario Detail Dialog",
                     Content = new ScenarioDetailDialog(),
@@ -68,20 +70,20 @@ namespace SIF.Visualization.Excel.View {
                 window.ShowDialog();
             }
         }
- 
+
         /// <summary>
-        /// Checks on which scenario the delete button got clicked to then delete the corresponding scenario
+        ///     Checks on which scenario the delete button got clicked to then delete the corresponding scenario
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="routedEventArgs"></param>
-        private void DeleteScenarioButton_Click(object sender, RoutedEventArgs e) {
+        private void DeleteScenarioButton_Click(object sender, RoutedEventArgs e)
+        {
             var selectedItem = ScenarioListBox.SelectedItem;
 
             if (selectedItem != null)
                 (ScenariosView.SourceCollection as ObservableCollection<Scenario>).Remove(selectedItem as Scenario);
 
             //delete scenario
-            
         }
 
         #endregion

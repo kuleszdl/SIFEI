@@ -1,64 +1,78 @@
-﻿using System;
-namespace SIF.Visualization.Excel.Core.Scenarios
+﻿namespace SIF.Visualization.Excel.Core.Scenarios
 {
     public class InputData : ScenarioData
     {
-        private ValueType type = ValueType.BLANK;
+        private bool booleanValue;
+        private double numericValue;
         private string textValue = "";
-        private double numericValue = 0;
-        private bool booleanValue = false;
+        private ValueType type = ValueType.BLANK;
 
-        public ValueType Type {
+        public InputData()
+        {
+        }
+
+        public InputData(string target) : base(target)
+        {
+        }
+
+        public ValueType Type
+        {
             get { return type; }
             set { SetProperty(ref type, value); }
         }
 
-        public double NumericValue {
+        public double NumericValue
+        {
             get { return numericValue; }
             set { SetProperty(ref numericValue, value); }
         }
 
-        public string TextValue {
+        public string TextValue
+        {
             get { return textValue; }
             set { SetProperty(ref textValue, value); }
         }
 
-        public bool BooleanValue {
+        public bool BooleanValue
+        {
             get { return booleanValue; }
             set { SetProperty(ref booleanValue, value); }
         }
 
-        public string Value {
-            get {
-                switch (type) {
+        public string Value
+        {
+            get
+            {
+                switch (type)
+                {
                     case ValueType.BOOLEAN: return booleanValue.ToString();
                     case ValueType.TEXT: return textValue;
                     case ValueType.NUMERIC: return numericValue.ToString();
                     default: return "";
                 }
             }
-            set {
-                Boolean parsedBooleanValue;
-                Double parsedDoubleValue;
+            set
+            {
+                bool parsedBooleanValue;
+                double parsedDoubleValue;
 
-                if (Boolean.TryParse(value, out parsedBooleanValue)) {
+                if (bool.TryParse(value, out parsedBooleanValue))
+                {
                     BooleanValue = parsedBooleanValue;
                     Type = ValueType.BOOLEAN;
-                } else if (Double.TryParse(value, out parsedDoubleValue)) {
+                }
+                else if (double.TryParse(value, out parsedDoubleValue))
+                {
                     NumericValue = parsedDoubleValue;
                     Type = ValueType.NUMERIC;
-                } else {
+                }
+                else
+                {
                     TextValue = value;
                     Type = ValueType.TEXT;
                 }
                 NotifyPropertyChanged();
             }
-        }
-
-        public InputData() {}
-
-        public InputData(string target) : base(target) {
-            
         }
     }
 }

@@ -25,26 +25,24 @@ namespace SIF.Visualization.Excel {
         /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
         private void InitializeComponent() {
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.ElementHost = new System.Windows.Forms.Integration.ElementHost();
             this.SuspendLayout();
             //
             // elementHost1
             // 
-            this.elementHost1.SuspendLayout();
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.AutoSize = true;
-            this.elementHost1.TabIndex = 0;
-            this.elementHost1.Child = null;
+            this.ElementHost.SuspendLayout();
+            this.ElementHost.Name = "ElementHost";
+            this.ElementHost.AutoSize = true;
+            this.ElementHost.TabIndex = 0;
+            this.ElementHost.Child = null;
             // 
             // CellErrorInfoContainer
             //
-            this.Controls.Add(this.elementHost1);
+            this.Controls.Add(this.ElementHost);
             this.Name = "CellErrorInfoContainer";
             this.ResumeLayout(false);
         }
 
         #endregion
-
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
     }
 }

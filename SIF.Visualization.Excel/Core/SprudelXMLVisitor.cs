@@ -1,80 +1,84 @@
-﻿using SIF.Visualization.Excel.Core.Scenarios;
-using SIF.Visualization.Excel.Core.Rules;
-using System;
+﻿using System;
 using System.Xml.Linq;
+using SIF.Visualization.Excel.Core.Rules;
+using SIF.Visualization.Excel.Core.Scenarios;
 
-namespace SIF.Visualization.Excel.Core {
-    class SprudelXMLVisitor : IVisitor {
-        public SprudelXMLVisitor() { }
-
+namespace SIF.Visualization.Excel.Core
+{
+    internal class SprudelXMLVisitor : IVisitor
+    {
         /// <summary>
-        /// Create the sprudel xml document
+        ///     Create the sprudel xml document
         /// </summary>
         /// <param name="n">WorkbookModel</param>
         /// <returns>complete sprudel xml as XElement</returns>
-        public object Visit(WorkbookModel n) {
-            PolicyConfigurationModel settings = n.PolicySettings;
+        public object Visit(WorkbookModel n)
+        {
+            var settings = n.PolicySettings;
             var wrapper = new XElement("inspectionRequest");
             var root = new XElement("policies");
-            
-            XElement dynamicPolicy = CreateScenarioElements(n);
-            if (dynamicPolicy != null) {
-                root.Add(dynamicPolicy);
-            }
 
-            XElement sanityChecks = CreateSanityElements(n);
-            if (sanityChecks != null) {
-                root.Add(sanityChecks);
-            }
+            var dynamicPolicy = CreateScenarioElements(n);
+            if (dynamicPolicy != null) root.Add(dynamicPolicy);
 
-            XElement rulePolicy = CreateRuleElements(n);
+            var sanityChecks = CreateSanityElements(n);
+            if (sanityChecks != null) root.Add(sanityChecks);
+
+            var rulePolicy = CreateRuleElements(n);
             if (rulePolicy != null)
-            {
                 root.Add(rulePolicy);
-            }
 
-            if (settings.ReadingDirection) {
-                XElement readingDirection = createReadingDirection(settings);
+            if (settings.ReadingDirection)
+            {
+                var readingDirection = createReadingDirection(settings);
                 root.Add(readingDirection);
             }
 
-            if (settings.NoConstantsInFormulas) {
-                XElement constants = createNoConstants(settings);
+            if (settings.NoConstantsInFormulas)
+            {
+                var constants = createNoConstants(settings);
                 root.Add(constants);
             }
 
-            if (settings.FormulaComplexity) {
-                XElement formulaComplexity = createFormulaComplexity(settings);
+            if (settings.FormulaComplexity)
+            {
+                var formulaComplexity = createFormulaComplexity(settings);
                 root.Add(formulaComplexity);
             }
 
-            if (settings.NonConsideredConstants) {
-                XElement nonConsidered = createNonConsideredValues(settings);
+            if (settings.NonConsideredConstants)
+            {
+                var nonConsidered = createNonConsideredValues(settings);
                 root.Add(nonConsidered);
             }
 
-            if (settings.OneAmongOthers) {
-                XElement oneAmongOthers = createOneAmongOthers(settings);
+            if (settings.OneAmongOthers)
+            {
+                var oneAmongOthers = createOneAmongOthers(settings);
                 root.Add(oneAmongOthers);
             }
 
-            if (settings.RefToNull) {
-                XElement refToNull = createRefToNull(settings);
+            if (settings.RefToNull)
+            {
+                var refToNull = createRefToNull(settings);
                 root.Add(refToNull);
             }
 
-            if (settings.StringDistance) {
-                XElement stringDistance = createStringDistance(settings);
+            if (settings.StringDistance)
+            {
+                var stringDistance = createStringDistance(settings);
                 root.Add(stringDistance);
             }
 
-            if (settings.MultipleSameRef) {
-                XElement msr = createMultipleSameRef(settings);
+            if (settings.MultipleSameRef)
+            {
+                var msr = createMultipleSameRef(settings);
                 root.Add(msr);
             }
 
-            if (settings.ErrorInCells) {
-                XElement eic = createErrorInCells(settings);
+            if (settings.ErrorInCells)
+            {
+                var eic = createErrorInCells(settings);
                 root.Add(eic);
             }
 
@@ -82,15 +86,14 @@ namespace SIF.Visualization.Excel.Core {
             return wrapper;
         }
 
-        private XElement CreateScenarioElements(WorkbookModel n) {
-            if (n.Scenarios.Count > 0) {
-
-                XElement dynamicPolicy = new XElement("dynamicTestingPolicy");
+        private XElement CreateScenarioElements(WorkbookModel n)
+        {
+            if (n.Scenarios.Count > 0)
+            {
+                var dynamicPolicy = new XElement("dynamicTestingPolicy");
                 // scenarios 
                 var scenarios = new XElement("scenarios");
-                foreach (var scenario in n.Scenarios) {
-                    scenarios.Add(Visit(scenario));
-                }
+                foreach (var scenario in n.Scenarios) scenarios.Add(Visit(scenario));
                 dynamicPolicy.Add(scenarios);
                 return dynamicPolicy;
             }
@@ -101,49 +104,51 @@ namespace SIF.Visualization.Excel.Core {
         {
             if (n.Rules.Count > 0)
             {
-                XElement rulesPolicy = new XElement("customRulesPolicy");
+                var rulesPolicy = new XElement("customRulesPolicy");
                 var rules = new XElement("rules");
                 foreach (var rule in n.Rules)
-                {
                     rules.Add(Visit(rule));
-                }
                 rulesPolicy.Add(rules);
                 return rulesPolicy;
             }
-                return null;
-            
+            return null;
         }
 
-       
-        private XElement createErrorInCells(PolicyConfigurationModel settings) {
-            XElement eic = new XElement("errorContainingCellPolicy");
+
+        private XElement createErrorInCells(PolicyConfigurationModel settings)
+        {
+            var eic = new XElement("errorContainingCellPolicy");
             return eic;
         }
 
-        private XElement createMultipleSameRef(PolicyConfigurationModel settings) {
-            XElement msr = new XElement("multipleSameRefPolicy");
+        private XElement createMultipleSameRef(PolicyConfigurationModel settings)
+        {
+            var msr = new XElement("multipleSameRefPolicy");
             return msr;
         }
 
-        private XElement createStringDistance(PolicyConfigurationModel settings) {
-            XElement stringDst = new XElement("stringDistancePolicy");
-            XElement dist = new XElement("minDistance");
+        private XElement createStringDistance(PolicyConfigurationModel settings)
+        {
+            var stringDst = new XElement("stringDistancePolicy");
+            var dist = new XElement("minDistance");
             dist.Value = settings.StringDistanceMinDist.ToString();
             stringDst.Add(dist);
 
             return stringDst;
         }
 
-        private XElement createRefToNull(PolicyConfigurationModel settings) {
-            XElement refToNull = new XElement("refToNullPolicy");
+        private XElement createRefToNull(PolicyConfigurationModel settings)
+        {
+            var refToNull = new XElement("refToNullPolicy");
             return refToNull;
         }
 
-        private XElement createOneAmongOthers(PolicyConfigurationModel settings) {
-            XElement oneAmong = new XElement("oneAmongOthersPolicy");
-            XElement style = new XElement("environmentStyle");
+        private XElement createOneAmongOthers(PolicyConfigurationModel settings)
+        {
+            var oneAmong = new XElement("oneAmongOthersPolicy");
+            var style = new XElement("environmentStyle");
             style.Value = settings.OneAmongOthersStyle;
-            XElement length = new XElement("environmentLength");
+            var length = new XElement("environmentLength");
             length.Value = settings.OneAmongOthersLength.ToString();
             oneAmong.Add(style);
             oneAmong.Add(length);
@@ -151,32 +156,36 @@ namespace SIF.Visualization.Excel.Core {
             return oneAmong;
         }
 
-        private XElement createNonConsideredValues(PolicyConfigurationModel settings) {
-            XElement nonConsidered = new XElement("nonConsideredValuesPolicy");
+        private XElement createNonConsideredValues(PolicyConfigurationModel settings)
+        {
+            var nonConsidered = new XElement("nonConsideredValuesPolicy");
             return nonConsidered;
         }
 
-        private XElement createReadingDirection(PolicyConfigurationModel settings) {
-            XElement reading = new XElement("readingDirectionPolicy");
-            XElement left = new XElement("leftToRight");
+        private XElement createReadingDirection(PolicyConfigurationModel settings)
+        {
+            var reading = new XElement("readingDirectionPolicy");
+            var left = new XElement("leftToRight");
             left.Value = settings.ReadingDirectionLeftRight.ToString().ToLower();
-            XElement top = new XElement("topToBottom");
+            var top = new XElement("topToBottom");
             top.Value = settings.ReadingDirectionTopBottom.ToString().ToLower();
             reading.Add(left);
             reading.Add(top);
             return reading;
         }
 
-        private XElement createNoConstants(PolicyConfigurationModel settings) {
-            XElement noConstant = new XElement("noConstantsInFormulasPolicy");
+        private XElement createNoConstants(PolicyConfigurationModel settings)
+        {
+            var noConstant = new XElement("noConstantsInFormulasPolicy");
             return noConstant;
         }
 
-        private XElement createFormulaComplexity(PolicyConfigurationModel settings) {
-            XElement formulaRule = new XElement("formulaComplexityPolicy");
-            XElement maxNesting = new XElement("maxNesting");
+        private XElement createFormulaComplexity(PolicyConfigurationModel settings)
+        {
+            var formulaRule = new XElement("formulaComplexityPolicy");
+            var maxNesting = new XElement("maxNesting");
             maxNesting.Value = settings.FormulaComplexityMaxDepth.ToString();
-            XElement maxOperations = new XElement("maxOperations");
+            var maxOperations = new XElement("maxOperations");
             maxOperations.Value = settings.FormulaComplexityMaxOperations.ToString();
             formulaRule.Add(maxNesting);
             formulaRule.Add(maxOperations);
@@ -184,9 +193,19 @@ namespace SIF.Visualization.Excel.Core {
             return formulaRule;
         }
 
+        #region private class methods
+
+        private string NullCheck(string content)
+        {
+            return content != null ? content : string.Empty;
+        }
+
+        #endregion
+
         #region private workbook model visitor methods
 
-        private XElement CreateSanityElements(WorkbookModel n) {
+        private XElement CreateSanityElements(WorkbookModel n)
+        {
             var root = new XElement("sanityChecks");
 
             // @TODO
@@ -205,11 +224,12 @@ namespace SIF.Visualization.Excel.Core {
         }
 
         /// <summary>
-        /// Creats a part of sprudel with the data fo a scenario
+        ///     Creats a part of sprudel with the data fo a scenario
         /// </summary>
         /// <param name="n">Scenario</param>
         /// <returns>XElement</returns>
-        public object Visit(Scenario n) {
+        public object Visit(Scenario n)
+        {
             var scenario = new XElement("scenario");
 
             //attributes
@@ -244,7 +264,6 @@ namespace SIF.Visualization.Excel.Core {
         {
             var inputs = new XElement("ruleCells");
             foreach (var test in n.RuleCells)
-            {
                 if (test.Value.Equals(""))
                 {
                     var inputElement = new XElement("ruleCell");
@@ -253,43 +272,44 @@ namespace SIF.Visualization.Excel.Core {
                     inputElement.Add(new XElement("value", test.Value));
                     inputs.Add(inputElement);
                 }
-                
-            }
             return inputs;
         }
 
         private XElement CreateRuleCondition(Rule n)
         {
             var inputs = new XElement("ruleConditions");
-            foreach (var test in n.Conditions) {
+            foreach (var test in n.Conditions)
+            {
                 var inputElement = new XElement("ruleCondition");
                 inputElement.Add(new XElement("conditionName", test.Name));
                 inputElement.Add(new XElement("conditionType", test.Type.ToString()));
-                inputElement.Add(new XElement("conditionValue", test.Value.ToString()));
+                inputElement.Add(new XElement("conditionValue", test.Value));
                 inputs.Add(inputElement);
             }
             return inputs;
         }
 
 
-
-        private XElement CreateInputs(Scenario n) {
+        private XElement CreateInputs(Scenario n)
+        {
             var inputs = new XElement("inputs");
-            foreach (var test in n.Inputs) {
-                if (!test.Value.Equals("")) {
+            foreach (var test in n.Inputs)
+                if (!test.Value.Equals(""))
+                {
                     var inputElement = new XElement("input");
                     inputElement.Add(new XElement("target", test.Target));
                     inputElement.Add(new XElement("type", test.Type.ToString()));
                     inputElement.Add(new XElement("value", test.Value));
                     inputs.Add(inputElement);
                 }
-            }
             return inputs;
         }
 
-        private XElement CreateInvariants(Scenario n) {
+        private XElement CreateInvariants(Scenario n)
+        {
             var invariants = new XElement("invariants");
-            foreach (var invariant in n.Invariants) {
+            foreach (var invariant in n.Invariants)
+            {
                 var invariantElement = new XElement("invariant");
                 invariantElement.Add(new XElement("target", invariant.Target));
                 invariants.Add(invariantElement);
@@ -297,10 +317,12 @@ namespace SIF.Visualization.Excel.Core {
             return invariants;
         }
 
-        private XElement CreateConditions(Scenario n) {
+        private XElement CreateConditions(Scenario n)
+        {
             var conditions = new XElement("conditions");
-            foreach (var condition in n.Conditions) {
-                if (!condition.Value.Equals("")) {
+            foreach (var condition in n.Conditions)
+                if (!condition.Value.Equals(""))
+                {
                     var conditionElement = new XElement("condition");
                     conditionElement.Add(new XElement("operator", condition.Operator.ToString()));
                     conditionElement.Add(new XElement("target", condition.Target));
@@ -308,27 +330,31 @@ namespace SIF.Visualization.Excel.Core {
                     conditionElement.Add(new XElement("value", condition.Value));
                     conditions.Add(conditionElement);
                 }
-            }
-            return conditions; ;
+            return conditions;
+            ;
         }
 
         #endregion
 
         #region not implemented
 
-        public object Visit(InputData n) {
+        public object Visit(InputData n)
+        {
             throw new NotImplementedException();
         }
 
-        public object Visit(ScenarioData n) {
+        public object Visit(ScenarioData n)
+        {
             throw new NotImplementedException();
         }
 
-        public object Visit(ConditionData n) {
+        public object Visit(ConditionData n)
+        {
             throw new NotImplementedException();
         }
 
-        public object Visit(Cell n) {
+        public object Visit(Cell n)
+        {
             throw new NotImplementedException();
         }
 
@@ -337,12 +363,6 @@ namespace SIF.Visualization.Excel.Core {
             throw new NotImplementedException();
         }
 
-        #endregion
-
-        #region private class methods
-        private string NullCheck(string content) {
-            return (content != null) ? content : String.Empty;
-        }
         #endregion
     }
 }

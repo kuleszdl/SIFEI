@@ -4,14 +4,19 @@
     {
         private OperatorType op = OperatorType.EQUALS;
 
+        public ConditionData()
+        {
+        }
 
-        public OperatorType Operator {
+        public ConditionData(string target) : base(target)
+        {
+        }
+
+
+        public OperatorType Operator
+        {
             get { return op; }
             set { SetProperty(ref op, value); }
         }
-
-        public ConditionData() { }
-
-        public ConditionData(string target) : base(target) {}
     }
 }

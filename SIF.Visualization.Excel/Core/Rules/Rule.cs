@@ -1,77 +1,70 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIF.Visualization.Excel.Core.Rules
 {
     public class Rule : BindableBase
     {
+        #region Methods
+
+        public Rule()
+        {
+            id = Guid.NewGuid();
+        }
+
+        #endregion
+
         #region Fields
+
         private Guid id;
         private string title;
         private string description;
         private ObservableCollection<RuleCells> ruleCells;
         private ObservableCollection<Condition> condition;
+
         #endregion
 
         #region Properties
+
         //TODO Creation Set, XML Add
         public string Title
         {
-            get { 
-                return title; 
-            }
-            set { 
-                SetProperty(ref title, value); 
-            }
+            get { return title; }
+            set { SetProperty(ref title, value); }
         }
 
         public string Description
         {
-            get
-            {
-                return description;
-            }
-            set
-            {
-                SetProperty(ref description, value);
-            }
+            get { return description; }
+            set { SetProperty(ref description, value); }
         }
 
         public ObservableCollection<RuleCells> RuleCells
         {
             get
             {
-                if (ruleCells == null) ruleCells= new ObservableCollection<RuleCells>();
+                if (ruleCells == null) ruleCells = new ObservableCollection<RuleCells>();
                 return ruleCells;
             }
-            set
-            {
-                SetProperty(ref ruleCells, value);
-            }
+            set { SetProperty(ref ruleCells, value); }
         }
 
         public ObservableCollection<Condition> Conditions
         {
             get
             {
-                if (condition == null)condition = new ObservableCollection<Condition>();
+                if (condition == null) condition = new ObservableCollection<Condition>();
                 return condition;
             }
-            set
-            {
-                SetProperty(ref condition, value);
-            }
+            set { SetProperty(ref condition, value); }
         }
 
         #endregion
 
         #region Operators
+
         /// <summary>
-        /// Determines whether the specified object is equal to the current object.
+        ///     Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
         /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
@@ -82,18 +75,12 @@ namespace SIF.Visualization.Excel.Core.Rules
             var other = obj as Rule;
 
             if (id.Equals(other.id))
-            {
                 return true;
-            }
-            else
-            {
-                return false;
-            }
-
+            return false;
         }
 
         /// <summary>
-        /// Serves as a hash function for a particular type. 
+        ///     Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>A hash code for the current Object.</returns>
         public override int GetHashCode()
@@ -102,7 +89,7 @@ namespace SIF.Visualization.Excel.Core.Rules
         }
 
         /// <summary>
-        /// Determines, whether two objects are equal.
+        ///     Determines, whether two objects are equal.
         /// </summary>
         /// <param name="a">The first instance.</param>
         /// <param name="b">The second instance.</param>
@@ -110,13 +97,13 @@ namespace SIF.Visualization.Excel.Core.Rules
         public static bool operator ==(Rule a, Rule b)
         {
             if (ReferenceEquals(a, b)) return true;
-            if (((object)a == null) || ((object)b == null)) return false;
+            if ((object) a == null || (object) b == null) return false;
 
             return a.Equals(b);
         }
 
         /// <summary>
-        /// Determines, whether two objects are inequal.
+        ///     Determines, whether two objects are inequal.
         /// </summary>
         /// <param name="a">The first instance.</param>
         /// <param name="b">The second instance.</param>
@@ -125,15 +112,7 @@ namespace SIF.Visualization.Excel.Core.Rules
         {
             return !(a == b);
         }
+
         #endregion
-
-        #region Methods
-        public Rule()
-        {
-            id = Guid.NewGuid();
-        }
-        #endregion
-
-
     }
 }

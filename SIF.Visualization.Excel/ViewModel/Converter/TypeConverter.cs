@@ -1,20 +1,21 @@
-﻿using SIF.Visualization.Excel.Core;
-using System;
+﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
+using SIF.Visualization.Excel.Core;
 
 namespace SIF.Visualization.Excel.ViewModel
 {
-    class TypeConverter : IValueConverter
+    internal class TypeConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Core.Policy.PolicyType type = (Core.Policy.PolicyType)value;
-            String typeString = type.ToString();
+            var type = (Policy.PolicyType) value;
+            var typeString = type.ToString();
             return typeString.ElementAt(0) + typeString.Substring(1).ToLower();
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

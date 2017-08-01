@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using SIF.Visualization.Excel.Core;
 using SIF.Visualization.Excel.Core.Rules;
-
+using SIF.Visualization.Excel.Properties;
 
 namespace SIF.Visualization.Excel.View.CustomRules
 {
@@ -13,15 +13,15 @@ namespace SIF.Visualization.Excel.View.CustomRules
             InitializeComponent();
             SetLocalisation();
             Show();
-
         }
 
         private void SetLocalisation()
         {
-            this.CancelButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_Cancel;
-            this.ConfirmButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_CellPicker_Confirm;
-            this.CellPickerLabel.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_CellPicker_Label;
+            CancelButton.Text = Resources.tl_Cancel;
+            ConfirmButton.Text = Resources.tl_CellPicker_Confirm;
+            CellPickerLabel.Text = Resources.tl_CellPicker_Label;
         }
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             try
@@ -36,26 +36,24 @@ namespace SIF.Visualization.Excel.View.CustomRules
         }
 
         /// <summary>
-        /// Sets chosen Rulecells in the Workbook and adds them to the current Rule
+        ///     Sets chosen Rulecells in the Workbook and adds them to the current Rule
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            RuleCellType cellType = RuleCellType.CELL;
+            var cellType = RuleCellType.CELL;
             var selectedCells = CellManager.Instance.GetSelectedCells();
             foreach (var cell in selectedCells)
-                {
-                    cell.RuleCellType = cellType;
-                    DataModel.Instance.CurrentWorkbook.RuleCells.Add(cell);
-                }
-                RuleCreator.Instance.SetRuleCells(DataModel.Instance.CurrentWorkbook);
-                DataModel.Instance.CurrentWorkbook.RecalculateViewModel();
-                DataModel.Instance.CurrentWorkbook.RuleCells.Clear();
-                Dispose();
-                RuleEditor.Instance.Open(RuleCreator.Instance.GetRule());
-                        
-                       
+            {
+                cell.RuleCellType = cellType;
+                DataModel.Instance.CurrentWorkbook.RuleCells.Add(cell);
+            }
+            RuleCreator.Instance.SetRuleCells(DataModel.Instance.CurrentWorkbook);
+            DataModel.Instance.CurrentWorkbook.RecalculateViewModel();
+            DataModel.Instance.CurrentWorkbook.RuleCells.Clear();
+            Dispose();
+            RuleEditor.Instance.Open(RuleCreator.Instance.GetRule());
         }
     }
 }

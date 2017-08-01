@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SIF.Visualization.Excel.Core.Rules
+﻿namespace SIF.Visualization.Excel.Core.Rules
 {
     public class Condition : BindableBase
     {
         #region Fields
+
         public enum ConditionType
         {
             NONE,
@@ -17,6 +12,7 @@ namespace SIF.Visualization.Excel.Core.Rules
             Empty,
             OnlyNumbers
         }
+
         private ConditionType type = ConditionType.NONE;
         private string conditionValue;
         private string conditionName;
@@ -26,6 +22,7 @@ namespace SIF.Visualization.Excel.Core.Rules
             get { return type; }
             set { SetProperty(ref type, value); }
         }
+
         public string Name
         {
             get { return conditionName; }
@@ -39,7 +36,7 @@ namespace SIF.Visualization.Excel.Core.Rules
                 switch (type)
                 {
                     case ConditionType.Regex: return conditionValue;
-                    case ConditionType.CharacterCount: return conditionValue.ToString();
+                    case ConditionType.CharacterCount: return conditionValue;
                     default: return "";
                 }
             }
@@ -49,7 +46,7 @@ namespace SIF.Visualization.Excel.Core.Rules
                 NotifyPropertyChanged();
             }
         }
-        #endregion
 
+        #endregion
     }
 }

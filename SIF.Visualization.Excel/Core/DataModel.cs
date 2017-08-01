@@ -1,33 +1,33 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
+using Microsoft.Office.Interop.Excel;
 
 namespace SIF.Visualization.Excel.Core
 {
     /// <summary>
-    /// This is the global data model class.
+    ///     This is the global data model class.
     /// </summary>
     public class DataModel : BindableBase
     {
         #region Singleton
 
         private static volatile DataModel instance;
-        private static object syncRoot = new Object();
+        private static readonly object syncRoot = new object();
 
-        private DataModel() { }
+        private DataModel()
+        {
+        }
 
         public static DataModel Instance
         {
             get
             {
                 if (instance == null)
-                {
                     lock (syncRoot)
                     {
                         if (instance == null)
                             instance = new DataModel();
                     }
-                }
 
                 return instance;
             }
@@ -45,17 +45,16 @@ namespace SIF.Visualization.Excel.Core
         #region Properties
 
         /// <summary>
-        /// Gets or sets the current workbook.
+        ///     Gets or sets the current workbook.
         /// </summary>
         public WorkbookModel CurrentWorkbook
         {
-            get
-            { return currentWorkbook; }
+            get { return currentWorkbook; }
             set { SetProperty(ref currentWorkbook, value); }
         }
 
         /// <summary>
-        /// Gets the worksheet models.
+        ///     Gets the worksheet models.
         /// </summary>
         public ObservableCollection<WorkbookModel> WorkbookModels
         {
@@ -66,32 +65,28 @@ namespace SIF.Visualization.Excel.Core
             }
         }
 
-        public Microsoft.Office.Interop.Excel.AppEvents_SheetSelectionChangeEventHandler WorkbookSelectionChangedEventHandler
-        {
-            get;
-            set;
-        }
+        public AppEvents_SheetSelectionChangeEventHandler WorkbookSelectionChangedEventHandler { get; set; }
 
         #endregion
 
         #region Operators
 
         /// <summary>
-        /// Determines whether the specified object is equal to the current object.
+        ///     Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
         /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
-            DataModel other = obj as DataModel;
-            if ((object)other == null) return false;
+            var other = obj as DataModel;
+            if ((object) other == null) return false;
 
             return CurrentWorkbook == other.CurrentWorkbook &&
                    WorkbookModels.SequenceEqual(other.WorkbookModels);
         }
 
         /// <summary>
-        /// Serves as a hash function for a particular type. 
+        ///     Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>A hash code for the current Object.</returns>
         public override int GetHashCode()
@@ -100,7 +95,7 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
-        /// Determines, whether two objects are equal.
+        ///     Determines, whether two objects are equal.
         /// </summary>
         /// <param name="a">The first instance.</param>
         /// <param name="b">The second instance.</param>
@@ -108,13 +103,13 @@ namespace SIF.Visualization.Excel.Core
         public static bool operator ==(DataModel a, DataModel b)
         {
             if (ReferenceEquals(a, b)) return true;
-            if (((object)a == null) || ((object)b == null)) return false;
+            if ((object) a == null || (object) b == null) return false;
 
             return a.Equals(b);
         }
 
         /// <summary>
-        /// Determines, whether two objects are inequal.
+        ///     Determines, whether two objects are inequal.
         /// </summary>
         /// <param name="a">The first instance.</param>
         /// <param name="b">The second instance.</param>
@@ -125,7 +120,5 @@ namespace SIF.Visualization.Excel.Core
         }
 
         #endregion
-
-       
     }
 }

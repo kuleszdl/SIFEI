@@ -6,15 +6,7 @@ namespace SIF.Visualization.Excel
     public partial class CellErrorInfoContainer : UserControl
     {
         /// <summary>
-        /// Gets the element host containing the cell error info.
-        /// </summary>
-        public ElementHost ElementHost
-        {
-            get { return elementHost1; }
-        }
-
-        /// <summary>
-        /// Instanciates a new Container setting the Paintingstyles
+        ///     Instanciates a new Container setting the Paintingstyles
         /// </summary>
         public CellErrorInfoContainer()
         {
@@ -25,5 +17,10 @@ namespace SIF.Visualization.Excel
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
         }
+
+        /// <summary>
+        ///     Gets the element host containing the cell error info.
+        /// </summary>
+        public ElementHost ElementHost { get; private set; }
     }
 }

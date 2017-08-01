@@ -1,25 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SIF.Visualization.Excel.Core.Rules
+﻿namespace SIF.Visualization.Excel.Core.Rules
 {
     public class RuleCells : BindableBase
     {
-        private ValueType type = ValueType.BLANK;
-        private string textValue = "";
-        private double numericValue = 0;
-        private bool booleanValue = false;
+        private bool booleanValue;
+        private double numericValue;
         private string target;
+        private string textValue = "";
+        private ValueType type = ValueType.BLANK;
 
-        public string Target {
-            get {
-                return target;
-            }
-            set {
-                SetProperty(ref target,value);
-            }
+        public RuleCells(string target)
+        {
+            this.target = target;
+        }
+
+        public RuleCells()
+        {
+        }
+
+        public string Target
+        {
+            get { return target; }
+            set { SetProperty(ref target, value); }
         }
 
         public ValueType Type
@@ -60,15 +61,15 @@ namespace SIF.Visualization.Excel.Core.Rules
             }
             set
             {
-                Boolean parsedBooleanValue;
-                Double parsedDoubleValue;
+                bool parsedBooleanValue;
+                double parsedDoubleValue;
 
-                if (Boolean.TryParse(value, out parsedBooleanValue))
+                if (bool.TryParse(value, out parsedBooleanValue))
                 {
                     BooleanValue = parsedBooleanValue;
                     Type = ValueType.BOOLEAN;
                 }
-                else if (Double.TryParse(value, out parsedDoubleValue))
+                else if (double.TryParse(value, out parsedDoubleValue))
                 {
                     NumericValue = parsedDoubleValue;
                     Type = ValueType.NUMERIC;
@@ -81,13 +82,5 @@ namespace SIF.Visualization.Excel.Core.Rules
                 NotifyPropertyChanged();
             }
         }
-
-        public RuleCells(string target) {
-            this.target = target;
-        }
-
-        public RuleCells() {}
-
-
     }
 }

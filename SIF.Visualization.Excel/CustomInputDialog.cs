@@ -13,6 +13,11 @@ namespace SIF.Visualization.Excel
             txtAnswer.Text = defaultAnswer;
         }
 
+        public string Answer
+        {
+            get { return txtAnswer.Text; }
+        }
+
         private void btnDialogOk_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
@@ -22,11 +27,6 @@ namespace SIF.Visualization.Excel
         {
             txtAnswer.SelectAll();
             txtAnswer.Focus();
-        }
-
-        public string Answer
-        {
-            get { return txtAnswer.Text; }
         }
     }
 }
