@@ -7,9 +7,9 @@ namespace SIF.Visualization.Excel.View.CustomRules
 {
     public partial class ConditionPicker : Form
     {
-        string chosenType;
-        SIF.Visualization.Excel.Core.Rules.Rule rule;
-        public ConditionPicker(SIF.Visualization.Excel.Core.Rules.Rule rule)
+        private string chosenType;
+        Rule rule;
+        public ConditionPicker(Rule rule)
         {
             this.rule = rule;
             InitializeComponent();
@@ -18,7 +18,6 @@ namespace SIF.Visualization.Excel.View.CustomRules
         }
 
         
-
         public ConditionPicker(Condition condition)
         {
             InitializeComponent();
@@ -27,6 +26,9 @@ namespace SIF.Visualization.Excel.View.CustomRules
             ShowDialog();
 
         }
+        /// <summary>
+        /// Sets Localisation
+        /// </summary>
         private void SetText()
         {
             //Buttons
@@ -57,6 +59,10 @@ namespace SIF.Visualization.Excel.View.CustomRules
             
         }
 
+        /// <summary>
+        /// Resets the Layout and desplays the current Condition
+        /// </summary>
+        /// <param name="condition"></param>
         private void ConfigurePicker(Condition condition)
         {
             HideFirstBoxes();
@@ -140,7 +146,9 @@ namespace SIF.Visualization.Excel.View.CustomRules
 
         }
 
-
+        /// <summary>
+        /// Hides unused extra Boxes
+        /// </summary>
         private void HideFirstBoxes()
         {
             this.RegexTextBox.Visible = false;
@@ -163,6 +171,11 @@ namespace SIF.Visualization.Excel.View.CustomRules
             this.Choose2CommaButton.BackColor = System.Drawing.SystemColors.Control;
         }
 
+        /// <summary>
+        /// Checks and Adds ConditionType and optional User Input to the Rule
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             try
@@ -229,7 +242,10 @@ namespace SIF.Visualization.Excel.View.CustomRules
                 MessageBox.Show(f.ToString());
             }
         }
-
+        /// <summary>
+        /// Checks for empty Name
+        /// </summary>
+        /// <returns></returns>
         private bool CheckConditions() {
             if (ConditionNameTextBox.Text == "")
             {
@@ -253,11 +269,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
                        
         }
 
-
-      
-
-       
-
+        
 
     }
 }

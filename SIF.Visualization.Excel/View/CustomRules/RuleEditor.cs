@@ -8,16 +8,16 @@ namespace SIF.Visualization.Excel.View.CustomRules
 {
     public partial class RuleEditor : Form
     {
-        int pointX;
-        int pointY;
-        int panelX = 10;
-        int panelY = 3;
-        int totalRows = 0;
+        private int pointX;
+        private int pointY;
+        private int panelX = 10;
+        private int panelY = 3;
+        private int totalRows = 0;
 
         public Boolean edited = false;
         private Button deleteRowButton;
         private List<Panel> condiPanels = new List<Panel>();
-        string[] avaibleConditions = {  
+        private string[] avaibleConditions = {  
                                   "Regex", 
                                   global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Condition_CharacterCount
                               };
@@ -26,6 +26,9 @@ namespace SIF.Visualization.Excel.View.CustomRules
         private static object syncRoot = new Object();
         private static Object syncEditor = new Object();
 
+        /// <summary>
+        /// Singelton
+        /// </summary>
         public static RuleEditor Instance
         {
             get
@@ -42,13 +45,15 @@ namespace SIF.Visualization.Excel.View.CustomRules
             }
         }
         
-        /// <summary>
-        /// Calls the Rule Editor Interface 
-        /// </summary>
+        
         public RuleEditor()
         {
             
         }
+
+        /// <summary>
+        /// Calls the Rule Editor Interface 
+        /// </summary>
         public void Start() {
             lock (syncEditor)
             {
@@ -86,7 +91,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
         private void SetDesigner()
         {
             //Buttons
-            this.CancelButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_Cancel;
+            this.CancelButton.Text = Properties.Resources.tl_Cancel;
             this.ConfirmButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_Confirm;
             this.ChooseCellButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_CellPicker;
             this.NewConditionButton.Text = global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_NewCondition;
@@ -101,7 +106,10 @@ namespace SIF.Visualization.Excel.View.CustomRules
             this.ToolTipDescription.SetToolTip(this.ToolTipLabelDescription, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_Description);
             this.ToolTipCondition.SetToolTip(this.TooltipLabelCondition, global::SIF.Visualization.Excel.Properties.Resources.tl_RuleEditor_ToolTip_Condition);
         }
-
+        /// <summary>
+        /// Updates the GUI with the details of the rule
+        /// </summary>
+        /// <param name="rule"></param>
         public void UpdateInformations(SIF.Visualization.Excel.Core.Rules.Rule rule)
         {
             if (RuleNameTextBox.Text == "" )
@@ -121,7 +129,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
 
 
         /// <summary>
-        /// Adds a new row at the current location of the Button and moves the button down
+        /// Opens the ConditionPicker Window and saves the current Inputs
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -150,6 +158,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
             pointY = NewConditionButton.Location.Y;
             totalRows = condiPanels.Count;
 
+            // Creates Panel where everything is contained
             Panel condiPanel = new Panel();
             ConditionPanel.Controls.Add(condiPanel);
             condiPanels.Add(condiPanel);
@@ -186,6 +195,11 @@ namespace SIF.Visualization.Excel.View.CustomRules
             NewConditionButton.Location = new System.Drawing.Point(pointX, pointY + 55);
         }
 
+        /// <summary>
+        /// Opens existing Condition
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void condiButton_Click(object sender, EventArgs e)
         {
             var button = sender as Button;
@@ -218,7 +232,6 @@ namespace SIF.Visualization.Excel.View.CustomRules
         }
              
         
-
         /// <summary>
         /// Checks and commits the Data with the RuleCreator
         /// </summary>
@@ -279,7 +292,11 @@ namespace SIF.Visualization.Excel.View.CustomRules
             RuleCreator.Instance.End();
             End();
         }
-
+        /// <summary>
+        /// Opens the CellChooser Window and saves current Input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChooseCellButton_Click(object sender, EventArgs e)
         {
             RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);

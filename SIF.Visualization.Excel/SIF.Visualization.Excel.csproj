@@ -234,15 +234,6 @@
     <Compile Include="View\CustomRules\ConditionPicker.Designer.cs">
       <DependentUpon>ConditionPicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\RuleDataField.xaml.cs">
-      <DependentUpon>RuleDataField.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RuleDataFieldContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\RuleDataFieldContainer.Designer.cs">
-      <DependentUpon>RuleDataFieldContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\ScenarioDetailDialog.xaml.cs">
       <DependentUpon>ScenarioDetailDialog.xaml</DependentUpon>
     </Compile>
@@ -430,10 +421,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomInputDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\RuleDataField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

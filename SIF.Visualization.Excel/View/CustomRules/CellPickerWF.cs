@@ -35,6 +35,11 @@ namespace SIF.Visualization.Excel.View.CustomRules
             }
         }
 
+        /// <summary>
+        /// Sets chosen Rulecells in the Workbook and adds them to the current Rule
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             RuleCellType cellType = RuleCellType.CELL;
