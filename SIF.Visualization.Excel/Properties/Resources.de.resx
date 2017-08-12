@@ -622,4 +622,7 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   <data name="tl_ViolationView_NoViolations" xml:space="preserve">
     <value>Keine Befund(e) vorhanden</value>
   </data>
+  <data name="tl_ConditionPicker_Error" xml:space="preserve">
+    <value>Ungültiger Typ der Bedingung.</value>
+  </data>
 </root>

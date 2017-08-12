@@ -429,6 +429,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Invalid Condition type. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_Error {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a valid interger number. ähnelt.
         /// </summary>
         public static string tl_ConditionPicker_NoCharCount {

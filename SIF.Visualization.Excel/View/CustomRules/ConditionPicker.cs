@@ -11,6 +11,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
     {
         private string chosenType;
         private readonly Rule rule;
+        private Condition currentCondition;
 
         public ConditionPicker(Rule rule)
         {
@@ -23,9 +24,10 @@ namespace SIF.Visualization.Excel.View.CustomRules
 
         public ConditionPicker(Condition condition)
         {
+            this.currentCondition = condition;
             InitializeComponent();
-            ConfigurePicker(condition);
             SetText();
+            ConfigurePicker(condition);
             ShowDialog();
         }
 
@@ -78,10 +80,29 @@ namespace SIF.Visualization.Excel.View.CustomRules
                     RegexTextBox.Visible = true;
                     break;
                 case Condition.ConditionType.CharacterCount:
-
+                    ChooseCharacterCountButton.BackColor = SystemColors.GradientActiveCaption;
+                    ConditionFirstPanel.BackColor = SystemColors.GradientActiveCaption;
+                    ConditionSecondPanelLabel.Text = Resources.tl_ConditionPicker_ChooseCharacterCount1 + " \n" +
+                                                     Resources.tl_ConditionPicker_ChooseCharacterCount2;
+                    CharacterCountTextBox.Visible = true;
+                    chosenType = "CharacterCount";
+                    break;
+                case Condition.ConditionType.OnlyNumbers:
+                    ChooseOnlyNumbersButton.BackColor = SystemColors.GradientActiveCaption;
+                    ConditionFirstPanel.BackColor = SystemColors.GradientActiveCaption;
+                    ConditionSecondPanelLabel.Text = Resources.tl_ConditionPicker_ChooseOnlyNumbers + " \n" +
+                                                     Resources.tl_ConditionPicker_NoInputReq;
+                    chosenType = "OnlyNumbers";
+                    break;
+                case Condition.ConditionType.Empty:
+                    ChooseEmptyButton.BackColor = SystemColors.GradientActiveCaption;
+                    ConditionFirstPanel.BackColor = SystemColors.GradientActiveCaption;
+                    ConditionSecondPanelLabel.Text = Resources.tl_ConditionPicker_ChooseEmpty + " \n" +
+                                                     Resources.tl_ConditionPicker_NoInputReq;
+                    chosenType = "Empty";
                     break;
                 default:
-                    //Meldung
+                    MessageBox.Show(Resources.tl_ConditionPicker_Error);
                     break;
             }
         }

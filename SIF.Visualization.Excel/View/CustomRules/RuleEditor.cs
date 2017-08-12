@@ -13,13 +13,6 @@ namespace SIF.Visualization.Excel.View.CustomRules
         private static volatile RuleEditor instance;
         private static readonly object syncRoot = new object();
         private static readonly object syncEditor = new object();
-
-        private string[] avaibleConditions =
-        {
-            "Regex",
-            Resources.tl_RuleEditor_Condition_CharacterCount
-        };
-
         private readonly List<Panel> condiPanels = new List<Panel>();
         private Button deleteRowButton;
 
@@ -165,6 +158,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
             condiPanel.Padding = new Padding(10);
             panelY = panelY + 55;
 
+            // Creates Button for editing the Condition with ConditionPicker
             var condiButton = new Button();
             condiPanel.Controls.Add(condiButton);
             condiButton.Text = existingCondition.Name;
@@ -181,7 +175,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
             condiPanel.Controls.Add(deleteRowButton);
             deleteRowButton.Margin = new Padding(10);
             deleteRowButton.Location = new Point(500, 10);
-            deleteRowButton.Name = "delete" + totalRows;
+            deleteRowButton.Name = "delete" + existingCondition.Name;
             deleteRowButton.Size = new Size(30, 30);
             deleteRowButton.Image = Resources.delete;
             deleteRowButton.Click += deleteRowButton_Click;
@@ -216,7 +210,14 @@ namespace SIF.Visualization.Excel.View.CustomRules
             {
                 var button = sender as Button;
                 var parent = button.Parent as Panel;
-                parent.Dispose();
+                foreach (var condition in RuleCreator.Instance.GetRule().Conditions)
+                    if ("delete" + condition.Name == button.Name)
+                    {
+                        parent.Dispose();
+                        RuleCreator.Instance.GetRule().Conditions.Remove(condition);
+                        edited = true;
+                    }
+                
             }
             catch
             {
@@ -245,7 +246,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
                 }
                 else
                 {
-                    MessageBox.Show("keine RuleCells");
+                    MessageBox.Show("Es existiert keine Regel zum Erstellen.");
                 }
             }
         }
