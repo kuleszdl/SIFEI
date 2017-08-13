@@ -71,6 +71,7 @@
             // 
             this.ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ConfirmButton.AutoSize = true;
+            this.ConfirmButton.Enabled = false;
             this.ConfirmButton.Location = new System.Drawing.Point(495, 254);
             this.ConfirmButton.Name = "ConfirmButton";
             this.ConfirmButton.Size = new System.Drawing.Size(96, 23);
@@ -105,6 +106,7 @@
             this.RuleNameTextBox.Name = "RuleNameTextBox";
             this.RuleNameTextBox.Size = new System.Drawing.Size(540, 20);
             this.RuleNameTextBox.TabIndex = 8;
+            this.RuleNameTextBox.TextChanged += new System.EventHandler(this.ContentChanged);
             // 
             // NewConditionButton
             // 
@@ -178,6 +180,7 @@
             this.RuleDescriptionTextBox.Size = new System.Drawing.Size(540, 39);
             this.RuleDescriptionTextBox.TabIndex = 18;
             this.RuleDescriptionTextBox.Text = "";
+            this.RuleDescriptionTextBox.TextChanged += new System.EventHandler(this.ContentChanged);
             // 
             // ToolTipName
             // 

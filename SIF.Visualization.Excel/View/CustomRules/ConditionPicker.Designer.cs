@@ -67,6 +67,7 @@
             this.ConditionNameTextBox.Name = "ConditionNameTextBox";
             this.ConditionNameTextBox.Size = new System.Drawing.Size(367, 20);
             this.ConditionNameTextBox.TabIndex = 1;
+            this.ConditionNameTextBox.TextChanged += new System.EventHandler(this.ContentChanged);
             // 
             // ConditionComponentsPanel
             // 
@@ -199,6 +200,7 @@
             this.RegexTextBox.Size = new System.Drawing.Size(446, 20);
             this.RegexTextBox.TabIndex = 0;
             this.RegexTextBox.Visible = false;
+            this.RegexTextBox.TextChanged += new System.EventHandler(this.ContentChanged);
             // 
             // CharacterCountTextBox
             // 
@@ -209,6 +211,7 @@
             this.CharacterCountTextBox.Size = new System.Drawing.Size(446, 20);
             this.CharacterCountTextBox.TabIndex = 2;
             this.CharacterCountTextBox.Visible = false;
+            this.CharacterCountTextBox.TextChanged += new System.EventHandler(this.ContentChanged);
             // 
             // CancelButton
             // 
@@ -227,6 +230,7 @@
             // 
             this.ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ConfirmButton.AutoSize = true;
+            this.ConfirmButton.Enabled = false;
             this.ConfirmButton.Location = new System.Drawing.Point(330, 347);
             this.ConfirmButton.Name = "ConfirmButton";
             this.ConfirmButton.Size = new System.Drawing.Size(95, 23);

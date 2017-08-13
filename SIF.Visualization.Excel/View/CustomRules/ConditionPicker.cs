@@ -9,9 +9,10 @@ namespace SIF.Visualization.Excel.View.CustomRules
 {
     public partial class ConditionPicker : Form
     {
-        private string chosenType;
+        private string chosenType = "none";
         private readonly Rule rule;
-        private Condition currentCondition;
+        private bool edited = false;
+        private readonly Condition currentCondition;
 
         public ConditionPicker(Rule rule)
         {
@@ -22,8 +23,9 @@ namespace SIF.Visualization.Excel.View.CustomRules
         }
 
 
-        public ConditionPicker(Condition condition)
+        public ConditionPicker(Condition condition, Rule rule)
         {
+            this.rule = rule;
             this.currentCondition = condition;
             InitializeComponent();
             SetText();
@@ -71,6 +73,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
         {
             HideFirstBoxes();
             ResetColourScheme();
+            ConditionNameTextBox.Text = condition.Name;
             switch (condition.Type)
             {
                 case Condition.ConditionType.Regex:
@@ -78,6 +81,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
                     ConditionNameTextBox.Text = condition.Name;
                     RegexTextBox.Text = condition.Value;
                     RegexTextBox.Visible = true;
+                    chosenType = "Regex";
                     break;
                 case Condition.ConditionType.CharacterCount:
                     ChooseCharacterCountButton.BackColor = SystemColors.GradientActiveCaption;
@@ -116,6 +120,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
             ConditionSecondPanelLabel.Text = Resources.tl_ConditionPicker_ChooseRegex;
             RegexTextBox.Visible = true;
             chosenType = "Regex";
+            ConfirmButton.Enabled = true;
         }
 
         private void ChooseEmptyButton_Click(object sender, EventArgs e)
@@ -127,6 +132,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
             ConditionSecondPanelLabel.Text = Resources.tl_ConditionPicker_ChooseEmpty + " \n" +
                                              Resources.tl_ConditionPicker_NoInputReq;
             chosenType = "Empty";
+            ConfirmButton.Enabled = true;
         }
 
         private void ChooseCharacterCountButton_Click(object sender, EventArgs e)
@@ -139,6 +145,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
                                              Resources.tl_ConditionPicker_ChooseCharacterCount2;
             CharacterCountTextBox.Visible = true;
             chosenType = "CharacterCount";
+            ConfirmButton.Enabled = true;
         }
 
         private void ChooseOnlyNumbers_Click(object sender, EventArgs e)
@@ -150,6 +157,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
             ConditionSecondPanelLabel.Text = Resources.tl_ConditionPicker_ChooseOnlyNumbers + " \n" +
                                              Resources.tl_ConditionPicker_NoInputReq;
             chosenType = "OnlyNumbers";
+            ConfirmButton.Enabled = true;
         }
 
         private void Choose1CommaButton_Click(object sender, EventArgs e)
@@ -161,6 +169,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
             ConditionSecondPanelLabel.Text = Resources.tl_ConditionPicker_Choose1Comma + " \n" +
                                              Resources.tl_ConditionPicker_NoInputReq;
             chosenType = "1Comma";
+            ConfirmButton.Enabled = true;
         }
 
         private void Choose2CommaButton_Click(object sender, EventArgs e)
@@ -172,6 +181,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
             ConditionSecondPanelLabel.Text = Resources.tl_ConditionPicker_Choose2Comma + " \n" +
                                              Resources.tl_ConditionPicker_NoInputReq;
             chosenType = "2Comma";
+            ConfirmButton.Enabled = true;
         }
 
         /// <summary>
@@ -184,7 +194,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
         }
 
         /// <summary>
-        ///     TODO: Resets BUtton and Panel highlighting
+        ///     TODO: Resets Button and Panel highlighting
         /// </summary>
         private void ResetColourScheme()
         {
@@ -200,6 +210,11 @@ namespace SIF.Visualization.Excel.View.CustomRules
             Choose2CommaButton.BackColor = SystemColors.Control;
         }
 
+        private void ContentChanged(object sender, EventArgs e)
+        {
+            ConfirmButton.Enabled = true;
+        }
+
         /// <summary>
         ///     Checks and Adds ConditionType and optional User Input to the Rule
         /// </summary>
@@ -208,68 +223,68 @@ namespace SIF.Visualization.Excel.View.CustomRules
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             try
-            {
-                if (CheckConditions())
-                    switch (chosenType)
+                {
+                    if (CheckConditions())
                     {
-                        case "Regex":
-                            if (RegexTextBox.Text == "")
-                            {
-                                MessageBox.Show(Resources.tl_ConditionPicker_NoRegex);
+                        switch (chosenType)
+                        {
+                            case "Regex":
+                                if (RegexTextBox.Text == "")
+                                {
+                                    MessageBox.Show(Resources.tl_ConditionPicker_NoRegex);
+                                    break;
+                                }
+                                RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, RegexTextBox.Text);
+                                Close();
                                 break;
-                            }
-                            RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text, RegexTextBox.Text);
-                            RuleEditor.Instance.Open(rule);
-                            Close();
-                            break;
-                        case "CharacterCount":
-                            int value;
-                            if (CharacterCountTextBox.Text == "")
-                            {
-                                MessageBox.Show(Resources.tl_ConditionPicker_NoCharCount);
+                            case "CharacterCount":
+                                int value;
+                                if (CharacterCountTextBox.Text == "")
+                                {
+                                    MessageBox.Show(Resources.tl_ConditionPicker_NoCharCount);
+                                    break;
+                                }
+                                if (!int.TryParse(CharacterCountTextBox.Text, out value))
+                                {
+                                    MessageBox.Show(Resources.tl_ConditionPicker_NoCharCount);
+                                    break;
+                                }
+                                RuleCreator.Instance.AddCharacterCondition(ConditionNameTextBox.Text,
+                                    CharacterCountTextBox.Text);
+                                Close();
                                 break;
-                            }
-                            if (!int.TryParse(CharacterCountTextBox.Text, out value))
-                            {
-                                MessageBox.Show(Resources.tl_ConditionPicker_NoCharCount);
+                            case "Empty":
+                                RuleCreator.Instance.AddEmptyCondition(ConditionNameTextBox.Text);
+                                Close();
                                 break;
-                            }
-                            RuleCreator.Instance.AddCharacterCondition(ConditionNameTextBox.Text,
-                                CharacterCountTextBox.Text);
-                            RuleEditor.Instance.Open(rule);
-                            Close();
-                            break;
-                        case "Empty":
-                            RuleCreator.Instance.AddEmptyCondition(ConditionNameTextBox.Text);
-                            RuleEditor.Instance.Open(rule);
-                            Close();
-                            break;
-                        case "OnlyNumbers":
-                            RuleCreator.Instance.AddOnlyNumbersCondition(ConditionNameTextBox.Text);
-                            RuleEditor.Instance.Open(rule);
-                            Close();
-                            break;
-                        case "1Comma":
-                            RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text,
-                                "((^|\\W)([0-9]+?((,|\\.)[0-9])+?)($|\\W))|((^)\\d*($|\\W))");
-                            RuleEditor.Instance.Open(rule);
-                            Close();
-                            break;
-                        case "2Comma":
-                            RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text,
-                                "((^|\\W)([0-9]+?((,|\\.)([0-9]{1,2}))+?)($|\\W))|((^)\\d*($|\\W))");
-                            RuleEditor.Instance.Open(rule);
-                            Close();
-                            break;
-                        default:
-                            MessageBox.Show(Resources.tl_ConditionPicker_NoCondition);
-                            break;
+                            case "OnlyNumbers":
+                                RuleCreator.Instance.AddOnlyNumbersCondition(ConditionNameTextBox.Text);
+                                Close();
+                                break;
+                            case "1Comma":
+                                RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text,
+                                    "((^|\\W)([0-9]+?((,|\\.)[0-9])+?)($|\\W))|((^)\\d*($|\\W))");
+                                Close();
+                                break;
+                            case "2Comma":
+                                RuleCreator.Instance.AddRegexCondition(ConditionNameTextBox.Text,
+                                    "((^|\\W)([0-9]+?((,|\\.)([0-9]{1,2}))+?)($|\\W))|((^)\\d*($|\\W))");
+                                Close();
+                                break;
+                            default:
+                                MessageBox.Show(Resources.tl_ConditionPicker_NoCondition);
+                                break;
                     }
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show(f.ToString());
-            }
+                        RuleCreator.Instance.GetRule().Conditions.Remove(currentCondition);
+                        RuleEditor.Instance.Open(rule);
+
+                    }
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show(f.ToString());
+                }
+            
         }
 
         /// <summary>
@@ -283,6 +298,12 @@ namespace SIF.Visualization.Excel.View.CustomRules
                 MessageBox.Show(Resources.tl_ConditionPicker_NoName);
                 return false;
             }
+            if (chosenType == "none")
+            {
+                MessageBox.Show(Resources.tl_ConditionPicker_NoCondition);
+                return false;
+            }
+
             return true;
         }
 

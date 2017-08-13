@@ -16,7 +16,6 @@ namespace SIF.Visualization.Excel.View.CustomRules
         private readonly List<Panel> condiPanels = new List<Panel>();
         private Button deleteRowButton;
 
-        public bool edited = false;
         private readonly int panelX = 10;
         private int panelY = 3;
         private int pointX;
@@ -64,11 +63,8 @@ namespace SIF.Visualization.Excel.View.CustomRules
             lock (syncEditor)
             {
                 InitializeComponent();
-                foreach (var existingCondition in rule.Conditions)
-                    AddExistingRow(existingCondition);
                 SetDesigner();
                 UpdateInformations(rule);
-
                 RuleCreator.Instance.OpenRule(rule);
                 Show();
             }
@@ -84,6 +80,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
             ConfirmButton.Text = Resources.tl_RuleEditor_Confirm;
             ChooseCellButton.Text = Resources.tl_RuleEditor_CellPicker;
             NewConditionButton.Text = Resources.tl_RuleEditor_NewCondition;
+            NewConditionButton.Location = new Point(13, 13);
             //Labels
             ConditionLabel.Text = Resources.tl_RuleEditor_Condition;
             RuleNameLabel.Text = "Name";
@@ -113,8 +110,21 @@ namespace SIF.Visualization.Excel.View.CustomRules
                     output = output + rulecells.Target;
                 CellAreaBox.Text = output;
             }
+            foreach (var existingCondition in rule.Conditions)
+                AddExistingRow(existingCondition);
         }
 
+        private void ContentChanged(object sender, EventArgs e)
+        {
+            RuleCreator.Instance.edited = true;
+            ConfirmButton.Enabled = true;
+        }
+
+        private void ContentChanged()
+        {
+            RuleCreator.Instance.edited = true;
+            ConfirmButton.Enabled = true;
+        }
 
         /// <summary>
         ///     Opens the ConditionPicker Window and saves the current Inputs
@@ -125,6 +135,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
         {
             try
             {
+                ContentChanged();
                 RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
                 End();
                 var conditionPicker = new ConditionPicker(RuleCreator.Instance.GetRule());
@@ -175,7 +186,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
             condiPanel.Controls.Add(deleteRowButton);
             deleteRowButton.Margin = new Padding(10);
             deleteRowButton.Location = new Point(500, 10);
-            deleteRowButton.Name = "delete" + existingCondition.Name;
+            deleteRowButton.Name = existingCondition.Name;
             deleteRowButton.Size = new Size(30, 30);
             deleteRowButton.Image = Resources.delete;
             deleteRowButton.Click += deleteRowButton_Click;
@@ -191,12 +202,26 @@ namespace SIF.Visualization.Excel.View.CustomRules
         /// <param name="e"></param>
         private void condiButton_Click(object sender, EventArgs e)
         {
-            var button = sender as Button;
-            foreach (var condition in RuleCreator.Instance.GetRule().Conditions)
-                if (condition.Name == button.Text)
-                {
-                    var conditionPicker = new ConditionPicker(condition);
-                }
+            try
+            {
+                ContentChanged();
+                var button = sender as Button;
+                foreach (var condition in RuleCreator.Instance.GetRule().Conditions)
+                    if (condition.Name == button.Text)
+                    {
+                        ContentChanged();
+                        RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
+                        End();
+                        var conditionPicker = new ConditionPicker(condition, RuleCreator.Instance.GetRule());
+                        break;
+                    }
+
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show(f.ToString());
+            }
+            
         }
 
         /// <summary>
@@ -206,23 +231,31 @@ namespace SIF.Visualization.Excel.View.CustomRules
         /// <param name="e"></param>
         private void deleteRowButton_Click(object sender, EventArgs e)
         {
+           var button = sender as Button;
+                
             try
             {
-                var button = sender as Button;
-                var parent = button.Parent as Panel;
                 foreach (var condition in RuleCreator.Instance.GetRule().Conditions)
-                    if ("delete" + condition.Name == button.Name)
+                    if (condition.Name == button.Name)
                     {
-                        parent.Dispose();
+                        ContentChanged();
                         RuleCreator.Instance.GetRule().Conditions.Remove(condition);
-                        edited = true;
+                        break;
+                    }
+                    else
+                    {
+                        // no such condition
                     }
                 
             }
-            catch
+            catch (Exception exception)
             {
-                MessageBox.Show(e.ToString());
+                MessageBox.Show(exception.ToString());
             }
+
+            RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
+            End();
+            Instance.Open(RuleCreator.Instance.GetRule());
         }
 
 
@@ -233,22 +266,23 @@ namespace SIF.Visualization.Excel.View.CustomRules
         /// <param name="e"></param>
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            // Check for Rulecells
             if (CheckInputs())
-            {
-                RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
-
-                var newRule = RuleCreator.Instance.End();
-                if (newRule != null)
                 {
-                    DataModel.Instance.CurrentWorkbook.Rules.Add(newRule);
-                    End();
+                    RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
+                    RuleCreator.Instance.edited = true;
+                    Rule newRule = RuleCreator.Instance.End();
+                    if (newRule != null)
+                    {
+                        DataModel.Instance.CurrentWorkbook.Rules.Add(newRule);
+                        
+                        End();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Es existiert keine Regel zum Erstellen.");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Es existiert keine Regel zum Erstellen.");
-                }
-            }
+            
         }
 
         /// <summary>
@@ -283,7 +317,6 @@ namespace SIF.Visualization.Excel.View.CustomRules
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            //check for edited
             RuleCreator.Instance.End();
             End();
         }

@@ -9,6 +9,7 @@ namespace SIF.Visualization.Excel.Core.Rules
 
         private static volatile RuleCreator instance;
         private static readonly object syncRoot = new object();
+        public bool edited = false;
 
         private RuleCreator()
         {
@@ -176,6 +177,8 @@ namespace SIF.Visualization.Excel.Core.Rules
 
             lock (syncRule)
             {
+                if (edited == true)
+                    DataModel.Instance.CurrentWorkbook.Rules.Remove(currentRule);
                 currentRule = null;
 
                 if (resultRule.RuleCells.Count == 0)
