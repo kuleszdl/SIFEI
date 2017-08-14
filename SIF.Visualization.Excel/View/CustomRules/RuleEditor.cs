@@ -10,17 +10,17 @@ namespace SIF.Visualization.Excel.View.CustomRules
 {
     public partial class RuleEditor : Form
     {
-        private static volatile RuleEditor instance;
-        private static readonly object syncRoot = new object();
-        private static readonly object syncEditor = new object();
-        private readonly List<Panel> condiPanels = new List<Panel>();
-        private Button deleteRowButton;
+        private static volatile RuleEditor _instance;
+        private static readonly object SyncRoot = new object();
+        private static readonly object SyncEditor = new object();
+        private readonly List<Panel> _condiPanels = new List<Panel>();
 
         private readonly int panelX = 10;
-        private int panelY = 3;
-        private int pointX;
-        private int pointY;
-        private int totalRows;
+        private Button _deleteRowButton;
+        private int _panelY = 3;
+        private int _pointX;
+        private int _pointY;
+        private int _totalRows;
 
 
         /// <summary>
@@ -30,13 +30,13 @@ namespace SIF.Visualization.Excel.View.CustomRules
         {
             get
             {
-                if (instance == null)
-                    lock (syncRoot)
+                if (_instance == null)
+                    lock (SyncRoot)
                     {
-                        if (instance == null)
-                            instance = new RuleEditor();
+                        if (_instance == null)
+                            _instance = new RuleEditor();
                     }
-                return instance;
+                return _instance;
             }
         }
 
@@ -45,7 +45,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
         /// </summary>
         public void Start()
         {
-            lock (syncEditor)
+            lock (SyncEditor)
             {
                 InitializeComponent();
                 SetDesigner();
@@ -60,7 +60,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
         /// <param name="rule"></param>
         public void Open(Rule rule)
         {
-            lock (syncEditor)
+            lock (SyncEditor)
             {
                 InitializeComponent();
                 SetDesigner();
@@ -153,21 +153,21 @@ namespace SIF.Visualization.Excel.View.CustomRules
         /// <param name="existingCondition"></param>
         private void AddExistingRow(Condition existingCondition)
         {
-            pointX = NewConditionButton.Location.X;
-            pointY = NewConditionButton.Location.Y;
-            totalRows = condiPanels.Count;
+            _pointX = NewConditionButton.Location.X;
+            _pointY = NewConditionButton.Location.Y;
+            _totalRows = _condiPanels.Count;
 
             // Creates Panel where everything is contained
             var condiPanel = new Panel();
             ConditionPanel.Controls.Add(condiPanel);
-            condiPanels.Add(condiPanel);
-            condiPanel.Location = new Point(panelX, panelY);
-            condiPanel.Name = "panel" + totalRows;
+            _condiPanels.Add(condiPanel);
+            condiPanel.Location = new Point(panelX, _panelY);
+            condiPanel.Name = "panel" + _totalRows;
             condiPanel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             condiPanel.Size = new Size(570, 50);
             condiPanel.BackColor = SystemColors.ControlDark;
             condiPanel.Padding = new Padding(10);
-            panelY = panelY + 55;
+            _panelY = _panelY + 55;
 
             // Creates Button for editing the Condition with ConditionPicker
             var condiButton = new Button();
@@ -182,17 +182,17 @@ namespace SIF.Visualization.Excel.View.CustomRules
 
 
             // Creates the delete Button for the Panel
-            deleteRowButton = new Button();
-            condiPanel.Controls.Add(deleteRowButton);
-            deleteRowButton.Margin = new Padding(10);
-            deleteRowButton.Location = new Point(500, 10);
-            deleteRowButton.Name = existingCondition.Name;
-            deleteRowButton.Size = new Size(30, 30);
-            deleteRowButton.Image = Resources.delete;
-            deleteRowButton.Click += deleteRowButton_Click;
+            _deleteRowButton = new Button();
+            condiPanel.Controls.Add(_deleteRowButton);
+            _deleteRowButton.Margin = new Padding(10);
+            _deleteRowButton.Location = new Point(500, 10);
+            _deleteRowButton.Name = existingCondition.Name;
+            _deleteRowButton.Size = new Size(30, 30);
+            _deleteRowButton.Image = Resources.delete;
+            _deleteRowButton.Click += deleteRowButton_Click;
 
             // Moves down newConditionButton 
-            NewConditionButton.Location = new Point(pointX, pointY + 55);
+            NewConditionButton.Location = new Point(_pointX, _pointY + 55);
         }
 
         /// <summary>
@@ -215,13 +215,11 @@ namespace SIF.Visualization.Excel.View.CustomRules
                         var conditionPicker = new ConditionPicker(condition, RuleCreator.Instance.GetRule());
                         break;
                     }
-
             }
             catch (Exception f)
             {
                 MessageBox.Show(f.ToString());
             }
-            
         }
 
         /// <summary>
@@ -231,8 +229,8 @@ namespace SIF.Visualization.Excel.View.CustomRules
         /// <param name="e"></param>
         private void deleteRowButton_Click(object sender, EventArgs e)
         {
-           var button = sender as Button;
-                
+            var button = sender as Button;
+
             try
             {
                 foreach (var condition in RuleCreator.Instance.GetRule().Conditions)
@@ -242,11 +240,6 @@ namespace SIF.Visualization.Excel.View.CustomRules
                         RuleCreator.Instance.GetRule().Conditions.Remove(condition);
                         break;
                     }
-                    else
-                    {
-                        // no such condition
-                    }
-                
             }
             catch (Exception exception)
             {
@@ -267,22 +260,21 @@ namespace SIF.Visualization.Excel.View.CustomRules
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             if (CheckInputs())
+            {
+                RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
+                RuleCreator.Instance.edited = true;
+                var newRule = RuleCreator.Instance.End();
+                if (newRule != null)
                 {
-                    RuleCreator.Instance.SetProperties(RuleNameTextBox.Text, RuleDescriptionTextBox.Text);
-                    RuleCreator.Instance.edited = true;
-                    Rule newRule = RuleCreator.Instance.End();
-                    if (newRule != null)
-                    {
-                        DataModel.Instance.CurrentWorkbook.Rules.Add(newRule);
-                        
-                        End();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Es existiert keine Regel zum Erstellen.");
-                    }
+                    DataModel.Instance.CurrentWorkbook.Rules.Add(newRule);
+
+                    End();
                 }
-            
+                else
+                {
+                    MessageBox.Show("Es existiert keine Regel zum Erstellen.");
+                }
+            }
         }
 
         /// <summary>
@@ -317,6 +309,7 @@ namespace SIF.Visualization.Excel.View.CustomRules
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            RuleCreator.Instance.edited = false;
             RuleCreator.Instance.End();
             End();
         }
@@ -335,12 +328,12 @@ namespace SIF.Visualization.Excel.View.CustomRules
 
         public void End()
         {
-            if (instance == null)
+            if (_instance == null)
             {
             }
-            lock (syncEditor)
+            lock (SyncEditor)
             {
-                instance = null;
+                _instance = null;
                 Close();
                 Dispose();
             }

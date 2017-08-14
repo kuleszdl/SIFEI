@@ -177,7 +177,7 @@ namespace SIF.Visualization.Excel.Core.Rules
 
             lock (syncRule)
             {
-                if (edited == true)
+                if (edited)
                     DataModel.Instance.CurrentWorkbook.Rules.Remove(currentRule);
                 currentRule = null;
 

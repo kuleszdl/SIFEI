@@ -663,9 +663,7 @@ namespace SIF.Visualization.Excel.Core
         public Cell GetCell(string currentLocation)
         {
             if (Cells.ContainsKey(currentLocation))
-            {
                 return Cells[currentLocation];
-            }
             var cell = new Cell(_workbook, currentLocation);
             Cells[currentLocation] = cell;
             return cell;

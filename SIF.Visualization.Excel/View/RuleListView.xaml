@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="SIF.Visualization.Excel.View.RuleListView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:s="clr-namespace:SIF.Visualization.Excel.Core.Rules"
              xmlns:viewmodel="clr-namespace:SIF.Visualization.Excel.ViewModel"
              xmlns:p="clr-namespace:SIF.Visualization.Excel.Properties"
@@ -30,23 +30,24 @@
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      SelectionMode="Extended">
                 <ListBox.Resources>
-                    <DataTemplate  DataType="{x:Type s:Rule}">
+                    <DataTemplate DataType="{x:Type s:Rule}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Path=Title}" FontWeight="SemiBold" Margin="5 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" />
+                            <TextBlock Text="{Binding Path=Title}" FontWeight="SemiBold" Margin="5 0 0 0"
+                                       VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" />
                             <Button x:Name="DeleteRuleButton" BorderBrush="Black"
                                     Margin="5 0 0 0"
                                     ToolTip="{x:Static p:Resources.tl_RulePane_DeleteRuleTooltip}"
                                     Grid.Column="1"
                                     VerticalAlignment="Center" HorizontalAlignment="Right"
                                     BorderThickness="1" Background="Transparent"
-                                    Click="SidebarDeleteRuleButton_Click"
-                                    > 
-                                <Image Width="15" Height="15" Margin="2 2 2 2" Source="/SIF.Visualization.Excel;component/Resources/Icons/Delete_black.png" />
+                                    Click="SidebarDeleteRuleButton_Click">
+                                <Image Width="15" Height="15" Margin="2 2 2 2"
+                                       Source="/SIF.Visualization.Excel;component/Resources/Icons/Delete_black.png" />
                             </Button>
                             <Button x:Name="EditRuleButton"
                                     Margin="5 0 0 0"
@@ -54,16 +55,16 @@
                                     Grid.Column="2"
                                     VerticalAlignment="Center" HorizontalAlignment="Right"
                                     BorderThickness="1" Background="Transparent"
-                                    Click="SidebarEditRuleButton_Click"                                    
-                                  >
-                                <Image Width="15" Height="15" Margin="2 2 2 2" Source="/SIF.Visualization.Excel;component/Resources/Icons/Edit.png" />
+                                    Click="SidebarEditRuleButton_Click">
+                                <Image Width="15" Height="15" Margin="2 2 2 2"
+                                       Source="/SIF.Visualization.Excel;component/Resources/Icons/Edit.png" />
                             </Button>
                         </Grid>
                     </DataTemplate>
                 </ListBox.Resources>
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
