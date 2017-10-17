@@ -273,7 +273,7 @@
     <value>Neues Szenario...</value>
   </data>
   <data name="tl_Ribbon_MessageNoPolicies" xml:space="preserve">
-    <value>Es sind keine Regeln für die Prüfung aktiviert und keine Szenarien vorhanden. Aktivieren Sie bitte mindestens eine Regel oder erstellen Sie ein Szenario und versuchen Sie es erneut.</value>
+    <value>Es sind keine Regeln für die Prüfung aktiviert und keine Szenarien oder eigene Regeln vorhanden. Aktivieren Sie bitte mindestens eine Regel oder erstellen Sie ein Szenario und versuchen Sie es erneut.</value>
   </data>
   <data name="tl_Ribbon_MessageNoPolicies_Title" xml:space="preserve">
     <value>Prüfung nicht möglich.</value>
@@ -468,5 +468,161 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
   </data>
   <data name="tl_ScenarioOverview" xml:space="preserve">
     <value>Szenario Übersicht</value>
+  </data>
+  <data name="tl_Ribbon_AreaRule_RuleEditor" xml:space="preserve">
+    <value>Neue Daten-Regel erstellen</value>
+  </data>
+  <data name="tl_Rules" xml:space="preserve">
+    <value>Regeln</value>
+  </data>
+  <data name="tl_Sidebar_Rules" xml:space="preserve">
+    <value>Regeln</value>
+  </data>
+  <data name="tl_NoRulesSide" xml:space="preserve">
+    <value>Keine Regeln vorhanden. Bitte erstellen Sie eine neue Regel.</value>
+  </data>
+  <data name="tl_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="tl_Ribbon_AreaRule_Title" xml:space="preserve">
+    <value>Regeln</value>
+  </data>
+  <data name="tl_RuleEditor_CellPicker" xml:space="preserve">
+    <value>Anwendungsbereich wählen</value>
+  </data>
+  <data name="tl_RuleEditor_Condition" xml:space="preserve">
+    <value>Bedingungen:</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_CharacterCount" xml:space="preserve">
+    <value>Gesamtanzahl Zeichen</value>
+  </data>
+  <data name="tl_RuleEditor_Confirm" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="tl_RuleEditor_FilterCondition" xml:space="preserve">
+    <value>Filterbedingungen:</value>
+  </data>
+  <data name="tl_RuleEditor_FilterConditionAND" xml:space="preserve">
+    <value>Alle Bedingungen sind erfüllt</value>
+  </data>
+  <data name="tl_RuleEditor_FilterConditionNONE" xml:space="preserve">
+    <value>Keine Bedingung ist erfüllt</value>
+  </data>
+  <data name="tl_RuleEditor_FilterConditionOR" xml:space="preserve">
+    <value>(Mindestens) eine Bedingung ist erfüllt</value>
+  </data>
+  <data name="tl_RuleEditor_NewCondition" xml:space="preserve">
+    <value>Neue Bedingung</value>
+  </data>
+  <data name="tl_RuleEditor_RuleArea" xml:space="preserve">
+    <value>Anwendungsbereich:</value>
+  </data>
+  <data name="tl_RuleEditor_RuleDescription" xml:space="preserve">
+    <value>Regelbeschreibung:</value>
+  </data>
+  <data name="tl_CellPicker_Confirm" xml:space="preserve">
+    <value>Bestätigen</value>
+  </data>
+  <data name="tl_CellPicker_Text" xml:space="preserve">
+    <value>Bitte wählen sie den Zellenbereich in der Arbeitsmappe aus, auf den die Regel angewendet werden soll.</value>
+  </data>
+  <data name="tl_RuleEditor_Title" xml:space="preserve">
+    <value>Regel Editor</value>
+  </data>
+  <data name="tl_RuleEditor_NoCondition" xml:space="preserve">
+    <value>Keine Bedingungen gefunden. Bitte erstellen Sie mindestens eine Bedingung für die Regel</value>
+  </data>
+  <data name="tl_RuleEditor_NoDescription" xml:space="preserve">
+    <value>Keine Regelbeschreibung gefunden. Die Regel wird ohne eine Beschreibung erstellt.</value>
+  </data>
+  <data name="tl_RuleEditor_NoName" xml:space="preserve">
+    <value>Kein Name gefunden. Bitte geben sie der Regel einen Namen</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseCharacterCount1" xml:space="preserve">
+    <value>Bitte geben sie eine Zahl ein.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseConditionType" xml:space="preserve">
+    <value>Wählen sie den Typ, den die neue Bedingung haben soll.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseRegex" xml:space="preserve">
+    <value>Bitte geben sie einen Regex String ein. Dieser String limitiert die Werte einer Zelle.</value>
+  </data>
+  <data name="tl_ConditionPicker_ConditionName" xml:space="preserve">
+    <value>Name der Bedingung:</value>
+  </data>
+  <data name="tl_ConditionPicker_Confirm" xml:space="preserve">
+    <value>Erstelle Bedingung</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_CellArea" xml:space="preserve">
+    <value>Legt den Anwendungsbereich der Regel fest. Klicken sie dazu auf "Anwendungsbereich wählen", markieren sie die gewünschten Zellen, und klicken Sie dann auf "Bestätigen".</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_Condition" xml:space="preserve">
+    <value>Eine Regel besteht aus einer oder mehreren Bedingungen bestehen, die Sie hier erstellen können. Klicken sie dazu auf "Neue Bedingung", und wählen Sie eine Art aus.</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_Description" xml:space="preserve">
+    <value>Eine Regelbeschreibung sollte ein Hilfstext sein, der erklärt was die Regel bezwecken soll.</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_Name" xml:space="preserve">
+    <value>Bitte geben sie einen gültigen Namen für die Regel ein. Dieser Name wird zum Identifizieren der Regel verwendet.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseEmpty" xml:space="preserve">
+    <value>Die Zelle soll leer sein.</value>
+  </data>
+  <data name="tl_ConditionPicker_Empty" xml:space="preserve">
+    <value>Leere Zelle</value>
+  </data>
+  <data name="tl_CellPicker_ToManyCells" xml:space="preserve">
+    <value>Bitte weisen sie einer Regel nicht mehr als 10000 Zellen zu.</value>
+  </data>
+  <data name="tl_ConditionPicker_Choose1Comma" xml:space="preserve">
+    <value>Erlaubt bis zu einer Nachkommastelle.</value>
+  </data>
+  <data name="tl_ConditionPicker_Choose2Comma" xml:space="preserve">
+    <value>Erlaubt bis zu 2 Nachkommastellen.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseOnlyNumbers" xml:space="preserve">
+    <value>Erlaubt nur Zahlen.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoCharCount" xml:space="preserve">
+    <value>Bitte geben sie eine ganze Zahl ein.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoCondition" xml:space="preserve">
+    <value>Bitte wählen sie die Art der Bedingung.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoName" xml:space="preserve">
+    <value>Bitte geben sie der Bedingung einen Namen.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoRegex" xml:space="preserve">
+    <value>Bitte geben sie einen gültigen Regex String ein.</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_1Comma" xml:space="preserve">
+    <value>Eine Nachkommastelle</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_2Comma" xml:space="preserve">
+    <value>2 Nachkommastellen</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_OnlyNumbers" xml:space="preserve">
+    <value>Nur Zahlen</value>
+  </data>
+  <data name="tl_ToManyCells" xml:space="preserve">
+    <value>Bitte wählen sie nicht mehr als 10000 Zellen aus.</value>
+  </data>
+  <data name="tl_CellPicker_Label" xml:space="preserve">
+    <value>Bitte wählen sie die Zellen aus, auf den die Regel angewendet werden soll.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseCharacterCount2" xml:space="preserve">
+    <value>Diese Zahl legt die maximal erlaubte Anzahl von Zeichen einer Zelle fest.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoInputReq" xml:space="preserve">
+    <value>Für diese Bedingung sind keine weiteren Eingaben erforderlich.</value>
+  </data>
+  <data name="tl_RuleEditor_NoRuleCells" xml:space="preserve">
+    <value>Bitte geben sie an, auf welche Zellen die Regel angewendet werden soll.</value>
+  </data>
+  <data name="tl_ViolationView_NoViolations" xml:space="preserve">
+    <value>Keine Befund(e) vorhanden</value>
+  </data>
+  <data name="tl_ConditionPicker_Error" xml:space="preserve">
+    <value>Ungültiger Typ der Bedingung.</value>
   </data>
 </root>

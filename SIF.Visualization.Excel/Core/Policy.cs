@@ -6,16 +6,21 @@ namespace SIF.Visualization.Excel.Core
     public class Policy : BindableBase
     {
         /// <summary>
-        /// The type of the Policy
+        ///     The type of the Policy
         /// </summary>
-        public enum PolicyType { STATIC, DYNAMIC, SANITY };
+        public enum PolicyType
+        {
+            STATIC,
+            DYNAMIC,
+            SANITY
+        }
 
         #region Fields
 
-        private String background;
-        private String description;
-        private String name;
-        private String solution;
+        private string background;
+        private string description;
+        private string name;
+        private string solution;
         private PolicyType type;
 
         #endregion
@@ -23,45 +28,45 @@ namespace SIF.Visualization.Excel.Core
         #region Properties
 
         /// <summary>
-        /// Gets or sets the background description
+        ///     Gets or sets the background description
         /// </summary>
-        public String Background
+        public string Background
         {
             get { return background; }
             set { SetProperty(ref background, value); }
         }
 
         /// <summary>
-        /// Gets or sets the description
+        ///     Gets or sets the description
         /// </summary>
-        public String Description
+        public string Description
         {
             get { return description; }
             set { SetProperty(ref description, value); }
         }
 
         /// <summary>
-        /// Gets or sets the name
+        ///     Gets or sets the name
         /// </summary>
-        public String Name
+        public string Name
         {
             get { return name; }
             set { SetProperty(ref name, value); }
         }
 
         /// <summary>
-        /// Gets or sets the possible solution
+        ///     Gets or sets the possible solution
         /// </summary>
-        public String Solution
+        public string Solution
         {
             get { return solution; }
             set { SetProperty(ref solution, value); }
         }
 
         /// <summary>
-        /// Gets or sets the Policy type
+        ///     Gets or sets the Policy type
         /// </summary>
-        public Policy.PolicyType Type
+        public PolicyType Type
         {
             get { return type; }
             set { SetProperty(ref type, value); }
@@ -72,18 +77,20 @@ namespace SIF.Visualization.Excel.Core
         #region Constructor
 
         /// <summary>
-        /// Serialization Constructor
+        ///     Serialization Constructor
         /// </summary>
-        public Policy() {}
+        public Policy()
+        {
+        }
 
         /// <summary>
-        /// Constructor that loads all fields from a xml
+        ///     Constructor that loads all fields from a xml
         /// </summary>
         /// <param name="root">the root node of the xml for this Policy</param>
         public Policy(XElement xmlPolicy)
         {
             Name = (string) xmlPolicy.Element(XName.Get("name"));
-            Description =  (string) xmlPolicy.Element(XName.Get("description"));
+            Description = (string) xmlPolicy.Element(XName.Get("description"));
             Background = (string) xmlPolicy.Element(XName.Get("background"));
             Solution = (string) xmlPolicy.Element(XName.Get("solution"));
             Type = (PolicyType) Enum.Parse(typeof(PolicyType), (string) xmlPolicy.Element(XName.Get("policyType")));
@@ -94,14 +101,14 @@ namespace SIF.Visualization.Excel.Core
         #region Operators
 
         /// <summary>
-        /// Determines whether the specified object is equal to the current object.
+        ///     Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
         /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
-            Policy other = obj as Policy;
-            if ((object)other == null) return false;
+            var other = obj as Policy;
+            if ((object) other == null) return false;
 
             return base.Equals(other) &&
                    Background == other.Background &&
@@ -112,7 +119,7 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
-        /// Serves as a hash function for a particular type. 
+        ///     Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>A hash code for the current Object.</returns>
         public override int GetHashCode()
@@ -121,7 +128,7 @@ namespace SIF.Visualization.Excel.Core
         }
 
         /// <summary>
-        /// Determines, whether two objects are equal.
+        ///     Determines, whether two objects are equal.
         /// </summary>
         /// <param name="a">The first instance.</param>
         /// <param name="b">The second instance.</param>
@@ -129,13 +136,13 @@ namespace SIF.Visualization.Excel.Core
         public static bool operator ==(Policy a, Policy b)
         {
             if (ReferenceEquals(a, b)) return true;
-            if (((object)a == null) || ((object)b == null)) return false;
+            if ((object) a == null || (object) b == null) return false;
 
             return a.Equals(b);
         }
 
         /// <summary>
-        /// Determines, whether two objects are inequal.
+        ///     Determines, whether two objects are inequal.
         /// </summary>
         /// <param name="a">The first instance.</param>
         /// <param name="b">The second instance.</param>

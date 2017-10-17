@@ -134,8 +134,8 @@ namespace SIF.Visualization.Excel
             // 
             // StringDistanceMinDistance
             // 
-            resources.ApplyResources(this.StringDistanceMinDistance, "StringDistanceMinDistance");
             this.StringDistanceMinDistance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.StringDistanceMinDistance, "StringDistanceMinDistance");
             this.StringDistanceMinDistance.Name = "StringDistanceMinDistance";
             // 
             // ErrorInCells
@@ -147,8 +147,8 @@ namespace SIF.Visualization.Excel
             // 
             // FormulaComplexityMaxNesting
             // 
-            resources.ApplyResources(this.FormulaComplexityMaxNesting, "FormulaComplexityMaxNesting");
             this.FormulaComplexityMaxNesting.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.FormulaComplexityMaxNesting, "FormulaComplexityMaxNesting");
             this.FormulaComplexityMaxNesting.Name = "FormulaComplexityMaxNesting";
             // 
             // FormulaComplexityMaxNestingLabel
@@ -159,8 +159,8 @@ namespace SIF.Visualization.Excel
             // 
             // FormulaComplexityMaxOperations
             // 
-            resources.ApplyResources(this.FormulaComplexityMaxOperations, "FormulaComplexityMaxOperations");
             this.FormulaComplexityMaxOperations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.FormulaComplexityMaxOperations, "FormulaComplexityMaxOperations");
             this.FormulaComplexityMaxOperations.Name = "FormulaComplexityMaxOperations";
             this.FormulaComplexityMaxOperations.TabStop = false;
             this.FormulaComplexityMaxOperations.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -178,8 +178,8 @@ namespace SIF.Visualization.Excel
             // 
             // OneAmongOthersLength
             // 
-            resources.ApplyResources(this.OneAmongOthersLength, "OneAmongOthersLength");
             this.OneAmongOthersLength.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.OneAmongOthersLength, "OneAmongOthersLength");
             this.OneAmongOthersLength.Name = "OneAmongOthersLength";
             // 
             // ReadingDirectionLeftRight

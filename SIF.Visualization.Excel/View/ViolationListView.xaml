@@ -1,5 +1,5 @@
 ﻿<UserControl x:Class="SIF.Visualization.Excel.View.ViolationListView"
-            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,13 +10,13 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <ResourceDictionary Source="ViewResources.xaml"/>
+        <ResourceDictionary Source="ViewResources.xaml" />
     </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <!--Message if nothing is showable-->
         <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="14" TextWrapping="WrapWithOverflow"
@@ -24,13 +24,18 @@
                    Text="{x:Static p:Resources.tl_ViolationView_NoViolations}" Foreground="#333333" Margin="0 20" />
 
         <!--The listbox-->
-        <ListBox x:Name="ViolationListBox" FontFamily="Segoe UI" FontSize="12" SelectedIndex="-1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                 SelectionMode="Single" VerticalAlignment="Top" SelectionChanged="ViolationListBox_SelectionChanged" Background="Transparent" ScrollViewer.CanContentScroll="False"
-                 BorderThickness="0" HorizontalAlignment="Stretch" ItemContainerStyle="{StaticResource listBoxItemStyle}" HorizontalContentAlignment="Stretch">
+        <ListBox x:Name="ViolationListBox" FontFamily="Segoe UI" FontSize="12" SelectedIndex="-1"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 SelectionMode="Single" VerticalAlignment="Top" SelectionChanged="ViolationListBox_SelectionChanged"
+                 Background="Transparent" ScrollViewer.CanContentScroll="False"
+                 BorderThickness="0" HorizontalAlignment="Stretch"
+                 ItemContainerStyle="{StaticResource listBoxItemStyle}" HorizontalContentAlignment="Stretch">
             <ListBox.Resources>
                 <!--Template for the Single Violations-->
                 <DataTemplate DataType="{x:Type model:Violation}">
-                    <Border BorderThickness="{Binding IsCellSelected, Mode=OneWay, Converter={StaticResource BooleanToBorderThicknessConverter}}" BorderBrush="#217346">
+                    <Border
+                        BorderThickness="{Binding IsCellSelected, Mode=OneWay, Converter={StaticResource BooleanToBorderThicknessConverter}}"
+                        BorderBrush="#217346">
                         <Grid HorizontalAlignment="Stretch" Background="Transparent">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -41,12 +46,12 @@
                                 <ColumnDefinition Width="7" />
                             </Grid.ColumnDefinitions>
 
-                            <v:ViolationTemplate HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0"/>
+                            <v:ViolationTemplate HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" />
 
                             <!--Severity on the right-->
                             <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
                                 <Border.Background>
-                                    <SolidColorBrush >
+                                    <SolidColorBrush>
                                         <SolidColorBrush.Color>
                                             <Binding Converter="{StaticResource SeverityIgnoreToColorConverter}" />
                                         </SolidColorBrush.Color>
@@ -55,7 +60,7 @@
                             </Border>
 
                             <!--Hyperlink bar at the end of the item-->
-                            <Grid Grid.Column="0" Grid.Row="4"  HorizontalAlignment="Stretch">
+                            <Grid Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -66,18 +71,18 @@
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10 0 5 5">
-                                <Hyperlink Click="Later_Click">
-                                    <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Later}" />
-                                </Hyperlink>
-                                <Hyperlink Click="Ignore_Click">
-                                    <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Ignore}" />
-                                </Hyperlink>
-                                <Hyperlink Click="Delete_Click">
-                                    <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Delete}" />
-                                </Hyperlink>
-                                <Hyperlink Click="Reset_Click">
-                                    <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Reset}" />
-                                </Hyperlink>
+                                    <Hyperlink Click="Later_Click">
+                                        <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Later}" />
+                                    </Hyperlink>
+                                    <Hyperlink Click="Ignore_Click">
+                                        <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Ignore}" />
+                                    </Hyperlink>
+                                    <Hyperlink Click="Delete_Click">
+                                        <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Delete}" />
+                                    </Hyperlink>
+                                    <Hyperlink Click="Reset_Click">
+                                        <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Reset}" />
+                                    </Hyperlink>
                                 </TextBlock>
                             </Grid>
                         </Grid>
@@ -86,9 +91,8 @@
             </ListBox.Resources>
         </ListBox>
         <StatusBar Background="LightGray" Grid.Row="1">
-            <TextBlock Text="{Binding VisibleViolations.Count}" FontWeight="Bold"/>
-            <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Footer}"/>
+            <TextBlock Text="{Binding VisibleViolations.Count}" FontWeight="Bold" />
+            <TextBlock Text="{x:Static p:Resources.tl_ViolationView_Footer}" />
         </StatusBar>
     </Grid>
 </UserControl>
-

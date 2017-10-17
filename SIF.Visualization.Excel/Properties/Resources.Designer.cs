@@ -258,6 +258,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        /// </summary>
+        public static string tl_Cancel {
+            get {
+                return ResourceManager.GetString("tl_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cell definitions ähnelt.
         /// </summary>
         public static string tl_CellDefinitions {
@@ -281,6 +290,195 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_CellErrorInfo_PossibleSolution {
             get {
                 return ResourceManager.GetString("tl_CellErrorInfo_PossibleSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Confirm ähnelt.
+        /// </summary>
+        public static string tl_CellPicker_Confirm {
+            get {
+                return ResourceManager.GetString("tl_CellPicker_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please ‪select the Cell area where the Rule should apply. ähnelt.
+        /// </summary>
+        public static string tl_CellPicker_Label {
+            get {
+                return ResourceManager.GetString("tl_CellPicker_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please ‪select the Cell area on the spreadsheet where the Rule should be applied. ähnelt.
+        /// </summary>
+        public static string tl_CellPicker_Text {
+            get {
+                return ResourceManager.GetString("tl_CellPicker_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please dont assign more than 10000 cells to a rule. ähnelt.
+        /// </summary>
+        public static string tl_CellPicker_ToManyCells {
+            get {
+                return ResourceManager.GetString("tl_CellPicker_ToManyCells", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only allows 1 digit after comma. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_Choose1Comma {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_Choose1Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only allows up to 2 digits after comma. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_Choose2Comma {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_Choose2Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ChooseCharacterCount1 {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseCharacterCount1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a valid Number. This Number ist the limit how many characters are allowed in a cell. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ChooseCharacterCount2 {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseCharacterCount2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please choose the type of the new condition. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ChooseConditionType {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseConditionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The cell has to be empty. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ChooseEmpty {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only allows Numbers ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ChooseOnlyNumbers {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseOnlyNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a valid Regex string. This string will limit the contents of the cell. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ChooseRegex {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ChooseRegex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name of the Condition: ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_ConditionName {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_ConditionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create Condition ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_Confirm {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Empty Cell ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_Empty {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Invalid Condition type. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_Error {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a valid interger number. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_NoCharCount {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_NoCharCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please select your desired Condition type. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_NoCondition {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_NoCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There is no Input requiered. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_NoInputReq {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_NoInputReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a name. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_NoName {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a valid Regex string. ähnelt.
+        /// </summary>
+        public static string tl_ConditionPicker_NoRegex {
+            get {
+                return ResourceManager.GetString("tl_ConditionPicker_NoRegex", resourceCulture);
             }
         }
         
@@ -391,6 +589,15 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_No_Java_Enviroment {
             get {
                 return ResourceManager.GetString("tl_No_Java_Enviroment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No Rules created. Please create a new Rule with the Rule Editor. ähnelt.
+        /// </summary>
+        public static string tl_NoRulesSide {
+            get {
+                return ResourceManager.GetString("tl_NoRulesSide", resourceCulture);
             }
         }
         
@@ -567,6 +774,33 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rule Editor ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaRule_RuleEditor {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaRule_RuleEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rules ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaRule_Title {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaRule_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Opens the Rule Editor for a new Rule ähnelt.
+        /// </summary>
+        public static string tl_Ribbon_AreaRuleEditor_Tooltip {
+            get {
+                return ResourceManager.GetString("tl_Ribbon_AreaRuleEditor_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Automatic scans ähnelt.
         /// </summary>
         public static string tl_Ribbon_AreaScan_AutomaticScansCheckbox {
@@ -738,7 +972,7 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die No policies are enabled for manual scans. Please enable at least one policy and try again. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die No policies, scenarios or custom rules are enabled for manual scans. Please enable a policy or create a scenario or custom rule and try again. ähnelt.
         /// </summary>
         public static string tl_Ribbon_MessageNoPolicies {
             get {
@@ -779,6 +1013,240 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_Ribbon_Title {
             get {
                 return ResourceManager.GetString("tl_Ribbon_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Choose Rule application area ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_CellPicker {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_CellPicker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Condition(s): ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Condition {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Condition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 1 or 0 Commas ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Condition_1Comma {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Condition_1Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 0,1 or 2 Commas ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Condition_2Comma {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Condition_2Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Character Count ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Condition_CharacterCount {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Condition_CharacterCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Only Numbers ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Condition_OnlyNumbers {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Condition_OnlyNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create new Rule ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Confirm {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Trigger when: ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_FilterCondition {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_FilterCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All conditions are satisfied ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_FilterConditionAND {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_FilterConditionAND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No Condition is satisfied ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_FilterConditionNONE {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_FilterConditionNONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die (At least) one condition is satisfied ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_FilterConditionOR {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_FilterConditionOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New Condition ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_NewCondition {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_NewCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No condition specified. Please create at least one condition for the rule ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_NoCondition {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_NoCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No Description found. The rule will be created without an description. ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_NoDescription {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_NoDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No name found. Please enter a name for the rule ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_NoName {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No Rule Cells. ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_NoRuleCells {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_NoRuleCells", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cell Area: ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_RuleArea {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_RuleArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rule Description: ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_RuleDescription {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_RuleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rule Editor ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_Title {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The area where the rule will be applied. ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_ToolTip_CellArea {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_ToolTip_CellArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die A rule consists of one or more conditions that can be added with &quot;Add new Condition&quot;. ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_ToolTip_Condition {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_ToolTip_Condition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die A description of the rule that should describe the usage. ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_ToolTip_Description {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_ToolTip_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The name this rule will be using from now. ähnelt.
+        /// </summary>
+        public static string tl_RuleEditor_ToolTip_Name {
+            get {
+                return ResourceManager.GetString("tl_RuleEditor_ToolTip_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Deletes this Rule ähnelt.
+        /// </summary>
+        public static string tl_RulePane_DeleteRuleTooltip {
+            get {
+                return ResourceManager.GetString("tl_RulePane_DeleteRuleTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Opens the Rule Editor to edit this Rule ähnelt.
+        /// </summary>
+        public static string tl_RulePane_EditRuleTooltip {
+            get {
+                return ResourceManager.GetString("tl_RulePane_EditRuleTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rules ähnelt.
+        /// </summary>
+        public static string tl_Rules {
+            get {
+                return ResourceManager.GetString("tl_Rules", resourceCulture);
             }
         }
         
@@ -1105,6 +1573,15 @@ namespace SIF.Visualization.Excel.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rules ähnelt.
+        /// </summary>
+        public static string tl_Sidebar_Rules {
+            get {
+                return ResourceManager.GetString("tl_Sidebar_Rules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Scenarios ähnelt.
         /// </summary>
         public static string tl_Sidebar_Scenarios {
@@ -1147,6 +1624,15 @@ namespace SIF.Visualization.Excel.Properties {
         public static string tl_stopEdit {
             get {
                 return ResourceManager.GetString("tl_stopEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please dont select more than 10000 Cells. ähnelt.
+        /// </summary>
+        public static string tl_ToManyCells {
+            get {
+                return ResourceManager.GetString("tl_ToManyCells", resourceCulture);
             }
         }
         

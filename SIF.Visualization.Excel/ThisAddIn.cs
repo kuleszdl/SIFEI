@@ -1,28 +1,16 @@
-﻿using Microsoft.Office.Tools;
-using SIF.Visualization.Excel.Core;
-using SIF.Visualization.Excel.View;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Tools;
+using SIF.Visualization.Excel.Core;
+using SIF.Visualization.Excel.Properties;
+using SIF.Visualization.Excel.View;
 
 namespace SIF.Visualization.Excel
 {
     public partial class ThisAddIn
     {
-        #region Properties
-
-        private Dictionary<Tuple<WorkbookModel, string>, CustomTaskPane> taskPanes;
-        internal Dictionary<Tuple<WorkbookModel, string>, CustomTaskPane> TaskPanes
-        {
-            get
-            {
-                if (taskPanes == null) taskPanes = new Dictionary<Tuple<WorkbookModel, string>, CustomTaskPane>();
-                return taskPanes;
-            }
-        }
-
-        #endregion
-
         private void ThisAddIn_Startup(object sender, EventArgs e)
         {
             Globals.ThisAddIn.Application.WorkbookActivate += Application_WorkbookActivate;
@@ -30,16 +18,17 @@ namespace SIF.Visualization.Excel
 
         private void ThisAddIn_Shutdown(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Save();
+            Settings.Default.Save();
         }
 
         #region Multiple Worksheet Management
 
-        private void Application_WorkbookActivate(Microsoft.Office.Interop.Excel.Workbook Wb)
+        private void Application_WorkbookActivate(Workbook Wb)
         {
             // This method is called whenever a workbook comes to the front
             // Does not necessarily need to be a workbook that is persisted on the disk
-            var workbook = DataModel.Instance.WorkbookModels.Where(p => ReferenceEquals(p.Workbook, Wb)).FirstOrDefault();
+            var workbook = DataModel.Instance.WorkbookModels.Where(p => ReferenceEquals(p.Workbook, Wb))
+                .FirstOrDefault();
             if (workbook == null)
             {
                 workbook = new WorkbookModel(Wb);
@@ -68,13 +57,28 @@ namespace SIF.Visualization.Excel
         #region Von VSTO generierter Code
 
         /// <summary>
-        /// Erforderliche Methode für die Designerunterstützung.
-        /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+        ///     Erforderliche Methode für die Designerunterstützung.
+        ///     Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
         private void InternalStartup()
         {
-            Startup += new EventHandler(ThisAddIn_Startup);
-            Shutdown += new EventHandler(ThisAddIn_Shutdown);
+            Startup += ThisAddIn_Startup;
+            Shutdown += ThisAddIn_Shutdown;
+        }
+
+        #endregion
+
+        #region Properties
+
+        private Dictionary<Tuple<WorkbookModel, string>, CustomTaskPane> taskPanes;
+
+        internal Dictionary<Tuple<WorkbookModel, string>, CustomTaskPane> TaskPanes
+        {
+            get
+            {
+                if (taskPanes == null) taskPanes = new Dictionary<Tuple<WorkbookModel, string>, CustomTaskPane>();
+                return taskPanes;
+            }
         }
 
         #endregion

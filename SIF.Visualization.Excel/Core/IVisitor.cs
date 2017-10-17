@@ -1,11 +1,12 @@
-﻿using SIF.Visualization.Excel.Core.Scenarios;
+﻿using SIF.Visualization.Excel.Core.Rules;
+using SIF.Visualization.Excel.Core.Scenarios;
 
 namespace SIF.Visualization.Excel.Core
 {
     public interface IVisitor
     {
         object Visit(Scenario n);
-        
+
         object Visit(WorkbookModel n);
 
         object Visit(InputData n);
@@ -16,5 +17,8 @@ namespace SIF.Visualization.Excel.Core
 
         object Visit(Cell n);
 
+        //object Visit(Condition n);
+
+        object Visit(Rule n);
     }
 }

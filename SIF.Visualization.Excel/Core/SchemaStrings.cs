@@ -1,6 +1,6 @@
 ﻿namespace SIF.Visualization.Excel.Core
 {
-    class SchemaStrings
+    internal class SchemaStrings
     {
         public static string getReportXSD()
         {

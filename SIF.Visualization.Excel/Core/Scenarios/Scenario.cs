@@ -5,7 +5,17 @@ namespace SIF.Visualization.Excel.Core.Scenarios
 {
     public class Scenario : BindableBase
     {
+        #region Methods
+
+        public Scenario()
+        {
+            id = Guid.NewGuid();
+        }
+
+        #endregion
+
         #region Fields
+
         private Guid id;
         private string title;
         private string description;
@@ -13,11 +23,13 @@ namespace SIF.Visualization.Excel.Core.Scenarios
         private ObservableCollection<InputData> inputs;
         private ObservableCollection<InvariantData> invariants;
         private ObservableCollection<ConditionData> conditions;
+
         #endregion
 
         #region Properties
+
         /// <summary>
-        /// Gets or sets the title of the current scenario.
+        ///     Gets or sets the title of the current scenario.
         /// </summary>
         public string Title
         {
@@ -26,7 +38,7 @@ namespace SIF.Visualization.Excel.Core.Scenarios
         }
 
         /// <summary>
-        /// Gets or sets the description of the current scenario.
+        ///     Gets or sets the description of the current scenario.
         /// </summary>
         public string Description
         {
@@ -35,7 +47,7 @@ namespace SIF.Visualization.Excel.Core.Scenarios
         }
 
         /// <summary>
-        /// Gets or sets the date of creation of the current scenario.
+        ///     Gets or sets the date of creation of the current scenario.
         /// </summary>
         public DateTime CreationDate
         {
@@ -44,7 +56,7 @@ namespace SIF.Visualization.Excel.Core.Scenarios
         }
 
         /// <summary>
-        /// Gets or sets the input cell data of the current scenario.
+        ///     Gets or sets the input cell data of the current scenario.
         /// </summary>
         public ObservableCollection<InputData> Inputs
         {
@@ -57,7 +69,7 @@ namespace SIF.Visualization.Excel.Core.Scenarios
         }
 
         /// <summary>
-        /// Gets or sets the intermediate cell data of the current scenario.
+        ///     Gets or sets the intermediate cell data of the current scenario.
         /// </summary>
         public ObservableCollection<InvariantData> Invariants
         {
@@ -70,7 +82,7 @@ namespace SIF.Visualization.Excel.Core.Scenarios
         }
 
         /// <summary>
-        /// Gets or sets the result cell data of the current scenario.
+        ///     Gets or sets the result cell data of the current scenario.
         /// </summary>
         public ObservableCollection<ConditionData> Conditions
         {
@@ -82,14 +94,12 @@ namespace SIF.Visualization.Excel.Core.Scenarios
             set { SetProperty(ref conditions, value); }
         }
 
-
-
         #endregion
 
         #region Operators
 
         /// <summary>
-        /// Determines whether the specified object is equal to the current object.
+        ///     Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
         /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
@@ -100,18 +110,12 @@ namespace SIF.Visualization.Excel.Core.Scenarios
             var other = obj as Scenario;
 
             if (id.Equals(other.id))
-            {
                 return true;
-            }
-            else
-            {
-                return false;
-            }
-
+            return false;
         }
 
         /// <summary>
-        /// Serves as a hash function for a particular type. 
+        ///     Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>A hash code for the current Object.</returns>
         public override int GetHashCode()
@@ -120,7 +124,7 @@ namespace SIF.Visualization.Excel.Core.Scenarios
         }
 
         /// <summary>
-        /// Determines, whether two objects are equal.
+        ///     Determines, whether two objects are equal.
         /// </summary>
         /// <param name="a">The first instance.</param>
         /// <param name="b">The second instance.</param>
@@ -128,13 +132,13 @@ namespace SIF.Visualization.Excel.Core.Scenarios
         public static bool operator ==(Scenario a, Scenario b)
         {
             if (ReferenceEquals(a, b)) return true;
-            if (((object)a == null) || ((object)b == null)) return false;
+            if ((object) a == null || (object) b == null) return false;
 
             return a.Equals(b);
         }
 
         /// <summary>
-        /// Determines, whether two objects are inequal.
+        ///     Determines, whether two objects are inequal.
         /// </summary>
         /// <param name="a">The first instance.</param>
         /// <param name="b">The second instance.</param>
@@ -143,13 +147,7 @@ namespace SIF.Visualization.Excel.Core.Scenarios
         {
             return !(a == b);
         }
-        #endregion
 
-        #region Methods
-        public Scenario()
-        {
-            id = Guid.NewGuid();
-        }
         #endregion
     }
 }

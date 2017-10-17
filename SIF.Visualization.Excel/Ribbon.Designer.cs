@@ -73,6 +73,9 @@
             this.globalSettingsDialog.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_GlobalSettingsButton;
             this.CB_SanityControls.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaMiscellaneous_ShowSanity;
             
+            // Rule Area
+            this.RuleEditGroup.Label = SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaRule_Title;
+            
 
         }
 
@@ -108,9 +111,12 @@
             this.sanityExplanationCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.sanityCheckingCellToggleButton = this.Factory.CreateRibbonToggleButton();
             this.sanityWarnCheckbox = this.Factory.CreateRibbonCheckBox();
+            this.button1 = this.Factory.CreateRibbonButton();
             this.miscellaneousGroup = this.Factory.CreateRibbonGroup();
             this.globalSettingsDialog = this.Factory.CreateRibbonButton();
             this.CB_SanityControls = this.Factory.CreateRibbonCheckBox();
+            this.RuleEditGroup = this.Factory.CreateRibbonGroup();
+            this.ruleEditorButton = this.Factory.CreateRibbonButton();
             this.inspectionTab.SuspendLayout();
             this.testGroup.SuspendLayout();
             this.viewGroup.SuspendLayout();
@@ -118,6 +124,7 @@
             this.defineGroup.SuspendLayout();
             this.sanityGroup.SuspendLayout();
             this.miscellaneousGroup.SuspendLayout();
+            this.RuleEditGroup.SuspendLayout();
             // 
             // inspectionTab
             // 
@@ -128,6 +135,7 @@
             this.inspectionTab.Groups.Add(this.defineGroup);
             this.inspectionTab.Groups.Add(this.sanityGroup);
             this.inspectionTab.Groups.Add(this.miscellaneousGroup);
+            this.inspectionTab.Groups.Add(this.RuleEditGroup);
             this.inspectionTab.Label = "INSPECTION";
             this.inspectionTab.Name = "inspectionTab";
             // 
@@ -180,7 +188,7 @@
             // 
             this.viewGroup.Items.Add(this.SidebarButton);
             this.viewGroup.Items.Add(this.clearButton);
-            this.viewGroup.Label = "View";
+            this.viewGroup.Label = "Ansicht";
             this.viewGroup.Name = "viewGroup";
             // 
             // SidebarButton
@@ -291,7 +299,8 @@
             this.sanityGroup.Items.Add(this.sanityExplanationCellToggleButton);
             this.sanityGroup.Items.Add(this.sanityCheckingCellToggleButton);
             this.sanityGroup.Items.Add(this.sanityWarnCheckbox);
-            this.sanityGroup.Label = "Headers for the plausibility";
+            this.sanityGroup.Items.Add(this.button1);
+            this.sanityGroup.Label = "Plausibilität";
             this.sanityGroup.Name = "sanityGroup";
             this.sanityGroup.Visible = false;
             // 
@@ -326,6 +335,13 @@
             this.sanityWarnCheckbox.Name = "sanityWarnCheckbox";
             this.sanityWarnCheckbox.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.warnings_Click);
             // 
+            // button1
+            // 
+            this.button1.Label = "ToggleAutoScan";
+            this.button1.Name = "button1";
+            this.button1.Visible = false;
+            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click_1);
+            // 
             // miscellaneousGroup
             // 
             this.miscellaneousGroup.Items.Add(this.globalSettingsDialog);
@@ -345,7 +361,20 @@
             // 
             this.CB_SanityControls.Label = "Show sanity controls";
             this.CB_SanityControls.Name = "CB_SanityControls";
+            this.CB_SanityControls.Visible = false;
             this.CB_SanityControls.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.CB_SanityControls_Click);
+            // 
+            // RuleEditGroup
+            // 
+            this.RuleEditGroup.Items.Add(this.ruleEditorButton);
+            this.RuleEditGroup.Label = "Regel Editor";
+            this.RuleEditGroup.Name = "RuleEditGroup";
+            // 
+            // ruleEditorButton
+            // 
+            this.ruleEditorButton.Label = global::SIF.Visualization.Excel.Properties.Resources.tl_Ribbon_AreaRule_RuleEditor;
+            this.ruleEditorButton.Name = "ruleEditorButton";
+            this.ruleEditorButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RuleEdit_Click);
             // 
             // Ribbon
             // 
@@ -367,6 +396,8 @@
             this.sanityGroup.PerformLayout();
             this.miscellaneousGroup.ResumeLayout(false);
             this.miscellaneousGroup.PerformLayout();
+            this.RuleEditGroup.ResumeLayout(false);
+            this.RuleEditGroup.PerformLayout();
 
         }
 
@@ -399,6 +430,9 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup miscellaneousGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton globalSettingsDialog;
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox CB_SanityControls;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup RuleEditGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton ruleEditorButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
     }
 
     partial class ThisRibbonCollection

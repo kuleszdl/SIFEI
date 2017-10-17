@@ -39,14 +39,15 @@
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      SelectionMode="Extended">
                 <ListBox.Resources>
-                    <DataTemplate  DataType="{x:Type s:Scenario}">
+                    <DataTemplate DataType="{x:Type s:Scenario}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Path=Title}" FontWeight="SemiBold" Margin="5 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" />
+                            <TextBlock Text="{Binding Path=Title}" FontWeight="SemiBold" Margin="5 0 0 0"
+                                       VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" />
                             <Button x:Name="DeleteScenarioButton" BorderBrush="Black"
                                     Margin="5 0 0 0"
                                     ToolTip="{x:Static p:Resources.tl_ScenarioPane_DeleteScenarioTooltip}"
@@ -54,7 +55,8 @@
                                     VerticalAlignment="Center" HorizontalAlignment="Right"
                                     BorderThickness="1" Background="Transparent"
                                     Click="DeleteScenarioButton_Click">
-                                <Image Source="{StaticResource DeleteImageSource}" Width="15" Height="15" Margin="2 2 2 2" />
+                                <Image Source="{StaticResource DeleteImageSource}" Width="15" Height="15"
+                                       Margin="2 2 2 2" />
                             </Button>
                             <Button x:Name="EditScenarioButton"
                                     Margin="5 0 0 0"
@@ -63,14 +65,15 @@
                                     VerticalAlignment="Center" HorizontalAlignment="Right"
                                     BorderThickness="1" Background="Transparent"
                                     Click="EditScenarioButton_Click">
-                                <Image Source="{StaticResource EditImageSource}" Width="15" Height="15" Margin="2 2 2 2" />
+                                <Image Source="{StaticResource EditImageSource}" Width="15" Height="15"
+                                       Margin="2 2 2 2" />
                             </Button>
                         </Grid>
                     </DataTemplate>
                 </ListBox.Resources>
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>

@@ -1,177 +1,150 @@
-﻿using System;
-
-namespace SIF.Visualization.Excel.Core
+﻿namespace SIF.Visualization.Excel.Core
 {
     public class PolicyConfigurationModel
     {
+        /// <summary>
+        ///     Checks weather any automatic scan criterias are enabled
+        /// </summary>
+        /// <returns></returns>
+        public bool HasAutomaticScans()
+        {
+            return NoConstantsInFormulas || ReadingDirection || FormulaComplexity
+                   || MultipleSameRef || NonConsideredConstants || RefToNull
+                   || OneAmongOthers || StringDistance || ErrorInCells;
+        }
+
+        /// <summary>
+        ///     Checks weather any manual scan criterias are enabled
+        /// </summary>
+        /// <returns></returns>
+        public bool hasManualScans()
+        {
+            return NoConstantsInFormulas || ReadingDirection || FormulaComplexity
+                   || MultipleSameRef || NonConsideredConstants || RefToNull
+                   || OneAmongOthers || StringDistance || ErrorInCells;
+        }
+
         #region Fields
 
         #region Settings
-        private Boolean errorInCells = false;
-        private Boolean formulaComplexity = false;
-        private Boolean multipleSameRef = false;
-        private Boolean noConstantsInFormulas = false;
-        private Boolean nonConsideredConstants = false;
-        private Boolean oneAmongOthers = false;
-        private Boolean readingDirection = false;
-        private Boolean refToNull = false;
-        private Boolean stringDistance = false;
 
-        private Int32 formulaComplexity_maxDepth = 2;
-        private Int32 formulaComplexity_maxOperations = 5;
-        private String oneAmongOthers_style = "both";
-        private Int32 oneAmongOthers_length = 3;
-        private Boolean readingDirection_leftRight = true;
-        private Boolean readingDirection_topBottom = true;
-        private Int32 stringDistance_minDist = 2;
+        private int formulaComplexity_maxDepth = 2;
+        private int formulaComplexity_maxOperations = 5;
+        private string oneAmongOthers_style = "both";
+        private int oneAmongOthers_length = 3;
+        private bool readingDirection_leftRight = true;
+        private bool readingDirection_topBottom = true;
+        private int stringDistance_minDist = 2;
+
+        public PolicyConfigurationModel()
+        {
+            ErrorInCells = false;
+            StringDistance = false;
+            OneAmongOthers = false;
+            RefToNull = false;
+            NonConsideredConstants = false;
+            MultipleSameRef = false;
+            ReadingDirection = false;
+            NoConstantsInFormulas = false;
+            FormulaComplexity = false;
+        }
+
         #endregion
 
         #endregion
 
         #region Properties_Settings
-        /// <summary>
-        /// Gets or sets weather Formula Complexity should be checked 
-        /// </summary>
-        public Boolean FormulaComplexity
-        {
-            get { return formulaComplexity; }
-            set { formulaComplexity = value; }
-        }
 
-        public Int32 FormulaComplexityMaxDepth {
+        /// <summary>
+        ///     Gets or sets weather Formula Complexity should be checked
+        /// </summary>
+        public bool FormulaComplexity { get; set; }
+
+        public int FormulaComplexityMaxDepth
+        {
             get { return formulaComplexity_maxDepth; }
             set { formulaComplexity_maxDepth = value; }
         }
 
-        public Int32 FormulaComplexityMaxOperations {
+        public int FormulaComplexityMaxOperations
+        {
             get { return formulaComplexity_maxOperations; }
             set { formulaComplexity_maxOperations = value; }
         }
 
         /// <summary>
-        /// Gets or sets weather No Constants in Formulas should be checked
+        ///     Gets or sets weather No Constants in Formulas should be checked
         /// </summary>
-        public Boolean NoConstantsInFormulas
-        {
-            get { return noConstantsInFormulas; }
-            set { noConstantsInFormulas = value; }
-        }
+        public bool NoConstantsInFormulas { get; set; }
 
         /// <summary>
-        /// Gets or sets weather reading direction should be checked 
+        ///     Gets or sets weather reading direction should be checked
         /// </summary>
-        public Boolean ReadingDirection
-        {
-            get { return readingDirection; }
-            set { readingDirection = value; }
-        }
+        public bool ReadingDirection { get; set; }
 
-        public Boolean ReadingDirectionLeftRight {
+        public bool ReadingDirectionLeftRight
+        {
             get { return readingDirection_leftRight; }
             set { readingDirection_leftRight = value; }
         }
 
-        public Boolean ReadingDirectionTopBottom {
+        public bool ReadingDirectionTopBottom
+        {
             get { return readingDirection_topBottom; }
             set { readingDirection_topBottom = value; }
         }
 
         /// <summary>
-        /// Gets or sets weather multiple same references should be checked
+        ///     Gets or sets weather multiple same references should be checked
         /// </summary>
-        public Boolean MultipleSameRef
-        {
-            get { return multipleSameRef; }
-            set { multipleSameRef = value; }
-        }
+        public bool MultipleSameRef { get; set; }
 
         /// <summary>
-        /// Gets or sets weather non considered constants should be checked
+        ///     Gets or sets weather non considered constants should be checked
         /// </summary>
-        public Boolean NonConsideredConstants
-        {
-            get { return nonConsideredConstants; }
-            set { nonConsideredConstants = value; }
-        }
+        public bool NonConsideredConstants { get; set; }
 
         /// <summary>
-        /// Gets or sets weather references to null in Formulas should be checked
+        ///     Gets or sets weather references to null in Formulas should be checked
         /// </summary>
-        public Boolean RefToNull
-        {
-            get { return refToNull; }
-            set { refToNull = value; }
-        }
+        public bool RefToNull { get; set; }
 
         /// <summary>
-        /// Gets or sets weather the one among others rule should be checked
+        ///     Gets or sets weather the one among others rule should be checked
         /// </summary>
-        public Boolean OneAmongOthers
-        {
-            get { return oneAmongOthers; }
-            set { oneAmongOthers = value; }
-        }
+        public bool OneAmongOthers { get; set; }
 
-        public Int32 OneAmongOthersLength {
+        public int OneAmongOthersLength
+        {
             get { return oneAmongOthers_length; }
             set { oneAmongOthers_length = value; }
         }
 
-        public String OneAmongOthersStyle {
+        public string OneAmongOthersStyle
+        {
             get { return oneAmongOthers_style; }
             set { oneAmongOthers_style = value; }
         }
 
         /// <summary>
-        /// Gets or sets weather the string distance should be checked
+        ///     Gets or sets weather the string distance should be checked
         /// </summary>
-        public Boolean StringDistance
-        {
-            get { return stringDistance; }
-            set { stringDistance = value; }
-        }
+        public bool StringDistance { get; set; }
 
 
         /// <summary>
-        /// Gets or sets for how big the String Distance should be
+        ///     Gets or sets for how big the String Distance should be
         /// </summary>
-        public Int32 StringDistanceMinDist
+        public int StringDistanceMinDist
         {
             get { return stringDistance_minDist; }
             set { stringDistance_minDist = value; }
         }
 
         /// <summary>
-        /// 
         /// </summary>
-        public Boolean ErrorInCells
-        {
-            get { return errorInCells; }
-            set { errorInCells = value; }
-        }
+        public bool ErrorInCells { get; set; }
 
         #endregion
-
-        /// <summary>
-        /// Checks weather any automatic scan criterias are enabled
-        /// </summary>
-        /// <returns></returns>
-        public Boolean HasAutomaticScans()
-        {
-            return noConstantsInFormulas || readingDirection || formulaComplexity
-                || multipleSameRef || nonConsideredConstants || refToNull
-                || oneAmongOthers || stringDistance || errorInCells;
-        }
-
-        /// <summary>
-        /// Checks weather any manual scan criterias are enabled
-        /// </summary>
-        /// <returns></returns>
-        public Boolean hasManualScans()
-        {
-            return noConstantsInFormulas || readingDirection || formulaComplexity
-                || multipleSameRef || nonConsideredConstants || refToNull
-                || oneAmongOthers || stringDistance || errorInCells;
-        }
     }
 }
