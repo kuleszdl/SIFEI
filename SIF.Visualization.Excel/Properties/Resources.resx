@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="tl_RuleEditor_Title" xml:space="preserve">
+    <value>Rule Editor</value>
+  </data>
+  <data name="tl_Scenario_MinOneInput" xml:space="preserve">
+    <value>A scenario needs at least one input cell value.</value>
+  </data>
+  <data name="Error_FaultyResponse" xml:space="preserve">
+    <value>Could not handle SIF server response!</value>
+  </data>
+  <data name="tl_ViolationView_Ignore" xml:space="preserve">
+    <value>ignore</value>
+  </data>
+  <data name="tl_Archive" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseCharacterCount2" xml:space="preserve">
+    <value>Please enter a valid Number. This Number ist the limit how many characters are allowed in a cell.</value>
+  </data>
+  <data name="tl_ViolationTemplate_LessDetails" xml:space="preserve">
+    <value>Less details</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_AutomaticScansCheckbox" xml:space="preserve">
+    <value>Automatic scans</value>
+  </data>
+  <data name="tl_CellPicker_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="inspectionpane" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\inspectionpane.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_NoRulesSide" xml:space="preserve">
+    <value>No Rules created. Please create a new Rule with the Rule Editor.</value>
+  </data>
+  <data name="tl_ConditionPicker_ConditionName" xml:space="preserve">
+    <value>Name of the Condition:</value>
+  </data>
+  <data name="tl_RuleEditor_Condition" xml:space="preserve">
+    <value>Condition(s):</value>
+  </data>
+  <data name="tl_Scan_unsuccessful" xml:space="preserve">
+    <value>Scan unsuccessful</value>
+  </data>
+  <data name="tl_Ribbon_MessageNoPolicies" xml:space="preserve">
+    <value>No policies, scenarios or custom rules are enabled for manual scans. Please enable a policy or create a scenario or custom rule and try again.</value>
+  </data>
+  <data name="tl_Ribbon_MessageNoPolicies_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="tl_MessageBox_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="tl_ConditionPicker_NoName" xml:space="preserve">
+    <value>Please enter a name.</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_NewButtonTooltip" xml:space="preserve">
+    <value>Creates a new scenario</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_ResetButton" xml:space="preserve">
+    <value>Reset document</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_ScanButtonTooltip" xml:space="preserve">
+    <value>Scans the current workbook with all scenarios.</value>
+  </data>
+  <data name="tl_ScenarioCellList_Footer" xml:space="preserve">
+    <value>Cells were marked for Scenario usage.</value>
+  </data>
+  <data name="static_violation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\violations\static.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_ValidationError" xml:space="preserve">
+    <value>The validation caused an error!
+</value>
+  </data>
+  <data name="tl_Sidebar_Rules" xml:space="preserve">
+    <value>Rules</value>
+  </data>
+  <data name="tl_ConditionPicker_Choose1Comma" xml:space="preserve">
+    <value>Only allows 1 digit after comma.</value>
+  </data>
+  <data name="tl_ScenarioDetailView_DeleteDataTooltip" xml:space="preserve">
+    <value>Delete selected cell</value>
+  </data>
+  <data name="tl_Separator_Confirmed_this" xml:space="preserve">
+    <value>Yes, ignore it in this field</value>
+  </data>
+  <data name="tl_CellErrorInfo_PossibleSolution" xml:space="preserve">
+    <value>Possible Solution</value>
+  </data>
+  <data name="tl_Ribbon_AreaMiscellaneous_ShowSanity" xml:space="preserve">
+    <value>Show sanity controls</value>
+  </data>
+  <data name="tl_RuleEditor_FilterCondition" xml:space="preserve">
+    <value>Trigger when:</value>
+  </data>
+  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\violations\plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Error_NoConnectionToServer" xml:space="preserve">
+    <value>Could not reach SIF server!</value>
+  </data>
+  <data name="sanity_violation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\violations\sanity.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_Title" xml:space="preserve">
+    <value>Define Scenario Cells</value>
+  </data>
+  <data name="tl_StartNewScan" xml:space="preserve">
+    <value>Please start a new Scans</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseConditionType" xml:space="preserve">
+    <value>Please choose the type of the new condition.</value>
+  </data>
+  <data name="tl_SolvedView_Empty" xml:space="preserve">
+    <value>No solved findings</value>
+  </data>
+  <data name="tl_Load_Failed" xml:space="preserve">
+    <value>The following parts were unable to load:</value>
+  </data>
+  <data name="tl_ViolationTemplate_PossibleSolution" xml:space="preserve">
+    <value>Possible solution:</value>
+  </data>
+  <data name="tl_RuleEditor_FilterConditionOR" xml:space="preserve">
+    <value>(At least) one condition is satisfied</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_NewButton" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="tl_ViolationTemplate_Type" xml:space="preserve">
+    <value>Type:</value>
+  </data>
+  <data name="tl_Path_missing" xml:space="preserve">
+    <value>The Spreadsheet Inspection Framework was not found at this location:
+</value>
+  </data>
+  <data name="tl_ScenarioPane_EditScenarioTooltip" xml:space="preserve">
+    <value>Opens a new window to edit the scenario</value>
+  </data>
+  <data name="tl_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="tl_ScenarioDetailView_SaveData" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="tl_MemoryRestrictions" xml:space="preserve">
+    <value>The inspection queue has been cleared due to memory restrictions.</value>
+  </data>
+  <data name="tl_RuleEditor_RuleArea" xml:space="preserve">
+    <value>Cell Area:</value>
+  </data>
+  <data name="tl_Ribbon_Title" xml:space="preserve">
+    <value>INSPECTION</value>
+  </data>
+  <data name="tl_ToManyCells" xml:space="preserve">
+    <value>Please dont select more than 10000 Cells.</value>
+  </data>
+  <data name="intermediate_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\intermediate_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_ProcessingScan" xml:space="preserve">
+    <value>Processing scan</value>
+  </data>
+  <data name="tl_ScenarioDetailView_DiscardDataMessageBoxTitle" xml:space="preserve">
+    <value>Discard changes</value>
+  </data>
+  <data name="tl_No_Java_Enviroment" xml:space="preserve">
+    <value>No java runtime was found!
+Please ensure a Java runtime environment &gt;= 1.7 is installed and accessible through the PATH variable.
+The Scan button will be without function.</value>
+  </data>
+  <data name="tl_ViolationTemplate_Description" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_SaveButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="tl_ConditionPicker_NoRegex" xml:space="preserve">
+    <value>Please enter a valid Regex string.</value>
+  </data>
+  <data name="tl_NoScenariosSide" xml:space="preserve">
+    <value>No scenarios created. Please create a new scenario from the Ribbon menu.</value>
+  </data>
+  <data name="tl_stopEdit" xml:space="preserve">
+    <value>Please stop editing the cell and start a new scan</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_Condition" xml:space="preserve">
+    <value>A rule consists of one or more conditions that can be added with "Add new Condition".</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_InputcellTooltip" xml:space="preserve">
+    <value>Defines a Input Cell.</value>
+  </data>
+  <data name="input_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\input_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_PolicyConfigurationButtonTooltip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tl_CellPicker_Text" xml:space="preserve">
+    <value>Please ‪select the Cell area on the spreadsheet where the Rule should be applied.</value>
+  </data>
+  <data name="tl_CellPicker_ToManyCells" xml:space="preserve">
+    <value>Please dont assign more than 10000 cells to a rule.</value>
+  </data>
+  <data name="tl_Ribbon_MessageNoScansInScnearioModeTitle" xml:space="preserve">
+    <value>Scanning not possible now</value>
+  </data>
+  <data name="tl_Load_Failed_Title" xml:space="preserve">
+    <value>Loading from workbook failed</value>
+  </data>
+  <data name="tl_ScenarioDetailView_DiscardDataMessageBox" xml:space="preserve">
+    <value>Are you sure you want to discard the changes?</value>
+  </data>
+  <data name="tl_NoScanPossible" xml:space="preserve">
+    <value>Scaning not avaliable right now</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_Description" xml:space="preserve">
+    <value>A description of the rule that should describe the usage.</value>
+  </data>
+  <data name="tl_Scan_unsuccessfulMessage" xml:space="preserve">
+    <value>Scan failed.
+</value>
+  </data>
+  <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_ConditionPicker_Confirm" xml:space="preserve">
+    <value>Create Condition</value>
+  </data>
+  <data name="tl_Scenario_Notallcellsfilled" xml:space="preserve">
+    <value>You didn't fill all selected input-, output- and itermediatecells.
+Possible solutions:
+- fill these missing cells
+- abort the scenario creation.
+- delete unncessaryselected cells and try it again.</value>
+  </data>
+  <data name="tl_RuleEditor_FilterConditionNONE" xml:space="preserve">
+    <value>No Condition is satisfied</value>
+  </data>
+  <data name="tl_NewScenarioDialog_Question" xml:space="preserve">
+    <value>Please give your scenario a name:</value>
+  </data>
+  <data name="tl_RuleEditor_NoDescription" xml:space="preserve">
+    <value>No Description found. The rule will be created without an description.</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseRegex" xml:space="preserve">
+    <value>Please enter a valid Regex string. This string will limit the contents of the cell.</value>
+  </data>
+  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\delete_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_Sidebar_Ignored" xml:space="preserve">
+    <value>Ignored findings</value>
+  </data>
+  <data name="tl_MessageBox_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="tl_Sidebar_Later" xml:space="preserve">
+    <value>Findings for later</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_CharacterCount" xml:space="preserve">
+    <value>Character Count</value>
+  </data>
+  <data name="dynamic_violation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\violations\dynamic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_ConditionPicker_NoCharCount" xml:space="preserve">
+    <value>Please enter a valid interger number.</value>
+  </data>
+  <data name="tl_Ribbon_MessageNoScansInScnearioMode" xml:space="preserve">
+    <value>You cannot run a scan while editing a scenario. Save or discard the scenario and try again.</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_ResetButtonTooltip" xml:space="preserve">
+    <value>Resets the document to the state before the test execution.</value>
+  </data>
+  <data name="tl_ConditionPicker_NoCondition" xml:space="preserve">
+    <value>Please select your desired Condition type.</value>
+  </data>
+  <data name="tl_ViolationView_Delete" xml:space="preserve">
+    <value>delete</value>
+  </data>
+  <data name="tl_ConditionPicker_NoInputReq" xml:space="preserve">
+    <value>There is no Input requiered.</value>
+  </data>
+  <data name="tl_ConditionPicker_Error" xml:space="preserve">
+    <value>Invalid Condition type.</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_Name" xml:space="preserve">
+    <value>The name this rule will be using from now.</value>
+  </data>
+  <data name="tl_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="tl_Scenario_MinOneOutput" xml:space="preserve">
+    <value>A scenario needs at least one output cell value.</value>
+  </data>
+  <data name="tl_Separator_intended" xml:space="preserve">
+    <value>You have used a thousands separator character, was this intended behavior?</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseEmpty" xml:space="preserve">
+    <value>The cell has to be empty.</value>
+  </data>
+  <data name="tl_Path_install" xml:space="preserve">
+    <value>Please install the Spreadsheet Inspection Framework and restart Excel.</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_Resultcell" xml:space="preserve">
+    <value>Result Cell</value>
+  </data>
+  <data name="tl_Scan_successful" xml:space="preserve">
+    <value>Scan successful</value>
+  </data>
+  <data name="tl_SIFCorecrashed" xml:space="preserve">
+    <value>Unfortunatly SIFCore crashed.
+Try scanning the file again and if this doesn't help close and open the file again.</value>
+  </data>
+  <data name="tl_CellDefinitions" xml:space="preserve">
+    <value>Cell definitions</value>
+  </data>
+  <data name="tl_Later" xml:space="preserve">
+    <value>Later</value>
+  </data>
+  <data name="tl_ScenarioOverview" xml:space="preserve">
+    <value>Scenario Overview</value>
+  </data>
+  <data name="tl_RulePane_DeleteRuleTooltip" xml:space="preserve">
+    <value>Deletes this Rule</value>
+  </data>
+  <data name="tl_RuleEditor_ToolTip_CellArea" xml:space="preserve">
+    <value>The area where the rule will be applied.</value>
+  </data>
+  <data name="trash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\trash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_ResultcellTooltip" xml:space="preserve">
+    <value>Defines a Result Cell.</value>
+  </data>
+  <data name="tl_RuleEditor_NoName" xml:space="preserve">
+    <value>No name found. Please enter a name for the rule</value>
+  </data>
+  <data name="output_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\output_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_ScenarioPane_EditScenario" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="tl_ViolationTemplate_MoreDetails" xml:space="preserve">
+    <value>More details</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_Title" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="tl_ViolationView_Later" xml:space="preserve">
+    <value>later</value>
+  </data>
+  <data name="tl_RuleEditor_FilterConditionAND" xml:space="preserve">
+    <value>All conditions are satisfied</value>
+  </data>
+  <data name="tl_Ribbon_AreaRuleEditor_Tooltip" xml:space="preserve">
+    <value>Opens the Rule Editor for a new Rule</value>
+  </data>
+  <data name="tl_OpenView_Empty" xml:space="preserve">
+    <value>No open findings</value>
+  </data>
+  <data name="tl_Ignored" xml:space="preserve">
+    <value>Ignored</value>
+  </data>
+  <data name="tl_Ribbon_AreaMiscellaneous_Title" xml:space="preserve">
+    <value>Miscellaneous</value>
+  </data>
+  <data name="tl_Number_Format" xml:space="preserve">
+    <value>Number format</value>
+  </data>
+  <data name="tl_Sidebar_Archived" xml:space="preserve">
+    <value>Archived findings</value>
+  </data>
+  <data name="tl_ViolationView_NoViolations" xml:space="preserve">
+    <value>No Violations in this tab.</value>
+  </data>
+  <data name="scenarios" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\scenarios.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_Sidebar_Open" xml:space="preserve">
+    <value>Open findings</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_Title" xml:space="preserve">
+    <value>Scenario</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_SaveButtonTooltip" xml:space="preserve">
+    <value>Save this scenario</value>
+  </data>
+  <data name="tl_Sidebar_Cells" xml:space="preserve">
+    <value>Marked cells</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_PaneButtonTooltip" xml:space="preserve">
+    <value>Opens a pane with the cell definitions, scenario overview and findings.</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_AutomaticScansCheckboxTooltip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tl_Ribbon_AreaScan_ScanButton" xml:space="preserve">
+    <value>Scan</value>
+  </data>
+  <data name="tl_ScenarioPane_DeleteConfirmQuestion" xml:space="preserve">
+    <value>Are you sure you want to delete the scenario named</value>
+  </data>
+  <data name="findings_new" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\findings_new.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_ConditionPicker_Choose2Comma" xml:space="preserve">
+    <value>Only allows up to 2 digits after comma.</value>
+  </data>
+  <data name="empty_violation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\violations\empty.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_RuleEditor_RuleDescription" xml:space="preserve">
+    <value>Rule Description:</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_Intermediatecell" xml:space="preserve">
+    <value>Intermediate Cell</value>
+  </data>
+  <data name="violations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\violations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="falsepositive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\falsepositive.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_ViolationTemplate_FirstOccurence" xml:space="preserve">
+    <value>First occurence:</value>
+  </data>
+  <data name="tl_Scenario_CantCreate" xml:space="preserve">
+    <value>Can\'t create scenario</value>
+  </data>
+  <data name="tl_RuleEditor_NoRuleCells" xml:space="preserve">
+    <value>No Rule Cells.</value>
+  </data>
+  <data name="tl_ScenarioDetailView_SaveDataTooltip" xml:space="preserve">
+    <value>Save changes in the open scenario</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_Title" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="tl_ScenarioDetailView_DiscardDataTooltip" xml:space="preserve">
+    <value>Discards the changes on the selected scenario</value>
+  </data>
+  <data name="solved" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\solved.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_ScenarioPane_DeleteConfirmQuestionTitle" xml:space="preserve">
+    <value>Delete scenario</value>
+  </data>
+  <data name="tl_RuleEditor_NewCondition" xml:space="preserve">
+    <value>New Condition</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_OnlyNumbers" xml:space="preserve">
+    <value>Only Numbers</value>
+  </data>
+  <data name="tl_ViolationView_Footer" xml:space="preserve">
+    <value>violation(s) in list</value>
+  </data>
+  <data name="tl_Ribbon_AreaView_PaneButton" xml:space="preserve">
+    <value>Inspection Pane</value>
+  </data>
+  <data name="tl_ViolationTemplate_Background" xml:space="preserve">
+    <value>Background:</value>
+  </data>
+  <data name="tl_Scan_needssave" xml:space="preserve">
+    <value>The file needs to be saved before a scan can be done. 
+Scan will be aborted </value>
+  </data>
+  <data name="tl_CellErrorInfo_Background" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="tl_RulePane_EditRuleTooltip" xml:space="preserve">
+    <value>Opens the Rule Editor to edit this Rule</value>
+  </data>
+  <data name="tl_ScenarioDetailView_DeleteData" xml:space="preserve">
+    <value>Delete cell</value>
+  </data>
+  <data name="tl_ViolationView_Reset" xml:space="preserve">
+    <value>reset</value>
+  </data>
+  <data name="tl_ConditionPicker_Empty" xml:space="preserve">
+    <value>Empty Cell</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_Inputcell" xml:space="preserve">
+    <value>Input Cell</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_2Comma" xml:space="preserve">
+    <value>0,1 or 2 Commas</value>
+  </data>
+  <data name="tl_ScenarioPane_NoScenarios" xml:space="preserve">
+    <value>No scenarios created. Please create a new scenario from the Ribbon menu.</value>
+  </data>
+  <data name="tl_CellPicker_Label" xml:space="preserve">
+    <value>Please ‪select the Cell area where the Rule should apply.</value>
+  </data>
+  <data name="tl_ScenarioPane_DeleteScenario" xml:space="preserve">
+    <value>Delete scenario</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseCharacterCount1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tl_ScenarioPane_DeleteScenarioTooltip" xml:space="preserve">
+    <value>Deletes the selected scenario</value>
+  </data>
+  <data name="tl_Scan_failed" xml:space="preserve">
+    <value>The test of the current document failed!
+</value>
+  </data>
+  <data name="tl_RuleEditor_Condition_1Comma" xml:space="preserve">
+    <value>1 or 0 Commas</value>
+  </data>
+  <data name="tl_RuleEditor_Confirm" xml:space="preserve">
+    <value>Create new Rule</value>
+  </data>
+  <data name="tl_RuleEditor_NoCondition" xml:space="preserve">
+    <value>No condition specified. Please create at least one condition for the rule</value>
+  </data>
+  <data name="tl_Ribbon_AreaDefine_IntermediatecellTooltip" xml:space="preserve">
+    <value>Defines a Intermediate Cell.</value>
+  </data>
+  <data name="tl_Separator_Confirmed_all" xml:space="preserve">
+    <value>Yes don\'t show again</value>
+  </data>
+  <data name="tl_Scan_needingsavetitle" xml:space="preserve">
+    <value>Scan aborted</value>
+  </data>
+  <data name="tl_Ribbon_AreaMiscellaneous_GlobalSettingsButton" xml:space="preserve">
+    <value>Global Settings</value>
+  </data>
+  <data name="tl_Ribbon_AreaRule_Title" xml:space="preserve">
+    <value>Rules</value>
+  </data>
+  <data name="tl_Ribbon_AreaRule_RuleEditor" xml:space="preserve">
+    <value>Rule Editor</value>
+  </data>
+  <data name="tl_ConditionPicker_ChooseOnlyNumbers" xml:space="preserve">
+    <value>Only allows Numbers</value>
+  </data>
+  <data name="tl_OutOfMemory" xml:space="preserve">
+    <value>There is not enough memory (RAM) to scan the file</value>
+  </data>
+  <data name="sanity" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icons\violations\sanity.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_Ribbon_AreaScan_PolicyConfigurationButton" xml:space="preserve">
+    <value>Policy configuration</value>
+  </data>
+  <data name="tl_NewScenarioDialog_DefaultAnswer" xml:space="preserve">
+    <value>Untitled new scenario</value>
+  </data>
+  <data name="Edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tl_RuleEditor_CellPicker" xml:space="preserve">
+    <value>Choose Rule application area</value>
+  </data>
+  <data name="tl_ScenarioDetailView_DiscardData" xml:space="preserve">
+    <value>Discard</value>
+  </data>
+  <data name="tl_MessageBox_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="tl_NewScenarioDialog_Title" xml:space="preserve">
+    <value>New Scenario...</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_CancelButtonTolltip" xml:space="preserve">
+    <value>Discard this scenario</value>
+  </data>
+  <data name="tl_Ribbon_AreaScenario_CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="tl_Sidebar_Scenarios" xml:space="preserve">
+    <value>Scenarios</value>
+  </data>
+  <data name="tl_Rules" xml:space="preserve">
+    <value>Rules</value>
+  </data>
+  <data name="Download" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Download.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>
