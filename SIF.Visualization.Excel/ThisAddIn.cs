@@ -11,6 +11,7 @@ namespace SIF.Visualization.Excel
 {
     public partial class ThisAddIn
     {
+        
         private void ThisAddIn_Startup(object sender, EventArgs e)
         {
             Globals.ThisAddIn.Application.WorkbookActivate += Application_WorkbookActivate;

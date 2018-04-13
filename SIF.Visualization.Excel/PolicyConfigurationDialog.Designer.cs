@@ -55,6 +55,15 @@ namespace SIF.Visualization.Excel
             this.OneAmongOthersStyleHorizontal = new System.Windows.Forms.RadioButton();
             this.OneAmongOthersStyleVertical = new System.Windows.Forms.RadioButton();
             this.OneAmongOthersStyleBoth = new System.Windows.Forms.RadioButton();
+            this.help_ErrorInCells = new System.Windows.Forms.Button();
+            this.help_FormulaComplexity = new System.Windows.Forms.Button();
+            this.help_MultipleSameRef = new System.Windows.Forms.Button();
+            this.help_NoConstantsInFormulas = new System.Windows.Forms.Button();
+            this.help_NonConsideredConstants = new System.Windows.Forms.Button();
+            this.help_OneAmongOthers = new System.Windows.Forms.Button();
+            this.help_ReadingDirection = new System.Windows.Forms.Button();
+            this.help_RefToNull = new System.Windows.Forms.Button();
+            this.help_StringDistance = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Button_OK
@@ -215,11 +224,94 @@ namespace SIF.Visualization.Excel
             this.OneAmongOthersStyleBoth.TabStop = true;
             this.OneAmongOthersStyleBoth.UseVisualStyleBackColor = true;
             // 
+            // hilfe
+            // 
+            this.help_ErrorInCells.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            resources.ApplyResources(this.help_ErrorInCells, "hilfe");
+            this.help_ErrorInCells.Cursor = System.Windows.Forms.Cursors.Default;
+            this.help_ErrorInCells.Name = "hilfe";
+            this.help_ErrorInCells.UseVisualStyleBackColor = false;
+            this.help_ErrorInCells.Click += new System.EventHandler(this.hilfe_Click);
+            // 
+            // button1
+            // 
+            this.help_FormulaComplexity.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            resources.ApplyResources(this.help_FormulaComplexity, "button1");
+            this.help_FormulaComplexity.Cursor = System.Windows.Forms.Cursors.Default;
+            this.help_FormulaComplexity.Name = "button1";
+            this.help_FormulaComplexity.UseVisualStyleBackColor = false;
+            this.help_FormulaComplexity.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.help_MultipleSameRef.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            resources.ApplyResources(this.help_MultipleSameRef, "button2");
+            this.help_MultipleSameRef.Cursor = System.Windows.Forms.Cursors.Default;
+            this.help_MultipleSameRef.Name = "button2";
+            this.help_MultipleSameRef.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.help_NoConstantsInFormulas.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            resources.ApplyResources(this.help_NoConstantsInFormulas, "button3");
+            this.help_NoConstantsInFormulas.Cursor = System.Windows.Forms.Cursors.Default;
+            this.help_NoConstantsInFormulas.Name = "button3";
+            this.help_NoConstantsInFormulas.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.help_NonConsideredConstants.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            resources.ApplyResources(this.help_NonConsideredConstants, "button4");
+            this.help_NonConsideredConstants.Cursor = System.Windows.Forms.Cursors.Default;
+            this.help_NonConsideredConstants.Name = "button4";
+            this.help_NonConsideredConstants.UseVisualStyleBackColor = false;
+            // 
+            // button5
+            // 
+            this.help_OneAmongOthers.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            resources.ApplyResources(this.help_OneAmongOthers, "button5");
+            this.help_OneAmongOthers.Cursor = System.Windows.Forms.Cursors.Default;
+            this.help_OneAmongOthers.Name = "button5";
+            this.help_OneAmongOthers.UseVisualStyleBackColor = false;
+            // 
+            // button6
+            // 
+            this.help_ReadingDirection.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            resources.ApplyResources(this.help_ReadingDirection, "button6");
+            this.help_ReadingDirection.Cursor = System.Windows.Forms.Cursors.Default;
+            this.help_ReadingDirection.Name = "button6";
+            this.help_ReadingDirection.UseVisualStyleBackColor = false;
+            // 
+            // button7
+            // 
+            this.help_RefToNull.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            resources.ApplyResources(this.help_RefToNull, "button7");
+            this.help_RefToNull.Cursor = System.Windows.Forms.Cursors.Default;
+            this.help_RefToNull.Name = "button7";
+            this.help_RefToNull.UseVisualStyleBackColor = false;
+            // 
+            // button8
+            // 
+            this.help_StringDistance.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            resources.ApplyResources(this.help_StringDistance, "button8");
+            this.help_StringDistance.Cursor = System.Windows.Forms.Cursors.Default;
+            this.help_StringDistance.Name = "button8";
+            this.help_StringDistance.UseVisualStyleBackColor = false;
+            // 
             // PolicyConfigurationDialog
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.help_StringDistance);
+            this.Controls.Add(this.help_RefToNull);
+            this.Controls.Add(this.help_ReadingDirection);
+            this.Controls.Add(this.help_OneAmongOthers);
+            this.Controls.Add(this.help_NonConsideredConstants);
+            this.Controls.Add(this.help_NoConstantsInFormulas);
+            this.Controls.Add(this.help_MultipleSameRef);
+            this.Controls.Add(this.help_FormulaComplexity);
+            this.Controls.Add(this.help_ErrorInCells);
             this.Controls.Add(this.OneAmongOthersStyleBoth);
             this.Controls.Add(this.OneAmongOthersStyleVertical);
             this.Controls.Add(this.OneAmongOthersStyleHorizontal);
@@ -244,6 +336,7 @@ namespace SIF.Visualization.Excel
             this.Controls.Add(this.FormulaComplexity);
             this.Controls.Add(this.ReadingDirection);
             this.Controls.Add(this.NoConstantsInFormulas);
+            this.HelpButton = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PolicyConfigurationDialog";
@@ -278,5 +371,14 @@ namespace SIF.Visualization.Excel
         private System.Windows.Forms.RadioButton OneAmongOthersStyleHorizontal;
         private System.Windows.Forms.RadioButton OneAmongOthersStyleVertical;
         private System.Windows.Forms.RadioButton OneAmongOthersStyleBoth;
+        private System.Windows.Forms.Button help_ErrorInCells;
+        private System.Windows.Forms.Button help_FormulaComplexity;
+        private System.Windows.Forms.Button help_MultipleSameRef;
+        private System.Windows.Forms.Button help_NoConstantsInFormulas;
+        private System.Windows.Forms.Button help_NonConsideredConstants;
+        private System.Windows.Forms.Button help_OneAmongOthers;
+        private System.Windows.Forms.Button help_ReadingDirection;
+        private System.Windows.Forms.Button help_RefToNull;
+        private System.Windows.Forms.Button help_StringDistance;
     }
 }

@@ -165,22 +165,23 @@
     <value>Verwerfen</value>
   </data>
   <data name="tl_Ribbon_AreaScenario_CancelButtonTolltip" xml:space="preserve">
-    <value>Verwirft alle Änderungen am aktuellen Szenario</value>
+    <value>Verwirft alle Änderungen am aktuellen Testszenario</value>
   </data>
   <data name="tl_Ribbon_AreaScenario_NewButton" xml:space="preserve">
     <value>Neu</value>
   </data>
   <data name="tl_Ribbon_AreaScenario_NewButtonTooltip" xml:space="preserve">
-    <value>Erstellt ein neues Szenario</value>
+    <value>Erstellt ein neues Testszenario</value>
   </data>
   <data name="tl_Ribbon_AreaScenario_SaveButton" xml:space="preserve">
     <value>Speichern</value>
   </data>
   <data name="tl_Ribbon_AreaScenario_SaveButtonTooltip" xml:space="preserve">
-    <value>Speichert das aktuelle Szenario</value>
+    <value>Speichert das aktuelle Testszenario</value>
   </data>
   <data name="tl_Ribbon_AreaScenario_Title" xml:space="preserve">
-    <value>Szenario</value>
+    <value>Testszenario</value>
+    <comment>Erstellen von benutzerdefinierten Tests </comment>
   </data>
   <data name="tl_Ribbon_AreaView_PaneButton" xml:space="preserve">
     <value>Seitenleiste</value>
@@ -219,7 +220,7 @@
     <value>Zellen festlegen</value>
   </data>
   <data name="tl_Ribbon_AreaMiscellaneous_GlobalSettingsButton" xml:space="preserve">
-    <value>Globale Einstellungen</value>
+    <value>Server Einstellungen</value>
   </data>
   <data name="tl_Ribbon_AreaMiscellaneous_Title" xml:space="preserve">
     <value>Sonstiges</value>
@@ -264,16 +265,16 @@
     <value>Plausi-Steuerung anzeigen</value>
   </data>
   <data name="tl_NewScenarioDialog_DefaultAnswer" xml:space="preserve">
-    <value>Unbenanntes neues Szenario</value>
+    <value>Unbenanntes neues Testszenario</value>
   </data>
   <data name="tl_NewScenarioDialog_Question" xml:space="preserve">
     <value>Bitte geben Sie dem neuen Szenario einen Namen</value>
   </data>
   <data name="tl_NewScenarioDialog_Title" xml:space="preserve">
-    <value>Neues Szenario...</value>
+    <value>Neues Testszenario...</value>
   </data>
   <data name="tl_Ribbon_MessageNoPolicies" xml:space="preserve">
-    <value>Es sind keine Regeln für die Prüfung aktiviert und keine Szenarien oder eigene Regeln vorhanden. Aktivieren Sie bitte mindestens eine Regel oder erstellen Sie ein Szenario und versuchen Sie es erneut.</value>
+    <value>Es sind keine Regeln für die Prüfung aktiviert und keine Testszenarien oder eigene Regeln vorhanden. Aktivieren Sie bitte mindestens eine Regel oder erstellen Sie ein Szenario und versuchen Sie es erneut.</value>
   </data>
   <data name="tl_Ribbon_MessageNoPolicies_Title" xml:space="preserve">
     <value>Prüfung nicht möglich.</value>
@@ -300,7 +301,7 @@
     <value>Offen</value>
   </data>
   <data name="tl_Sidebar_Scenarios" xml:space="preserve">
-    <value>Szenarien</value>
+    <value>Testszenarien</value>
   </data>
   <data name="tl_SolvedView_Empty" xml:space="preserve">
     <value>Keine gelösten Befunde archiviert</value>
@@ -309,22 +310,22 @@
     <value>Sind Sie sicher, dass Sie folgendes Szenario löschen möchten</value>
   </data>
   <data name="tl_ScenarioPane_DeleteConfirmQuestionTitle" xml:space="preserve">
-    <value>Szenario löschen</value>
+    <value>Testszenario löschen</value>
   </data>
   <data name="tl_ScenarioPane_DeleteScenario" xml:space="preserve">
     <value>Szenario löschen</value>
   </data>
   <data name="tl_ScenarioPane_DeleteScenarioTooltip" xml:space="preserve">
-    <value>Löscht dieses Szenario</value>
+    <value>Löscht dieses Testszenario</value>
   </data>
   <data name="tl_Ribbon_MessageNoScansInScnearioMode" xml:space="preserve">
-    <value>Sie können keine Prüfung starten, während Sie ein Szenario bearbeiten. Speichern oder verwerfen Sie das Szenario und versuchen Sie es erneut.</value>
+    <value>Sie können keine Prüfung starten, während Sie ein Testszenario bearbeiten. Speichern oder verwerfen Sie das Szenario und versuchen Sie es erneut.</value>
   </data>
   <data name="tl_Ribbon_MessageNoScansInScnearioModeTitle" xml:space="preserve">
     <value>Prüfung derzeit nicht möglich</value>
   </data>
   <data name="tl_ScenarioPane_NoScenarios" xml:space="preserve">
-    <value>Keine Szenarien. Bitte markieren Sie Zellen und erstellen Sie ein neues Szenario, um es hier zu sehen.</value>
+    <value>Keine Testszenarien Bitte markieren Sie Zellen und erstellen Sie ein neues Szenario, um es hier zu sehen.</value>
   </data>
   <data name="tl_ProcessingScan" xml:space="preserve">
     <value>Prüfung wird durchgeführt</value>
@@ -339,7 +340,7 @@
     <value>Keine Prüfung möglich</value>
   </data>
   <data name="tl_ScenarioPane_EditScenarioTooltip" xml:space="preserve">
-    <value>Öffnet ein neues Fenster um das Szenario zu bearbeiten</value>
+    <value>Öffnet ein neues Fenster um das Testszenario zu bearbeiten</value>
   </data>
   <data name="tl_ScenarioDetailView_DeleteData" xml:space="preserve">
     <value>Zelle löschen</value>
@@ -354,10 +355,10 @@
     <value>Verwerfen</value>
   </data>
   <data name="tl_ScenarioDetailView_DiscardDataTooltip" xml:space="preserve">
-    <value>Verwirft die vorgenommen Änderungen im Szenario</value>
+    <value>Verwirft die vorgenommen Änderungen im Testszenario</value>
   </data>
   <data name="tl_ScenarioDetailView_SaveDataTooltip" xml:space="preserve">
-    <value>Speichert die Änderungen im geöffnete Szenario</value>
+    <value>Speichert die Änderungen im geöffnete Testszenario</value>
   </data>
   <data name="tl_ScenarioDetailView_DiscardDataMessageBox" xml:space="preserve">
     <value>Sind sie sicher, dass sie Ihre Änderungen verwerfen wollen?</value>
@@ -403,13 +404,13 @@ Bitte stellen sie sicher, dass die Java Runtime in der Version 1.7 oder höher i
 Prüfung wir abgebrochen</value>
   </data>
   <data name="tl_Scenario_CantCreate" xml:space="preserve">
-    <value>Kann Szenario nicht erstellen.</value>
+    <value>Kann Testszenario nicht erstellen.</value>
   </data>
   <data name="tl_Scenario_MinOneInput" xml:space="preserve">
-    <value>Ein Szenario braucht mindestens eine Eingabezelle.</value>
+    <value>Ein Testszenario braucht mindestens eine Eingabezelle.</value>
   </data>
   <data name="tl_Scenario_MinOneOutput" xml:space="preserve">
-    <value>Ein Szenario braucht mindestens eine Eingabezelle.</value>
+    <value>Ein Testszenario braucht mindestens eine Eingabezelle.</value>
   </data>
   <data name="tl_Scenario_Notallcellsfilled" xml:space="preserve">
     <value>Sie haben nicht alle von Ihnen zuvor markierten Zellen (Eingabe-, Zwischenergebnis- und Ausgabezellen) befüllt.
@@ -461,13 +462,13 @@ Wenn dann noch immer eine Fehlermeldung kommt schließen Sie Excel einmal und ö
     <value>Später</value>
   </data>
   <data name="tl_NoScenariosSide" xml:space="preserve">
-    <value>Keine Szenarios erstellt. Bitte erstellen sie ein neues Szenario.</value>
+    <value>Keine Testszenario erstellt. Bitte erstellen sie ein neues Szenario.</value>
   </data>
   <data name="tl_Open" xml:space="preserve">
     <value>Offen</value>
   </data>
   <data name="tl_ScenarioOverview" xml:space="preserve">
-    <value>Szenario Übersicht</value>
+    <value>Testszenario Übersicht</value>
   </data>
   <data name="tl_Ribbon_AreaRule_RuleEditor" xml:space="preserve">
     <value>Neue Daten-Regel erstellen</value>

@@ -195,7 +195,7 @@
     <value>185, 17</value>
   </data>
   <data name="OneAmongOthers.Text" xml:space="preserve">
-    <value>Zellennachbarschaft untersuchen</value>
+    <value>Typüberprüfung ben. Zellen überprüfen</value>
   </data>
   <data name="StringDistance.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -204,7 +204,7 @@
     <value>176, 17</value>
   </data>
   <data name="StringDistance.Text" xml:space="preserve">
-    <value>Levensthein Distanz berechnen</value>
+    <value>Levensthein Distanz berechnen (Tippfehler)</value>
   </data>
   <data name="StringDistanceMinDistanceLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -228,7 +228,7 @@
     <value>159, 17</value>
   </data>
   <data name="ErrorInCells.Text" xml:space="preserve">
-    <value>Zellen auf Fehler überprüfen</value>
+    <value>Ungültigkeit in Zellen überprüfen</value>
   </data>
   <data name="FormulaComplexityMaxNesting.MaxLength" type="System.Int32, mscorlib">
     <value>2</value>

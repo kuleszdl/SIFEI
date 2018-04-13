@@ -17,6 +17,8 @@ namespace SIF.Visualization.Excel
     /// </summary>
     public partial class Ribbon
     {
+        Boolean serverstarted = false;
+        Process process = new Process();
         private void Ribbon_Load(object sender, RibbonUIEventArgs e)
         {
             DataModel.Instance.WorkbookSelectionChangedEventHandler += Ribbon_WorkbookSelectionChanged;
@@ -30,8 +32,40 @@ namespace SIF.Visualization.Excel
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        
+        private void startserver()
+        {
+
+
+            Process process = new Process();
+            String jarFile = System.AppDomain.CurrentDomain.BaseDirectory + "../../server.jar";
+            GlobalSettingsDialog dialog = new GlobalSettingsDialog();
+            String[] delemitter = dialog.getSifUrlTextBox().Split(':');
+
+            String ip = delemitter[0] + ":" + delemitter[1];
+            ip = ip.Replace("http://", "");
+            ; int port = Int32.Parse(delemitter[2]);
+            var arguments = String.Format(" -jar {0} -Ip {1} -Port {2}", jarFile, ip, port);
+
+            // indicate, that you want to capture the application output
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true;
+            // create a process instance
+            var javaExecutable = "java.exe";
+            // and instruct it to start java with the given parameters
+            var processStartInfo = new ProcessStartInfo(javaExecutable, arguments);
+            process.StartInfo = processStartInfo;
+            // start the process
+            process.Start();
+            // read the output from the started appplication
+            string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+
+
+        }
         private void scanButton_Click(object sender, RibbonControlEventArgs e)
         {
+           
             if (!AllowedToScan()) return;
             if (DataModel.Instance.CurrentWorkbook.PolicySettings.hasManualScans() ||
                 DataModel.Instance.CurrentWorkbook.Scenarios.Count > 0 ||
@@ -398,7 +432,7 @@ namespace SIF.Visualization.Excel
         {
             var settingsDialog = new PolicyConfigurationDialog();
         }
-
+      
         /// <summary>
         ///     Opens the global settings dialog
         /// </summary>
@@ -441,5 +475,35 @@ namespace SIF.Visualization.Excel
                 MessageBox.Show("On");
             }
         }
+
+        private void testButton_Click(object sender, RibbonControlEventArgs e)
+        {
+           
+        }
+
+        private void button2_Click(object sender, RibbonControlEventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, RibbonControlEventArgs e)
+        {
+            HelperGuide guid = new HelperGuide();
+            guid.Show();
+        }
+
+        private void button2_MouseEnter_1(object sender, RibbonControlEventArgs e)
+        {
+           
+        }
+
+        private void serverStartenButton_Click(object sender, RibbonControlEventArgs e)
+        {
+            startserver();
+
+
+        }
     }
+
+
 }

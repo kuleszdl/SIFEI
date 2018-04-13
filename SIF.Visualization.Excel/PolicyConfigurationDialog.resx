@@ -141,7 +141,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Button_OK.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>29</value>
   </data>
   <data name="Button_Cancel.Location" type="System.Drawing.Point, System.Drawing">
     <value>146, 415</value>
@@ -165,7 +165,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Button_Cancel.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>28</value>
   </data>
   <data name="FormulaComplexity.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 29</value>
@@ -189,7 +189,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FormulaComplexity.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>30</value>
   </data>
   <data name="ReadingDirection.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 252</value>
@@ -213,7 +213,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ReadingDirection.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>31</value>
   </data>
   <data name="NoConstantsInFormulas.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 115</value>
@@ -237,10 +237,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;NoConstantsInFormulas.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>32</value>
   </data>
   <data name="MultipleSameRef.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 94</value>
+    <value>14, 93</value>
   </data>
   <data name="MultipleSameRef.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 24</value>
@@ -261,7 +261,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;MultipleSameRef.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>27</value>
   </data>
   <data name="NonConsideredConstants.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 138</value>
@@ -285,7 +285,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;NonConsideredConstants.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>26</value>
   </data>
   <data name="RefToNull.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 313</value>
@@ -309,7 +309,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;RefToNull.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>25</value>
   </data>
   <data name="OneAmongOthers.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 159</value>
@@ -333,7 +333,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;OneAmongOthers.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>24</value>
   </data>
   <data name="StringDistance.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 336</value>
@@ -357,7 +357,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;StringDistance.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>23</value>
   </data>
   <data name="StringDistanceMinDistanceLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>61, 363</value>
@@ -381,7 +381,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;StringDistanceMinDistanceLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>22</value>
   </data>
   <data name="StringDistanceMinDistance.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 359</value>
@@ -402,7 +402,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;StringDistanceMinDistance.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>21</value>
   </data>
   <data name="ErrorInCells.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -429,7 +429,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ErrorInCells.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>20</value>
   </data>
   <data name="FormulaComplexityMaxNesting.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 6.75pt</value>
@@ -453,7 +453,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FormulaComplexityMaxNesting.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>18</value>
   </data>
   <data name="FormulaComplexityMaxNestingLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>58, 55</value>
@@ -477,7 +477,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FormulaComplexityMaxNestingLabel.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>19</value>
   </data>
   <data name="FormulaComplexityMaxOperations.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 6.75pt</value>
@@ -501,7 +501,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FormulaComplexityMaxOperations.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>16</value>
   </data>
   <data name="FormulaComplexityMaxOperationsLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>58, 74</value>
@@ -525,7 +525,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FormulaComplexityMaxOperationsLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>17</value>
   </data>
   <data name="OneAmongOthersLengthLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>58, 235</value>
@@ -549,7 +549,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;OneAmongOthersLengthLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>15</value>
   </data>
   <data name="OneAmongOthersLength.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 6.75pt</value>
@@ -573,7 +573,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;OneAmongOthersLength.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>14</value>
   </data>
   <data name="ReadingDirectionLeftRight.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 272</value>
@@ -597,7 +597,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ReadingDirectionLeftRight.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>13</value>
   </data>
   <data name="ReadingDirectionTopBottom.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 291</value>
@@ -621,7 +621,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ReadingDirectionTopBottom.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>12</value>
   </data>
   <data name="OneAmongOthersStyleHorizontal.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -648,7 +648,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;OneAmongOthersStyleHorizontal.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>11</value>
   </data>
   <data name="OneAmongOthersStyleVertical.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -679,7 +679,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;OneAmongOthersStyleVertical.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>10</value>
   </data>
   <data name="OneAmongOthersStyleBoth.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -709,6 +709,303 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;OneAmongOthersStyleBoth.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="hilfe.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="hilfe.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
+  <data name="hilfe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="hilfe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>245, 9</value>
+  </data>
+  <data name="hilfe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 20</value>
+  </data>
+  <data name="hilfe.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="hilfe.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="&gt;&gt;hilfe.Name" xml:space="preserve">
+    <value>hilfe</value>
+  </data>
+  <data name="&gt;&gt;hilfe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hilfe.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;hilfe.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="button1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="button1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
+  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>245, 29</value>
+  </data>
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 21</value>
+  </data>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="button2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="button2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
+  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>245, 94</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 20</value>
+  </data>
+  <data name="button2.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="&gt;&gt;button2.Name" xml:space="preserve">
+    <value>button2</value>
+  </data>
+  <data name="&gt;&gt;button2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="button3.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="button3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
+  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>245, 116</value>
+  </data>
+  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 20</value>
+  </data>
+  <data name="button3.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="&gt;&gt;button3.Name" xml:space="preserve">
+    <value>button3</value>
+  </data>
+  <data name="&gt;&gt;button3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="button4.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="button4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
+  <data name="button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>245, 139</value>
+  </data>
+  <data name="button4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 20</value>
+  </data>
+  <data name="button4.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="button4.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="&gt;&gt;button4.Name" xml:space="preserve">
+    <value>button4</value>
+  </data>
+  <data name="&gt;&gt;button4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="button5.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="button5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
+  <data name="button5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>245, 160</value>
+  </data>
+  <data name="button5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 20</value>
+  </data>
+  <data name="button5.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="button5.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="&gt;&gt;button5.Name" xml:space="preserve">
+    <value>button5</value>
+  </data>
+  <data name="&gt;&gt;button5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button5.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button5.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="button6.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="button6.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
+  <data name="button6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>245, 255</value>
+  </data>
+  <data name="button6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 20</value>
+  </data>
+  <data name="button6.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="button6.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="&gt;&gt;button6.Name" xml:space="preserve">
+    <value>button6</value>
+  </data>
+  <data name="&gt;&gt;button6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button6.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="button7.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="button7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
+  <data name="button7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>245, 314</value>
+  </data>
+  <data name="button7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 20</value>
+  </data>
+  <data name="button7.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="button7.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="&gt;&gt;button7.Name" xml:space="preserve">
+    <value>button7</value>
+  </data>
+  <data name="&gt;&gt;button7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button7.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button7.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="button8.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="button8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
+  <data name="button8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>245, 337</value>
+  </data>
+  <data name="button8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 20</value>
+  </data>
+  <data name="button8.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="button8.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="&gt;&gt;button8.Name" xml:space="preserve">
+    <value>button8</value>
+  </data>
+  <data name="&gt;&gt;button8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button8.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button8.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
