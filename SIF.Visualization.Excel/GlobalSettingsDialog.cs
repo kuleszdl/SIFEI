@@ -16,8 +16,14 @@ namespace SIF.Visualization.Excel
         {
             InitializeComponent();
             sifUrlTextbox.Text = Settings.Default.SifServerUrl;
+
             FormBorderStyle = FormBorderStyle.FixedDialog;
             ShowDialog();
+        }
+        
+        public String getSifUrlTextBox()
+        {
+            return sifUrlTextbox.Text;
         }
 
         private void GlobalSettingsDialog_Load(object sender, EventArgs e)
@@ -34,6 +40,8 @@ namespace SIF.Visualization.Excel
         {
             Settings.Default.SifServerUrl = sifUrlTextbox.Text;
             Settings.Default.Save();
+           
+           
             Close();
         }
 

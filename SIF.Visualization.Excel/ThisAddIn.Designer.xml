@@ -12,4 +12,5 @@
   <hostitem:hostControl hostitem:name="VstoSmartTags" hostitem:identifier="VstoSmartTags"
                         hostitem:type="Microsoft.Office.Tools.SmartTagCollection"
                         hostitem:primaryCookie="VstoSmartTags" hostitem:modifier="Internal" />
+  
 </hostitem:hostItem>
